@@ -10,7 +10,7 @@ export default function HeroBanner() {
       {/* Background Video - Subtle and low opacity */}
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-10"
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" // Placeholder video
+        src="https://commondatastorﬁage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" // Placeholder video
         loop
         muted
         autoPlay
