@@ -100,3 +100,243 @@ body {
 .line-clamp-none {
   -webkit-line-clamp: unset;
 }
+
+
+/* ========= ROOT VARIABLES ========= */
+:root {
+  --white: #fff;
+  --black: #010f34;
+  --heading-color: #010f34;
+  --body-color: #788094;
+  --ternary: #88a5ad;
+  --accent: #ff5500;
+  --gray: #f5f7fa;
+  --border: #ecf1f5;
+  --heading-font: "Outfit", sans-serif;
+  --body-color-font: "DM Sans", sans-serif;
+}
+
+/* ========= BACKGROUND & CONTAINER ========= */
+.cs_bg_filed {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ========= HEIGHT UTILITIES ========= */
+.cs_height_115 { height: 115px; }
+.cs_height_lg_70 { height: 70px; }
+.cs_height_45 { height: 45px; }
+.cs_height_lg_45 { height: 45px; }
+.cs_height_120 { height: 120px; }
+
+/* ========= MARGIN UTILITIES ========= */
+.mb-0 { margin-bottom: 0 !important; }
+.cs_mb_30 { margin-bottom: 30px; }
+.cs_mb_6 { margin-bottom: 6px; }
+.cs_mb_25 { margin-bottom: 25px; }
+
+/* ========= FONT UTILITIES ========= */
+.cs_fs_24 {
+  font-size: 24px;
+  line-height: 1.417em;
+}
+@media (max-width: 991px) {
+  .cs_fs_24 { font-size: 22px; }
+}
+.cs_fs_14 {
+  font-size: 14px;
+  line-height: 1.714;
+}
+.cs_semibold { font-weight: 600; }
+.cs_bold { font-weight: 700; }
+.cs_heading_color { color: var(--heading-color); }
+.text-uppercase { text-transform: uppercase; }
+
+/* ========= FLEX CENTER ========= */
+.cs_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========= SECTION HEADING ========= */
+.cs_section_heading_1_with_sub {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px 30px;
+}
+@media (max-width: 991px) {
+  .cs_section_heading_1_with_sub {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+.cs_section_heading_1_with_sub > p {
+  max-width: 370px;
+  padding-bottom: 5px;
+}
+
+.cs_section_heading.cs_style_1 .cs_section_subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cs_section_heading.cs_style_1 .cs_section_subtitle img {
+  flex: none;
+  animation: rotate 3s linear infinite;
+}
+.cs_section_heading.cs_style_1 .cs_section_text {
+  margin: 22px 0 0;
+}
+.cs_section_heading.cs_style_1.cs_type_1 {
+  margin-left: -250px;
+}
+@media (max-width: 1400px) {
+  .cs_section_heading.cs_style_1.cs_type_1 { margin-left: 0; }
+}
+@media (max-width: 575px) {
+  .cs_section_heading.cs_style_1 br { display: none; }
+}
+
+/* ========= KEYFRAMES ========= */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========= CARD WRAP ========= */
+.cs_card_1_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.cs_card_1_col {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (max-width: 991px) {
+  .cs_card_1_col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 575px) {
+  .cs_card_1_col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* ========= PROCESS CARD ========= */
+.cs_card.cs_style_1 {
+  position: relative;
+  padding: 0 20px 20px 20px;
+  margin-top: 40px;
+  transition: all 0.4s ease;
+}
+.cs_card.cs_style_1 .cs_card_in {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  padding: 1px 25px 25px;
+  border-radius: 20px;
+  background: var(--white);
+  transition: all 0.4s ease;
+}
+.cs_card.cs_style_1 .cs_card_icon {
+  height: 90px;
+  width: 90px;
+  border: 5px solid var(--border);
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -45px;
+  background-color: #fff;
+  padding: 15px;
+  transition: all 0.4s ease;
+}
+.cs_card.cs_style_1 .cs_card_shape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: var(--border);
+  transition: all 0.4s ease;
+}
+.cs_card.cs_style_1:hover .cs_card_icon {
+  border-color: var(--accent);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+.cs_card.cs_style_1:hover .cs_card_shape {
+  color: var(--accent);
+}
+.cs_card.cs_style_1:hover .cs_card_in {
+  transform: translateY(-5px);
+  box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.15);
+}
+
+.cs_white_bg {
+  background-color: var(--white);
+}
+
+/* ========= TEXT BUTTON ========= */
+.cs_text_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+.cs_text_btn:hover {
+  letter-spacing: 0.8px;
+  color: var(--accent);
+  transform: translateX(3px);
+}
+.cs_text_btn img {
+  transition: all 0.3s ease;
+}
+
+
+
+
+/* globals.css */
+
+.transition-clip {
+  transition: clip-path 0.5s ease-in-out;
+}
+
+.clip-path-half {
+  clip-path: polygon(50% 0, 50% 0, 50% 50%, 50% 100%, 50% 100%, 50% 50%);
+}
+
+.clip-path-full {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* === Custom Bounce Animation === */
+@keyframes bounceY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-bounce-custom {
+  animation: bounceY 3s infinite;
+}

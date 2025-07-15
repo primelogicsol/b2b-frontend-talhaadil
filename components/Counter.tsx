@@ -18,7 +18,7 @@ export default function SliderComponent() {
     { id: 2, title: "User Engagement", description: "Boost interaction and retention with personalized experiences.", number: 95 },
     { id: 3, title: "Data Security", description: "Protect your valuable information with industry-leading encryption.", number: 100 },
     { id: 4, title: "Performance Metrics", description: "Track key indicators and optimize for peak efficiency.", number: 250 },
-    { id: 5, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 }
+    { id: 5, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -47,7 +47,7 @@ export default function SliderComponent() {
         const nextIndex = prev + cardsPerPage
         return nextIndex > safeMaxIndex ? 0 : nextIndex
       })
-    }, 3000)
+    }, 1000)
   }, [cardsPerPage, slides.length])
 
   useEffect(() => {

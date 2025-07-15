@@ -23,42 +23,57 @@ export const FlipCard = ({
 
   return (
     <div
-      className={`group relative w-full max-w-sm h-48 perspective-1000 ${className}`}
+      className={`group relative w-full max-w-sm h-56 perspective-1000 ${className}`}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
       <div
-        className={`relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d cursor-pointer ${
+        className={`relative w-full h-full transition-transform duration-700 ease-out transform-style-preserve-3d ${
           isFlipped ? 'rotate-y-180' : ''
         }`}
       >
         {/* Front Face */}
         <div className="absolute inset-0 w-full h-full backface-hidden">
-          <div className="h-full bg-gradient-card border border-border rounded-lg p-6 shadow-card hover:shadow-card-hover transition-all duration-300 group-hover:shadow-glow flex items-center justify-center">
+          <div
+            className="h-full rounded-2xl p-6 flex items-center justify-center
+            bg-gradient-to-br from-[var(--softtec-blue)] via-[var(--softtec-light-blue)] to-[var(--softtec-yellow)]
+            border border-white/20
+            shadow-[0_0_30px_rgba(26,43,255,0.4)]
+            hover:shadow-[0_0_50px_rgba(58,75,255,0.6)]
+            backdrop-blur-xl transition-all duration-500"
+          >
             {isVertical ? (
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center group-hover:animate-float shadow-glow">
-                  <Icon className="w-8 h-8 text-primary-foreground group-hover:animate-glow-pulse" />
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center
+                  bg-white/20 backdrop-blur-sm
+                  shadow-[0_0_20px_rgba(255,215,0,0.7)]
+                  group-hover:scale-110 transition-transform duration-300"
+                >
+                  <Icon className="w-8 h-8 text-[var(--softtec-yellow)]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary-glow transition-colors duration-300">
+                  <h3 className="text-2xl font-extrabold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] mb-2">
                     {title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+                  <p className="text-white/80 text-sm leading-relaxed">{description}</p>
                 </div>
               </div>
             ) : (
-              <div className="flex items-center justify-between w-full">
-                <div className="flex-1 pr-4">
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary-glow transition-colors duration-300">
+              <div className="flex items-center justify-between w-full space-x-4">
+                <div className="flex-1">
+                  <h3 className="text-2xl font-extrabold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] mb-2">
                     {title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+                  <p className="text-white/80 text-sm leading-relaxed">{description}</p>
                 </div>
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center group-hover:animate-float shadow-glow">
-                    <Icon className="w-8 h-8 text-primary-foreground group-hover:animate-glow-pulse" />
-                  </div>
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center
+                  bg-white/20 backdrop-blur-sm
+                  shadow-[0_0_20px_rgba(255,215,0,0.7)]
+                  group-hover:scale-110 transition-transform duration-300"
+                >
+                  <Icon className="w-8 h-8 text-[var(--softtec-yellow)]" />
                 </div>
               </div>
             )}
@@ -67,10 +82,19 @@ export const FlipCard = ({
 
         {/* Back Face */}
         <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
-          <div className="h-full bg-gradient-hover border border-primary/20 rounded-lg p-6 shadow-card-hover flex items-center justify-center">
-            <div className="text-center animate-scale-in">
-              <h3 className="text-xl font-bold text-primary-glow mb-4">{title}</h3>
-              <p className="text-foreground text-sm leading-relaxed">{detailedDescription}</p>
+          <div
+            className="h-full rounded-2xl p-6 flex items-center justify-center
+            bg-gradient-to-br from-[var(--softtec-light-blue)] via-[var(--softtec-blue)] to-[var(--softtec-yellow)]
+            border border-white/30
+            shadow-[0_0_40px_rgba(26,43,255,0.5)]
+            hover:shadow-[0_0_60px_rgba(255,215,0,0.7)]
+            backdrop-blur-xl transition-all duration-500"
+          >
+            <div className="text-center animate-fade-in">
+              <h3 className="text-2xl font-extrabold text-white mb-4 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
+                {title}
+              </h3>
+              <p className="text-white/90 text-sm leading-relaxed">{detailedDescription}</p>
             </div>
           </div>
         </div>

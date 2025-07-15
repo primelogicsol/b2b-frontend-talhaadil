@@ -7,6 +7,11 @@ import SliderComponent from "@/components/Counter";
 import { FlipCard } from "@/components/Card";
 import { ShieldCheck, Globe, Zap } from "lucide-react";
 import ProductDashboard from "@/components/ProfitBox";
+import PricingTable from "@/components/PricingTable";
+import Process from "@/components/CardUse";
+import TeamCard from "@/components/OurTeam";
+import ServiceCard from "@/components/ProcessCard";
+import PremiumTabs from "@/components/PremiumTabs";
 function page() {
   return (
     <div>
@@ -38,7 +43,10 @@ function page() {
         </div>
       </div>
       <ProductDashboard/>
-    
+      <PricingTable/>
+      <Process/>
+      <ServiceCard/>
+    <PremiumTabs/>
     </div>
   );
 }
