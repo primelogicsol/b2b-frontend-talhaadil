@@ -3,18 +3,44 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import data from "@/Data/faq.json";
 
-const ServiceDetail = () => {
-  const Services = [
-    "Database Security",
-    "IT Solution",
-    "Technology Consult",
-    "App Development",
-    "UI/UX Design",
-    "Cyber Security",
-  ];
+interface FAQItem {
+  title: string;
+  desc: string;
+}
 
+interface ServiceDetailProps {
+  services?: string[];
+  faqData?: FAQItem[];
+  mainImage?: string;
+  iconImage?: string;
+  detIcon?: string;
+  categoryIcon?: string;
+}
+
+const defaultServices = [
+  "Database Security",
+  "IT Solution",
+  "Technology Consult",
+  "App Development",
+  "UI/UX Design",
+  "Cyber Security",
+];
+
+const defaultFaq: FAQItem[] = [
+  { title: "How do I contact support?", desc: "You can reach out via email or call our hotline anytime." },
+  { title: "What services are included?", desc: "We offer app development, UI/UX, cybersecurity and more." },
+  { title: "Can I customize solutions?", desc: "Yes, our team will work with you to tailor solutions." },
+];
+
+export default function ProjectDetailsFAQ({
+  services = defaultServices,
+  faqData = defaultFaq,
+  mainImage = "/assets/images/inner/service-details.png",
+  iconImage = "/assets/images/inner-images/sidber-cont-icon.png",
+  detIcon = "/assets/images/inner/det-icon.png",
+  categoryIcon = "/assets/images/inner/category-icon.png",
+}: ServiceDetailProps) {
   const accordionContentRef = useRef<HTMLDivElement>(null);
   const [openItemIndex, setOpenItemIndex] = useState<number>(-1);
   const [firstItemOpen, setFirstItemOpen] = useState<boolean>(true);
@@ -36,7 +62,7 @@ const ServiceDetail = () => {
         <div className="lg:col-span-8 space-y-10">
           <div>
             <Image
-              src="/assets/images/inner/service-details.png"
+              src={mainImage}
               alt="thumb"
               width={1000}
               height={600}
@@ -62,11 +88,7 @@ const ServiceDetail = () => {
                 Alternative innovation to ethical network environmental whiteboard pursue...
               </p>
               <ul className="space-y-2">
-                {[
-                  "Success Stories",
-                  "Success service",
-                  "Success store",
-                ].map((text, i) => (
+                {["Success Stories", "Success service", "Success store"].map((text, i) => (
                   <li
                     key={i}
                     className="text-sm text-gray-700 pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-orange-500 hover:text-orange-600 transition"
@@ -78,7 +100,7 @@ const ServiceDetail = () => {
             </div>
             <div className="bg-orange-50 rounded-lg p-6 shadow hover:shadow-lg transition-shadow duration-300">
               <Image
-                src="/assets/images/inner/det-icon.png"
+                src={detIcon}
                 alt="icon"
                 width={40}
                 height={40}
@@ -101,7 +123,7 @@ const ServiceDetail = () => {
               Alternative innovation to ethical network environmental whiteboard pursue...
             </p>
             <ul className="space-y-4">
-              {data.map((item, index) => (
+              {faqData.map((item, index) => (
                 <li
                   key={index}
                   className={`border rounded-lg overflow-hidden transition-all duration-300 shadow-sm ${
@@ -142,7 +164,7 @@ const ServiceDetail = () => {
           <div className="bg-white p-6 rounded-lg shadow">
             <h4 className="text-xl font-bold mb-4">Main Services</h4>
             <ul className="divide-y divide-gray-200">
-              {Services.map((item, i) => (
+              {services.map((item, i) => (
                 <li key={i} className="py-3">
                   <Link
                     href="/service/service-details"
@@ -150,7 +172,7 @@ const ServiceDetail = () => {
                   >
                     <span className="relative z-10 flex items-center gap-2 group-hover:text-white">
                       <Image
-                        src="/assets/images/inner/category-icon.png"
+                        src={categoryIcon}
                         alt=""
                         width={16}
                         height={16}
@@ -195,7 +217,7 @@ const ServiceDetail = () => {
 
           <div className="bg-white p-6 rounded-lg text-center shadow relative overflow-hidden group">
             <Image
-              src="/assets/images/inner-images/sidber-cont-icon.png"
+              src={iconImage}
               alt="icon"
               width={60}
               height={60}
@@ -220,6 +242,6 @@ const ServiceDetail = () => {
       </div>
     </section>
   );
-};
+}
 
-export default ServiceDetail;
+

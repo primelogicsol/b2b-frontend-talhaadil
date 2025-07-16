@@ -4,22 +4,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const ProjectDetail = () => {
-  const InfoBox = [
-    { title: "Date", info: "10 January, 2024" },
-    { title: "Client", info: "Kodesolution Ltd" },
-    { title: "Website", info: "www.domain.com" },
-    { title: "Location", info: "New York, USA" },
-  ];
+interface InfoItem {
+  title: string;
+  info: string;
+}
 
-  const Services = [
-    "Database Security",
-    "Technology Consult",
-    "App Development",
-    "UI/UX Design",
-    "Cyber Security",
-  ];
+interface ProjectDetailProps {
+  infoBox?: InfoItem[];
+  services?: string[];
+  mainImage?: string;
+  processImage?: string;
+}
 
+const defaultInfoBox: InfoItem[] = [
+  { title: "Date", info: "10 January, 2024" },
+  { title: "Client", info: "Kodesolution Ltd" },
+  { title: "Website", info: "www.domain.com" },
+  { title: "Location", info: "New York, USA" },
+];
+
+const defaultServices: string[] = [
+  "Database Security",
+  "Technology Consult",
+  "App Development",
+  "UI/UX Design",
+  "Cyber Security",
+];
+
+export default function ProjectDetail({
+  infoBox = defaultInfoBox,
+  services = defaultServices,
+  mainImage = "/assets/images/inner/project-det-thu.png",
+  processImage = "/assets/images/inner/project-det-img.png",
+}: ProjectDetailProps) {
   return (
     <section className="py-[123px] bg-[#f4f4f4] px-4 md:px-0">
       <div className="max-w-7xl mx-auto">
@@ -31,7 +48,7 @@ const ProjectDetail = () => {
           className="mb-10"
         >
           <Image
-            src="/assets/images/inner/project-det-thu.png"
+            src={mainImage}
             alt="thu"
             width={1200}
             height={700}
@@ -46,7 +63,7 @@ const ProjectDetail = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white rounded-3xl py-[55px] px-6 mb-12"
         >
-          {InfoBox.map((item, i) => (
+          {infoBox.map((item, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
@@ -93,7 +110,7 @@ const ProjectDetail = () => {
                 transition={{ type: "spring" }}
               >
                 <Image
-                  src="/assets/images/inner/project-det-img.png"
+                  src={processImage}
                   alt="img"
                   width={600}
                   height={400}
@@ -152,7 +169,7 @@ const ProjectDetail = () => {
             >
               <h4 className="text-xl font-semibold mb-4">Main Services</h4>
               <ul className="divide-y divide-gray-200">
-                {Services.map((item, i) => (
+                {services.map((item, i) => (
                   <li key={i} className="py-3">
                     <Link
                       href="/service/service-details"
@@ -200,11 +217,7 @@ const ProjectDetail = () => {
       </div>
     </section>
   );
-};
-
-export default ProjectDetail;
-
-
+}
 
 
 

@@ -1,45 +1,60 @@
 'use client'
-import SectionTitle from "./SectionTitle";
-import data from '../Data/faq.json';
-import { useEffect, useRef, useState } from "react";
-import parse from 'html-react-parser';
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import parse from "html-react-parser"
+import SectionTitle from "./SectionTitle"
 
-const Faq = () => {
-  const accordionContentRef = useRef<HTMLDivElement>(null);
-  const [openItemIndex, setOpenItemIndex] = useState<number>(-1);
-  const [firstItemOpen, setFirstItemOpen] = useState<boolean>(true);
+interface FaqItem {
+  title: string
+  desc: string
+}
+
+interface FaqProps {
+  subTitle?: string
+  sectionTitle?: string
+  imgMain?: string
+  faqTitle?: string
+  faqContent?: string
+  faqItems?: FaqItem[]
+  decoImg1?: string
+  decoImg2?: string
+}
+
+export default function SectionFaq({
+  subTitle = "SOLUTEK COMPANY",
+  sectionTitle = "Keeping Your Business<br> Safe and <span>Available.</span>",
+  imgMain = "/assets/images/faq1.png",
+  faqTitle = "A Comprehensive <span>Guide.</span>",
+  faqContent = "Alternative innovation network environmental whiteboard pursue for premier methods empowerment go forward opportunities",
+  faqItems = [],
+  decoImg1 = "/assets/images/faq2.png",
+  decoImg2 = "/assets/images/faq3.png",
+}: FaqProps) {
+  const accordionContentRef = useRef<HTMLDivElement>(null)
+  const [openItemIndex, setOpenItemIndex] = useState<number>(-1)
+  const [firstItemOpen, setFirstItemOpen] = useState<boolean>(true)
 
   const handleItemClick = (index: number) => {
-    setOpenItemIndex(prev => (index === prev ? -1 : index));
-  };
+    setOpenItemIndex(prev => (index === prev ? -1 : index))
+  }
 
   useEffect(() => {
     if (firstItemOpen) {
-      setOpenItemIndex(0);
-      setFirstItemOpen(false);
+      setOpenItemIndex(0)
+      setFirstItemOpen(false)
     }
-  }, [firstItemOpen]);
-
-  const FaqContent = {
-    img1: "/assets/images/faq1.png",
-    Title: "A Comprehensive <span>Guide.</span>",
-    Content:
-      "Alternative innovation network environmental whiteboard pursue for premier methods empowerment go forward opportunities",
-  };
+  }, [firstItemOpen])
 
   return (
     <section className="relative bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left Section */}
         <div className="space-y-8">
-          <SectionTitle
-            SubTitle="SOLUTEK COMPANY"
-            Title="Keeping Your Business<br> Safe and <span>Available.</span>"
-          />
+          <SectionTitle SubTitle={subTitle} Title={sectionTitle} />
           <div>
             <Image
-              src={FaqContent.img1}
-              alt="faq1"
+              src={imgMain}
+              alt="faq-main"
               width={600}
               height={500}
               className="rounded-lg shadow-lg w-full h-auto object-contain"
@@ -47,20 +62,23 @@ const Faq = () => {
           </div>
         </div>
 
+        {/* Right Section */}
         <div className="space-y-6">
           <div>
             <h3 className="text-3xl font-bold text-gray-900 mb-2">
-              {parse(FaqContent.Title)}
+              {parse(faqTitle)}
             </h3>
-            <p className="text-gray-600 text-base">{FaqContent.Content}</p>
+            <p className="text-gray-600 text-base">{faqContent}</p>
           </div>
 
           <ul className="space-y-4">
-            {data.map((item, index) => (
+            {faqItems.map((item, index) => (
               <li
                 key={index}
                 className={`border rounded-lg overflow-hidden transition-all duration-300 shadow-sm ${
-                  index === openItemIndex ? "bg-orange-50 border-orange-500" : "bg-white border-gray-200"
+                  index === openItemIndex
+                    ? "bg-orange-50 border-orange-500"
+                    : "bg-white border-gray-200"
                 }`}
               >
                 <button
@@ -72,7 +90,9 @@ const Faq = () => {
                   </span>
                   <span
                     className={`transform transition-transform duration-300 ${
-                      index === openItemIndex ? "rotate-180 text-orange-500" : "rotate-0 text-gray-400"
+                      index === openItemIndex
+                        ? "rotate-180 text-orange-500"
+                        : "rotate-0 text-gray-400"
                     }`}
                   >
                     ▼
@@ -92,23 +112,21 @@ const Faq = () => {
         </div>
       </div>
 
-      {/* Decorative Shapes */}
+      {/* Decorative Images */}
       <Image
-        src="/assets/images/faq2.png"
-        alt="faq2"
+        src={decoImg1}
+        alt="deco1"
         width={96}
         height={96}
         className="absolute top-10 left-0 w-24 animate-pulse hidden md:block"
       />
       <Image
-        src="/assets/images/faq3.png"
-        alt="faq3"
+        src={decoImg2}
+        alt="deco2"
         width={112}
         height={112}
         className="absolute bottom-0 right-0 w-28 animate-bounce hidden md:block"
       />
     </section>
-  );
-};
-
-export default Faq;
+  )
+}

@@ -7,48 +7,26 @@ interface VideoData {
   id: string
   title: string
   description: string
-  videoSrc: string // URL to the actual video file
-  thumbnailSrc: string // URL to the thumbnail image
+  videoSrc: string
+  thumbnailSrc: string
 }
 
-// Sample dynamic video data
-const videos: VideoData[] = [
-  {
-    id: "1",
-    title: "LEADERSHIP",
-    description: "A vision for the future of our organization.",
-    videoSrc: "/placeholder.mp4", // Replace with your actual video URL
-    thumbnailSrc: "/placeholder.svg?height=400&width=600", // Replace with your actual thumbnail
-  },
-  {
-    id: "2",
-    title: "De Koshur Crafts B2B Connect Vendor Partnership Portal",
-    description: "Connecting businesses and fostering partnerships globally.",
-    videoSrc: "/placeholder.mp4",
-    thumbnailSrc: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    id: "3",
-    title: "Celebrating US BUSINESS",
-    description: "Highlighting growth and innovation across the United States.",
-    videoSrc: "/videos/v2.mp4",
-    thumbnailSrc: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    id: "4",
-    title: "Global Reach",
-    description: "Expanding horizons and connecting continents through our network.",
-    videoSrc: "/placeholder.mp4",
-    thumbnailSrc: "/placeholder.svg?height=400&width=600",
-  },
-]
+interface VideoGalleryProps {
+  heading?: string
+  subheading?: string
+  videos?: VideoData[]
+}
 
 function VideoCard({ video, onClick }: { video: VideoData; onClick: () => void }) {
   return (
     <motion.div
       className="relative w-full h-64 rounded-xl overflow-hidden cursor-pointer group border border-gray-700"
       onClick={onClick}
-      whileHover={{ scale: 1.03, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)" }}
+      whileHover={{
+        scale: 1.03,
+        boxShadow:
+          "0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)",
+      }}
       transition={{ duration: 0.3 }}
     >
       <video
@@ -77,7 +55,7 @@ function VideoModal({ video, onClose }: { video: VideoData; onClose: () => void 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={onClose} // Close when clicking outside
+      onClick={onClose}
     >
       <motion.div
         className="relative bg-gray-800 rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-hidden"
@@ -85,7 +63,7 @@ function VideoModal({ video, onClose }: { video: VideoData; onClose: () => void 
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.8, y: 50 }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal content
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           className="absolute top-2 right-2 text-white text-2xl font-bold p-2 rounded-full hover:bg-gray-700 transition-colors"
@@ -96,8 +74,6 @@ function VideoModal({ video, onClose }: { video: VideoData; onClose: () => void 
         </button>
         <h2 className="text-2xl font-bold text-white mb-4">{video.title}</h2>
         <div className="relative w-full pb-[56.25%] h-0">
-          {" "}
-          {/* 16:9 aspect ratio container */}
           <video
             src={video.videoSrc}
             controls
@@ -114,35 +90,73 @@ function VideoModal({ video, onClose }: { video: VideoData; onClose: () => void 
   )
 }
 
-export default function VideoGallery() {
+export default function VideoGallery({
+  heading = "Our Vision in Motion",
+  subheading = "Explore our key initiatives and partnerships through engaging video content. Click on any video to learn more.",
+  videos = [
+    {
+      id: "1",
+      title: "LEADERSHIP",
+      description: "A vision for the future of our organization.",
+      videoSrc: "/placeholder.mp4",
+      thumbnailSrc: "/placeholder.svg?height=400&width=600",
+    },
+    {
+      id: "2",
+      title: "De Koshur Crafts B2B Connect Vendor Partnership Portal",
+      description: "Connecting businesses and fostering partnerships globally.",
+      videoSrc: "/placeholder.mp4",
+      thumbnailSrc: "/placeholder.svg?height=400&width=600",
+    },
+    {
+      id: "3",
+      title: "Celebrating US BUSINESS",
+      description:
+        "Highlighting growth and innovation across the United States.",
+      videoSrc: "/videos/v2.mp4",
+      thumbnailSrc: "/placeholder.svg?height=400&width=600",
+    },
+    {
+      id: "4",
+      title: "Global Reach",
+      description:
+        "Expanding horizons and connecting continents through our network.",
+      videoSrc: "/placeholder.mp4",
+      thumbnailSrc: "/placeholder.svg?height=400&width=600",
+    },
+  ],
+}: VideoGalleryProps) {
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null)
-
-  const openModal = (video: VideoData) => {
-    setSelectedVideo(video)
-  }
-
-  const closeModal = () => {
-    setSelectedVideo(null)
-  }
 
   return (
     <div className="min-h-screen bg-[#1a1a2e] text-white p-6 md:p-10 border-t-4 border-t-[#4a4a6a]">
       <header className="text-center mb-10">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-          Our Vision in Motion
+          {heading}
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-          Explore our key initiatives and partnerships through engaging video content. Click on any video to learn more.
+          {subheading}
         </p>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
         {videos.map((video) => (
-          <VideoCard key={video.id} video={video} onClick={() => openModal(video)} />
+          <VideoCard
+            key={video.id}
+            video={video}
+            onClick={() => setSelectedVideo(video)}
+          />
         ))}
       </div>
 
-      <AnimatePresence>{selectedVideo && <VideoModal video={selectedVideo} onClose={closeModal} />}</AnimatePresence>
+      <AnimatePresence>
+        {selectedVideo && (
+          <VideoModal
+            video={selectedVideo}
+            onClose={() => setSelectedVideo(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

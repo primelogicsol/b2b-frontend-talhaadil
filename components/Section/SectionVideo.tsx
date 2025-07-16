@@ -19,14 +19,14 @@ interface About4Props {
 }
 
 const About4: React.FC<About4Props> = ({
-  MainImg,
-  SubTitle,
-  Title,
-  Content,
-  listTitle1,
-  listTitle2,
-  BoxTitle1,
-  BoxTitle2,
+   MainImg = "/images/default-about-img.jpg",
+  SubTitle = "DEFAULT SUBTITLE",
+  Title = "Default <span>Title</span>",
+  Content = "Default content about your brand or services goes here.",
+  listTitle1 = "Default list item 1",
+  listTitle2 = "Default list item 2",
+  BoxTitle1 = "99",
+  BoxTitle2 = "Default Label",
 }) => {
   const [iframeSrc, setIframeSrc] = useState("about:blank");
   const [toggle, setToggle] = useState(false);

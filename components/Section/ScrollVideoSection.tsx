@@ -1,72 +1,74 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
+import { useState } from "react";
+import Image from "next/image";
 
-const mediaItems = [
-  {
-    type: "video",
-    src: "https://www.w3schools.com/html/mov_bbb.mp4", // Placeholder video
-    title: "De Koshur Crafts B2B Connect Vendor Partnership Portal",
-  },
-  {
-    type: "image",
-    src: "/placeholder.svg?height=400&width=600", // Placeholder image
-    title: "Beautiful Handicrafts",
-  },
-  {
-    type: "video",
-    src: "https://www.w3schools.com/html/movie.mp4", // Another placeholder video
-    title: "Crafting Excellence",
-  },
-]
+interface MediaItem {
+  type: "video" | "image";
+  src: string;
+  title: string;
+}
 
-function MediaSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+interface MediaSliderProps {
+  items?: MediaItem[];
+}
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % mediaItems.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
-
-  const currentMedia = mediaItems[currentIndex]
+function MediaSlider({
+  items = [
+    {
+      type: "video",
+      src: "https://www.w3schools.com/html/mov_bbb.mp4",
+      title: "Default Video 1",
+    },
+    {
+      type: "image",
+      src: "/placeholder.svg?height=400&width=600",
+      title: "Default Image",
+    },
+    {
+      type: "video",
+      src: "https://www.w3schools.com/html/movie.mp4",
+      title: "Default Video 2",
+    },
+  ],
+}: MediaSliderProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentMedia = items[currentIndex];
 
   return (
-    // Increased max-w to make the video container larger
     <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
       {currentMedia.type === "video" ? (
         <video
-          key={currentMedia.src} // Key to force re-render and restart video
+          key={currentMedia.src}
           className="w-full h-auto object-cover aspect-video"
           controls
           autoPlay
           muted
           loop
         >
-          <source src={currentMedia.src || "/placeholder.svg"} type="video/mp4" />
+          <source src={currentMedia.src} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       ) : (
         <Image
-          key={currentMedia.src} // Key to force re-render
-          src={currentMedia.src || "/placeholder.svg"}
+          key={currentMedia.src}
+          src={currentMedia.src}
           alt={currentMedia.title}
           width={800}
           height={450}
           className="w-full h-auto object-cover aspect-video"
         />
       )}
+
       <div className="absolute top-4 left-4 text-white text-sm font-medium bg-black bg-opacity-50 px-3 py-1 rounded-md">
         {currentMedia.title}
       </div>
+
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-        {mediaItems.map((_, index) => (
+        {items.map((_, index) => (
           <button
             key={index}
-            onClick={() => goToSlide(index)}
+            onClick={() => setCurrentIndex(index)}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               currentIndex === index ? "bg-white w-6" : "bg-gray-400"
             }`}
@@ -75,13 +77,22 @@ function MediaSlider() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default function LandingPage() {
+
+
+export default function ScrollVideoSection({
+  heading = "Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury Markets",
+  introLabel = "Welcome to B2B Connect - USA",
+  items, // optional to override media
+}: {
+  heading?: string;
+  introLabel?: string;
+  items?: MediaItem[];
+}) {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
-      {/* Dotted background pattern - simplified for demonstration */}
       <style jsx global>{`
         body {
           background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
@@ -90,38 +101,27 @@ export default function LandingPage() {
       `}</style>
 
       <main className="container mx-auto px-4 py-12 md:py-20">
-        {/* Changed to md:grid-cols-2 for equal width columns */}
         <section className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
-          {/* Left Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-0.5" style={{ backgroundColor: "#FF6600" }} />
-              <p className="text-sm font-medium uppercase text-gray-600">Welcome to B2B Connect - USA</p>
+              <p className="text-sm font-medium uppercase text-gray-600">
+                {introLabel}
+              </p>
             </div>
-            {/* Adjusted heading text size to be smaller */}
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.2]">
-              Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and
-              Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury{" "}
-              <span className="relative inline-block group" style={{ color: "#FF6600" }}>
-                Markets
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <span
-                    className="absolute w-0 h-0 rounded-full border-2 opacity-0 group-hover:w-full group-hover:h-full group-hover:opacity-100 transition-all duration-500 ease-out"
-                    style={{ borderColor: "#FF6600" }}
-                  />
-                </span>
-              </span>
+              {heading}
             </h1>
           </div>
 
-          {/* Right Column - Media Slider */}
           <div className="flex justify-center">
-            <MediaSlider />
+            <MediaSlider items={items} />
           </div>
         </section>
 
+        {/* you can keep your bottom sections exactly the same */}
         <section className="grid md:grid-cols-2 gap-12 md:gap-16">
-          {/* Bottom Left Column */}
+          {/* bottom left */}
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -129,8 +129,7 @@ export default function LandingPage() {
                 <p className="text-lg font-semibold text-gray-800">
                   Dream It:{" "}
                   <span className="font-normal text-gray-700">
-                    Envision your store or product lineup. We&apos;ll provide the roadmap for sourcing products that
-                    meet your unique business needs ethically made Kashmiri handicrafts
+                    Envision your store or product lineup. We&apos;ll provide the roadmap for sourcing products that meet your unique business needs ethically made Kashmiri handicrafts
                   </span>
                 </p>
               </div>
@@ -139,8 +138,7 @@ export default function LandingPage() {
                 <p className="text-lg font-semibold text-gray-800">
                   Define It:{" "}
                   <span className="font-normal text-gray-700">
-                    Seamless shipping, tracking, and logistics. Certified authenticity ensures GI-tagged crafts, fair
-                    trade, and empowerment with advance blockchain verification and market trends.
+                    Seamless shipping, tracking, and logistics. Certified authenticity ensures GI-tagged crafts, fair trade, and empowerment with advance blockchain verification and market trends.
                   </span>
                 </p>
               </div>
@@ -149,8 +147,7 @@ export default function LandingPage() {
                 <p className="text-lg font-semibold text-gray-800">
                   Dominate It:{" "}
                   <span className="font-normal text-gray-700">
-                    We operate across United States of America with major facilitation hubs at New York, D.C., Los
-                    Angeles, San Francisco, Chicago, Houston, and Miami.
+                    We operate across United States of America with major facilitation hubs at New York, D.C., Los Angeles, San Francisco, Chicago, Houston, and Miami.
                   </span>
                 </p>
               </div>
@@ -164,27 +161,21 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Bottom Right Column */}
+          {/* bottom right */}
           <div className="space-y-6 text-gray-700">
             <p>
-              We enjoy <span className="font-bold text-gray-900">Global Leadership in Kashmir Handicrafts</span>,
-              Business Innovation, Craft Advocacy, and Research Excellence.
+              We enjoy <span className="font-bold text-gray-900">Global Leadership in Kashmir Handicrafts</span>, Business Innovation, Craft Advocacy, and Research Excellence.
             </p>
             <p>
-              We are certified U.S. business committed to diversity, equity, inclusion, and belonging. As a U.S.
-              Veteran-Owned Business, it holds prestigious certifications, including WBENC (
-              <span className="font-bold text-gray-900">Women&apos;s Business Enterprise</span>) and MBE (
-              <span className="font-bold text-gray-900">Minority Business Enterprise Program</span>
-              ), demonstrating its dedication to fostering an inclusive and equitable business environment.
+              We are certified U.S. business committed to diversity, equity, inclusion, and belonging. As a U.S. Veteran-Owned Business, it holds prestigious certifications, including WBENC (<span className="font-bold text-gray-900">Women&apos;s Business Enterprise</span>) and MBE (<span className="font-bold text-gray-900">Minority Business Enterprise Program</span>), demonstrating its dedication to fostering an inclusive and equitable business environment.
             </p>
             <p>
               We are America&apos;s Premier Progressive{" "}
-              <span className="font-bold text-gray-900">Omni-Channel Business Ecosystem</span>, customized exclusively
-              for premier Kashmiri handicrafts
+              <span className="font-bold text-gray-900">Omni-Channel Business Ecosystem</span>, customized exclusively for premier Kashmiri handicrafts.
             </p>
           </div>
         </section>
       </main>
     </div>
-  )
+  );
 }
