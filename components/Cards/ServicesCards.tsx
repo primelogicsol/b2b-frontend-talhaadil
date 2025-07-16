@@ -1,12 +1,56 @@
 "use client";
 
-import SectionTitle from "./SectionTitle";
-import data from "@/Data/services1.json";
+import SectionTitle from "../Section/SectionTitle";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const Services1 = () => {
+interface ServiceItem {
+  icon: string;
+  title: string;
+  desc: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface Services1Props {
+  data?: ServiceItem[];
+}
+
+const fallbackData: ServiceItem[] = [
+  {
+    icon: "/assets/images/service-icon1.png",
+    title: "Cloud Solutions",
+    desc: "Empower your business with scalable cloud services.",
+    btnLink: "/services/cloud",
+    btnText: "Learn More",
+  },
+  {
+    icon: "/assets/images/service-icon2.png",
+    title: "Cybersecurity",
+    desc: "Protect your data and ensure compliance with industry standards.",
+    btnLink: "/services/security",
+    btnText: "Learn More",
+  },
+  {
+    icon: "/assets/images/service-icon3.png",
+    title: "AI & Automation",
+    desc: "Streamline workflows with intelligent automation.",
+    btnLink: "/services/ai",
+    btnText: "Learn More",
+  },
+  {
+    icon: "/assets/images/service-icon4.png",
+    title: "IT Consulting",
+    desc: "Get expert guidance to drive business success.",
+    btnLink: "/services/consulting",
+    btnText: "Learn More",
+  },
+];
+
+const ServicesCards: React.FC<Services1Props> = ({ data }) => {
+  const servicesData = data && data.length > 0 ? data : fallbackData;
+
   return (
     <section className="relative bg-gray-100 py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
@@ -20,7 +64,7 @@ const Services1 = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {data.map((item, i) => (
+          {servicesData.map((item, i) => (
             <div
               key={i}
               className="group relative bg-white rounded-xl p-8 transition-all duration-500 shadow-md overflow-hidden z-10 hover:-translate-y-6"
@@ -100,4 +144,4 @@ const Services1 = () => {
   );
 };
 
-export default Services1;
+export default ServicesCards;

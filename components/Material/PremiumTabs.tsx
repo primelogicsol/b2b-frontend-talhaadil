@@ -2,16 +2,42 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { BarChart3, Star, Diamond, Shield, Rocket, Globe, Crown, Sparkles, TrendingUp, Smartphone } from "lucide-react"
+import {
+  BarChart3,
+  Star,
+  Diamond,
+  Shield,
+  Rocket,
+  Globe,
+  Crown,
+  Sparkles,
+  TrendingUp,
+  Smartphone,
+} from "lucide-react"
 
+// map string names to actual Lucide icons
+const iconMap: Record<string, any> = {
+  BarChart3,
+  Star,
+  Diamond,
+  Shield,
+  Rocket,
+  Globe,
+  Crown,
+  Sparkles,
+  TrendingUp,
+  Smartphone,
+}
+
+// all data lives here but icons are referenced by string
 const tabData = {
   overview: {
     title: "Overview",
-    icon: BarChart3,
+    icon: "BarChart3",
     cards: [
       {
         title: "Analytics & Insights",
-        icon: TrendingUp,
+        icon: "TrendingUp",
         points: [
           "Real-time dashboard with live metrics",
           "AI-powered predictive analytics",
@@ -22,7 +48,7 @@ const tabData = {
       },
       {
         title: "Performance & Speed",
-        icon: Rocket,
+        icon: "Rocket",
         points: [
           "Sub-100ms response times globally",
           "99.99% uptime guarantee",
@@ -33,7 +59,7 @@ const tabData = {
       },
       {
         title: "Security & Compliance",
-        icon: Shield,
+        icon: "Shield",
         points: [
           "End-to-end AES-256 encryption",
           "SOC 2 Type II certified",
@@ -46,11 +72,11 @@ const tabData = {
   },
   features: {
     title: "Features",
-    icon: Star,
+    icon: "Star",
     cards: [
       {
         title: "Core Platform",
-        icon: Sparkles,
+        icon: "Sparkles",
         points: [
           "Intuitive drag-and-drop interface",
           "Smart automation workflows",
@@ -61,7 +87,7 @@ const tabData = {
       },
       {
         title: "Integrations",
-        icon: Globe,
+        icon: "Globe",
         points: [
           "500+ pre-built integrations",
           "REST and GraphQL APIs",
@@ -72,7 +98,7 @@ const tabData = {
       },
       {
         title: "Mobile & Apps",
-        icon: Smartphone,
+        icon: "Smartphone",
         points: [
           "Native iOS and Android apps",
           "Progressive web app (PWA)",
@@ -85,11 +111,11 @@ const tabData = {
   },
   pricing: {
     title: "Pricing",
-    icon: Diamond,
+    icon: "Diamond",
     cards: [
       {
         title: "Starter Plan",
-        icon: Rocket,
+        icon: "Rocket",
         points: [
           "Free forever for small teams",
           "Up to 5 projects included",
@@ -100,7 +126,7 @@ const tabData = {
       },
       {
         title: "Professional Plan",
-        icon: Star,
+        icon: "Star",
         points: [
           "Everything in Starter plan",
           "Unlimited projects and users",
@@ -111,7 +137,7 @@ const tabData = {
       },
       {
         title: "Enterprise Plan",
-        icon: Crown,
+        icon: "Crown",
         points: [
           "Everything in Professional plan",
           "Custom integrations and workflows",
@@ -130,7 +156,6 @@ export default function PremiumTabs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: -30 }}
@@ -145,7 +170,7 @@ export default function PremiumTabs() {
           </p>
         </motion.div>
 
-        {/* Tab Navigation */}
+        {/* Tabs */}
         <motion.div
           className="flex justify-center mb-8"
           initial={{ opacity: 0, y: 20 }}
@@ -154,16 +179,16 @@ export default function PremiumTabs() {
         >
           <div className="flex gap-2 bg-white p-2 rounded-full shadow-lg border border-gray-200 overflow-x-auto">
             {Object.entries(tabData).map(([key, data]) => {
-              const IconComponent = data.icon
+              const IconComponent = iconMap[data.icon]
               return (
                 <motion.button
                   key={key}
                   onClick={() => setActiveTab(key)}
-                  className={`
-                    relative px-6 py-3 rounded-full font-semibold transition-all duration-300 
-                    whitespace-nowrap flex items-center gap-2 text-sm
-                    ${activeTab === key ? "text-white shadow-lg" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"}
-                  `}
+                  className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex items-center gap-2 text-sm ${
+                    activeTab === key
+                      ? "text-white shadow-lg"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                  }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -184,7 +209,7 @@ export default function PremiumTabs() {
           </div>
         </motion.div>
 
-        {/* Tab Content */}
+        {/* Cards */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -195,7 +220,7 @@ export default function PremiumTabs() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {tabData[activeTab as keyof typeof tabData].cards.map((card, index) => {
-              const IconComponent = card.icon
+              const IconComponent = iconMap[card.icon]
               return (
                 <motion.div
                   key={`${card.title}-${index}`}
@@ -212,26 +237,16 @@ export default function PremiumTabs() {
                     y: -8,
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                   }}
-                  className="
-                    bg-white rounded-2xl shadow-xl p-8 border border-gray-100 
-                    hover:border-blue-200 transition-all duration-300 group
-                    cursor-pointer relative overflow-hidden
-                  "
+                  className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:border-blue-200 transition-all duration-300 group cursor-pointer relative overflow-hidden"
                 >
-                  {/* Gradient overlay on hover */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     initial={false}
                   />
-
                   <div className="relative z-10">
-                    {/* Card Header */}
                     <div className="flex items-center gap-4 mb-6">
                       <motion.div
-                        className="
-                          flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 
-                          rounded-xl flex items-center justify-center shadow-lg
-                        "
+                        className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
                         whileHover={{ rotate: 5, scale: 1.1 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -241,8 +256,6 @@ export default function PremiumTabs() {
                         {card.title}
                       </h3>
                     </div>
-
-                    {/* Key Points */}
                     <ul className="space-y-3">
                       {card.points.map((point, pointIndex) => (
                         <motion.li
@@ -267,14 +280,15 @@ export default function PremiumTabs() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Footer */}
         <motion.div
           className="text-center mt-16 text-gray-500"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          <p className="text-sm">Built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion</p>
+          <p className="text-sm">
+            Built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion
+          </p>
         </motion.div>
       </div>
     </div>

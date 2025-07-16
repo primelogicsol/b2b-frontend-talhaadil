@@ -1,4 +1,4 @@
-import ProcessCard from "@/components/LogoCard";
+import ProcessCard from "./ExtraLogoCard";
 const Process: React.FC = () => {
   
 

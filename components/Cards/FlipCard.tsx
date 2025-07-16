@@ -1,21 +1,21 @@
 'use client'
 import { useState } from 'react'
-import { LucideIcon } from 'lucide-react'
+import { LucideIcon, Star } from 'lucide-react' // Star icon used as fallback
 
 interface FlipCardProps {
-  title: string
-  description: string
-  detailedDescription: string
-  icon: LucideIcon
+  title?: string
+  description?: string
+  detailedDescription?: string
+  icon?: LucideIcon
   isVertical?: boolean
   className?: string
 }
 
 export const FlipCard = ({
-  title,
-  description,
-  detailedDescription,
-  icon: Icon,
+  title = 'Awesome Feature',
+  description = 'Quick overview of this feature goes here.',
+  detailedDescription = 'Here you can see a more detailed explanation of the feature. It provides in-depth information, use‑cases, and why it stands out.',
+  icon: Icon = Star,
   isVertical = false,
   className = ''
 }: FlipCardProps) => {

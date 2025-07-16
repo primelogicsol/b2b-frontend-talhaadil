@@ -1,6 +1,12 @@
 "use client"
 
-import { Facebook, VideoIcon as Vimeo, Twitter, Linkedin, Phone, Share2 } from "lucide-react"
+import { VideoIcon as Vimeo, Phone, Share2 } from "lucide-react"
+import { 
+  FaFacebookF as Facebook, 
+  FaTwitter as Twitter, 
+  FaLinkedinIn as Linkedin 
+} from "react-icons/fa";
+
 
 interface TeamMember {
   name: string

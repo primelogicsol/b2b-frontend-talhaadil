@@ -3,7 +3,7 @@
 import type React from "react"
 import { ArrowRight, Snowflake } from "lucide-react"
 
-interface ServiceCardProps {
+interface AnimationCardProps {
   title?: string
   description?: string
   icon?: React.ReactNode
@@ -11,13 +11,13 @@ interface ServiceCardProps {
   onReadMore?: () => void
 }
 
-export default function ServiceCard({
+export default function AnimationCard({
   title = "Cool Wave System",
   description = "Upgrade to the latest energy and efficient air conditioning Frost technology with Eco Cool",
   icon = <Snowflake className="w-8 h-8" />,
   buttonText = "READ MORE",
   onReadMore,
-}: ServiceCardProps) {
+}: AnimationCardProps) {
   return (
     <div className="group relative w-80 h-96 bg-white rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl">
       <div className="absolute top-0 left-0 w-16 h-32 bg-orange-500 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>

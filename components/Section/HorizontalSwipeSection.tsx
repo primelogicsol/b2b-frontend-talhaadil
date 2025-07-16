@@ -5,7 +5,6 @@ import Image from "next/image"
 import { Star, ArrowLeft, ArrowRight, Quote } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-// Define the type for a testimonial
 interface Testimonial {
   id: number
   rating: number
@@ -15,8 +14,12 @@ interface Testimonial {
   avatar: string
 }
 
-// Sample dynamic data for testimonials
-const testimonialsData: Testimonial[] = [
+interface TestimonialsSliderProps {
+  testimonials?: Testimonial[]
+  sideImage?: string
+}
+
+const defaultTestimonials: Testimonial[] = [
   {
     id: 1,
     rating: 5,
@@ -46,27 +49,29 @@ const testimonialsData: Testimonial[] = [
   },
 ]
 
-export default function TestimonialsSlider() {
+export default function HorizontalSwipeSection({
+  testimonials = defaultTestimonials,
+  sideImage = "/images/pic1.webp?height=742&width=540",
+}: TestimonialsSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1))
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1))
   }
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1))
+    setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1))
   }
 
-  const currentTestimonial = testimonialsData[currentIndex]
+  const currentTestimonial = testimonials[currentIndex]
 
   return (
     <section className="w-full min-h-screen flex items-center justify-center py-12 md:py-24 lg:py-32 bg-white">
       <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 max-w-7xl mx-auto rounded-lg overflow-hidden shadow-xl">
-        {/* Left Section: Testimonial Content */}
         <div
           className="relative p-8 md:p-12 lg:p-16 flex flex-col justify-between text-white"
           style={{
-            backgroundColor: "#1A2B47", // Dark blue from image
+            backgroundColor: "#1A2B47",
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
             backgroundSize: `15px 15px`,
           }}
@@ -158,10 +163,9 @@ export default function TestimonialsSlider() {
           </div>
         </div>
 
-        {/* Right Section: Image and Quote Icon */}
         <div className="relative hidden lg:flex items-center justify-center bg-gray-300 p-8">
           <Image
-            src="/images/pic1.webp?height=742&width=540"
+            src={sideImage}
             alt="Placeholder Image"
             width={742}
             height={540}

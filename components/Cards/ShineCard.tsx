@@ -8,7 +8,7 @@ interface CardProps {
   description: string
 }
 
-export default function HoverCard({ backgroundImage, name, description }: CardProps) {
+export default function ShineCard({ backgroundImage, name, description }: CardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (

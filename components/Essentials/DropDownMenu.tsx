@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
+import type { Easing } from "framer-motion"
 
 interface DropdownItem {
   label: string
@@ -24,7 +25,7 @@ const containerVariants = {
     scale: 1,
     transition: {
       duration: 0.3,
-      ease: [0.42, 0, 0.58, 1],
+      ease: [0.42, 0, 0.58, 1] as Easing,
       when: "beforeChildren",
       staggerChildren: 0.08,
     },
@@ -33,7 +34,7 @@ const containerVariants = {
     opacity: 0,
     y: -10,
     scale: 0.95,
-    transition: { duration: 0.2, ease: [0.42, 0, 1, 1] },
+    transition: { duration: 0.2, ease: [0.42, 0, 1, 1] as Easing },
   },
 }
 

@@ -7,23 +7,26 @@ interface Point {
 }
 
 interface DynamicCardProps {
-  title: string
-  description: string
-  points: Point[]
+  title?: string
+  description?: string
+  points?: Point[]
 }
 
-export default function DynamicCard({ title, description, points }: DynamicCardProps) {
+export default function CardNoPic({
+  title = "Why Choose Us",
+  description = "We provide the best-in-class solutions for your business needs.",
+  points = [
+    { id: "1", title: "Fast", description: "Our service is really fast and reliable." },
+    { id: "2", title: "Secure", description: "We use top-grade encryption for your data." },
+    { id: "3", title: "Support", description: "24/7 support to assist you anytime." },
+  ],
+}: DynamicCardProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-        {/* Header */}
         <div className="p-8 pb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 leading-tight">{title}</h2>
-
-          {/* Description */}
           <p className="text-gray-600 leading-relaxed mb-6">{description}</p>
-
-          {/* Point-by-point Data */}
           <ul className="space-y-3">
             {points.map((point) => (
               <li key={point.id} className="flex items-start gap-3">
@@ -35,8 +38,6 @@ export default function DynamicCard({ title, description, points }: DynamicCardP
             ))}
           </ul>
         </div>
-
-        {/* Bottom accent */}
         <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
       </div>
     </div>

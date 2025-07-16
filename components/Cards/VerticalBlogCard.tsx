@@ -4,12 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface BlogCard1Props {
-  BlogImg: string;
-  Title: string;
-  Content: string;
+  BlogImg?: string;
+  Title?: string;
+  Content?: string;
 }
 
-const BlogCard1: React.FC<BlogCard1Props> = ({ BlogImg, Title, Content }) => {
+const VerticalBlogCard: React.FC<BlogCard1Props> = ({
+  BlogImg = "/assets/images/dummy-blog.jpg",
+  Title = "The Future of Web Development",
+  Content = "Discover the upcoming trends and technologies shaping the future of web development, and how you can stay ahead of the curve."
+}) => {
   return (
     <div className="overflow-hidden mb-8 rounded-b-[30px] shadow-md bg-white">
       {/* Blog Image */}
@@ -60,4 +64,4 @@ const BlogCard1: React.FC<BlogCard1Props> = ({ BlogImg, Title, Content }) => {
   );
 };
 
-export default BlogCard1;
+export default VerticalBlogCard;

@@ -4,19 +4,23 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface BlogCardStyle2Props {
-  BlogImg: string;
-  Title: string;
-  Content: string;
+  BlogImg?: string;
+  Title?: string;
+  Content?: string;
 }
 
-const BlogCardStyle2: React.FC<BlogCardStyle2Props> = ({ BlogImg, Title, Content }) => {
+const HoriozontalBlogCard: React.FC<BlogCardStyle2Props> = ({
+  BlogImg = "/assets/images/dummy-blog.jpg",
+  Title = "How to Build Modern Web Apps",
+  Content = "Learn how to craft sleek, responsive, and scalable web applications with the latest tools and best practices."
+}) => {
   return (
     <div className="flex flex-col md:flex-row items-start gap-6 overflow-hidden shadow-md rounded-md bg-white mb-8">
       {/* Image */}
       <div className="w-full md:w-1/2">
         <Image
           src={BlogImg}
-          alt="blog1"
+          alt="blog image"
           width={600}
           height={400}
           className="w-full h-full object-cover rounded-t-md md:rounded-l-md md:rounded-tr-none"
@@ -60,4 +64,4 @@ const BlogCardStyle2: React.FC<BlogCardStyle2Props> = ({ BlogImg, Title, Content
   );
 };
 
-export default BlogCardStyle2;
+export default HoriozontalBlogCard;

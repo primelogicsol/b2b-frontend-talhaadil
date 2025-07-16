@@ -71,7 +71,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ icon, title, value, position, i
   </motion.div>
 );
 
-const ProductMetrics: React.FC = () => {
+const ProfitBox: React.FC = () => {
   const products = [
     'Pashmina',
     'Kani',
@@ -389,4 +389,4 @@ const ProductMetrics: React.FC = () => {
   );
 };
 
-export default ProductMetrics;
+export default ProfitBox;
