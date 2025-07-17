@@ -4,7 +4,6 @@
   --background: #ffffff;
   --foreground: #171717;
    --primary-color: #3535d6;
-       --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -42,7 +41,18 @@
     --softtec-yellow: #ffd700;
     --softtec-orange: #ff6b00;
     --softtec-pink: #ff006b;
- 
+     --white: #fff;
+  --black: #010f34;
+  --heading-color: #010f34;
+  --body-color: #788094;
+  --ternary: #88a5ad;
+  --accent: #ff5500;
+  --gray: #f5f7fa;
+  --border: #ecf1f5;
+  --heading-font: "Outfit", sans-serif;
+  --body-color-font: "DM Sans", sans-serif;
+
+    
 }
 
 @theme inline {
@@ -102,19 +112,6 @@ body {
 }
 
 
-/* ========= ROOT VARIABLES ========= */
-:root {
-  --white: #fff;
-  --black: #010f34;
-  --heading-color: #010f34;
-  --body-color: #788094;
-  --ternary: #88a5ad;
-  --accent: #ff5500;
-  --gray: #f5f7fa;
-  --border: #ecf1f5;
-  --heading-font: "Outfit", sans-serif;
-  --body-color-font: "DM Sans", sans-serif;
-}
 
 /* ========= BACKGROUND & CONTAINER ========= */
 .cs_bg_filed {
@@ -308,7 +305,7 @@ body {
 }
 .cs_text_btn img {
   transition: all 0.3s ease;
-}
+} 
 
 
 
