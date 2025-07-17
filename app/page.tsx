@@ -1,6 +1,5 @@
 import React from "react";
 import AnimationCard from "@/components/Cards/AnimationCard";
-import Features from "@/components/Cards/Features";
 import { SliderCard } from "@/components/Cards/SliderCard";
 import Accordion from "@/components/Material/Accordion";
 import Counter from "@/components/Material/Counter";
@@ -124,13 +123,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section: Accordion */}
-      {/* <section className="bg-gradient-to-b from-white to-gray-100 flex items-center justify-center min-h-[60vh] py-16">
-        <div className="w-full max-w-9xl px-4">
-          <Accordion />
+     {/* Section: Accordion */}
+      <section className="bg-gradient-to-b from-white to-gray-100 flex flex-col items-center justify-center min-h-[20vh] px-4 py-16">
+        {/* Headings
+        <div className="text-center max-w-4xl mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 leading-snug">
+            Discover the Full Range of Security Features We Offer
+          </h2>
+          <h3 className="text-lg md:text-xl text-slate-600 leading-relaxed mt-2">
+            From live monitoring to advanced encryption, explore all the tools designed to protect your digital presence.
+          </h3>
         </div>
-      </section> */}
-      <Accordion />
+
+        {/* Accordion Component */}
+        <div className="w-full max-w-7xl">
+          <Accordion />
+        </div> 
+      </section>
+
+
 
       {/* Section: Extra Counters */}
       <section className="py-16 bg-white">
