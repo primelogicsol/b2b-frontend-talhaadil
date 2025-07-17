@@ -81,7 +81,7 @@ export default function DropdownMenu({ title, items, isActive }: DropdownProps) 
         onMouseLeave={() => setIsDesktopOpen(false)}
       >
         <button
-          className={`px-4 py-2 cursor-pointer text-white text-lg font-medium relative transition-colors duration-300 ease-in-out
+          className={`py-2 cursor-pointer text-white text-lg font-medium relative transition-colors duration-300 ease-in-out
             ${isActive ? "bg-[var(--softtec-light-blue)]" : "hover:text-softtec-yellow"}
           `}
         >

@@ -31,7 +31,6 @@ export default function RootLayout({
 
       >
         <Navbar/>
-        <VerticalHeroSlider/>
         {children}
         <Footer/>
       </body>

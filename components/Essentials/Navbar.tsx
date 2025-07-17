@@ -42,35 +42,36 @@ export function Navbar() {
         <div className="hidden md:flex items-center space-x-8">
           <Link
             href="#"
-            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
           >
             Home
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
-          <DropdownMenu title="Page" items={pageDropdownItems} />
-          <Link
-            href="#"
-            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
-          >
-            Portfolio
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
-          <Link
-            href="#"
-            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
-          >
-            Pricing
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
-          <DropdownMenu
-            title="Blog"
+          <DropdownMenu title="About us" items={pageDropdownItems} />
+           <DropdownMenu
+            title="Partnership"
             items={blogDropdownItems}
           />
           <Link
             href="#"
-            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
           >
-            Contact
+            Registration
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+          <Link
+            href="#"
+            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+          >
+            Process
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+         
+          <Link
+            href="#"
+            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+          >
+            Book Appointment
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
         </div>

@@ -12,27 +12,47 @@ interface FeatureItem {
 interface FeaturesProps {
   data?: FeatureItem[];
 }
-
 const fallbackData: FeatureItem[] = [
   {
     img: "/assets/images/feature1.png",
-    title: "Fast Delivery",
-    desc: "We ensure your orders reach you in record time.",
+    title: "Drop shipping",
+    desc: "Explore authentic Kashmiri crafts for your thriving online marketplace.",
   },
   {
     img: "/assets/images/feature2.png",
-    title: "Secure Payments",
-    desc: "Your transactions are safe with industry‑leading security.",
+    title: "Consignment",
+    desc: "Establish lasting relationships with verified Kashmiri artisans for products.",
   },
   {
     img: "/assets/images/feature3.png",
-    title: "24/7 Support",
-    desc: "Always here to help you, day or night.",
+    title: "Exhibition",
+    desc: "Discover exclusive Kashmiri collections showcased at global events.",
   },
   {
     img: "/assets/images/feature4.png",
-    title: "Quality Assured",
-    desc: "Every product is checked and verified for quality.",
+    title: "Import Export",
+    desc: "Effortlessly source high-quality, ethical Kashmiri crafts for business.",
+  },
+  {
+    img: "/assets/images/feature5.png",
+    title: "Investor",
+    desc: "Maximize returns by investing in Kashmiri craft businesses with global potential.",
+  },
+  {
+    img: "/assets/images/feature6.png",
+    title: "Brick & Mortar",
+    desc: "Partner with Kashmiri craft suppliers for physical retail spaces.",
+  },
+  
+  {
+    img: "/assets/images/feature7.png",
+    title: "Franchise",
+    desc: "Expand your USA-based franchise with established Kashmiri craft brands.",
+  },
+  {
+    img: "/assets/images/feature7.png",
+    title: "Franchise",
+    desc: "Expand your USA-based franchise with established Kashmiri craft brands.",
   },
 ];
 
@@ -41,8 +61,8 @@ const Features = ({ data }: FeaturesProps) => {
 
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 flex justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-5">
           {featuresData.map((item, i) => (
             <FeatureCard key={i} img={item.img} title={item.title} desc={item.desc} />
           ))}
@@ -63,7 +83,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ img, title, desc }) => {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 p-8 cursor-pointer ${
+      className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer w-35 h-40 ${
         hovered ? "border-[var(--primary-hover-color)] bg-[var(--primary-hover-color)] text-white" : "border-gray-200 bg-gray-100"
       }`}
       onMouseEnter={() => setHovered(true)}
@@ -79,7 +99,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ img, title, desc }) => {
         }}
       />
 
-      <div className="relative z-10 mx-auto mb-4 w-[75px] h-[75px] rounded-full border-2 border-white flex items-center justify-center bg-white/40">
+      <div className="relative z-10 mx-auto mt-2 w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-white/40">
         <div
           className={`absolute inset-0 rounded-full bg-[#171a2b] transition-transform duration-500 ${
             hovered ? "scale-100" : "scale-0"
@@ -97,15 +117,15 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ img, title, desc }) => {
       </div>
 
       <div className="relative z-10">
-        <h3
-          className={`text-lg font-semibold transition-colors duration-500 ${
+        <h6
+          className={`text-md font-semibold transition-colors duration-500 ${
             hovered ? "text-white" : "text-gray-900"
           }`}
         >
           {title}
-        </h3>
+        </h6>
         <p
-          className={`mt-2 text-sm transition-colors duration-500 ${
+          className={`mt-2 text-[10px] transition-colors duration-500 ${
             hovered ? "text-white" : "text-gray-600"
           }`}
         >

@@ -25,6 +25,10 @@ const deffaqItems: FaqItem[] = [
     title: "What is the purpose of this platform?",
     desc: "This platform aims to connect Kashmiri artisans and startups with global markets.",
   },
+  {
+    title: "What is the purpose of this platform?",
+    desc: "This platform aims to connect Kashmiri artisans and startups with global markets.",
+  },
 
   {
     title: "How can I get started?",

@@ -65,13 +65,13 @@ const fallbackData: AccordionItem[] = [
 
 export default function Accordion({ data }: ResponsiveAccordionProps) {
   const accordionData = data && data.length > 0 ? data : fallbackData
-  const [activeItem, setActiveItem] = useState<string>(accordionData[2].id) // defaults to third as in original
+  const [activeItem, setActiveItem] = useState<string>(accordionData[2].id) // defaults to third
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full min-h-screen bg-slate-900 py-12 px-2 md:px-8 flex items-center justify-center">
+      <div className="w-full">
         {/* Desktop Horizontal Accordion */}
-        <div className="hidden md:flex gap-4 h-96">
+        <div className="hidden md:flex gap-4 h-96 w-full">
           {accordionData.map((item) => {
             const isActive = activeItem === item.id
 
@@ -116,7 +116,9 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                           <item.icon className="w-12 h-12 text-yellow-400" />
                           <h2 className="text-4xl font-bold">{item.title}</h2>
                         </div>
-                        <p className="text-lg leading-relaxed opacity-90">{item.content}</p>
+                        <p className="text-lg leading-relaxed opacity-90">
+                          {item.content}
+                        </p>
                       </motion.div>
                     ) : (
                       <motion.div
@@ -131,7 +133,9 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                         className="h-full flex flex-col items-center justify-center gap-4"
                       >
                         <item.icon className="w-8 h-8 text-yellow-400" />
-                        <h3 className="text-white text-xl font-semibold whitespace-nowrap">{item.title}</h3>
+                        <h3 className="text-white text-xl font-semibold whitespace-nowrap">
+                          {item.title}
+                        </h3>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -177,7 +181,9 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                   <item.icon className="w-8 h-8 text-yellow-400" />
                   <h2 className="text-2xl font-bold">{item.title}</h2>
                 </div>
-                <p className="text-base leading-relaxed opacity-90">{item.content}</p>
+                <p className="text-base leading-relaxed opacity-90">
+                  {item.content}
+                </p>
               </div>
             </motion.div>
           ))}
