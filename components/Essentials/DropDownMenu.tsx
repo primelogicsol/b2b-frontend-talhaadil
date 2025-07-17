@@ -61,7 +61,7 @@ export default function DropdownMenu({ title, items, isActive }: DropdownProps) 
             <motion.div key={index} variants={itemVariants}>
               <Link
                 href={item.href}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors duration-200 ease-in-out"
+                className="block px-4 py-2 text-gray-800 hover:bg-pink-300 transition-colors duration-200 ease-in-out"
               >
                 {item.label}
               </Link>

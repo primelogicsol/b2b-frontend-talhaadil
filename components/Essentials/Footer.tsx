@@ -18,7 +18,7 @@ import {
   FaLinkedinIn as Linkedin 
 } from "react-icons/fa";
 
-export default function Component() {
+export default function Footer() {
   const [email, setEmail] = useState("")
   const [isHovered, setIsHovered] = useState(false)
 
