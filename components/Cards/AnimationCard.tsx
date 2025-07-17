@@ -19,7 +19,7 @@ function AnimationCard({
   onReadMore,
 }: AnimationCardProps) {
   return (
-    <div className="group relative w-full max-w-xs sm:max-w-sm h-96  rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl mx-auto">
+    <div className="group relative w-full max-w-xs sm:max-w-sm h-96  rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl mx-auto bg-white">
       <div className="absolute top-0 left-0 w-16 h-32 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
       <div className="absolute bottom-0 right-0 w-16 h-32 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
 

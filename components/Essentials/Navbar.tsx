@@ -39,45 +39,44 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           <Link
             href="#"
-            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
           >
             Home
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
-          <DropdownMenu title="About us" items={pageDropdownItems} />
-           <DropdownMenu
-            title="Partnership"
+          <DropdownMenu title="Page" items={pageDropdownItems} />
+          <Link
+            href="#"
+            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+          >
+            Portfolio
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+          <Link
+            href="#"
+            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+          >
+            Pricing
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+          <DropdownMenu
+            title="Blog"
             items={blogDropdownItems}
           />
           <Link
             href="#"
-            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
+            className="px-4 py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
           >
-            Registration
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
-          <Link
-            href="#"
-            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
-          >
-            Process
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
-         
-          <Link
-            href="#"
-            className="py-2 text-white text-lg font-medium relative group hover:text-[var(--softtec-yellow)] transition-colors duration-300 ease-in-out"
-          >
-            Book Appointment
+            Contact
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
         </div>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-4">
           <button className="cursor-pointer text-white text-lg font-medium px-4 py-2 hover:text-[var(--softtec-yellow)] hover:scale-105 transition-all duration-300 ease-in-out">
             Log In
           </button>
@@ -87,7 +86,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white focus:outline-none"
@@ -99,7 +98,7 @@ export function Navbar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed top-0 left-0 w-3/4 h-full bg-[var(--softtec-blue)] shadow-lg py-8 px-6 z-30 transform transition-transform duration-300 ease-in-out animate-slide-in">
+        <div className="lg:hidden fixed top-0 left-0 w-3/4 h-full bg-[var(--softtec-blue)] shadow-lg py-8 px-6 z-30 transform transition-transform duration-300 ease-in-out animate-slide-in">
           <div className="flex flex-col items-start space-y-6">
             <Link
               href="#"
@@ -153,3 +152,4 @@ export function Navbar() {
     </nav>
   );
 }
+
