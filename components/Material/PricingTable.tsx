@@ -92,7 +92,7 @@ export default function PricingTable() {
           {/* 3D Icon */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl transform rotate-12 shadow-2xl">
+              <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-yellow-400 to-[var(--primary-color)] rounded-2xl transform rotate-12 shadow-2xl">
                 <div className="absolute inset-3 md:inset-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl transform -rotate-6"></div>
                 <div className="absolute inset-4 md:inset-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg transform rotate-3"></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-8 md:h-8 bg-yellow-400 rounded-full shadow-lg"></div>

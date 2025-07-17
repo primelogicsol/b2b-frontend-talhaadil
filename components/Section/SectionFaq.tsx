@@ -20,13 +20,24 @@ interface FaqProps {
   decoImg2?: string
 }
 
+const deffaqItems: FaqItem[] = [ 
+  {
+    title: "What is the purpose of this platform?",
+    desc: "This platform aims to connect Kashmiri artisans and startups with global markets.",
+  },
+
+  {
+    title: "How can I get started?",
+    desc: "To get started, you can sign up on our website and explore the various partnership models available.",
+  }]
+
 export default function SectionFaq({
   subTitle = "SOLUTEK COMPANY",
   sectionTitle = "Keeping Your Business<br> Safe and <span>Available.</span>",
   imgMain = "/assets/images/faq1.png",
   faqTitle = "A Comprehensive <span>Guide.</span>",
   faqContent = "Alternative innovation network environmental whiteboard pursue for premier methods empowerment go forward opportunities",
-  faqItems = [],
+  faqItems = deffaqItems,
   decoImg1 = "/assets/images/faq2.png",
   decoImg2 = "/assets/images/faq3.png",
 }: FaqProps) {
@@ -77,7 +88,7 @@ export default function SectionFaq({
                 key={index}
                 className={`border rounded-lg overflow-hidden transition-all duration-300 shadow-sm ${
                   index === openItemIndex
-                    ? "bg-orange-50 border-orange-500"
+                    ? "bg-orange-50 border-[var(--primary-color)]"
                     : "bg-white border-gray-200"
                 }`}
               >
@@ -85,13 +96,13 @@ export default function SectionFaq({
                   onClick={() => handleItemClick(index)}
                   className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-orange-100 transition group"
                 >
-                  <span className="text-lg font-medium text-gray-800 group-hover:text-orange-600">
+                  <span className="text-lg font-medium text-gray-800 group-hover:text-[var(--primary-hover-color)]">
                     {item.title}
                   </span>
                   <span
                     className={`transform transition-transform duration-300 ${
                       index === openItemIndex
-                        ? "rotate-180 text-orange-500"
+                        ? "rotate-180 text-[var(--primary-color)]"
                         : "rotate-0 text-gray-400"
                     }`}
                   >

@@ -30,12 +30,12 @@ const HoriozontalBlogCard: React.FC<BlogCardStyle2Props> = ({
       {/* Content */}
       <div className="w-full md:w-1/2 p-6">
         {/* Date & Comments */}
-        <div className="bg-orange-600 text-white px-4 py-2 rounded-md mb-4 text-sm shadow">
+        <div className="bg-[var(--primary-hover-color)] text-white px-4 py-2 rounded-md mb-4 text-sm shadow">
           <h4 className="flex flex-wrap items-center gap-3">
             <i className="bi bi-calendar2-check"></i>
             20 June 2024
             <span className="relative pl-5 ml-auto">
-              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-[1px] bg-orange-300"></span>
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-[1px] bg-[var(--primary-light-text-color)]"></span>
               <i className="bi bi-chat-left-text ml-2"></i>
               Comment-05
             </span>
@@ -43,7 +43,7 @@ const HoriozontalBlogCard: React.FC<BlogCardStyle2Props> = ({
         </div>
 
         {/* Title */}
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 hover:text-orange-600 transition duration-300 mb-3">
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 hover:text-[var(--primary-hover-color)] transition duration-300 mb-3">
           <Link href="/blog/blog-details">{Title}</Link>
         </h3>
 
@@ -54,7 +54,7 @@ const HoriozontalBlogCard: React.FC<BlogCardStyle2Props> = ({
         <div>
           <Link
             href="/blog/blog-details"
-            className="text-gray-600 hover:text-orange-600 font-medium inline-flex items-center gap-2 transition duration-300"
+            className="text-gray-600 hover:text-[var(--primary-hover-color)] font-medium inline-flex items-center gap-2 transition duration-300"
           >
             READ MORE <i className="bi bi-arrow-right"></i>
           </Link>

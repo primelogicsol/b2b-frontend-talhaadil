@@ -30,12 +30,12 @@ const VerticalBlogCard: React.FC<BlogCard1Props> = ({
       {/* Blog Content */}
       <div className="relative z-[1] p-6 sm:p-8 md:p-10">
         {/* Date Box */}
-        <div className="absolute -top-6 left-6 bg-orange-600 text-white rounded-md px-6 py-2 text-sm shadow-md">
+        <div className="absolute -top-6 left-6 bg-[var(--primary-hover-color)] text-white rounded-md px-6 py-2 text-sm shadow-md">
           <h4 className="flex items-center gap-2">
             <i className="bi bi-calendar2-check"></i>
             20 June 2024
             <span className="relative ml-10 pl-6">
-              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-[1px] bg-orange-300"></span>
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-[1px] bg-[var(--primary-light-text-color)]"></span>
               <i className="bi bi-chat-left-text ml-2"></i>
               Comment-05
             </span>
@@ -43,7 +43,7 @@ const VerticalBlogCard: React.FC<BlogCard1Props> = ({
         </div>
 
         {/* Title */}
-        <h3 className="mt-8 text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 font-poppins leading-snug hover:text-orange-600 transition duration-300">
+        <h3 className="mt-8 text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 font-poppins leading-snug hover:text-[var(--primary-hover-color)] transition duration-300">
           <Link href="/blog/blog-details">{Title}</Link>
         </h3>
 
@@ -54,7 +54,7 @@ const VerticalBlogCard: React.FC<BlogCard1Props> = ({
         <div>
           <Link
             href="/blog/blog-details"
-            className="text-gray-600 hover:text-orange-600 font-medium text-base transition duration-300 inline-flex items-center gap-2"
+            className="text-gray-600 hover:text-[var(--primary-hover-color)] font-medium text-base transition duration-300 inline-flex items-center gap-2"
           >
             READ MORE <i className="bi bi-arrow-right"></i>
           </Link>

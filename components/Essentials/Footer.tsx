@@ -109,7 +109,7 @@ export default function Component() {
             <h3 className="text-lg md:text-xl font-semibold">Stay Connected to Craftlore-Kashmir Craft Repository</h3>
           </motion.div>
           <motion.button
-            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 rounded-full font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
+            className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] hover:from-[var(--primary-hover-color)] hover:to-[var(--primary-hover-color)] px-8 py-3 rounded-full font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
             whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(0,0,0,0.2)" }}
             whileTap={{ scale: 0.95 }}
           >
@@ -134,7 +134,7 @@ export default function Component() {
             whileHover={{ scale: 1.02 }}
           >
             <motion.div className="flex items-center gap-3 mb-6" whileHover={{ scale: 1.05 }}>
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] rounded-full flex items-center justify-center">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
@@ -189,7 +189,7 @@ export default function Component() {
               className="text-xl font-semibold mb-6 flex items-center gap-2"
               whileHover={{ x: 5, transition: { duration: 0.2 } }}
             >
-              <Globe className="w-5 h-5 text-orange-400" />
+              <Globe className="w-5 h-5 text-[var(--primary-color)]" />
               Craft Registry
             </motion.h3>
             <ul className="space-y-3">
@@ -211,7 +211,7 @@ export default function Component() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent"
+                      className="absolute inset-0 bg-gradient-to-r from-[var(--primary-color)]/20 to-transparent"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "0%" }}
                       transition={{ duration: 0.3 }}
@@ -235,7 +235,7 @@ export default function Component() {
               className="text-xl font-semibold mb-6 flex items-center gap-2"
               whileHover={{ x: 5, transition: { duration: 0.2 } }}
             >
-              <TrendingUp className="w-5 h-5 text-orange-400" />
+              <TrendingUp className="w-5 h-5 text-[var(--primary-color)]" />
               Craft Resources
             </motion.h3>
             <ul className="space-y-3">
@@ -257,7 +257,7 @@ export default function Component() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent"
+                      className="absolute inset-0 bg-gradient-to-r from-[var(--primary-color)]/20 to-transparent"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "0%" }}
                       transition={{ duration: 0.3 }}
@@ -281,7 +281,7 @@ export default function Component() {
               className="text-xl font-semibold mb-6 flex items-center gap-2"
               whileHover={{ x: 5, transition: { duration: 0.2 } }}
             >
-              <Mail className="w-5 h-5 text-orange-400" />
+              <Mail className="w-5 h-5 text-[var(--primary-color)]" />
               About & Connect
             </motion.h3>
             <ul className="space-y-3">
@@ -297,7 +297,7 @@ export default function Component() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent"
+                        className="absolute inset-0 bg-gradient-to-r from-[var(--primary-color)]/20 to-transparent"
                         initial={{ x: "-100%" }}
                         whileHover={{ x: "0%" }}
                         transition={{ duration: 0.3 }}
@@ -329,7 +329,7 @@ export default function Component() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
+                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-300 backdrop-blur-sm"
                 whileHover={{
                   scale: 1.02,
                   backgroundColor: "rgba(255,255,255,0.15)",
@@ -346,7 +346,7 @@ export default function Component() {
                 }}
               />
               <motion.button
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 rounded-lg font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
+                className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] hover:from-[var(--primary-hover-color)] hover:to-[var(--primary-hover-color)] px-8 py-3 rounded-lg font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {

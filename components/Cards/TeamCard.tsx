@@ -37,7 +37,7 @@ export default function TeamCard({
     <div className="relative w-80 h-96 overflow-hidden rounded-2xl shadow-2xl bg-gray-100 group cursor-pointer transform transition-all duration-700 hover:scale-105">
       {/* Orange diagonal background - smooth fade in */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
+        className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
         style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 35%, 0% 65%)" }}
       ></div>
 
@@ -56,7 +56,7 @@ export default function TeamCard({
           {/* Share icon at bottom of circle */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 transform transition-all duration-500 group-hover:rotate-180">
             <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg ring-2 ring-gray-100 group-hover:ring-orange-200 transition-all duration-500">
-              <Share2 className="w-5 h-5 text-gray-600 group-hover:text-orange-500 transition-colors duration-500" />
+              <Share2 className="w-5 h-5 text-gray-600 group-hover:text-[var(--primary-color)] transition-colors duration-500" />
             </div>
           </div>
 

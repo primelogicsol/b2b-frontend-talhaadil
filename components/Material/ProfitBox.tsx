@@ -33,7 +33,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ icon, title, value, position, i
     }}
   >
     <motion.div
-      className="flex-shrink-0 w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center cursor-pointer"
+      className="flex-shrink-0 w-12 h-12 bg-[var(--primary-color)]/20 rounded-full flex items-center justify-center cursor-pointer"
       whileHover={{
         backgroundColor: 'rgba(249, 115, 22, 0.3)',
         rotate: 360,
@@ -42,7 +42,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ icon, title, value, position, i
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="text-orange-400"
+        className="text-[var(--primary-color)]"
         whileHover={{ scale: 1.2 }}
         transition={{ duration: 0.2 }}
       >

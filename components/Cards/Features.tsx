@@ -64,7 +64,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ img, title, desc }) => {
   return (
     <div
       className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 p-8 cursor-pointer ${
-        hovered ? "border-orange-600 bg-orange-600 text-white" : "border-gray-200 bg-gray-100"
+        hovered ? "border-[var(--primary-hover-color)] bg-[var(--primary-hover-color)] text-white" : "border-gray-200 bg-gray-100"
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

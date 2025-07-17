@@ -66,7 +66,7 @@ export default function DiagonalSection({
         <div className="relative w-full max-w-md lg:max-w-xl h-[400px] lg:h-[550px] flex items-center justify-center mb-12 lg:mb-0 lg:mr-16">
           <div className="relative w-[350px] h-[450px] md:w-[450px] md:h-[550px]">
             <div className="absolute top-0 left-0 w-[300px] h-[400px] md:w-[400px] md:h-[500px] transform rotate-[-15deg] skew-x-[-10deg] rounded-xl overflow-hidden group transition-transform duration-300 hover:scale-105 z-20">
-              <div className="absolute inset-0 border-4 border-orange-500 rounded-xl z-10 pointer-events-none"></div>
+              <div className="absolute inset-0 border-4 border-[var(--primary-color)] rounded-xl z-10 pointer-events-none"></div>
               <div className="absolute inset-[4px] border-4 border-gray-900 rounded-xl z-10 pointer-events-none"></div>
               <Image
                 src={mainImage}
@@ -77,7 +77,7 @@ export default function DiagonalSection({
               />
             </div>
 
-            <div className="absolute bottom-0 right-0 w-[150px] h-[200px] md:w-[200px] md:h-[250px] transform rotate-[15deg] skew-x-[10deg] rounded-xl overflow-hidden border-4 border-orange-500 z-10 group transition-transform duration-300 hover:scale-105">
+            <div className="absolute bottom-0 right-0 w-[150px] h-[200px] md:w-[200px] md:h-[250px] transform rotate-[15deg] skew-x-[10deg] rounded-xl overflow-hidden border-4 border-[var(--primary-color)] z-10 group transition-transform duration-300 hover:scale-105">
               <Image
                 src={smallImage}
                 alt="Decorative"
@@ -91,12 +91,12 @@ export default function DiagonalSection({
 
         <div className="w-full max-w-2xl text-center lg:text-left">
           <div className="flex items-center justify-center lg:justify-start mb-4">
-            <div className="w-12 h-0.5 bg-orange-500 mr-3"></div>
+            <div className="w-12 h-0.5 bg-[var(--primary-color)] mr-3"></div>
             <p className="text-sm font-semibold uppercase text-gray-600">{subtitle}</p>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
             {title} <br className="hidden md:block" />{" "}
-            <span className="text-orange-500">{highlight}</span>
+            <span className="text-[var(--primary-color)]">{highlight}</span>
           </h1>
           <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
             {description}
@@ -105,14 +105,14 @@ export default function DiagonalSection({
           <div className="grid gap-6 mb-8">
             {steps.map((text, i) => (
               <div key={i} className="flex items-start group">
-                <div className="w-8 h-0.5 bg-orange-500 mt-3 mr-4 transition-all duration-300 group-hover:w-12"></div>
+                <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 mr-4 transition-all duration-300 group-hover:w-12"></div>
                 <p className="font-bold text-lg">{text}</p>
               </div>
             ))}
           </div>
 
           <div className="text-sm text-gray-600 mt-8">
-            <p className="font-bold text-orange-500 mb-1">{footerHeadline}</p>
+            <p className="font-bold text-[var(--primary-color)] mb-1">{footerHeadline}</p>
             <p>{footerDescription}</p>
           </div>
         </div>

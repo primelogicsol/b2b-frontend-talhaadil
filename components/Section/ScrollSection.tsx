@@ -146,13 +146,13 @@ export default function ScrollSection({
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         {/* Left */}
         <div className="flex flex-col">
-          <div className="flex items-center gap-2 text-orange-500 text-sm font-semibold uppercase tracking-wider">
-            <span className="w-8 h-0.5 bg-orange-500"></span>
+          <div className="flex items-center gap-2 text-[var(--primary-color)] text-sm font-semibold uppercase tracking-wider">
+            <span className="w-8 h-0.5 bg-[var(--primary-color)]"></span>
             <span>UNIQUE AMERICAN BUSINESS GIFT</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4">
             {mainTitle.split("&")[0]}
-            {mainTitle.includes("&") && <span className="text-orange-500">& {mainTitle.split("&")[1]}</span>}
+            {mainTitle.includes("&") && <span className="text-[var(--primary-color)]">& {mainTitle.split("&")[1]}</span>}
           </h1>
           <p className="mt-4 text-lg text-gray-600 max-w-md">{mainDescription}</p>
 
@@ -181,7 +181,7 @@ export default function ScrollSection({
           >
             {features.map((feature, i) => (
               <div key={i} className="bg-white p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
-                <div className="w-12 h-0.5 bg-orange-500 mb-2"></div>
+                <div className="w-12 h-0.5 bg-[var(--primary-color)] mb-2"></div>
                 <h2 className="text-xl font-bold text-gray-900">{feature.title}</h2>
                 <p className="mt-2 text-gray-600">{feature.description}</p>
               </div>
@@ -195,7 +195,7 @@ export default function ScrollSection({
           >
             <button
               onClick={() => scrollTo("up")}
-              className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center hover:bg-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="w-8 h-8 rounded-full bg-[var(--primary-color)] text-white flex items-center justify-center hover:bg-[var(--primary-hover-color)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2"
             >
               <ChevronLeft className="w-5 h-5 lg:hidden" />
               <ChevronUp className="w-5 h-5 hidden lg:block" />
@@ -203,25 +203,25 @@ export default function ScrollSection({
 
             <div className="relative flex-1 h-2 bg-gray-300 rounded-full mx-2 lg:w-2 lg:h-full lg:my-2 lg:mx-0">
               <div
-                className="absolute bg-orange-500 rounded-full transition-all duration-100 ease-out h-full"
+                className="absolute bg-[var(--primary-color)] rounded-full transition-all duration-100 ease-out h-full"
                 style={{ width: `${thumbSize}%`, left: `${thumbPosition}%` }}
               ></div>
               <div
-                className="absolute bg-orange-500 rounded-full transition-all duration-100 ease-out hidden lg:block w-full"
+                className="absolute bg-[var(--primary-color)] rounded-full transition-all duration-100 ease-out hidden lg:block w-full"
                 style={{ height: `${thumbSize}%`, top: `${thumbPosition}%` }}
               ></div>
             </div>
 
             <button
               onClick={() => scrollTo("down")}
-              className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center hover:bg-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="w-8 h-8 rounded-full bg-[var(--primary-color)] text-white flex items-center justify-center hover:bg-[var(--primary-hover-color)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2"
             >
               <ChevronRight className="w-5 h-5 lg:hidden" />
               <ChevronDown className="w-5 h-5 hidden lg:block" />
             </button>
           </div>
 
-          <div className="mt-8 self-center w-4 h-4 rounded-full border-2 border-red-500 bg-orange-500 animate-pulse
+          <div className="mt-8 self-center w-4 h-4 rounded-full border-2 border-red-500 bg-[var(--primary-color)] animate-pulse
                           lg:absolute lg:bottom-4 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0"
           ></div>
         </div>

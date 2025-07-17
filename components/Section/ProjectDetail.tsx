@@ -67,7 +67,7 @@ export default function ProjectDetail({
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="pl-6 md:pl-12 transition duration-300 hover:text-orange-500"
+              className="pl-6 md:pl-12 transition duration-300 hover:text-[var(--primary-color)]"
             >
               <p className="text-[18px] text-gray-500 mb-0">{item.title}</p>
               <h6 className="text-[24px] leading-[46px] font-semibold text-gray-900">
@@ -135,7 +135,7 @@ export default function ProjectDetail({
                       key={i}
                       className="flex items-center gap-2 text-[17px] leading-7 group"
                     >
-                      <div className="w-3 h-3 bg-orange-500 rounded-full group-hover:scale-125 transition-transform" />
+                      <div className="w-3 h-3 bg-[var(--primary-color)] rounded-full group-hover:scale-125 transition-transform" />
                       {text}
                     </li>
                   ))}
@@ -146,7 +146,7 @@ export default function ProjectDetail({
             <div>
               <Link
                 href="/project-details"
-                className="inline-block text-[22px] text-orange-500 font-bold hover:underline my-4"
+                className="inline-block text-[22px] text-[var(--primary-color)] font-bold hover:underline my-4"
               >
                 Competently architect intermandated deliverables...
               </Link>
@@ -175,7 +175,7 @@ export default function ProjectDetail({
                       href="/service/service-details"
                       className="relative block py-3 px-6 rounded-md font-medium uppercase overflow-hidden transition-all duration-500 hover:text-white text-gray-800 group"
                     >
-                      <span className="absolute left-0 top-0 w-full h-full bg-orange-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out z-0"></span>
+                      <span className="absolute left-0 top-0 w-full h-full bg-[var(--primary-color)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out z-0"></span>
                       <span className="relative z-10">{item}</span>
                     </Link>
                   </li>
@@ -206,7 +206,7 @@ export default function ProjectDetail({
                     href="/contact"
                     className="relative inline-block px-6 py-3 text-white font-semibold rounded overflow-hidden group"
                   >
-                    <span className="absolute inset-0 w-full h-full bg-orange-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+                    <span className="absolute inset-0 w-full h-full bg-[var(--primary-hover-color)] origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
                     <span className="relative z-10">Contact Us</span>
                   </Link>
                 </div>
@@ -274,7 +274,7 @@ export default function ProjectDetail({
 //             <motion.div
 //               key={i}
 //               whileHover={{ scale: 1.05 }}
-//               className="pl-6 md:pl-12 transition duration-300 hover:text-orange-500"
+//               className="pl-6 md:pl-12 transition duration-300 hover:text-[var(--primary-color)]"
 //             >
 //               <p className="text-[18px] text-gray-500 mb-0">{item.title}</p>
 //               <h6 className="text-[24px] leading-[46px] font-semibold text-gray-900">
@@ -342,7 +342,7 @@ export default function ProjectDetail({
 //                       key={i}
 //                       className="flex items-center gap-2 text-[17px] leading-7 group"
 //                     >
-//                       <i className="bi bi-check-circle-fill text-orange-500 text-[19px] group-hover:scale-110 transition-transform duration-300" />
+//                       <i className="bi bi-check-circle-fill text-[var(--primary-color)] text-[19px] group-hover:scale-110 transition-transform duration-300" />
 //                       {text}
 //                     </li>
 //                   ))}
@@ -353,7 +353,7 @@ export default function ProjectDetail({
 //             <div>
 //               <Link
 //                 href="/project-details"
-//                 className="inline-block text-[22px] text-orange-500 font-bold hover:underline my-4"
+//                 className="inline-block text-[22px] text-[var(--primary-color)] font-bold hover:underline my-4"
 //               >
 //                 Competently architect intermandated deliverables...
 //               </Link>
@@ -380,7 +380,7 @@ export default function ProjectDetail({
 //                   <li key={i} className="py-3">
 //                     <Link
 //                       href="/service/service-details"
-//                       className="flex items-center justify-between text-gray-800 hover:text-orange-500 transition"
+//                       className="flex items-center justify-between text-gray-800 hover:text-[var(--primary-color)] transition"
 //                     >
 //                       <span className="flex items-center gap-2">
 //                         <Image
@@ -417,7 +417,7 @@ export default function ProjectDetail({
 //               <div className="mt-4">
 //                 <Link
 //                   href="/contact"
-//                   className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
+//                   className="inline-block px-6 py-3 bg-[var(--primary-color)] text-white font-semibold rounded hover:bg-[var(--primary-hover-color)] transition"
 //                 >
 //                   Contact Us <i className="bi bi-arrow-right"></i>
 //                 </Link>

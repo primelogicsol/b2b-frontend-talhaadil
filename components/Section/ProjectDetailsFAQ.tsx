@@ -91,7 +91,7 @@ export default function ProjectDetailsFAQ({
                 {["Success Stories", "Success service", "Success store"].map((text, i) => (
                   <li
                     key={i}
-                    className="text-sm text-gray-700 pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-orange-500 hover:text-orange-600 transition"
+                    className="text-sm text-gray-700 pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary-color)] hover:text-[var(--primary-hover-color)] transition"
                   >
                     {text}
                   </li>
@@ -127,7 +127,7 @@ export default function ProjectDetailsFAQ({
                 <li
                   key={index}
                   className={`border rounded-lg overflow-hidden transition-all duration-300 shadow-sm ${
-                    index === openItemIndex ? "bg-orange-50 border-orange-500" : "bg-white border-gray-200"
+                    index === openItemIndex ? "bg-orange-50 border-[var(--primary-color)]" : "bg-white border-gray-200"
                   }`}
                 >
                   <button
@@ -139,12 +139,12 @@ export default function ProjectDetailsFAQ({
                     </span>
                     <span
                       className={`transform transition-transform duration-300 relative z-10 ${
-                        index === openItemIndex ? "rotate-180 text-orange-500" : "rotate-0 text-gray-400"
+                        index === openItemIndex ? "rotate-180 text-[var(--primary-color)]" : "rotate-0 text-gray-400"
                       }`}
                     >
                       ▼
                     </span>
-                    <span className="absolute inset-0 bg-orange-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                    <span className="absolute inset-0 bg-[var(--primary-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
                   </button>
                   <div
                     ref={accordionContentRef}
@@ -179,7 +179,7 @@ export default function ProjectDetailsFAQ({
                       />
                       {item}
                     </span>
-                    <span className="absolute inset-0 bg-orange-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                    <span className="absolute inset-0 bg-[var(--primary-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
                   </Link>
                 </li>
               ))}
@@ -198,19 +198,19 @@ export default function ProjectDetailsFAQ({
                   Service Report
                 </span>
                 <i className="z-10 bi bi-download"></i>
-                <span className="absolute inset-0 bg-orange-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                <span className="absolute inset-0 bg-[var(--primary-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
               </a>
 
               <a
                 href="#"
-                className="relative group flex justify-between items-center px-4 py-3 rounded-lg bg-orange-500 text-white overflow-hidden"
+                className="relative group flex justify-between items-center px-4 py-3 rounded-lg bg-[var(--primary-color)] text-white overflow-hidden"
               >
                 <span className="z-10 flex items-center gap-2">
                   <i className="bi bi-file-earmark-pdf"></i>
                   Download Lists
                 </span>
                 <i className="z-10 bi bi-download"></i>
-                <span className="absolute inset-0 bg-orange-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                <span className="absolute inset-0 bg-[var(--primary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
               </a>
             </div>
           </div>
@@ -231,10 +231,10 @@ export default function ProjectDetailsFAQ({
             <div className="mt-4">
               <Link
                 href="/contact"
-                className="relative inline-block px-6 py-3 text-white font-semibold bg-orange-500 rounded overflow-hidden group"
+                className="relative inline-block px-6 py-3 text-white font-semibold bg-[var(--primary-color)] rounded overflow-hidden group"
               >
                 <span className="relative z-10">Contact Us</span>
-                <span className="absolute inset-0 bg-orange-600 scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-300 ease-out rounded" />
+                <span className="absolute inset-0 bg-[var(--primary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-300 ease-out rounded" />
               </Link>
             </div>
           </div>

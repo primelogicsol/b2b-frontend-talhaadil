@@ -94,7 +94,7 @@ business growth.`,
 
           <button
             className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-full shadow-lg
-                             bg-[#FF5200] text-white hover:bg-orange-700 transition-all duration-300 ease-in-out
+                             bg-[#FF5200] text-white hover:bg-[var(--primary-hover-color)] transition-all duration-300 ease-in-out
                              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF5200]
                              max-w-xs mx-auto lg:mx-0 transform hover:-translate-y-1"
           >

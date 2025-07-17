@@ -3,7 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-   --primary-color: #3535d6;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -52,6 +51,10 @@
   --heading-font: "Outfit", sans-serif;
   --body-color-font: "DM Sans", sans-serif;
 
+
+  --primary-hover-color: #2a5f7a;
+  --primary-color : #347b9c;
+  --primary-light-text-color : #2990f8;
     
 }
 

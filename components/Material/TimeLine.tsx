@@ -57,7 +57,7 @@ export function Timeline() {
             </div>
             <div
               className={`absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                activeItem === index ? "bg-orange-500 scale-110 shadow-orange-glow" : "bg-white border border-blue-300"
+                activeItem === index ? "bg-[var(--primary-color)] scale-110 shadow-orange-glow" : "bg-white border border-blue-300"
               }`}
             >
               {activeItem === index ? (

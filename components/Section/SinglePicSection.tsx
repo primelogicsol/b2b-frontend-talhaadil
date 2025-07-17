@@ -70,13 +70,13 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
               {/* Enhanced decorative elements */}
               <div className="absolute -top-12 -left-12 w-32 h-32 pointer-events-none">
                 <div
-                  className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-orange-400 to-red-400 transform origin-left transition-all duration-700 ${
+                  className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-left transition-all duration-700 ${
                     isImageHovered ? "scale-x-150 shadow-lg" : "scale-x-100"
                   }`}
                   style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
                 />
                 <div
-                  className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-orange-500 via-orange-400 to-red-400 transform origin-top transition-all duration-700 ${
+                  className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-top transition-all duration-700 ${
                     isImageHovered ? "scale-y-150 shadow-lg" : "scale-y-100"
                   }`}
                   style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
@@ -85,13 +85,13 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
 
               <div className="absolute -bottom-12 -right-12 w-32 h-32 pointer-events-none">
                 <div
-                  className={`absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-orange-500 via-orange-400 to-red-400 transform origin-right transition-all duration-700 ${
+                  className={`absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-right transition-all duration-700 ${
                     isImageHovered ? "scale-x-150 shadow-lg" : "scale-x-100"
                   }`}
                   style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
                 />
                 <div
-                  className={`absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t from-orange-500 via-orange-400 to-red-400 transform origin-bottom transition-all duration-700 ${
+                  className={`absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-bottom transition-all duration-700 ${
                     isImageHovered ? "scale-y-150 shadow-lg" : "scale-y-100"
                   }`}
                   style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
@@ -99,7 +99,7 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
               </div>
 
               {/* Additional floating accent elements */}
-              <div className="absolute -top-6 -right-6 w-4 h-4 bg-orange-400 rounded-full opacity-60 animate-pulse"></div>
+              <div className="absolute -top-6 -right-6 w-4 h-4 bg-[var(--primary-color)] rounded-full opacity-60 animate-pulse"></div>
               <div
                 className="absolute -bottom-4 -left-4 w-3 h-3 bg-red-400 rounded-full opacity-40 animate-pulse"
                 style={{ animationDelay: "1s" }}
@@ -149,7 +149,7 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
 
                     {/* Overlay gradient for better visual appeal */}
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br from-orange-400/10 via-transparent to-purple-600/10 transition-opacity duration-700 ${
+                      className={`absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/10 via-transparent to-purple-600/10 transition-opacity duration-700 ${
                         isImageHovered ? "opacity-30" : "opacity-0"
                       }`}
                     />
@@ -157,8 +157,8 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
 
                   {/* Animated border effect */}
                   <div
-                    className={`absolute inset-0 border-2 border-orange-400/30 transition-all duration-700 ${
-                      isImageHovered ? "border-orange-400/60 animate-pulse" : ""
+                    className={`absolute inset-0 border-2 border-[var(--primary-color)]/30 transition-all duration-700 ${
+                      isImageHovered ? "border-[var(--primary-color)]/60 animate-pulse" : ""
                     }`}
                     style={{
                       clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
@@ -168,7 +168,7 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
 
                 {/* Secondary floating shape */}
                 <div
-                  className={`absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-orange-400/20 to-red-400/20 transition-all duration-1000 ${
+                  className={`absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-[var(--primary-color)]/20 to-red-400/20 transition-all duration-1000 ${
                     isImageHovered ? "scale-125 rotate-12" : "scale-100 rotate-0"
                   }`}
                   style={{
@@ -180,7 +180,7 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
 
                 {/* Third accent shape */}
                 <div
-                  className={`absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-tr from-purple-400/15 to-orange-300/15 transition-all duration-1200 ${
+                  className={`absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-tr from-purple-400/15 to-[var(--primary-light-text-color)]/15 transition-all duration-1200 ${
                     isImageHovered ? "scale-110 -rotate-6" : "scale-100 rotate-0"
                   }`}
                   style={{
@@ -208,7 +208,7 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
           <div className="space-y-8">
             {/* Welcome text */}
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-0.5 bg-orange-500"></div>
+              <div className="w-12 h-0.5 bg-[var(--primary-color)]"></div>
               <span className="text-sm font-semibold text-gray-600 tracking-wider uppercase">{data.welcomeText}</span>
             </div>
 
@@ -216,9 +216,9 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 {data.title}{" "}
-                <span className="text-orange-500 relative">
+                <span className="text-[var(--primary-color)] relative">
                   {data.highlightWord}
-                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-orange-500 opacity-30 rounded-full"></div>
+                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-[var(--primary-color)] opacity-30 rounded-full"></div>
                 </span>
               </h1>
 
@@ -229,9 +229,9 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
             <div className="space-y-6">
               {data.steps.map((step, index) => (
                 <div key={index} className="flex items-start space-x-4 group cursor-pointer">
-                  <div className="w-8 h-0.5 bg-orange-500 mt-3 transition-all duration-300 group-hover:w-12"></div>
+                  <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 transition-all duration-300 group-hover:w-12"></div>
                   <div className="flex-1">
-                    <span className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
+                    <span className="font-semibold text-gray-900 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
                       {step.title}
                     </span>
                     <span className="text-gray-700 ml-2">{step.description}</span>
@@ -242,7 +242,7 @@ export default function SinglePicSection({ data = defaultData }: B2BConnectHeroP
 
             {/* Footer */}
             <div className="pt-8 border-t border-gray-200">
-              <h3 className="text-xl font-bold text-orange-500 mb-2">{data.footerTitle}</h3>
+              <h3 className="text-xl font-bold text-[var(--primary-color)] mb-2">{data.footerTitle}</h3>
               <p className="text-sm text-gray-600">{data.footerSubtitle}</p>
             </div>
           </div>
