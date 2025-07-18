@@ -78,6 +78,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+  overflow: auto;           /* or scroll, depending on your layout */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;            /* Chrome, Safari, Opera */
+}
+
 @keyframes slide-in {
   0% {
     transform: translateX(-100%);

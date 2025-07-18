@@ -48,19 +48,17 @@ export default function VerticalHeroSlider() {
     return () => clearInterval(timer)
   }, [])
 
-  // Get the appropriate height percentage based on screen size
   const getSlideOffset = () => {
     if (typeof window !== "undefined") {
-      if (window.innerWidth < 640) return currentSlide * 60 // 60vh for mobile
-      if (window.innerWidth < 1024) return currentSlide * 75 // 75vh for tablet
-      return currentSlide * 100 // 100vh for desktop
+      if (window.innerWidth < 640) return currentSlide * 60
+      if (window.innerWidth < 1024) return currentSlide * 75
+      return currentSlide * 100
     }
     return currentSlide * 100
   }
 
   return (
     <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-screen overflow-hidden">
-      {/* Ultra Smooth Sliding Container */}
       <motion.div
         className="flex flex-col w-full"
         animate={{
@@ -75,21 +73,19 @@ export default function VerticalHeroSlider() {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className="relative w-full h-[60vh] sm:h-[75vh] lg:h-screen flex-shrink-0 flex items-center justify-center"
+            className="relative w-full h-[60vh] sm:h-[75vh] lg:h-screen flex-shrink-0"
           >
-            {/* Background Image */}
             <div
               className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-              }}
+              style={{ backgroundImage: `url(${slide.image})` }}
             >
               <div className="absolute inset-0 bg-black/40" />
             </div>
-            {/* Content */}
-            <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Centered content */}
+            <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8">
               <motion.h1
-                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-6 leading-tight"
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-6 leading-tight mt-22"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -104,7 +100,7 @@ export default function VerticalHeroSlider() {
                 {slide.title}
               </motion.h1>
               <motion.p
-                className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 lg:mb-10 font-light opacity-90 max-w-3xl mx-auto leading-relaxed"
+                className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 lg:mb-10 font-light opacity-90 max-w-3xl leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 0.9 : 0,
@@ -118,13 +114,12 @@ export default function VerticalHeroSlider() {
               >
                 {slide.subtitle}
               </motion.p>
-            
             </div>
           </div>
         ))}
       </motion.div>
 
-      {/* Slide Indicators */}
+      {/* Indicators */}
       <div className="absolute right-3 sm:right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-20">
         <div className="flex flex-col space-y-2 sm:space-y-3">
           {slides.map((_, index) => (
@@ -140,7 +135,7 @@ export default function VerticalHeroSlider() {
         </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Arrows */}
       <button
         onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
         className="absolute left-3 sm:left-4 lg:left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-1.5 sm:p-2 lg:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"

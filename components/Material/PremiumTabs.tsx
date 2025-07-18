@@ -15,7 +15,6 @@ import {
   Smartphone,
 } from "lucide-react"
 
-// map string names to actual Lucide icons
 const iconMap: Record<string, any> = {
   BarChart3,
   Star,
@@ -29,7 +28,6 @@ const iconMap: Record<string, any> = {
   Smartphone,
 }
 
-// all data lives here but icons are referenced by string
 const tabData = {
   overview: {
     title: "Overview",
@@ -154,7 +152,12 @@ export default function PremiumTabs() {
   const [activeTab, setActiveTab] = useState("overview")
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-4 md:p-8">
+    <div
+      className="min-h-screen p-4 md:p-8"
+      style={{
+        background: "linear-gradient(to bottom right,var(--primary-color),var(--primary-hover-color),var(--primary-light-text-color)",
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -162,10 +165,13 @@ export default function PremiumTabs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+          <h1
+            className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)]"
+          
+          >
             Premium Platform
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Experience the next generation of productivity tools designed for modern teams
           </p>
         </motion.div>
@@ -177,7 +183,13 @@ export default function PremiumTabs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="flex gap-2 bg-white p-2 rounded-full shadow-lg border border-gray-200 overflow-x-auto">
+          <div
+            className="flex gap-2 p-2 rounded-full shadow-lg border overflow-x-auto"
+            style={{
+              backgroundColor: "white",
+              borderColor: "var(--primary-light-text-color)",
+            }}
+          >
             {Object.entries(tabData).map(([key, data]) => {
               const IconComponent = iconMap[data.icon]
               return (
@@ -187,18 +199,17 @@ export default function PremiumTabs() {
                   className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex items-center gap-2 text-sm ${
                     activeTab === key
                       ? "text-white shadow-lg"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      : "text-gray-600 hover:text-gray-900"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  style={{
+                    background:
+                      activeTab === key
+                        ? "linear-gradient(to right, var(--secondary-color), var(--secondary-hover-color))"
+                        : "transparent",
+                  }}
                 >
-                  {activeTab === key && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
                   <span className="relative z-10 flex items-center gap-2">
                     <IconComponent className="w-4 h-4" />
                     {data.title}
@@ -237,22 +248,32 @@ export default function PremiumTabs() {
                     y: -8,
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                   }}
-                  className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:border-blue-200 transition-all duration-300 group cursor-pointer relative overflow-hidden"
+                  className="rounded-2xl shadow-xl p-8 border transition-all duration-300 group cursor-pointer relative overflow-hidden"
+                  style={{
+                    backgroundColor: "white",
+                    borderColor: "var(--primary-light-text-color)",
+                  }}
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: "",
+                    }}
                     initial={false}
                   />
                   <div className="relative z-10">
                     <div className="flex items-center gap-4 mb-6">
                       <motion.div
-                        className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
+                        className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg"
+                        style={{
+                          background: "linear-gradient(to bottom right, var(--secondary-color), var(--secondary-hover-color))",
+                        }}
                         whileHover={{ rotate: 5, scale: 1.1 }}
                         transition={{ duration: 0.2 }}
                       >
                         <IconComponent className="w-7 h-7 text-white" />
                       </motion.div>
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-500 group-hover:text-[var(--primary-color)] transition-colors duration-300">
                         {card.title}
                       </h3>
                     </div>
@@ -266,8 +287,10 @@ export default function PremiumTabs() {
                           className="flex items-start gap-3 text-gray-600"
                         >
                           <motion.div
-                            className="flex-shrink-0 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2"
-                            whileHover={{ scale: 1.5 }}
+                            className="w-2 h-2 rounded-full mt-2"
+                            style={{
+                              background: "linear-gradient(to right, var(--primary-color), var(--secondary-hover-color))",
+                            }}
                           />
                           <span className="text-sm leading-relaxed">{point}</span>
                         </motion.li>
@@ -281,7 +304,7 @@ export default function PremiumTabs() {
         </AnimatePresence>
 
         <motion.div
-          className="text-center mt-16 text-gray-500"
+          className="text-center mt-16 text-gray-200"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}

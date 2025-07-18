@@ -78,7 +78,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
             return (
               <motion.div
                 key={item.id}
-                className={`relative cursor-pointer rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-blue-600/80 backdrop-blur-sm overflow-hidden ${
+                className={`relative cursor-pointer rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm overflow-hidden ${
                   isActive ? "flex-[4]" : "flex-1"
                 }`}
                 onClick={() => setActiveItem(item.id)}
@@ -157,7 +157,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
           {accordionData.map((item, index) => (
             <motion.div
               key={item.id}
-              className="rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-blue-600/80 backdrop-blur-sm p-6"
+              className="rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm p-6"
               initial={{ opacity: 0, y: 60, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{

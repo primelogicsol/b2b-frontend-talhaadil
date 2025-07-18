@@ -152,7 +152,7 @@ export default function ScrollSection({
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4">
             {mainTitle.split("&")[0]}
-            {mainTitle.includes("&") && <span className="text-[var(--primary-color)]">& {mainTitle.split("&")[1]}</span>}
+            {mainTitle.includes("&") && <span className="text-[var(--secondary-color)]">& {mainTitle.split("&")[1]}</span>}
           </h1>
           <p className="mt-4 text-lg text-gray-600 max-w-md">{mainDescription}</p>
 
@@ -195,7 +195,7 @@ export default function ScrollSection({
           >
             <button
               onClick={() => scrollTo("up")}
-              className="w-8 h-8 rounded-full bg-[var(--primary-color)] text-white flex items-center justify-center hover:bg-[var(--primary-hover-color)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2"
+              className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-[var(--primary-hover-color)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2"
             >
               <ChevronLeft className="w-5 h-5 lg:hidden" />
               <ChevronUp className="w-5 h-5 hidden lg:block" />
@@ -203,18 +203,18 @@ export default function ScrollSection({
 
             <div className="relative flex-1 h-2 bg-gray-300 rounded-full mx-2 lg:w-2 lg:h-full lg:my-2 lg:mx-0">
               <div
-                className="absolute bg-[var(--primary-color)] rounded-full transition-all duration-100 ease-out h-full"
+                className="absolute bg-[var(--secondary-hover-color)] rounded-full transition-all duration-100 ease-out h-full"
                 style={{ width: `${thumbSize}%`, left: `${thumbPosition}%` }}
               ></div>
               <div
-                className="absolute bg-[var(--primary-color)] rounded-full transition-all duration-100 ease-out hidden lg:block w-full"
+                className="absolute bg-[var(--secondary-color)] rounded-full transition-all duration-100 ease-out hidden lg:block w-full"
                 style={{ height: `${thumbSize}%`, top: `${thumbPosition}%` }}
               ></div>
             </div>
 
             <button
               onClick={() => scrollTo("down")}
-              className="w-8 h-8 rounded-full bg-[var(--primary-color)] text-white flex items-center justify-center hover:bg-[var(--primary-hover-color)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2"
+              className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-[var(--primary-hover-color)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2"
             >
               <ChevronRight className="w-5 h-5 lg:hidden" />
               <ChevronDown className="w-5 h-5 hidden lg:block" />

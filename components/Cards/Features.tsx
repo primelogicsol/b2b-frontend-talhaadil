@@ -71,7 +71,10 @@ const Features = ({ data }: FeaturesProps) => {
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 flex justify-center">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-5 justify-center items-center">
+        <div  className={
+    `grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-5 justify-center items-center ` +
+    (featuresData[0].isimage ? 'lg:grid-cols-8' : 'lg:grid-cols-6')
+  }>
           {featuresData.map((item, i) => (
             <FeatureCard
               key={i}
