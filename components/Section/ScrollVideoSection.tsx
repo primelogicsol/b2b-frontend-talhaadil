@@ -83,8 +83,8 @@ function MediaSlider({
 
 
 export default function ScrollVideoSection({
-  heading = "Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury Markets",
-  introLabel = "Welcome to B2B Connect - USA",
+  heading = "Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury Markets Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury Markets",
+  introLabel = "Our Mission",
   items, // optional to override media
 }: {
   heading?: string;
@@ -104,12 +104,12 @@ export default function ScrollVideoSection({
         <section className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-0.5" style={{ backgroundColor: "#FF6600" }} />
-              <p className="text-sm font-medium uppercase text-gray-600">
+              <div className="w-12 h-0.5 bg-[var(--secondary-color)]"/>
+              <p className="text-2xl md:text-3xl lg:text-5xl uppercase text-[var(--primary-color)] font-extrabold mb-5">
                 {introLabel}
               </p>
             </div>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.2]">
+            <h1 className="text-lg">
               {heading}
             </h1>
           </div>
@@ -125,7 +125,7 @@ export default function ScrollVideoSection({
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-0.5" style={{ backgroundColor: "#FF6600" }} />
+                <div className="w-8 h-0.5 bg-[var(--secondary-color)]"/>
                 <p className="text-lg font-semibold text-gray-800">
                   Dream It:{" "}
                   <span className="font-normal text-gray-700">
@@ -134,7 +134,7 @@ export default function ScrollVideoSection({
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-0.5" style={{ backgroundColor: "#FF6600" }} />
+                <div className="w-8 h-0.5 bg-[var(--secondary-color)]"/>
                 <p className="text-lg font-semibold text-gray-800">
                   Define It:{" "}
                   <span className="font-normal text-gray-700">
@@ -143,7 +143,7 @@ export default function ScrollVideoSection({
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-0.5" style={{ backgroundColor: "#FF6600" }} />
+                <div className="w-8 h-0.5 bg-[var(--secondary-color)]"/>
                 <p className="text-lg font-semibold text-gray-800">
                   Dominate It:{" "}
                   <span className="font-normal text-gray-700">
@@ -152,7 +152,7 @@ export default function ScrollVideoSection({
                 </p>
               </div>
             </div>
-            <p className="font-bold text-lg" style={{ color: "#FF6600" }}>
+            <p className="font-bold text-lg text-[var(--secondary-color)]">
               Handicraft Progressive Business Model for Every Vision
               <br />
               <span className="text-gray-700 font-normal text-base">

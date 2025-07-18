@@ -40,7 +40,7 @@ export default function ProjectDetail({
   return (
     <section className="py-[123px] bg-[#f4f4f4] px-4 md:px-0">
       <div className="max-w-7xl mx-auto">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -54,7 +54,7 @@ export default function ProjectDetail({
             height={700}
             className="w-full rounded-lg shadow-md"
           />
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -143,7 +143,7 @@ export default function ProjectDetail({
               </motion.div>
             </div>
 
-            <div>
+            {/* <div>
               <Link
                 href="/project-details"
                 className="inline-block text-[22px] text-[var(--primary-color)] font-bold hover:underline my-4"
@@ -153,7 +153,7 @@ export default function ProjectDetail({
               <p className="text-[17px] text-gray-600">
                 Appropriately communicate economically sound e-commerce...
               </p>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div
@@ -183,7 +183,7 @@ export default function ProjectDetail({
               </ul>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-6 rounded-lg text-center shadow relative overflow-hidden group"
             >
@@ -211,7 +211,7 @@ export default function ProjectDetail({
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </div>

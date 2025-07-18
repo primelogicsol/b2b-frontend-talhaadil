@@ -53,7 +53,7 @@
 
   --primary-hover-color: #2a5f7a;
   --primary-color: #1b4f68;
-  --primary-light-text-color: #62b4da;
+  --primary-light-text-color: #346880;
   --primary-header-color : #e4e6eb;
   --primary-dark-slate:#0f172a;
   --primary-cyan-color:#00acc1;
@@ -61,7 +61,7 @@
 
   --secondary-hover-color: #f48261;
   --secondary-color: #d85834;
-  --secondary-light-text-color: #f48261;
+  --secondary-light-color: #f9c6b2;
 }
 
 @theme inline {

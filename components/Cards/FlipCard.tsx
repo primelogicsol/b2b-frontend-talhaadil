@@ -36,10 +36,9 @@ export const FlipCard = ({
         <div className="absolute inset-0 w-full h-full backface-hidden">
           <div
             className="h-full rounded-2xl p-6 flex items-center justify-center
-            bg-gradient-to-br from-[var(--softtec-blue)] via-[var(--softtec-light-blue)] to-[var(--softtec-yellow)]
-            border border-white/20
-            shadow-[0_0_30px_rgba(26,43,255,0.4)]
-            hover:shadow-[0_0_50px_rgba(58,75,255,0.6)]
+            bg-[var(--primary-color)]
+            border-white/20
+            border-2
             backdrop-blur-xl transition-all duration-500"
           >
             {isVertical ? (
@@ -47,10 +46,10 @@ export const FlipCard = ({
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center
                   bg-white/20 backdrop-blur-sm
-                  shadow-[0_0_20px_rgba(255,215,0,0.7)]
+                 shadow-[0_0_20px_var(--secondary-color)]
                   group-hover:scale-110 transition-transform duration-300"
                 >
-                  <Icon className="w-8 h-8 text-[var(--softtec-yellow)]" />
+                  <Icon className="w-8 h-8" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-extrabold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] mb-2">
@@ -84,17 +83,18 @@ export const FlipCard = ({
         <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
           <div
             className="h-full rounded-2xl p-6 flex items-center justify-center
-            bg-gradient-to-br from-[var(--softtec-light-blue)] via-[var(--softtec-blue)] to-[var(--softtec-yellow)]
+            bg-gray-200
+           
             border border-white/30
-            shadow-[0_0_40px_rgba(26,43,255,0.5)]
-            hover:shadow-[0_0_60px_rgba(255,215,0,0.7)]
+          
+            shadow-[0_0_20px_var(--secondary-color)]
             backdrop-blur-xl transition-all duration-500"
           >
             <div className="text-center animate-fade-in">
-              <h3 className="text-2xl font-extrabold text-white mb-4 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
+              <h3 className="text-2xl font-extrabold text-[var(--secondary-color)] mb-4">
                 {title}
               </h3>
-              <p className="text-white/90 text-sm leading-relaxed">{detailedDescription}</p>
+              <p className="text-black/90 text-sm leading-relaxed">{detailedDescription}</p>
             </div>
           </div>
         </div>

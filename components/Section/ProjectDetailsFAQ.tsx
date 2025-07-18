@@ -127,14 +127,14 @@ export default function ProjectDetailsFAQ({
                 <li
                   key={index}
                   className={`border rounded-lg overflow-hidden transition-all duration-300 shadow-sm ${
-                    index === openItemIndex ? "bg-orange-50 border-[var(--primary-color)]" : "bg-white border-gray-200"
+                    index === openItemIndex ? "bg-orange-50" : "bg-white border-gray-200"
                   }`}
                 >
                   <button
                     onClick={() => handleItemClick(index)}
                     className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none relative group"
                   >
-                    <span className="text-lg font-medium text-gray-800 relative z-10 group-hover:text-white transition">
+                    <span className="text-lg font-medium text-gray-800 relative z-10 group-hover:text-gray-800 transition">
                       {item.title}
                     </span>
                     <span
@@ -144,7 +144,6 @@ export default function ProjectDetailsFAQ({
                     >
                       ▼
                     </span>
-                    <span className="absolute inset-0 bg-[var(--primary-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
                   </button>
                   <div
                     ref={accordionContentRef}
@@ -214,7 +213,7 @@ export default function ProjectDetailsFAQ({
               </a>
             </div>
           </div>
-
+{/* 
           <div className="bg-white p-6 rounded-lg text-center shadow relative overflow-hidden group">
             <Image
               src={iconImage}
@@ -237,7 +236,7 @@ export default function ProjectDetailsFAQ({
                 <span className="absolute inset-0 bg-[var(--primary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-300 ease-out rounded" />
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

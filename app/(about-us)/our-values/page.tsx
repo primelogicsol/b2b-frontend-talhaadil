@@ -54,7 +54,7 @@ export default function MainPage() {
   ]
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-navy-color)] to-[var(--primary-dark-slate)] text-white overflow-x-hidden">
+    <main className="min-h-screen w-full text-white overflow-x-hidden">
       {/* Hero Banner */}
       <section className="relative z-10">
         <VerticalHeroSlider />
@@ -67,8 +67,8 @@ export default function MainPage() {
 
 
       {/* Feature Cards */}
-      <section className="py-24 px-4 md:px-12 lg:px-20">
-        <h2 className="text-center text-4xl lg:text-5xl font-bold mb-16 drop-shadow-md">
+      <section className="py-10 px-4 md:px-12 lg:px-20 mx-4 md:mx-6 lg:mx-10 bg-[linear-gradient(to_right,var(--primary-hover-color),var(--primary-color),var(--primary-light-text-color))] rounded-2xl">
+        <h2 className="text-center text-4xl lg:text-5xl mb-16 drop-shadow-md text-gray-300 font-extrabold uppercase">
           Our Values
         </h2>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
@@ -79,7 +79,8 @@ export default function MainPage() {
               description={card.description}
               detailedDescription={card.detailedDescription}
               icon={card.icon}
-              isVertical={true}
+              isVertical
+              
             />
           ))}
         </div>
@@ -87,7 +88,7 @@ export default function MainPage() {
 
       {/* About / Video Section */}
       <section >
-        <About4 />
+        <About4/>
       </section>
 
       {/* FAQ */}
@@ -97,3 +98,7 @@ export default function MainPage() {
     </main>
   )
 }
+
+
+
+

@@ -12,8 +12,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const blogDropdownItems = [
-    { label: "Our Values", href: "#blog" },
-    { label: "Our Story", href: "#blog-list" },
+    { label: "Our Values", href: "/our-values" },
+    { label: "Our Story", href: "/our-story"},
     { label: "Business Niche", href: "#blog-details" },
     { label: "Our Team", href: "#blog-details-02" },
     { label: "Careers", href: "#blog-details-02" },
@@ -41,7 +41,7 @@ export function Navbar() {
       className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${
         isScrolled
           ? "py-1  shadow-md border-b-[var(--secondary-color)] border-b-2"
-          : "py-3 "
+          : "py-4 "
       }`}
     >
       <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
@@ -113,7 +113,7 @@ export function Navbar() {
           <button className="cursor-pointer text-white text-lg font-medium px-4 py-2 hover:text-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out">
             Log In
           </button>
-          <button className="cursor-pointer bg-[var(--secondary-color)] text-gray-200 px-6 py-3 rounded-full font-bold text-lg hover:bg-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out">
+          <button className="cursor-pointer bg-[var(--secondary-color)] text-gray-200 px-6 py-2 rounded-full font-bold text-lg hover:bg-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out">
             Register
           </button>
         </div>
