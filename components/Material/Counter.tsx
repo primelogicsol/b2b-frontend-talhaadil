@@ -120,7 +120,7 @@ export default function Counter({ data }: SliderComponentProps) {
 
       <div className="flex justify-center mt-8 space-x-2">
         {Array.from({ length: totalPages }).map((_, pageIndex) => {
-          const isActive = Math.floor(currentIndex / cardsPerPage) === pageIndex
+          const isActive = Math.floor(currentIndex / cardsPerPage) === pageIndex;
           return (
             <button
               key={pageIndex}
@@ -129,10 +129,10 @@ export default function Counter({ data }: SliderComponentProps) {
               className="h-3 rounded-full transition-all duration-300"
               style={{
                 width: isActive ? '2rem' : '0.75rem',
-                backgroundColor: isActive ? 'var(--seconday-color)' : 'gray',
+                backgroundColor: isActive ? 'var(--secondary-color)' : 'gray',
               }}
             />
-          )
+          );
         })}
       </div>
     </div>
@@ -159,7 +159,7 @@ function SliderCard({ title, description, targetNumber, index, currentIndex, car
       ref={ref}
       className="relative flex-shrink-0 w-full h-full p-6 text-white rounded-lg shadow-xl overflow-hidden before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
       style={{
-        background: 'linear-gradient(to bottom right, var(--softtec-blue), var(--softtec-light-blue))',
+        background: 'linear-gradient(to bottom right, var(--primary-color), var(--primary-hover-color))',
         clipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
       }}
     >
@@ -169,7 +169,7 @@ function SliderCard({ title, description, targetNumber, index, currentIndex, car
           <p className="text-sm opacity-80">{description}</p>
         </div>
         <div className="mt-auto text-right">
-          <motion.span className="text-4xl font-extrabold block" style={{ color: 'var(--seconday-color)' }}>
+          <motion.span className="text-4xl font-extrabold block text-[var(--secondary-hover-color)]">
             {rounded}
           </motion.span>
         </div>
