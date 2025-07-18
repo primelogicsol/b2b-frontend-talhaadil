@@ -68,7 +68,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
   const [activeItem, setActiveItem] = useState<string>(accordionData[2].id) // defaults to third
 
   return (
-    <div className="w-full min-h-screen bg-slate-900 py-12 px-2 md:px-8 flex items-center justify-center">
+    <div className="w-full min-h-screen px-2 md:px-8 flex items-center justify-center">
       <div className="w-full">
         {/* Desktop Horizontal Accordion */}
         <div className="hidden md:flex gap-4 h-96 w-full">
