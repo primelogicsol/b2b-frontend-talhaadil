@@ -14,7 +14,7 @@ export function Navbar() {
   const blogDropdownItems = [
     { label: "Our Values", href: "/our-values" },
     { label: "Our Story", href: "/our-story"},
-    { label: "Business Niche", href: "#blog-details" },
+    { label: "Business Niche", href: "/business-niche" },
     { label: "Our Team", href: "#blog-details-02" },
     { label: "Careers", href: "#blog-details-02" },
     { label: "Contact Us", href: "#blog-details-02" },
@@ -134,18 +134,39 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed top-0 left-0 w-3/4 h-full bg-[var(--primary-color)] shadow-lg py-8 px-6 z-30 transform transition-transform duration-300 ease-in-out animate-slide-in">
           <div className="flex flex-col items-start space-y-6">
-            {["Home", "Portfolio", "Pricing", "Contact"].map((label) => (
-              <Link
-                key={label}
-                href="#"
-                className="text-white text-lg font-medium hover:text-[var(--secondary-hover-color)] transition-all duration-300"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
-            <DropdownMenu title="Page" items={pageDropdownItems} />
-            <DropdownMenu title="Blog" items={blogDropdownItems} isActive />
+           <Link
+            href="#"
+            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
+          >
+            Home
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+          <DropdownMenu title="About Us" items={blogDropdownItems} />
+          <DropdownMenu title="Partnerships" items={pageDropdownItems} />
+
+          <Link
+            href="#"
+            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
+          >
+            Process
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+
+          <Link
+            href="#"
+            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
+          >
+            Registration
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
+
+          <Link
+            href="#"
+            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
+          >
+            Book Appointment
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+          </Link>
             <button className="text-white text-lg font-medium py-2 transform hover:scale-105 hover:text-[var(--secondary-hover-color)] transition-all duration-300">
               Log In
             </button>

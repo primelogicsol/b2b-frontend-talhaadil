@@ -58,9 +58,10 @@ const fallbackData: FeatureItem[] = [
     isimage: true,
   },
   {
+      img: "/assets/images/feature7.png",
     title: "Verified Artisans",
     desc: "Partner with pre-verified artisans to ensure quality and trust.",
-    isimage: false,
+       isimage: true,
   },
 ];
 

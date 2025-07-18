@@ -98,7 +98,7 @@ export default function DropdownMenu({ title, items, isActive }: DropdownProps) 
       <div className="block md:hidden">
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className={`flex items-center gap-1 text-white text-lg font-medium transition-colors duration-300 ease-in-out w-full`}
+          className={`flex items-center gap-1 text-white text-md font-medium transition-colors duration-300 ease-in-out w-full`}
         >
           {title}
           <ChevronDown

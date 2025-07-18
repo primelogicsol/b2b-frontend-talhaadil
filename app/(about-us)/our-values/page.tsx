@@ -1,57 +1,57 @@
-'use client'
+"use client";
 
-import { FlipCard } from '@/components/Cards/FlipCard'
-import VerticalHeroSlider from '@/components/Essentials/VerticalBanner'
-import ProjectDetailsFAQ from '@/components/Section/ProjectDetailsFAQ'
-import ScrollVideoSection from '@/components/Section/ScrollVideoSection'
-import About4 from '@/components/Section/SectionVideo'
-import { Star, Globe, Users, Target, Heart, Zap } from 'lucide-react'
+import { FlipCard } from "@/components/Cards/FlipCard";
+import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
+import ProjectDetailsFAQ from "@/components/Section/ProjectDetailsFAQ";
+import ScrollVideoSection from "@/components/Section/ScrollVideoSection";
+import About4 from "@/components/Section/SectionVideo";
+import { Star, Globe, Users, Target, Heart, Zap } from "lucide-react";
 
 export default function MainPage() {
   const cards = [
     {
-      title: 'Fast Delivery',
-      description: 'Get your items delivered swiftly.',
+      title: "Fast Delivery",
+      description: "Get your items delivered swiftly.",
       detailedDescription:
-        'We ensure your orders reach you in record time with real-time tracking and secure logistics.',
+        "We ensure your orders reach you in record time with real-time tracking and secure logistics.",
       icon: Star,
     },
     {
-      title: 'Global Reach',
-      description: 'Our network spans the globe.',
+      title: "Global Reach",
+      description: "Our network spans the globe.",
       detailedDescription:
-        'With warehouses and hubs worldwide, we connect businesses and customers effortlessly.',
+        "With warehouses and hubs worldwide, we connect businesses and customers effortlessly.",
       icon: Globe,
     },
     {
-      title: 'Community Driven',
-      description: 'Built for people, by people.',
+      title: "Community Driven",
+      description: "Built for people, by people.",
       detailedDescription:
-        'Our platform thrives on community feedback and collaboration for constant improvements.',
+        "Our platform thrives on community feedback and collaboration for constant improvements.",
       icon: Users,
     },
     {
-      title: 'Smart Targeting',
-      description: 'Reach the right audience.',
+      title: "Smart Targeting",
+      description: "Reach the right audience.",
       detailedDescription:
-        'Advanced AI-driven tools to target exactly who you want, increasing engagement.',
+        "Advanced AI-driven tools to target exactly who you want, increasing engagement.",
       icon: Target,
     },
     {
-      title: 'Trusted Service',
-      description: 'Your satisfaction matters.',
+      title: "Trusted Service",
+      description: "Your satisfaction matters.",
       detailedDescription:
-        'We pride ourselves on transparency, reliability, and consistent service quality.',
+        "We pride ourselves on transparency, reliability, and consistent service quality.",
       icon: Heart,
     },
     {
-      title: 'Power Packed',
-      description: 'Performance at its best.',
+      title: "Power Packed",
+      description: "Performance at its best.",
       detailedDescription:
-        'Our systems are optimized to handle high loads while maintaining blazing speed.',
+        "Our systems are optimized to handle high loads while maintaining blazing speed.",
       icon: Zap,
     },
-  ]
+  ];
 
   return (
     <main className="min-h-screen w-full text-white overflow-x-hidden">
@@ -61,10 +61,9 @@ export default function MainPage() {
       </section>
 
       {/* Scroll Animation / Video Section */}
-      <section > 
-            <ScrollVideoSection />
-        </section>
-
+      <section>
+        <ScrollVideoSection />
+      </section>
 
       {/* Feature Cards */}
       <section className="py-10 px-4 md:px-12 lg:px-20 mx-4 md:mx-6 lg:mx-10 bg-[linear-gradient(to_right,var(--primary-hover-color),var(--primary-color),var(--primary-light-text-color))] rounded-2xl">
@@ -80,25 +79,29 @@ export default function MainPage() {
               detailedDescription={card.detailedDescription}
               icon={card.icon}
               isVertical
-              
             />
           ))}
         </div>
       </section>
 
       {/* About / Video Section */}
-      <section >
-        {/* <About4/> */}
+      <section>
+        <About4
+          MainImg="/images/about-team.jpg"
+          SubTitle="About Our Company"
+          Title="Building <span>Digital Excellence</span> Since 2010"
+          Content="For over a decade, we have been empowering businesses with cutting‑edge web and mobile solutions. Our team of designers, developers, and strategists works closely with clients to turn their ideas into products that make an impact."
+          listTitle1="Over 500 Successful Projects Delivered"
+          listTitle2="Trusted by Clients in 30+ Countries"
+          BoxTitle1="14"
+          BoxTitle2="Years of Experience"
+        />
       </section>
 
       {/* FAQ */}
-      <section >
+      <section>
         <ProjectDetailsFAQ />
       </section>
     </main>
-  )
+  );
 }
-
-
-
-
