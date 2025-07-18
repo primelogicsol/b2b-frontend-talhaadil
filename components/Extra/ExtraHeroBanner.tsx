@@ -42,8 +42,8 @@ export default function HeroBanner() {
           className="flex flex-col items-center md:items-start text-center md:text-left max-w-2xl"
         >
           <div className="flex items-center gap-3 mb-4">
-            <span className="w-8 h-0.5 bg-yellow-400" />
-            <span className="text-yellow-400 font-medium uppercase text-sm tracking-wider">
+            <span className="w-8 h-0.5 bg-[var(--secondary-hover-color)]" />
+            <span className="text-[var(--secondary-hover-color)] font-medium uppercase text-sm tracking-wider">
               WELLCOME TO SOFTEC
             </span>
           </div>
@@ -53,13 +53,13 @@ export default function HeroBanner() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="cursor-pointer relative overflow-hidden flex items-center gap-2 rounded-full border-2 border-yellow-400 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:text-blue-950
-             before:content-[''] before:absolute before:inset-0 before:bg-yellow-400 before:w-0 before:z-0
+            className="cursor-pointer relative overflow-hidden flex items-center gap-2 rounded-full border-2 border-[var(--secondary-hover-color)] text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:text-blue-950
+             before:content-[''] before:absolute before:inset-0 before:bg-[var(--secondary-hover-color)] before:w-0 before:z-0
              hover:before:w-full before:transition-all before:duration-300"
           >
             <span className="relative z-10 flex items-center gap-2">
               Get in Touch
-              <ChevronRight className="w-5 h-5 text-yellow-400 transition-colors duration-300 group-hover:text-blue-950" />
+              <ChevronRight className="w-5 h-5 text-[var(--secondary-hover-color)] transition-colors duration-300 group-hover:text-blue-950" />
             </span>
           </motion.button>
         </motion.div>

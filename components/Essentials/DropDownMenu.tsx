@@ -61,7 +61,7 @@ export default function DropdownMenu({ title, items, isActive }: DropdownProps) 
             <motion.div key={index} variants={itemVariants}>
               <Link
                 href={item.href}
-                className="block px-4 py-2 text-gray-800 hover:bg-pink-300 transition-colors duration-200 ease-in-out"
+                className="block px-4 py-2 text-gray-800 hover:bg-[var(--secondary-hover-color)] transition-colors duration-200 ease-in-out"
               >
                 {item.label}
               </Link>
@@ -81,13 +81,12 @@ export default function DropdownMenu({ title, items, isActive }: DropdownProps) 
         onMouseLeave={() => setIsDesktopOpen(false)}
       >
         <button
-          className={`py-2 cursor-pointer text-white text-lg font-medium relative transition-colors duration-300 ease-in-out
-            ${isActive ? "bg-[var(--softtec-light-blue)]" : "hover:text-softtec-yellow"}
-          `}
+          className={`py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out
+            ${isActive ? "bg-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"}`}
         >
           {title}
           <span
-            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--softtec-yellow)] transition-all duration-300 ease-in-out origin-left ${
+            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${
               isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
             }`}
           ></span>

@@ -175,7 +175,7 @@ export default function ScrollSection({
         <div className="relative flex flex-col">
           <div
             ref={scrollContainerRef}
-            className="flex flex-col gap-8 max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] overflow-y-auto scrollbar-hide"
+            className="flex flex-col gap-8 max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] overflow-y-auto no-scrollbar"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >

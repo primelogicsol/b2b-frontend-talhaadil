@@ -92,19 +92,19 @@ export default function PricingTable() {
           {/* 3D Icon */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-yellow-400 to-[var(--primary-color)] rounded-2xl transform rotate-12 shadow-2xl">
+              <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--primary-color)] rounded-2xl transform rotate-12 shadow-2xl">
                 <div className="absolute inset-3 md:inset-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl transform -rotate-6"></div>
                 <div className="absolute inset-4 md:inset-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg transform rotate-3"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-8 md:h-8 bg-yellow-400 rounded-full shadow-lg"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-8 md:h-8 bg-[var(--secondary-hover-color)] rounded-full shadow-lg"></div>
               </div>
             </div>
           </div>
 
           <div className="text-white/80 text-sm mb-2">
-            You pay <span className="text-yellow-400 font-semibold">$59.00</span>/mo today Renews
+            You pay <span className="text-[var(--secondary-hover-color)] font-semibold">$59.00</span>/mo today Renews
           </div>
           <div className="text-white/80 text-sm">
-            April 2024 For <span className="text-yellow-400 font-semibold">$59.00</span>/mo
+            April 2024 For <span className="text-[var(--secondary-hover-color)] font-semibold">$59.00</span>/mo
           </div>
         </div>
 
@@ -114,12 +114,12 @@ export default function PricingTable() {
             <div
               key={plan.name}
               className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 transition-all duration-300 hover:bg-white/15 hover:scale-105 ${
-                plan.isPopular ? "ring-2 ring-yellow-400 shadow-2xl" : ""
+                plan.isPopular ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl" : ""
               }`}
             >
               {plan.isPopular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-yellow-400 text-black px-4 py-1 rounded-full text-xs font-semibold">
+                  <div className="bg-[var(--secondary-hover-color)] text-black px-4 py-1 rounded-full text-xs font-semibold">
                     MOST POPULAR
                   </div>
                 </div>
@@ -139,7 +139,7 @@ export default function PricingTable() {
                 <button
                   className={`w-full ${
                     plan.isPopular
-                      ? "bg-yellow-400 hover:bg-yellow-500 text-black"
+                      ? "bg-[var(--secondary-hover-color)] hover:bg-yellow-500 text-black"
                       : "bg-white/20 hover:bg-white/30 text-white border border-white/30"
                   } transition-all duration-300`}
                 >
@@ -202,7 +202,7 @@ export default function PricingTable() {
                 onClick={() => setSelectedPlan(index)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   selectedPlan === index
-                    ? "bg-yellow-400 text-black shadow-lg"
+                    ? "bg-[var(--secondary-hover-color)] text-black shadow-lg"
                     : "bg-white/20 text-white hover:bg-white/30"
                 }`}
               >
@@ -215,12 +215,12 @@ export default function PricingTable() {
           <div className="max-w-md mx-auto">
             <div
               className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 ${
-                plans[selectedPlan].isPopular ? "ring-2 ring-yellow-400 shadow-2xl" : ""
+                plans[selectedPlan].isPopular ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl" : ""
               }`}
             >
               {plans[selectedPlan].isPopular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-yellow-400 text-black px-4 py-1 rounded-full text-xs font-semibold">
+                  <div className="bg-[var(--secondary-hover-color)] text-black px-4 py-1 rounded-full text-xs font-semibold">
                     MOST POPULAR
                   </div>
                 </div>
@@ -240,7 +240,7 @@ export default function PricingTable() {
                 <button
                   className={`w-full py-3 text-lg ${
                     plans[selectedPlan].isPopular
-                      ? "bg-yellow-400 hover:bg-yellow-500 text-black"
+                      ? "bg-[var(--secondary-hover-color)] hover:bg-yellow-500 text-black"
                       : "bg-white/20 hover:bg-white/30 text-white border border-white/30"
                   } transition-all duration-300`}
                 >

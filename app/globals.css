@@ -37,7 +37,7 @@
   --sidebar-ring: 217.2 91.2% 59.8%;
   --softtec-blue: #1a2bff;
   --softtec-light-blue: #3a4bff;
-  --softtec-yellow: #ffd700;
+  --seconday-color: #ffd700;
   --softtec-orange: #ff6b00;
   --softtec-pink: #ff006b;
   --white: #fff;
@@ -52,12 +52,16 @@
   --body-color-font: "DM Sans", sans-serif;
 
   --primary-hover-color: #2a5f7a;
-  --primary-color: #347b9c;
+  --primary-color: #1b4f68;
   --primary-light-text-color: #62b4da;
+  --primary-header-color : #e4e6eb;
+  --primary-dark-slate:#0f172a;
+  --primary-cyan-color:#00acc1;
+  --primary-navy-color:#0d47a1;
 
   --secondary-hover-color: #f48261;
-  --secondary-color: #f48261;
-  --secondary-light-text-color: #f48261;
+  --secondary-color: #d85834;
+  --secondary-light-text-color: #f48261;
 }
 
 @theme inline {
@@ -83,6 +87,13 @@ body {
   }
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .animate-slide-in {
   animation: slide-in 0.3s ease-out forwards;
 }

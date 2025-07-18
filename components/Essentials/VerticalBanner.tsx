@@ -118,24 +118,7 @@ export default function VerticalHeroSlider() {
               >
                 {slide.subtitle}
               </motion.p>
-              <motion.a
-                href={slide.buttonLink}
-                className="inline-block bg-white text-gray-900 font-semibold px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-4 rounded-full text-sm sm:text-base lg:text-lg hover:bg-gray-100 hover:shadow-lg cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: currentSlide === index ? 1 : 0,
-                  y: currentSlide === index ? 0 : 20,
-                }}
-                transition={{
-                  duration: 1.5,
-                  delay: 0.6,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {slide.buttonText}
-              </motion.a>
+            
             </div>
           </div>
         ))}

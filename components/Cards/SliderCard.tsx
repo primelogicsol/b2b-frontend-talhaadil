@@ -88,20 +88,20 @@ export function SliderCard({ cards = defaultCards }: CardSliderProps) {
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto py-10 px-6 bg-gray-800 dark:bg-gray-950 rounded-xl shadow-lg overflow-hidden">
+    <div className="relative w-full max-w-6xl mx-auto py-10 px-6 not-even:rounded-xl shadow-lg overflow-hidden bg-[var(--primary-color)] rounded-2xl">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-4xl font-extrabold text-emerald-400">Our Features</h2>
+        <h2 className="text-4xl font-extrabold text-[var(--secondary-color)]">Our Features</h2>
         <div className="flex space-x-2">
           <button
             onClick={handlePrev}
-            className="p-3 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 transition-colors duration-200 shadow-md"
+            className="cursor-pointer p-3 rounded-full bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-hover-color)] transition-colors duration-200 shadow-md"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
           <button
             onClick={handleNext}
-            className="p-3 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 transition-colors duration-200 shadow-md"
+            className="p-3 rounded-full bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-hover-color)] transition-colors duration-200 shadow-md"
             aria-label="Next slide"
           >
             <ChevronRight className="h-6 w-6" />

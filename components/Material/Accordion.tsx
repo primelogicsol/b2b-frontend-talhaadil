@@ -78,7 +78,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
             return (
               <motion.div
                 key={item.id}
-                className={`relative cursor-pointer rounded-3xl border-2 border-yellow-400 bg-blue-600/80 backdrop-blur-sm overflow-hidden ${
+                className={`relative cursor-pointer rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-blue-600/80 backdrop-blur-sm overflow-hidden ${
                   isActive ? "flex-[4]" : "flex-1"
                 }`}
                 onClick={() => setActiveItem(item.id)}
@@ -113,7 +113,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                         className="text-white"
                       >
                         <div className="flex items-center gap-4 mb-6">
-                          <item.icon className="w-12 h-12 text-yellow-400" />
+                          <item.icon className="w-12 h-12 text-[var(--secondary-hover-color)]" />
                           <h2 className="text-4xl font-bold">{item.title}</h2>
                         </div>
                         <p className="text-lg leading-relaxed opacity-90">
@@ -132,7 +132,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                         }}
                         className="h-full flex flex-col items-center justify-center gap-4"
                       >
-                        <item.icon className="w-8 h-8 text-yellow-400" />
+                        <item.icon className="w-8 h-8 text-[var(--secondary-hover-color)]" />
                         <h3 className="text-white text-xl font-semibold whitespace-nowrap">
                           {item.title}
                         </h3>
@@ -157,7 +157,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
           {accordionData.map((item, index) => (
             <motion.div
               key={item.id}
-              className="rounded-3xl border-2 border-yellow-400 bg-blue-600/80 backdrop-blur-sm p-6"
+              className="rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-blue-600/80 backdrop-blur-sm p-6"
               initial={{ opacity: 0, y: 60, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
@@ -178,7 +178,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
             >
               <div className="text-white">
                 <div className="flex items-center gap-4 mb-4">
-                  <item.icon className="w-8 h-8 text-yellow-400" />
+                  <item.icon className="w-8 h-8 text-[var(--secondary-hover-color)]" />
                   <h2 className="text-2xl font-bold">{item.title}</h2>
                 </div>
                 <p className="text-base leading-relaxed opacity-90">

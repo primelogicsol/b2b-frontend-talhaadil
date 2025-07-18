@@ -129,7 +129,7 @@ export default function Counter({ data }: SliderComponentProps) {
               className="h-3 rounded-full transition-all duration-300"
               style={{
                 width: isActive ? '2rem' : '0.75rem',
-                backgroundColor: isActive ? 'var(--softtec-yellow)' : 'gray',
+                backgroundColor: isActive ? 'var(--seconday-color)' : 'gray',
               }}
             />
           )
@@ -169,7 +169,7 @@ function SliderCard({ title, description, targetNumber, index, currentIndex, car
           <p className="text-sm opacity-80">{description}</p>
         </div>
         <div className="mt-auto text-right">
-          <motion.span className="text-4xl font-extrabold block" style={{ color: 'var(--softtec-yellow)' }}>
+          <motion.span className="text-4xl font-extrabold block" style={{ color: 'var(--seconday-color)' }}>
             {rounded}
           </motion.span>
         </div>

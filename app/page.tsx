@@ -144,10 +144,10 @@ export default function Home() {
 
 
       {/* Section: Extra Counters */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <Counter />
         <Counter />
-      </section>
+      </section> */}
     </div>
   );
 }
