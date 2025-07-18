@@ -34,16 +34,16 @@ const MetricCard: React.FC<MetricCardProps> = ({ icon, title, value, position, i
     }}
   >
     <motion.div
-      className="flex-shrink-0 w-12 h-12 bg-[var(--primary-color)]/20 rounded-full flex items-center justify-center cursor-pointer"
+      className="flex-shrink-0 w-12 h-12 bg-[var(--primary-color)] rounded-full flex items-center justify-center cursor-pointer"
       whileHover={{
-        backgroundColor: 'rgba(249, 115, 22, 0.3)',
+        backgroundColor: '#ffffff',
         rotate: 360,
         transition: { duration: 0.5 }
       }}
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="text-[var(--primary-color)]"
+        className="text-gray-400"
         whileHover={{ scale: 1.2 }}
         transition={{ duration: 0.2 }}
       >
@@ -56,7 +56,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ icon, title, value, position, i
     >
       <motion.h3
         className="text-white font-semibold text-lg"
-        whileHover={{ color: '#fb923c' }}
+        whileHover={{ color: '#808080' }}
         transition={{ duration: 0.2 }}
       >
         {title}
@@ -230,10 +230,10 @@ const ProfitBox: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden">
       {/* Animated Dotted Earth Background */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center opacity-80"
+        className="absolute inset-0 flex items-center justify-center opacity-20"
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
       >

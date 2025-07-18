@@ -96,7 +96,7 @@ export default function DiagonalSection({
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
             {title} <br className="hidden md:block" />{" "}
-            <span className="text-[var(--primary-color)]">{highlight}</span>
+            <span className="text-[var(--secondary-color)]">{highlight}</span>
           </h1>
           <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
             {description}

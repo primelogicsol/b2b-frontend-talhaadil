@@ -34,7 +34,7 @@ export default function MissionSection() {
             OUR MISSION
           </h5>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-snug">
-            Empowering Growth through <span className="text-[var(--primary-color)]">Innovation</span>
+            Empowering Growth through <span className="text-[var(--secondary-color)]">Innovation</span>
           </h2>
           <p className="text-gray-600 text-base">
             We aim to deliver technology solutions that inspire trust, drive business growth, and create a better digital future.
@@ -61,8 +61,8 @@ export default function MissionSection() {
             whileHover={{ scale: 1.05 }}
             className="absolute top-4 right-4 bg-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 group transition-all"
           >
-            <i className="bi bi-play text-white bg-[var(--primary-color)] p-2 rounded-full text-lg group-hover:bg-[var(--primary-hover-color)] transition"></i>
-            <span className="text-[var(--primary-color)] font-semibold underline text-sm">
+            <i className="bi bi-play text-white bg-[var(--secondary-color)] p-2 rounded-full text-lg group-hover:bg-[var(--primary-hover-color)] transition"></i>
+            <span className="text-[var(--secondary-color)] font-semibold underline text-sm">
               WATCH VIDEO
             </span>
           </motion.button>

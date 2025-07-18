@@ -98,7 +98,7 @@ export default function ProjectDetailsFAQ({
                 ))}
               </ul>
             </div>
-            <div className="bg-orange-50 rounded-lg p-6 shadow hover:shadow-lg transition-shadow duration-300">
+            <div className="bg-orange-60 rounded-lg p-6 shadow hover:shadow-lg transition-shadow duration-300">
               <Image
                 src={detIcon}
                 alt="icon"
@@ -178,7 +178,7 @@ export default function ProjectDetailsFAQ({
                       />
                       {item}
                     </span>
-                    <span className="absolute inset-0 bg-[var(--primary-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                    <span className="absolute inset-0 bg-[var(--secondary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
                   </Link>
                 </li>
               ))}
@@ -192,12 +192,12 @@ export default function ProjectDetailsFAQ({
                 href="#"
                 className="relative group flex justify-between items-center px-4 py-3 rounded-lg bg-gray-100 hover:text-white overflow-hidden"
               >
-                <span className="z-10 flex items-center gap-2">
+                <span className="z-10 flex items-center gap-2 text-black">
                   <i className="bi bi-file-earmark-pdf"></i>
                   Service Report
                 </span>
                 <i className="z-10 bi bi-download"></i>
-                <span className="absolute inset-0 bg-[var(--primary-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                <span className="absolute inset-0 bg-[var(--secondary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
               </a>
 
               <a
@@ -209,7 +209,7 @@ export default function ProjectDetailsFAQ({
                   Download Lists
                 </span>
                 <i className="z-10 bi bi-download"></i>
-                <span className="absolute inset-0 bg-[var(--primary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
+                <span className="absolute inset-0 bg-[var(--secondary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out rounded" />
               </a>
             </div>
           </div>

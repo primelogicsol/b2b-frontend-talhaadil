@@ -24,19 +24,20 @@ interface SliderComponentProps {
 }
 
 export default function Counter({ data }: SliderComponentProps) {
-  // fallback data if none provided
   const slides: SlideItem[] = data && data.length > 0 ? data : [
     { id: 1, title: "Global Reach", description: "Expand your audience across continents with our robust infrastructure.", number: 12000 },
-    { id: 2, title: "User Engagement", description: "Boost interaction and retention with personalized experiences.", number: 95 },
+    { id: 2, title: "User Engage", description: "Boost interaction and retention with personalized experiences.", number: 95 },
     { id: 3, title: "Data Security", description: "Protect your valuable information with industry-leading encryption.", number: 100 },
-    { id: 4, title: "Performance Metrics", description: "Track key indicators and optimize for peak efficiency.", number: 250 },
+    { id: 4, title: "Perform Metrics", description: "Track key indicators and optimize for peak efficiency.", number: 250 },
     { id: 5, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
+    { id: 6, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
+    { id: 7, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
+    { id: 8, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cardsPerPage, setCardsPerPage] = useState(1)
   const sliderTrackRef = useRef<HTMLDivElement>(null)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const x = useMotionValue(0)
 
   const calculateCardsPerPage = useCallback(() => {
@@ -49,18 +50,6 @@ export default function Counter({ data }: SliderComponentProps) {
     return 1
   }, [])
 
-  const startAutoSlide = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current)
-    intervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const maxIndex = slides.length - cardsPerPage
-        const safeMaxIndex = Math.max(0, maxIndex)
-        const nextIndex = prev + cardsPerPage
-        return nextIndex > safeMaxIndex ? 0 : nextIndex
-      })
-    }, 1000)
-  }, [cardsPerPage, slides.length])
-
   useEffect(() => {
     const updateDimensions = () => {
       const newCardsPerPage = calculateCardsPerPage()
@@ -71,16 +60,8 @@ export default function Counter({ data }: SliderComponentProps) {
     window.addEventListener('resize', updateDimensions)
     return () => {
       window.removeEventListener('resize', updateDimensions)
-      if (intervalRef.current) clearInterval(intervalRef.current)
     }
   }, [calculateCardsPerPage, slides.length])
-
-  useEffect(() => {
-    startAutoSlide()
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-    }
-  }, [startAutoSlide])
 
   useEffect(() => {
     const containerWidth = sliderTrackRef.current?.offsetWidth || 0
@@ -90,7 +71,6 @@ export default function Counter({ data }: SliderComponentProps) {
 
   const handleDotClick = (pageIndex: number) => {
     setCurrentIndex(pageIndex * cardsPerPage)
-    startAutoSlide()
   }
 
   const totalPages = Math.ceil(slides.length / cardsPerPage)
@@ -120,7 +100,7 @@ export default function Counter({ data }: SliderComponentProps) {
 
       <div className="flex justify-center mt-8 space-x-2">
         {Array.from({ length: totalPages }).map((_, pageIndex) => {
-          const isActive = Math.floor(currentIndex / cardsPerPage) === pageIndex;
+          const isActive = Math.floor(currentIndex / cardsPerPage) === pageIndex
           return (
             <button
               key={pageIndex}
@@ -132,7 +112,7 @@ export default function Counter({ data }: SliderComponentProps) {
                 backgroundColor: isActive ? 'var(--secondary-color)' : 'gray',
               }}
             />
-          );
+          )
         })}
       </div>
     </div>

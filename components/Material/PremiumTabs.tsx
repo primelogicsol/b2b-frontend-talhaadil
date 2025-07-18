@@ -153,7 +153,7 @@ export default function PremiumTabs() {
 
   return (
     <div
-      className="min-h-screen p-4 md:p-8"
+      className="min-h-screen p-4 md:p-8 lg:p-12"
       style={{
         background: "linear-gradient(to bottom right,var(--primary-color),var(--primary-hover-color),var(--primary-light-text-color)",
       }}
@@ -303,16 +303,7 @@ export default function PremiumTabs() {
           </motion.div>
         </AnimatePresence>
 
-        <motion.div
-          className="text-center mt-16 text-gray-200"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-        >
-          <p className="text-sm">
-            Built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion
-          </p>
-        </motion.div>
+      
       </div>
     </div>
   )

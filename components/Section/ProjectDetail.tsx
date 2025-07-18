@@ -61,16 +61,16 @@ export default function ProjectDetail({
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white rounded-3xl py-[55px] px-6 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-[var(--secondary-hover-color)] rounded-3xl py-[55px] px-6 mb-12"
         >
           {infoBox.map((item, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="pl-6 md:pl-12 transition duration-300 hover:text-[var(--primary-color)]"
+              className="pl-6 md:pl-12 transition duration-300 hover:text-[var(--primary-color)] "
             >
-              <p className="text-[18px] text-gray-500 mb-0">{item.title}</p>
-              <h6 className="text-[24px] leading-[46px] font-semibold text-gray-900">
+              <p className="text-[18px] text-gray-300 mb-0">{item.title}</p>
+              <h6 className="text-[24px] leading-[46px] font-semibold text-gray-800">
                 {item.info}
               </h6>
             </motion.div>
@@ -175,7 +175,7 @@ export default function ProjectDetail({
                       href="/service/service-details"
                       className="relative block py-3 px-6 rounded-md font-medium uppercase overflow-hidden transition-all duration-500 hover:text-white text-gray-800 group"
                     >
-                      <span className="absolute left-0 top-0 w-full h-full bg-[var(--primary-color)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out z-0"></span>
+                      <span className="absolute left-0 top-0 w-full h-full bg-[var(--secondary-hover-color)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out z-0"></span>
                       <span className="relative z-10">{item}</span>
                     </Link>
                   </li>

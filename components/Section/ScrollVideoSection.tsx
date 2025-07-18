@@ -105,7 +105,7 @@ export default function ScrollVideoSection({
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-0.5 bg-[var(--secondary-color)]"/>
-              <p className="text-2xl md:text-3xl lg:text-5xl uppercase text-[var(--primary-color)] font-extrabold mb-5">
+              <p className="text-2xl md:text-3xl lg:text-5xl uppercase text-[var(--secondary-color)] font-extrabold mb-5">
                 {introLabel}
               </p>
             </div>
