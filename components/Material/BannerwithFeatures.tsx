@@ -9,7 +9,7 @@ function BannerWithFeatures() {
       <div className="
         mt-6 
         flex justify-center 
-        lg:mt-0 lg:absolute lg:-bottom-30 lg:left-0 lg:w-full
+        lg:mt-0 lg:absolute lg:-bottom-40 lg:left-0 lg:w-full
       ">
         <Features />
       </div>
