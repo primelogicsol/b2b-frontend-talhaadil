@@ -1,15 +1,11 @@
 import CardNoPic from "@/components/Cards/CardNoPic";
 import Features from "@/components/Cards/Features";
-import ShineCard from "@/components/Cards/ShineCard";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
-import ProcessCard from "@/components/Extra/ExtraLogoCard";
 import { Timeline } from "@/components/Material/TimeLine";
 import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection";
 import ProjectDetail from "@/components/Section/ProjectDetail";
-import ScrollVideoSection from "@/components/Section/ScrollVideoSection";
 import SectionFaq from "@/components/Section/SectionFaq";
 import MissionSection from "@/components/Section/MissionSection";
-import SinglePicSection from "@/components/Section/SinglePicSection";
 import React from "react";
 
 function page() {

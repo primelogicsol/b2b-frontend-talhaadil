@@ -88,7 +88,7 @@ export default function MainPage() {
 
       {/* About / Video Section */}
       <section >
-        <About4/>
+        {/* <About4/> */}
       </section>
 
       {/* FAQ */}
