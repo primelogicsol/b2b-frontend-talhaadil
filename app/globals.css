@@ -51,13 +51,13 @@
   --heading-font: "Outfit", sans-serif;
   --body-color-font: "DM Sans", sans-serif;
 
-  --primary-hover-color: #f48261;
-  --primary-color: #f48261;
-  --primary-light-text-color: #f48261;
+  --primary-hover-color: #2a5f7a;
+  --primary-color: #347b9c;
+  --primary-light-text-color: #62b4da;
 
-  --secondary-hover-color: #2a5f7a;
-  --secondary-color: #347b9c;
-  --secondary-light-text-color: #2990f8;
+  --secondary-hover-color: #f48261;
+  --secondary-color: #f48261;
+  --secondary-light-text-color: #f48261;
 }
 
 @theme inline {
