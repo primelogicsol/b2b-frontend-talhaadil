@@ -25,7 +25,7 @@ export const FlipCard = ({
   return (
     <div
       className={`group relative w-full perspective-1000 ${className}`}
-      style={{ height: "clamp(280px, 25vw, 360px)" }}
+      style={{ height: "clamp(280px, 30vw, 360px)" }}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onTouchStart={() => setIsFlipped(!isFlipped)}

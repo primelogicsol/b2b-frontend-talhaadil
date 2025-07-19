@@ -78,10 +78,12 @@ export default function MainPage() {
       icon: Leaf,
     },
     {
-      title: "Technology Innovation",
+      title: "Tech Advancement",
       description: "Tech powering authentic craftsmanship",
       detailedDescription:
-        "We use modern technology to connect tradition with innovation. Blockchain ensures product authenticity and traceability, while AI tools assist artisans in scaling production and managing inventory. This fusion of heritage and tech makes Kashmiri crafts efficient, transparent, and globally accessible.",
+      "We use modern technology to connect tradition with innovation. Blockchain ensures authenticity and traceability, while AI tools assist artisans in scaling production and managing inventory. This fusion of heritage and tech makes Kashmiri crafts efficient, transparent, and globally accessible.",
+        
+      
       icon: Cpu,
     },
   ];
@@ -93,7 +95,7 @@ export default function MainPage() {
         <VerticalHeroSlider />
       </section>
       {/* Scroll Animation / Video Section */}
-      <section>
+      <section className="mt-30 lg:mt-10">
         <DiagonalSection
           subtitle="WELCOME TO B2B CONNECT - USA"
           title="Empowering Kashmiri Artisans, Startups in Accessing American"
@@ -147,8 +149,10 @@ export default function MainPage() {
         </h2>
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
-      s
-      <OurVision />
+      <section className="px-10 xl:px-0">
+              <OurVision />
+      </section>
+
       {/* About / Video Section */}
       {/* <section>
         <About4

@@ -164,7 +164,31 @@ export default function OurStoryPage() {
             Our Growth: Bridging Tradition with Innovation
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
+          {/* Responsive Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
+            {/* Card 1 */}
+            <div
+              className="p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ backgroundColor: "var(--primary-color)" }}
+            >
+              <div
+                className="text-4xl md:text-5xl font-bold mb-4"
+                style={{ color: "var(--secondary-light-color)" }}
+              >
+                2000+
+              </div>
+              <h3
+                className="text-lg md:text-xl font-semibold mb-3"
+                style={{ color: "var(--secondary-light-color)" }}
+              >
+                Craft Preservation
+              </h3>
+              <p className="text-gray-200 text-sm md:text-base">
+                Preserving traditions with blockchain for product authenticity
+              </p>
+            </div>
+
+            {/* Card 2 */}
             <div
               className="p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ backgroundColor: "var(--primary-color)" }}
@@ -186,6 +210,7 @@ export default function OurStoryPage() {
               </p>
             </div>
 
+            {/* Card 3 */}
             <div
               className="p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ backgroundColor: "var(--primary-color)" }}
@@ -208,8 +233,9 @@ export default function OurStoryPage() {
               </p>
             </div>
 
+            {/* Card 4 */}
             <div
-              className="p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 sm:col-span-2 lg:col-span-1"
+              className="p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ backgroundColor: "var(--primary-color)" }}
             >
               <div
@@ -226,26 +252,6 @@ export default function OurStoryPage() {
               </h3>
               <p className="text-gray-200 text-sm md:text-base">
                 Direct payments enabling reinvestment in craft and communities
-              </p>
-            </div>
-            <div
-              className="p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 sm:col-span-2 lg:col-span-1"
-              style={{ backgroundColor: "var(--primary-color)" }}
-            >
-              <div
-                className="text-4xl md:text-5xl font-bold mb-4"
-                style={{ color: "var(--secondary-light-color)" }}
-              >
-                2000+
-              </div>
-              <h3
-                className="text-lg md:text-xl font-semibold mb-3"
-                style={{ color: "var(--secondary-light-color)" }}
-              >
-                Craft Preservation
-              </h3>
-              <p className="text-gray-200 text-sm md:text-base">
-                Preserving traditions with blockchain for product authenticity
               </p>
             </div>
           </div>
@@ -489,8 +495,10 @@ export default function OurStoryPage() {
               </p>
             </div>
           </div>
-          <DiagonalSection/>
-         
+           <section className="mt-30 lg:mt-10">
+            <DiagonalSection />
+           </section>
+          
         </div>
       </section>
     </div>

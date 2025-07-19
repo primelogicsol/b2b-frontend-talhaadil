@@ -22,8 +22,8 @@ export function AnimationCard({
 }: AnimationCardProps) {
   return (
     <div className="group relative w-full max-w-xs sm:max-w-sm h-96 rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl mx-auto bg-white">
-      <div className="absolute top-0 left-0 w-16 h-32 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-16 h-32 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
+      <div className="absolute top-0 left-0 w-12 h-24 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-12 h-24 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full p-8 text-center">
         <div className="relative mb-8">
@@ -41,13 +41,7 @@ export function AnimationCard({
           {description}
         </p>
 
-        <button
-          onClick={onReadMore}
-          className="group/btn flex items-center space-x-2 text-slate-800 font-semibold text-sm transition-all duration-300 hover:text-[var(--primary-color)]"
-        >
-          <span className="transition-all duration-300 group-hover:translate-x-1">{buttonText}</span>
-          <ArrowRight className="w-4 h-4 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--primary-color)]" />
-        </button>
+        
       </div>
 
       <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-700">

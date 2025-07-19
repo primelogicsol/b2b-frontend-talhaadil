@@ -51,7 +51,7 @@ export default function DiagonalSection({
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
+    <div className="min-h-screen bg-white text-gray-900 relative">
       <div
         className="absolute inset-0 z-0 opacity-10"
         style={{
