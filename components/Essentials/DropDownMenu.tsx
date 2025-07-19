@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import type { Easing } from "framer-motion"
+import { useState } from "react"
 
 interface DropdownItem {
   label: string
@@ -14,7 +14,10 @@ interface DropdownItem {
 interface DropdownProps {
   title: string
   items: DropdownItem[]
-  isActive?: boolean
+  isMobile?: boolean
+  isOpen?: boolean          // for mobile
+  onToggle?: () => void     // for mobile
+  isActive?: boolean        // optional active state
 }
 
 const containerVariants = {
@@ -43,8 +46,15 @@ const itemVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
 }
 
-export default function DropdownMenu({ title, items, isActive }: DropdownProps) {
-  const [isMobileOpen, setIsMobileOpen] = useState(false)
+export default function DropdownMenu({
+  title,
+  items,
+  isMobile = false,
+  isOpen,
+  onToggle,
+  isActive,
+}: DropdownProps) {
+  // For desktop hover
   const [isDesktopOpen, setIsDesktopOpen] = useState(false)
 
   const renderDropdown = (isOpen: boolean) => (
@@ -72,43 +82,46 @@ export default function DropdownMenu({ title, items, isActive }: DropdownProps) 
     </AnimatePresence>
   )
 
-  return (
-    <div className="relative">
-      {/* Desktop: hover-triggered dropdown */}
-      <div
-        className="hidden md:block group"
-        onMouseEnter={() => setIsDesktopOpen(true)}
-        onMouseLeave={() => setIsDesktopOpen(false)}
-      >
+  if (isMobile) {
+    // Mobile version (controlled by parent)
+    return (
+      <div className="block md:hidden w-full no-scrollbar">
         <button
-          className={`py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out
-            ${isActive ? "bg-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"}`}
-        >
-          {title}
-          <span
-            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${
-              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-            }`}
-          ></span>
-        </button>
-        {renderDropdown(isDesktopOpen)}
-      </div>
-
-      {/* Mobile: click-triggered dropdown */}
-      <div className="block md:hidden">
-        <button
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className={`flex items-center gap-1 text-white text-md font-medium transition-colors duration-300 ease-in-out w-full`}
+          onClick={onToggle}
+          className="py-2 flex items-center gap-2 text-white text-md font-medium transition-colors duration-300 ease-in-out w-full"
         >
           {title}
           <ChevronDown
             className={`w-4 h-4 transition-transform duration-300 ${
-              isMobileOpen ? "rotate-180" : "rotate-0"
+              isOpen ? "rotate-180" : "rotate-0"
             }`}
           />
         </button>
-        {renderDropdown(isMobileOpen)}
+        {renderDropdown(isOpen || false)}
       </div>
+    )
+  }
+
+  // Desktop version
+  return (
+    <div
+      className="relative hidden md:block group"
+      onMouseEnter={() => setIsDesktopOpen(true)}
+      onMouseLeave={() => setIsDesktopOpen(false)}
+    >
+      <button
+        className={`py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${
+          isActive ? "bg-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"
+        }`}
+      >
+        {title}
+        <span
+          className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${
+            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+          }`}
+        ></span>
+      </button>
+      {renderDropdown(isDesktopOpen)}
     </div>
   )
 }

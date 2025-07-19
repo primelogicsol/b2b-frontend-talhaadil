@@ -2,18 +2,19 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { Menu, X, Mountain } from "lucide-react";
 import DropdownMenu from "./DropDownMenu";
-import { Menu, X } from "lucide-react";
-import { Mountain } from "lucide-react";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Track which dropdown is open on mobile
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+
   const blogDropdownItems = [
     { label: "Our Values", href: "/our-values" },
-    { label: "Our Story", href: "/our-story"},
+    { label: "Our Story", href: "/our-story" },
     { label: "Business Niche", href: "/business-niche" },
     { label: "Our Team", href: "#blog-details-02" },
     { label: "Careers", href: "#blog-details-02" },
@@ -27,35 +28,26 @@ export function Navbar() {
     { label: "FAQ", href: "#faq" },
   ];
 
-  // Scroll detection
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleMobileDropdownToggle = (title: string) => {
+    setOpenMobileDropdown((prev) => (prev === title ? null : title));
+  };
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${
         isScrolled
-          ? "py-1  shadow-md border-b-[var(--secondary-color)] border-b-2"
-          : "py-4 "
+          ? "py-1 shadow-md border-b-[var(--secondary-color)] border-b-2"
+          : "py-4"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
-        {/* Logo */}
-        <Link
-          href="#"
-          className="flex items-center space-x-2 transition-all duration-500"
-        >
-          {/* <Image
-            src="/softtec-logo-icon.png"
-            alt="Softtec Logo"
-            width={isScrolled ? 24 : 48}
-            height={isScrolled ? 24 : 48}
-            className="transition-all duration-500" */}
+        <Link href="#" className="flex items-center space-x-2 transition-all duration-500">
           <Mountain
             size={isScrolled ? 24 : 48}
             className="text-[var(--secondary-color)]"
@@ -69,43 +61,26 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-8 transition-all duration-500">
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
+          <Link href="/" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
             Home
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
           <DropdownMenu title="About Us" items={blogDropdownItems} />
           <DropdownMenu title="Partnerships" items={pageDropdownItems} />
-
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
+          <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
             Process
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
-
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
+          <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
             Registration
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
-
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
+          <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
             Book Appointment
             <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
           </Link>
-
-          
         </div>
 
         {/* Desktop Buttons */}
@@ -118,7 +93,7 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <div className="lg:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -132,41 +107,41 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed top-0 left-0 w-3/4 h-full bg-[var(--primary-color)] shadow-lg py-8 px-6 z-30 transform transition-transform duration-300 ease-in-out animate-slide-in">
+        <div className="lg:hidden fixed top-0 left-0 w-3/4 h-full bg-[var(--primary-color)] shadow-lg py-8 px-6 z-30 transform transition-transform duration-300 ease-in-out animate-slide-in overflow-y-auto">
           <div className="flex flex-col items-start space-y-6">
-           <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
-            Home
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
-          <DropdownMenu title="About Us" items={blogDropdownItems} />
-          <DropdownMenu title="Partnerships" items={pageDropdownItems} />
+            <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
+              Home
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+            </Link>
 
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
-            Process
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
+            <DropdownMenu
+              title="About Us"
+              items={blogDropdownItems}
+              isMobile
+              isOpen={openMobileDropdown === "About Us"}
+              onToggle={() => handleMobileDropdownToggle("About Us")}
+            />
+            <DropdownMenu
+              title="Partnerships"
+              items={pageDropdownItems}
+              isMobile
+              isOpen={openMobileDropdown === "Partnerships"}
+              onToggle={() => handleMobileDropdownToggle("Partnerships")}
+            />
 
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
-            Registration
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
+            <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
+              Process
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+            </Link>
+            <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
+              Registration
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+            </Link>
+            <Link href="#" className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out">
+              Book Appointment
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+            </Link>
 
-          <Link
-            href="#"
-            className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
-          >
-            Book Appointment
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-          </Link>
             <button className="text-white text-lg font-medium py-2 transform hover:scale-105 hover:text-[var(--secondary-hover-color)] transition-all duration-300">
               Log In
             </button>
