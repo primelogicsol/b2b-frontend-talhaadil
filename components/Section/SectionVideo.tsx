@@ -78,9 +78,9 @@ const About4: React.FC<About4Props> = ({
           <div className="flex flex-wrap items-center gap-4">
             <Link
               href="/contact"
-              className="relative inline-block px-6 py-3 font-semibold text-white bg-[var(--primary-color)] rounded-md overflow-hidden group"
+              className="relative inline-block px-6 py-3 font-semibold text-white bg-[var(--secondary-color)] rounded-md overflow-hidden group"
             >
-              <span className="absolute inset-0 bg-[var(--primary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out z-0 rounded-md" />
+              <span className="absolute inset-0 bg-[var(--secondary-hover-color)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out z-0 rounded-md" />
               <span className="relative z-10">EXPLORE MORE</span>
             </Link>
 
@@ -96,7 +96,7 @@ const About4: React.FC<About4Props> = ({
                 height={40}
                 className="mx-auto mb-2"
               />
-              <h4 className="text-2xl font-bold text-[var(--primary-color)]">{BoxTitle1}+</h4>
+              <h4 className="text-2xl font-bold text-[var(--secondary-color)]">{BoxTitle1}+</h4>
               <p className="uppercase text-sm text-gray-600 mt-1">{BoxTitle2}</p>
             </motion.div>
           </div>
@@ -123,8 +123,8 @@ const About4: React.FC<About4Props> = ({
             whileHover={{ scale: 1.05 }}
             className="absolute top-4 right-4 bg-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 group transition-all"
           >
-            <i className="bi bi-play text-white bg-[var(--primary-color)] p-2 rounded-full text-lg group-hover:bg-[var(--primary-hover-color)] transition"></i>
-            <span className="text-[var(--primary-color)] font-semibold underline text-sm">WATCH VIDEO</span>
+            <i className="bi bi-play text-white bg-[var(--secondary-color)] p-2 rounded-full text-lg group-hover:bg-[var(--primary-hover-color)] transition"></i>
+            <span className="text-[var(--secondary-color)] font-semibold underline text-sm">WATCH VIDEO</span>
           </motion.button>
 
           {/* Decorative Shape */}
@@ -133,7 +133,7 @@ const About4: React.FC<About4Props> = ({
             alt="Decorative shape"
             width={150}
             height={150}
-            className="absolute bottom-[-40px] left-[-20px] z-[-1] animate-bounce hidden md:block"
+            className="absolute bottom-[-40px] left-[-20px] z-[-1] animate-bounce hidden md:block text-[var(--secondary-color)]"
           />
         </motion.div>
       </motion.div>

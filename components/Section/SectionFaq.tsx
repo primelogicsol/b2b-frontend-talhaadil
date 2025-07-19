@@ -37,7 +37,7 @@ const deffaqItems: FaqItem[] = [
 
 export default function SectionFaq({
   subTitle = "SOLUTEK COMPANY",
-  sectionTitle = "Keeping Your Business<br> Safe and <span>Available.</span>",
+  sectionTitle = "Keeping Your Business Safe and Available",
   imgMain = "/assets/images/faq1.png",
   faqTitle = "A Comprehensive <span>Guide.</span>",
   faqContent = "Alternative innovation network environmental whiteboard pursue for premier methods empowerment go forward opportunities",

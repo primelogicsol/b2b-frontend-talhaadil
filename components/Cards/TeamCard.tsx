@@ -55,7 +55,7 @@ export default function TeamCard({
 
           {/* Share icon at bottom of circle */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 transform transition-all duration-500 group-hover:rotate-180">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg ring-2 ring-gray-100 group-hover:ring-orange-200 transition-all duration-500">
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg ring-2 ring-gray-100 group-hover:ring-[var(--secondary-hover-color)] transition-all duration-500">
               <Share2 className="w-5 h-5 text-gray-600 group-hover:text-[var(--primary-color)] transition-colors duration-500" />
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function TeamCard({
               <a
                 href={social.facebook}
                 aria-label="Facebook"
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 shadow-lg"
+                className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 shadow-lg"
               >
                 <Facebook className="w-4 h-4" fill="currentColor" />
               </a>
@@ -92,7 +92,7 @@ export default function TeamCard({
               <a
                 href={social.vimeo}
                 aria-label="Vimeo"
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-blue-500 transition-all duration-300 transform hover:scale-110 shadow-lg"
+                className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-blue-500 transition-all duration-300 transform hover:scale-110 shadow-lg"
               >
                 <Vimeo className="w-4 h-4" fill="currentColor" />
               </a>
@@ -110,7 +110,7 @@ export default function TeamCard({
               <a
                 href={social.twitter}
                 aria-label="Twitter"
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-sky-500 transition-all duration-300 transform hover:scale-110 shadow-lg"
+                className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-sky-500 transition-all duration-300 transform hover:scale-110 shadow-lg"
               >
                 <Twitter className="w-4 h-4" fill="currentColor" />
               </a>
@@ -128,7 +128,7 @@ export default function TeamCard({
               <a
                 href={social.linkedin}
                 aria-label="LinkedIn"
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
+                className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
               >
                 <Linkedin className="w-4 h-4" fill="currentColor" />
               </a>

@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { LucideIcon, Star } from 'lucide-react' // Star icon used as fallback
+import { LucideIcon, Star } from 'lucide-react'
 
 interface FlipCardProps {
   title?: string
@@ -32,7 +32,7 @@ export const FlipCard = ({
           isFlipped ? 'rotate-y-180' : ''
         }`}
       >
-        {/* Front Face */}
+        {/* FRONT */}
         <div className="absolute inset-0 w-full h-full backface-hidden">
           <div
             className="h-full rounded-2xl p-6 flex items-center justify-center
@@ -46,7 +46,7 @@ export const FlipCard = ({
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center
                   bg-white/20 backdrop-blur-sm
-                 shadow-[0_0_20px_var(--secondary-color)]
+                  shadow-[0_0_20px_var(--secondary-color)]
                   group-hover:scale-110 transition-transform duration-300"
                 >
                   <Icon className="w-8 h-8" />
@@ -79,14 +79,12 @@ export const FlipCard = ({
           </div>
         </div>
 
-        {/* Back Face */}
+        {/* BACK */}
         <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
           <div
             className="h-full rounded-2xl p-6 flex items-center justify-center
             bg-gray-200
-           
             border border-white/30
-          
             shadow-[0_0_20px_var(--secondary-color)]
             backdrop-blur-xl transition-all duration-500"
           >

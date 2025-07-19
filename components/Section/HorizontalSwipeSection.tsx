@@ -76,9 +76,9 @@ export default function HorizontalSwipeSection({
           <div className="space-y-6">
             <div className="flex items-center gap-2 text-[var(--secondary-color)]">
               <RiShakeHandsLine className="w-5 h-5 rotate-180" />
-              <span className="font-semibold uppercase tracking-wider">Testimonials</span>
+              <span className="font-semibold uppercase tracking-wider">Connections</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Our Clients Feedback</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Common Connection</h2>
             
             <AnimatePresence mode="wait">
               <motion.p

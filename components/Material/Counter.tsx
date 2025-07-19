@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { motion, useMotionValue, animate, useTransform, useInView } from 'framer-motion'
+import { useState, useRef, useEffect, useCallback } from "react"
+import { motion, useMotionValue, animate, useTransform, useInView } from "framer-motion"
 
 interface SlideItem {
   id: number
@@ -24,16 +24,59 @@ interface SliderComponentProps {
 }
 
 export default function Counter({ data }: SliderComponentProps) {
-  const slides: SlideItem[] = data && data.length > 0 ? data : [
-    { id: 1, title: "Global Reach", description: "Expand your audience across continents with our robust infrastructure.", number: 12000 },
-    { id: 2, title: "User Engage", description: "Boost interaction and retention with personalized experiences.", number: 95 },
-    { id: 3, title: "Data Security", description: "Protect your valuable information with industry-leading encryption.", number: 100 },
-    { id: 4, title: "Perform Metrics", description: "Track key indicators and optimize for peak efficiency.", number: 250 },
-    { id: 5, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
-    { id: 6, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
-    { id: 7, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
-    { id: 8, title: "Scalable Solutions", description: "Grow your platform effortlessly with our flexible architecture.", number: 5000 },
-  ]
+  const slides: SlideItem[] =
+    data && data.length > 0
+      ? data
+      : [
+          {
+            id: 1,
+            title: "Global Reach",
+            description: "Expand your audience across continents with our robust infrastructure.",
+            number: 12000,
+          },
+          {
+            id: 2,
+            title: "User Engage",
+            description: "Boost interaction and retention with personalized experiences.",
+            number: 95,
+          },
+          {
+            id: 3,
+            title: "Data Security",
+            description: "Protect your valuable information with industry-leading encryption.",
+            number: 100,
+          },
+          {
+            id: 4,
+            title: "Perform Metrics",
+            description: "Track key indicators and optimize for peak efficiency.",
+            number: 250,
+          },
+          {
+            id: 5,
+            title: "Scalable Solutions",
+            description: "Grow your platform effortlessly with our flexible architecture.",
+            number: 5000,
+          },
+          {
+            id: 6,
+            title: "Scalable Solutions",
+            description: "Grow your platform effortlessly with our flexible architecture.",
+            number: 5000,
+          },
+          {
+            id: 7,
+            title: "Scalable Solutions",
+            description: "Grow your platform effortlessly with our flexible architecture.",
+            number: 5000,
+          },
+          {
+            id: 8,
+            title: "Scalable Solutions",
+            description: "Grow your platform effortlessly with our flexible architecture.",
+            number: 5000,
+          },
+        ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cardsPerPage, setCardsPerPage] = useState(1)
@@ -41,7 +84,7 @@ export default function Counter({ data }: SliderComponentProps) {
   const x = useMotionValue(0)
 
   const calculateCardsPerPage = useCallback(() => {
-    if (typeof window === 'undefined') return 1
+    if (typeof window === "undefined") return 1
     if (window.innerWidth >= 1536) return 6
     if (window.innerWidth >= 1280) return 5
     if (window.innerWidth >= 1024) return 4
@@ -56,10 +99,11 @@ export default function Counter({ data }: SliderComponentProps) {
       setCardsPerPage(newCardsPerPage)
       setCurrentIndex((prev) => Math.min(prev, Math.max(0, slides.length - newCardsPerPage)))
     }
+
     updateDimensions()
-    window.addEventListener('resize', updateDimensions)
+    window.addEventListener("resize", updateDimensions)
     return () => {
-      window.removeEventListener('resize', updateDimensions)
+      window.removeEventListener("resize", updateDimensions)
     }
   }, [calculateCardsPerPage, slides.length])
 
@@ -68,6 +112,26 @@ export default function Counter({ data }: SliderComponentProps) {
     const offset = -((currentIndex * containerWidth) / cardsPerPage)
     animate(x, offset, { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] })
   }, [currentIndex, cardsPerPage, x])
+
+  // Auto-slide functionality - moves one card at a time
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        // Calculate the maximum index we can slide to
+        const maxIndex = Math.max(0, slides.length - cardsPerPage)
+
+        // If we're at or past the maximum, go back to start
+        if (prevIndex >= maxIndex) {
+          return 0
+        }
+
+        // Otherwise, move one card forward
+        return prevIndex + 1
+      })
+    }, 3000) // Auto slide every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [slides.length, cardsPerPage])
 
   const handleDotClick = (pageIndex: number) => {
     setCurrentIndex(pageIndex * cardsPerPage)
@@ -80,11 +144,7 @@ export default function Counter({ data }: SliderComponentProps) {
       <div className="relative overflow-hidden">
         <motion.div ref={sliderTrackRef} className="flex" style={{ x }}>
           {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className="flex-shrink-0 p-4"
-              style={{ width: `${100 / cardsPerPage}%` }}
-            >
+            <div key={slide.id} className="flex-shrink-0 p-4" style={{ width: `${100 / cardsPerPage}%` }}>
               <SliderCard
                 title={slide.title}
                 description={slide.description}
@@ -97,7 +157,6 @@ export default function Counter({ data }: SliderComponentProps) {
           ))}
         </motion.div>
       </div>
-
       <div className="flex justify-center mt-8 space-x-2">
         {Array.from({ length: totalPages }).map((_, pageIndex) => {
           const isActive = Math.floor(currentIndex / cardsPerPage) === pageIndex
@@ -108,8 +167,8 @@ export default function Counter({ data }: SliderComponentProps) {
               aria-label={`Go to slide page ${pageIndex + 1}`}
               className="h-3 rounded-full transition-all duration-300"
               style={{
-                width: isActive ? '2rem' : '0.75rem',
-                backgroundColor: isActive ? 'var(--secondary-color)' : 'gray',
+                width: isActive ? "2rem" : "0.75rem",
+                backgroundColor: isActive ? "var(--secondary-color)" : "gray",
               }}
             />
           )
@@ -128,7 +187,7 @@ function SliderCard({ title, description, targetNumber, index, currentIndex, car
   useEffect(() => {
     const isActivePageCard = index >= currentIndex && index < currentIndex + cardsPerPage
     if (isInView && isActivePageCard) {
-      animate(count, targetNumber, { duration: 1.5, ease: 'easeOut' })
+      animate(count, targetNumber, { duration: 1.5, ease: "easeOut" })
     } else {
       count.set(0)
     }
@@ -139,8 +198,8 @@ function SliderCard({ title, description, targetNumber, index, currentIndex, car
       ref={ref}
       className="relative flex-shrink-0 w-full h-full p-6 text-white rounded-lg shadow-xl overflow-hidden before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
       style={{
-        background: 'linear-gradient(to bottom right, var(--primary-color), var(--primary-hover-color))',
-        clipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
+        background: "linear-gradient(to bottom right, var(--primary-color), var(--primary-hover-color))",
+        clipPath: "polygon(0 0, 100% 0, 100% 90%, 0% 100%)",
       }}
     >
       <div className="relative z-10 flex flex-col h-full justify-between">

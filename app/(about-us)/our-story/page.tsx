@@ -9,6 +9,31 @@ import MissionSection from "@/components/Section/MissionSection";
 import React from "react";
 
 function page() {
+  const faqData = {
+    subTitle: "DEFINING MOMENTS",
+    sectionTitle: "Moments That Define Us",
+    imgMain: "/assets/images/faq1.png",
+    faqTitle: "Your Questions <span>Answered.</span>",
+    faqContent:
+      "Explore the key milestones and decisions that have shaped who we are today, offering insight into our journey and values.",
+    faqItems: [
+      {
+        title: "What are our defining moments?",
+        desc: "Our defining moments include groundbreaking collaborations, impactful community projects, and innovations that changed the way we work.",
+      },
+      {
+        title: "How did these moments shape us?",
+        desc: "They taught us resilience, creativity, and a commitment to excellence, influencing every step we take in our mission.",
+      },
+      {
+        title: "What can we learn from them?",
+        desc: "Each milestone is a lesson—embracing challenges, valuing teamwork, and staying true to our vision no matter the obstacles.",
+      },
+    ],
+    decoImg1: "/assets/images/faq2.png",
+    decoImg2: "/assets/images/faq3.png",
+  };
+
   const cardDataList = [
     {
       title: "Why Choose Us",
@@ -220,7 +245,9 @@ function page() {
       <ProjectDetail />
 
       <section className="text-center mt-15">
-        <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4">Our Brand Origin</h2>
+        <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4">
+          Our Brand Origin
+        </h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-4 text-xl">
           Discover why businesses and customers alike trust us every day.
         </p>
@@ -233,8 +260,21 @@ function page() {
       </section>
 
       <HorizontalSwipeSection />
-      <SectionFaq />
-      <Timeline />
+      <SectionFaq {...faqData} />
+      <section className="py-16">
+       
+
+        <div className="text-center mt-15">
+           <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4">
+          Our Journey
+        </h2>
+        <p className="text-gray-600 max-w-2xl mx-auto mb-4 text-xl">
+           Discover the milestones that shaped who we are today.
+        </p>
+          <Timeline />
+        </div>
+      </section>
+
       <section>
         <MissionSection />
         <Features data={myData} />

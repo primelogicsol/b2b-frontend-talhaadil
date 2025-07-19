@@ -10,6 +10,7 @@ import ScrollSection from "@/components/Section/ScrollSection";
 import SectionFaq from "@/components/Section/SectionFaq";
 import VideoGallery from "@/components/Section/VideoGallery";
 import BannerWithFeatures from "@/components/Material/BannerwithFeatures";
+import TeamCard from "@/components/Cards/TeamCard";
 
 export default function Home() {
   return (
@@ -135,7 +136,7 @@ export default function Home() {
           </h3>
         </div>
 
-        {/* Accordion Component */}
+        {/* Accordion Component */}a
         <div className="w-full max-w-7xl">
           <Accordion />
         </div> 
