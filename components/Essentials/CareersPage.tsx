@@ -23,7 +23,13 @@ export default function CareersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
-
+    const [openDropdown, setOpenDropdown] = useState(false)
+  const filters = [
+    { value: "all", label: "All Departments" },
+    { value: "operations", label: "Operations" },
+    { value: "marketing", label: "Marketing" },
+    { value: "support", label: "Support" },
+  ];
   const jobOpenings = [
     {
       id: "ecommerce-manager",
@@ -141,7 +147,6 @@ export default function CareersPage() {
       description:
         "We value transparency and ethical business practices. Our commitment to fair wages, safe working conditions, and authenticity ensures responsible operations.",
     },
-   
   ];
 
   const filteredJobs = jobOpenings.filter((job) => {
@@ -245,12 +250,11 @@ export default function CareersPage() {
         .search-input {
           flex: 1;
           min-width: 250px;
-          padding: 12px 16px 12px 45px;
+          padding: 12px 16px 12px 20px;
           border: 2px solid var(--primary-header-color);
           border-radius: 8px;
           font-size: 1rem;
           transition: border-color 0.3s ease;
-         
         }
 
         .search-input:focus {
@@ -259,12 +263,8 @@ export default function CareersPage() {
         }
 
         .search-wrapper {
-       
           flex: 1;
-          
         }
-
-        
 
         .filter-select {
           padding: 12px 16px;
@@ -701,6 +701,13 @@ export default function CareersPage() {
                 creating an inclusive environment where everyone feels welcome.
               </p>
             </div>
+            <div className="benefit-card">
+              <div className="benefit-title">• Inclusive & Diverse Team</div>
+              <p>
+                We celebrate diversity in all its forms and are committed to
+                creating an inclusive environment where everyone feels welcome.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -710,28 +717,58 @@ export default function CareersPage() {
         <div className="container">
           <h2 className="section-title">Current Job Openings</h2>
 
-          <div className="search-filter-section">
-            <div className="search-container">
-              <div className="search-wrapper relative">
-                <Search className="search-icon absolute top-4 left-55" size={20} />
+          <div className="search-filter-section px-4 py-4">
+            <div className="search-container flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between max-w-full">
+              {/* Search box */}
+              <div className="relative w-full sm:flex-1 sm:max-w-[400px] lg:max-w-[300px]">
                 <input
                   type="text"
                   placeholder="Search positions..."
-                  className="search-input"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full border-2 border-[var(--primary-header-color)] rounded-lg py-3 pr-12 pl-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
                 />
+                <button
+                  type="button"
+                  className="cursor-pointer absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[var(--primary-hover-color)]"
+                >
+                  <Search size={20} />
+                </button>
               </div>
-              <select
-                className="filter-select"
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
-              >
-                <option value="all">All Departments</option>
-                <option value="operations">Operations</option>
-                <option value="marketing">Marketing</option>
-                <option value="support">Support</option>
-              </select>
+
+              {/* Custom Dropdown */}
+              <div className="relative w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => setOpenDropdown(!openDropdown)}
+                  className="flex justify-between items-center w-full sm:w-[200px] border-2 border-[var(--primary-header-color)] rounded-lg py-3 px-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
+                >
+                  {filters.find((f) => f.value === selectedFilter)?.label}
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-200 ${
+                      openDropdown ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {openDropdown && (
+                  <ul className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white">
+                    {filters.map((f) => (
+                      <li
+                        key={f.value}
+                        onClick={() => {
+                          setSelectedFilter(f.value);
+                          setOpenDropdown(false);
+                        }}
+                        className="px-4 py-2 cursor-pointer hover:bg-[var(--primary-color)] hover:text-white rounded-lg"
+                      >
+                        {f.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
 

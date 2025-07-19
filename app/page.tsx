@@ -136,7 +136,7 @@ export default function Home() {
           </h3>
         </div>
 
-        {/* Accordion Component */}a
+        {/* Accordion Component */}
         <div className="w-full max-w-7xl">
           <Accordion />
         </div> 

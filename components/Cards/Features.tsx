@@ -69,7 +69,7 @@ const Features = ({ data }: FeaturesProps) => {
   const featuresData = data && data.length > 0 ? data : fallbackData;
 
   return (
-    <section className="py-20">
+    <section className="pb-20">
       <div className="max-w-7xl mx-auto px-4 flex justify-center">
         <div  className={
     `grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-5 justify-center items-center ` +

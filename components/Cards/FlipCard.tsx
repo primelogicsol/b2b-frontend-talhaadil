@@ -37,8 +37,7 @@ export const FlipCard = ({
           <div
             className="h-full rounded-2xl p-6 flex items-center justify-center
             bg-[var(--primary-color)]
-            border-white/20
-            border-2
+            border-white/20 border-2
             backdrop-blur-xl transition-all duration-500"
           >
             {isVertical ? (
