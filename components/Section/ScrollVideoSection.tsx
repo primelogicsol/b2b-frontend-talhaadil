@@ -83,7 +83,7 @@ function MediaSlider({
 
 
 export default function ScrollVideoSection({
-  heading = "Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury Markets Handicraft Progressive Business Model for Every Vision Seamless Sourcing, Certified Authenticity, and Scalable Partnerships, Connecting You to the Finest Kashmiri Handicrafts for a Competitive Edge in Luxury Markets",
+  heading = "At De Koshur Crafts, our mission transcends the typical e-commerce experience. We are driven by a single, unyielding belief: that authentic Kashmiri craftsmanship deserves recognition, respect, and a global stage. Our goal is to empower artisans, preserve their ancient crafts, and connect them to a thriving international market, ensuring sustainability and fair trade at every step of the way.",
   introLabel = "Our Mission",
   items, // optional to override media
 }: {

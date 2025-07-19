@@ -2,40 +2,51 @@
 
 import { useState } from "react"
 import { CheckCircle } from "lucide-react"
-
-export function Timeline() {
+import { Globe, Heart, Users, Award, Star, Sparkles } from "lucide-react"
+export default function Timeline() {
   const [activeItem, setActiveItem] = useState(0)
-
-  const timelineItems = [
+const timelineItems = [
+    {
+      year: "2019",
+      title: "The Vision Born",
+      description:
+        "Fayaz Ahmad Khan founded De Koshur Crafts with a mission to preserve Kashmir's rich heritage and empower local artisans facing economic challenges.",
+      icon: <Sparkles className="h-6 w-6" />,
+    },
     {
       year: "2020",
-      title: "Taxim Launched",
+      title: "Building Foundations",
       description:
-        "Started as a specialized outsourcing provider, offering dispatch and administrative support to British taxi companies.",
+        "Established our platform connecting the first 100 artisans with global markets, focusing on authentic Pashmina shawls and Papier Mâché artifacts.",
+      icon: <Users className="h-6 w-6" />,
     },
     {
       year: "2021",
-      title: "Service Expansion",
+      title: "Global Expansion",
       description:
-        "Introduced accounting, email management, and project oversight to help taxi businesses operate more efficiently.",
+        "Reached 500+ artisans and secured partnerships with 25+ international buyers, expanding our reach across Europe and North America.",
+      icon: <Globe className="h-6 w-6" />,
     },
     {
       year: "2022",
       title: "Technology Integration",
       description:
-        "Adopted advanced dispatch systems like CAB9, Autocab, and CRM tools to streamline taxi operations.",
-    },
-    {
-      year: "2023",
-      title: "Growth & Digital Solutions",
-      description:
-        "Expanded digital marketing services, including social media management, web development, and branding strategies.",
+        "Introduced blockchain technology for product authenticity and AI-powered tools to help artisans optimize their businesses and reach.",
+      icon: <Award className="h-6 w-6" />,
     },
     {
       year: "2024",
-      title: "Scaling Nationwide",
+      title: "Thriving Community",
       description:
-        "Strengthened our nationwide presence, helping taxi companies across the UK enhance efficiency and profitability.",
+        "Now supporting 2000+ artisans with 100+ global buyers, having paid millions directly to craftspeople while preserving centuries-old techniques.",
+      icon: <Star className="h-6 w-6" />,
+    },
+    {
+      year: "2025",
+      title: "Thriving Community",
+      description:
+        "Now supporting 2000+ artisans with 100+ global buyers, having paid millions directly to craftspeople while preserving centuries-old techniques.",
+      icon: <Star className="h-6 w-6" />,
     },
   ]
 

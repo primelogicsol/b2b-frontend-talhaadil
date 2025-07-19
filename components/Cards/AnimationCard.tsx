@@ -1,9 +1,11 @@
 "use client"
 
-import { Snowflake, ShieldCheck, Sun, Cloud, Wind, Droplets, ThermometerSun, Sparkles, ArrowRight } from "lucide-react"
+import {
+  ArrowRight,
+} from "lucide-react"
 import type React from "react"
 
-interface AnimationCardProps {
+export interface AnimationCardProps {
   title?: string
   description?: string
   icon?: React.ReactNode
@@ -11,15 +13,15 @@ interface AnimationCardProps {
   onReadMore?: () => void
 }
 
-function AnimationCard({
+export function AnimationCard({
   title = "Cool Wave System",
   description = "Upgrade to the latest energy and efficient air conditioning Frost technology with Eco Cool",
-  icon = <Snowflake className="w-8 h-8" />,
+  icon,
   buttonText = "READ MORE",
   onReadMore,
 }: AnimationCardProps) {
   return (
-    <div className="group relative w-full max-w-xs sm:max-w-sm h-96  rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl mx-auto bg-white">
+    <div className="group relative w-full max-w-xs sm:max-w-sm h-96 rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl mx-auto bg-white">
       <div className="absolute top-0 left-0 w-16 h-32 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
       <div className="absolute bottom-0 right-0 w-16 h-32 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
 
@@ -56,59 +58,27 @@ function AnimationCard({
   )
 }
 
-const cardsData = [
-  {
-    icon: <Snowflake className="w-8 h-8" />, 
-    title: "Cool Wave System",
-    description: "Upgrade to efficient air conditioning with FrostTech.",
-  },
-  {
-    icon: <ShieldCheck className="w-8 h-8" />,
-    title: "SafeAir Guarantee",
-    description: "Breathe pure, allergen-free air every day.",
-  },
-  {
-    icon: <Sun className="w-8 h-8" />,
-    title: "Solar Optimized",
-    description: "Runs on sustainable solar energy during peak hours.",
-  },
-  {
-    icon: <Cloud className="w-8 h-8" />,
-    title: "Humidity Balance",
-    description: "Balances moisture for total comfort.",
-  },
-  {
-    icon: <Wind className="w-8 h-8" />,
-    title: "JetFlow Mode",
-    description: "Rapid cooling in large open spaces with JetFlow.",
-  },
-  {
-    icon: <Droplets className="w-8 h-8" />,
-    title: "Dry Mode Tech",
-    description: "Eliminates excess humidity with smart sensors.",
-  },
-  {
-    icon: <ThermometerSun className="w-8 h-8" />,
-    title: "Auto Climate",
-    description: "AI adjusts the temperature based on time and usage.",
-  },
-  {
-    icon: <Sparkles className="w-8 h-8" />,
-    title: "WhisperClean System",
-    description: "Quiet and clean air technology for restful sleep.",
-  },
-]
+export interface CardData {
+  icon: React.ReactNode
+  title: string
+  description: string
+  buttonText?: string
+}
 
-export default function AnimationCardGrid() {
+interface AnimationCardGridProps {
+  data: CardData[]
+}
+
+export function AnimationCardGrid({ data }: AnimationCardGridProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 py-12">
-      {cardsData.map((card, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-12">
+      {data.map((card, index) => (
         <AnimationCard
           key={index}
           icon={card.icon}
           title={card.title}
           description={card.description}
-          buttonText="READ MORE"
+          buttonText={card.buttonText}
           onReadMore={() => alert(`Read more about: ${card.title}`)}
         />
       ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import AnimationCard from "@/components/Cards/AnimationCard";
+import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { SliderCard } from "@/components/Cards/SliderCard";
 import Accordion from "@/components/Material/Accordion";
 import Counter from "@/components/Material/Counter";
@@ -71,7 +71,7 @@ export default function Home() {
           {/* Actual AnimationCard */}
           <div className="border-2 rounded-2xl">
 
-          <AnimationCard />
+        /
           </div>
         </div>
       </section>

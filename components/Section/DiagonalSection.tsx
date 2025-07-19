@@ -1,59 +1,57 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { ArrowUp } from "lucide-react"
-import { useEffect, useState } from "react"
+import Image from "next/image";
+import { ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface SectionProps {
-  subtitle?: string
-  title?: string
-  highlight?: string
-  description?: string
-  steps?: string[]
-  footerHeadline?: string
-  footerDescription?: string
-  mainImage?: string
-  smallImage?: string
+  subtitle?: string;
+  title?: string;
+  highlight?: string;
+  description?: string;
+  steps?: string[];
+  footerHeadline?: string;
+  footerDescription?: string;
+  mainImage?: string;
+  smallImage?: string;
 }
 
 export default function DiagonalSection({
   subtitle = "WELCOME TO B2B CONNECT - USA",
   title = "Empowering Kashmiri Artisans, Startups in Accessing American",
   highlight = "Markets",
-  description = "A transformative and progressive platform with an investment of $3.7 million, connecting Kashmir's artisans, startups, and businesses to global markets, fostering fair trade, preserving heritage, and unlocking boundless opportunities for sustainable growth.",
+  description = "At De Koshur Crafts, our mission transcends the typical e-commerce experience.We believe that authentic Kashmiri craftsmanship deserves global respect, recognition, and reach.Our platform empowers artisans, preserves heritage crafts, and connects them to international markets through sustainable, fair trade practices and innovation.",
   steps = [
-    "Dream It: Envision your goals. We'll provide the roadmap",
-    "Define It: Select the partnership model tailored to your ambitions.",
-    "Deliver It: Upload your credentials, verify your status, and join a league of visionary partners.",
-    "Dominate It: Access our resources and watch your business flourish on the global stage."
-  ],
-  footerHeadline = "Handicraft Progressive Business Model for Every Vision",
-  footerDescription = "Crafting Kashmir's Next Generations Future Together | Amir-e-Kabir's Legacy, Reimagined for Today's World",
+  "Honor It: Celebrate Kashmir’s artistry by uplifting Pashmina, Kani weaving, and Papier Mâché through global recognition and fair trade.",
+  "Preserve It: Protect centuries‑old craftsmanship with sustainable methods, cultural safeguarding, and technology‑backed authenticity.",
+  "Empower It: Equip artisans with training, tools, and direct markets so they grow businesses and earn fair compensation.",
+  "Share It: Carry each artisan’s story worldwide using digital platforms, transparent sourcing, and innovative outreach."
+],
+  footerHeadline = "Crafting a Borderless Platform Rooted in Legacy",
+  footerDescription = "Empowering Artisans | Preserving Culture | Advancing Ethical Innovation",
   mainImage = "/images/new-pic6.webp",
-  smallImage = "/images/new-pic4.webp"
+  smallImage = "/images/new-pic4.webp",
 }: SectionProps) {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
+        setIsVisible(false);
       }
-    }
-    window.addEventListener("scroll", toggleVisibility)
-    return () => window.removeEventListener("scroll", toggleVisibility)
-  }, [])
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
-     
-
       <div
         className="absolute inset-0 z-0 opacity-10"
         style={{
@@ -92,7 +90,12 @@ export default function DiagonalSection({
         <div className="w-full max-w-2xl text-center lg:text-left">
           <div className="flex items-center justify-center lg:justify-start mb-4">
             <div className="w-12 h-0.5 bg-[var(--primary-color)] mr-3"></div>
-            <p className="text-sm font-semibold uppercase text-gray-600">{subtitle}</p>
+            <p className="text-sm font-semibold uppercase text-gray-600">
+              {subtitle}
+              <span className="text-[var(--secondary-color)] text-sm font-semibold uppercase ml-2">
+                Mission
+              </span>
+            </p>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
             {title} <br className="hidden md:block" />{" "}
@@ -103,22 +106,30 @@ export default function DiagonalSection({
           </p>
 
           <div className="grid gap-6 mb-8">
-            {steps.map((text, i) => (
-              <div key={i} className="flex items-start group">
-                <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 mr-4 transition-all duration-300 group-hover:w-12"></div>
-                <p className="font-bold text-lg">{text}</p>
-              </div>
-            ))}
+            {steps.map((text, i) => {
+              const [before, after] = text.split(":");
+              return (
+                <div key={i} className="flex items-start group">
+                  <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 mr-4 transition-all duration-300"></div>
+                  <p className="font-bold text-lg">
+                    <span className="text-[var(--secondary-color)]">
+                      {before}
+                    </span>
+                    {after ? `:${after}` : ""}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
           <div className="text-sm text-gray-600 mt-8">
-            <p className="font-bold text-[var(--primary-color)] mb-1">{footerHeadline}</p>
+            <p className="font-bold text-[var(--primary-color)] mb-1">
+              {footerHeadline}
+            </p>
             <p>{footerDescription}</p>
           </div>
         </div>
       </main>
-
-      
     </div>
-  )
+  );
 }
