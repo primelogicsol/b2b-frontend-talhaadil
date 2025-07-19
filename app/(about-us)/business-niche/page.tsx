@@ -32,8 +32,31 @@ function page() {
       </section>
 
       <PremiumTabs />
-      <Counter />
-      <Counter />
+      <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
+      <div className="text-center mt-16 mb-6">
+        <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4">
+          Our Reach
+        </h2>
+      </div>
+
+      <section className="py-6">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-3xl font-extrabold text-[var(--secondary-color)] mb-3">
+            Vendors
+          </h3>
+          <Counter />
+        </div>
+      </section>
+
+      <section className="py-6">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-3xl font-extrabold text-[var(--secondary-color)] mb-3">
+            Buyers
+          </h3>
+          <Counter />
+        </div>
+      </section>
+</div>
       <ScrollSection />
     </div>
   );

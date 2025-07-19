@@ -69,7 +69,7 @@ export default function Home() {
           </div>
 
           {/* Actual AnimationCard */}
-          <div className="border border-2 rounded-2xl">
+          <div className="border-2 rounded-2xl">
 
           <AnimationCard />
           </div>

@@ -1,22 +1,27 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
-import { useRef, useState, useEffect, useCallback } from "react"
+import Image from "next/image";
+import {
+  ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 interface Feature {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
 interface KashmiriArtisansSectionProps {
-  mainTitle?: string
-  mainDescription?: string
-  imageSrc?: string
-  imageAlt?: string
-  imageLabel?: string
-  features?: Feature[]
-  autoslideInterval?: number
+  mainTitle?: string;
+  mainDescription?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  imageLabel?: string;
+  features?: Feature[];
+  autoslideInterval?: number;
 }
 
 const defaultFeatures: Feature[] = [
@@ -50,10 +55,10 @@ const defaultFeatures: Feature[] = [
     description:
       "Our mission includes preserving and promoting the rich cultural heritage of Kashmiri craftsmanship for future generations.",
   },
-]
+];
 
 export default function ScrollSection({
-  mainTitle = "Supporting Kashmiri Artisans & Crafts.",
+  mainTitle = "Discover Our Business Location",
   mainDescription = "Elevating Kashmiri craftsmanship through American business processes, consumer tastes, and technology innovation. We connect you at no cost with North America, representing 80% of the global handicraft market.",
   imageSrc = "/images/kashmiri-artisans.png",
   imageAlt = "Group of people sitting in a modern office setting",
@@ -61,86 +66,103 @@ export default function ScrollSection({
   features = defaultFeatures,
   autoslideInterval = 5000,
 }: KashmiriArtisansSectionProps) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [thumbSize, setThumbSize] = useState(0)
-  const [isHovering, setIsHovering] = useState(false)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [thumbSize, setThumbSize] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleScroll = useCallback(() => {
     if (scrollContainerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current
-      const scrollableHeight = scrollHeight - clientHeight
+      const { scrollTop, scrollHeight, clientHeight } =
+        scrollContainerRef.current;
+      const scrollableHeight = scrollHeight - clientHeight;
       if (scrollableHeight > 0) {
-        setScrollProgress(scrollTop / scrollableHeight)
-        const newThumbSize = (clientHeight / scrollHeight) * 100
-        setThumbSize(Math.max(10, newThumbSize))
+        setScrollProgress(scrollTop / scrollableHeight);
+        const newThumbSize = (clientHeight / scrollHeight) * 100;
+        setThumbSize(Math.max(10, newThumbSize));
       } else {
-        setScrollProgress(0)
-        setThumbSize(100)
+        setScrollProgress(0);
+        setThumbSize(100);
       }
     }
-  }, [])
+  }, []);
 
   const scrollTo = useCallback((direction: "up" | "down") => {
     if (scrollContainerRef.current) {
-      const currentScrollTop = scrollContainerRef.current.scrollTop
-      const firstFeatureCard = scrollContainerRef.current.children[0] as HTMLElement
-      const scrollAmount = firstFeatureCard ? firstFeatureCard.offsetHeight + 32 : 0
+      const currentScrollTop = scrollContainerRef.current.scrollTop;
+      const firstFeatureCard = scrollContainerRef.current
+        .children[0] as HTMLElement;
+      const scrollAmount = firstFeatureCard
+        ? firstFeatureCard.offsetHeight + 32
+        : 0;
 
       scrollContainerRef.current.scrollTo({
-        top: direction === "down" ? currentScrollTop + scrollAmount : currentScrollTop - scrollAmount,
+        top:
+          direction === "down"
+            ? currentScrollTop + scrollAmount
+            : currentScrollTop - scrollAmount,
         behavior: "smooth",
-      })
+      });
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const startAutoslide = () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
+      if (intervalRef.current) clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
         if (scrollContainerRef.current && !isHovering) {
-          const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current
-          const scrollableHeight = scrollHeight - clientHeight
-          const firstFeatureCard = scrollContainerRef.current.children[0] as HTMLElement
-          const scrollStep = firstFeatureCard ? firstFeatureCard.offsetHeight + 32 : 0
+          const { scrollTop, scrollHeight, clientHeight } =
+            scrollContainerRef.current;
+          const scrollableHeight = scrollHeight - clientHeight;
+          const firstFeatureCard = scrollContainerRef.current
+            .children[0] as HTMLElement;
+          const scrollStep = firstFeatureCard
+            ? firstFeatureCard.offsetHeight + 32
+            : 0;
 
-          if (scrollableHeight <= 0) return
+          if (scrollableHeight <= 0) return;
           if (scrollTop + clientHeight >= scrollHeight - 1) {
-            scrollContainerRef.current.scrollTo({ top: 0, behavior: "smooth" })
+            scrollContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
           } else {
-            scrollContainerRef.current.scrollBy({ top: scrollStep, behavior: "smooth" })
+            scrollContainerRef.current.scrollBy({
+              top: scrollStep,
+              behavior: "smooth",
+            });
           }
         }
-      }, autoslideInterval)
-    }
+      }, autoslideInterval);
+    };
 
-    if (!isHovering) startAutoslide()
-    else if (intervalRef.current) clearInterval(intervalRef.current)
+    if (!isHovering) startAutoslide();
+    else if (intervalRef.current) clearInterval(intervalRef.current);
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-    }
-  }, [autoslideInterval, isHovering])
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [autoslideInterval, isHovering]);
 
   useEffect(() => {
-    handleScroll()
-    const container = scrollContainerRef.current
-    if (container) container.addEventListener("scroll", handleScroll)
-    window.addEventListener("resize", handleScroll)
+    handleScroll();
+    const container = scrollContainerRef.current;
+    if (container) container.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
     return () => {
-      if (container) container.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleScroll)
-    }
-  }, [handleScroll])
+      if (container) container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [handleScroll]);
 
-  const thumbPosition = scrollProgress * (100 - thumbSize)
+  const thumbPosition = scrollProgress * (100 - thumbSize);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-20"
-        style={{ backgroundImage: `radial-gradient(circle, #d1d5db 1px, transparent 1px)`, backgroundSize: "10px 10px" }}
+        style={{
+          backgroundImage: `radial-gradient(circle, #d1d5db 1px, transparent 1px)`,
+          backgroundSize: "10px 10px",
+        }}
       ></div>
 
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -148,13 +170,17 @@ export default function ScrollSection({
         <div className="flex flex-col">
           <div className="flex items-center gap-2 text-[var(--primary-color)] text-sm font-semibold uppercase tracking-wider">
             <span className="w-8 h-0.5 bg-[var(--primary-color)]"></span>
-            <span>UNIQUE AMERICAN BUSINESS GIFT</span>
+            <span>Built for vision and connection</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4">
-            {mainTitle.split("&")[0]}
-            {mainTitle.includes("&") && <span className="text-[var(--secondary-color)]">& {mainTitle.split("&")[1]}</span>}
+            {mainTitle.split(" ").slice(0, 2).join(" ")}{" "}
+            <span className="text-[var(--secondary-color)]">
+              {mainTitle.split(" ").slice(2).join(" ")}
+            </span>
           </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-md">{mainDescription}</p>
+          <p className="mt-4 text-lg text-gray-600 max-w-md">
+            {mainDescription}
+          </p>
 
           <div className="mt-8 relative group overflow-hidden rounded-lg shadow-lg">
             <Image
@@ -180,9 +206,14 @@ export default function ScrollSection({
             onMouseLeave={() => setIsHovering(false)}
           >
             {features.map((feature, i) => (
-              <div key={i} className="bg-white p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+              <div
+                key={i}
+                className="bg-white p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
+              >
                 <div className="w-12 h-0.5 bg-[var(--primary-color)] mb-2"></div>
-                <h2 className="text-xl font-bold text-gray-900">{feature.title}</h2>
+                <h2 className="text-xl font-bold text-gray-900">
+                  {feature.title}
+                </h2>
                 <p className="mt-2 text-gray-600">{feature.description}</p>
               </div>
             ))}
@@ -221,11 +252,12 @@ export default function ScrollSection({
             </button>
           </div>
 
-          <div className="mt-8 self-center w-4 h-4 rounded-full border-2 border-red-500 bg-[var(--primary-color)] animate-pulse
+          <div
+            className="mt-8 self-center w-4 h-4 rounded-full border-2 border-red-500 bg-[var(--primary-color)] animate-pulse
                           lg:absolute lg:bottom-4 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0"
           ></div>
         </div>
       </div>
     </div>
-  )
+  );
 }

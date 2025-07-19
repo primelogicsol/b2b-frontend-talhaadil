@@ -166,10 +166,10 @@ export default function PremiumTabs() {
           transition={{ duration: 0.8 }}
         >
           <h1
-            className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)]"
+            className="text-5xl md:text-6xl font-bold mb-6 text-[var(--secondary-color)] "
           
           >
-            Premium Platform
+           Business Insights
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Experience the next generation of productivity tools designed for modern teams

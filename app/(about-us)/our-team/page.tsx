@@ -4,6 +4,7 @@ import RectangleSection from '@/components/Section/RectangleSection'
 import TeamCraftSupport from '@/components/Section/TeamCraftSupport'
 import TeamVisionSection from '@/components/Section/TeamVisionSection'
 import React from 'react'
+import SectionTitle from '@/components/Section/SectionTitle'
 
 function page() {
   const teamMembers = [
@@ -58,8 +59,8 @@ function page() {
 
       {/* Team Members Section */}
       <section className="py-20 bg-[var(--primary-color)] text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--secondary-color)]">Leadership Team</h2>
-        <p className="text-gray-300 mb-12 max-w-3xl mx-auto">
+      <SectionTitle SubTitle='Our Team' Title='Our Team'/>
+        <p className="text-gray-300 mb-12 mt-6 max-w-3xl mx-auto">
           Our core team members bring vision, innovation, and commitment to the heart of De Koshur Crafts.
         </p>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-items-center max-w-6xl mx-auto">

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -30,14 +29,14 @@ export default function MissionSection() {
           viewport={{ once: true }}
           className="space-y-6"
         >
-          <h5 className="text-sm text-[var(--primary-color)] uppercase font-medium mb-2">
-            OUR MISSION
+          <h5 className="text-sm text-[var(--primary-color)] uppercase font-bold mb-2">
+            OUR WAYS
           </h5>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-snug">
-            Empowering Growth through <span className="text-[var(--secondary-color)]">Innovation</span>
+            Brand <span className="text-[var(--secondary-color)]">Credentials</span>
           </h2>
           <p className="text-gray-600 text-base">
-            We aim to deliver technology solutions that inspire trust, drive business growth, and create a better digital future.
+        Our mission is to deliver innovative technology solutions that not only solve complex business challenges but also inspire lasting trust among our clients and partners. We are committed to driving measurable business growth by leveraging cutting‑edge tools, strategic insights, and forward‑thinking approaches. Every solution we design is built with the future in mind—empowering organizations to adapt, thrive, and lead in a rapidly evolving digital landscape. Through our work, we aim to create a better, smarter, and more connected digital future for businesses and communities alike.
           </p>
         </motion.div>
 

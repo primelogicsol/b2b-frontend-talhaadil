@@ -108,8 +108,8 @@ export function Navbar() {
   const blogDropdownItems = [
     { label: "Our Values", href: "/our-values" },
     { label: "Our Story", href: "/our-story" },
+    { label: "Our Team", href: "/our-team" },
     { label: "Business Niche", href: "/business-niche" },
-    { label: "Our Team", href: "/team" },
     { label: "Careers", href: "/careers" },
     { label: "Contact Us", href: "/contact" },
   ]
