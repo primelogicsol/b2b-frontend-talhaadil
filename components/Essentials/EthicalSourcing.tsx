@@ -167,23 +167,23 @@ export default function EthicalSourcingSustainability() {
     },
     {
       icon: Shield,
-      title: "No Child Labor",
+      title: "Child Free",
       description:
-        "We ensure that no child labor is used in the production of any goods sold through our platform.",
+        "We strictly ensure no child labor is ever involved in producing any goods offered on our platform, protecting ethical standards and fairness.",
       stat: "100% verified workshops",
     },
     {
       icon: Users,
-      title: "Safe Working Conditions",
+      title: "Work Safety",
       description:
-        "We work with artisans to ensure that their working environments are safe and health-conscious.",
+        "We closely collaborate with artisans, making sure their workplaces remain safe, healthy, and supportive so they can thrive while creating quality goods. ",
       stat: "ISO certified facilities",
     },
     {
       icon: Globe,
-      title: "Traceability",
+      title: "Origin Tracking",
       description:
-        "Using blockchain technology, we track the origin and journey of every product from workshop to final sale.",
+        "Using blockchain technology, we carefully track each product’s origin and full journey from the artisan’s workshop to its final sale.",
       stat: "End-to-end tracking",
     },
   ];
@@ -216,7 +216,8 @@ export default function EthicalSourcingSustainability() {
     {
       icon: Package,
       title: "Sustainable Packaging",
-      description: "Recycled materials and eco-friendly packaging options",
+      description:
+        "Recycled materials and innovative eco‑friendly packaging options",
       percentage: 78,
       color: "from-[var(--secondary-hover-color)] to-[var(--secondary-color)]",
     },
@@ -385,7 +386,7 @@ export default function EthicalSourcingSustainability() {
                 <p className="text-gray-600 leading-relaxed mb-4">
                   {principle.description}
                 </p>
-                <div className="bg-[var(--secondary-light-color)] text-[var(--secondary-color)] px-3 py-1 rounded-full text-sm font-semibold inline-block">
+                <div className="bg-[var(--primary-color)] text-white px-3 py-1 rounded-full text-sm font-semibold inline-block">
                   {principle.stat}
                 </div>
               </div>
@@ -466,91 +467,7 @@ export default function EthicalSourcingSustainability() {
         </div>
       </section>
 
-      {/* Process Timeline Slider */}
-      <section className="scroll-section py-20 px-4 bg-[var(--primary-light-text-color)] text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our{" "}
-              <span className="text-[var(--secondary-color)]">
-                Sustainability Process
-              </span>
-            </h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              From sourcing to delivery, every step is designed with
-              sustainability in mind.
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${processSlide * 100}%)` }}
-              >
-                {processSteps.map((step, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center p-8">
-                      <div>
-                        <div className="bg-gradient-to-br from-[#00acc1] to-[#1b4f68] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                          <step.icon className="w-8 h-8 text-white" />
-                        </div>
-                        <h3 className="text-3xl font-bold mb-4">
-                          {step.title}
-                        </h3>
-                        <p className="text-lg text-gray-300 leading-relaxed">
-                          {step.description}
-                        </p>
-                      </div>
-                      <div className="relative">
-                        <img
-                          src={step.image || "/placeholder.svg"}
-                          alt={step.title}
-                          className="w-full h-80 object-cover rounded-2xl"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1b4f68] to-transparent opacity-30 rounded-2xl"></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Process Slider Controls */}
-            <div className="flex justify-center gap-4 mt-8">
-              <button
-                onClick={() =>
-                  prevSlide(processSlide, processSteps.length, setProcessSlide)
-                }
-                className="bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] p-3 rounded-full transition-all duration-300 hover:scale-110"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <div className="flex gap-2 items-center">
-                {processSteps.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setProcessSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === processSlide
-                        ? "bg-[var(--secondary-light-color)] scale-125"
-                        : "bg-gray-600"
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={() =>
-                  nextSlide(processSlide, processSteps.length, setProcessSlide)
-                }
-                className="bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] p-3 rounded-full transition-all duration-300 hover:scale-110"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+    
 
       {/* Testimonials Slider */}
       <section className="scroll-section py-20 px-4">
@@ -576,7 +493,7 @@ export default function EthicalSourcingSustainability() {
               >
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-gradient-to-br from-white to-[var(--secondary-light-color)] rounded-3xl p-8 md:p-12 shadow-2xl max-w-4xl mx-auto">
+                    <div className="bg-gradient-to-br rounded-3xl p-8 md:p-12 shadow-2xl max-w-4xl mx-auto">
                       <div className="flex flex-col md:flex-row items-center gap-8">
                         <div className="flex-shrink-0">
                           <img
@@ -661,28 +578,25 @@ export default function EthicalSourcingSustainability() {
         </div>
       </section>
 
-      {/* Why Sustainability Matters */}
-      <section className="scroll-section py-20 px-4 bg-[var(--secondary-light-color)] text-white">
+      <section className="scroll-section py-20 px-4 text-gray-900">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Why Sustainability{" "}
-                <span className="text-[var(--primary-hover-color)]">
-                  Matters to Us
-                </span>
+                Our Promise to{" "}
+                <span className="text-[var(--primary-color)]">Kashmir</span>
               </h2>
               <p className="text-lg opacity-90 mb-8 leading-relaxed">
-                At De Koshur Crafts, we believe that sustainability is not a
-                trend, but a responsibility. As a platform that bridges
-                traditional craftsmanship with the modern market, we understand
-                our role in protecting the planet.
+                Every dollar earned through B2B Connect drives initiatives back
+                to the valley:
               </p>
               <div className="space-y-4">
                 {[
-                  "Economic prosperity without compromising environmental integrity",
-                  "Benefits the planet, artisans, and conscious buyers",
-                  "Leading by example in responsible business practices",
+                  "Digital craft literacy",
+                  "Artisan health & tool grants",
+                  "International design collaborations",
+                  "Scholarships for artisan youth",
+                  "Publications via CraftLore and HCRF",
                 ].map((point, index) => (
                   <div key={index} className="flex items-center gap-3 group">
                     <CheckCircle className="w-6 h-6 text-[var(--primary-cyan-color)] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
@@ -692,17 +606,21 @@ export default function EthicalSourcingSustainability() {
                   </div>
                 ))}
               </div>
+              <p className="text-lg opacity-90 mt-8 leading-relaxed">
+                We don’t extract value from Kashmir. We return it.
+              </p>
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-[var(--primary-light-text-color)] to-[var(--primary-color)] rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
                 <Award className="w-16 h-16 text-white mb-6 relative z-10" />
-                <h3 className="text-2xl font-bold mb-4 relative z-10">
-                  Win-Win Situation
+                <h3 className="text-2xl font-bold mb-4 relative z-10 text-white">
+                  Impact That Matters
                 </h3>
-                <p className="opacity-90 leading-relaxed relative z-10">
-                  Our sustainable approach creates value for everyone involved -
-                  from artisans to buyers to the planet itself.
+                <p className="opacity-90 leading-relaxed relative z-10 text-white">
+                  Every initiative directly empowers artisans, preserves
+                  heritage, and strengthens sustainable growth for the valley’s
+                  future.
                 </p>
               </div>
             </div>
@@ -727,31 +645,28 @@ export default function EthicalSourcingSustainability() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Expanding Sustainable Initiatives",
+                title: "Sustainable Efforts",
                 description:
                   "Helping more artisans adopt green practices in their production processes",
                 color:
                   "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
                 icon: TrendingUp,
-                target: "500+ artisans by 2025",
               },
               {
-                title: "Broadening Global Impact",
+                title: "Global Impact",
                 description:
                   "Connecting more buyers with artisans who prioritize sustainability",
                 color:
                   "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
                 icon: Globe,
-                target: "50 countries by 2026",
               },
               {
-                title: "Environmental Stewardship",
+                title: "Environmental Care",
                 description:
                   "Minimizing carbon footprint with like-minded partners",
                 color:
                   "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
                 icon: Leaf,
-                target: "Carbon neutral by 2027",
               },
             ].map((goal, index) => (
               <div
@@ -770,9 +685,6 @@ export default function EthicalSourcingSustainability() {
                 <p className="text-gray-600 leading-relaxed mb-4">
                   {goal.description}
                 </p>
-                <div className="bg-[#e4e6eb] text-[#346880] px-3 py-1 rounded-full text-sm font-semibold inline-block">
-                  {goal.target}
-                </div>
               </div>
             ))}
           </div>

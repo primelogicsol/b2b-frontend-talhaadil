@@ -424,9 +424,7 @@ export default function PremiumTabs() {
   return (
     <div
       className="p-4 md:p-8 lg:p-12"
-      style={{
-        background: "linear-gradient(to bottom right,var(--primary-color),var(--primary-hover-color),var(--primary-light-text-color)",
-      }}
+    
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -441,7 +439,7 @@ export default function PremiumTabs() {
           >
            Business Insights
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Actionable Data and Strategies to Guide Smarter Decisions
           </p>
         </motion.div>
@@ -456,7 +454,7 @@ export default function PremiumTabs() {
           <div
             className="flex gap-2 p-2 rounded-full shadow-lg border overflow-x-auto no-scrollbar"
             style={{
-              backgroundColor: "white",
+              backgroundColor: "var(--primary-color)",
               borderColor: "var(--primary-light-text-color)",
             }}
           >
@@ -468,7 +466,7 @@ export default function PremiumTabs() {
                   className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex items-center gap-2 text-sm ${
                     activeTab === key
                       ? "text-white shadow-lg"
-                      : "text-gray-600 hover:text-gray-900"
+                      : "text-white"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -517,7 +515,7 @@ export default function PremiumTabs() {
                   }}
                   className="rounded-2xl shadow-xl p-8 border transition-all duration-300 group cursor-pointer relative overflow-hidden"
                   style={{
-                    backgroundColor: "white",
+                    backgroundColor: "var(--primary-color)",
                     borderColor: "var(--primary-light-text-color)",
                   }}
                 >
@@ -531,7 +529,7 @@ export default function PremiumTabs() {
                   <div className="relative z-10">
                     <div className="flex items-center gap-4 mb-6">
                      
-                      <h3 className="text-xl font-bold text-gray-500 group-hover:text-[var(--primary-color)] transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-100 transition-colors duration-300">
                         {card.title}
                       </h3>
                     </div>
@@ -542,15 +540,15 @@ export default function PremiumTabs() {
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 + pointIndex * 0.05 }}
-                          className="flex items-start gap-3 text-gray-600"
+                          className="flex items-start gap-3 text-gray-100"
                         >
                           <motion.div
-                            className="w-2 h-2 rounded-full mt-2"
+                            className="w-2 h-2 rounded-full mt-1"
                             style={{
-                              background: "linear-gradient(to right, var(--primary-color), var(--secondary-hover-color))",
+                              background: "white",
                             }}
                           />
-                          <span className="text-sm leading-relaxed">{point}</span>
+                          <span className="text-sm leading-relaxed -mt-1">{point}</span>
                         </motion.li>
                       ))}
                     </ul>

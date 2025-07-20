@@ -79,7 +79,7 @@ export default function ContactUs() {
       phone: "+1 (XXX) XXX-XXXX",
       hours: "Join our platform today",
       icon: Heart,
-      color: "from-[var(--secondary-color)] to-[var(--secondary-hover-color)]",
+      color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
     },
     {
       title: "Partnership Inquiries",
@@ -89,7 +89,7 @@ export default function ContactUs() {
       phone: "+1 (XXX) XXX-XXXX",
       hours: "Collaboration opportunities",
       icon: Building,
-      color: "from-[var(--secondary-hover-color)] to-[var(--secondary-color)]",
+      color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
     },
     {
       title: "Customer Support",
@@ -99,7 +99,7 @@ export default function ContactUs() {
       phone: "+1 (XXX) XXX-XXXX",
       hours: "Available 24/7",
       icon: Users,
-      color: "from-[var(--primary-hover-color)] to-[var(--primary-color)]",
+      color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
     },
   ]
 
@@ -111,7 +111,7 @@ export default function ContactUs() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e4e6eb] via-white to-[#f9c6b2]">
+    <div className="min-h-screen bg-[#e4e6eb]">
       {/* Hero Section */}
       <section>
         <VerticalHeroSlider/>
@@ -255,7 +255,7 @@ export default function ContactUs() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#f9c6b2] to-[#e4e6eb]">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] mb-6">
@@ -365,7 +365,7 @@ export default function ContactUs() {
                 ></textarea>
               </div>
 
-              <div className="text-center">
+              <div className="text-right">
                 <button
                   type="submit"
                   disabled={isSubmitting}

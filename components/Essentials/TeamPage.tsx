@@ -1,9 +1,137 @@
 "use client";
+import {
+  Scissors,
+  Hammer,
+  Paintbrush,
+  MessageSquare,
+  Megaphone,
+  DollarSign,
+    Handshake,
+    Sprout,
+    Target,
+    Landmark,
+} from "lucide-react";
 
 import { useState, useEffect } from "react";
 
 export default function TeamPage() {
   const [isVisible, setIsVisible] = useState(false);
+   const features = [
+    {
+      icon: <Handshake className="w-8 h-8" />,
+      title: "Global Partners",
+      text: "Worldwide network",
+    },
+    {
+      icon: <Target className="w-8 h-8" />,
+      title: "Ethical Practices",
+      text: "Fair trade commitment",
+    },
+    {
+      icon: <Sprout className="w-8 h-8" />,
+      title: "Sustainability",
+      text: "Eco-friendly approach",
+    },
+    {
+      icon: <Landmark className="w-8 h-8" />,
+      title: "Heritage",
+      text: "Cultural preservation",
+    },
+  ];
+  const supportItems = [
+    {
+      icon: <MessageSquare className="w-8 h-8" />,
+      title: "Customer Support",
+      description:
+        "Dedicated to providing exceptional service to every buyer and artisan, ensuring positive experiences across our platform with 24/7 assistance.",
+    },
+    {
+      icon: <Megaphone className="w-8 h-8" />,
+      title: "Marketing & Outreach",
+      description:
+        "Building global awareness through compelling storytelling, strategic social media engagement, and meaningful collaborations worldwide.",
+    },
+    {
+      icon: <DollarSign className="w-8 h-8" />,
+      title: "Finance & Operations",
+      description:
+        "Ensuring fair and prompt payments to artisans while managing smooth workflows, robust inventory systems, and highly efficient logistics operations.",
+    },
+    {
+      icon: <MessageSquare className="w-8 h-8" />,
+      title: "Customer Support",
+      description:
+        "Dedicated to providing exceptional service to every buyer and artisan, ensuring positive experiences across our platform with 24/7 assistance.",
+    },
+    {
+      icon: <Megaphone className="w-8 h-8" />,
+      title: "Marketing & Outreach",
+      description:
+        "Building global awareness through compelling storytelling, strategic social media engagement, and meaningful collaborations worldwide.",
+    },
+    {
+      icon: <DollarSign className="w-8 h-8" />,
+      title: "Finance & Operations",
+      description:
+        "Ensuring fair and prompt payments to artisans while managing smooth workflows, robust inventory systems, and highly efficient logistics operations.",
+    },
+  ];
+  const artisans = [
+    {
+      icon: <Scissors className="w-8 h-8" />,
+      title: "Pashmina Weavers",
+      description:
+        "Master artisans who have perfected the ancient art of Pashmina weaving, creating luxurious pieces that tell stories of generations past. Each thread carries the wisdom of centuries.",
+    },
+    {
+      icon: <Hammer className="w-8 h-8" />,
+      title: "Wood Carvers",
+      description:
+        "Skilled craftsmen who transform raw wood into intricate works of art, preserving traditional techniques passed down through families for generations.",
+    },
+    {
+      icon: <Paintbrush className="w-8 h-8" />,
+      title: "Traditional Artists",
+      description:
+        "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
+    },
+    {
+      icon: <Scissors className="w-8 h-8" />,
+      title: "Pashmina Weavers",
+      description:
+        "Master artisans who have perfected the ancient art of Pashmina weaving, creating luxurious pieces that tell stories of generations past. Each thread carries the wisdom of centuries.",
+    },
+    {
+      icon: <Hammer className="w-8 h-8" />,
+      title: "Wood Carvers",
+      description:
+        "Skilled craftsmen who transform raw wood into intricate works of art, preserving traditional techniques passed down through families for generations.",
+    },
+    {
+      icon: <Paintbrush className="w-8 h-8" />,
+      title: "Traditional Artists",
+      description:
+        "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
+    },
+    {
+      icon: <Scissors className="w-8 h-8" />,
+      title: "Pashmina Weavers",
+      description:
+        "Master artisans who have perfected the ancient art of Pashmina weaving, creating luxurious pieces that tell stories of generations past. Each thread carries the wisdom of centuries.",
+    },
+    {
+      icon: <Hammer className="w-8 h-8" />,
+      title: "Wood Carvers",
+      description:
+        "Skilled craftsmen who transform raw wood into intricate works of art, preserving traditional techniques passed down through families for generations.",
+    },
+    {
+      icon: <Paintbrush className="w-8 h-8" />,
+      title: "Traditional Artists",
+      description:
+        "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
+    },
+  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -370,7 +498,6 @@ export default function TeamPage() {
         .quote-icon {
           width: 60px;
           height: 60px;
-          background: var(--primary-cyan-color);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -535,10 +662,10 @@ export default function TeamPage() {
         .feature-title {
           font-size: 1rem;
           font-weight: 600;
-          color: var(--primary-header-color);
           margin-bottom: 0.5rem;
         }
-
+          
+     
         .feature-text {
           font-size: 0.9rem;
           color: var(--secondary-hover-color);
@@ -735,44 +862,17 @@ export default function TeamPage() {
                   story of skill, tradition, and passion.
                 </p>
               </div>
-
               <div className="artisan-grid">
-                <div className="artisan-card">
-                  <div className="card-icon-wrapper">
-                    <div className="card-icon">🧵</div>
+                {artisans.map((artisan, index) => (
+                  <div key={index} className="artisan-card">
+                    <div className="card-icon-wrapper">
+                      <div className="card-icon">{artisan.icon}</div>
+                    </div>
+                    <h3 className="card-title">{artisan.title}</h3>
+                    <p className="card-description">{artisan.description}</p>
                   </div>
-                  <h3 className="card-title">Pashmina Weavers</h3>
-                  <p className="card-description">
-                    Master artisans who have perfected the ancient art of
-                    Pashmina weaving, creating luxurious pieces that tell
-                    stories of generations past. Each thread carries the wisdom
-                    of centuries.
-                  </p>
-                </div>
-                <div className="artisan-card">
-                  <div className="card-icon-wrapper">
-                    <div className="card-icon">🪵</div>
-                  </div>
-                  <h3 className="card-title">Wood Carvers</h3>
-                  <p className="card-description">
-                    Skilled craftsmen who transform raw wood into intricate
-                    works of art, preserving traditional techniques passed down
-                    through families for generations.
-                  </p>
-                </div>
-                <div className="artisan-card">
-                  <div className="card-icon-wrapper">
-                    <div className="card-icon">🎨</div>
-                  </div>
-                  <h3 className="card-title">Traditional Artists</h3>
-                  <p className="card-description">
-                    Creative souls from diverse regions and backgrounds, united
-                    by their passion for preserving and sharing Kashmir's rich
-                    cultural heritage with the world.
-                  </p>
-                </div>
+                ))}
               </div>
-
               <div className="quote-section">
                 <div className="quote-icon">💬</div>
                 <p className="quote-text">
@@ -796,78 +896,45 @@ export default function TeamPage() {
               </div>
 
               <div className="support-grid">
-                <div className="support-card">
-                  <div className="support-icon">💬</div>
-                  <h3 className="card-title">Customer Support</h3>
-                  <p className="card-description">
-                    Dedicated to providing exceptional service to every buyer
-                    and artisan, ensuring positive experiences across our
-                    platform with 24/7 assistance.
-                  </p>
-                </div>
-                <div className="support-card">
-                  <div className="support-icon">📢</div>
-                  <h3 className="card-title">Marketing & Outreach</h3>
-                  <p className="card-description">
-                    Building global awareness through compelling storytelling,
-                    strategic social media engagement, and meaningful
-                    collaborations worldwide.
-                  </p>
-                </div>
-                <div className="support-card">
-                  <div className="support-icon">💰</div>
-                  <h3 className="card-title">Finance & Operations</h3>
-                  <p className="card-description">
-                    Ensuring fair and prompt payments to artisans while managing
-                    smooth workflows, inventory systems, and efficient logistics
-                    operations.
-                  </p>
-                </div>
+                {supportItems.map((item, index) => (
+                  <div key={index} className="support-card">
+                    <div className="support-icon">{item.icon}</div>
+                    <h3 className="card-title">{item.title}</h3>
+                    <p className="card-description">{item.description}</p>
+                  </div>
+                ))}
               </div>
             </section>
+           <section className="collaboration-section bg-gradient-to-r from-[var(--primary-header-color)] to-[var(--primary-header-color)]">
+      <div className="collaboration-content">
+        <div className="section-header">
+          <div className="section-badge">Collaboration</div>
+          <h2 className="section-title">The Power of Unity</h2>
+        </div>
+        <p className="collaboration-text">
+          The De Koshur Crafts team works collaboratively, drawing from
+          each other's strengths, skills, and perspectives to ensure
+          that the company remains dynamic, innovative, and growth-oriented.
+        </p>
+        <p className="collaboration-text">
+          We collaborate with global partners, designers, retailers, and
+          NGOs to build a thriving ecosystem that connects artisans with
+          buyers and customers with authentic Kashmiri craftsmanship.
+        </p>
 
-            <section className="collaboration-section bg-gradient-to-r from-[var(--primary-header-color)] to-[var(--primary-header-color)] ">
-              <div className="collaboration-content ">
-                <div className="section-header">
-                  <div className="section-badge">Collaboration</div>
-                  <h2 className="section-title">The Power of Unity</h2>
-                </div>
-                <p className="collaboration-text">
-                  The De Koshur Crafts team works collaboratively, drawing from
-                  each other's strengths, skills, and perspectives to ensure
-                  that the company remains dynamic, innovative, and
-                  growth-oriented.
-                </p>
-                <p className="collaboration-text">
-                  We collaborate with global partners, designers, retailers, and
-                  NGOs to build a thriving ecosystem that connects artisans with
-                  buyers and customers with authentic Kashmiri craftsmanship.
-                </p>
-
-                <div className="collaboration-features">
-                  <div className="collaboration-feature">
-                    <span className="feature-icon">🤝</span>
-                    <div className="feature-title">Global Partners</div>
-                    <div className="feature-text">Worldwide network</div>
-                  </div>
-                  <div className="collaboration-feature">
-                    <span className="feature-icon">🎯</span>
-                    <div className="feature-title">Ethical Practices</div>
-                    <div className="feature-text">Fair trade commitment</div>
-                  </div>
-                  <div className="collaboration-feature">
-                    <span className="feature-icon">🌱</span>
-                    <div className="feature-title">Sustainability</div>
-                    <div className="feature-text">Eco-friendly approach</div>
-                  </div>
-                  <div className="collaboration-feature">
-                    <span className="feature-icon">🏛️</span>
-                    <div className="feature-title">Heritage</div>
-                    <div className="feature-text">Cultural preservation</div>
-                  </div>
-                </div>
+        <div className="collaboration-features">
+          {features.map((feature, index) => (
+            <div key={index} className="collaboration-feature">
+              <span className="feature-icon text-[var(--secondary-hover-color)] ml-[40%]">{feature.icon}</span>
+              <div className="feature-title text-[var(--secondary-hover-color)]">
+                {feature.title}
               </div>
-            </section>
+              <div className="feature-text">{feature.text}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
           </div>
         </main>
       </div>

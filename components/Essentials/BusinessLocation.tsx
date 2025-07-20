@@ -121,12 +121,12 @@ export default function BusinessLocation() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <div className="bg-[var(--secondary-light-color)] rounded-lg p-6 md:p-8 text-center">
-              <MapPin className="w-12 h-12 text-[var(--secondary-color)] mx-auto mb-4" />
-              <h3 className="text-xl md:text-2xl font-semibold text-[var(--primary-color)] mb-3">
+            <div className="bg-[var(--primary-color)] rounded-lg p-6 md:p-8 text-center">
+              <MapPin className="w-12 h-12 text-gray-200 mx-auto mb-4" />
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-200 mb-3">
                 Srinagar
               </h3>
-              <p className="text-gray-700 text-sm md:text-base">
+              <p className="text-gray-200 text-sm md:text-base">
                 The heart of Kashmiri crafts, where we collaborate with artisans
                 to produce Pashmina shawls, Papier Mâché art, and Kani weaving.
               </p>

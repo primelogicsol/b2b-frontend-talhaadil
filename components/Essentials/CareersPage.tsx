@@ -166,22 +166,7 @@ export default function CareersPage() {
   return (
     <div className="careers-page">
       <style jsx>{`
-        .careers-page {
-          --primary-hover-color: #2a5f7a;
-          --primary-color: #1b4f68;
-          --primary-light-text-color: #346880;
-          --primary-header-color: #e4e6eb;
-          --primary-dark-slate: #0f172a;
-          --primary-cyan-color: #00acc1;
-          --primary-navy-color: #0d47a1;
-          --secondary-hover-color: #f48261;
-          --secondary-color: #d85834;
-          --secondary-light-color: #f9c6b2;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            sans-serif;
-          line-height: 1.6;
-          color: var(--primary-dark-slate);
-        }
+        
 
         .container {
           max-width: 1200px;
@@ -228,7 +213,7 @@ export default function CareersPage() {
         .benefit-title {
           font-size: 1.3rem;
           font-weight: 600;
-          color: var(--secondary-color);
+          color: var(--primary-color);
           margin-bottom: 0.5rem;
         }
 
@@ -326,7 +311,7 @@ export default function CareersPage() {
           gap: 1rem;
           margin-bottom: 1rem;
           font-size: 0.9rem;
-          color: var(--secondary-color);
+          color: var(--primary-color);
         }
 
         .job-meta-item {
@@ -341,7 +326,7 @@ export default function CareersPage() {
         }
 
         .expand-button {
-          background: var(--secondary-color);
+          background: var(--primary-color);
           color: white;
           border: none;
           padding: 8px;
@@ -354,7 +339,7 @@ export default function CareersPage() {
         }
 
         .expand-button:hover {
-          background: var(--secondary-hover-color);
+          background: var(--primary-hover-color);
           transform: scale(1.1);
         }
 
@@ -506,14 +491,13 @@ export default function CareersPage() {
         }
 
         .cta-section {
-          background: linear-gradient(
-            135deg,
-            var(--secondary-color) 0%,
-            var(--secondary-hover-color) 100%
-          );
+          background:
+            var(--primary-color) 0%;
+          
           color: white;
           text-align: center;
           padding: 80px 20px;
+          border-bottom : 80px solid var(--primary-header-color);
         }
 
         .cta-title {
@@ -667,42 +651,42 @@ export default function CareersPage() {
 
           <div className="benefits-grid">
             <div className="benefit-card">
-              <div className="benefit-title">• Make a Difference</div>
+              <div className="benefit-title">Make a Difference</div>
               <p>
                 Contribute to a platform that empowers artisans and promotes
                 fair trade, sustainability, and cultural preservation.
               </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-title">• Collaborative Environment</div>
+              <div className="benefit-title">Collaborative Environment</div>
               <p>
                 Join a dynamic and supportive team where every voice is heard,
                 and collaboration is encouraged.
               </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-title">• Professional Growth</div>
+              <div className="benefit-title">Professional Growth</div>
               <p>
                 We offer opportunities for continuous learning, skill
                 development, and career advancement in a fast-growing company.
               </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-title">• Flexible Work Culture</div>
+              <div className="benefit-title">Flexible Work Culture</div>
               <p>
                 We value work-life balance and offer flexible working hours and
                 remote work opportunities.
               </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-title">• Inclusive & Diverse Team</div>
+              <div className="benefit-title">Inclusive & Diverse Team</div>
               <p>
                 We celebrate diversity in all its forms and are committed to
                 creating an inclusive environment where everyone feels welcome.
               </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-title">• Inclusive & Diverse Team</div>
+              <div className="benefit-title">Inclusive & Diverse Team</div>
               <p>
                 We celebrate diversity in all its forms and are committed to
                 creating an inclusive environment where everyone feels welcome.

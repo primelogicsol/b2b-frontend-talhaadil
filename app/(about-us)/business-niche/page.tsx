@@ -3,7 +3,7 @@ import Accordion from "@/components/Material/Accordion";
 import Counter from "@/components/Material/Counter";
 import PremiumTabs from "@/components/Material/PremiumTabs";
 import BusinessLocation from "@/components/Essentials/BusinessLocation";
-import { Shirt, Palette, Scissors, TreePine, Settings } from "lucide-react";
+import { Shirt, Palette, Scissors, TreePine, Settings ,Diamond} from "lucide-react";
 function page() {
   const buyerslides = [
     {
@@ -286,7 +286,7 @@ function page() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--secondary-color)]">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--primary-color)] hover:scale-105 duration-500">
               <h3 className="text-2xl font-bold text-[color:var(--primary-color)] mb-4">
                 Authenticity & Tradition
               </h3>
@@ -297,7 +297,7 @@ function page() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--secondary-color)]">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--primary-color)] hover:scale-105 duration-500">
               <h3 className="text-2xl font-bold text-[color:var(--primary-color)] mb-4">
                 Fair Trade & Empowerment
               </h3>
@@ -308,7 +308,7 @@ function page() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--secondary-color)]">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--primary-color)] hover:scale-105 duration-500">
               <h3 className="text-2xl font-bold text-[color:var(--primary-color)] mb-4">
                 Sustainability Focus
               </h3>
@@ -319,7 +319,7 @@ function page() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--secondary-color)]">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[color:var(--primary-color)] hover:scale-105 duration-500">
               <h3 className="text-2xl font-bold text-[color:var(--primary-color)] mb-4">
                 Global Reach, Local Impact
               </h3>
@@ -346,12 +346,10 @@ function page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center p-6 rounded-2xl bg-white shadow-md">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
-                <span className="text-3xl text-[var(--secondary-light-color)]">
-                  💎
-                </span>
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[var(--primary-color)]">
+                <Diamond className="w-6 h-6"/>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
+              <h3 className="text-xl font-bold mb-3 text-[var(--primary-color)]">
                 Luxury Shoppers
               </h3>
               <p className="text-sm text-gray-700">
@@ -444,12 +442,12 @@ function page() {
       </div>
 
       {/* Future Vision */}
-      <section className="px-4 md:px-8 lg:px-12 py-20 bg-gradient-to-r from-orange-50 to-red-50">
+      <section className="px-4 md:px-8 lg:px-12 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl lg:text-5xl font-extrabold mb-6 text-[color:var(--primary-color)]">
             Our Future Vision
           </h2>
-          <p className="text-lg sm:text-xl text-[color:var(--secondary-color)] leading-relaxed mb-8">
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8">
             Expanding our global reach while staying true to our roots. We aim
             to be the go-to destination for luxury Kashmiri crafts, offering
             customers an authentic, sustainable, and impactful shopping
@@ -461,7 +459,7 @@ function page() {
               <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
                 Expand Globally
               </h3>
-              <p className="text-[color:var(--secondary-color)] text-sm">
+              <p className="text-gray-700 text-sm">
                 Reaching new markets worldwide
               </p>
             </div>
@@ -469,7 +467,7 @@ function page() {
               <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
                 New Crafts
               </h3>
-              <p className="text-[color:var(--secondary-color)] text-sm">
+              <p className="text-gray-700 text-sm">
                 Introducing more Kashmiri traditions
               </p>
             </div>
@@ -477,7 +475,7 @@ function page() {
               <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
                 Custom Excellence
               </h3>
-              <p className="text-[color:var(--secondary-color)] text-sm">
+              <p className="text-gray-700 text-sm">
                 Expanding bespoke offerings
               </p>
             </div>

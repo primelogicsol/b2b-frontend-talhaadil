@@ -2,6 +2,7 @@
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { FlipCard } from "@/components/Cards/FlipCard";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
+import PartnershipModel from "@/components/Essentials/PartnershipModel";
 import {
   Star,
   Globe,
@@ -146,6 +147,9 @@ export default function MainPage() {
           What Sets Us Apart
         </h2>
         <AnimationCardGrid data={whatSetsUsApartCards} />
+      </section>
+      <section>
+        <PartnershipModel/>
       </section>
       <section className="px-10 xl:px-0">
               <OurVision />
