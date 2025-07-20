@@ -6,13 +6,11 @@ import { motion, useMotionValue, animate, useTransform, useInView } from "framer
 interface SlideItem {
   id: number
   title: string
-  description: string
   number: number
 }
 
 interface SliderCardProps {
   title: string
-  description: string
   targetNumber: number
   index: number
   currentIndex: number
@@ -31,49 +29,41 @@ export default function Counter({ data }: SliderComponentProps) {
           {
             id: 1,
             title: "Global Reach",
-            description: "Expand your audience across continents with our robust infrastructure.",
             number: 12000,
           },
           {
             id: 2,
             title: "User Engage",
-            description: "Boost interaction and retention with personalized experiences.",
             number: 95,
           },
           {
             id: 3,
             title: "Data Security",
-            description: "Protect your valuable information with industry-leading encryption.",
             number: 100,
           },
           {
             id: 4,
             title: "Perform Metrics",
-            description: "Track key indicators and optimize for peak efficiency.",
             number: 250,
           },
           {
             id: 5,
             title: "Scalable Solutions",
-            description: "Grow your platform effortlessly with our flexible architecture.",
             number: 5000,
           },
           {
             id: 6,
             title: "Scalable Solutions",
-            description: "Grow your platform effortlessly with our flexible architecture.",
             number: 5000,
           },
           {
             id: 7,
             title: "Scalable Solutions",
-            description: "Grow your platform effortlessly with our flexible architecture.",
             number: 5000,
           },
           {
             id: 8,
             title: "Scalable Solutions",
-            description: "Grow your platform effortlessly with our flexible architecture.",
             number: 5000,
           },
         ]
@@ -147,7 +137,6 @@ export default function Counter({ data }: SliderComponentProps) {
             <div key={slide.id} className="flex-shrink-0 p-4" style={{ width: `${100 / cardsPerPage}%` }}>
               <SliderCard
                 title={slide.title}
-                description={slide.description}
                 targetNumber={slide.number}
                 index={index}
                 currentIndex={currentIndex}
@@ -178,7 +167,7 @@ export default function Counter({ data }: SliderComponentProps) {
   )
 }
 
-function SliderCard({ title, description, targetNumber, index, currentIndex, cardsPerPage }: SliderCardProps) {
+function SliderCard({ title,targetNumber, index, currentIndex, cardsPerPage }: SliderCardProps) {
   const ref = useRef(null)
   const count = useMotionValue(0)
   const rounded = useTransform(count, Math.round)
@@ -199,15 +188,14 @@ function SliderCard({ title, description, targetNumber, index, currentIndex, car
       className="relative flex-shrink-0 w-full h-full p-6 text-white rounded-lg shadow-xl overflow-hidden before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
       style={{
         background: "linear-gradient(to bottom right, var(--primary-color), var(--primary-hover-color))",
-        clipPath: "polygon(0 0, 100% 0, 100% 90%, 0% 100%)",
+       
       }}
     >
       <div className="relative z-10 flex flex-col h-full justify-between">
         <div>
           <h3 className="text-2xl font-bold mb-2">{title}</h3>
-          <p className="text-sm opacity-80">{description}</p>
         </div>
-        <div className="mt-auto text-right">
+        <div className="mt-auto text-centered">
           <motion.span className="text-4xl font-extrabold block text-[var(--secondary-hover-color)]">
             {rounded}
           </motion.span>
