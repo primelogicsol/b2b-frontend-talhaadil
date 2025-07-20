@@ -1,38 +1,39 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { CloudCog } from "lucide-react"
+import Image from "next/image";
+import { CloudCog } from "lucide-react";
 
 interface HeroSectionProps {
-  leftImage?: string
-  rightImage?: string
-  tagline?: string
-  title?: string
-  highlightedWords?: { one: string; two: string }
-  description?: string
-  subTitle?: string
-  subDescription?: string
-  buttonText?: string
+  leftImage?: string;
+  rightImage?: string;
+  tagline?: string;
+  title?: string;
+  highlightedWords?: { one: string; two: string };
+  description?: string;
+  subTitle?: string;
+  subDescription?: string;
+  buttonText?: string;
 }
 
 export default function RectangleSection({
   leftImage = "/placeholder.svg?height=600&width=400",
   rightImage = "/placeholder.svg?height=600&width=400",
-  tagline = "DKC CONSIGNMENT PARTNERSHIP INITIATIVE",
-  title = "Redefining Retail Opportunities for Kashmiri",
-  highlightedWords = { one: "Artisans", two: "Businesses" },
-  description = `Transform your business with De Koshur Crafts' Consignment Partnership program, designed to integrate Kashmiri artisans and businesses into a powerful digital ecosystem.`,
-  subTitle = "Smart Retail Solutions for Small Craft Excellence",
-  subDescription = `Leverage cutting-edge tools that optimize inventory management, authenticate products with GI certification, and enhance customer engagement through powerful cultural narratives. This system simplifies retail operations, supports transparent sales tracking, and provides actionable insights for business growth.`,
-  buttonText = "WORLD'S FIRST CONSIGNMENT PLATFORM FOR KASHMIR CRAFTS",
+  tagline = "MEET THE HEART OF DE KOSHUR CRAFTS",
+  title = "Passionate Individuals Driving",
+  highlightedWords = { one: "Tradition", two: "Innovation" },
+  description = `Our Team: Passionate, Visionary, and Committed
+At De Koshur Crafts, our team is the heart of everything we do. Our team members are more than just employees—they are passionate individuals who are deeply committed to preserving the rich heritage of Kashmiri craftsmanship while empowering artisans to thrive in the global marketplace. Each member brings a unique set of skills, experience, and vision to the table, working together towards a shared mission of empowerment, sustainability, and ethical business practices.
+Meet the people who are bringing this vision to life.`,
+  subTitle = "Empowering Artisans, Shaping Futures",
+  subDescription = `Our diverse team blends traditional wisdom with forward-thinking strategies to build a sustainable future for Kashmiri crafts. From design and logistics to storytelling and outreach, every role plays a vital part in uplifting artisan communities.`,
+  buttonText = "JOIN OUR MISSION OF EMPOWERMENT",
 }: HeroSectionProps) {
   return (
     <section className="relative py-12 md:py-24 lg:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         {/* Left Section */}
         <div className="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] w-full">
-          {/* First image with secondary background */}
-          <div className="relative w-full max-w-sm h-[400px] md:h-[500px] lg:h-[600px] mb-8 lg:mb-0
+          <div className="relative w-full max-w-sm h-[400px] md:h-[500px]  mb-8 lg:mb-0
                           lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-[70%] lg:-translate-y-[40%] lg:w-[45%] lg:h-[70%]">
             <div className="absolute inset-0 bg-[var(--secondary-color)] rounded-[30px] transform translate-x-4 translate-y-8 z-0 shadow-lg
                             before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(#fff_1px,transparent_1px)] before:[background-size:10px_10px] before:opacity-20" />
@@ -40,7 +41,7 @@ export default function RectangleSection({
                             transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
               <Image
                 src={leftImage}
-                alt="Main left image"
+                alt="Team member"
                 layout="fill"
                 objectFit="cover"
                 className="rounded-[30px]"
@@ -48,8 +49,7 @@ export default function RectangleSection({
             </div>
           </div>
 
-          {/* Second image with dark slate background */}
-          <div className="relative w-full max-w-sm h-[400px] md:h-[500px] lg:h-[600px]
+          <div className="relative w-full max-w-sm h-[400px] md:h-[500px] 
                           lg:absolute lg:top-1/2 lg:left-1/2 lg:translate-x-[20%] lg:-translate-y-[60%] lg:w-[45%] lg:h-[70%]">
             <div className="absolute inset-0 bg-[var(--primary-color)] rounded-[30px] transform -translate-x-4 -translate-y-8 z-0 shadow-lg
                             before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(#fff_1px,transparent_1px)] before:[background-size:10px_10px] before:opacity-20" />
@@ -57,7 +57,7 @@ export default function RectangleSection({
                             transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
               <Image
                 src={rightImage}
-                alt="Main right image"
+                alt="Team member"
                 layout="fill"
                 objectFit="cover"
                 className="rounded-[30px]"
@@ -76,7 +76,7 @@ export default function RectangleSection({
             {title} <span className="text-[var(--secondary-color)]">{highlightedWords.one}</span> and{" "}
             <span className="text-[var(--secondary-color)]">{highlightedWords.two}</span>
           </h1>
-          <p className="text-lg text-[var(--primary-light-text-color)] mb-8 max-w-2xl mx-auto lg:mx-0">
+          <p className="text-lg text-[var(--primary-light-text-color)] mb-8 max-w-2xl mx-auto lg:mx-0 whitespace-pre-line">
             {description}
           </p>
 
@@ -102,5 +102,5 @@ export default function RectangleSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

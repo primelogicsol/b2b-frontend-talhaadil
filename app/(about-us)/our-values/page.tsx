@@ -153,23 +153,7 @@ export default function MainPage() {
               <OurVision />
       </section>
 
-      {/* About / Video Section */}
-      {/* <section>
-        <About4
-          MainImg="/images/about-team.jpg"
-          SubTitle="About Our Company"
-          Title="Building <span>Digital Excellence</span> Since 2010"
-          Content="For over a decade, we have been empowering businesses with cutting‑edge web and mobile solutions. Our team of designers, developers, and strategists works closely with clients to turn their ideas into products that make an impact."
-          listTitle1="Over 500 Successful Projects Delivered"
-          listTitle2="Trusted by Clients in 30+ Countries"
-          BoxTitle1="14"
-          BoxTitle2="Years of Experience"
-        />
-      </section> */}
-      {/* FAQ */}
-      {/* <section>
-        <ProjectDetailsFAQ />
-      </section> */}
+
     </main>
   );
 }
