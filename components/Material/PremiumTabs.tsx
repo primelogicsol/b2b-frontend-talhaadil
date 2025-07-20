@@ -423,7 +423,7 @@ export default function PremiumTabs() {
 
   return (
     <div
-      className="min-h-screen p-4 md:p-8 lg:p-12"
+      className="p-4 md:p-8 lg:p-12"
       style={{
         background: "linear-gradient(to bottom right,var(--primary-color),var(--primary-hover-color),var(--primary-light-text-color)",
       }}
@@ -442,7 +442,7 @@ export default function PremiumTabs() {
            Business Insights
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Experience the next generation of productivity tools designed for modern teams
+            Actionable Data and Strategies to Guide Smarter Decisions
           </p>
         </motion.div>
 

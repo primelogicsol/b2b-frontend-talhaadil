@@ -1,11 +1,10 @@
 import TeamCard from '@/components/Cards/TeamCard'
 import VerticalHeroSlider from '@/components/Essentials/VerticalBanner'
 import RectangleSection from '@/components/Section/RectangleSection'
-import TeamCraftSupport from '@/components/Section/TeamCraftSupport'
-import TeamVisionSection from '@/components/Section/TeamVisionSection'
+
 import React from 'react'
 import SectionTitle from '@/components/Section/SectionTitle'
-
+import TeamPage from '@/components/Essentials/TeamPage'
 function page() {
     const teamMembers = [
         {
@@ -82,11 +81,7 @@ function page() {
         </div>
       </section>
 
-      {/* Artisan and Support Teams */}
-      <TeamCraftSupport />
-
-      {/* Vision / CTA Section */}
-      <TeamVisionSection />
+      <TeamPage/>
     </div>
   )
 }

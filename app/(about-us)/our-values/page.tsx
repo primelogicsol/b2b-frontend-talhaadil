@@ -2,9 +2,6 @@
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { FlipCard } from "@/components/Cards/FlipCard";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
-import ProjectDetailsFAQ from "@/components/Section/ProjectDetailsFAQ";
-import ScrollVideoSection from "@/components/Section/ScrollVideoSection";
-import About4 from "@/components/Section/SectionVideo";
 import {
   Star,
   Globe,
@@ -23,6 +20,7 @@ import {
 } from "lucide-react";
 import DiagonalSection from "@/components/Section/DiagonalSection";
 import OurVision from "@/components/Essentials/OurVision";
+import EthicalSourcingSustainability from "@/components/Essentials/EthicalSourcing";
 export default function MainPage() {
   const whatSetsUsApartCards = [
     {
@@ -108,7 +106,7 @@ export default function MainPage() {
             "Share It: Use AI-driven catalogs, virtual hubs, and global logistics to bring Kashmir’s story across America.",
           ]}
           footerHeadline="Crafting a Borderless Platform Rooted in Legacy"
-          footerDescription="Empowering Artisans | Preserving Culture | Advancing Ethical Innovation"
+          footerDescription="Empowering Artisans | Preserving Culture | Advancing Ethical Innovation"
           mainImage="/images/new-pic6.webp"
           smallImage="/images/new-pic4.webp"
         />
@@ -151,6 +149,9 @@ export default function MainPage() {
       </section>
       <section className="px-10 xl:px-0">
               <OurVision />
+      </section>
+      <section>
+        <EthicalSourcingSustainability/>
       </section>
 
 

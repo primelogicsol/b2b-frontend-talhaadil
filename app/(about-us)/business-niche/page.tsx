@@ -3,16 +3,9 @@ import Accordion from "@/components/Material/Accordion";
 import Counter from "@/components/Material/Counter";
 import PremiumTabs from "@/components/Material/PremiumTabs";
 import BusinessLocation from "@/components/Essentials/BusinessLocation";
-import {
-  Shirt,
-  Palette,
-  Scissors,
-  TreePine,
-  Settings,
-
-} from "lucide-react";
+import { Shirt, Palette, Scissors, TreePine, Settings } from "lucide-react";
 function page() {
-  const buyerslides= [
+  const buyerslides = [
     {
       id: 1,
       title: "Individual Buyers",
@@ -53,7 +46,7 @@ function page() {
       title: "Global Traders",
       number: 52,
     },
-    
+
     {
       id: 10,
       title: "Hospitality Chains",
@@ -67,57 +60,57 @@ function page() {
   ];
 
   const vendorslides = [
-  {
-    id: 1,
-    title: "Individual Artisans",
-    number: 1032,
-  },
-  {
-    id: 2,
-    title: "Artisan Groups",
-    number: 15,
-  },
-  {
-    id: 3,
-    title: "Small Businesses",
-    number: 23,
-  },
-  {
-    id: 4,
-    title: "Women Ventures",
-    number: 6,
-  },
-  {
-    id: 5,
-    title: "Export Makers",
-    number: 17,
-  },
-  {
-    id: 6,
-    title: "Online Sellers",
-    number: 22,
-  },
-  {
-    id: 7,
-    title: "Design Experts",
-    number: 3,
-  },
-  {
-    id: 8,
-    title: "Luxury Sellers",
-    number: 16,
-  },
-  {
-    id: 9,
-    title: "Wholesale Vendors",
-    number: 13,
-  },
-  {
-    id: 10,
-    title: "Craft Exhibitors",
-    number: 7,
-  },
-];
+    {
+      id: 1,
+      title: "Individual Artisans",
+      number: 1032,
+    },
+    {
+      id: 2,
+      title: "Artisan Groups",
+      number: 15,
+    },
+    {
+      id: 3,
+      title: "Small Business",
+      number: 23,
+    },
+    {
+      id: 4,
+      title: "Women Ventures",
+      number: 6,
+    },
+    {
+      id: 5,
+      title: "Export Makers",
+      number: 17,
+    },
+    {
+      id: 6,
+      title: "Online Sellers",
+      number: 22,
+    },
+    {
+      id: 7,
+      title: "Design Experts",
+      number: 3,
+    },
+    {
+      id: 8,
+      title: "Luxury Sellers",
+      number: 16,
+    },
+    {
+      id: 9,
+      title: "Wholesale Vendors",
+      number: 13,
+    },
+    {
+      id: 10,
+      title: "Craft Exhibitors",
+      number: 7,
+    },
+  ];
 
   const impactData = [
     {
@@ -264,17 +257,18 @@ function page() {
                 unique tastes and preferences with authentic craftsmanship.
               </p>
             </div>
-            {/* Kani Weaving */}
+            {/* Papier Mâché */}
             <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Scissors className="text-[color:var(--primary-color)] w-12 h-12" />
+                <Palette className="text-[color:var(--secondary-color)] w-12 h-12" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Kani Weaving
+                Papier Mâché Art
               </h3>
               <p className="text-gray-200 text-center leading-relaxed">
-                Traditional method creating intricate patterns using wooden
-                combs, producing exquisite shawls, stoles, and scarves.
+                Intricate hand-painted decorative pieces with vibrant
+                traditional motifs that tell stories of Kashmir's rich cultural
+                heritage.
               </p>
             </div>
           </div>
@@ -351,52 +345,60 @@ function page() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center p-6 rounded-2xl backdrop-blur-sm bg-[color:rgba(249,198,178,0.15)]">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.3)]">
-                <span className="text-3xl">💎</span>
+            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
+                <span className="text-3xl text-[var(--secondary-light-color)]">
+                  💎
+                </span>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-light-color)]">
+              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
                 Luxury Shoppers
               </h3>
-              <p className="text-sm opacity-90">
+              <p className="text-sm text-gray-700">
                 High-end customers seeking exclusive, luxurious products with
                 timeless beauty
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl backdrop-blur-sm bg-[color:rgba(249,198,178,0.15)]">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.3)]">
-                <span className="text-3xl">🏛️</span>
+            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
+                <span className="text-3xl text-[var(--secondary-light-color)]">
+                  🏛️
+                </span>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-light-color)]">
+              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
                 Cultural Enthusiasts
               </h3>
-              <p className="text-sm opacity-90">
+              <p className="text-sm text-gray-700">
                 Passionate about preserving traditions and rich cultural
                 heritage
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl backdrop-blur-sm bg-[color:rgba(249,198,178,0.15)]">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.3)]">
-                <span className="text-3xl">🌱</span>
+            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
+                <span className="text-3xl text-[var(--secondary-light-color)]">
+                  🌱
+                </span>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-light-color)]">
+              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
                 Eco-Conscious Buyers
               </h3>
-              <p className="text-sm opacity-90">
+              <p className="text-sm text-gray-700">
                 Prioritizing sustainable products and ethical business practices
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl backdrop-blur-sm bg-[color:rgba(249,198,178,0.15)]">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.3)]">
-                <span className="text-3xl">🎁</span>
+            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
+                <span className="text-3xl text-[var(--secondary-light-color)]">
+                  🎁
+                </span>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-light-color)]">
+              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
                 Gift & Décor Shoppers
               </h3>
-              <p className="text-sm opacity-90">
+              <p className="text-sm text-gray-700">
                 Seeking unique gifts and luxury home décor statement pieces
               </p>
             </div>
@@ -436,7 +438,7 @@ function page() {
             <h3 className="text-3xl font-extrabold text-[var(--secondary-color)] mb-3">
               Vendor
             </h3>
-            <Counter data={vendorslides}/>
+            <Counter data={vendorslides} />
           </div>
         </section>
       </div>
@@ -484,7 +486,7 @@ function page() {
       </section>
 
       {/* <ScrollSection /> */}
-      <BusinessLocation/>
+      <BusinessLocation />
     </div>
   );
 }

@@ -37,7 +37,7 @@ export default function TeamCard({
   },
 }: TeamMember) {
   return (
-    <div className="relative w-80 h-[32rem] rounded-2xl shadow-2xl bg-gray-100 group cursor-pointer transform transition-all duration-700 hover:scale-105 overflow-hidden">
+    <div className="relative w-80 h-[33.1rem] rounded-2xl shadow-2xl bg-gray-100 group cursor-pointer transform transition-all duration-700 hover:scale-105 overflow-hidden">
       {/* Orange diagonal background */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
