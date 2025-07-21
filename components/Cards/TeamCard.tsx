@@ -1,23 +1,17 @@
 "use client";
 
-import { VideoIcon as Vimeo, Phone, Share2 } from "lucide-react";
-import {
-  FaFacebookF as Facebook,
-  FaTwitter as Twitter,
-  FaLinkedinIn as Linkedin,
-} from "react-icons/fa";
+import { VideoIcon as Vimeo, Phone, Share2,MailIcon } from "lucide-react";
 
 export interface TeamMember {
+  isImportant?: boolean;
+  isCeo?: boolean;
   name: string;
   title: string;
-  phone: string;
+  email: string;
   imageUrl?: string;
   description?: string;
   quote?: string;
-  social: {
-    facebook?: string;
-    
-  };
+ 
 }
 
 export default function TeamCard({
@@ -26,17 +20,24 @@ export default function TeamCard({
   imageUrl = "/images/default-profile.jpg",
   description,
   quote,
-  social,
+
+  isImportant = false,
+  isCeo = false,
 }: TeamMember) {
   return (
-    <div className="relative w-80 min-h-[18rem]
-    rounded-2xl shadow-2xl bg-gray-100 group cursor-pointer transform transition-all duration-700 hover:scale-105 overflow-hidden">
+    <div
+  className={`relative ${
+    isImportant ? "w-80" : "w-60"
+  } rounded-2xl shadow-2xl bg-gray-100 group cursor-pointer transform transition-all duration-700 hover:scale-105 overflow-hidden`}
+>
       {/* Orange diagonal background */}
-      {/* <div
-        className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
-        style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 35%, 0% 65%)" }}
-      /> */}
-
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
+        style={{
+          background: isCeo ? "var(--secondary-color)" : "var(--primary-color)",
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 50%, 0% 20%)",
+        }}
+      />
       <div className="relative z-10 flex flex-col items-center h-full pt-12 pb-6 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
         {/* Profile Image */}
         <div className="relative">
@@ -57,21 +58,23 @@ export default function TeamCard({
 
           {/* Social Icons */}
           <div className="absolute inset-0">
-            {social.facebook && (
+            {(
               <div
                 className="absolute opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out"
                 style={{ top: "10%", right: "-8%", transitionDelay: "0.1s" }}
               >
                 <a
-                  href={social.facebook}
-                  aria-label="Facebook"
-                  className="w-8 h-8 rounded-full bg-[var(--secondary-color)] text-white flex items-center justify-center hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 shadow-lg"
-                >
-                  <Facebook className="w-4 h-4" fill="currentColor" />
+  
+  aria-label="Facebook"
+  className={`w-8 h-8 rounded-full text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg hover:bg-blue-600 ${
+    isCeo ? "bg-[var(--primary-color)]" : "bg-[var(--secondary-color)]"
+  }`}
+>
+
+                  <MailIcon className="w-5 h-5"/>
                 </a>
               </div>
             )}
-          
           </div>
         </div>
 
@@ -84,21 +87,19 @@ export default function TeamCard({
             {title}
           </p>
           <div className="flex items-center mt-3 text-gray-700 transition-all duration-500">
-            <div className="p-2 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-500 mr-2">
-            </div>
-          
+            <div className="p-2 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-500 mr-2"></div>
           </div>
         </div>
 
         {/* Description */}
-        {description && (
+        {isImportant && description && (
           <p className="mt-2 text-sm text-gray-700 text-center leading-snug transition-all duration-500">
             {description}
           </p>
         )}
 
         {/* Optional Quote */}
-        {quote && (
+        {isImportant &&quote && (
           <blockquote className="mt-2 text-xs italic text-[var(--secondary-color)] group-hover:text-[var(--secondary-hover-color)] transition-all duration-500 text-center">
             “{quote}”
           </blockquote>
