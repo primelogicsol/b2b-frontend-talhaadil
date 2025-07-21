@@ -68,7 +68,7 @@ export default function TeamGrid({ team }: TeamGridProps) {
                 key={i}
                 onClick={() => setCurrentSlide(i)}
                 className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  currentSlide === i ? "bg-purple-600" : "bg-gray-300 hover:bg-gray-400"
+                  currentSlide === i ? "bg-[var(--secondary-color)]" : "bg-gray-300 hover:bg-gray-400"
                 }`}
               />
             ))}
