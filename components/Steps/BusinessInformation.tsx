@@ -270,7 +270,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
           onClick={handleNext}
           className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-          Continue to Products →
+          Continue →
         </button>
       </div>
     </div>

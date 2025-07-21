@@ -312,7 +312,7 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
           disabled={!documentTypes.filter((doc) => doc.required).every((doc) => documents[doc.key] !== null)}
           className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
         >
-          Continue to Agreement →
+          Continue →
         </button>
       </div>
     </div>

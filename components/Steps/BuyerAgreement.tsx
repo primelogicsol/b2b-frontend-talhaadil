@@ -152,7 +152,7 @@ By checking the acceptance box below, you acknowledge that you have read, unders
           disabled={!accepted}
           className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
         >
-          Continue to Application Status →
+          Continue →
         </button>
       </div>
     </div>
