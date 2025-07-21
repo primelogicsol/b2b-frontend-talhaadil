@@ -1,214 +1,210 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback } from "react"
-import { motion, useMotionValue, animate, useTransform, useInView } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
-interface SlideItem {
+interface Slide {
   id: number
   title: string
   number: number
 }
 
-interface SliderCardProps {
+interface CounterProps {
+  slides: Slide[]
+}
+
+interface CircularProgressProps {
+  number: number
+  maxNumber: number
   title: string
-  targetNumber: number
-  index: number
-  currentIndex: number
-  cardsPerPage: number
+  isInView: boolean
 }
 
-interface SliderComponentProps {
-  data?: SlideItem[]
-}
-
-export default function Counter({ data }: SliderComponentProps) {
-  const slides: SlideItem[] =
-    data && data.length > 0
-      ? data
-      : [
-          {
-            id: 1,
-            title: "Global Reach",
-            number: 12000,
-          },
-          {
-            id: 2,
-            title: "User Engage",
-            number: 95,
-          },
-          {
-            id: 3,
-            title: "Data Security",
-            number: 100,
-          },
-          {
-            id: 4,
-            title: "Perform Metrics",
-            number: 250,
-          },
-          {
-            id: 5,
-            title: "Scalable Solutions",
-            number: 5000,
-          },
-          {
-            id: 6,
-            title: "Scalable Solutions",
-            number: 5000,
-          },
-          {
-            id: 7,
-            title: "Scalable Solutions",
-            number: 5000,
-          },
-          {
-            id: 8,
-            title: "Scalable Solutions",
-            number: 5000,
-          },
-        ]
-
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [cardsPerPage, setCardsPerPage] = useState(1)
-  const sliderTrackRef = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-
-  const calculateCardsPerPage = useCallback(() => {
-    if (typeof window === "undefined") return 1
-    if (window.innerWidth >= 1536) return 6
-    if (window.innerWidth >= 1280) return 5
-    if (window.innerWidth >= 1024) return 4
-    if (window.innerWidth >= 768) return 3
-    if (window.innerWidth >= 640) return 2
-    return 1
-  }, [])
+function CircularProgress({ number, maxNumber, title, isInView }: CircularProgressProps) {
+  const [displayNumber, setDisplayNumber] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const percentage = (number / maxNumber) * 100
+  const circumference = 2 * Math.PI * 45
+  const strokeDasharray = circumference
+  const strokeDashoffset = circumference - (progress / 100) * circumference
 
   useEffect(() => {
-    const updateDimensions = () => {
-      const newCardsPerPage = calculateCardsPerPage()
-      setCardsPerPage(newCardsPerPage)
-      setCurrentIndex((prev) => Math.min(prev, Math.max(0, slides.length - newCardsPerPage)))
-    }
+    if (isInView) {
+      const duration = 2000
+      const steps = 60
+      const increment = number / steps
+      const stepDuration = duration / steps
 
-    updateDimensions()
-    window.addEventListener("resize", updateDimensions)
-    return () => {
-      window.removeEventListener("resize", updateDimensions)
-    }
-  }, [calculateCardsPerPage, slides.length])
-
-  useEffect(() => {
-    const containerWidth = sliderTrackRef.current?.offsetWidth || 0
-    const offset = -((currentIndex * containerWidth) / cardsPerPage)
-    animate(x, offset, { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] })
-  }, [currentIndex, cardsPerPage, x])
-
-  // Auto-slide functionality - moves one card at a time
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => {
-        // Calculate the maximum index we can slide to
-        const maxIndex = Math.max(0, slides.length - cardsPerPage)
-
-        // If we're at or past the maximum, go back to start
-        if (prevIndex >= maxIndex) {
-          return 0
+      let currentStep = 0
+      const timer = setInterval(() => {
+        currentStep++
+        const currentValue = Math.min(Math.floor(increment * currentStep), number)
+        setDisplayNumber(currentValue)
+        if (currentStep >= steps) {
+          setDisplayNumber(number)
+          clearInterval(timer)
         }
+      }, stepDuration)
 
-        // Otherwise, move one card forward
-        return prevIndex + 1
-      })
-    }, 3000) // Auto slide every 3 seconds
+      const progressTimer = setTimeout(() => {
+        setProgress(percentage)
+      }, 300)
 
-    return () => clearInterval(interval)
-  }, [slides.length, cardsPerPage])
-
-  const handleDotClick = (pageIndex: number) => {
-    setCurrentIndex(pageIndex * cardsPerPage)
-  }
-
-  const totalPages = Math.ceil(slides.length / cardsPerPage)
+      return () => {
+        clearInterval(timer)
+        clearTimeout(progressTimer)
+      }
+    } else {
+      setDisplayNumber(0)
+      setProgress(0)
+    }
+  }, [isInView, number, percentage])
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto py-8 px-4">
-      <div className="relative overflow-hidden">
-        <motion.div ref={sliderTrackRef} className="flex" style={{ x }}>
-          {slides.map((slide, index) => (
-            <div key={slide.id} className="flex-shrink-0 p-4" style={{ width: `${100 / cardsPerPage}%` }}>
-              <SliderCard
-                title={slide.title}
-                targetNumber={slide.number}
-                index={index}
-                currentIndex={currentIndex}
-                cardsPerPage={cardsPerPage}
-              />
-            </div>
-          ))}
-        </motion.div>
+    <div className="flex flex-col items-center justify-center p-6">
+      <div className="relative w-32 h-32 mb-4">
+        <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" stroke="#f9c6b2" strokeWidth="4" fill="none" className="opacity-30" />
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="#d85834"
+            strokeWidth="4"
+            fill="none"
+            strokeLinecap="round"
+            strokeDasharray={strokeDasharray}
+            initial={{ strokeDashoffset: circumference }}
+            animate={{ strokeDashoffset }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.span
+            className="text-2xl font-bold text-[#1b4f68]"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.5 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            {displayNumber}
+          </motion.span>
+        </div>
       </div>
-      <div className="flex justify-center mt-8 space-x-2">
-        {Array.from({ length: totalPages }).map((_, pageIndex) => {
-          const isActive = Math.floor(currentIndex / cardsPerPage) === pageIndex
-          return (
-            <button
-              key={pageIndex}
-              onClick={() => handleDotClick(pageIndex)}
-              aria-label={`Go to slide page ${pageIndex + 1}`}
-              className="h-3 rounded-full transition-all duration-300"
-              style={{
-                width: isActive ? "2rem" : "0.75rem",
-                backgroundColor: isActive ? "var(--secondary-color)" : "gray",
-              }}
-            />
-          )
-        })}
-      </div>
+      <h3 className="text-center text-sm font-semibold text-[#1b4f68] max-w-32">{title}</h3>
     </div>
   )
 }
 
-function SliderCard({ title,targetNumber, index, currentIndex, cardsPerPage }: SliderCardProps) {
-  const ref = useRef(null)
-  const count = useMotionValue(0)
-  const rounded = useTransform(count, Math.round)
-  const isInView = useInView(ref, { amount: 0.5 })
+interface SlideCardProps {
+  slide: Slide
+  maxNumber: number
+}
 
-  useEffect(() => {
-    const isActivePageCard = index >= currentIndex && index < currentIndex + cardsPerPage
-    if (isInView && isActivePageCard) {
-      animate(count, targetNumber, { duration: 1.5, ease: "easeOut" })
-    } else {
-      count.set(0)
-    }
-  }, [isInView, targetNumber, count, index, currentIndex, cardsPerPage])
+function SlideCard({ slide, maxNumber }: SlideCardProps) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { amount: 0.3, margin: "-50px" })
 
   return (
-    <motion.div
-      ref={ref}
-      className="relative flex-shrink-0 w-full h-full p-6 text-white rounded-lg shadow-xl overflow-hidden before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
-      style={{
-        background: "linear-gradient(to bottom right, var(--primary-color), var(--primary-hover-color))",
-       
-      }}
-    >
-      <div className="relative z-10 flex flex-col h-full justify-between">
-        <div>
-          <h3 className="text-2xl font-bold mb-2">{title}</h3>
+    <div ref={ref} className="px-2">
+      <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+        <CircularProgress number={slide.number} maxNumber={maxNumber} title={slide.title} isInView={isInView} />
+      </motion.div>
+    </div>
+  )
+}
+
+export default function Counter({ slides }: CounterProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [slidesToShow, setSlidesToShow] = useState(1)
+  const [isHovered, setIsHovered] = useState(false)
+  const maxNumber = Math.max(...slides.map((s) => s.number))
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1280) setSlidesToShow(6)
+      else if (window.innerWidth >= 1024) setSlidesToShow(5)
+      else if (window.innerWidth >= 768) setSlidesToShow(4)
+      else if (window.innerWidth >= 640) setSlidesToShow(3)
+      else if (window.innerWidth >= 410) setSlidesToShow(2)
+      else setSlidesToShow(1)
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const nextSlide = () => setCurrentIndex((p) => (p + slidesToShow >= slides.length ? 0 : p + 1))
+  const prevSlide = () => setCurrentIndex((p) => (p === 0 ? Math.max(0, slides.length - slidesToShow) : p - 1))
+
+  const canGoNext = currentIndex + slidesToShow < slides.length
+  const canGoPrev = currentIndex > 0
+
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        if (canGoNext) nextSlide()
+        else setCurrentIndex(0)
+      }, 4000)
+      return () => clearInterval(interval)
+    }
+  }, [currentIndex, canGoNext, isHovered])
+
+  return (
+    <div className="w-full max-w-6xl mx-auto px-4 py-8">
+      <div className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <button
+          onClick={prevSlide}
+          disabled={!canGoPrev}
+          className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full transition-all duration-200 ${
+            canGoPrev
+              ? "bg-[#1b4f68] hover:bg-[#2a5f7a] text-white shadow-lg"
+              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+          }`}
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          disabled={!canGoNext}
+          className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full transition-all duration-200 ${
+            canGoNext
+              ? "bg-[#1b4f68] hover:bg-[#2a5f7a] text-white shadow-lg"
+              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+          }`}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        <div className="overflow-hidden mx-12">
+          <motion.div
+            className="flex"
+            animate={{ x: `${-currentIndex * (100 / slidesToShow)}%` }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            {slides.map((slide) => (
+              <div key={slide.id} className="flex-shrink-0" style={{ width: `${100 / slidesToShow}%` }}>
+                <SlideCard slide={slide} maxNumber={maxNumber} />
+              </div>
+            ))}
+          </motion.div>
         </div>
-        <div className="mt-auto text-centered">
-          <motion.span className="text-4xl font-extrabold block text-[var(--secondary-hover-color)]">
-            {rounded}
-          </motion.span>
+
+        <div className="flex justify-center mt-6 space-x-2">
+          {Array.from({ length: Math.ceil(slides.length / slidesToShow) }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index * slidesToShow)}
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                Math.floor(currentIndex / slidesToShow) === index
+                  ? "bg-[#d85834] scale-110"
+                  : "bg-[#f9c6b2] hover:bg-[#d85834]"
+              }`}
+            />
+          ))}
         </div>
       </div>
-      <div className="absolute inset-0 opacity-10 text-white">
-        <svg className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <pattern id="pattern-circles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="1" fill="currentColor" />
-          </pattern>
-          <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)" />
-        </svg>
-      </div>
-    </motion.div>
+    </div>
   )
 }

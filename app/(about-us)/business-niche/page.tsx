@@ -4,6 +4,7 @@ import Counter from "@/components/Material/Counter";
 import PremiumTabs from "@/components/Material/PremiumTabs";
 import BusinessLocation from "@/components/Essentials/BusinessLocation";
 import { Shirt, Palette, Scissors, TreePine, Settings ,Diamond} from "lucide-react";
+import Location from "@/components/Essentials/Location";
 function page() {
   const buyerslides = [
     {
@@ -428,7 +429,7 @@ function page() {
             <h3 className="text-3xl font-extrabold text-[var(--secondary-color)] mb-3">
               Buyer
             </h3>
-            <Counter data={buyerslides} />
+            <Counter slides={buyerslides} />
           </div>
         </section>
         <section className="py-6">
@@ -436,7 +437,7 @@ function page() {
             <h3 className="text-3xl font-extrabold text-[var(--secondary-color)] mb-3">
               Vendor
             </h3>
-            <Counter data={vendorslides} />
+            <Counter slides={vendorslides} />
           </div>
         </section>
       </div>
@@ -485,6 +486,7 @@ function page() {
 
       {/* <ScrollSection /> */}
       <BusinessLocation />
+      <Location/>
     </div>
   );
 }

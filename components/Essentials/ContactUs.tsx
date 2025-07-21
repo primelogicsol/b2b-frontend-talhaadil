@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
+import type React from "react";
+import { useState } from "react";
 import {
   Mail,
   Phone,
@@ -13,9 +13,8 @@ import {
   Building,
   Users,
   Heart,
- 
-} from "lucide-react"
-import VerticalHeroSlider from "./VerticalBanner"
+} from "lucide-react";
+import VerticalHeroSlider from "./VerticalBanner";
 import {
   FaFacebookF as Facebook,
   FaTwitter as Twitter,
@@ -30,35 +29,41 @@ export default function ContactUs() {
     subject: "",
     message: "",
     inquiryType: "general",
-  })
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
     setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitMessage("Thank you for your message! We'll get back to you within 48 hours.")
+      setIsSubmitting(false);
+      setSubmitMessage(
+        "Thank you for your message! We'll get back to you within 48 hours."
+      );
       setFormData({
         name: "",
         email: "",
         subject: "",
         message: "",
         inquiryType: "general",
-      })
-    }, 2000)
-  }
+      });
+    }, 2000);
+  };
 
   const contactSections = [
     {
@@ -101,20 +106,40 @@ export default function ContactUs() {
       icon: Users,
       color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
     },
-  ]
+  ];
 
   const socialLinks = [
-    { name: "Instagram", icon: Instagram, handle: "@dekoshurcrafts", color: "hover:text-pink-500" },
-    { name: "Facebook", icon: Facebook, handle: "@DeKoshurCrafts", color: "hover:text-blue-600" },
-    { name: "Twitter", icon: Twitter, handle: "@DeKoshurCrafts", color: "hover:text-blue-400" },
-    { name: "LinkedIn", icon: Linkedin, handle: "De Koshur Crafts", color: "hover:text-blue-700" },
-  ]
+    {
+      name: "Instagram",
+      icon: Instagram,
+      handle: "@dekoshurcrafts",
+      color: "hover:text-pink-500",
+    },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      handle: "@DeKoshurCrafts",
+      color: "hover:text-blue-600",
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      handle: "@DeKoshurCrafts",
+      color: "hover:text-blue-400",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      handle: "De Koshur Crafts",
+      color: "hover:text-blue-700",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[#e4e6eb]">
       {/* Hero Section */}
       <section>
-        <VerticalHeroSlider/>
+        <VerticalHeroSlider />
       </section>
 
       {/* Contact Sections */}
@@ -122,14 +147,16 @@ export default function ContactUs() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {contactSections.map((section, index) => {
-              const IconComponent = section.icon
+              const IconComponent = section.icon;
               return (
                 <div
                   key={index}
                   className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className={`h-2 bg-gradient-to-r ${section.color}`}></div>
+                  <div
+                    className={`h-2 bg-gradient-to-r ${section.color}`}
+                  ></div>
                   <div className="p-8">
                     <div className="flex items-center mb-6">
                       <div
@@ -142,18 +169,26 @@ export default function ContactUs() {
                       </h3>
                     </div>
 
-                    <p className="text-[#346880] mb-6 leading-relaxed">{section.description}</p>
+                    <p className="text-[#346880] mb-6 leading-relaxed">
+                      {section.description}
+                    </p>
 
                     <div className="space-y-3">
                       <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
                         <Mail className="w-5 h-5 mr-3" />
-                        <a href={`mailto:${section.email}`} className="hover:underline">
+                        <a
+                          href={`mailto:${section.email}`}
+                          className="hover:underline"
+                        >
                           {section.email}
                         </a>
                       </div>
                       <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
                         <Phone className="w-5 h-5 mr-3" />
-                        <a href={`tel:${section.phone}`} className="hover:underline">
+                        <a
+                          href={`tel:${section.phone}`}
+                          className="hover:underline"
+                        >
                           {section.phone}
                         </a>
                       </div>
@@ -164,60 +199,96 @@ export default function ContactUs() {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
       {/* Location & Office Hours */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-hover-color)]">
+      <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-hover-color)]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Visit Our <span className="text-[var(--secondary-color)]">Office</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            {/* Text Content */}
+            <div className="text-white space-y-4">
+              <h2 className="text-3xl font-bold">
+                Contact{" "}
+                <span className="text-[var(--secondary-color)]">Us</span>
               </h2>
-              <p className="text-[#e4e6eb] text-lg mb-8 leading-relaxed">
-                De Koshur Crafts is headquartered in Washington, D.C. Our office is open during standard business hours,
-                and we welcome any inquiries or visits by appointment.
-              </p>
 
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-[var(--secondary-hover-color)] mr-4 mt-1 flex-shrink-0" />
+              {/* Address List */}
+              <div className="space-y-3 text-sm text-[#e4e6eb]">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[var(--secondary-hover-color)] mt-1" />
                   <div>
-                    <h4 className="font-semibold text-lg mb-1">Office Address</h4>
-                    <p className="text-[#e4e6eb]">
-                      De Koshur Crafts
-                      <br />
-                      [Street Address]
-                      <br />
-                      Washington, D.C., USA
+                    <p className="font-medium text-base">Corporation Address</p>
+                    <p>
+                      4445 Corporation Ln Ste 264, Virginia Beach, VA 23462 -
+                      USA
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Clock className="w-6 h-6 text-[var(--secondary-color)] mr-4 mt-1 flex-shrink-0" />
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[var(--secondary-hover-color)] mt-1" />
                   <div>
-                    <h4 className="font-semibold text-lg mb-1">Business Hours</h4>
-                    <div className="text-[#e4e6eb] space-y-1">
-                      <p>Monday - Friday: 9:00 AM - 6:00 PM (EST)</p>
-                      <p>Saturday: By Appointment Only</p>
-                      <p>Sunday: Closed</p>
-                    </div>
+                    <p className="font-medium text-base">Business Principal</p>
+                    <p>
+                      9480 Main St #1185, Fairfax, VA 22031 - Greater Washington
+                    </p>
                   </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[var(--secondary-hover-color)] mt-1" />
+                  <div>
+                    <p className="font-medium text-base">Kashmir Office</p>
+                    <p>
+                      Artisan Lane-2, Gousia Colony Ext, Zakura, Srinagar 190006
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hours */}
+              <div className="space-y-3 pt-4 text-sm text-[#e4e6eb]">
+                <div className="flex items-start gap-3">
+                  <Clock className="w-5 h-5 text-[var(--secondary-color)] mt-1" />
+                  <div>
+                    <p className="font-medium text-base">USA Hours</p>
+                    <p>Mon–Fri: 9:00 AM – 5:00 PM (EST)</p>
+                    <p>Sat–Sun: Closed</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Clock className="w-5 h-5 text-[var(--secondary-color)] mt-1" />
+                  <div>
+                    <p className="font-medium text-base">India Hours</p>
+                    <p>Mon–Fri: 9:30 AM – 6:30 PM (IST)</p>
+                    <p>Sun: Closed</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Coordination */}
+              <div className="flex items-start gap-3 pt-4 text-sm text-[#e4e6eb]">
+                <Clock className="w-5 h-5 text-[var(--secondary-color)] mt-1" />
+                <div>
+                  <p className="font-medium text-base">Time Coordination</p>
+                  <p>India is 9.5 hrs ahead of EST.</p>
+                  <p>Meetings: 8–11 AM EST / 5:30–8:30 PM IST</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-2 shadow-2xl">
-              <div className="bg-gray-200 rounded-xl h-80 flex items-center justify-center">
+            {/* Map or Placeholder */}
+            <div className="bg-white rounded-xl p-2 shadow-lg h-full flex flex-col">
+              <div className="bg-gray-200 rounded-lg flex-grow flex items-center justify-center">
                 <div className="text-center text-gray-500">
-                  <MapPin className="w-12 h-12 mx-auto mb-4" />
-                  <p className="text-lg font-medium">Interactive Map</p>
-                  <p className="text-sm">Washington, D.C. Location</p>
+                  <MapPin className="w-10 h-10 mx-auto mb-2" />
+                  <p className="text-base font-medium">Interactive Map</p>
+                  <p className="text-sm">Office Locations</p>
                 </div>
               </div>
             </div>
@@ -232,12 +303,13 @@ export default function ContactUs() {
             Stay <span className="text-[#d85834]">Connected</span>
           </h2>
           <p className="text-[#346880] text-lg mb-12 leading-relaxed">
-            Follow us for the latest updates, artisan stories, new product releases, and much more.
+            Follow us for the latest updates, artisan stories, new product
+            releases, and much more.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {socialLinks.map((social, index) => {
-              const IconComponent = social.icon
+              const IconComponent = social.icon;
               return (
                 <a
                   key={index}
@@ -245,10 +317,12 @@ export default function ContactUs() {
                   className={`group bg-gradient-to-br from-[#e4e6eb] to-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${social.color}`}
                 >
                   <IconComponent className="w-8 h-8 mx-auto mb-3 text-[#1b4f68] group-hover:scale-125 transition-transform duration-300" />
-                  <h4 className="font-semibold text-[#0f172a] mb-1">{social.name}</h4>
+                  <h4 className="font-semibold text-[#0f172a] mb-1">
+                    {social.name}
+                  </h4>
                   <p className="text-sm text-[#346880]">{social.handle}</p>
                 </a>
-              )
+              );
             })}
           </div>
         </div>
@@ -259,11 +333,12 @@ export default function ContactUs() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] mb-6">
-              Get in <span className="text-[var(--secondary-color)]">Touch</span>
+              Get in{" "}
+              <span className="text-[var(--secondary-color)]">Touch</span>
             </h2>
             <p className="text-[#346880] text-lg leading-relaxed">
-              For general inquiries, please fill out the contact form below, and we will get back to you as soon as
-              possible.
+              For general inquiries, please fill out the contact form below, and
+              we will get back to you as soon as possible.
             </p>
           </div>
 
@@ -277,7 +352,10 @@ export default function ContactUs() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-[#0f172a] mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-semibold text-[#0f172a] mb-2"
+                  >
                     Full Name *
                   </label>
                   <div className="relative">
@@ -296,7 +374,10 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-[#0f172a] mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-[#0f172a] mb-2"
+                  >
                     Email Address *
                   </label>
                   <div className="relative">
@@ -316,7 +397,10 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label htmlFor="inquiryType" className="block text-sm font-semibold text-[#0f172a] mb-2">
+                <label
+                  htmlFor="inquiryType"
+                  className="block text-sm font-semibold text-[#0f172a] mb-2"
+                >
                   Inquiry Type
                 </label>
                 <select
@@ -334,7 +418,10 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-semibold text-[#0f172a] mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-semibold text-[#0f172a] mb-2"
+                >
                   Subject *
                 </label>
                 <input
@@ -350,7 +437,10 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-[#0f172a] mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-[#0f172a] mb-2"
+                >
                   Message *
                 </label>
                 <textarea
@@ -390,7 +480,6 @@ export default function ContactUs() {
       </section>
 
       {/* Call to Action */}
-      
     </div>
-  )
+  );
 }

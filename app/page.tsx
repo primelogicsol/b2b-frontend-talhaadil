@@ -2,7 +2,6 @@ import React from "react";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { SliderCard } from "@/components/Cards/SliderCard";
 import Accordion from "@/components/Material/Accordion";
-import Counter from "@/components/Material/Counter";
 import ProfitBox from "@/components/Material/ProfitBox";
 import DiagonalSection from "@/components/Section/DiagonalSection";
 import RecSquareSection from "@/components/Section/RecSquareSection";
@@ -30,7 +29,7 @@ export default function Home() {
       {/* Section: Animated Counter */}
       <section className="py-2 bg-gradient-to-b from-blue-50 to-blue-100">
         <div className="container mx-auto px-4">
-          <Counter />
+          {/* <Counter /> */}
         </div>
       </section>
 

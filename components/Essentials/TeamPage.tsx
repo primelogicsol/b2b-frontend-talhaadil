@@ -6,17 +6,17 @@ import {
   MessageSquare,
   Megaphone,
   DollarSign,
-    Handshake,
-    Sprout,
-    Target,
-    Landmark,
+  Handshake,
+  Sprout,
+  Target,
+  Landmark,
 } from "lucide-react";
-
-import { useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function TeamPage() {
   const [isVisible, setIsVisible] = useState(false);
-   const features = [
+  const features = [
     {
       icon: <Handshake className="w-8 h-8" />,
       title: "Global Partners",
@@ -132,6 +132,37 @@ export default function TeamPage() {
         "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
     },
   ];
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.3, once: true });
+
+  const stats = [
+    { value: 500, label: "Skilled Artisans" },
+    { value: 50, label: "Villages" },
+    { value: 25, label: "Craft Types" },
+    { value: 15, label: "Countries" },
+  ];
+
+  const [counts, setCounts] = useState(stats.map(() => 0));
+
+  useEffect(() => {
+    if (isInView) {
+      stats.forEach((stat, idx) => {
+        let current = 0;
+        const timer = setInterval(() => {
+          current += Math.ceil(stat.value / 50); // step size
+          if (current >= stat.value) {
+            current = stat.value;
+            clearInterval(timer);
+          }
+          setCounts((prev) => {
+            const copy = [...prev];
+            copy[idx] = current;
+            return copy;
+          });
+        }, 20);
+      });
+    }
+  }, [isInView]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -825,7 +856,7 @@ export default function TeamPage() {
         <main className="main-content">
           <div className="container">
             <section className="section">
-              <div className="section-header">
+              <div ref={sectionRef} className="section-header">
                 <div className="section-badge">✨ Meet Our Amazing Team</div>
                 <h1 className="section-title">Our Crafting Team</h1>
                 <p className="section-subtitle">
@@ -834,22 +865,12 @@ export default function TeamPage() {
                   creators preserving Kashmir's rich heritage.
                 </p>
                 <div className="hero-stats">
-                  <div className="hero-stat">
-                    <span className="hero-stat-number">500+</span>
-                    <span className="hero-stat-label">Skilled Artisans</span>
-                  </div>
-                  <div className="hero-stat">
-                    <span className="hero-stat-number">50+</span>
-                    <span className="hero-stat-label">Villages</span>
-                  </div>
-                  <div className="hero-stat">
-                    <span className="hero-stat-number">25+</span>
-                    <span className="hero-stat-label">Craft Types</span>
-                  </div>
-                  <div className="hero-stat">
-                    <span className="hero-stat-number">15+</span>
-                    <span className="hero-stat-label">Countries</span>
-                  </div>
+                  {stats.map((stat, idx) => (
+                    <div key={idx} className="hero-stat">
+                      <span className="hero-stat-number">{counts[idx]}+</span>
+                      <span className="hero-stat-label">{stat.label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -905,36 +926,39 @@ export default function TeamPage() {
                 ))}
               </div>
             </section>
-           <section className="collaboration-section bg-gradient-to-r from-[var(--primary-header-color)] to-[var(--primary-header-color)]">
-      <div className="collaboration-content">
-        <div className="section-header">
-          <div className="section-badge">Collaboration</div>
-          <h2 className="section-title">The Power of Unity</h2>
-        </div>
-        <p className="collaboration-text">
-          The De Koshur Crafts team works collaboratively, drawing from
-          each other's strengths, skills, and perspectives to ensure
-          that the company remains dynamic, innovative, and growth-oriented.
-        </p>
-        <p className="collaboration-text">
-          We collaborate with global partners, designers, retailers, and
-          NGOs to build a thriving ecosystem that connects artisans with
-          buyers and customers with authentic Kashmiri craftsmanship.
-        </p>
+            <section className="collaboration-section bg-gradient-to-r from-[var(--primary-header-color)] to-[var(--primary-header-color)]">
+              <div className="collaboration-content">
+                <div className="section-header">
+                  <div className="section-badge">Collaboration</div>
+                  <h2 className="section-title">The Power of Unity</h2>
+                </div>
+                <p className="collaboration-text">
+                  The De Koshur Crafts team works collaboratively, drawing from
+                  each other's strengths, skills, and perspectives to ensure
+                  that the company remains dynamic, innovative, and
+                  growth-oriented.
+                </p>
+                <p className="collaboration-text">
+                  We collaborate with global partners, designers, retailers, and
+                  NGOs to build a thriving ecosystem that connects artisans with
+                  buyers and customers with authentic Kashmiri craftsmanship.
+                </p>
 
-        <div className="collaboration-features">
-          {features.map((feature, index) => (
-            <div key={index} className="collaboration-feature">
-              <span className="feature-icon text-[var(--secondary-hover-color)] ml-[40%]">{feature.icon}</span>
-              <div className="feature-title text-[var(--secondary-hover-color)]">
-                {feature.title}
+                <div className="collaboration-features">
+                  {features.map((feature, index) => (
+                    <div key={index} className="collaboration-feature">
+                      <span className="feature-icon text-[var(--secondary-hover-color)] ml-[40%]">
+                        {feature.icon}
+                      </span>
+                      <div className="feature-title text-[var(--secondary-hover-color)]">
+                        {feature.title}
+                      </div>
+                      <div className="feature-text">{feature.text}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="feature-text">{feature.text}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            </section>
           </div>
         </main>
       </div>

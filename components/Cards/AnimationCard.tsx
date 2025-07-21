@@ -1,8 +1,6 @@
 "use client"
 
-import {
-  ArrowRight,
-} from "lucide-react"
+
 import type React from "react"
 
 export interface AnimationCardProps {

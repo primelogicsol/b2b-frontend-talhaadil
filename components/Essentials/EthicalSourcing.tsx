@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
   Heart,
@@ -412,37 +413,60 @@ export default function EthicalSourcingSustainability() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {sustainabilityPractices.map((practice, index) => (
-              <div
-                key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
-              >
-                <div className="flex items-start gap-6">
-                  <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
-                    <practice.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center mb-3">
-                      <h3 className="text-xl font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
-                        {practice.title}
-                      </h3>
-                      <span className="text-2xl font-bold text-[var(--primary-cyan-color)]">
-                        {practice.percentage}%
-                      </span>
+            {sustainabilityPractices.map((practice, index) => {
+              const ref = useRef(null);
+              const isInView = useInView(ref, { amount: 0.3});
+              const [count, setCount] = useState(0);
+
+              useEffect(() => {
+                if (isInView) {
+                  let start = 0;
+                  const timer = setInterval(() => {
+                    start += 1;
+                    setCount(start);
+                    if (start >= practice.percentage) clearInterval(timer);
+                  }, 15); // speed of count
+                  return () => clearInterval(timer);
+                }
+              }, [isInView, practice.percentage]);
+
+              return (
+                <div
+                  key={index}
+                  ref={ref}
+                  className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                      <practice.icon className="w-7 h-7 text-white" />
                     </div>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {practice.description}
-                    </p>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div
-                        className={`bg-gradient-to-r ${practice.color} h-3 rounded-full transition-all duration-1000 ease-out`}
-                        style={{ width: `${practice.percentage}%` }}
-                      ></div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center mb-3">
+                        <h3 className="text-xl font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
+                          {practice.title}
+                        </h3>
+                        <span className="text-2xl font-bold text-[var(--primary-cyan-color)]">
+                          {count}%
+                        </span>
+                      </div>
+                      <p className="text-gray-600 leading-relaxed mb-4">
+                        {practice.description}
+                      </p>
+                      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <motion.div
+                          className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
+                          initial={{ width: "0%" }}
+                          animate={{
+                            width: isInView ? `${practice.percentage}%` : "0%",
+                          }}
+                          transition={{ duration: 3, ease: "easeOut" }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Carbon Footprint Card */}
@@ -466,8 +490,6 @@ export default function EthicalSourcingSustainability() {
           </div>
         </div>
       </section>
-
-    
 
       {/* Testimonials Slider */}
       <section className="scroll-section py-20 px-4">
