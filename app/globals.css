@@ -91,6 +91,68 @@ body {
   display: none;            /* Chrome, Safari, Opera */
 }
 
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+
+  /* Custom styles for the frosted glass effect */
+.frosted-glass {
+  background-color: rgba(255, 255, 255, 0.08); /* More subtle transparency */
+  backdrop-filter: blur(15px) saturate(180%); /* Stronger blur for depth */
+  -webkit-backdrop-filter: blur(15px) saturate(180%); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Deeper shadow */
+}
+
+/* Custom animations for background elements */
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(10px) translateX(-5px) rotate(-5deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+}
+
+@keyframes pulse-fade {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float {
+  animation: float 15s ease-in-out infinite;
+}
+.animate-pulse-fade {
+  animation: pulse-fade 8s ease-in-out infinite;
+}
+
 @keyframes slide-in {
   0% {
     transform: translateX(-100%);
