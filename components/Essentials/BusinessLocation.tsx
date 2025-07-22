@@ -147,8 +147,7 @@ export default function BusinessLocation() {
                 Rural Areas
               </h3>
               <p className="text-gray-200 text-sm md:text-base">
-                We ensure that even artisans from remote areas have access to
-                resources, training, and a platform to showcase their crafts.
+                We ensure that even artisans from remote areas have access to essential resources, proper training, and a global platform to showcase their crafts.
               </p>
             </div>
           </div>
@@ -205,8 +204,7 @@ export default function BusinessLocation() {
                 </h3>
               </div>
               <p className="text-gray-700 text-sm md:text-base text-center">
-                Our products are sold through 200+ retail partners across the
-                country, including luxury boutiques and home decor retailers.
+                Our products are proudly sold through 200+ trusted retail partners across the country, including renowned luxury boutiques and premium home decor retailers operating nationwide.
               </p>
             </div>
             <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
@@ -234,9 +232,7 @@ export default function BusinessLocation() {
                 </h3>
               </div>
               <p className="text-gray-700 text-sm md:text-base text-center">
-                We have a growing base of consumers in Japan, Hong Kong, and
-                India, who appreciate the rich cultural heritage and the
-                uniqueness of Kashmiri crafts.
+             We have a rapidly growing base of consumers in Japan, Hong Kong, and India, who deeply appreciate the rich cultural heritage and the uniqueness of Kashmiri crafts.
               </p>
             </div>
           </div>

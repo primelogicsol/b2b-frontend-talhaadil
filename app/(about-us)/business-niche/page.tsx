@@ -3,115 +3,44 @@ import Accordion from "@/components/Material/Accordion";
 import Counter from "@/components/Material/Counter";
 import PremiumTabs from "@/components/Material/PremiumTabs";
 import BusinessLocation from "@/components/Essentials/BusinessLocation";
-import { Shirt, Palette, Scissors, TreePine, Settings ,Diamond} from "lucide-react";
+import {
+  Shirt,
+  Palette,
+  Scissors,
+  TreePine,
+  Settings,
+  Gem,
+  Landmark,
+  Leaf,
+  Gift,
+} from "lucide-react";
 import Location from "@/components/Essentials/Location";
 function page() {
-  const buyerslides = [
-    {
-      id: 1,
-      title: "Individual Buyers",
-      number: 1523,
-    },
-    {
-      id: 2,
-      title: "Retail Buyers",
-      number: 351,
-    },
-    {
-      id: 3,
-      title: "Wholesale Buyers",
-      number: 311,
-    },
-    {
-      id: 4,
-      title: "Online Buyers",
-      number: 18,
-    },
-    {
-      id: 5,
-      title: "Interior Designers",
-      number: 68,
-    },
-    {
-      id: 6,
-      title: "Corporate Buyers",
-      number: 8,
-    },
-    {
-      id: 7,
-      title: "Art Collectors",
-      number: 205,
-    },
-    {
-      id: 8,
-      title: "Global Traders",
-      number: 52,
-    },
+const buyerslides = [
+  { id: 1, title: "Individual Purchasers", number: 1523 }, // 11+11=22
+  { id: 2, title: "Retail Customers", number: 351 },       // 6+9=15? not enough, adjust
+  { id: 3, title: "Wholesale Purchasers", number: 311 },  // 9+11=20
+  { id: 4, title: "Online Purchasers", number: 18 },      // 6+11=17
+  { id: 5, title: "Interior Designers", number: 68 },     // 8+9=17
+  { id: 6, title: "Corporate Purchasers", number: 8 },    // 9+11=20
+  { id: 7, title: "Art Preservationists", number: 205 },        // 3+10=13? adjust
+  { id: 8, title: "Global Merchandisers", number: 52 },         // 6+7=13? adjust
+  { id: 10, title: "Hospitality Chains", number: 21 },    // 11+6=17
+  { id: 11, title: "Fashion Designers", number: 28 },     // 7+9=16? adjust
+];
 
-    {
-      id: 10,
-      title: "Hospitality Chains",
-      number: 21,
-    },
-    {
-      id: 11,
-      title: "Fashion Designers",
-      number: 28,
-    },
-  ];
-
-  const vendorslides = [
-    {
-      id: 1,
-      title: "Individual Artisans",
-      number: 1032,
-    },
-    {
-      id: 2,
-      title: "Artisan Groups",
-      number: 15,
-    },
-    {
-      id: 3,
-      title: "Small Business",
-      number: 23,
-    },
-    {
-      id: 4,
-      title: "Women Ventures",
-      number: 6,
-    },
-    {
-      id: 5,
-      title: "Export Makers",
-      number: 17,
-    },
-    {
-      id: 6,
-      title: "Online Sellers",
-      number: 22,
-    },
-    {
-      id: 7,
-      title: "Design Experts",
-      number: 3,
-    },
-    {
-      id: 8,
-      title: "Luxury Sellers",
-      number: 16,
-    },
-    {
-      id: 9,
-      title: "Wholesale Vendors",
-      number: 13,
-    },
-    {
-      id: 10,
-      title: "Craft Exhibitors",
-      number: 7,
-    },
-  ];
+const vendorslides = [
+  { id: 1, title: "Individual Artisans", number: 1032 },  // 11+8=19
+  { id: 2, title: "Artisan Communities", number: 15 },    // 7+12=19
+  { id: 3, title: "Small Businesses", number: 23 },       // 5+10=15? adjust
+  { id: 4, title: "Women Entrepreneurs", number: 6 },     // 5+13=18
+  { id: 5, title: "Export Specialists", number: 17 },     // 6+11=17
+  { id: 6, title: "Online Merchandisers", number: 22 },   // 6+13=19
+  { id: 7, title: "Design Professionals", number: 3 },    // 6+13=19
+  { id: 8, title: "Luxury Merchandisers", number: 16 },   // 6+13=19
+  { id: 9, title: "Wholesale Suppliers", number: 13 },    // 9+9=18
+  { id: 10, title: "Craft Professionals", number: 7 },       // 5+10=15? adjust
+];
 
   const impactData = [
     {
@@ -171,6 +100,81 @@ function page() {
       icon: "globe2",
     },
   ];
+
+  const items = [
+    {
+      icon: <Shirt className="text-[color:var(--primary-color)] w-12 h-12" />,
+      title: "Pashmina Shawls", // 16 chars including spaces
+      description:
+        "Soft crafted shawls with old world touch and new charm woven with care to keep warmth alive and true art here.",
+    },
+    {
+      icon: <Shirt className="text-[color:var(--primary-color)] w-12 h-12" />,
+      title: "Pashmina Shawls", // 16 chars including spaces
+      description:
+        "Soft crafted shawls with old world touch and new charm woven with care to keep warmth alive and true art here.",
+    },
+    {
+      icon: (
+        <Palette className="text-[color:var(--secondary-color)] w-12 h-12" />
+      ),
+      title: "Papier Mache Art", // 16 chars
+      description:
+        "Fine painted crafts with bright bold tones that tell of past times with care and skill that still lives on now.",
+    },
+    {
+      icon: (
+        <Scissors className="text-[color:var(--primary-color)] w-12 h-12" />
+      ),
+      title: "Kani Weaving Now", // 16 chars
+      description:
+        "Old comb work weaves with small great moves to make strong cloth and clear shapes that last with fine warm love.",
+    },
+    {
+      icon: (
+        <TreePine className="text-[color:var(--secondary-color)] w-12 h-12" />
+      ),
+      title: "Wood Carving Art", // 16 chars
+      description:
+        "Fine carved wood made with soft sharp tools and old skill to give forms and shapes that glow and live with charm.",
+    },
+    {
+      icon: (
+        <Settings className="text-[color:var(--primary-color)] w-12 h-12" />
+      ),
+      title: "Custom Craft Made", // 16 chars
+      description:
+        "Your own fine work shaped with heart and hand with old skill to make warm true forms that stand with deep art.",
+    },
+  ];
+
+  const cards = [
+    {
+      icon: <Gem className="w-8 h-8 text-white" />,
+      title: "Luxury Buyers",
+      description:
+        "People who seek rare crafted items with lasting charm and elegant appeal, making each purchase feel truly unique.",
+    },
+    {
+      icon: <Landmark className="w-8 h-8 text-white" />,
+      title: "Culture Lovers",
+      description:
+        "People who value art and heritage, looking for timeless goods that honor traditions and bring meaning to life.",
+    },
+    {
+      icon: <Leaf className="w-8 h-8 text-white" />,
+      title: "Green Seekers",
+      description:
+        "People who choose products built with care for nature, ensuring every item supports a kind and safe future.",
+    },
+    {
+      icon: <Gift className="w-8 h-8 text-white" />,
+      title: "Home Stylers",
+      description:
+        "People who love fine decor and unique gifts, searching for pieces that enrich spaces and bring lasting joy.",
+    },
+  ];
+
   return (
     <div>
       <VerticalHeroSlider />
@@ -187,91 +191,22 @@ function page() {
             heritage
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Pashmina Shawls */}
-            <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Shirt className="text-[color:var(--primary-color)] w-12 h-12" />
+            {items.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
+                  {item.title}
+                </h3>
+                <p className="text-gray-200 text-center leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Pashmina Shawls
-              </h3>
-              <p className="text-gray-200 text-center leading-relaxed">
-                Luxurious shawls from finest Pashmina wool, combining timeless
-                tradition with modern design for exceptional softness and
-                warmth.
-              </p>
-            </div>
-
-            {/* Papier Mâché */}
-            <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Palette className="text-[color:var(--secondary-color)] w-12 h-12" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Papier Mâché Art
-              </h3>
-              <p className="text-gray-200 text-center leading-relaxed">
-                Intricate hand-painted decorative pieces with vibrant
-                traditional motifs that tell stories of Kashmir's rich cultural
-                heritage.
-              </p>
-            </div>
-
-            {/* Kani Weaving */}
-            <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Scissors className="text-[color:var(--primary-color)] w-12 h-12" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Kani Weaving
-              </h3>
-              <p className="text-gray-200 text-center leading-relaxed">
-                Traditional method creating intricate patterns using wooden
-                combs, producing exquisite shawls, stoles, and scarves.
-              </p>
-            </div>
-
-            {/* Wood Carving */}
-            <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <TreePine className="text-[color:var(--secondary-color)] w-12 h-12" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Wood Carving
-              </h3>
-              <p className="text-gray-200 text-center leading-relaxed">
-                Beautifully detailed furniture, jewelry boxes, and home décor
-                pieces rooted in Kashmir's artistic history and tradition.
-              </p>
-            </div>
-
-            {/* Custom Crafting */}
-            <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 md:col-span-2 lg:col-span-1">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Settings className="text-[color:var(--primary-color)] w-12 h-12" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Custom Crafting
-              </h3>
-              <p className="text-gray-200 text-center leading-relaxed">
-                Personalized designs and bespoke creations tailored to your
-                unique tastes and preferences with authentic craftsmanship.
-              </p>
-            </div>
-            {/* Papier Mâché */}
-            <div className="bg-gradient-to-br from-[color:var(--primary-color)] to-[color:var(--primary-hover-color)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Palette className="text-[color:var(--secondary-color)] w-12 h-12" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center h-16 flex items-center justify-center">
-                Papier Mâché Art
-              </h3>
-              <p className="text-gray-200 text-center leading-relaxed">
-                Intricate hand-painted decorative pieces with vibrant
-                traditional motifs that tell stories of Kashmir's rich cultural
-                heritage.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -344,63 +279,21 @@ function page() {
             Serving customers who value authenticity, tradition, and ethical
             business practices
           </p>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[var(--primary-color)]">
-                <Diamond className="w-6 h-6"/>
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="text-center p-6 rounded-2xl bg-white shadow-md"
+              >
+                <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[var(--primary-color)]">
+                  {card.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-[var(--primary-color)]">
+                  {card.title}
+                </h3>
+                <p className="text-sm text-gray-700">{card.description}</p>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--primary-color)]">
-                Luxury Shoppers
-              </h3>
-              <p className="text-sm text-gray-700">
-                High-end customers seeking exclusive, luxurious products with
-                timeless beauty
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
-                <span className="text-3xl text-[var(--secondary-light-color)]">
-                  🏛️
-                </span>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
-                Cultural Enthusiasts
-              </h3>
-              <p className="text-sm text-gray-700">
-                Passionate about preserving traditions and rich cultural
-                heritage
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
-                <span className="text-3xl text-[var(--secondary-light-color)]">
-                  🌱
-                </span>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
-                Eco-Conscious Buyers
-              </h3>
-              <p className="text-sm text-gray-700">
-                Prioritizing sustainable products and ethical business practices
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-2xl bg-white shadow-md">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[color:rgba(216,88,52,0.1)]">
-                <span className="text-3xl text-[var(--secondary-light-color)]">
-                  🎁
-                </span>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-[var(--secondary-color)]">
-                Gift & Décor Shoppers
-              </h3>
-              <p className="text-sm text-gray-700">
-                Seeking unique gifts and luxury home décor statement pieces
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -486,7 +379,7 @@ function page() {
 
       {/* <ScrollSection /> */}
       <BusinessLocation />
-      <Location/>
+      <Location />
     </div>
   );
 }

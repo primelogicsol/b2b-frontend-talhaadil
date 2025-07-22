@@ -23,7 +23,39 @@ export default function CareersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
-    const [openDropdown, setOpenDropdown] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(false);
+const benefits = [
+  {
+    title: "Make a Difference",
+    description:
+      "Help shape a platform that values craft, supports fair trade, and builds lasting cultural growth."
+  },
+  {
+    title: "Team Collaboration",
+    description:
+      "Work inside a group that shares ideas, builds trust, and grows strong through open support."
+  },
+  {
+    title: "Career Progression",
+    description:
+      "Gain rich learning chances that grow your skill set and keep you moving toward better roles."
+  },
+  {
+    title: "Flexible Schedule",
+    description:
+      "Enjoy a balanced approach that values your time and allows remote work with true freedom."
+  },
+  {
+    title: "Diverse Inclusion",
+    description:
+      "Be part of a team that honors each background and creates space where all members belong."
+  },
+  {
+    title: "Positive Culture",
+    description:
+      "Join a mindful workplace that blends kind values and clear goals for steady shared success."
+  }
+]
   const filters = [
     { value: "all", label: "All Departments" },
     { value: "operations", label: "Operations" },
@@ -145,7 +177,7 @@ export default function CareersPage() {
       icon: <Shield className="w-8 h-8" />,
       title: "Integrity",
       description:
-        "We value transparency and ethical business practices. Our commitment to fair wages, safe working conditions, and authenticity ensures responsible operations.",
+        "We value transparency and ethical practices. Our commitment to fair wages, safe working conditions, and authenticity ensures responsible operations.",
     },
   ];
 
@@ -166,8 +198,6 @@ export default function CareersPage() {
   return (
     <div className="careers-page">
       <style jsx>{`
-        
-
         .container {
           max-width: 1200px;
           margin: 0 auto;
@@ -491,13 +521,12 @@ export default function CareersPage() {
         }
 
         .cta-section {
-          background:
-            var(--primary-color) 0%;
-          
+          background: var(--primary-color) 0%;
+
           color: white;
           text-align: center;
           padding: 80px 20px;
-          border-bottom : 80px solid var(--primary-header-color);
+          border-bottom: 80px solid var(--primary-header-color);
         }
 
         .cta-title {
@@ -648,51 +677,14 @@ export default function CareersPage() {
             environment. We are a diverse team committed to sustainability,
             innovation, and ethical business practices.
           </p>
-
-          <div className="benefits-grid">
-            <div className="benefit-card">
-              <div className="benefit-title">Make a Difference</div>
-              <p>
-                Contribute to a platform that empowers artisans and promotes
-                fair trade, sustainability, and cultural preservation.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-title">Collaborative Environment</div>
-              <p>
-                Join a dynamic and supportive team where every voice is heard,
-                and collaboration is encouraged.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-title">Professional Growth</div>
-              <p>
-                We offer opportunities for continuous learning, skill
-                development, and career advancement in a fast-growing company.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-title">Flexible Work Culture</div>
-              <p>
-                We value work-life balance and offer flexible working hours and
-                remote work opportunities.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-title">Inclusive & Diverse Team</div>
-              <p>
-                We celebrate diversity in all its forms and are committed to
-                creating an inclusive environment where everyone feels welcome.
-              </p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-title">Inclusive & Diverse Team</div>
-              <p>
-                We celebrate diversity in all its forms and are committed to
-                creating an inclusive environment where everyone feels welcome.
-              </p>
-            </div>
-          </div>
+         <div className="benefits-grid">
+      {benefits.map((b, i) => (
+        <div className="benefit-card" key={i}>
+          <div className="benefit-title">{b.title}</div>
+          <p>{b.description}</p>
+        </div>
+      ))}
+    </div>
         </div>
       </section>
 

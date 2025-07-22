@@ -22,7 +22,8 @@ const plans: PricingPlan[] = [
     name: "Starter Package",
     price: 1250,
     period: "one-time",
-    description: "Designed for small vendors establishing presence in the ecosystem.",
+    description:
+      "Designed for small vendors establishing presence in the ecosystem.",
     features: {
       directAccess: "Mid-tier partnerships (Consignment & Exhibition)",
       compulsory: "E-Commerce Partnership Registration & Approval",
@@ -76,7 +77,9 @@ export default function PricingTable() {
             <div
               key={plan.name}
               className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 transition-all duration-300 hover:bg-white/15 hover:scale-105 ${
-                plan.isPopular ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl" : ""
+                plan.isPopular
+                  ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl"
+                  : ""
               }`}
             >
               {plan.isPopular && (
@@ -88,15 +91,20 @@ export default function PricingTable() {
               )}
 
               <div className="text-center mb-6">
-                <h3 className="text-white font-semibold text-sm mb-2">{plan.name}</h3>
-                <p className="text-white/70 text-xs mb-4 leading-relaxed">{plan.description}</p>
+                <h3 className="text-white font-semibold text-sm mb-2">
+                  {plan.name}
+                </h3>
+                <p className="text-white/70 text-xs mb-4 leading-relaxed">
+                  {plan.description}
+                </p>
 
                 <div className="mb-4">
-                  <span className="text-white text-4xl font-bold">${plan.price}</span>
-                  <span className="text-white/70 text-sm"> {plan.period}</span>
+                  <span className="text-white text-4xl font-bold">
+                    ${plan.price}
+                  </span>
                 </div>
 
-                <div className="text-[var(--primary-light-text-color)] text-xs mb-6 capitalize">
+                <div className="text-white text-sm mb-6 capitalize">
                   {plan.period.replace("-", " ")}
                 </div>
 
@@ -113,12 +121,19 @@ export default function PricingTable() {
 
               <div className="space-y-4 text-sm">
                 {Object.entries(plan.features).map(([label, value]) => (
-                  <div key={label} className="flex justify-between items-start py-2 border-b border-white/10">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-white/80 capitalize">{label.replace(/([A-Z])/g, ' $1')}</span>
+                  <div
+                    key={label}
+                    className="flex items-center py-2 border-b border-white/10"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-white/80 capitalize truncate">
+                        {label.replace(/([A-Z])/g, " $1")}
+                      </span>
                       <Info className="w-3 h-3 text-white/50" />
                     </div>
-                    <span className="text-white text-right font-medium">{value}</span>
+                    <div className="text-white font-medium ml-3">
+                      {value}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -147,7 +162,9 @@ export default function PricingTable() {
           <div className="max-w-md mx-auto">
             <div
               className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 ${
-                plans[selectedPlan].isPopular ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl" : ""
+                plans[selectedPlan].isPopular
+                  ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl"
+                  : ""
               }`}
             >
               {plans[selectedPlan].isPopular && (
@@ -159,14 +176,21 @@ export default function PricingTable() {
               )}
 
               <div className="text-center mb-6">
-                <h3 className="text-white font-semibold text-lg mb-2">{plans[selectedPlan].name}</h3>
+                <h3 className="text-white font-semibold text-lg mb-2">
+                  {plans[selectedPlan].name}
+                </h3>
                 <p className="text-white/70 text-sm mb-4 leading-relaxed">
                   {plans[selectedPlan].description}
                 </p>
 
                 <div className="mb-4">
-                  <span className="text-white text-5xl font-bold">${plans[selectedPlan].price}</span>
-                  <span className="text-white/70 text-lg"> {plans[selectedPlan].period}</span>
+                  <span className="text-white text-5xl font-bold">
+                    ${plans[selectedPlan].price}
+                  </span>
+                  <span className="text-white/70 text-lg">
+                    {" "}
+                    {plans[selectedPlan].period}
+                  </span>
                 </div>
 
                 <div className="text-[var(--primary-light-text-color)] text-sm mb-6 capitalize">
@@ -185,15 +209,24 @@ export default function PricingTable() {
               </div>
 
               <div className="space-y-4 text-sm">
-                {Object.entries(plans[selectedPlan].features).map(([label, value]) => (
-                  <div key={label} className="flex justify-between items-start py-3 border-b border-white/10">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-white/80 capitalize">{label.replace(/([A-Z])/g, ' $1')}</span>
-                      <Info className="w-4 h-4 text-white/50" />
+                {Object.entries(plans[selectedPlan].features).map(
+                  ([label, value]) => (
+                    <div
+                      key={label}
+                      className="flex justify-between items-start py-3 border-b border-white/10"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <span className="text-white/80 capitalize">
+                          {label.replace(/([A-Z])/g, " $1")}
+                        </span>
+                        <Info className="w-4 h-4 text-white/50" />
+                      </div>
+                      <span className="text-white text-right font-medium">
+                        {value}
+                      </span>
                     </div>
-                    <span className="text-white text-right font-medium">{value}</span>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             </div>
           </div>

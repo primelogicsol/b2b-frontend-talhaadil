@@ -23,37 +23,39 @@ import DiagonalSection from "@/components/Section/DiagonalSection";
 import OurVision from "@/components/Essentials/OurVision";
 import EthicalSourcingSustainability from "@/components/Essentials/EthicalSourcing";
 export default function MainPage() {
-  const whatSetsUsApartCards = [
-    {
-      icon: <ShieldCheck className="w-8 h-8" />,
-      title: "Authenticity Guarantee",
-      description:
-        "Every product is traceable via blockchain, ensuring you receive genuine artisan-made Kashmiri crafts.",
-      buttonText: "READ MORE",
-    },
-    {
-      icon: <Handshake className="w-8 h-8" />,
-      title: "Fair Trade Practices",
-      description:
-        "We ensure artisans are paid fairly and work in ethical, sustainable environments.",
-      buttonText: "READ MORE",
-    },
-    {
-      icon: <Globe className="w-8 h-8" />,
-      title: "Global Reach",
-      description:
-        "Our platform connects Kashmiri artisans with buyers around the world, expanding their market access.",
-      buttonText: "READ MORE",
-    },
-    {
-      icon: <Sparkles className="w-8 h-8" />,
-      title: "Education & Empowerment",
-      description:
-        "We provide artisans with mentorship and training to help them thrive in today’s global economy.",
-      buttonText: "READ MORE",
-    },
-  ];
+const whatSetsUsApartCards = [
+  {
+    icon: <ShieldCheck className="w-8 h-8" />,
+    title: "Real Craft",
+    description:
+      "Every item is tracked on blockchain, ensuring genuine Kashmiri craftsmanship and trusted quality for every buyer worldwide.",
+    buttonText: "READ MORE",
+  },
+  {
+    icon: <Handshake className="w-8 h-8" />,
+    title: "Fair Trade",
+    description:
+      "Artisans are paid fairly and work in ethical, sustainable conditions, preserving Kashmiri traditions through honest practices.",
+    buttonText: "READ MORE",
+  },
+  {
+    icon: <Globe className="w-8 h-8" />,
+    title: "Global Reach",
+    description:
+      "Our platform links skilled Kashmiri creators with buyers worldwide, growing markets and sustaining handcrafted excellence.",
+    buttonText: "READ MORE",
+  },
+  {
+    icon: <Sparkles className="w-8 h-8" />,
+    title: "Skill Growth",
+    description:
+      "We provide guidance, mentorship, and training so artisans adapt, thrive, and build sustainable futures in global markets.",
+    buttonText: "READ MORE",
+  },
+]
 
+
+  
   const cards = [
     {
       title: "Preserving Heritage",

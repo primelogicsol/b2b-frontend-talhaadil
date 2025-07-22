@@ -262,7 +262,7 @@ export default function Process() {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-gray-900">
+    <div className="py-12 px-4 sm:px-6 lg:px-8 text-gray-900">
       <main className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <section className="text-center mb-16 py-16 rounded-xl bg-gradient-to-br from-[var(--primary-header-color)] to-white shadow-lg">
@@ -387,17 +387,17 @@ export default function Process() {
             </div>
             <button
               onClick={prevLevel}
-              className="absolute top-1/2 left-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-2 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
+              className="absolute top-1/2 left-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10 ml-1"
               aria-label="Previous partnership level"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={nextLevel}
-              className="absolute top-1/2 right-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-2 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
+              className="absolute top-1/2 right-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10 mr-1"
               aria-label="Next partnership level"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
@@ -765,14 +765,14 @@ export default function Process() {
               {/* Navigation Buttons */}
               <button
                 onClick={prevKPI}
-                className="absolute top-1/2 left-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
+                className="absolute top-1/2 left-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
                 aria-label="Previous KPI metrics"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={nextKPI}
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
+                className="absolute top-1/2 right-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
                 aria-label="Next KPI metrics"
               >
                 <ChevronRight className="w-4 h-4" />
