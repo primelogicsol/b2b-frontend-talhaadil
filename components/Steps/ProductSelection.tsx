@@ -1,5 +1,5 @@
 "use client"
-
+import { useEffect } from "react"
 import { useState } from "react"
 
 interface ProductData {
@@ -54,6 +54,11 @@ const productCategories = [
 ]
 
 export default function ProductSelection({ data, onUpdate, onNext, onPrev }: ProductSelectionProps) {
+ // ✅ Scroll to top on component mount
+ useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
+
   const [selectedCategories, setSelectedCategories] = useState<string[]>(data?.categories || [])
   const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(data?.subCategories || [])
 
@@ -154,12 +159,13 @@ export default function ProductSelection({ data, onUpdate, onNext, onPrev }: Pro
                   key={subCategory}
                   className="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <input
-                    type="checkbox"
-                    checked={selectedSubCategories.includes(subCategory)}
-                    onChange={() => handleSubCategorySelect(subCategory)}
-                    className="w-4 h-4 text-[var(--primary-color)] border-gray-300 rounded focus:ring-[var(--primary-color)]"
-                  />
+                <input
+                type="checkbox"
+                checked={selectedSubCategories.includes(subCategory)}
+                onChange={() => handleSubCategorySelect(subCategory)}
+                className="w-4 h-4 appearance-none border border-gray-300 rounded checked:bg-[var(--secondary-color)] checked:border-transparent checked:text-white focus:ring-2 focus:ring-[var(--secondary-color)] flex items-center justify-center"
+              />
+
                   <span className="text-sm text-gray-700">{subCategory}</span>
                 </label>
               ))}
@@ -183,19 +189,18 @@ export default function ProductSelection({ data, onUpdate, onNext, onPrev }: Pro
         </div>
       )}
 
-      <div className="flex justify-between">
+<div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-          Previous
+          ← Previous
         </button>
         <button
           onClick={handleNext}
-          disabled={selectedCategories.length === 0}
-          className="px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-          Continue
+          Continue →
         </button>
       </div>
     </div>

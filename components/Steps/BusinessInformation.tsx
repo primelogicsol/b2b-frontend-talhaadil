@@ -1,6 +1,7 @@
 "use client"
-
+import { useEffect } from "react"
 import { useState } from "react"
+import { Building2, Phone, MapPin } from "lucide-react"
 
 interface BusinessData {
   companyName: string
@@ -25,6 +26,12 @@ interface BusinessInformationProps {
 }
 
 export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: BusinessInformationProps) {
+
+ // ✅ Scroll to top on component mount
+ useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
+
   const [formData, setFormData] = useState<BusinessData>(
     data || {
       companyName: "",
@@ -67,7 +74,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
     <div className="max-w-5xl mx-auto px-6">
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
-          <span className="text-2xl text-white">🏢</span>
+          <span className="text-2xl text-white"><Building2 className="w-8 h-8 text-white" /></span>
         </div>
         <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Business Information</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -94,8 +101,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         {/* Company Details */}
         <div>
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 bg-[var(--primary-color)] rounded-full flex items-center justify-center">
-              <span className="text-white text-lg">🏢</span>
+            <div className="w-10 h-10 bg-[var(--secondary-hover-color)] rounded-full flex items-center justify-center">
+              <span className="text-white text-lg"><Building2 className="w-6 h-6 text-white" /></span>
             </div>
             <h2 className="text-2xl font-bold text-[var(--primary-color)]">Company Details</h2>
           </div>
@@ -106,7 +113,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.companyName}
                 onChange={(e) => handleChange("companyName", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter your company name"
               />
             </div>
@@ -116,7 +123,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.contactPerson}
                 onChange={(e) => handleChange("contactPerson", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter contact person name"
               />
             </div>
@@ -125,7 +132,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.businessType}
                 onChange={(e) => handleChange("businessType", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select business type</option>
                 <option value="sole-proprietorship">Sole Proprietorship</option>
@@ -140,7 +147,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="number"
                 value={formData.yearEstablished}
                 onChange={(e) => handleChange("yearEstablished", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="YYYY"
               />
             </div>
@@ -150,8 +157,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         {/* Contact Information */}
         <div>
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
-              <span className="text-white text-lg">📞</span>
+            <div className="w-10 h-10 bg-[var(--secondary-hover-color)] rounded-full flex items-center justify-center">
+              <span className="text-white text-lg"> <Phone className="text-white w-5 h-5" /></span>
             </div>
             <h2 className="text-2xl font-bold text-[var(--primary-color)]">Contact Information</h2>
           </div>
@@ -162,7 +169,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter email address"
               />
             </div>
@@ -172,7 +179,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter phone number"
               />
             </div>
@@ -182,7 +189,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="url"
                 value={formData.website}
                 onChange={(e) => handleChange("website", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="https://www.example.com"
               />
             </div>
@@ -192,8 +199,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         {/* Address Information */}
         <div>
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-lg">📍</span>
+            <div className="w-10 h-10 bg-[var(--secondary-hover-color)] rounded-full flex items-center justify-center">
+              <span className="text-white text-lg"><MapPin className="text-white w-5 h-5" /></span>
             </div>
             <h2 className="text-2xl font-bold text-[var(--primary-color)]">Address Information</h2>
           </div>
@@ -204,7 +211,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.address}
                 onChange={(e) => handleChange("address", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter street address"
               />
             </div>
@@ -215,7 +222,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleChange("city", e.target.value)}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter city"
                 />
               </div>
@@ -225,7 +232,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.state}
                   onChange={(e) => handleChange("state", e.target.value)}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter state"
                 />
               </div>
@@ -235,7 +242,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.zipCode}
                   onChange={(e) => handleChange("zipCode", e.target.value)}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter ZIP code"
                 />
               </div>
@@ -245,7 +252,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.country}
                 onChange={(e) => handleChange("country", e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2  focus:outline-none focus:ring-[var(--secondary-hover-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select country</option>
                 <option value="US">United States</option>
@@ -262,7 +269,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       <div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-medium"
+          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
           ← Previous
         </button>

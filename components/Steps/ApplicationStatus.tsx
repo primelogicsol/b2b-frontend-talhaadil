@@ -1,4 +1,5 @@
 "use client"
+import { useEffect } from "react";
 
 interface ApplicationStatusProps {
   onNext: () => void
@@ -51,6 +52,12 @@ const requiredActions = [
 ]
 
 export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusProps) {
+
+   // ✅ Scroll to top on component mount
+   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed":
@@ -216,16 +223,16 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         </div>
       </div>
 
-      <div className="flex justify-between mt-8 gap-2">
+      <div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-          Previous
+          ← Previous
         </button>
         <button
           onClick={onNext}
-          className="px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-lg transition-colors"
+          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
           Continue →
         </button>

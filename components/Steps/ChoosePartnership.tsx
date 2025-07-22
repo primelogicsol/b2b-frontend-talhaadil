@@ -1,6 +1,6 @@
 "use client"
-
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { FaHandshake, FaCheck, FaLock } from "react-icons/fa"
 
 interface Partnership {
   id: string
@@ -31,7 +31,6 @@ const partnerships: Partnership[] = [
     retention: "No requirement",
     kpiScore: "No requirement",
     available: true,
-    isAltPath: false,
   },
   {
     id: "consignment",
@@ -71,7 +70,6 @@ const partnerships: Partnership[] = [
     retention: "36 months",
     kpiScore: "7+",
     available: false,
-    isAltPath: false,
   },
   {
     id: "brick-mortar",
@@ -81,7 +79,6 @@ const partnerships: Partnership[] = [
     retention: "12 months",
     kpiScore: "7+",
     available: false,
-    isAltPath: false,
   },
   {
     id: "franchise",
@@ -91,11 +88,14 @@ const partnerships: Partnership[] = [
     retention: "24 months",
     kpiScore: "8+",
     available: false,
-    isAltPath: false,
   },
 ]
 
 export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: ChoosePartnershipProps) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
+
   const [selectedPartnership, setSelectedPartnership] = useState(data?.selected || "")
 
   const handleSelect = (p: Partnership) => {
@@ -117,7 +117,7 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
-          <span className="text-2xl text-white">🤝</span>
+          <FaHandshake className="text-white text-2xl" />
         </div>
         <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Choose Your Partnership</h1>
         <p className="text-xl text-[var(--primary-color)]/70 max-w-2xl mx-auto">
@@ -131,7 +131,6 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
             key={p.id}
             onClick={() => handleSelect(p)}
             className={`group relative rounded-3xl shadow-xl p-8 transition-all duration-300 transform
-           
               ${p.available ? "cursor-pointer hover:-translate-y-2" : "opacity-60 grayscale"}
               ${selectedPartnership === p.id ? "ring-4 ring-[var(--secondary-color)] scale-105" : ""}
             `}
@@ -145,15 +144,15 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
             <div className="absolute -top-3 -right-3">
               {selectedPartnership === p.id ? (
                 <div className="w-10 h-10 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
-                  <span className="text-white text-lg">✓</span>
+                  <FaCheck className="text-white text-lg" />
                 </div>
               ) : p.available ? (
                 <div className="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm">✓</span>
+                  <FaCheck className="text-white text-sm" />
                 </div>
               ) : (
                 <div className="w-8 h-8 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm">🔒</span>
+                  <FaLock className="text-white text-sm" />
                 </div>
               )}
             </div>
@@ -214,7 +213,7 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
         <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)]">
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
-              <span className="text-white text-xl">✓</span>
+              <FaCheck className="text-white text-xl" />
             </div>
             <div>
               <h3 className="text-xl font-bold text-[var(--primary-color)]">Partnership Selected</h3>
@@ -226,17 +225,16 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
         </div>
       )}
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-8 py-4 border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
           ← Previous
         </button>
         <button
           onClick={handleNext}
-          disabled={!selectedPartnership}
-          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
           Continue →
         </button>
