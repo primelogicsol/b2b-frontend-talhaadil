@@ -1,22 +1,9 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { X, Mountain, ChevronRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-
-// Utility function to throttle scroll events
-function throttle(fn: (...args: any[]) => void, wait: number) {
-  let lastTime = 0;
-  return (...args: any[]) => {
-    const now = Date.now();
-    if (now - lastTime >= wait) {
-      fn(...args);
-      lastTime = now;
-    }
-  };
-}
 
 interface DropdownItem {
   label: string;
@@ -150,9 +137,7 @@ export function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
-      setIsScrolled(window.scrollY > 50);
-    }, 100); // Throttle to run every 100ms
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -173,23 +158,23 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out bg-[var(--primary-color)] ${
+        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${
           isScrolled
             ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2"
             : "py-4"
         }`}
       >
-        <div className="container mx-auto flex items-center justify-between transition-all duration-300 px-4">
+        <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
           <Link
             href="/"
-            className="flex items-center space-x-2 transition-all duration-300 z-60"
+            className="flex items-center space-x-2 transition-all duration-500 z-60"
           >
             <Mountain
               size={isScrolled ? 28 : 48}
-              className="text-[var(--secondary-color)] transition-all duration-300"
+              className="text-[var(--secondary-color)]"
             />
             <span
-              className={`text-white font-bold transition-all duration-300 ${
+              className={`text-white font-bold transition-all duration-500 ${
                 isScrolled ? "text-xl" : "text-2xl"
               }`}
             >
@@ -198,7 +183,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8 transition-all duration-300">
+          <div className="hidden lg:flex items-center space-x-8 transition-all duration-500">
             <Link
               href="/"
               className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
