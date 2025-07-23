@@ -91,6 +91,26 @@ body {
   display: none;            /* Chrome, Safari, Opera */
 }
 
+/* job section */
+.input {
+  @apply border rounded px-3 py-2 w-full;
+}
+
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded;
+}
+
+.btn-danger {
+  @apply bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded;
+}
+
+
+
+
 
   .animation-delay-1000 {
     animation-delay: 1s;
