@@ -159,9 +159,7 @@ export default function UsersPage() {
                   <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                    Documents
-                  </th>
+               
                   <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                     Actions
                   </th>
@@ -226,12 +224,7 @@ export default function UsersPage() {
                           {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center text-sm text-slate-600">
-                          <FileText className="w-4 h-4 mr-1" />
-                          {user.documents.length} files
-                        </div>
-                      </td>
+                     
                       <td className="px-6 py-4">
                         <Link
                           href={`/admin/users/${user.id}`}
