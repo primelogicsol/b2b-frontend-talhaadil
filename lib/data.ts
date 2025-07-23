@@ -8,6 +8,7 @@ export interface User {
   joinDate: string
   status: "active" | "inactive" | "pending"
   type: "buyer" | "vendor"
+  department? : string
 
   // Business Information
   businessInfo: {
