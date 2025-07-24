@@ -44,6 +44,7 @@ export default function JobsPage() {
     contactName: "",
     contactEmail: "",
     contactPhone: "",
+    languages: "",
   });
 
   useEffect(() => {
@@ -120,6 +121,7 @@ export default function JobsPage() {
       contactName: "",
       contactEmail: "",
       contactPhone: "",
+      languages: "",
     });
     setShowForm(false);
   };
@@ -177,7 +179,7 @@ export default function JobsPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium text-slate-700">Job Type</label>
               <select
@@ -200,18 +202,7 @@ export default function JobsPage() {
                 required
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Status</label>
-              <select
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.status}
-                onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-              >
-                <option value="active">Active</option>
-                <option value="closed">Closed</option>
-                <option value="draft">Draft</option>
-              </select>
-            </div>
+           
             <div>
               <label className="block text-sm font-medium text-slate-700">Urgency</label>
               <select
