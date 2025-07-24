@@ -1,36 +1,31 @@
-"use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { X, Mountain, ChevronRight, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+"use client"
 
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { X, Mountain, ChevronRight, ChevronDown } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useRouter } from "next/navigation"
+
+import { UserProfileDisplay } from "./UserProfileDisplay"
 interface DropdownItem {
-  label: string;
-  href: string;
+  label: string
+  href: string
 }
 
 interface DropdownProps {
-  title: string;
-  items: DropdownItem[];
-  isActive?: boolean;
-  onLinkClick?: () => void;
+  title: string
+  items: DropdownItem[]
+  isActive?: boolean
+  onLinkClick?: () => void
 }
 
 function DesktopDropdown({ title, items, isActive }: DropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <div
-      className="relative group"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
+    <div className="relative group" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <button
         className={`py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${
-          isActive
-            ? "text-[var(--secondary-color)]"
-            : "hover:text-[var(--secondary-hover-color)]"
+          isActive ? "text-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"
         }`}
       >
         {title}
@@ -40,7 +35,6 @@ function DesktopDropdown({ title, items, isActive }: DropdownProps) {
           }`}
         />
       </button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -54,7 +48,7 @@ function DesktopDropdown({ title, items, isActive }: DropdownProps) {
               <Link
                 key={index}
                 href={item.href}
-                className="block px-4 py-3 text-gray-800 hover:bg-gray-50 hover:text-[var(--primary-color)] transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                className="block px-4 py-3 text-gray-800 hover:bg-gray-50 hover:text-primary-color transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
               >
                 {item.label}
               </Link>
@@ -63,16 +57,11 @@ function DesktopDropdown({ title, items, isActive }: DropdownProps) {
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }
 
-function MobileDropdown({
-  title,
-  items,
-  onLinkClick,
-}: DropdownProps & { onLinkClick?: () => void }) {
-  const [isOpen, setIsOpen] = useState(false);
-
+function MobileDropdown({ title, items, onLinkClick }: DropdownProps & { onLinkClick?: () => void }) {
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <div className="w-full">
       <button
@@ -80,13 +69,8 @@ function MobileDropdown({
         className="w-full flex items-center gap-2 py-4 px-10 text-white text-lg font-medium hover:bg-white/10 rounded-lg transition-all duration-300"
       >
         <span>{title}</span>
-        <ChevronDown
-          className={`w-5 h-5 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
-          }`}
-        />
+        <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} />
       </button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -113,13 +97,15 @@ function MobileDropdown({
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }
 
 export function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isSignedIn, setIsSignedIn] = useState(true) // Set to true for demonstration
+  const router = useRouter()
+
   const blogDropdownItems = [
     { label: "Our Values", href: "/our-values" },
     { label: "Our Story", href: "/our-story" },
@@ -127,61 +113,35 @@ export function Navbar() {
     { label: "Business Niche", href: "/business-niche" },
     { label: "Careers", href: "/careers" },
     { label: "Contact Us", href: "/contact" },
-  ];
-
+  ]
   const pageDropdownItems = [
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Team", href: "/team" },
     { label: "FAQ", href: "/faq" },
-  ];
+  ]
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMobileMenuOpen]);
-
+  
   return (
     <>
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${
-          isScrolled
-            ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2"
-            : "py-4"
+          isScrolled ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2" : "py-4"
         }`}
       >
         <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
-          <Link
-            href="/"
-            className="flex items-center space-x-2 transition-all duration-500 z-60"
-          >
-            <Mountain
-              size={isScrolled ? 28 : 48}
-              className="text-[var(--secondary-color)]"
-            />
-            <span
-              className={`text-white font-bold transition-all duration-500 ${
-                isScrolled ? "text-xl" : "text-2xl"
-              }`}
-            >
+          <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
+            <Mountain size={isScrolled ? 28 : 48} className="text-[var(--secondary-color)]" />
+            <span className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-xl" : "text-2xl"}`}>
               Dekoshur Crafts
             </span>
           </Link>
-
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8 transition-all duration-500">
             <Link
@@ -215,27 +175,37 @@ export function Navbar() {
               <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
             </Link>
           </div>
-
-          {/* Desktop Buttons */}
+          {/* Desktop Buttons / User Profile */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button
-              onClick={() => {
-                router.push("/login");
-              }}
-              className="cursor-pointer text-white text-lg font-medium px-4 py-2 hover:text-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out"
-            >
-              Log In
-            </button>
-            <button
-              onClick={() => {
-                router.push("/signup");
-              }}
-              className="cursor-pointer bg-[var(--secondary-color)] text-gray-200 px-6 py-2 rounded-full font-bold text-lg hover:bg-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out"
-            >
-              Register
-            </button>
+            {isSignedIn ? (
+              <UserProfileDisplay
+                userName="John Doe"
+                userAvatarSrc="/placeholder.svg?height=120&width=120"
+                onClick={() => {
+                  router.push("/profile")
+                }}
+              />
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    router.push("/login")
+                  }}
+                  className="cursor-pointer text-white text-lg font-medium px-4 py-2 hover:text-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out"
+                >
+                  Log In
+                </button>
+                <button
+                  onClick={() => {
+                    router.push("/signup")
+                  }}
+                  className="cursor-pointer bg-[var(--secondary-color)] text-gray-200 px-6 py-2 rounded-full font-bold text-lg hover:bg-[var(--secondary-hover-color)] hover:scale-105 transition-all duration-300 ease-in-out"
+                >
+                  Register
+                </button>
+              </>
+            )}
           </div>
-
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -245,9 +215,7 @@ export function Navbar() {
             <div className="w-6 h-6 relative">
               <motion.span
                 className="absolute top-0 left-0 w-full h-0.5 bg-white origin-center"
-                animate={
-                  isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }
-                }
+                animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
               />
               <motion.span
@@ -257,18 +225,13 @@ export function Navbar() {
               />
               <motion.span
                 className="absolute top-4 left-0 w-full h-0.5 bg-white origin-center"
-                animate={
-                  isMobileMenuOpen
-                    ? { rotate: -45, y: -8 }
-                    : { rotate: 0, y: 0 }
-                }
+                animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
               />
             </div>
           </button>
         </div>
       </nav>
-
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -282,7 +245,6 @@ export function Navbar() {
               transition={{ duration: 0.3 }}
               onClick={() => setIsMobileMenuOpen(false)}
             />
-
             {/* Mobile Menu */}
             <motion.div
               className="fixed top-0 right-0 w-full h-full bg-[var(--primary-color)] z-50 lg:hidden overflow-y-auto"
@@ -295,13 +257,8 @@ export function Navbar() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center space-x-2">
-                    <Mountain
-                      size={32}
-                      className="text-[var(--secondary-color)]"
-                    />
-                    <span className="text-white font-bold text-xl">
-                      Dekoshur Crafts
-                    </span>
+                    <Mountain size={32} className="text-[var(--secondary-color)]" />
+                    <span className="text-white font-bold text-xl">Dekoshur Crafts</span>
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -310,7 +267,6 @@ export function Navbar() {
                     <X size={24} />
                   </button>
                 </div>
-
                 {/* Menu Items */}
                 <div className="flex-1 py-6">
                   <div className="space-y-1">
@@ -321,19 +277,16 @@ export function Navbar() {
                     >
                       <span>Home</span>
                     </Link>
-
                     <MobileDropdown
                       title="About Us"
                       items={blogDropdownItems}
                       onLinkClick={() => setIsMobileMenuOpen(false)}
                     />
-
                     <MobileDropdown
                       title="Partnerships"
                       items={pageDropdownItems}
                       onLinkClick={() => setIsMobileMenuOpen(false)}
                     />
-
                     <Link
                       href="/process"
                       className="flex items-center py-4 px-6 text-white text-lg font-medium hover:bg-white/10 rounded-lg mx-4 transition-all duration-300"
@@ -341,7 +294,6 @@ export function Navbar() {
                     >
                       <span>Process</span>
                     </Link>
-
                     <Link
                       href="/registration"
                       className="flex items-center py-4 px-6 text-white text-lg font-medium hover:bg-white/10 rounded-lg mx-4 transition-all duration-300"
@@ -349,7 +301,6 @@ export function Navbar() {
                     >
                       <span>Registration</span>
                     </Link>
-
                     <Link
                       href="/appointment"
                       className="flex items-center py-4 px-6 text-white text-lg font-medium hover:bg-white/10 rounded-lg mx-4 transition-all duration-300"
@@ -359,33 +310,48 @@ export function Navbar() {
                     </Link>
                   </div>
                 </div>
-
                 {/* Bottom Actions */}
                 <div className="p-6 border-t border-white/10 space-y-3">
-                  <button
-                    className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      router.push("/login");
-                    }}
-                  >
-                    <span>Log In</span>
-                  </button>
-                  <button
-                    className="w-full flex items-center justify-center bg-[var(--secondary-color)] text-gray-200 py-4 px-6 rounded-lg font-bold text-lg hover:bg-[var(--secondary-hover-color)] transition-all duration-300"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      router.push("/signup");
-                    }}
-                  >
-                    <span>Register</span>
-                  </button>
+                  {isSignedIn ? (
+                    <button
+                      className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
+                      onClick={() => {
+                         setIsMobileMenuOpen(false)
+                        router.push("/profile")
+                      }}
+                    >
+                      <span>View Profile</span>
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          router.push("/login")
+                        }}
+                      >
+                        <span>Log In</span>
+                      </button>
+                      <button
+                        className="w-full flex items-center justify-center bg-[var(--secondary-color)] text-gray-200 py-4 px-6 rounded-lg font-bold text-lg hover:bg-[var(--secondary-hover-color)] transition-all duration-300"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          router.push("/signup")
+                        }}
+                      >
+                        <span>Register</span>
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+   
     </>
-  );
+  )
 }

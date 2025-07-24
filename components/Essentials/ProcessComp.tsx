@@ -496,7 +496,7 @@ export default function Process() {
             ></div>
           </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-[var(--secondary-color)] to-white bg-clip-text text-transparent">
@@ -526,7 +526,7 @@ export default function Process() {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
               {/* Left: Key Information Card */}
               <div className="space-y-6">
-                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl px-8 py-7 border border-white/20 shadow-2xl">
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 bg-gradient-to-br from-[var(--secondary-color)] to-[var(--secondary-hover-color)] rounded-xl flex items-center justify-center mr-4">
                       <Shield className="w-6 h-6 text-white" />
@@ -545,7 +545,7 @@ export default function Process() {
                     Only upon successful evaluation will you be granted access
                     to this accelerated growth path. This applies even if you
                     pay for the Lateral Pathway Package, ensuring every buyer
-                    meets required benchmarks.
+           
                   </p>
                   <a
                     href="https://www.hcrf.org.in/"

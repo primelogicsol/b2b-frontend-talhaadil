@@ -123,15 +123,15 @@ export default function PricingTable() {
                 {Object.entries(plan.features).map(([label, value]) => (
                   <div
                     key={label}
-                    className="flex items-center py-2 border-b border-white/10"
+                    className="grid grid-cols-[120px_1fr] items-center py-2 border-b border-white/10"
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 min-w-0">
                       <span className="text-white/80 capitalize truncate">
                         {label.replace(/([A-Z])/g, " $1")}
                       </span>
-                      <Info className="w-3 h-3 text-white/50" />
+                      <Info className="w-3 h-3 text-white/50 flex-shrink-0" />
                     </div>
-                    <div className="text-white font-medium ml-3">
+                    <div className="text-white font-medium">
                       {value}
                     </div>
                   </div>
