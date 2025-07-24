@@ -170,6 +170,8 @@ export default function Process() {
       kpi: "≥ 7+ Aggregate Platform Performance Score",
       next: "Consignment",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Start your journey with minimal inventory, leveraging our platform for direct-to-customer fulfillment. Ideal for testing market demand and building initial sales.",
     },
     {
       level: 2,
@@ -178,6 +180,8 @@ export default function Process() {
       kpi: "≥ 7+ Aggregate Platform Performance Score",
       next: "Exhibition",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Showcase products in our curated physical or online spaces without upfront purchase. Pay only when items sell, reducing financial risk.",
     },
     {
       level: 3,
@@ -186,6 +190,8 @@ export default function Process() {
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Import Export",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Participate in exclusive events and pop-ups, gaining direct exposure to a wider audience. Perfect for brand building and direct customer engagement.",
     },
     {
       level: 4,
@@ -194,6 +200,8 @@ export default function Process() {
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Subsidiary",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Expand your reach globally by importing and exporting products through our established networks. Navigate international trade with our expert support.",
     },
     {
       level: 5,
@@ -202,6 +210,8 @@ export default function Process() {
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Brick & Mortar",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Invest in our growing ecosystem and become a strategic partner, contributing to and benefiting from the expansion of Kashmiri crafts worldwide.",
     },
     {
       level: 6,
@@ -210,6 +220,8 @@ export default function Process() {
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Franchise",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Establish a physical presence with our support, opening your own retail store featuring authentic Kashmiri products. Leverage our brand and supply chain.",
     },
     {
       level: 7,
@@ -218,8 +230,11 @@ export default function Process() {
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Enjoy Collaborative US-Kashmir-India Craft Business in the USA",
       image: "/placeholder.svg?height=200&width=300",
+      description:
+        "Become a full-fledged franchisee of De Koshur Crafts, operating under our established brand and benefiting from comprehensive business support and marketing.",
     },
-  ];
+  ]
+
 
   const onboardingPhases = [
     "Registration Phase",
@@ -326,20 +341,17 @@ export default function Process() {
         </section>
 
         {/* Buyer Partnership Framework and Pathway - Slider */}
+        {/* Buyer Partnership Framework and Pathway - Slider */}
         <section className="mb-16 relative py-12 bg-[var(--primary-hover-color)] rounded-xl shadow-lg">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--secondary-color)]">
             Buyer Partnership Framework and Pathway
           </h2>
           <p className="text-lg text-[var(--primary-header-color)] text-center max-w-4xl mx-auto mb-10">
-            At De Koshur Crafts, we understand that every business is unique.
-            That's why we offer flexible partnership pathways tailored to your
-            goals, strengths, and vision. Whether you're sourcing for a boutique
-            or expanding your retail business, our programs are designed to
-            provide access to authentic Kashmiri products with ease and
-            confidence, while ensuring the highest standards of quality, ethics,
-            and sustainability.
+            At De Koshur Crafts, we understand that every business is unique. That's why we offer flexible partnership
+            pathways tailored to your goals, strengths, and vision. Whether you're sourcing for a boutique or expanding
+            your retail business, our programs are designed to provide access to authentic Kashmiri products with ease
+            and confidence, while ensuring the highest standards of quality, ethics, and sustainability.
           </p>
-
           <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
@@ -348,36 +360,33 @@ export default function Process() {
               {partnershipLevels.map((level) => (
                 <div
                   key={level.level}
-                  className="flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-[var(--primary-header-color)] flex flex-col md:flex-row items-center gap-6"
+                  className="flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-[var(--primary-header-color)] flex flex-col md:flex-row items-center gap-6
+                             transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
                 >
                   <img
                     src={level.image || "/placeholder.svg"}
                     alt={`Level ${level.level}: ${level.type}`}
                     width={200}
                     height={150}
-                    className="rounded-lg object-cover shadow-sm md:w-1/3"
+                    className="rounded-lg object-cover shadow-sm md:w-1/3 transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="md:w-2/3 text-left">
                     <h3 className="text-2xl font-bold mb-3 text-[var(--primary-dark-slate)]">
                       Level {level.level}: {level.type}
                     </h3>
+                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed mb-4">
+                      {level.description}
+                    </p>
                     <ul className="text-[var(--primary-color)] space-y-2 text-sm">
                       <li>
-                        <span className="font-semibold text-[var(--secondary-color)]">
-                          Retention Period:
-                        </span>{" "}
+                        <span className="font-semibold text-[var(--secondary-color)]">Retention Period:</span>{" "}
                         {level.retention}
                       </li>
                       <li>
-                        <span className="font-semibold text-[var(--secondary-color)]">
-                          KPI Score:
-                        </span>{" "}
-                        {level.kpi}
+                        <span className="font-semibold text-[var(--secondary-color)]">KPI Score:</span> {level.kpi}
                       </li>
                       <li>
-                        <span className="font-semibold text-[var(--secondary-color)]">
-                          Next Partnership Level:
-                        </span>{" "}
+                        <span className="font-semibold text-[var(--secondary-color)]">Next Partnership Level:</span>{" "}
                         {level.next}
                       </li>
                     </ul>
@@ -400,17 +409,15 @@ export default function Process() {
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
-
           <p className="text-xl sm:text-2xl font-bold text-center mt-12 text-[var(--primary-header-color)]">
             Enjoy Collaborative US-Kashmir-India Craft Business in the USA
           </p>
           <p className="text-lg sm:text-xl text-[var(--primary-header-color)] text-center mt-4">
-            Our Six-Year Promise: Empowering You for Secure Success &
-            Independence in Kashmir Luxury Craft.
+            Our Six-Year Promise: Empowering You for Secure Success & Independence in Kashmir Luxury Craft.
           </p>
           <p className="text-lg sm:text-xl text-[var(--primary-header-color)] text-center mt-2">
-            Let’s build your path to independence & success today. Empower
-            yourself, inspire others, lead the way as true global entrepreneur.
+            Let’s build your path to independence & success today. Empower yourself, inspire others, lead the way as
+            true global entrepreneur.
           </p>
         </section>
 
@@ -475,7 +482,7 @@ export default function Process() {
         </section>
 
         {/* Empowering Experienced Business Houses Section - Compact & Dynamic Design */}
-        <section className="mb-16 py-16 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-2xl shadow-2xl relative overflow-hidden">
+        <section className=" py-16 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-t-xl shadow-2xl relative overflow-hidden">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-32 h-32 bg-[var(--primary-hover-color)] rounded-full blur-3xl animate-pulse"></div>
@@ -534,7 +541,7 @@ export default function Process() {
                     against industry standards to ensure it aligns with our
                     ethical and operational values.
                   </p>
-                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
                     Only upon successful evaluation will you be granted access
                     to this accelerated growth path. This applies even if you
                     pay for the Lateral Pathway Package, ensuring every buyer
@@ -599,8 +606,9 @@ export default function Process() {
                     </h4>
                   </div>
                   <p className="text-gray-300 text-sm">
-                    Tourism-handicraft sector collaboration driving business
-                    opportunities directly to your doorstep
+                  ArtStay builds synergy between Kashmir's tourism and handicraft sectors, 
+  encouraging collaboration that supports artisans and enriches visitor experiences. 
+  This partnership brings sustainable growth and business directly to your doorstep.
                   </p>
                 </div>
               </div>

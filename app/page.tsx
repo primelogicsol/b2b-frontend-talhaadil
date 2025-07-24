@@ -1,5 +1,4 @@
 import React from "react";
-import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { SliderCard } from "@/components/Cards/SliderCard";
 import Accordion from "@/components/Material/Accordion";
 import ProfitBox from "@/components/Material/ProfitBox";
@@ -9,7 +8,6 @@ import ScrollSection from "@/components/Section/ScrollSection";
 import SectionFaq from "@/components/Section/SectionFaq";
 import VideoGallery from "@/components/Section/VideoGallery";
 import BannerWithFeatures from "@/components/Material/BannerwithFeatures";
-import TeamCard from "@/components/Cards/TeamCard";
 
 export default function Home() {
   return (
@@ -120,6 +118,8 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <ProfitBox />
+      
+
         </div>
       </section>
 

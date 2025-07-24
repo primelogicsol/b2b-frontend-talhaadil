@@ -31,8 +31,6 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
   }
 
   const termsContent = `
-BUYER PARTNERSHIP AGREEMENT
-
 1. PARTNERSHIP TERMS
 This agreement establishes the terms and conditions for your partnership with DKC (Digital Knowledge Commerce). By accepting this agreement, you acknowledge that you have read, understood, and agree to be bound by all terms outlined herein.
 
@@ -95,10 +93,18 @@ By checking the acceptance box below, you acknowledge that you have read, unders
       <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
         {/* Terms */}
         <div className="h-96 overflow-y-auto p-8 border-b border-gray-200 bg-white">
-          <div className="prose prose-sm max-w-none">
-            <pre className="whitespace-pre-wrap text-sm text-gray-700 leading-relaxed font-sans bg-white">
-              {termsContent}
-            </pre>
+          <div className="space-y-3 text-sm text-gray-700 leading-relaxed font-sans bg-white">
+            {termsContent.trim().split('\n').map((line, index) => {
+              const isHeading = /^\d+\.\s/.test(line.trim())
+              return (
+                <p
+                  key={index}
+                  className={isHeading ? "text-[var(--secondary-color)] font-semibold" : ""}
+                >
+                  {line}
+                </p>
+              )
+            })}
           </div>
         </div>
 
@@ -110,7 +116,7 @@ By checking the acceptance box below, you acknowledge that you have read, unders
               id="agreement-acceptance"
               checked={accepted}
               onChange={(e) => handleAcceptanceChange(e.target.checked)}
-              className="w-5 h-5 text-[var(--primary-color)] border-gray-300 rounded focus:ring-[var(--primary-color)] mt-1"
+              className="w-5 h-5 text-[var(--secondary-color)] border-gray-300 rounded focus:ring-[var(--primary-color)] mt-1"
             />
             <label htmlFor="agreement-acceptance" className="text-sm text-gray-700 cursor-pointer">
               I have read, understood, and agree to be bound by all terms and conditions of this Buyer Partnership

@@ -62,7 +62,7 @@ export default function PricingTable() {
   const [selectedPlan, setSelectedPlan] = useState(1);
 
   return (
-    <div className="bg-[var(--primary-hover-color)] py-12 px-6 rounded-xl">
+    <div className="bg-[var(--primary-hover-color)] py-12 px-6 rounded-b-xl">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
