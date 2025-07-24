@@ -32,6 +32,7 @@ export interface FormData {
   products?: {
     categories: string[];
     subCategories: string[];
+    detailedSelections: Record<string, any>;
   };
   documents?: {
     businessLicense: File | null;
