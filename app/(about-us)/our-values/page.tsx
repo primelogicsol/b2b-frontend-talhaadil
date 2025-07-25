@@ -23,68 +23,64 @@ import DiagonalSection from "@/components/Section/DiagonalSection";
 import OurVision from "@/components/Essentials/OurVision";
 import EthicalSourcingSustainability from "@/components/Essentials/EthicalSourcing";
 export default function MainPage() {
-const whatSetsUsApartCards = [
-  {
-    icon: <ShieldCheck className="w-8 h-8" />,
-    title: "Real Craft",
-    description:
-      "Every item is tracked on blockchain, ensuring genuine Kashmiri craftsmanship and trusted quality for every buyer worldwide.",
-    buttonText: "READ MORE",
-  },
-  {
-    icon: <Handshake className="w-8 h-8" />,
-    title: "Fair Trade",
-    description:
-      "Artisans are paid fairly and work in ethical, sustainable conditions, preserving Kashmiri traditions through honest practices.",
-    buttonText: "READ MORE",
-  },
-  {
-    icon: <Globe className="w-8 h-8" />,
-    title: "Global Reach",
-    description:
-      "Our platform links skilled Kashmiri creators with buyers worldwide, growing markets and sustaining handcrafted excellence.",
-    buttonText: "READ MORE",
-  },
-  {
-    icon: <Sparkles className="w-8 h-8" />,
-    title: "Skill Growth",
-    description:
-      "We provide guidance, mentorship, and training so artisans adapt, thrive, and build sustainable futures in global markets.",
-    buttonText: "READ MORE",
-  },
-]
+  const whatSetsUsApartCards = [
+    {
+      icon: <ShieldCheck className="w-8 h-8" />,
+      title: "Real Craft",
+      description:
+        "Every item is tracked on blockchain, ensuring genuine Kashmiri craftsmanship and trusted quality for every buyer worldwide.",
+      buttonText: "READ MORE",
+    },
+    {
+      icon: <Handshake className="w-8 h-8" />,
+      title: "Fair Trade",
+      description:
+        "Artisans are paid fairly and work in ethical, sustainable conditions, preserving Kashmiri traditions through honest practices.",
+      buttonText: "READ MORE",
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Global Reach",
+      description:
+        "Our platform links skilled Kashmiri creators with buyers worldwide, growing markets and sustaining handcrafted excellence.",
+      buttonText: "READ MORE",
+    },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: "Skill Growth",
+      description:
+        "We provide guidance, mentorship, and training so artisans adapt, thrive, and build sustainable futures in global markets.",
+      buttonText: "READ MORE",
+    },
+  ];
 
-
-  
   const cards = [
     {
-      title: "Preserving Heritage",
-      description: "Keeping Kashmir’s timeless crafts alive",
+      title: "Preserving Our Heritage",
+      description: "Keeping alive Kashmir’s timeless handcraft legacy",
       detailedDescription:
         "De Koshur Crafts safeguards the intricate artistry of Kashmir by preserving its designs and cultural traditions. We ensure these crafts remain relevant and accessible worldwide, empowering artisans to share their heritage on a global stage and keep it thriving for generations.",
       icon: Sparkles,
     },
     {
-      title: "Empowering Artisans",
-      description: "Tools and strong support for skilled artisans",
+      title: "Empowering The Artisans",
+      description: "Providing tools and support for every artisan",
       detailedDescription:
         "At De Koshur Crafts, artisans are at the core of our mission. We provide fair compensation, access to buyers, and training on modern business practices. Through a direct-to-buyer model, we remove intermediaries, ensuring artisans receive recognition and lasting growth.",
       icon: Users,
     },
     {
-      title: "Sustainable Ethics",
-      description: "Green methods with fair trusted global trade",
+      title: "Sustainable Work Ethics",
+      description: "Green fair trade methods trusted worldwide",
       detailedDescription:
         "Sustainability drives every step of our work. We help artisans adopt eco‑friendly methods, reduce waste, and uphold ethical trade standards. Every craft sold reflects fair pay, safe conditions, and a commitment to building a responsible, high‑quality marketplace for all.",
       icon: Leaf,
     },
     {
-      title: "Tech Advancement",
-      description: "Tech powering authentic craftsmanship",
+      title: "Technology And Craftwork",
+      description: "Modern tech empowers authentic craftsmanship",
       detailedDescription:
-      "We use modern technology to connect tradition with innovation. Blockchain ensures authenticity and traceability, while AI tools assist artisans in scaling production and managing inventory. This fusion of heritage and tech makes Kashmiri crafts efficient, transparent, and globally accessible.",
-        
-      
+        "We use modern technology to connect tradition with innovation. Blockchain ensures authenticity and traceability, while AI tools assist artisans in scaling production and managing inventory. This fusion of heritage and tech makes Kashmiri crafts efficient, transparent, and globally accessible.",
       icon: Cpu,
     },
   ];
@@ -119,30 +115,13 @@ const whatSetsUsApartCards = [
         <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-8 sm:mb-12 md:mb-16 lg:mb-20 drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight">
           Our Values
         </h2>
-
-        <div
-          className="grid gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 
-                      grid-cols-1 
-                      sm:grid-cols-2 
-                      lg:grid-cols-2
-                      xl:grid-cols-4 
-                      2xl:grid-cols-4
-                      justify-items-center
-                      max-w-7xl mx-auto"
-        >
-          {cards.map((card, idx) => (
-            <div key={idx} className="w-full max-w-sm">
-              <FlipCard
-                title={card.title}
-                description={card.description}
-                detailedDescription={card.detailedDescription}
-                icon={card.icon}
-                isVertical
-                className="h-full"
-              />
-            </div>
-          ))}
-        </div>
+        <section className="w-full max-w-6xl py-12 md:py-24 lg:py-32">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {cards.map((card, index) => (
+              <FlipCard key={index} {...card} />
+            ))}
+          </div>
+        </section>
       </section>
       <section className="px-2 md:px-6 lg:px-8 py-16 bg-white text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-12">
@@ -151,16 +130,14 @@ const whatSetsUsApartCards = [
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
       <section>
-        <PartnershipModel/>
+        <PartnershipModel />
       </section>
       <section className="px-10 xl:px-0">
-              <OurVision />
+        <OurVision />
       </section>
       <section>
-        <EthicalSourcingSustainability/>
+        <EthicalSourcingSustainability />
       </section>
-
-
     </main>
   );
 }

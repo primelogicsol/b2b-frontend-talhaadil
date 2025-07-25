@@ -567,7 +567,7 @@ export default function Process() {
                       <BookOpen className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-white">
+                      <h4 className="text-md font-bold text-white">
                         CraftLore & ArtStay
                       </h4>
                       <span className="text-xs bg-[var(--secondary-hover-color)] text-white px-2 py-1 rounded-full">
@@ -586,7 +586,7 @@ export default function Process() {
                     <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
                       <ListChecks className="w-5 h-5 text-white" />
                     </div>
-                    <h4 className="text-lg font-bold text-white">
+                    <h4 className="text-md font-bold text-white">
                       Trade Registry
                     </h4>
                   </div>
@@ -601,7 +601,7 @@ export default function Process() {
                     <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
                       <Store className="w-5 h-5 text-white" />
                     </div>
-                    <h4 className="text-lg font-bold text-white">
+                    <h4 className="text-md font-bold text-white">
                       Offline Business Synergy
                     </h4>
                   </div>
@@ -870,7 +870,7 @@ export default function Process() {
                 src="/placeholder.svg?height=400&width=600"
                 alt="How It Works Illustration"
                 width={600}
-                height={400}
+                height={510} 
                 className="rounded-lg shadow-xl object-cover border border-gray-200"
               />
             </div>
