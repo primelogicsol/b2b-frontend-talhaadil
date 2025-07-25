@@ -97,7 +97,7 @@ export default function AppointmentScheduler() {
     phone: "",
     authorized: false,
   })
-  const [isBooked, setIsBooked] = useState(false)
+  const [isBooked, setIsBooked] = useState(true)
   const [userTimezone, setUserTimezone] = useState("")
   const [timezoneConversion, setTimezoneConversion] = useState("")
 
@@ -328,14 +328,7 @@ export default function AppointmentScheduler() {
               </table>
             </div>
 
-            {formData.userType === "vendor" && (
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-[var(--primary-color)] flex items-center">
-                  <MapPin className="mr-2" size={16} />
-                  As a vendor, you can visit our USA office for in-person meetings.
-                </p>
-              </div>
-            )}
+          
           </div>
         )}
 
@@ -362,7 +355,7 @@ export default function AppointmentScheduler() {
             </select>
 
             <div className="mt-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <Upload className="mr-2" size={16} />
                 Upload File (optional)
               </label>
@@ -386,7 +379,7 @@ export default function AppointmentScheduler() {
 
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <Calendar className="mr-2" size={16} />
                 Date
               </label>
@@ -401,7 +394,7 @@ export default function AppointmentScheduler() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <Clock className="mr-2" size={16} />
                 Time
               </label>
@@ -466,7 +459,7 @@ export default function AppointmentScheduler() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <Building className="mr-2" size={16} />
                 Business Name *
               </label>
@@ -491,7 +484,7 @@ export default function AppointmentScheduler() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <Mail className="mr-2" size={16} />
                 Email Address *
               </label>
@@ -505,7 +498,7 @@ export default function AppointmentScheduler() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <Phone className="mr-2" size={16} />
                 Phone Number
               </label>
@@ -616,7 +609,7 @@ function BookingConfirmation({ formData, timezoneConversion }: { formData: FormD
           </p>
         </div>
 
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
+        <div className="border border-yellow-200 rounded-lg p-6 mb-8">
           <h3 className="font-semibold text-[var(--secondary-color)] mb-4 flex items-center justify-center">
             <CheckCircle className="mr-2" size={20} />
             Important Next Step:
@@ -639,41 +632,10 @@ function BookingConfirmation({ formData, timezoneConversion }: { formData: FormD
             )}
           </div>
 
-          <p className="text-xs text-gray-600 mt-4 flex items-center justify-center">
-            <Clock className="mr-2" size={14} />
-            You will receive reminders via email if registration is not completed before your appointment.
-          </p>
+          
         </div>
 
-        <div className="border-t pt-6">
-          <h4 className="font-semibold mb-4 flex items-center justify-center">
-            <Mail className="mr-2" size={20} />
-            Calendar Sync Features
-          </h4>
-          <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-gray-50 p-3 rounded">
-              <p className="font-medium">Google/Outlook/iCal</p>
-              <p className="text-green-600 flex items-center">
-                <CheckCircle className="mr-1" size={14} />
-                Invite auto-sent
-              </p>
-            </div>
-            <div className="bg-gray-50 p-3 rounded">
-              <p className="font-medium">Meeting Link</p>
-              <p className="text-green-600 flex items-center">
-                <CheckCircle className="mr-1" size={14} />
-                Embedded
-              </p>
-            </div>
-            <div className="bg-gray-50 p-3 rounded">
-              <p className="font-medium">Reschedule/Cancel</p>
-              <p className="text-green-600 flex items-center">
-                <CheckCircle className="mr-1" size={14} />
-                One-click link
-              </p>
-            </div>
-          </div>
-        </div>
+       
 
         <div className="mt-8 p-6 bg-[var(--secondary-light-color)] rounded-lg">
           <h4 className="font-semibold text-[var(--primary-color)] mb-2 flex items-center justify-center">
@@ -681,7 +643,7 @@ function BookingConfirmation({ formData, timezoneConversion }: { formData: FormD
             Take the next step toward a seamless onboarding experience.
           </h4>
           <p className="text-gray-700 mb-4">Register now so we can best support your appointment.</p>
-          <button className="bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white px-8 py-3 rounded-lg font-semibold flex items-center justify-center">
+          <button className="bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white px-8 py-3 rounded-lg font-semibold flex items-center justify-center mx-auto">
             <User className="mr-2" size={16} />
             Complete My Registration
           </button>

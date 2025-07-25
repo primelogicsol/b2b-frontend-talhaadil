@@ -31,7 +31,7 @@ export const FlipCard = ({
       onTouchStart={() => setIsFlipped(!isFlipped)}
     >
       <div
-        className={`relative w-full h-full transition-transform duration-700 ease-out transform-style-preserve-3d ${
+        className={`relative w-full h-full transition-transform duration-300 ease-out transform-style-preserve-3d ${
           isFlipped ? "rotate-y-180" : ""
         }`}
       >
