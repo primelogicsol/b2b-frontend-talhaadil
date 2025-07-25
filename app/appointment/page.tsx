@@ -1,11 +1,11 @@
-import AppointmentScheduler from "@/components/Essentials/BookAppointment";
+"use client"
 
-
-import React from 'react'
-
-export default function page() {
+import AppointmentScheduler from "@/components/Essentials/BookAppointment"
+import VerticalHeroSlider from "@/components/Essentials/VerticalBanner"
+export default function Page() {
   return (
-    <div className="pb-6 pt-26">
+    <div>
+      <VerticalHeroSlider />
       <AppointmentScheduler />
     </div>
   )

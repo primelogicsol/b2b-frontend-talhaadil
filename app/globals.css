@@ -3,44 +3,44 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-    --softtec-blue: #1a2bff;
-    --softtec-light-blue: #3a4bff;
-    --softtec-yellow: #ffd700;
-    --softtec-orange: #ff6b00;
-    --softtec-pink: #ff006b;
-     --white: #fff;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --radius: 0.5rem;
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+  --softtec-blue: #1a2bff;
+  --softtec-light-blue: #3a4bff;
+  --softtec-yellow: #ffd700;
+  --softtec-orange: #ff6b00;
+  --softtec-pink: #ff006b;
+  --white: #fff;
   --black: #010f34;
   --heading-color: #010f34;
   --body-color: #788094;
@@ -51,18 +51,17 @@
   --heading-font: "Outfit", sans-serif;
   --body-color-font: "DM Sans", sans-serif;
 
---primary-hover-color: #2a5f7a;
+  --primary-hover-color: #2a5f7a;
   --primary-color: #1b4f68;
   --primary-light-text-color: #346880;
-  --primary-header-color : #e4e6eb;
-  --primary-dark-slate:#0f172a;
-  --primary-cyan-color:#00acc1;
-  --primary-navy-color:#0d47a1;
+  --primary-header-color: #e4e6eb;
+  --primary-dark-slate: #0f172a;
+  --primary-cyan-color: #00acc1;
+  --primary-navy-color: #0d47a1;
 
   --secondary-hover-color: #f48261;
   --secondary-color: #d85834;
-  --secondary-light-color:#f9c6b2;
-    
+  --secondary-light-color: #f9c6b2;
 }
 
 @theme inline {
@@ -72,23 +71,22 @@
   --font-mono: var(--font-geist-mono);
 }
 
-
 body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
- .text-balance {
-    text-wrap: balance;
-  }
+.text-balance {
+  text-wrap: balance;
+}
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;    /* Firefox */
-  overflow: auto;           /* or scroll, depending on your layout */
+  scrollbar-width: none; /* Firefox */
+  overflow: auto; /* or scroll, depending on your layout */
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;            /* Chrome, Safari, Opera */
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* job section */
@@ -108,25 +106,31 @@ body {
   @apply bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded;
 }
 
+.custom-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
 
-
-
-  .animation-delay-1000 {
-    animation-delay: 1s;
-  }
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  .animation-delay-3000 {
-    animation-delay: 3s;
-  }
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-
-
-  /* Custom styles for the frosted glass effect */
+/* Custom styles for the frosted glass effect */
 .frosted-glass {
   background-color: rgba(255, 255, 255, 0.08); /* More subtle transparency */
   backdrop-filter: blur(15px) saturate(180%); /* Stronger blur for depth */
@@ -184,7 +188,6 @@ body {
   }
 }
 
-
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -199,8 +202,6 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out;
 }
-
-
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -220,14 +221,9 @@ body {
   background: var(--primary-hover-color);
 }
 
-
-
-
-
 .animate-slide-in {
   animation: slide-in 0.3s ease-out forwards;
 }
-
 
 .perspective-1000 {
   perspective: 1000px;
@@ -257,8 +253,6 @@ body {
   -webkit-line-clamp: unset;
 }
 
-
-
 /* ========= BACKGROUND & CONTAINER ========= */
 .cs_bg_filed {
   background-size: cover;
@@ -275,17 +269,35 @@ body {
 }
 
 /* ========= HEIGHT UTILITIES ========= */
-.cs_height_115 { height: 115px; }
-.cs_height_lg_70 { height: 70px; }
-.cs_height_45 { height: 45px; }
-.cs_height_lg_45 { height: 45px; }
-.cs_height_120 { height: 120px; }
+.cs_height_115 {
+  height: 115px;
+}
+.cs_height_lg_70 {
+  height: 70px;
+}
+.cs_height_45 {
+  height: 45px;
+}
+.cs_height_lg_45 {
+  height: 45px;
+}
+.cs_height_120 {
+  height: 120px;
+}
 
 /* ========= MARGIN UTILITIES ========= */
-.mb-0 { margin-bottom: 0 !important; }
-.cs_mb_30 { margin-bottom: 30px; }
-.cs_mb_6 { margin-bottom: 6px; }
-.cs_mb_25 { margin-bottom: 25px; }
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+.cs_mb_30 {
+  margin-bottom: 30px;
+}
+.cs_mb_6 {
+  margin-bottom: 6px;
+}
+.cs_mb_25 {
+  margin-bottom: 25px;
+}
 
 /* ========= FONT UTILITIES ========= */
 .cs_fs_24 {
@@ -293,16 +305,26 @@ body {
   line-height: 1.417em;
 }
 @media (max-width: 991px) {
-  .cs_fs_24 { font-size: 22px; }
+  .cs_fs_24 {
+    font-size: 22px;
+  }
 }
 .cs_fs_14 {
   font-size: 14px;
   line-height: 1.714;
 }
-.cs_semibold { font-weight: 600; }
-.cs_bold { font-weight: 700; }
-.cs_heading_color { color: var(--heading-color); }
-.text-uppercase { text-transform: uppercase; }
+.cs_semibold {
+  font-weight: 600;
+}
+.cs_bold {
+  font-weight: 700;
+}
+.cs_heading_color {
+  color: var(--heading-color);
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
 
 /* ========= FLEX CENTER ========= */
 .cs_center {
@@ -346,16 +368,24 @@ body {
   margin-left: -250px;
 }
 @media (max-width: 1400px) {
-  .cs_section_heading.cs_style_1.cs_type_1 { margin-left: 0; }
+  .cs_section_heading.cs_style_1.cs_type_1 {
+    margin-left: 0;
+  }
 }
 @media (max-width: 575px) {
-  .cs_section_heading.cs_style_1 br { display: none; }
+  .cs_section_heading.cs_style_1 br {
+    display: none;
+  }
 }
 
 /* ========= KEYFRAMES ========= */
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ========= CARD WRAP ========= */
@@ -423,7 +453,7 @@ body {
 .cs_card.cs_style_1:hover .cs_card_icon {
   border-color: var(--accent);
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 .cs_card.cs_style_1:hover .cs_card_shape {
   color: var(--accent);
@@ -451,10 +481,7 @@ body {
 }
 .cs_text_btn img {
   transition: all 0.3s ease;
-} 
-
-
-
+}
 
 /* globals.css */
 
@@ -472,7 +499,8 @@ body {
 
 /* === Custom Bounce Animation === */
 @keyframes bounceY {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -483,6 +511,3 @@ body {
 .animate-bounce-custom {
   animation: bounceY 3s infinite;
 }
-
-
-
