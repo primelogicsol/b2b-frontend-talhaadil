@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import {
   CheckCircle,
@@ -30,7 +29,8 @@ import {
   Store,
   ExternalLink,
 } from "lucide-react";
-import PricingTable from "../Material/PricingTable"; // Import the new PricingTable component
+import { motion, AnimatePresence } from "framer-motion";
+import PricingTable from "../Material/PricingTable";
 
 export default function Process() {
   const kpiMetrics = [
@@ -161,7 +161,6 @@ export default function Process() {
       icon: Cpu,
     },
   ];
-
   const partnershipLevels = [
     {
       level: 1,
@@ -171,7 +170,7 @@ export default function Process() {
       next: "Consignment",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Start your journey with minimal inventory, leveraging our platform for direct-to-customer fulfillment. Ideal for testing market demand and building initial sales.",
+        "The Drop Shipping level is your entry point into the De Koshur Crafts ecosystem. Without needing to hold inventory or manage logistics, artisans and vendors can sell their products directly through our ecommerce channels. This model allows you to test your product-market fit, generate early traction, and familiarize yourself with our standards. Our platform handles packaging, shipping, and customer service—enabling you to focus on production and quality. This stage is ideal for emerging artisans or businesses exploring global outreach with low upfront risk.",
     },
     {
       level: 2,
@@ -181,7 +180,7 @@ export default function Process() {
       next: "Exhibition",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Showcase products in our curated physical or online spaces without upfront purchase. Pay only when items sell, reducing financial risk.",
+        "The Consignment level offers enhanced exposure through our curated retail platforms—both online and physical. Your products are featured in premium digital showcases and occasionally in temporary installations, without requiring full ownership transfer. You earn revenue upon each successful sale, which minimizes financial burden while expanding visibility. Vendors at this level build credibility, refine product offerings, and benefit from customer insights gathered via our marketing and analytics support. This phase prepares you for hands-on engagement with selective markets and customers.",
     },
     {
       level: 3,
@@ -191,7 +190,7 @@ export default function Process() {
       next: "Import Export",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Participate in exclusive events and pop-ups, gaining direct exposure to a wider audience. Perfect for brand building and direct customer engagement.",
+        "At the Exhibition level, artisans showcase their products at exclusive trade events, pop-ups, exhibitions, and showroom experiences organized by De Koshur Crafts. This stage is a catalyst for visibility and networking, connecting you directly with global buyers, media, influencers, and retail scouts. The focus here is on storytelling, craftsmanship, and brand elevation. Successful vendors gain real-time feedback, build customer loyalty, and solidify their identity as premium craft producers with global potential.",
     },
     {
       level: 4,
@@ -201,7 +200,7 @@ export default function Process() {
       next: "Subsidiary",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Expand your reach globally by importing and exporting products through our established networks. Navigate international trade with our expert support.",
+        "This level opens international trade doors. Vendors at the Import Export stage become part of our cross-border logistics network, allowing their products to reach international distributors, retailers, and platforms under structured compliance. We assist with export documentation, customs regulations, freight handling, and packaging standardization. Your brand now travels globally, benefiting from shared credibility and ecosystem-wide logistics. This phase is key for artisans aiming to scale and build recurring overseas demand while maintaining craft integrity.",
     },
     {
       level: 5,
@@ -211,7 +210,7 @@ export default function Process() {
       next: "Brick & Mortar",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Invest in our growing ecosystem and become a strategic partner, contributing to and benefiting from the expansion of Kashmiri crafts worldwide.",
+        "This is the transition from partner to stakeholder. The Investor level is for collaborators who have demonstrated sustained performance and wish to invest in De Koshur Crafts' vision. Investors gain equity opportunities, strategic influence, and access to joint ventures, including platform expansion, market penetration strategies, and innovation labs. This role is both financial and strategic—focusing on long-term ecosystem development, rural upliftment, craft revival, and infrastructure scaling.",
     },
     {
       level: 6,
@@ -221,7 +220,7 @@ export default function Process() {
       next: "Franchise",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Establish a physical presence with our support, opening your own retail store featuring authentic Kashmiri products. Leverage our brand and supply chain.",
+        "Partners at this level establish their own physical retail outlets in domestic or international cities under the De Koshur Crafts brand or as co-branded ventures. We provide full architectural guidance, store layout templates, visual merchandising strategy, point-of-sale systems, and training for in-store staff. You gain supply chain integration, interior branding support, and access to limited edition artisan lines. This level focuses on expanding the offline footprint and offering immersive cultural retail experiences to global consumers.",
     },
     {
       level: 7,
@@ -231,10 +230,9 @@ export default function Process() {
       next: "Enjoy Collaborative US-Kashmir-India Craft Business in the USA",
       image: "/placeholder.svg?height=200&width=300",
       description:
-        "Become a full-fledged franchisee of De Koshur Crafts, operating under our established brand and benefiting from comprehensive business support and marketing.",
+        "This is the pinnacle of our partnership ecosystem. Franchisees operate under the De Koshur Crafts umbrella with full rights to use our brand identity, design systems, global catalogs, sourcing network, and marketing playbooks. You become an official DKC brand custodian in your region, with dedicated support from our central and regional teams. Franchisees benefit from cross-country collaborations, access to flagship events, shared customer bases, technology infrastructure, and participation in high-level strategy dialogues. The goal is to create globally respected hubs that celebrate, sell, and scale the soul of Kashmiri artistry.",
     },
-  ]
-
+  ];
 
   const onboardingPhases = [
     "Registration Phase",
@@ -341,17 +339,31 @@ export default function Process() {
         </section>
 
         {/* Buyer Partnership Framework and Pathway - Slider */}
-        {/* Buyer Partnership Framework and Pathway - Slider */}
         <section className="mb-16 relative py-12 bg-[var(--primary-hover-color)] rounded-xl shadow-lg">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--secondary-color)]">
             Buyer Partnership Framework and Pathway
           </h2>
-          <p className="text-lg text-[var(--primary-header-color)] text-center max-w-4xl mx-auto mb-10">
-            At De Koshur Crafts, we understand that every business is unique. That's why we offer flexible partnership
-            pathways tailored to your goals, strengths, and vision. Whether you're sourcing for a boutique or expanding
-            your retail business, our programs are designed to provide access to authentic Kashmiri products with ease
-            and confidence, while ensuring the highest standards of quality, ethics, and sustainability.
+          <p className="text-lg text-[var(--primary-header-color)] text-center max-w-4xl mx-auto mb-6">
+            At De Koshur Crafts, we understand that every business is unique.
+            That's why we offer flexible partnership pathways tailored to your
+            goals, strengths, and vision. Whether you're sourcing for a boutique
+            or expanding your retail business, our programs are designed to
+            provide access to authentic Kashmiri products with ease and
+            confidence, while ensuring the highest standards of quality, ethics,
+            and sustainability.
           </p>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentLevelIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="text-lg text-[var(--secondary-hover-color)] text-center max-w-4xl mx-auto mb-6"
+            >
+              {partnershipLevels[currentLevelIndex].description}
+            </motion.div>
+          </AnimatePresence>
           <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
@@ -360,8 +372,7 @@ export default function Process() {
               {partnershipLevels.map((level) => (
                 <div
                   key={level.level}
-                  className="flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-[var(--primary-header-color)] flex flex-col md:flex-row items-center gap-6
-                             transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
+                  className="flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-[var(--primary-header-color)] flex flex-col md:flex-row items-center gap-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
                 >
                   <img
                     src={level.image || "/placeholder.svg"}
@@ -374,19 +385,23 @@ export default function Process() {
                     <h3 className="text-2xl font-bold mb-3 text-[var(--primary-dark-slate)]">
                       Level {level.level}: {level.type}
                     </h3>
-                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed mb-4">
-                      {level.description}
-                    </p>
-                    <ul className="text-[var(--primary-color)] space-y-2 text-sm">
+                    <ul className="text-[var(--primary-light-text-color)] space-y-2 text-sm">
                       <li>
-                        <span className="font-semibold text-[var(--secondary-color)]">Retention Period:</span>{" "}
+                        <span className="font-semibold text-[var(--secondary-color)]">
+                          Retention Period:
+                        </span>{" "}
                         {level.retention}
                       </li>
                       <li>
-                        <span className="font-semibold text-[var(--secondary-color)]">KPI Score:</span> {level.kpi}
+                        <span className="font-semibold text-[var(--secondary-color)]">
+                          KPI Score:
+                        </span>{" "}
+                        {level.kpi}
                       </li>
                       <li>
-                        <span className="font-semibold text-[var(--secondary-color)]">Next Partnership Level:</span>{" "}
+                        <span className="font-semibold text-[var(--secondary-color)]">
+                          Next Partnership Level:
+                        </span>{" "}
                         {level.next}
                       </li>
                     </ul>
@@ -413,15 +428,16 @@ export default function Process() {
             Enjoy Collaborative US-Kashmir-India Craft Business in the USA
           </p>
           <p className="text-lg sm:text-xl text-[var(--primary-header-color)] text-center mt-4">
-            Our Six-Year Promise: Empowering You for Secure Success & Independence in Kashmir Luxury Craft.
+            Our Six-Year Promise: Empowering You for Secure Success &
+            Independence in Kashmir Luxury Craft.
           </p>
           <p className="text-lg sm:text-xl text-[var(--primary-header-color)] text-center mt-2">
-            Let’s build your path to independence & success today. Empower yourself, inspire others, lead the way as
-            true global entrepreneur.
+            Let’s build your path to independence & success today. Empower
+            yourself, inspire others, lead the way as true global entrepreneur.
           </p>
         </section>
 
-        {/* What happens if a buyer is not eligible for the next level of partnership? - Re-added Section */}
+        {/* What happens if a buyer is not eligible for the next level of partnership? */}
         <section className="mb-16 py-12 bg-white rounded-xl shadow-lg">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--primary-color)]">
             What happens if a buyer is not eligible for the next level of
@@ -459,7 +475,7 @@ export default function Process() {
                 Global Reach
               </h3>
               <p className="text-[var(--primary-light-text-color)] text-center text-sm">
-                AAccess partnerships, expand into key global markets worldwide.
+                Access partnerships, expand into key global markets worldwide.
               </p>
             </div>
             <div className="flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-header-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100">
@@ -468,7 +484,8 @@ export default function Process() {
                 Platform Integrity
               </h3>
               <p className="text-[var(--primary-light-text-color)] text-center text-sm">
-                Join a trusted network committed to ethical craftsmanship standards.
+                Join a trusted network committed to ethical craftsmanship
+                standards.
               </p>
             </div>
           </div>
@@ -481,9 +498,8 @@ export default function Process() {
           </p>
         </section>
 
-        {/* Empowering Experienced Business Houses Section - Compact & Dynamic Design */}
-        <section className=" py-16 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-t-xl shadow-2xl relative overflow-hidden">
-          {/* Animated Background Elements */}
+        {/* Empowering Experienced Business Houses Section */}
+        <section className="py-16 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-t-xl shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-32 h-32 bg-[var(--primary-hover-color)] rounded-full blur-3xl animate-pulse"></div>
             <div
@@ -495,7 +511,6 @@ export default function Process() {
               style={{ animationDelay: "2s" }}
             ></div>
           </div>
-
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
@@ -521,10 +536,7 @@ export default function Process() {
                 </p>
               </div>
             </div>
-
-            {/* Main Content Grid */}
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
-              {/* Left: Key Information Card */}
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl px-8 py-7 border border-white/20 shadow-2xl">
                   <div className="flex items-center mb-6">
@@ -545,7 +557,6 @@ export default function Process() {
                     Only upon successful evaluation will you be granted access
                     to this accelerated growth path. This applies even if you
                     pay for the Lateral Pathway Package, ensuring every buyer
-           
                   </p>
                   <a
                     href="https://www.hcrf.org.in/"
@@ -558,8 +569,6 @@ export default function Process() {
                   </a>
                 </div>
               </div>
-
-              {/* Right: Benefits Cards Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
                 <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
                   <div className="flex items-center mb-4">
@@ -580,7 +589,6 @@ export default function Process() {
                     & global visibility
                   </p>
                 </div>
-
                 <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
                   <div className="flex items-center mb-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
@@ -595,7 +603,6 @@ export default function Process() {
                     global directory
                   </p>
                 </div>
-
                 <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group sm:col-span-2 lg:col-span-1 xl:col-span-2">
                   <div className="flex items-center mb-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
@@ -606,15 +613,15 @@ export default function Process() {
                     </h4>
                   </div>
                   <p className="text-gray-300 text-sm">
-                  ArtStay builds synergy between Kashmir's tourism and handicraft sectors, 
-  encouraging collaboration that supports artisans and enriches visitor experiences. 
-  This partnership brings sustainable growth and business directly to your doorstep.
+                    ArtStay builds synergy between Kashmir's tourism and
+                    handicraft sectors, encouraging collaboration that supports
+                    artisans and enriches visitor experiences. This partnership
+                    brings sustainable growth and business directly to your
+                    doorstep.
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* Bottom Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/20">
               <div className="text-center">
                 <div className="text-3xl font-bold text-[var(--secondary-hover-color)] mb-2">
@@ -649,17 +656,15 @@ export default function Process() {
 
         {/* KPI Evaluation Metrics Framework - Slider Design */}
         <section className="mb-16 py-16 bg-gradient-to-br from-[var(--primary-header-color)] via-white to-[var(--primary-header-color)] rounded-2xl shadow-2xl relative overflow-hidden">
-          {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
             <div
               className="absolute inset-0"
               style={{
-    backgroundImage: `radial-gradient(circle at 25% 25%, var(--secondary-hover-color) 2px, transparent 2px)`,
-    backgroundSize: "50px 50px",
-  }}
+                backgroundImage: `radial-gradient(circle at 25% 25%, var(--secondary-hover-color) 2px, transparent 2px)`,
+                backgroundSize: "50px 50px",
+              }}
             ></div>
           </div>
-
           <div className="relative z-10 max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
@@ -674,8 +679,6 @@ export default function Process() {
                 </span>
               </p>
             </div>
-
-            {/* KPI Metrics Slider */}
             <div className="relative">
               <div className="overflow-hidden rounded-2xl">
                 <div
@@ -697,11 +700,8 @@ export default function Process() {
                                   key={slideIndex * 3 + index}
                                   className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden min-h-[280px]"
                                 >
-                                  {/* Gradient Overlay */}
                                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[var(--primary-header-color)] opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-
                                   <div className="relative z-10 h-full flex flex-col">
-                                    {/* Header */}
                                     <div className="flex items-center mb-4">
                                       <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-hover-color)] to-[var(--primary-color)] rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
                                         {IconComponent && (
@@ -712,13 +712,9 @@ export default function Process() {
                                         {metric.name}
                                       </h3>
                                     </div>
-
-                                    {/* Description */}
                                     <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed mb-6 flex-grow">
                                       {metric.description}
                                     </p>
-
-                                    {/* Performance Levels */}
                                     <div className="space-y-3 mt-auto">
                                       <div className="flex items-center justify-between">
                                         <span className="text-xs font-medium text-gray-600">
@@ -745,8 +741,6 @@ export default function Process() {
                                         </span>
                                       </div>
                                     </div>
-
-                                    {/* Progress Indicator */}
                                     <div className="mt-4 pt-4 border-t border-gray-100">
                                       <div className="flex justify-between text-xs text-gray-500 mb-2">
                                         <span>Performance Scale</span>
@@ -769,8 +763,6 @@ export default function Process() {
                   )}
                 </div>
               </div>
-
-              {/* Navigation Buttons */}
               <button
                 onClick={prevKPI}
                 className="absolute top-1/2 left-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
@@ -785,8 +777,6 @@ export default function Process() {
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
-
-              {/* Slide Indicators */}
               <div className="flex justify-center mt-8 space-x-2">
                 {Array.from({ length: Math.ceil(kpiMetrics.length / 3) }).map(
                   (_, index) => (
@@ -803,8 +793,6 @@ export default function Process() {
                   )
                 )}
               </div>
-
-              {/* Slide Counter */}
               <div className="text-center mt-4">
                 <span className="text-sm text-[var(--primary-light-text-color)]">
                   {currentKPIIndex + 1} of {Math.ceil(kpiMetrics.length / 3)} •
@@ -813,8 +801,6 @@ export default function Process() {
                 </span>
               </div>
             </div>
-
-            {/* Summary Stats */}
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60">
                 <div className="text-3xl font-bold text-[var(--primary-color)] mb-2">
@@ -852,7 +838,7 @@ export default function Process() {
           </div>
         </section>
 
-        {/* How It Works - Redesigned Section */}
+        {/* How It Works */}
         <section className="mb-16 py-12 bg-white rounded-xl shadow-lg">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--primary-color)]">
             How It Works
@@ -863,14 +849,13 @@ export default function Process() {
             onboarding process, empowering buyers with tools, training, and
             support to thrive in a global marketplace.
           </p>
-
           <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
             <div className="md:w-1/2 flex justify-center animate-fade-in-delay">
               <img
                 src="/placeholder.svg?height=400&width=600"
                 alt="How It Works Illustration"
                 width={600}
-                height={510} 
+                height={400}
                 className="rounded-lg shadow-xl object-cover border border-gray-200"
               />
             </div>
@@ -898,7 +883,6 @@ export default function Process() {
               </ul>
             </div>
           </div>
-
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
             <button className="bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once">
               Register Now
