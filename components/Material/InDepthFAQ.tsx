@@ -132,7 +132,7 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
                 >
                   <button
                     onClick={() => toggleItem(item.id)}
-                    className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl relative z-10 transition-all duration-300"
+                    className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] rounded-2xl relative z-10 transition-all duration-300"
                     aria-expanded={isOpen}
                   >
                     <div className="flex items-center justify-between">
@@ -170,7 +170,7 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
                     <div className="px-6 pb-5">
                       <div className="pt-2 border-t border-gray-200">
                         <p
-                          className={`text-gray-700 leading-relaxed mt-4 text-sm transition-all duration-500 ${
+                          className={`text-[var(--primary-color)] leading-relaxed mt-4 text-sm transition-all duration-500 ${
                             isOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                           }`}
                         >

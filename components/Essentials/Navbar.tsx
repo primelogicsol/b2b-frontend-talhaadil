@@ -115,10 +115,9 @@ export function Navbar() {
     { label: "Contact Us", href: "/contact" },
   ]
   const pageDropdownItems = [
-    { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Team", href: "/team" },
-    { label: "FAQ", href: "/faq" },
+    { label: "Vendor Partnership", href: "/vendor" },
+    { label: "Buyer Partnership", href: "/buyer" },
+ 
   ]
 
   useEffect(() => {

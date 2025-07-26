@@ -67,7 +67,7 @@ export default function HorizontalSwipeSection({
   const currentTestimonial = testimonials[currentIndex]
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center py-12 md:py-24 lg:py-32">
+    <section className="w-full flex items-center justify-center py-6 md:py-12 lg:py-16">
       <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 max-w-7xl mx-auto rounded-lg overflow-hidden">
         <div
           className="relative p-8 md:p-12 lg:p-16 flex flex-col justify-between text-white bg-[var(--primary-color)]"
