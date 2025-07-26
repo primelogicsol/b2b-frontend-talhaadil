@@ -608,7 +608,7 @@ export default function Process() {
                     <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
                       <Store className="w-5 h-5 text-white" />
                     </div>
-                    <h4 className="text-md font-bold text-white">
+                    <h4 className="text-md font-bold text-white"> 
                       Offline Business Synergy
                     </h4>
                   </div>
