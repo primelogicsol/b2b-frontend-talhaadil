@@ -26,6 +26,7 @@ import {
   Heart,
   BarChart3,
 } from "lucide-react"
+import HowItWorksSection from "../Section/HowItWorksSection"
 
 interface PartnershipBenefit {
   title: string
@@ -314,6 +315,8 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
           </div>
         </div>
       </section>
+      <section>
+      </section>
 
        <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--primary-color)] text-white relative overflow-hidden">
       {/* Animated Background */}
@@ -416,17 +419,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
      
     </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-6 lg:px-12 bg-[var(--secondary-color)] text-white relative overflow-hidden">
-      
-        <div className="max-w-5xl mx-auto text-center relative">
-          <p className="text-2xl md:text-4xl mb-12 leading-relaxed font-bold">{ctaText}</p>
-          <button className="group relative px-12 py-6 bg-white text-[var(--primary-color)] rounded-2xl font-black text-xl hover:bg-gray-100 transition-all duration-500 shadow-2xl hover:shadow-white/20 transform hover:-translate-y-2 hover:scale-105">
-            <span className="relative z-10">{ctaButtonText}</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--secondary-light-color)]/20 to-[var(--primary-color)]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </button>
-        </div>
-      </section>
+    
     </div>
   )
 }

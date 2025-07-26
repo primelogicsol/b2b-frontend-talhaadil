@@ -31,8 +31,30 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import PricingTable from "../Material/PricingTable";
+import HowItWorksSection from "../Section/HowItWorksSection";
 
 export default function Process() {
+  const howItWorksData = {
+    title: "How It Works",
+    description:
+      "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC’s transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
+    imageUrl: "/images/onboarding.jpg", // Ensure this image exists in /public/images
+    imageAlt: "Onboarding Illustration",
+    mini_desc:" Our Streamlined Onboarding Process",
+    phases: [
+      "Registration Phase      ",
+      "Document Submission Phase      ",
+      "Eligibility Review Phase      ",
+      "Agreement and Certification Phase      ",
+      "Profile Setup Phase      ",
+      "Partnership-Specific Onboarding Phase      ",
+      "Training and Resource Checkup Phase      ",
+      "Portal Access Activation Phase      ",
+      "Partnership Launch and Support Phase      ",
+      "KPI and Marketplace Engagement Phase      ",
+    ],
+  };
+
   const kpiMetrics = [
     {
       name: "Artisan Engagement",
@@ -840,60 +862,7 @@ export default function Process() {
 
         {/* How It Works */}
         <section className="mb-16 py-12 bg-white rounded-xl shadow-lg">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--primary-color)]">
-            How It Works
-          </h2>
-          <p className="text-lg text-[var(--primary-light-text-color)] text-center max-w-4xl mx-auto mb-10">
-            Swift Partnership Activation: Experience a seamless journey from
-            registration to marketplace leadership through DKC’s transformative
-            onboarding process, empowering buyers with tools, training, and
-            support to thrive in a global marketplace.
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
-            <div className="md:w-1/2 flex justify-center animate-fade-in-delay">
-              <img
-                src="/placeholder.svg?height=400&width=600"
-                alt="How It Works Illustration"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl object-cover border border-gray-200"
-              />
-            </div>
-            <div className="md:w-1/2 space-y-4 text-left">
-              <h3 className="text-2xl font-bold text-[var(--primary-color)] mb-4 animate-slide-in-up">
-                Our Streamlined Onboarding Process
-              </h3>
-              <ul className="list-none p-0 m-0 space-y-3">
-                {onboardingPhases.map((phase, index) => (
-                  <li
-                    key={index}
-                    className="flex items-start text-lg text-[var(--primary-light-text-color)] animate-pop-in"
-                    style={
-                      {
-                        "--animation-delay": `${0.1 * index}s`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[var(--secondary-hover-color)] text-[var(--primary-header-color)] font-bold text-sm mr-3 shadow-md">
-                      {index + 1}
-                    </span>
-                    {phase}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-            <button className="bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once">
-              Register Now
-            </button>
-            <button className="bg-transparent border-2 border-[var(--primary-hover-color)] text-[var(--primary-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-light-text-color)] hover:text-[var(--primary-header-color)] hover:shadow-lg animate-fade-in-delay">
-              Partner Smarter: Pre-Registration Consultation
-            </button>
-            <button className="bg-[var(--primary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once">
-              Book Appointment
-            </button>
-          </div>
+          <HowItWorksSection {...howItWorksData}/>
         </section>
       </main>
     </div>

@@ -28,7 +28,7 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
   }
 
   return (
-    <section className="w-full bg-gray-50 py-16 px-4 sm:py-20 lg:py-24 relative overflow-hidden">
+    <section className="w-full bg-[var(--primary-header-color)] py-16 px-4 sm:py-20 lg:py-24 relative overflow-hidden">
       {/* background animations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gray-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -43,10 +43,10 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl mb-4 animate-pulse">
+          <h2 className="text-3xl font-bold text-[var(--primary-color)] sm:text-4xl lg:text-5xl mb-4 ">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-[var(--primary-hover-color)] max-w-2xl mx-auto leading-relaxed">
             Find answers to common questions about our products, shipping,
             returns, and more. Can't find what you're looking for? Contact our support team.
           </p>
@@ -67,7 +67,7 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
                 >
                   <button
                     onClick={() => toggleItem(item.id)}
-                    className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl relative z-10 transition-all duration-300"
+                    className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:ring-offset-2 rounded-2xl relative z-10 transition-all duration-300"
                     aria-expanded={isOpen}
                   >
                     <div className="flex items-center justify-between">
@@ -81,7 +81,7 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
                           } group-hover:scale-110`}
                         >
                           <svg
-                            className="w-4 h-4 text-gray-600"
+                            className="w-4 h-4 text-[var(--primary-color)]"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -105,7 +105,7 @@ export default function InDepthFAQ({ data }: InDepthFAQProps) {
                     <div className="px-6 pb-5">
                       <div className="pt-2 border-t border-gray-200">
                         <p
-                          className={`text-gray-700 leading-relaxed mt-4 text-sm transition-all duration-500 ${
+                          className={`text-[var(--primary-hover-color)] leading-relaxed mt-4 text-sm transition-all duration-500 ${
                             isOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                           }`}
                         >

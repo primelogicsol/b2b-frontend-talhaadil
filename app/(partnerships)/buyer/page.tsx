@@ -1,6 +1,10 @@
 import { PartnershipPage } from "@/components/Essentials/PartnershipComponent";
 import { PartnershipPageProps } from "@/components/Essentials/PartnershipComponent";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
+import InDepthFAQ from "@/components/Material/InDepthFAQ";
+import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection";
+import HowItWorksSection from "@/components/Section/HowItWorksSection";
+
 const defaultProps: PartnershipPageProps = {
   vendorTitle: "Why Work With De Koshur?",
   vendorSubtitle: "Your One-Stop Solution for Success",
@@ -222,6 +226,8 @@ const defaultProps: PartnershipPageProps = {
       retention: "24 months in Strategic or Creative Tier required",
     },
   ],
+  
+
   tierAdvancementTitle: "Tier Advancement Logic",
   tierAdvancements: [
     {
@@ -255,10 +261,109 @@ const defaultProps: PartnershipPageProps = {
 };
 
 export default function Component() {
+  const howItWorksData = {
+    title: "How It Works",
+    description:
+      "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC’s transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
+    imageUrl: "/images/onboarding.jpg", // Ensure this image exists in /public/images
+    imageAlt: "Onboarding Illustration",
+    mini_desc:" Our Streamlined Onboarding Process",
+    phases: [
+      "Registration Phase      ",
+      "Document Submission Phase      ",
+      "Eligibility Review Phase      ",
+      "Agreement and Certification Phase      ",
+      "Profile Setup Phase      ",
+      "Partnership-Specific Onboarding Phase      ",
+      "Training and Resource Checkup Phase      ",
+      "Portal Access Activation Phase      ",
+      "Partnership Launch and Support Phase      ",
+      "KPI and Marketplace Engagement Phase      ",
+    ],
+  };
+
+  const partnerTestimonials = [
+    {
+      id: 1,
+      rating: 5,
+      quote:
+        "Partnering with De Koshur Crafts has opened international markets for our handmade rugs. The platform is reliable, and support is always prompt.",
+      name: "Mehboob Khan",
+      title: "Founder, Khan Rugs",
+      avatar: "/images/partners/partner1.jpg",
+    },
+    {
+      id: 2,
+      rating: 4,
+      quote:
+        "We were able to showcase our shawls globally with ease. The team behind this platform truly values craftsmanship.",
+      name: "Aaliya Mir",
+      title: "Artisan, Aaliya Shawls",
+      avatar: "/images/partners/partner2.jpg",
+    },
+    {
+      id: 3,
+      rating: 5,
+      quote:
+        "Excellent onboarding and exposure. Our papier-mâché crafts have seen demand from places we never imagined.",
+      name: "Fayaz Lone",
+      title: "Co-Founder, Lone Creations",
+      avatar: "/images/partners/partner3.jpg",
+    },
+  ];
+
+
+const dummyFAQData = [
+  {
+    id: 1,
+    question: "What is your return policy?",
+    answer: "We offer a 30-day return policy on all items. Contact our support for assistance."
+  },
+  {
+    id: 2,
+    question: "Do you ship internationally?",
+    answer: "Yes, we ship to most countries worldwide. Shipping fees may vary based on location."
+  },
+  {
+    id: 3,
+    question: "How can I track my order?",
+    answer: "Once shipped, you’ll receive an email with the tracking number and link."
+  },
+  {
+    id: 4,
+    question: "Can I modify my order after placing it?",
+    answer: "Modifications are possible within 2 hours of placing the order. Contact support quickly."
+  },
+  {
+    id: 5,
+    question: "What payment methods are accepted?",
+    answer: "We accept Visa, Mastercard, PayPal, and bank transfers."
+  },
+  {
+    id: 6,
+    question: "Are your products sustainable?",
+    answer: "Yes! We focus on eco-friendly packaging and responsibly sourced materials."
+  },
+  {
+    id: 7,
+    question: "Do you offer bulk discounts?",
+    answer: "Yes, for orders over 50 items. Please reach out to our sales team for a quote."
+  },
+  {
+    id: 8,
+    question: "How do I contact customer support?",
+    answer: "You can email us at support@example.com or use the chat widget on our site."
+  }
+]
+
+  
   return (
     <div>
       <VerticalHeroSlider/>
       <PartnershipPage {...defaultProps} />
+      <HowItWorksSection {...howItWorksData}/>
+      <HorizontalSwipeSection testimonials={partnerTestimonials} />
+      <InDepthFAQ data={dummyFAQData}/>
     </div>
   );
 }

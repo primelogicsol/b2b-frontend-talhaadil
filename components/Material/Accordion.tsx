@@ -33,7 +33,7 @@ const iconMap: Record<string, React.ElementType> = {
   stethoscope: Stethoscope,
   building2: Building2,
   leaf: Leaf,
-  factory: Factory,
+  factory: Factory, 
   globe2: Globe2,
 }
 
