@@ -71,7 +71,7 @@ export default function SectionFaq({
               src={imgMain}
               alt="faq-main"
               width={600}
-              height={500}
+              height={700}
               className="rounded-lg shadow-lg w-full h-auto object-contain"
             />
           </div>
