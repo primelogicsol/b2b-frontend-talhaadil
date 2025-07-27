@@ -68,182 +68,219 @@ export default function Page() {
       },
     ],
     // Dynamic Comparison Data
-  comparisonData:[
+    comparisonData : [
   {
-    solution: "De Koshur Crafts",
-    icon: <Users className="w-6 h-6" />,
-    color: "bg-[var(--primary-color)]",
-    isMainPlatform: true,
-    features: {
-      "Breadth of Handicraft Products": { value: "Extensive Handicraft Product Offerings", level: "excellent" },
-      "Kashmir Heritage Focus": { value: "Strong emphasis on craftsmanship", level: "excellent" },
-      "Kashmir Entire Product Line": { value: "Full Kashmir Craft Representation", level: "excellent" },
-      "Seller Verification": { value: "Thorough process", level: "excellent" },
-      "Artisan Support": { value: "High artisan support", level: "excellent" },
-      "GI Tags/Certifications": { value: "Prominent GI certification for products", level: "excellent" },
-      "Origin Traceability": { value: "Detailed blockchain traceability", level: "excellent" },
-      "Fair Trade Policies": { value: "Integrated fair trade policies", level: "excellent" },
-      "Eco-friendly Practices": { value: "Strong focus on eco-friendly practices", level: "excellent" },
-      "Cultural Storytelling": { value: "Rich visual storytelling of artisan culture", level: "excellent" },
-      "Multimedia Content": { value: "Extensive multimedia content", level: "excellent" },
-      "Personalized Suggestions": { value: "Highly curated, seasonal collections", level: "excellent" },
-      "Thematic Collections": { value: "Seasonal and festival-based collections", level: "excellent" },
-      "Pricing Transparency": { value: "Fully transparent pricing for products", level: "excellent" },
-      "Value-Added Services": { value: "Tailored artisan resources & logistics", level: "excellent" },
-      "International Shipping": { value: "Available for artisans and buyers", level: "excellent" },
-      "B2B Networking": { value: "Extensive networking opportunities", level: "excellent" },
-      "Customer Education": { value: "Extensive resources for buyers", level: "excellent" },
-      "Return Policies": { value: "Flexible return policies", level: "excellent" },
-      "Brand Trust": { value: "High brand trust", level: "excellent" },
-      "Influencer Partnerships": { value: "Planned influencer partnerships", level: "excellent" },
-    },
+    feature: "Breadth of Handicraft Products",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Extensive Handicraft Product Offerings", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Broad range of artisan products", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "On-demand products", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Product offerings", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Customizable product range", isOurPlatform: false },
+    }
   },
   {
-    solution: "EPROLO",
-    icon: <Target className="w-6 h-6" />,
- color: "bg-[var(--secondary-color)]",
-    isMainPlatform: false,
-    features: {
-      "Breadth of Handicraft Products": { value: "Broad range of artisan products", level: "good" },
-      "Kashmir Heritage Focus": { value: "Minimal emphasis on heritage", level: "limited" },
-      "Kashmir Entire Product Line": { value: "No representation", level: "poor" },
-      "Seller Verification": { value: "Moderate verification of sellers", level: "moderate" },
-      "Artisan Support": { value: "Moderate artisan support", level: "moderate" },
-      "GI Tags/Certifications": { value: "No GI certifications", level: "poor" },
-      "Origin Traceability": { value: "Limited traceability", level: "limited" },
-      "Fair Trade Policies": { value: "Minimal fair trade policies", level: "limited" },
-      "Eco-friendly Practices": { value: "Moderate eco-friendly efforts", level: "moderate" },
-      "Cultural Storytelling": { value: "Limited cultural storytelling", level: "limited" },
-      "Multimedia Content": { value: "Limited multimedia content", level: "limited" },
-      "Personalized Suggestions": { value: "Limited suggestions", level: "limited" },
-      "Thematic Collections": { value: "Seasonal collections", level: "moderate" },
-      "Pricing Transparency": { value: "Transparent pricing model", level: "good" },
-      "Value-Added Services": { value: "Business credit & promotional discounts", level: "moderate" },
-      "International Shipping": { value: "Available for global buyers", level: "good" },
-      "B2B Networking": { value: "B2B networking opportunities", level: "moderate" },
-      "Customer Education": { value: "Moderate educational resources", level: "moderate" },
-      "Return Policies": { value: "Flexible return policies", level: "good" },
-      "Brand Trust": { value: "Moderate trust with artisan vendors", level: "moderate" },
-      "Influencer Partnerships": { value: "No focus on influencer partnerships", level: "poor" },
-    },
+    feature: "Kashmir Heritage Focus",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Strong emphasis on craftsmanship", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Minimal emphasis on heritage", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "No emphasis on heritage", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "No heritage focus", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Low heritage emphasis", isOurPlatform: false },
+    }
   },
   {
-    solution: "Modalyst",
-    icon: <DollarSign className="w-6 h-6" />,
-  color: "bg-[var(--secondary-color)]",
-    isMainPlatform: false,
-    features: {
-      "Breadth of Handicraft Products": { value: "On-demand products", level: "moderate" },
-      "Kashmir Heritage Focus": { value: "No emphasis on heritage", level: "poor" },
-      "Kashmir Entire Product Line": { value: "Limited to on-demand items", level: "limited" },
-      "Seller Verification": { value: "Verified sellers with on-demand", level: "moderate" },
-      "Artisan Support": { value: "Limited artisan support", level: "limited" },
-      "GI Tags/Certifications": { value: "No GI certifications", level: "poor" },
-      "Origin Traceability": { value: "Traceability based on demand", level: "limited" },
-      "Fair Trade Policies": { value: "Optional fair trade practices", level: "limited" },
-      "Eco-friendly Practices": { value: "Focused on sustainable materials", level: "moderate" },
-      "Cultural Storytelling": { value: "No cultural storytelling", level: "poor" },
-      "Multimedia Content": { value: "Limited multimedia content", level: "limited" },
-      "Personalized Suggestions": { value: "Personalized based on preferences", level: "moderate" },
-      "Thematic Collections": { value: "Limited collections", level: "limited" },
-      "Pricing Transparency": { value: "Transparent pricing for products", level: "good" },
-      "Value-Added Services": { value: "Custom on-demand services", level: "moderate" },
-      "International Shipping": { value: "Global shipping available", level: "good" },
-      "B2B Networking": { value: "Limited networking opportunities", level: "limited" },
-      "Customer Education": { value: "Moderate educational resources", level: "moderate" },
-      "Return Policies": { value: "Return policies", level: "moderate" },
-      "Brand Trust": { value: "Moderate trust with on-demand", level: "moderate" },
-      "Influencer Partnerships": { value: "No focus on influencer partnerships", level: "poor" },
-    },
+    feature: "Kashmir Entire Product Line",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Full Kashmir Craft Representation", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "No representation", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Limited to on-demand items", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Limited to dropshipping items", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "No comprehensive products", isOurPlatform: false },
+    }
   },
   {
-    solution: "Spocket",
-    icon: <Shield className="w-6 h-6" />,
-   color: "bg-[var(--secondary-color)]",
-    isMainPlatform: false,
-    features: {
-      "Breadth of Handicraft Products": { value: "Product offerings", level: "moderate" },
-      "Kashmir Heritage Focus": { value: "No heritage focus", level: "poor" },
-      "Kashmir Entire Product Line": { value: "Limited to dropshipping items", level: "limited" },
-      "Seller Verification": { value: "Moderate seller checks", level: "moderate" },
-      "Artisan Support": { value: "Limited artisan support", level: "limited" },
-      "GI Tags/Certifications": { value: "No GI certifications", level: "poor" },
-      "Origin Traceability": { value: "Basic traceability", level: "limited" },
-      "Fair Trade Policies": { value: "Optional fair trade practices", level: "limited" },
-      "Eco-friendly Practices": { value: "Focus on eco-friendly suppliers", level: "moderate" },
-      "Cultural Storytelling": { value: "No cultural storytelling", level: "poor" },
-      "Multimedia Content": { value: "Limited multimedia content", level: "limited" },
-      "Personalized Suggestions": { value: "Personalized for dropshipping", level: "moderate" },
-      "Thematic Collections": { value: "Seasonal and niche collections", level: "moderate" },
-      "Pricing Transparency": { value: "Transparent pricing", level: "good" },
-      "Value-Added Services": { value: "Product sourcing integration", level: "moderate" },
-      "International Shipping": { value: "Global shipping available", level: "good" },
-      "B2B Networking": { value: "Networking within dropshipping", level: "limited" },
-      "Customer Education": { value: "Limited educational resources", level: "limited" },
-      "Return Policies": { value: "Flexible returns based on dropshipping", level: "moderate" },
-      "Brand Trust": { value: "Moderate trust with suppliers", level: "moderate" },
-      "Influencer Partnerships": { value: "No focus on influencer partnerships", level: "poor" },
-    },
+    feature: "Seller Verification",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Thorough process", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Moderate verification of sellers", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Verified sellers with on-demand", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Moderate seller checks", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Low seller verification", isOurPlatform: false },
+    }
   },
   {
-    solution: "CJDropshipping",
-    icon: <Shield className="w-6 h-6" />,
-   color: "bg-[var(--secondary-color)]",
-    isMainPlatform: false,
-    features: {
-      "Breadth of Handicraft Products": { value: "Customizable product range", level: "moderate" },
-      "Kashmir Heritage Focus": { value: "Low heritage emphasis", level: "poor" },
-      "Kashmir Entire Product Line": { value: "No comprehensive products", level: "poor" },
-      "Seller Verification": { value: "Low seller verification", level: "poor" },
-      "Artisan Support": { value: "No artisan support", level: "poor" },
-      "GI Tags/Certifications": { value: "No GI certifications", level: "poor" },
-      "Origin Traceability": { value: "Minimal traceability", level: "poor" },
-      "Fair Trade Policies": { value: "No fair trade policies", level: "poor" },
-      "Eco-friendly Practices": { value: "Low eco-friendly practices", level: "poor" },
-      "Cultural Storytelling": { value: "No cultural storytelling", level: "poor" },
-      "Multimedia Content": { value: "Minimal content", level: "poor" },
-      "Personalized Suggestions": { value: "Variable suggestions", level: "limited" },
-      "Thematic Collections": { value: "Minimal thematic collections", level: "poor" },
-      "Pricing Transparency": { value: "Variable transparency", level: "limited" },
-      "Value-Added Services": { value: "Variable services", level: "limited" },
-      "International Shipping": { value: "Variable shipping", level: "limited" },
-      "B2B Networking": { value: "Low business networking", level: "poor" },
-      "Customer Education": { value: "Limited education", level: "limited" },
-      "Return Policies": { value: "Variable return policies", level: "limited" },
-      "Brand Trust": { value: "Low brand trust", level: "poor" },
-      "Influencer Partnerships": { value: "No influencer partnerships", level: "poor" },
-    },
+    feature: "Artisan Support",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "High artisan support", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Moderate artisan support", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Limited artisan support", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Limited artisan support", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "No artisan support", isOurPlatform: false },
+    }
   },
   {
-    solution: "Polar",
-    icon: <Shield className="w-6 h-6" />,
-    color: "bg-[var(--secondary-color)]",
-    isMainPlatform: false,
-    features: {
-      "Breadth of Handicraft Products": { value: "Customizable product range", level: "moderate" },
-      "Kashmir Heritage Focus": { value: "Low heritage emphasis", level: "poor" },
-      "Kashmir Entire Product Line": { value: "No comprehensive products", level: "poor" },
-      "Seller Verification": { value: "Low seller verification", level: "poor" },
-      "Artisan Support": { value: "No artisan support", level: "poor" },
-      "GI Tags/Certifications": { value: "No GI certifications", level: "poor" },
-      "Origin Traceability": { value: "Minimal traceability", level: "poor" },
-      "Fair Trade Policies": { value: "No fair trade policies", level: "poor" },
-      "Eco-friendly Practices": { value: "Low eco-friendly practices", level: "poor" },
-      "Cultural Storytelling": { value: "No cultural storytelling", level: "poor" },
-      "Multimedia Content": { value: "Minimal content", level: "poor" },
-      "Personalized Suggestions": { value: "Variable suggestions", level: "limited" },
-      "Thematic Collections": { value: "Minimal thematic collections", level: "poor" },
-      "Pricing Transparency": { value: "Variable transparency", level: "limited" },
-      "Value-Added Services": { value: "Variable services", level: "limited" },
-      "International Shipping": { value: "Variable shipping", level: "limited" },
-      "B2B Networking": { value: "Low business networking", level: "poor" },
-      "Customer Education": { value: "Limited education", level: "limited" },
-      "Return Policies": { value: "Variable return policies", level: "limited" },
-      "Brand Trust": { value: "Low brand trust", level: "poor" },
-      "Influencer Partnerships": { value: "No influencer partnerships", level: "poor" },
-    },
+    feature: "GI Tags/Certifications",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Prominent GI certification for products", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "No GI certifications", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "No GI certifications", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "No GI certifications", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "No GI certifications", isOurPlatform: false },
+    }
   },
+  {
+    feature: "Origin Traceability",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Detailed blockchain traceability", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Limited traceability", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Traceability based on demand", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Basic traceability", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Minimal traceability", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Fair Trade Policies",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Integrated fair trade policies", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Minimal fair trade policies", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Optional fair trade practices", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Optional fair trade practices", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "No fair trade policies", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Eco-friendly Practices",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Strong focus on eco-friendly practices", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Moderate eco-friendly efforts", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Focused on sustainable materials", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Focus on eco-friendly suppliers", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Low eco-friendly practices", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Cultural Storytelling",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Rich visual storytelling of artisan culture", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Limited cultural storytelling", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "No cultural storytelling", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "No cultural storytelling", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "No cultural storytelling", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Multimedia Content",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Extensive multimedia content", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Limited multimedia content", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Limited multimedia content", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Limited multimedia content", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Minimal content", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Personalized Suggestions",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Highly curated, seasonal collections", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Limited suggestions", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Personalized based on preferences", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Personalized for dropshipping", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Variable suggestions", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Thematic Collections",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Seasonal and festival-based collections", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Seasonal collections", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Limited collections", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Seasonal and niche collections", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Minimal thematic collections", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Pricing Transparency",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Fully transparent pricing for products", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Transparent pricing model", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Transparent pricing for products", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Transparent pricing", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Variable transparency", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Value-Added Services",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Tailored artisan resources & logistics", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Business credit & promotional discounts", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Custom on-demand services", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Product sourcing integration", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Variable services", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "International Shipping",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Available for artisans and buyers", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Available for global buyers", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Global shipping available", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Global shipping available", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Variable shipping", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "B2B Networking",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Extensive networking opportunities", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "B2B networking opportunities", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Limited networking opportunities", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Networking within dropshipping", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Low business networking", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Customer Education",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Extensive resources for buyers", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Moderate educational resources", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Moderate educational resources", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Limited educational resources", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Limited education", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Return Policies",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Flexible return policies", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Flexible return policies", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Return policies", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Flexible returns based on dropshipping", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Variable return policies", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Brand Trust",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "High brand trust", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Moderate trust with artisan vendors", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Moderate trust with on-demand", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Moderate trust with suppliers", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Low brand trust", isOurPlatform: false },
+    }
+  },
+  {
+    feature: "Influencer Partnerships",
+    platforms: {
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Planned influencer partnerships", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "No focus on influencer partnerships", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "No focus on influencer partnerships", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "No focus on influencer partnerships", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "No influencer partnerships", isOurPlatform: false },
+    }
+  }
 ],
+
 
     // Dynamic Advantages Data
     hexagonalAdvantages: [
@@ -309,115 +346,391 @@ export default function Page() {
     costComparison: [
       {
         feature: "Platform Cost",
-        deKoshurCrafts: "Free for Early Adopters",
-        eprolo: "Free for Buyers",
-        modalyst: "Free for Buyers",
-        spocket: "Free for Buyers",
-        cjdropshipping: "Free for Buyers",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Free for Early Adopters",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Free for Buyers",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Free for Buyers",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Free for Buyers",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Free for Buyers",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Subscription Fees",
-        deKoshurCrafts: "None",
-        eprolo: "No monthly fee",
-        modalyst: "No monthly fee",
-        spocket: "No monthly fee",
-        cjdropshipping: "No monthly fee",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "None",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "No monthly fee",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "No monthly fee",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "No monthly fee",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "No monthly fee",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Transaction Fees",
-        deKoshurCrafts: "1.5%",
-        eprolo: "15% commission fee",
-        modalyst: "Based on product cost & shipping",
-        spocket: "Based on product cost & shipping",
-        cjdropshipping: "Based on product cost & shipping",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "1.5%",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "15% commission fee",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Based on product cost & shipping",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Based on product cost & shipping",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Based on product cost & shipping",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Payment Processing Fees",
-        deKoshurCrafts: "None",
-        eprolo: "2.9% + $0.30",
-        modalyst: "None",
-        spocket: "2.9% + $0.30",
-        cjdropshipping: "2.9% + $0.30",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "None",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "2.9% + $0.30",
+            isOurPlatform: false,
+          },
+          modalyst: { name: "modalyst", value: "None", isOurPlatform: false },
+          spocket: {
+            name: "spocket",
+            value: "2.9% + $0.30",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "2.9% + $0.30",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Product Cost",
-        deKoshurCrafts: "Competitive pricing",
-        eprolo: "Varies, set by the vendor",
-        modalyst: "Based on on-demand model",
-        spocket: "Varies, set by the vendor",
-        cjdropshipping: "Varies, set by the vendor",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Competitive pricing",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Varies, set by the vendor",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Based on on-demand model",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Varies, set by the vendor",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Varies, set by the vendor",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Shipping Fees",
-        deKoshurCrafts: "Paid by buyer",
-        eprolo: "Paid by buyer",
-        modalyst: "Paid by buyer",
-        spocket: "Paid by buyer",
-        cjdropshipping: "Paid by buyer",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Paid by buyer",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Paid by buyer",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Paid by buyer",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Paid by buyer",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Paid by buyer",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "GI Certification Support",
-        deKoshurCrafts: "Available for artisan products",
-        eprolo: "Not available",
-        modalyst: "Not applicable",
-        spocket: "Not available",
-        cjdropshipping: "Not available",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Available for artisan products",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Not applicable",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Marketing Tools",
-        deKoshurCrafts: "Subsidized support & digital tools",
-        eprolo: "Discount and promotional tools",
-        modalyst: "Limited marketing tools",
-        spocket: "Limited marketing tools",
-        cjdropshipping: "Limited marketing tools",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Subsidized support & digital tools",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Discount and promotional tools",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Limited marketing tools",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Limited marketing tools",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Limited marketing tools",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Return Costs",
-        deKoshurCrafts: "Buyer responsibility",
-        eprolo: "Buyer responsibility",
-        modalyst: "Buyer responsibility",
-        spocket: "Buyer responsibility",
-        cjdropshipping: "Buyer responsibility",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Buyer responsibility",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Buyer responsibility",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Buyer responsibility",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Buyer responsibility",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Buyer responsibility",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Loyalty Rewards",
-        deKoshurCrafts: "Available",
-        eprolo: "No",
-        modalyst: "No",
-        spocket: "No",
-        cjdropshipping: "No",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Available",
+            isOurPlatform: true,
+          },
+          eprolo: { name: "eprolo", value: "No", isOurPlatform: false },
+          modalyst: { name: "modalyst", value: "No", isOurPlatform: false },
+          spocket: { name: "spocket", value: "No", isOurPlatform: false },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "No",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Blockchain Traceability",
-        deKoshurCrafts: "Included for all products",
-        eprolo: "Not available",
-        modalyst: "Not available",
-        spocket: "Not available",
-        cjdropshipping: "Not available",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Included for all products",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Not available",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Custom Branding",
-        deKoshurCrafts: "Available for all vendors",
-        eprolo: "No",
-        modalyst: "Available",
-        spocket: "Available",
-        cjdropshipping: "Available",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Available for all vendors",
+            isOurPlatform: true,
+          },
+          eprolo: { name: "eprolo", value: "No", isOurPlatform: false },
+          modalyst: {
+            name: "modalyst",
+            value: "Available",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Available",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Available",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Multimedia Storytelling",
-        deKoshurCrafts: "Available for artisan stories",
-        eprolo: "No",
-        modalyst: "No",
-        spocket: "No",
-        cjdropshipping: "No",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Available for artisan stories",
+            isOurPlatform: true,
+          },
+          eprolo: { name: "eprolo", value: "No", isOurPlatform: false },
+          modalyst: { name: "modalyst", value: "No", isOurPlatform: false },
+          spocket: { name: "spocket", value: "No", isOurPlatform: false },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "No",
+            isOurPlatform: false,
+          },
+        },
       },
       {
         feature: "Eco-Friendly Practices",
-        deKoshurCrafts: "Integrated with platform",
-        eprolo: "Not emphasized",
-        modalyst: "Available for certain products",
-        spocket: "Not emphasized",
-        cjdropshipping: "Not emphasized",
+        platforms: {
+          deKoshurCrafts: {
+            name: "deKoshurCrafts",
+            value: "Integrated with platform",
+            isOurPlatform: true,
+          },
+          eprolo: {
+            name: "eprolo",
+            value: "Not emphasized",
+            isOurPlatform: false,
+          },
+          modalyst: {
+            name: "modalyst",
+            value: "Available for certain products",
+            isOurPlatform: false,
+          },
+          spocket: {
+            name: "spocket",
+            value: "Not emphasized",
+            isOurPlatform: false,
+          },
+          cjdropshipping: {
+            name: "cjdropshipping",
+            value: "Not emphasized",
+            isOurPlatform: false,
+          },
+        },
       },
     ],
 
@@ -459,7 +772,7 @@ export default function Page() {
           "Personalized consultations",
           "Advanced analytics",
         ],
-         popular: false,
+        popular: false,
 
         description: "Most popular for scaling businesses",
       },
