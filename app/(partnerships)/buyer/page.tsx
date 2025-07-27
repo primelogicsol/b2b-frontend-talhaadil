@@ -11,52 +11,53 @@ const defaultProps: PartnershipPageProps = {
   vendorIntro:
     "Partnering with De Koshur Crafts means no barriers to success. We provide comprehensive support to help you grow your business with authentic Kashmiri crafts.",
   vendorBenefits: [
-    {
-      title: "Authenticity & Provenance",
-      description:
-        "All products are GI-certified, ensuring you offer genuine Kashmiri crafts with verified authenticity.",
-    },
-    {
-      title: "Global Market Access",
-      description:
-        "Leverage our established digital platform to expand your reach to North America and other global markets without the need for upfront investment.",
-    },
-    {
-      title: "No Worries About Logistics & Packaging",
-      description:
-        "We manage fast shipping and secure, eco-friendly packaging, leaving you free to focus on growing your business.",
-    },
-    {
-      title: "Professional Product Photography",
-      description:
-        "We'll provide high-quality photos of your products to ensure they shine online.",
-    },
-    {
-      title: "CraftLore Marketing",
-      description:
-        "Can't afford marketing? CraftLore ensures your products get free exposure across multiple platforms globally.",
-    },
-    {
-      title: "Artstay Direct Sales",
-      description:
-        "Don't want to manage an online store? Artstay will bring buyers directly to your store, ensuring global exposure for your products.",
-    },
-    {
-      title: "Prime Logic Solutions",
-      description:
-        "No website? Prime Logic Solutions, our in-house tech company, will build and maintain your e-commerce platform for FREE.",
-    },
-    {
-      title: "Hamadan Craft Revival Foundation (HCRF)",
-      description:
-        "Facing challenges? The HCRF, our Kashmiri craft policy think tank, is here to support you through advocacy and strategic initiatives.",
-    },
-    {
-      title: "Progressive Path to Free Services",
-      description:
-        "As long as you meet the KPIs and retention periods, you gain access to free-of-cost services—from website development to marketing support.",
-    },
-  ],
+  {
+    title: "Authenticity Provenance Certified",
+    description:
+      "Every product is GI certified to ensure genuine Kashmiri crafts with trusted verified origins worldwide.",
+  },
+  {
+    title: "Global Market Access",
+    description:
+      "Use our strong platform to reach North America and global markets without heavy upfront costs today.",
+  },
+  {
+    title: "Logistics Packaging Support",
+    description:
+      "We handle fast shipping and eco friendly packaging so you can focus only on growth.",
+  },
+  {
+    title: "Professional Product Photos",
+    description:
+      "Receive high quality crafted photos to help your product listings shine bright and attract buyers.",
+  },
+  {
+    title: "CraftLore Global Marketing",
+    description:
+      "Gain free exposure through CraftLore ensuring your crafts are seen across multiple platforms worldwide.",
+  },
+  {
+    title: "Artstay Direct Buyers",
+    description:
+      "Artstay connects buyers directly to your store giving wide global exposure and steady sales.",
+  },
+  {
+    title: "Prime Logic Websites",
+    description:
+      "Our in house team builds and maintains your ecommerce platform completely free of cost.",
+  },
+  {
+    title: "Hamadan Revival Foundation",
+    description:
+      "HCRF supports artisans through advocacy guidance and strong policy initiatives for lasting impact.",
+  },
+  {
+    title: "Progressive Free Services",
+    description:
+      "Meet required KPIs and retention to unlock free marketing development and extended support.",
+  },
+],
+
   buyerTitle: "De Koshur Crafts Buyer Partnership Marketplace",
   buyerTagline:
     "Every Purchase is a Partnership. Every Buyer Empowers a Legacy.",
@@ -66,167 +67,173 @@ const defaultProps: PartnershipPageProps = {
   coreTradeDescription:
     "Entry-level sourcing relationships that open the door to verified vendor support.",
   coreTradePartnerships: [
-    {
-      title: "Drop Shipping Buyer",
-      description:
-        "Start sourcing without holding inventory. Vendor fulfills orders directly to your customers.",
-      details:
-        "Zero upfront investment required. Ideal for e-commerce resellers & micro businesses. Boosts vendor sales via online demand.",
-      kpi: "KPI 7+",
-      retention: "No retention required",
-    },
-    {
-      title: "Consignment Buyer",
-      description:
-        "List vendor products on your platform or shelf. Pay only after verified sale (vendor retains inventory).",
-      details:
-        "No warehousing risk to you. Vendors gain visibility with safety net. Strong for boutique stores or testing collections.",
-      kpi: "KPI 7+",
-      retention: "18 months in Drop Shipping required",
-    },
-    {
-      title: "Import Buyer",
-      description:
-        "Buy GI-tagged certified goods for global trade. Manage labeling, compliance, and customs.",
-      details:
-        "Requires DKC import documentation orientation. Vendors access new markets with protected identity. Ideal for cross-border distributors.",
-      kpi: "KPI 8+",
-      retention: "6 months in Consignment required",
-    },
-    {
-      title: "Wholesale & Distribution Buyer",
-      description:
-        "Place bulk orders for resale or chain distribution. Access traceable, verified product lines.",
-      details:
-        "Faster production cycles and better margins. Enables vendor scale & packaging upgrades. Great for hotels, gift shops, online retailers.",
-      kpi: "KPI 7+",
-      retention: "3 months in any core tier required",
-    },
-  ],
-  growthTitle: "Growth & Brand Expansion Partnerships",
-  growthDescription:
-    "Designed for buyers who amplify vendor exposure through space, exclusivity, or events.",
-  growthPartnerships: [
-    {
-      title: "Exhibition Buyer & Event Organizer",
-      description:
-        "Attend or co-host DKC-curated craft expos. Book vendor collections via exclusive pre-orders.",
-      details:
-        "Co-brand your event with DKC support. Great for cultural hosts, retailers, & trade leads. Vendors gain visibility, sales, and network growth.",
-      kpi: "KPI 8+",
-      retention: "6 months in Import or Wholesale required",
-    },
-    {
-      title: "Auction & Bidding Buyer",
-      description:
-        "Access exclusive artisan pieces via verified bidding. Ideal for collectors, curators, and luxury retail.",
-      details:
-        "Smart contract-enabled, transparent process. Boosts vendor earnings for rare and masterworks. Timed and live auctions available year-round.",
-      kpi: "KPI 8.5+",
-      retention: "6 months in Exhibition or Import required",
-    },
-    {
-      title: "White-Label Buyer",
-      description:
-        "Rebrand crafts under your own private label. Must comply with ethical sourcing and packaging.",
-      details:
-        "Offers vendors scale with identity preservation. Customization available (colors, packaging, variants). Excellent for conscious consumer brands.",
-      kpi: "KPI 9+",
-      retention: "12 months in Auction or Exhibition required",
-    },
-    {
-      title: "Brick & Mortar Space-Sharing Buyer",
-      description:
-        "Offer shelf space in your retail store to DKC vendors. Act as a hosting partner for vendor collections.",
-      details:
-        "Share monthly reports, POS, and branding standards. Vendors gain customer visibility and footfall traction. Great for boutiques, galleries, concept stores.",
-      kpi: "KPI 9+",
-      retention: "12 months in White-Label or Exhibition required",
-    },
-  ],
-  creativeTitle: "Creative & Collaborative Partnerships",
-  creativeDescription:
-    "Knowledge & design partnerships for innovative collaboration.",
-  creativePartnerships: [
-    {
-      title: "Knowledge & Design Partner",
-      description:
-        "Co-create seasonal or signature product lines. Collaborate on patterns, materials, and packaging.",
-      details:
-        "Drives artisan innovation & niche positioning. Best for design studios, curators, indie brands. Vendors gain creative input and global trends exposure.",
-      kpi: "KPI 8+",
-      retention: "6 months in White-Label or Brick & Mortar required",
-    },
-    {
-      title: "Storytelling & Media Partner",
-      description:
-        "Fund or produce artisan content (videos, blogs, reels). Feature behind-the-scenes of craft making.",
-      details:
-        "Strengthens vendor brand & cultural narrative. Ideal for publishers, influencers, or agencies. Vendors become visible beyond product listings.",
-      kpi: "KPI 7+",
-      retention: "6 months in any Growth Tier required",
-    },
-    {
-      title: "Buyer Mentorship Program",
-      description:
-        "Guide vendors through catalog, pricing, and marketing. Host virtual or physical mentorship sessions.",
-      details:
-        "Share procurement trends or platform feedback. Boosts vendor capacity, confidence, and readiness. Ideal for senior buyers and category managers.",
-      kpi: "KPI 9+",
-      retention: "12 months in Design or Storytelling required",
-    },
-    {
-      title: "Craft Innovation Patron",
-      description:
-        "Sponsor sustainable packaging, tools, or techniques. Help revive endangered skills or eco-materials.",
-      details:
-        "Vendors get access to new processes & tools. Recognition as an Artisan Innovation Partner. Best for ESG-aligned buyers and foundations.",
-      kpi: "KPI 8+",
-      retention: "12 months in any Creative Tier required",
-    },
-  ],
-  institutionalTitle: "Institutional & Strategic Partnerships",
-  institutionalDescription:
-    "High-level partnerships for institutional buyers and strategic investors.",
-  institutionalPartnerships: [
-    {
-      title: "Strategic Investor Buyer",
-      description:
-        "Provide equity or infrastructure support to DKC vendors. May invest in platforms, retail, or supply chain.",
-      details:
-        "Drives artisan business stability and scaling. Suitable for ethical funds or global procurement hubs. Vendors access finance + operational capacity.",
-      kpi: "KPI 9+",
-      retention: "12 months in Growth or Creative Tier required",
-    },
-    {
-      title: "Museum/Institutional Buyer",
-      description:
-        "Source archival, curated, or heritage-grade collections. Work with certified vendors on cultural documentation.",
-      details:
-        "Ideal for museums, universities, and research archives. Validates vendor authenticity and story. Elevates the prestige and traceability of crafts.",
-      kpi: "KPI 9+",
-      retention: "12 months in Import or Creative Tier required",
-    },
-    {
-      title: "NGO & Government Buyer",
-      description:
-        "Support vendor sourcing through funded projects or public missions. Engage with artisans via SDG or policy-driven partnerships.",
-      details:
-        "Includes fair trade procurement and women-led initiatives. Vendors get livelihood security and formal visibility. Great for ministries, NGOs, CSR divisions.",
-      kpi: "KPI 8+",
-      retention: "12 months in Strategic or Creative Tier required",
-    },
-    {
-      title: "Impact Measurement Buyer",
-      description:
-        "Track vendor performance via ESG, SDG, or traceability data. Publish reports for foundations, grants, or donors.",
-      details:
-        "Access DKC's blockchain-integrated reporting tools. Hold buyers and vendors equally accountable. Drives trust and funding for high-performing artisans.",
-      kpi: "KPI 9+",
-      retention: "24 months in Strategic or Creative Tier required",
-    },
-  ],
-  
+  {
+    title: "Drop Shipping Buyer",
+    description:
+      "Source goods without holding stock while vendors handle orders and ship directly to buyers.",
+    details:
+      "No upfront costs while expanding markets, vendors grow sales, buyers avoid storage or holding risks.",
+    kpi: "KPI 7+",
+    retention: "No retention needed",
+  },
+  {
+    title: "Consignment Product Buyer",
+    description:
+      "List vendor items safely on your platform and only pay after verified customer purchase.",
+    details:
+      "Eliminates warehouse risks while vendors gain exposure, perfect choice for testing new collections carefully.",
+    kpi: "KPI 7+",
+    retention: "Eighteen months needed",
+  },
+  {
+    title: "Certified Import Buyer",
+    description:
+      "Purchase GI certified goods for global trade and manage labeling compliance and customs.",
+    details:
+      "Access new markets with vendor identity protected while ensuring documentation and proper export handling.",
+    kpi: "KPI 8+",
+    retention: "Six months prior",
+  },
+  {
+    title: "Wholesale Distribution Buyer",
+    description:
+      "Place larger orders for resale and access verified traceable product lines across regions.",
+    details:
+      "Faster production cycles with stronger margins allowing vendor scale and improved packaging upgrades.",
+    kpi: "KPI 7+",
+    retention: "Three months prior",
+  },
+],
+
+growthTitle: "Growth Brand Expansion",
+growthDescription:
+  "Created for buyers expanding vendor reach through exclusive spaces, events, or hosting options.",
+
+growthPartnerships: [
+  {
+    title: "Exhibition Event Buyer",
+    description:
+      "Join or host curated expos and secure pre orders for exclusive crafted product collections.",
+    details:
+      "Co brand with support provided while vendors gain visibility and create strong industry networks.",
+    kpi: "KPI 8+",
+    retention: "Six months prior",
+  },
+  {
+    title: "Auction Bidding Buyer",
+    description:
+      "Access artisan pieces through trusted bidding designed for collectors, curators, and retailers.",
+    details:
+      "Smart contracts ensure transparent sales while boosting vendor income with rare seasonal items.",
+    kpi: "KPI 8.5+",
+    retention: "Six months prior",
+  },
+  {
+    title: "Private Label Buyer",
+    description:
+      "Rebrand crafts with your identity while following ethical sourcing and packaging guidelines.",
+    details:
+      "Vendors scale production while preserving identity and customization supports unique consumer needs.",
+    kpi: "KPI 9+",
+    retention: "Twelve months prior",
+  },
+  {
+    title: "Retail Space Buyer",
+    description:
+      "Offer shelf space for vendors and act as partner displaying curated crafted products.",
+    details:
+      "Share reports and branding standards so vendors gain visibility and increased retail traffic.",
+    kpi: "KPI 9+",
+    retention: "Twelve months prior",
+  },
+],
+
+creativeTitle: "Creative Collaborations",
+creativeDescription:
+  "Partnerships enabling design innovation and knowledge sharing with artisan vendors globally.",
+
+creativePartnerships: [
+  {
+    title: "Design Knowledge Partner",
+    description:
+      "Co create seasonal collections working on patterns materials and detailed packaging improvements.",
+    details:
+      "Encourages artisan innovation and helps brands achieve niche positioning with global influence.",
+    kpi: "KPI 8+",
+    retention: "Six months prior",
+  },
+  {
+    title: "Media Storytelling Partner",
+    description:
+      "Fund or produce artisan content including blogs reels and behind the scenes features.",
+    details:
+      "Strengthens vendor branding while cultural narratives are highlighted beyond product sales.",
+    kpi: "KPI 7+",
+    retention: "Six months prior",
+  },
+  {
+    title: "Buyer Mentor Program",
+    description:
+      "Guide vendors through catalogs pricing strategies and marketing improvement sessions regularly.",
+    details:
+      "Boosts vendor readiness and confidence through direct category management and expert mentorship.",
+    kpi: "KPI 9+",
+    retention: "Twelve months prior",
+  },
+  {
+    title: "Craft Innovation Patron",
+    description:
+      "Sponsor sustainable tools packaging methods and help revive endangered artisan crafting techniques.",
+    details:
+      "Provides vendors access to resources and recognition as key innovation aligned partners.",
+    kpi: "KPI 8+",
+    retention: "Twelve months prior",
+  },
+],
+
+institutionalTitle: "Institutional Strategies",
+institutionalDescription:
+  "For large buyers and investors enabling structured growth and verified artisan engagement.",
+
+institutionalPartnerships: [
+  {
+    title: "Strategic Investor Buyer",
+    description:
+      "Provide equity or infrastructure to vendors supporting platforms retail or supply chain.",
+    details:
+      "Helps scale artisan businesses while securing finance and operational growth opportunities globally.",
+    kpi: "KPI 9+",
+    retention: "Twelve months prior",
+  },
+  {
+    title: "Museum Archive Buyer",
+    description:
+      "Source curated heritage collections and work with certified vendors documenting culture.",
+    details:
+      "Supports museums and research groups validating authenticity and elevating artisan reputation worldwide.",
+    kpi: "KPI 9+",
+    retention: "Twelve months prior",
+  },
+  {
+    title: "NGO Project Buyer",
+    description:
+      "Support sourcing through funded missions or SDG aligned government cultural projects.",
+    details:
+      "Ensures fair trade and vendor livelihood while promoting artisan visibility on platforms.",
+    kpi: "KPI 8+",
+    retention: "Twelve months prior",
+  },
+  {
+    title: "Impact Measure Buyer",
+    description:
+      "Track vendor metrics using ESG SDG or verified traceability based reporting systems.",
+    details:
+      "Publishes transparent performance data driving trust and funding for artisan partners.",
+    kpi: "KPI 9+",
+    retention: "Twenty four months",
+  },
+],
+
 
   tierAdvancementTitle: "Tier Advancement Logic",
   tierAdvancements: [

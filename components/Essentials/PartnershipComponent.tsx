@@ -139,11 +139,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
     };
 
     return (
-      <div
-        className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 hover:border-[var(--primary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--primary-color)]/20 transform hover:-translate-y-2 ${
-          index % 2 === 0 ? "lg:translate-y-4" : ""
-        }`}
-      >
+      <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 hover:border-[var(--primary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--primary-color)]/20 transform hover:-translate-y-2 ">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 via-transparent to-[var(--secondary-color)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative p-8">
           <div className="flex items-start justify-between mb-6">
@@ -203,13 +199,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
 
     return (
       <div
-        className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 hover:border-[var(--secondary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--secondary-color)]/20 transform hover:-translate-y-3 ${
-          index % 3 === 1
-            ? "lg:translate-y-6"
-            : index % 3 === 2
-            ? "lg:translate-y-3"
-            : ""
-        }`}
+        className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 hover:border-[var(--secondary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--secondary-color)]/20 transform hover:-translate-y-3"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--secondary-color)]/10 via-transparent to-[var(--primary-color)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
