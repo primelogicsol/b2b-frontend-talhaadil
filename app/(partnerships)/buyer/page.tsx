@@ -63,10 +63,11 @@ const defaultProps: PartnershipPageProps = {
     "Every Purchase is a Partnership. Every Buyer Empowers a Legacy.",
   buyerDescription:
     "Buyers don't just source products — they enable livelihoods, preserve culture, and scale ethical trade.",
-  coreTradeTitle: "Core Trade Partnerships",
-  coreTradeDescription:
+  Title: "Core Trade Partnerships",
+  Description:
     "Entry-level sourcing relationships that open the door to verified vendor support.",
-  coreTradePartnerships: [
+  
+    Partnerships: [
   {
     title: "Drop Shipping Buyer",
     description:
@@ -105,134 +106,7 @@ const defaultProps: PartnershipPageProps = {
   },
 ],
 
-growthTitle: "Growth Brand Expansion",
-growthDescription:
-  "Created for buyers expanding vendor reach through exclusive spaces, events, or hosting options.",
 
-growthPartnerships: [
-  {
-    title: "Exhibition Event Buyer",
-    description:
-      "Join or host curated expos and secure pre orders for exclusive crafted product collections.",
-    details:
-      "Co brand with support provided while vendors gain visibility and create strong industry networks.",
-    kpi: "KPI 8+",
-    retention: "Six months prior",
-  },
-  {
-    title: "Auction Bidding Buyer",
-    description:
-      "Access artisan pieces through trusted bidding designed for collectors, curators, and retailers.",
-    details:
-      "Smart contracts ensure transparent sales while boosting vendor income with rare seasonal items.",
-    kpi: "KPI 8.5+",
-    retention: "Six months prior",
-  },
-  {
-    title: "Private Label Buyer",
-    description:
-      "Rebrand crafts with your identity while following ethical sourcing and packaging guidelines.",
-    details:
-      "Vendors scale production while preserving identity and customization supports unique consumer needs.",
-    kpi: "KPI 9+",
-    retention: "Twelve months prior",
-  },
-  {
-    title: "Retail Space Buyer",
-    description:
-      "Offer shelf space for vendors and act as partner displaying curated crafted products.",
-    details:
-      "Share reports and branding standards so vendors gain visibility and increased retail traffic.",
-    kpi: "KPI 9+",
-    retention: "Twelve months prior",
-  },
-],
-
-creativeTitle: "Creative Collaborations",
-creativeDescription:
-  "Partnerships enabling design innovation and knowledge sharing with artisan vendors globally.",
-
-creativePartnerships: [
-  {
-    title: "Design Knowledge Partner",
-    description:
-      "Co create seasonal collections working on patterns materials and detailed packaging improvements.",
-    details:
-      "Encourages artisan innovation and helps brands achieve niche positioning with global influence.",
-    kpi: "KPI 8+",
-    retention: "Six months prior",
-  },
-  {
-    title: "Media Storytelling Partner",
-    description:
-      "Fund or produce artisan content including blogs reels and behind the scenes features.",
-    details:
-      "Strengthens vendor branding while cultural narratives are highlighted beyond product sales.",
-    kpi: "KPI 7+",
-    retention: "Six months prior",
-  },
-  {
-    title: "Buyer Mentor Program",
-    description:
-      "Guide vendors through catalogs pricing strategies and marketing improvement sessions regularly.",
-    details:
-      "Boosts vendor readiness and confidence through direct category management and expert mentorship.",
-    kpi: "KPI 9+",
-    retention: "Twelve months prior",
-  },
-  {
-    title: "Craft Innovation Patron",
-    description:
-      "Sponsor sustainable tools packaging methods and help revive endangered artisan crafting techniques.",
-    details:
-      "Provides vendors access to resources and recognition as key innovation aligned partners.",
-    kpi: "KPI 8+",
-    retention: "Twelve months prior",
-  },
-],
-
-institutionalTitle: "Institutional Strategies",
-institutionalDescription:
-  "For large buyers and investors enabling structured growth and verified artisan engagement.",
-
-institutionalPartnerships: [
-  {
-    title: "Strategic Investor Buyer",
-    description:
-      "Provide equity or infrastructure to vendors supporting platforms retail or supply chain.",
-    details:
-      "Helps scale artisan businesses while securing finance and operational growth opportunities globally.",
-    kpi: "KPI 9+",
-    retention: "Twelve months prior",
-  },
-  {
-    title: "Museum Archive Buyer",
-    description:
-      "Source curated heritage collections and work with certified vendors documenting culture.",
-    details:
-      "Supports museums and research groups validating authenticity and elevating artisan reputation worldwide.",
-    kpi: "KPI 9+",
-    retention: "Twelve months prior",
-  },
-  {
-    title: "NGO Project Buyer",
-    description:
-      "Support sourcing through funded missions or SDG aligned government cultural projects.",
-    details:
-      "Ensures fair trade and vendor livelihood while promoting artisan visibility on platforms.",
-    kpi: "KPI 8+",
-    retention: "Twelve months prior",
-  },
-  {
-    title: "Impact Measure Buyer",
-    description:
-      "Track vendor metrics using ESG SDG or verified traceability based reporting systems.",
-    details:
-      "Publishes transparent performance data driving trust and funding for artisan partners.",
-    kpi: "KPI 9+",
-    retention: "Twenty four months",
-  },
-],
 
 
   tierAdvancementTitle: "Tier Advancement Logic",
@@ -262,9 +136,50 @@ institutionalPartnerships: [
       kpiThreshold: "9–9.5+",
     },
   ],
-  ctaText:
-    "Ready to join our partnership ecosystem and empower Kashmiri artisans while growing your business?",
-  ctaButtonText: "Start Your Partnership Journey",
+    title: "Partnership Opportunities",
+  subtitle: "Discover diverse collaboration pathways tailored to your business needs",
+  categories: [
+    {
+      title: "Core Trade Partnerships",
+    
+      items: [
+        { title: "Drop Shipping Buyer" },
+        { title: "Consignment Product Buyer" },
+        { title: "Certified Import Buyer" },
+        { title: "Wholesale Distribution Buyer" },
+      ],
+    },
+    {
+      title: "Growth Brand Expansion",
+    
+      items: [
+        { title: "Exhibition Event Buyer" },
+        { title: "Auction Bidding Buyer" },
+        { title: "Private Label Buyer" },
+        { title: "Retail Space Buyer" },
+      ],
+    },
+    {
+      title: "Creative Collaborations",
+ 
+      items: [
+        { title: "Design Knowledge Partner" },
+        { title: "Media Storytelling Partner" },
+        { title: "Buyer Mentor Program" },
+        { title: "Craft Innovation Patron" },
+      ],
+    },
+    {
+      title: "Institutional Strategies",
+
+      items: [
+        { title: "Strategic Investor Buyer" },
+        { title: "Museum Archive Buyer" },
+        { title: "NGO Project Buyer" },
+        { title: "Impact Measure Buyer" },
+      ],
+    },
+  ],
 };
 
 export default function Component() {

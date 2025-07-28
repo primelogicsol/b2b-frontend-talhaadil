@@ -26,7 +26,6 @@ import {
   Heart,
   BarChart3,
 } from "lucide-react";
-import HowItWorksSection from "../Section/HowItWorksSection";
 
 interface PartnershipBenefit {
   title: string;
@@ -48,7 +47,15 @@ interface TierAdvancement {
   kpiThreshold: string;
 }
 
+type PartnershipCategory = {
+  title: string;
+  items: { title: string }[];
+};
+
 export interface PartnershipPageProps {
+  title: string;
+  subtitle: string;
+  categories: PartnershipCategory[];
   // Vendor Partnership Section
   vendorTitle: string;
   vendorSubtitle: string;
@@ -61,29 +68,13 @@ export interface PartnershipPageProps {
   buyerDescription: string;
 
   // Partnership Categories
-  coreTradeTitle: string;
-  coreTradeDescription: string;
-  coreTradePartnerships: PartnershipTier[];
-
-  growthTitle: string;
-  growthDescription: string;
-  growthPartnerships: PartnershipTier[];
-
-  creativeTitle: string;
-  creativeDescription: string;
-  creativePartnerships: PartnershipTier[];
-
-  institutionalTitle: string;
-  institutionalDescription: string;
-  institutionalPartnerships: PartnershipTier[];
+  Title: string;
+  Description: string;
+  Partnerships: PartnershipTier[];
 
   // Tier Advancement
   tierAdvancementTitle: string;
   tierAdvancements: TierAdvancement[];
-
-  // CTA
-  ctaText: string;
-  ctaButtonText: string;
 }
 
 export const PartnershipPage: React.FC<PartnershipPageProps> = ({
@@ -94,22 +85,15 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
   buyerTitle,
   buyerTagline,
   buyerDescription,
-  coreTradeTitle,
-  coreTradeDescription,
-  coreTradePartnerships,
-  growthTitle,
-  growthDescription,
-  growthPartnerships,
-  creativeTitle,
-  creativeDescription,
-  creativePartnerships,
-  institutionalTitle,
-  institutionalDescription,
-  institutionalPartnerships,
+  Title,
+  Description,
+  Partnerships,
+ 
   tierAdvancementTitle,
   tierAdvancements,
-  ctaText,
-  ctaButtonText,
+  title,
+  subtitle,
+  categories,
 }) => {
   const PartnershipCard: React.FC<{
     partnership: PartnershipTier;
@@ -198,9 +182,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
     };
 
     return (
-      <div
-        className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 hover:border-[var(--secondary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--secondary-color)]/20 transform hover:-translate-y-3"
-      >
+      <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 hover:border-[var(--secondary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--secondary-color)]/20 transform hover:-translate-y-3">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--secondary-color)]/10 via-transparent to-[var(--primary-color)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
         <div className="relative p-8">
@@ -294,15 +276,69 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
         </div>
       </section>
 
+      <section
+        className="w-full py-12 md:py-16 bg-gradient-to-br from-slate-50 to-white"
+        style={
+          {
+            "--primary-hover-color": "#2a5f7a",
+            "--primary-color": "#1b4f68",
+            "--secondary-color": "#d85834",
+            "--secondary-light-color": "#f9c6b2",
+          } as React.CSSProperties
+        }
+      >
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+          {/* Header Section */}
+          <SectionHeader title={title} description={subtitle} />
+
+          {/* Categories Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {categories.map((category, categoryIndex) => (
+              <div
+                key={categoryIndex}
+                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-[var(--secondary-light-color)]"
+              >
+                {/* Category Header */}
+                <div className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] p-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                    {category.title}
+                  </h3>
+                </div>
+
+                {/* Partnership Items */}
+                <div className="p-6 space-y-3">
+                  {category.items.map((item, itemIndex) => (
+                    <div
+                      key={itemIndex}
+                      className="flex items-center space-x-3 p-3 rounded-xl hover:bg-[var(--secondary-light-color)] hover:bg-opacity-20 transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="w-6 h-6 bg-[var(--secondary-color)] text-white rounded-full flex items-center justify-center text-xs font-bold">
+                        {itemIndex + 1}
+                      </div>
+                      <h4 className="text-base font-medium text-[var(--primary-color)] hover:text-[var(--primary-hover-color)] transition-colors duration-300">
+                        {item.title}
+                      </h4>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom Accent */}
+                <div className="h-2 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-light-color)] transition-all duration-300"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Core Trade Partnerships */}
       <section className="py-24 px-6 lg:px-12 relative">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
-            title={coreTradeTitle}
-            description={coreTradeDescription}
+            title={Title}
+            description={Description}
           />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {coreTradePartnerships.map((partnership, index) => (
+            {Partnerships.map((partnership, index) => (
               <PartnershipCard
                 key={index}
                 partnership={partnership}
@@ -313,64 +349,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
         </div>
       </section>
 
-      {/* Growth & Brand Expansion */}
-      <section className="py-24 px-6 lg:px-12 bg-gradient-to-br from-gray-50 to-white relative">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-[var(--secondary-color)]/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="max-w-7xl mx-auto relative">
-          <SectionHeader title={growthTitle} description={growthDescription} />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {growthPartnerships.map((partnership, index) => (
-              <PartnershipCard
-                key={index}
-                partnership={partnership}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Creative & Collaborative */}
-      <section className="py-24 px-6 lg:px-12 relative">
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-[var(--primary-color)]/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="max-w-7xl mx-auto relative">
-          <SectionHeader
-            title={creativeTitle}
-            description={creativeDescription}
-          />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {creativePartnerships.map((partnership, index) => (
-              <PartnershipCard
-                key={index}
-                partnership={partnership}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Institutional & Strategic */}
-      <section className="py-24 px-6 lg:px-12 bg-gradient-to-br from-white to-gray-50 relative">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-[var(--secondary-color)]/10 to-[var(--primary-color)]/10 rounded-full blur-3xl"></div>
-        <div className="max-w-7xl mx-auto relative">
-          <SectionHeader
-            title={institutionalTitle}
-            description={institutionalDescription}
-          />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {institutionalPartnerships.map((partnership, index) => (
-              <PartnershipCard
-                key={index}
-                partnership={partnership}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-      <section></section>
-
+   
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--primary-color)] text-white relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 opacity-20">

@@ -201,18 +201,18 @@ export default function InsidePartnership({
       </section>
       {/* Comparison Section */}
       <section className="py-12 px-4">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
-          Comparison with other platforms
+        <h2 className="text-2xl md:text-4xl xl:text-5xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
+          Platform Features
         </h2>
         <CostComparisonResponsive costComparison={comparisonData} />
       </section>
       {/* Advantages Section (Hexagonal Design) */}
-      <section className="py-16 px-4 bg-[var(--white)]">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-[var(--primary-color)] animate-on-scroll">
+          <h2 className="text-4xl font-bold text-center mb-16 text-[var(--primary-dark-slate)] animate-on-scroll">
             Advantages
           </h2>
-          {/* Hexagonal Cards */}
+          {/* First Row of Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {hexagonalAdvantages.slice(0, 4).map((item, index) => (
               <div
@@ -220,35 +220,46 @@ export default function InsidePartnership({
                 className="text-center animate-on-scroll"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Hexagonal Shape */}
-                <div className="relative mx-auto mb-6 w-32 h-32 flex items-center justify-center">
-                  <div
-                    className={`${item.color} w-28 h-28 transform rotate-45 rounded-lg shadow-lg transition-all duration-300 hover:scale-110`}
-                    style={{
-                      clipPath:
-                        "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                    }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center transform -rotate-45">
-                      <span className="text-3xl font-bold text-[var(--white)]">
-                        {item.number}
-                      </span>
+                <div
+                  className="h-full flex flex-col justify-between p-6 border-2 border-[var(--primary-color)] rounded-lg shadow-lg
+ transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-xl group bg-white"
+                >
+                  <div className="flex flex-col items-center p-0">
+                    {/* Generic Logo/Icon Container - using item.color for background */}
+                    <div
+                      className={`w-20 h-20 flex items-center justify-center ${item.color} text-[var(--primary-header-color)] rounded-full mb-6 shadow-md
+ transition-all duration-300 ease-in-out group-hover:scale-110`}
+                    >
+                      {/* Generic placeholder SVG for "logo" */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-10 h-10"
+                      >
+                        {/* A simple abstract shape or star as a placeholder logo */}
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                      </svg>
                     </div>
+                    {/* Title */}
+                    <h3 className="text-xl font-bold mb-3 text-[var(--primary-dark-slate)] group-hover:text-[var(--primary-color)] transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    {/* Description */}
+                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-4 text-[var(--primary-dark-slate)]">
-                  {item.title}
-                </h3>
-                {/* Description */}
-                <p className="text-[var(--primary-color)] text-sm leading-relaxed">
-                  {item.description}
-                </p>
               </div>
             ))}
           </div>
 
-          {/* Second Row */}
+          {/* Second Row of Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {hexagonalAdvantages.slice(4, 8).map((item, index) => (
               <div
@@ -256,55 +267,48 @@ export default function InsidePartnership({
                 className="text-center animate-on-scroll"
                 style={{ animationDelay: `${(index + 4) * 0.1}s` }}
               >
-                {/* Hexagonal Shape */}
-                <div className="relative mx-auto mb-6 w-32 h-32 flex items-center justify-center">
-                  <div
-                    className={`${item.color} w-28 h-28 transform rotate-45 rounded-lg shadow-lg transition-all duration-300 hover:scale-110`}
-                    style={{
-                      clipPath:
-                        "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                    }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center transform -rotate-45">
-                      <span className="text-3xl font-bold text-[var(--white)]">
-                        {item.number}
-                      </span>
+                <div
+                  className="h-full flex flex-col justify-between p-6 border-2 border-[var(--primary-color)] rounded-lg shadow-lg
+ transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-xl group bg-white"
+                >
+                  <div className="flex flex-col items-center p-0">
+                    {/* Generic Logo/Icon Container - using item.color for background */}
+                    <div
+                      className={`w-20 h-20 flex items-center justify-center ${item.color} text-[var(--primary-header-color)] rounded-full mb-6 shadow-md
+ transition-all duration-300 ease-in-out group-hover:scale-110`}
+                    >
+                      {/* Generic placeholder SVG for "logo" */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-10 h-10"
+                      >
+                        {/* A simple abstract shape or star as a placeholder logo */}
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                      </svg>
                     </div>
+                    {/* Title */}
+                    <h3 className="text-xl font-bold mb-3 text-[var(--primary-dark-slate)] group-hover:text-[var(--primary-color)] transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    {/* Description */}
+                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-4 text-[var(--primary-dark-slate)]">
-                  {item.title}
-                </h3>
-                {/* Description */}
-                <p className="text-[var(--foreground)] text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Connection Line (hidden on small screens) */}
-          <div className="hidden lg:flex justify-center items-center space-x-8 mt-8">
-            {hexagonalAdvantages.slice(0, 4).map((item, index) => (
-              <div key={index} className="flex items-center">
-                <div
-                  className={`w-6 h-6 transform rotate-45 ${item.color}`}
-                  style={{
-                    clipPath:
-                      "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                  }}
-                ></div>
-                {index < 4 && (
-                  <div className={`w-16 h-1 bg-[var(--primary-color)]`}></div>
-                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-   <section className="py-12 px-4">
+      <section className="py-12 px-4">
         <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
           Cost Comparison with Other Platforms
         </h2>
@@ -553,6 +557,12 @@ export default function InsidePartnership({
 
                 {/* Read More Button */}
                 <div className="text-center">
+                          {service.featured && (
+    <p className="text-md text-[var(--secondary-color)] mb-1 font-bold">
+      You are currently here
+    </p>
+  )}
+                  
                   <button
                     className={`inline-flex items-center font-semibold text-sm transition-all duration-300 ${
                       service.featured
@@ -575,7 +585,9 @@ export default function InsidePartnership({
                       />
                     </svg>
                   </button>
+
                 </div>
+        
               </div>
             ))}
           </div>
