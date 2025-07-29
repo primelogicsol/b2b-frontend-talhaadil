@@ -80,7 +80,7 @@ export default function RecSquareSection({
 
         <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base">{description}</p>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-gray-700 mb-10 text-sm md:text-base items-start">
+          <ul className="flex flex-col gap-4 text-gray-700 mb-10 text-sm md:text-base items-start">
             {phases.map((phase, index) => (
               <li
                 key={index}

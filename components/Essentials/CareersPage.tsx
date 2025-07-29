@@ -51,6 +51,16 @@ const benefits = [
       "Be part of a team that honors each background and creates space where all members belong."
   },
   {
+    title: "Diverse Inclusion",
+    description:
+      "Be part of a team that honors each background and creates space where all members belong."
+  },
+  {
+    title: "Diverse Inclusion",
+    description:
+      "Be part of a team that honors each background and creates space where all members belong."
+  },
+  {
     title: "Positive Culture",
     description:
       "Join a mindful workplace that blends kind values and clear goals for steady shared success."

@@ -80,7 +80,7 @@ Meet the people who are bringing this vision to life.`,
               <CloudCog className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-center text-lg sm:text-xl font-bold text-[var(--primary-dark-slate)] mb-2">{subTitle}</h3>
+              <h3 className="text-center lg:text-left lg:-ml-14 text-lg sm:text-xl font-bold text-[var(--primary-dark-slate)] mb-2">{subTitle}</h3>
               <p className="text-center text-sm sm:text-base text-[var(--primary-light-text-color)] max-w-2xl mx-auto lg:mx-0">{subDescription}</p>
             </div>
           </div>
