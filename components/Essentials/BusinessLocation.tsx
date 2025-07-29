@@ -19,9 +19,11 @@ export default function BusinessLocation() {
       <section className="py-12 md:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-center sm:text-2xl md:text-3xl lg:text-4xl mb-8 sm:mb-12 md:mb-16 lg:mb-20 drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight">
-              Our Location
-            </h2>
+          <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight">
+  Our Location
+</h2>
+
+
 
             <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
               At De Koshur Crafts, we are committed to not just promoting

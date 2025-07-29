@@ -348,32 +348,33 @@ const vendorslides = [
             experience through new crafts, custom offerings, and global
             partnerships.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <div className="bg-white rounded-lg p-6 shadow-lg flex-1 max-w-xs">
-              <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
-                Expand Globally
-              </h3>
-              <p className="text-gray-700 text-sm">
-                Reaching new markets worldwide
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-lg flex-1 max-w-xs">
-              <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
-                New Crafts
-              </h3>
-              <p className="text-gray-700 text-sm">
-                Introducing more Kashmiri traditions
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-lg flex-1 max-w-xs">
-              <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
-                Custom Excellence
-              </h3>
-              <p className="text-gray-700 text-sm">
-                Expanding bespoke offerings
-              </p>
-            </div>
-          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
+  <div className="bg-white rounded-lg p-6 shadow-lg flex-1 min-w-[220px]">
+    <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
+      Expand Globally
+    </h3>
+    <p className="text-gray-700 text-sm">
+      Reaching new markets worldwide
+    </p>
+  </div>
+  <div className="bg-white rounded-lg p-6 shadow-lg flex-1 min-w-[220px]">
+    <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
+      New Crafts
+    </h3>
+    <p className="text-gray-700 text-sm">
+      Introducing more Kashmiri traditions
+    </p>
+  </div>
+  <div className="bg-white rounded-lg p-6 shadow-lg flex-1 min-w-[220px]">
+    <h3 className="text-xl font-bold text-[color:var(--primary-color)] mb-2">
+      Custom Excellence
+    </h3>
+    <p className="text-gray-700 text-sm">
+      Expanding bespoke offerings
+    </p>
+  </div>
+</div>
+
         </div>
       </section>
 
