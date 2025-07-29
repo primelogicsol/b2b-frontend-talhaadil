@@ -361,7 +361,7 @@ export default function Process() {
         </section>
 
         {/* Buyer Partnership Framework and Pathway - Slider */}
-        <section className="mb-16 relative py-12 bg-[var(--primary-hover-color)] rounded-xl shadow-lg">
+        <section className="mb-16 relative py-12 bg-[var(--primary-hover-color)] rounded-xl shadow-lg px-6">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--secondary-color)]">
             Buyer Partnership Framework and Pathway
           </h2>

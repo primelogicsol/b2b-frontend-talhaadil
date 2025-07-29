@@ -21,7 +21,7 @@ export default function HowItWorksSection({
   phases,
 }: HowItWorksProps) {
   return (
-    <section className="mb-16 py-12 bg-white rounded-xl shadow-lg">
+    <section className="mb-16 py-12 bg-white rounded-xl px-8">
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--primary-color)]">
         {title}
       </h2>
@@ -29,7 +29,7 @@ export default function HowItWorksSection({
         {description}
       </p>
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
-        <div className="md:w-1/2 flex justify-center animate-fade-in-delay">
+        <div className="md:w-1/2 justify-center animate-fade-in-delay hidden md:flex">
           <img
             src={imageUrl}
             alt={imageAlt}
@@ -39,7 +39,7 @@ export default function HowItWorksSection({
           />
         </div>
         <div className="md:w-1/2 space-y-4 text-left">
-          <h3 className="text-2xl font-bold text-[var(--primary-color)] mb-4 animate-slide-in-up">
+          <h3 className="text-2xl sm:text-4xl font-bold text-[var(--primary-color)] text-center mb-4 animate-slide-in-up">
             {mini_desc}
           </h3>
           <ul className="list-none p-0 m-0 space-y-3">
@@ -64,9 +64,7 @@ export default function HowItWorksSection({
         <button className="bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once">
           Register Now
         </button>
-        <button className="bg-transparent border-2 border-[var(--primary-hover-color)] text-[var(--primary-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-light-text-color)] hover:text-[var(--primary-header-color)] hover:shadow-lg animate-fade-in-delay">
-          Partner Smarter: Pre-Registration Consultation
-        </button>
+       
         <button className="bg-[var(--primary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once">
           Book Appointment
         </button>

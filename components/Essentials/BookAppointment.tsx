@@ -320,8 +320,9 @@ export default function AppointmentScheduler() {
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-[var(--primary-color)] mb-2 flex items-center justify-center">
-          <Calendar className="mr-3" size={32} />
-          B2B Connect | Appointment Scheduler
+        <Calendar className="mr-3 hidden md:flex" size={32} />
+
+          B2B Connect Appointment Scheduler
         </h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Book a virtual or in-person meeting with our onboarding team, buyer advisors, or vendor support specialists
@@ -397,7 +398,7 @@ export default function AppointmentScheduler() {
                   required
                 />
                 <Flag className="mr-3 text-[var(--primary-color)]" size={20} />
-                <span className="font-medium">USA 🇺🇸</span>
+                <span className="font-medium">USA</span>
               </label>
 
               <label
@@ -417,7 +418,7 @@ export default function AppointmentScheduler() {
                   required
                 />
                 <Building className="mr-3 text-[var(--primary-color)]" size={20} />
-                <span className="font-medium">India 🇮🇳</span>
+                <span className="font-medium">India</span>
               </label>
             </div>
           </div>
@@ -475,7 +476,7 @@ export default function AppointmentScheduler() {
                     required
                   />
                   <Home className="mr-3 text-[var(--primary-color)]" size={24} />
-                  <h3 className="font-semibold">In-Person Meeting</h3>
+                  <h3 className="font-semibold">Offline Meeting</h3>
                 </div>
                 <p className="text-sm text-gray-600">Visit a B2B Connect Office</p>
               </div>
@@ -484,56 +485,103 @@ export default function AppointmentScheduler() {
         )}
 
         {/* Office Location Section */}
-        {formData.appointmentMode === "in-person" && getFilteredOffices().length > 0 && (
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6 flex items-center">
-              <MapPin className="mr-3" size={24} />
-              Select Office Location
-            </h2>
+       {formData.appointmentMode === "in-person" && getFilteredOffices().length > 0 && (
+        <div className="bg-white rounded-lg shadow-lg p-4 md:p-8">
+          <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6 flex items-center">
+            <MapPin className="mr-3" size={24} />
+            Select Office Location
+          </h2>
 
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse rounded-lg overflow-hidden shadow-sm">
-                <thead>
-                  <tr className="bg-[var(--primary-color)] text-white">
-                    <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">Office</th>
-                    <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">Address</th>
-                    <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">Phone</th>
-                    <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">
-                      Days & Time
-                    </th>
-                    <th className="border border-[var(--primary-hover-color)] p-4 text-center font-semibold">Select</th>
+          {/* Desktop/Tablet Table View */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full border-collapse rounded-lg overflow-hidden shadow-sm">
+              <thead>
+                <tr className="bg-[var(--primary-color)] text-white">
+                  <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">Office</th>
+                  <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">Address</th>
+                  <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">Phone</th>
+                  <th className="border border-[var(--primary-hover-color)] p-4 text-left font-semibold">
+                    Days & Time
+                  </th>
+                  <th className="border border-[var(--primary-hover-color)] p-4 text-center font-semibold">Select</th>
+                </tr>
+              </thead>
+              <tbody>
+                {getFilteredOffices().map((office, index) => (
+                  <tr key={office.id} className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
+                    <td className="border border-gray-200 p-4 font-medium">
+                      <div className="flex items-center">
+                        <span className="mr-2">{office.flag}</span>
+                        {office.name}
+                      </div>
+                    </td>
+                    <td className="border border-gray-200 p-4 text-sm text-gray-700">{office.address}</td>
+                    <td className="border border-gray-200 p-4 text-sm text-gray-700 font-mono">{office.phone}</td>
+                    <td className="border border-gray-200 p-4 text-sm text-gray-700">{office.schedule}</td>
+                    <td className="border border-gray-200 p-4 text-center">
+                      <input
+                        type="radio"
+                        name="office"
+                        value={office.id}
+                        checked={formData.office === office.id}
+                        onChange={(e) => updateFormData("office", e.target.value)}
+                        className="w-5 h-5 text-[var(--primary-color)] bg-gray-100 border-gray-300 focus:ring-[var(--primary-color)] focus:ring-2 accent-[var(--primary-color)]"
+                        required={formData.appointmentMode === "in-person"}
+                      />
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {getFilteredOffices().map((office, index) => (
-                    <tr key={office.id} className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
-                      <td className="border border-gray-200 p-4 font-medium">
-                        <div className="flex items-center">
-                          <span className="mr-2">{office.flag}</span>
-                          {office.name}
-                        </div>
-                      </td>
-                      <td className="border border-gray-200 p-4 text-sm text-gray-700">{office.address}</td>
-                      <td className="border border-gray-200 p-4 text-sm text-gray-700 font-mono">{office.phone}</td>
-                      <td className="border border-gray-200 p-4 text-sm text-gray-700">{office.schedule}</td>
-                      <td className="border border-gray-200 p-4 text-center">
-                        <input
-                          type="radio"
-                          name="office"
-                          value={office.id}
-                          checked={formData.office === office.id}
-                          onChange={(e) => updateFormData("office", e.target.value)}
-                          className="w-5 h-5 text-[var(--primary-color)] bg-gray-100 border-gray-300 focus:ring-[var(--primary-color)] focus:ring-2 accent-[var(--primary-color)]"
-                          required={formData.appointmentMode === "in-person"}
-                        />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
-        )}
+
+          {/* Mobile Card View */}
+          <div className="md:hidden space-y-4">
+            {getFilteredOffices().map((office) => (
+              <div
+                key={office.id}
+                className={`border rounded-lg p-4 transition-all duration-200 ${
+                  formData.office === office.id
+                    ? "border-[var(--primary-color)] shadow-md"
+                    : "border-gray-200 bg-white hover:border-gray-300"
+                }`}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center flex-1">
+                    <h3 className="font-semibold text-gray-900 text-lg">{office.name}</h3>
+                  </div>
+                  <input
+                    type="radio"
+                    name="office"
+                    value={office.id}
+                    checked={formData.office === office.id}
+                    onChange={(e) => updateFormData("office", e.target.value)}
+                    className="w-5 h-5 text-[var(--primary-color)] bg-gray-100 border-gray-300 focus:ring-[var(--primary-color)] focus:ring-2 accent-[var(--primary-color)] mt-1"
+                    required={formData.appointmentMode === "in-person"}
+                  />
+                </div>
+
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-start">
+                    <span className="font-medium text-gray-600 w-16 flex-shrink-0">Address:</span>
+                    <span className="text-gray-700">{office.address}</span>
+                  </div>
+
+                  <div className="flex items-center">
+                    <span className="font-medium text-gray-600 w-16 flex-shrink-0">Phone:</span>
+                    <span className="text-gray-700 font-mono">{office.phone}</span>
+                  </div>
+
+                  <div className="flex items-center">
+                    <span className="font-medium text-gray-600 w-16 flex-shrink-0">Hours:</span>
+                    <span className="text-gray-700">{office.schedule}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
         {/* Date and Time Selection */}
         {formData.appointmentMode && availableDays.length > 0 && (
@@ -624,7 +672,7 @@ export default function AppointmentScheduler() {
             {/* Timezone Info */}
             {availableTimeSlots.length > 0 && (
               <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-800">
+                <p className="text-sm text-[var(--primary-color)]">
                   <strong>Note:</strong> All times are shown in {availableTimeSlots[0]?.timezone} timezone.
                   {getEffectiveCountry() === "usa" && " (Eastern Standard Time)"}
                   {getEffectiveCountry() === "india" && " (India Standard Time)"}
@@ -819,7 +867,7 @@ function BookingConfirmation({ formData }: { formData: FormData }) {
         <div className="mb-6">
           <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
           <h1 className="text-3xl font-bold text-[var(--primary-color)] mb-2 flex items-center justify-center">
-            <Calendar className="mr-3" size={32} />
+            <Calendar className="mr-3 hidden lg:flex" size={32} />
             Your appointment is confirmed!
           </h1>
         </div>
