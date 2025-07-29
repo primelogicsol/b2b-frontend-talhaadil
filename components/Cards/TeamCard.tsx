@@ -27,7 +27,7 @@ export default function TeamCard({
   return (
     <div
   className={`relative ${
-    isImportant ? "w-80" : "w-60"
+    isImportant ? "w-70" : "w-60"
   } rounded-2xl shadow-2xl bg-gray-100 group cursor-pointer transform transition-all duration-700 hover:scale-105 overflow-hidden`}
 >
       {/* Orange diagonal background */}

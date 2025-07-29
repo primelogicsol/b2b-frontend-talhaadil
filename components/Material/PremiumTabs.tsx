@@ -459,7 +459,7 @@ export default function PremiumTabs() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div
-            className="flex gap-2 p-2 rounded-full shadow-lg border overflow-x-auto no-scrollbar"
+            className="flex gap-1 p-2 rounded-full shadow-lg border overflow-x-auto no-scrollbar"
             style={{
               backgroundColor: "var(--primary-color)",
               borderColor: "var(--primary-light-text-color)",

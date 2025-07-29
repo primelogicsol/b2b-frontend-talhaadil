@@ -261,7 +261,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
         </div>
         <div className="max-w-7xl mx-auto text-center relative">
           <div className="mb-8">
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-white">
+            <h2 className=" text-4xl md:text-7xl font-black mb-8 text-white">
               {buyerTitle}
             </h2>
             <div className="relative inline-block">
@@ -278,18 +278,11 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
 
       <section
         className="w-full py-12 md:py-16 bg-gradient-to-br from-slate-50 to-white"
-        style={
-          {
-            "--primary-hover-color": "#2a5f7a",
-            "--primary-color": "#1b4f68",
-            "--secondary-color": "#d85834",
-            "--secondary-light-color": "#f9c6b2",
-          } as React.CSSProperties
-        }
+      
       >
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7\xl">
           {/* Header Section */}
-          <SectionHeader title={title} description={subtitle} />
+          <SectionHeader  title={title} description={subtitle} />
 
           {/* Categories Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

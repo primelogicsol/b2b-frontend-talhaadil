@@ -63,11 +63,11 @@ export default function Footer() {
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}
-              className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
+              className=" min-w-8 min-h-8 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
             >
               <Users className="w-4 h-4 text-[var(--secondary-light-color)]" />
             </motion.div>
-            <h3 className="text-lg md:text-xl font-semibold text-[var(--primary-header-color)]">
+            <h3 className="text-lg md:text-xl font-semibold text-[var(--primary-header-color)] text-center">
               Stay Connected to Craftlore-Kashmir Craft Repository
             </h3>
           </motion.div>
@@ -137,7 +137,7 @@ export default function Footer() {
           {/* Craft Registry */}
           <motion.div
             variants={itemVariants}
-            className="p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
+            className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
               <Globe className="w-5 h-5 text-[var(--secondary-color)]" /> Craft
@@ -171,7 +171,7 @@ export default function Footer() {
           {/* Craft Resources */}
           <motion.div
             variants={itemVariants}
-            className="p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
+            className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
               <TrendingUp className="w-5 h-5 text-[var(--secondary-color)]" />{" "}
@@ -205,7 +205,7 @@ export default function Footer() {
           {/* About & Connect */}
           <motion.div
             variants={itemVariants}
-            className="p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
+            className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
               <Mail className="w-5 h-5 text-[var(--secondary-color)]" /> About &
@@ -239,37 +239,41 @@ export default function Footer() {
 
         {/* Newsletter */}
         <motion.div
-          className="mt-16 pt-12 border-t border-[var(--secondary-color)]/50"
-          variants={itemVariants}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-white to-[var(--secondary-light-color)] bg-clip-text text-transparent">
-                Stay Updated
-              </h3>
-              <p className="text-[var(--secondary-light-color)] text-sm">
-                Subscribe to our newsletter for the latest updates.
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <motion.input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-[var(--secondary-light-color)] focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)]"
-              />
-              <motion.button
-                className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-lg font-semibold text-white"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Subscribe
-                <ArrowRight className="w-4 h-4 inline-block ml-2" />
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
+  className="mt-16 pt-12 border-t border-[var(--secondary-color)]/50"
+  variants={itemVariants}
+>
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <div>
+      <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-white to-[var(--secondary-light-color)] bg-clip-text text-transparent">
+        Stay Updated
+      </h3>
+      <p className="text-[var(--secondary-light-color)] text-sm">
+        Subscribe to our newsletter for the latest updates.
+      </p>
+    </div>
+
+    {/* Responsive input and button */}
+    <div className="flex flex-col sm:flex-row gap-3 w-full">
+      <motion.input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full sm:flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-[var(--secondary-light-color)] focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)]"
+      />
+      <motion.button
+        className="w-full sm:w-auto cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-lg font-semibold text-white"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Subscribe
+        
+
+      </motion.button>
+    </div>
+  </div>
+</motion.div>
+
 
         {/* Bottom */}
         <motion.div
