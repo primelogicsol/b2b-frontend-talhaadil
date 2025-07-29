@@ -1,4 +1,5 @@
 "use client";
+import { useGlobalContext } from "@/components/Context/GlobalProvider";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { FlipCard } from "@/components/Cards/FlipCard";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
@@ -22,7 +23,10 @@ import {
 import DiagonalSection from "@/components/Section/DiagonalSection";
 import OurVision from "@/components/Essentials/OurVision";
 import EthicalSourcingSustainability from "@/components/Essentials/EthicalSourcing";
+
 export default function MainPage() {
+  const { is4K } = useGlobalContext();
+
   const whatSetsUsApartCards = [
     {
       icon: <ShieldCheck className="w-8 h-8" />,
@@ -87,12 +91,11 @@ export default function MainPage() {
 
   return (
     <main className="min-h-screen w-full text-white overflow-x-hidden">
-      {/* Hero Banner */}
       <section className="relative z-10">
         <VerticalHeroSlider />
       </section>
-      {/* Scroll Animation / Video Section */}
-      <section className="mt-30 lg:mt-10">
+
+      <section className={`${is4K ? "mt-52" : "mt-30 lg:mt-20"}`}>
         <DiagonalSection
           subtitle="WELCOME TO B2B CONNECT - USA"
           title="Empowering Kashmiri Artisans, Startups in Accessing American"
@@ -110,31 +113,58 @@ export default function MainPage() {
           smallImage="/images/new-pic4.webp"
         />
       </section>
-      {/* Feature Cards */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-20 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10">
-        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-8 sm:mb-12 md:mb-16 lg:mb-20 drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight">
+
+      <section
+        className={`${
+          is4K
+            ? "py-24 px-28 mx-10"
+            : "sm:py-4 md:py-8 lg:py-10 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-20 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10"
+        }`}
+      >
+        <h2
+          className={`text-center ${
+            is4K
+              ? "text-7xl mb-20"
+              : "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl sm:mb-2 md:mb-4 lg:mb-6"
+          } drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight`}
+        >
           Our Values
         </h2>
-        <section className="w-full max-w-6xl py-12 md:py-24 lg:py-32">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {cards.map((card, index) => (
-              <FlipCard key={index} {...card} />
-            ))}
-          </div>
-        </section>
+
+        <div className="flex justify-center">
+          <section
+            className={`w-full ${
+              is4K ? "max-w-[1800px] py-32" : "max-w-6xl py-4 md:py-10 lg:py-12"
+            }`}
+          >
+            <div className={`${is4K ? "gap-12" : "gap-8"} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`}>
+              {cards.map((card, index) => (
+                <FlipCard key={index} {...card} />
+              ))}
+            </div>
+          </section>
+        </div>
       </section>
-      <section className="px-2 md:px-6 lg:px-8 py-16 bg-white text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-12">
+
+      <section className={`px-2 ${is4K ? "py-32" : "py-16"} md:px-6 lg:px-8 bg-white text-center`}>
+        <h2
+          className={`${
+            is4K ? "text-7xl mb-20" : "text-3xl md:text-4xl lg:text-5xl mb-12"
+          } font-extrabold text-[var(--primary-color)]`}
+        >
           What Sets Us Apart
         </h2>
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
+
       <section>
         <PartnershipModel />
       </section>
-      <section className="px-10 xl:px-0">
+
+      <section className={`${is4K ? "px-40" : "px-10 xl:px-0"}`}>
         <OurVision />
       </section>
+
       <section>
         <EthicalSourcingSustainability />
       </section>

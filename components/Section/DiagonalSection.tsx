@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useGlobalContext } from "../Context/GlobalProvider"; // Adjust path as needed
 
 interface SectionProps {
   subtitle?: string;
@@ -22,17 +23,18 @@ export default function DiagonalSection({
   highlight = "Markets",
   description = "At De Koshur Crafts, our mission transcends the typical e-commerce experience.We believe that authentic Kashmiri craftsmanship deserves global respect, recognition, and reach.Our platform empowers artisans, preserves heritage crafts, and connects them to international markets through sustainable, fair trade practices and innovation.",
   steps = [
-  "Honor It: Celebrate Kashmir’s artistry by uplifting Pashmina, Kani weaving, and Papier Mâché through global recognition and fair trade.",
-  "Preserve It: Protect centuries‑old craftsmanship with sustainable methods, cultural safeguarding, and technology‑backed authenticity.",
-  "Empower It: Equip artisans with training, tools, and direct markets so they grow businesses and earn fair compensation.",
-  "Share It: Carry each artisan’s story worldwide using digital platforms, transparent sourcing, and innovative outreach."
-],
+    "Honor It: Celebrate Kashmir’s artistry by uplifting Pashmina, Kani weaving, and Papier Mâché through global recognition and fair trade.",
+    "Preserve It: Protect centuries‑old craftsmanship with sustainable methods, cultural safeguarding, and technology‑backed authenticity.",
+    "Empower It: Equip artisans with training, tools, and direct markets so they grow businesses and earn fair compensation.",
+    "Share It: Carry each artisan’s story worldwide using digital platforms, transparent sourcing, and innovative outreach.",
+  ],
   footerHeadline = "Crafting a Borderless Platform Rooted in Legacy",
   footerDescription = "Empowering Artisans | Preserving Culture | Advancing Ethical Innovation",
   mainImage = "/images/new-pic6.webp",
   smallImage = "/images/new-pic4.webp",
 }: SectionProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const { is4K } = useGlobalContext();
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -51,7 +53,7 @@ export default function DiagonalSection({
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 relative">
+    <div className="bg-white text-gray-900 relative">
       <div
         className="absolute inset-0 z-0 opacity-10"
         style={{
@@ -60,10 +62,30 @@ export default function DiagonalSection({
         }}
       ></div>
 
-      <main className="relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 lg:px-8">
-        <div className="relative w-full max-w-md lg:max-w-xl h-[400px] lg:h-[550px] flex items-center justify-center mb-12 lg:mb-0 lg:mr-16">
-          <div className="relative w-[350px] h-[450px] md:w-[450px] md:h-[550px]">
-            <div className="absolute top-0 left-0 w-[300px] h-[400px] md:w-[400px] md:h-[500px] transform rotate-[-15deg] skew-x-[-10deg] rounded-xl overflow-hidden group transition-transform duration-300 hover:scale-105 z-20">
+      <main
+        className={`relative z-10 flex flex-col lg:flex-row items-center justify-center ${
+          is4K ? "px-24 py-24" : "px-4 py-12 lg:px-8"
+        }`}
+      >
+        <div
+          className={`relative w-full ${
+            is4K ? "max-w-[700px] h-[700px]" : "max-w-md lg:max-w-xl h-[400px] lg:h-[550px]"
+          } flex items-center justify-center mb-12 lg:mb-0 lg:mr-16`}
+        >
+          <div
+            className={`relative ${
+              is4K
+                ? "w-[550px] h-[650px]"
+                : "w-[350px] h-[450px] md:w-[450px] md:h-[550px]"
+            }`}
+          >
+            <div
+              className={`absolute top-0 left-0 ${
+                is4K
+                  ? "w-[500px] h-[600px]"
+                  : "w-[300px] h-[400px] md:w-[400px] md:h-[500px]"
+              } transform rotate-[-15deg] skew-x-[-10deg] rounded-xl overflow-hidden group transition-transform duration-300 hover:scale-105 z-20`}
+            >
               <div className="absolute inset-0 border-4 border-[var(--primary-color)] rounded-xl z-10 pointer-events-none"></div>
               <div className="absolute inset-[4px] border-4 border-gray-900 rounded-xl z-10 pointer-events-none"></div>
               <Image
@@ -75,7 +97,13 @@ export default function DiagonalSection({
               />
             </div>
 
-            <div className="absolute bottom-0 right-0 w-[150px] h-[200px] md:w-[200px] md:h-[250px] transform rotate-[15deg] skew-x-[10deg] rounded-xl overflow-hidden border-4 border-[var(--primary-color)] z-10 group transition-transform duration-300 hover:scale-105">
+            <div
+              className={`absolute bottom-0 right-0 ${
+                is4K
+                  ? "w-[250px] h-[300px]"
+                  : "w-[150px] h-[200px] md:w-[200px] md:h-[250px]"
+              } transform rotate-[15deg] skew-x-[10deg] rounded-xl overflow-hidden border-4 border-[var(--primary-color)] z-10 group transition-transform duration-300 hover:scale-105`}
+            >
               <Image
                 src={smallImage}
                 alt="Decorative"
@@ -97,11 +125,19 @@ export default function DiagonalSection({
               </span>
             </p>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
+          <h1
+            className={`${
+              is4K ? "text-6xl leading-[1.2]" : "text-3xl md:text-4xl lg:text-5xl"
+            } font-extrabold mb-6`}
+          >
             {title} <br className="hidden md:block" />{" "}
             <span className="text-[var(--secondary-color)]">{highlight}</span>
           </h1>
-          <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
+          <p
+            className={`${
+              is4K ? "text-xl" : "text-base md:text-lg"
+            } text-gray-700 leading-relaxed mb-8`}
+          >
             {description}
           </p>
 
@@ -111,7 +147,11 @@ export default function DiagonalSection({
               return (
                 <div key={i} className="flex items-start group">
                   <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 mr-4 transition-all duration-300"></div>
-                  <p className="font-bold text-lg">
+                  <p
+                    className={`font-bold ${
+                      is4K ? "text-xl" : "text-lg"
+                    }`}
+                  >
                     <span className="text-[var(--secondary-color)]">
                       {before}
                     </span>

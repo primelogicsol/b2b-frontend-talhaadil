@@ -18,7 +18,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   useEffect(() => {
     const checkResolution = () => {
       const isFourK =
-        window.innerWidth >= 3840 && window.innerHeight >= 2160;
+        window.innerWidth >= 2880 && window.innerHeight >= 1620;
       setIs4K(isFourK);
     };
 
