@@ -258,9 +258,9 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
 
       {/* Guidelines */}
       <div className="bg-[var(--secondary-light-color)] rounded-3xl p-8 mb-12 border border-blue-100">
-        <div className="flex items-start space-x-4">
+        <div className="flex items-start space-x-4 flex-col sm:flex-row">
           <div className="w-12 h-12 bg-[var(--primary-light-text-color)] rounded-full flex items-center justify-center flex-shrink-0">
-            <FaFileInvoice className="text-[var(--primary-header-color)] w-6 h-6" />
+            <FaFileInvoice className="text-[var(--primary-header-color)] w-6 h-6 mb-2" />
           </div>
           <div className="flex-1">
             <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">
@@ -308,16 +308,16 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
       <div className="flex justify-between items-center mb-12">
         <button
           onClick={onPrev}
-          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-          ← Previous
+          ←  
         </button>
         <button
           onClick={handleNext}
           disabled={!documentTypes.filter((d) => d.required).every((d) => documents[d.key])}
-          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
         >
-          Continue →
+            →
         </button>
       </div>
     </div>

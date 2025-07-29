@@ -109,7 +109,7 @@ By checking the acceptance box below, you acknowledge that you have read, unders
         </div>
 
         {/* Checkbox */}
-        <div className="p-8 bg-white">
+        <div className="p-8 bg-gray-300">
           <div className="flex items-start space-x-3 mb-6">
             <input
               type="checkbox"
@@ -125,25 +125,10 @@ By checking the acceptance box below, you acknowledge that you have read, unders
             </label>
           </div>
 
-          {/* Accepted Message */}
-          {accepted && (
-            <div className="bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-xl p-4 mb-6">
-              <div className="flex items-center">
-                <div className="w-6 h-6 bg-[var(--secondary-color)] rounded-full flex items-center justify-center mr-3">
-                  <CheckCircle className="text-white w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-[var(--primary-color)]">Agreement Accepted</p>
-                  <p className="text-xs text-gray-600">
-                    You have successfully accepted the partnership terms and conditions.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
+         
 
           {/* Disclaimer */}
-          <div className="text-xs text-gray-500 mb-6 bg-white">
+          <div className="text-xs text-gray-500 mb-6 bg-gray-300">
             <p className="mb-2">
               <strong>Important:</strong> By accepting this agreement, you are entering into a legally binding contract.
               Please ensure you have the authority to bind your organization to these terms.
@@ -157,15 +142,15 @@ By checking the acceptance box below, you acknowledge that you have read, unders
       <div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+          className="px-4 py-2 sm:px-8 sm:py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-          ← Previous
+          ←  
         </button>
         <button
           onClick={handleNext}
-          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
+          className="px-4 py-2 sm:px-8 sm:py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-          Continue →
+            →
         </button>
       </div>
     </div>

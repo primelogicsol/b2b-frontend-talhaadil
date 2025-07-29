@@ -161,7 +161,7 @@ export default function MainPage() {
         <PartnershipModel />
       </section>
 
-      <section className={`${is4K ? "px-40" : "px-10 xl:px-0"}`}>
+      <section className={`${is4K ? "px-40" : "px-4 xl:px-0"}`}>
         <OurVision />
       </section>
 

@@ -86,7 +86,7 @@ Meet the people who are bringing this vision to life.`,
           </div>
 
           <button
-            className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-transparent text-sm sm:text-base font-bold rounded-full shadow-lg bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--secondary-color)] max-w-xs mx-auto lg:mx-0 transform hover:-translate-y-1"
+            className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4  sm:font-bold border border-transparent text-sm sm:text-base font-bold rounded-full shadow-lg bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--secondary-color)] max-w-xs mx-auto lg:mx-0 transform hover:-translate-y-1"
           >
             {buttonText}
           </button>

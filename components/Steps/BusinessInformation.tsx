@@ -259,7 +259,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6">
+    <div className="max-w-5xl mx-auto px-2">
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <Building2 className="w-8 h-8 text-white" />
@@ -870,15 +870,15 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       <div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-          ← Previous
+          ←  
         </button>
         <button
           onClick={handleNext}
-          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-          Complete Registration →
+        →
         </button>
       </div>
     </div>

@@ -598,7 +598,7 @@ export default function AppointmentScheduler() {
                 <div className="max-h-64 overflow-y-auto border border-gray-200 rounded-lg">
                   {availableDays.slice(0, 14).map((day) => {
                     const date = new Date(day)
-                    const dayName = date.toLocaleDateString("en-US", { weekday: "long" })
+                    const dayName = date.toLocaleDateString("en-US", { weekday: "short" })
                     const dateStr = date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
 
                     return (
@@ -830,7 +830,7 @@ export default function AppointmentScheduler() {
             <button
               type="submit"
               disabled={!isFormValid()}
-              className="w-full bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white font-semibold py-4 px-6 rounded-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white font-semibold py-4 px-6 rounded-lg transition-colors text-md sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               <CheckCircle className="mr-3" size={24} />
               BOOK APPOINTMENT

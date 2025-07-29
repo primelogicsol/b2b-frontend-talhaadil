@@ -66,7 +66,7 @@ const partnerships: Partnership[] = [
     id: "investor",
     title: "DKC Investor",
     description:
-      "At the moment, you don't qualify for free access to this Partnership due to the 36-month retention and 7+ KPI score requirement across all previous Partnerships.",
+      "At the moment, you don't qualify for free access to this Partnership due to the 36-month retention and 7+ KPI score requirement across all   Partnerships.",
     retention: "36 months",
     kpiScore: "7+",
     available: false,
@@ -228,15 +228,15 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
       <div className="flex justify-between items-center mt-8">
         <button
           onClick={onPrev}
-          className="px-8 py-4 border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-          ← Previous
+          ←  
         </button>
         <button
           onClick={handleNext}
-          className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-          Continue →
+            →
         </button>
       </div>
     </div>

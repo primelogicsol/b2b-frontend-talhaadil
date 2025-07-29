@@ -187,7 +187,7 @@ export default function ComprehensiveProductSelection({
     }
   }
 
-  const handlePrevious = () => {
+  const handle  = () => {
     if (currentStep === "details") {
       setCurrentStep("subcategories")
       scrollToTop()
@@ -421,9 +421,7 @@ export default function ComprehensiveProductSelection({
                     <div className="flex justify-between items-center">
                       <h3 className="text-2xl font-bold">{subCategory.name}</h3>
                       <div className="flex items-center space-x-4">
-                        <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
-                          {Object.keys(details).length} specification categories
-                        </span>
+                        
                         <span
                           className={`transform transition-transform ${
                             expandedSubCategory === subCategoryId ? "rotate-180" : ""
@@ -435,12 +433,12 @@ export default function ComprehensiveProductSelection({
                     </div>
                   </div>
                   {expandedSubCategory === subCategoryId && (
-                    <div className="p-6">
+                    <div className="py-6 px-3">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {Object.entries(details).map(([detailKey, values]) => {
                           if (!Array.isArray(values)) return null
                           return (
-                            <div key={detailKey} className="bg-gray-50 rounded-2xl p-6">
+                            <div key={detailKey} className="bg-gray-50 rounded-2xl py-6 px-3">
                               <h4 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
                                 {formatDetailKey(detailKey)} (Select one)
                               </h4>
@@ -451,7 +449,7 @@ export default function ComprehensiveProductSelection({
                                   return (
                                     <label
                                       key={index}
-                                      className={`flex items-start space-x-3 cursor-pointer p-3 rounded-xl transition-all duration-200 ${
+                                      className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 ${
                                         isSelected
                                           ? "bg-[var(--secondary-light-color)] border-2 border-[var(--secondary-color)]"
                                           : "hover:bg-white border-2 border-transparent"
@@ -509,10 +507,10 @@ export default function ComprehensiveProductSelection({
       {/* Navigation */}
       <div className="flex justify-between items-center">
         <button
-          onClick={handlePrevious}
-          className="px-8 py-4 border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+          onClick={handle}
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
         >
-          ← Previous
+          ←  
         </button>
         <button
           onClick={handleNext}
@@ -521,7 +519,7 @@ export default function ComprehensiveProductSelection({
             (currentStep === "subcategories" && selectedSubCategories.length === 0) ||
             (currentStep === "details" && !areAllSpecificationsSelected())
           }
-          className={`px-8 py-4 rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${
+          className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${
             (currentStep === "categories" && selectedCategories.length > 0) ||
             (currentStep === "subcategories" && selectedSubCategories.length > 0) ||
             (currentStep === "details" && areAllSpecificationsSelected())
@@ -529,7 +527,7 @@ export default function ComprehensiveProductSelection({
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
-          {currentStep === "details" ? "Complete →" : "Continue →"}
+          {currentStep === "details" ? "→" : "→"}
         </button>
       </div>
     </div>

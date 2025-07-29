@@ -41,7 +41,7 @@ export default function OurVision() {
     >
       <div
         className={`container mx-auto ${
-          is4K ? "px-32 max-w-[1800px]" : "px-4 sm:px-6 lg:px-8 max-w-7xl"
+          is4K ? "px-32 max-w-[1800px]" : "sm:px-6 lg:px-8 max-w-7xl"
         }`}
       >
         {/* Header */}

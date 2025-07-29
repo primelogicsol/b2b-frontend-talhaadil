@@ -26,93 +26,108 @@ export default function TeamGrid({ team }: TeamGridProps) {
       setCurrentSlide((prev) => {
         const width = window.innerWidth
         let maxSlides = 0
-        if (width < 440) {
+        
+        if (width < 768) {
+          // Mobile: single card
           maxSlides = team.length
         } else if (width < 1024) {
+          // Tablet: two cards
           maxSlides = Math.ceil(team.length / 2)
         } else {
-          maxSlides = 1 // grid view doesn’t slide
+          // Desktop: no sliding, show grid
+          return 0
         }
+        
         return maxSlides > 0 ? (prev + 1) % maxSlides : 0
       })
     }, 3000)
+
     return () => clearInterval(interval)
   }, [team])
 
+  const getVisibleMembers = () => {
+    const width = typeof window !== 'undefined' ? window.innerWidth : 1024
+    
+    if (width < 768) {
+      // Mobile: show one card
+      return [team[currentSlide]]
+    } else if (width < 1024) {
+      // Tablet: show two cards
+      const startIndex = currentSlide * 2
+      return team.slice(startIndex, startIndex + 2)
+    } else {
+      // Desktop: show all cards in grid
+      return team
+    }
+  }
+
   return (
-    <div className="py-16 px-4">
+    <div className="py-6 px-4">
+      <style jsx>{`
+        :root {
+          --primary-color: #1b4f68;
+          --secondary-color: #d85834;
+          --secondary-light-color: #f9c6b2;
+        }
+      `}</style>
+      
       <div className="max-w-6xl mx-auto">
-
-        {/* <440px: single card centered */}
-        <div className="block sm:hidden">
-          <div className="relative overflow-hidden rounded-xl">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {team.map((member, i) => (
-                <div
-                  key={i}
-                  className="w-full flex-shrink-0 flex justify-center"
-                >
-                  <div className="max-w-xs w-full ml-[17%]">
-                    <TeamCard {...member} />
-                  </div>
-                </div>
+        {/* Mobile: Single card slider */}
+        <div className="flex flex-col items-center md:hidden">
+          <div className="flex justify-center">
+            <div className="w-full max-w-sm">
+              {getVisibleMembers().map((member, i) => (
+                <TeamCard key={`mobile-${currentSlide}-${i}`} {...member} />
               ))}
             </div>
           </div>
-          <div className="flex justify-center mt-6 space-x-2">
-            {team.map((_, i) => (
+          
+          {/* Mobile dots indicator */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {team.map((_, index) => (
               <button
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  currentSlide === i ? "bg-[var(--secondary-color)]" : "bg-gray-300 hover:bg-gray-400"
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentSlide 
+                    ? 'bg-[var(--primary-color)]' 
+                    : 'bg-[var(--secondary-light-color)]'
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* >=440px and <1024px: two cards centered */}
-        <div className="hidden sm:block lg:hidden">
-          <div className="relative overflow-hidden rounded-xl">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {Array.from({ length: Math.ceil(team.length / 2) }, (_, slideIndex) => (
-                <div
-                  key={slideIndex}
-                  className="w-full flex-shrink-0 flex justify-center gap-6 px-2"
-                >
-                  {team.slice(slideIndex * 2, slideIndex * 2 + 2).map((member, i) => (
-                    <div key={i} className="max-w-xs w-full ml-[9%]">
-                      <TeamCard {...member} />
-                    </div>
-                  ))}
-                </div>
+        {/* Tablet: Two cards slider */}
+        <div className="hidden md:block lg:hidden">
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 gap-4 max-w-2xl">
+              {getVisibleMembers().map((member, i) => (
+                <TeamCard key={`tablet-${currentSlide}-${i}`} {...member} />
               ))}
             </div>
           </div>
-          <div className="flex justify-center mt-6 space-x-2">
-            {Array.from({ length: Math.ceil(team.length / 2) }).map((_, i) => (
+          
+          {/* Tablet dots indicator */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {Array.from({ length: Math.ceil(team.length / 2) }).map((_, index) => (
               <button
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  currentSlide === i ? "bg-purple-600" : "bg-gray-300 hover:bg-gray-400"
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentSlide 
+                    ? 'bg-[var(--primary-color)]' 
+                    : 'bg-[var(--secondary-light-color)]'
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* ≥1024px: grid */}
+        {/* Desktop: Grid layout */}
         <div className="hidden lg:grid gap-8 grid-cols-4 mx-auto max-w-5xl justify-items-center">
           {team.map((member, i) => (
-            <TeamCard key={i} {...member} />
+            <TeamCard key={`desktop-${i}`} {...member} />
           ))}
         </div>
       </div>

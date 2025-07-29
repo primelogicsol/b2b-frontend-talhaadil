@@ -66,7 +66,7 @@ const benefits = [
     {
       id: "ecommerce-manager",
       title: "E-Commerce Manager",
-      location: "Washington, D.C. / Remote",
+      location: "Washington",
       type: "Full-time",
       department: "Operations",
       description:
@@ -106,7 +106,7 @@ const benefits = [
     {
       id: "digital-marketing",
       title: "Digital Marketing Specialist",
-      location: "Washington, D.C. / Remote",
+      location: "Washington",
       type: "Full-time",
       department: "Marketing",
       description:
@@ -196,7 +196,7 @@ const benefits = [
   };
 
   return (
-    <div className="careers-page">
+    <div className="careers-page overflow-x-hidden">
       <style jsx>{`
         .container {
           max-width: 1200px;
@@ -206,6 +206,7 @@ const benefits = [
 
         .section {
           padding: 80px 0;
+
         }
 
         .section-title {
@@ -222,7 +223,7 @@ const benefits = [
 
         .benefits-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 2rem;
           margin-top: 3rem;
         }
@@ -447,7 +448,7 @@ const benefits = [
 
         .internships-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 2rem;
           margin-top: 2rem;
         }
@@ -479,7 +480,7 @@ const benefits = [
 
         .values-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 2rem;
           margin-top: 3rem;
         }

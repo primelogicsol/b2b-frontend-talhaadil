@@ -252,7 +252,7 @@ export function Navbar() {
     ],
   },
   {
-    label: "Growth & Brand Expansion ",
+    label: "Brand Expansion ",
     href: "/buyer/expansion-partnerships",
     subItems: [
       { label: "Exhibition & Event Organizer", href: "/buyer/expansion/exhibition" },
@@ -262,7 +262,7 @@ export function Navbar() {
     ],
   },
   {
-    label: "Creative & Collaborative",
+    label: "Collaborative",
     href: "/buyer/collaborative-partnerships",
     subItems: [
       { label: "Knowledge & Design", href: "/buyer/collab/knowledge-design" },
@@ -272,7 +272,7 @@ export function Navbar() {
     ],
   },
   {
-    label: "Institutional & Strategic",
+    label: "Institutional",
     href: "/buyer/strategic-partnerships",
     subItems: [
       { label: "Strategic Investor", href: "/buyer/strategic/investor" },
@@ -307,7 +307,7 @@ export function Navbar() {
             />
             <span
               className={`text-white font-bold transition-all duration-500 ${
-                isScrolled ? "text-xl" : "text-2xl"
+                isScrolled ? "text-md" : "text-xl"
               }`}
             >
               Dekoshur Crafts
