@@ -222,7 +222,7 @@ export default function CostComparisonResponsive({
               className="flex items-center gap-2 px-1 py-2 text-sm font-medium text-[var(--primary-color)] bg-[var(--white)] border border-[var(--primary-color)] rounded-md hover:bg-[var(--primary-hover-color)] hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[var(--white)] disabled:hover:text-[var(--primary-color)]"
             >
               <ChevronLeft className="w-4 h-4" />
-              Previous
+              
             </button>
 
             {/* Slide Indicators */}
@@ -246,7 +246,7 @@ export default function CostComparisonResponsive({
               disabled={currentSlide === totalSlides - 1}
               className="flex items-center gap-2 px-2 py-2 text-sm font-medium text-[var(--primary-color)] bg-[var(--white)] border border-[var(--primary-color)] rounded-md hover:bg-[var(--primary-hover-color)] hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[var(--white)] disabled:hover:text-[var(--primary-color)]"
             >
-              Next
+              
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>

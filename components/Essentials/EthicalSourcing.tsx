@@ -190,12 +190,6 @@ export default function EthicalSourcingSustainability() {
     setter(current === 0 ? total - 1 : current - 1)
   }
 
-  const testimonialRefs = useRef<(HTMLDivElement | null)[]>([])
-  const testimonialIsInViews = testimonials.map(() => false)
-  const testimonialCounts = testimonials.map(() => 0)
-
-  const testimonialSectionRef = useRef<HTMLDivElement | null>(null)
-  const isInView = useInView(testimonialSectionRef, { amount: 0.3 })
 
   useEffect(() => {
     setIsVisible(true)
@@ -231,25 +225,10 @@ export default function EthicalSourcingSustainability() {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    testimonials.forEach((_, index) => {
-      const ref = testimonialRefs.current[index]
-      if (ref) {
-        testimonialIsInViews[index] = isInView
-        if (isInView) {
-          let start = testimonialCounts[index]
-          const timer = setInterval(() => {
-            start += 1
-            testimonialCounts[index] = start
-            if (start >= sustainabilityPractices[index].percentage) clearInterval(timer)
-          }, 15)
-          return () => clearInterval(timer)
-        }
-      }
-    })
-  }, [isInView])
+  // Add missing ref for testimonial section
+  const testimonialSectionRef = useRef<HTMLDivElement>(null);
 
-  return (
+  return  (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section with Image Slider */}
       <section
@@ -389,44 +368,73 @@ export default function EthicalSourcingSustainability() {
               Building a business model that benefits artisans while supporting long-term environmental responsibility.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {sustainabilityPractices.map((practice, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  testimonialRefs.current[index] = el
-                }}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
-              >
-                <div className="flex items-start gap-6">
-                  <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
-                    <practice.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center mb-3">
-                      <h3 className="text-xl font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
-                        {practice.title}
-                      </h3>
-                      <span className="text-2xl font-bold text-[var(--primary-cyan-color)]">
-                        {testimonialCounts[index]}%
-                      </span>
-                    </div>
-                    <p className="text-gray-600 leading-relaxed mb-4">{practice.description}</p>
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                      <motion.div
-                        className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
-                        initial={{ width: "0%" }}
-                        animate={{
-                          width: testimonialIsInViews[index] ? `${practice.percentage}%` : "0%",
-                        }}
-                        transition={{ duration: 3, ease: "easeOut" }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+<div className="grid md:grid-cols-2 gap-8 mb-16">
+  {sustainabilityPractices.map((practice, index) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { amount: 0.3 });
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      if (isInView) {
+        let start = 0;
+        const timer = setInterval(() => {
+          start += 1;
+          setCount(start);
+          if (start >= practice.percentage) clearInterval(timer);
+        }, 2);
+        return () => clearInterval(timer);
+      }
+    }, [isInView, practice.percentage]);
+
+    return (
+      <div
+        key={index}
+        ref={ref}
+        className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+      >
+        <div className="flex flex-col sm:flex-row gap-4">
+          {/* Icon */}
+          <div className="flex flex-col items-center sm:items-start">
+            <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+              <practice.icon className="w-7 h-7 text-white" />
+            </div>
           </div>
+
+          {/* Right Section */}
+          <div className="flex-1 w-full flex flex-col gap-2">
+            {/* Heading + Percentage */}
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
+                {practice.title}
+              </h3>
+              <span className="text-xl font-bold text-[var(--primary-cyan-color)] sm:self-start">
+                {count}%
+              </span>
+            </div>
+
+            {/* Description */}
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {practice.description}
+            </p>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+              <motion.div
+                className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
+                initial={{ width: "0%" }}
+                animate={{
+                  width: isInView ? `${practice.percentage}%` : "0%",
+                }}
+                transition={{ duration: 3, ease: "easeOut" }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
           {/* Carbon Footprint Card */}
           <div className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-y-32 translate-x-32"></div>

@@ -16,7 +16,7 @@ import { useGlobalContext } from "@/components/Context/GlobalProvider";
 export default function OurStoryPage() {
   const { is4K } = useGlobalContext();
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <VerticalHeroSlider />
       <section className={`pt-16 pb-6 ${is4K ? "pt-32 pb-16" : ""}`}>
         <h2
@@ -701,7 +701,7 @@ export default function OurStoryPage() {
                 style={{ color: "var(--secondary-color)" }}
               />
               <div
-                className={`text-2xl md:text-3xl ${
+                className={`text-md md:text-3xl ${
                   is4K ? "text-6xl" : ""
                 } font-bold mb-2 ${is4K ? "mb-4" : ""}`}
                 style={{ color: "var(--secondary-color)" }}
@@ -724,7 +724,7 @@ export default function OurStoryPage() {
                 style={{ color: "var(--primary-color)" }}
               />
               <div
-                className={`text-2xl md:text-3xl ${
+                className={`text-md md:text-3xl ${
                   is4K ? "text-6xl" : ""
                 } font-bold mb-2 ${is4K ? "mb-4" : ""}`}
                 style={{ color: "var(--secondary-color)" }}
@@ -747,7 +747,7 @@ export default function OurStoryPage() {
                 style={{ color: "var(--secondary-color)" }}
               />
               <div
-                className={`text-2xl md:text-3xl ${
+                className={`text-md md:text-3xl ${
                   is4K ? "text-6xl" : ""
                 } font-bold mb-2 ${is4K ? "mb-4" : ""}`}
                 style={{ color: "var(--secondary-color)" }}
@@ -770,7 +770,7 @@ export default function OurStoryPage() {
                 style={{ color: "var(--primary-color)" }}
               />
               <div
-                className={`text-2xl md:text-3xl ${
+                className={`text-md md:text-3xl ${
                   is4K ? "text-6xl" : ""
                 } font-bold mb-2 ${is4K ? "mb-4" : ""}`}
                 style={{ color: "var(--secondary-color)" }}

@@ -83,7 +83,7 @@ export default function DiagonalSection({
               className={`absolute top-0 left-0 ${
                 is4K
                   ? "w-[500px] h-[600px]"
-                  : "w-[300px] h-[400px] md:w-[400px] md:h-[500px]"
+                  : "w-[260px] h-[330px] md:w-[400px] md:h-[500px]"
               } transform rotate-[-15deg] skew-x-[-10deg] rounded-xl overflow-hidden group transition-transform duration-300 hover:scale-105 z-20`}
             >
               <div className="absolute inset-0 border-4 border-[var(--primary-color)] rounded-xl z-10 pointer-events-none"></div>

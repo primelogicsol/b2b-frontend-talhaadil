@@ -68,31 +68,31 @@ export default function Page() {
       },
     ],
     // Dynamic Comparison Data
- comparisonData : [
+comparisonData: [
   {
     feature: "Product Range",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Extensive Range", isOurPlatform: true },
-      eprolo: { name: "EPROLO", value: "Broad Range", isOurPlatform: false },
-      modalyst: { name: "Modalyst", value: "On-demand", isOurPlatform: false },
-      spocket: { name: "Spocket", value: "Standard Range", isOurPlatform: false },
-      cjdropshipping: { name: "CJDropshipping", value: "Custom Range", isOurPlatform: false },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Extensive", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Broad", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "OnDemand", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "Standard", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Custom", isOurPlatform: false },
     }
   },
   {
     feature: "Heritage Focus",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Strong Focus", isOurPlatform: true },
-      eprolo: { name: "EPROLO", value: "Minimal Focus", isOurPlatform: false },
-      modalyst: { name: "Modalyst", value: "No Focus", isOurPlatform: false },
-      spocket: { name: "Spocket", value: "No Focus", isOurPlatform: false },
-      cjdropshipping: { name: "CJDropshipping", value: "Low Focus", isOurPlatform: false },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Strong", isOurPlatform: true },
+      eprolo: { name: "EPROLO", value: "Minimal", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "None", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "None", isOurPlatform: false },
+      cjdropshipping: { name: "CJDropshipping", value: "Low", isOurPlatform: false },
     }
   },
   {
     feature: "Kashmir Line",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Full Line", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Full", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "None", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "Limited", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Limited", isOurPlatform: false },
@@ -112,7 +112,7 @@ export default function Page() {
   {
     feature: "Artisan Help",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "High Support", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "High", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Moderate", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "Limited", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Limited", isOurPlatform: false },
@@ -123,7 +123,7 @@ export default function Page() {
     feature: "GI Certified",
     platforms: {
       deKoshurCrafts: { name: "De Koshur Crafts", value: "Certified", isOurPlatform: true },
-      eprolo: { name: "EPROLO", value: "Not Certified", isOurPlatform: false },
+      eprolo: { name: "EPROLO", value: "NotCert", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "None", isOurPlatform: false },
       spocket: { name: "Spocket", value: "None", isOurPlatform: false },
       cjdropshipping: { name: "CJDropshipping", value: "None", isOurPlatform: false },
@@ -134,7 +134,7 @@ export default function Page() {
     platforms: {
       deKoshurCrafts: { name: "De Koshur Crafts", value: "Blockchain", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Limited", isOurPlatform: false },
-      modalyst: { name: "Modalyst", value: "On-Demand", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "OnDemand", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Basic", isOurPlatform: false },
       cjdropshipping: { name: "CJDropshipping", value: "Minimal", isOurPlatform: false },
     }
@@ -152,17 +152,17 @@ export default function Page() {
   {
     feature: "Eco Focus",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Strong Focus", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Strong", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Moderate", isOurPlatform: false },
-      modalyst: { name: "Modalyst", value: "Sustainable", isOurPlatform: false },
-      spocket: { name: "Spocket", value: "Eco Suppliers", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "Sustainbl", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "EcoSupp", isOurPlatform: false },
       cjdropshipping: { name: "CJDropshipping", value: "Low", isOurPlatform: false },
     }
   },
   {
     feature: "Storytelling",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Rich Stories", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "RichStory", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Limited", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "None", isOurPlatform: false },
       spocket: { name: "Spocket", value: "None", isOurPlatform: false },
@@ -182,17 +182,17 @@ export default function Page() {
   {
     feature: "Suggestions",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Highly Curated", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Curated", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Limited", isOurPlatform: false },
-      modalyst: { name: "Modalyst", value: "Preference Based", isOurPlatform: false },
-      spocket: { name: "Spocket", value: "Dropship Based", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "PrefBased", isOurPlatform: false },
+      spocket: { name: "Spocket", value: "DropShip", isOurPlatform: false },
       cjdropshipping: { name: "CJDropshipping", value: "Variable", isOurPlatform: false },
     }
   },
   {
     feature: "Collections",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Seasonal/Festive", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Seasonal", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Seasonal", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "Limited", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Niche", isOurPlatform: false },
@@ -202,7 +202,7 @@ export default function Page() {
   {
     feature: "Pricing Clarity",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Fully Clear", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Clear", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Transparent", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "Transparent", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Transparent", isOurPlatform: false },
@@ -212,9 +212,9 @@ export default function Page() {
   {
     feature: "Extra Services",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "Tailored Help", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "Tailored", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Discounts", isOurPlatform: false },
-      modalyst: { name: "Modalyst", value: "Custom Demand", isOurPlatform: false },
+      modalyst: { name: "Modalyst", value: "OnDemand", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Sourcing", isOurPlatform: false },
       cjdropshipping: { name: "CJDropshipping", value: "Variable", isOurPlatform: false },
     }
@@ -262,7 +262,7 @@ export default function Page() {
   {
     feature: "Brand Trust",
     platforms: {
-      deKoshurCrafts: { name: "De Koshur Crafts", value: "High Trust", isOurPlatform: true },
+      deKoshurCrafts: { name: "De Koshur Crafts", value: "HighTrust", isOurPlatform: true },
       eprolo: { name: "EPROLO", value: "Moderate", isOurPlatform: false },
       modalyst: { name: "Modalyst", value: "Moderate", isOurPlatform: false },
       spocket: { name: "Spocket", value: "Moderate", isOurPlatform: false },

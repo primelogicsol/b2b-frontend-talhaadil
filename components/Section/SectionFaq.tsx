@@ -100,7 +100,7 @@ export default function SectionFaq({
                   onClick={() => handleItemClick(index)}
                   className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-orange-300 transition group"
                 >
-                  <span className="text-lg font-medium text-gray-800 group-hover:text-[var(--primary-hover-color)]">
+                  <span className="text-md font-medium text-gray-800 group-hover:text-[var(--primary-hover-color)]">
                     {item.title}
                   </span>
                   <span

@@ -82,8 +82,8 @@ export default function Timeline() {
             <div
               className={`${
                 index % 2 === 0
-                  ? `w-1/2 pr-12 ${is4K ? "pr-24 text-right" : ""}`
-                  : `w-1/2 pl-12 ${is4K ? "pl-24" : ""}`
+                  ? `w-1/2 pr-6 ${is4K ? "pr-24 text-right" : ""}`
+                  : `w-1/2 pl-6 ${is4K ? "pl-24" : ""}`
               }`}
             >
               <div

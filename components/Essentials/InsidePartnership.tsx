@@ -320,8 +320,7 @@ export default function InsidePartnership({
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-[var(--primary-color)] animate-on-scroll">
-              Early Adopter Yearly De Koshur Crafts-USA Drop Shipping Platform
-              Fees is Zero (2025)
+             Zero Fees for 2025 Drop-Shipping
             </h2>
             <p className="text-xl text-[var(--primary-light-text-color)] mb-2">
               Tailored Plans for Every Stage of Your Growth Journey

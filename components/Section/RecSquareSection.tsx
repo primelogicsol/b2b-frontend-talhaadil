@@ -10,20 +10,19 @@ interface PartnershipActivationProps {
   readMoreLink?: string
   appointmentLink?: string
 }
-
 const defaultPhases = [
-  "Registration Phase",
-  "Document Submission Phase",
-  "Eligibility Review Phase",
-  "Agreement and Certification Phase",
-  "Profile Setup Phase Installation",
-  "Customs & Clearance Assistance",
-  "Partnership-Specific Onboarding Phase",
-  "Training and Resource Checkup Phase",
-  "Portal Access Activation Phase",
-  "Partnership Launch and Support Phase",
-  "KPI & Marketplace Engagement Phase",
-]
+  "Registration Start",
+  "Document Submission",
+  "Eligibility Review",
+  "Agreement Certification",
+  "Profile Setup",
+  "Customs Clearance",
+  "Partnership Onboarding",
+  "Training Checkup",
+  "Portal Activation",
+  "Partnership Launch",
+  "KPI Engagement",
+];
 
 export default function RecSquareSection({
   mainImage = "/images/new-pic2.webp?height=600&width=400",
@@ -115,7 +114,6 @@ export default function RecSquareSection({
               <Laptop className="w-6 h-6 text-white" />
             </div>
             <div className="text-gray-800 font-semibold text-base md:text-lg relative">
-              <span className="relative z-10">Partner Smarter: Pre-Registration Consultation</span>
               <span className="block text-[#FF6A13] font-bold text-lg md:text-xl relative overflow-hidden">
                 <span className="inline-block relative">
                   Book Appointment
