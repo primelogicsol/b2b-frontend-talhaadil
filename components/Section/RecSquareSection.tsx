@@ -22,7 +22,7 @@ const defaultPhases = [
   "Training and Resource Checkup Phase",
   "Portal Access Activation Phase",
   "Partnership Launch and Support Phase",
-  "KPI and Marketplace Engagement Phase",
+  "KPI & Marketplace Engagement Phase",
 ]
 
 export default function RecSquareSection({
@@ -81,17 +81,19 @@ export default function RecSquareSection({
 
         <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base">{description}</p>
 
-        <ul className="grid gap-3 text-gray-700 mb-10 text-sm md:text-base">
-          {phases.map((phase, index) => (
-            <li
-              key={index}
-              className="flex items-center justify-center lg:justify-start group transition-colors duration-300 hover:text-[#FF6A13]"
-            >
-              <CheckSquare className="w-5 h-5 text-[#FF6A13] mr-3 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-              {phase}
-            </li>
-          ))}
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-gray-700 mb-10 text-sm md:text-base items-start">
+            {phases.map((phase, index) => (
+              <li
+                key={index}
+                className="w-full h-full flex items-start justify-start group transition-colors duration-300 hover:text-[#FF6A13]"
+              >
+                <CheckSquare className="w-5 h-5 text-[#FF6A13] mr-3 shrink-0 transition-transform duration-300 group-hover:scale-110 mt-1" />
+                <span className="break-words">{phase}</span>
+              </li>
+            ))}
         </ul>
+
+
 
         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
           <a

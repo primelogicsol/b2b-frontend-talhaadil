@@ -80,7 +80,7 @@ export default function OurVision() {
         >
           {/* Left Column - Main Vision Text */}
           <div className="space-y-6">
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none text-center">
               <p
                 className={`text-gray-700 mb-6 ${
                   is4K ? "text-xl leading-loose" : "text-base sm:text-lg leading-relaxed"
