@@ -62,21 +62,21 @@ export default function PricingTable() {
   const [selectedPlan, setSelectedPlan] = useState(1);
 
   return (
-    <div className="bg-[var(--primary-hover-color)] py-12 px-6 rounded-b-xl">
+    <div className="bg-[var(--primary-hover-color)] py-10 px-4 sm:px-6 rounded-b-xl">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-[var(--primary-header-color)] mb-6">
+        <div className="text-center mb-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-[var(--primary-header-color)] mb-4">
             Confidence in Your Security
           </h1>
         </div>
 
         {/* Desktop View */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-8">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 transition-all duration-300 hover:bg-white/15 hover:scale-105 ${
+              className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:bg-white/15 hover:scale-105 ${
                 plan.isPopular
                   ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl"
                   : ""
@@ -90,48 +90,46 @@ export default function PricingTable() {
                 </div>
               )}
 
-              <div className="text-center mb-6">
-                <h3 className="text-white font-semibold text-sm mb-2">
+              <div className="text-center mb-5">
+                <h3 className="text-white font-semibold text-base mb-1">
                   {plan.name}
                 </h3>
-                <p className="text-white/70 text-xs mb-4 leading-relaxed">
+                <p className="text-white/70 text-xs mb-3 leading-relaxed">
                   {plan.description}
                 </p>
 
-                <div className="mb-4">
+                <div className="mb-3">
                   <span className="text-white text-4xl font-bold">
                     ${plan.price}
                   </span>
                 </div>
 
-                <div className="text-white text-sm mb-6 capitalize">
+                <div className="text-white text-sm mb-5 capitalize">
                   {plan.period.replace("-", " ")}
                 </div>
 
                 <button
-                  className={`w-full ${
+                  className={`w-full py-2 rounded text-sm font-medium ${
                     plan.isPopular
                       ? "bg-[var(--secondary-hover-color)] hover:bg-[var(--secondary-color)] text-black"
                       : "bg-white/20 hover:bg-white/30 text-white border border-white/30"
-                  } transition-all duration-300 py-2 rounded`}
+                  } transition-all duration-300`}
                 >
                   {plan.buttonText}
                 </button>
               </div>
 
-              <div className="space-y-4 text-sm">
+              <div className="space-y-3 text-sm">
                 {Object.entries(plan.features).map(([label, value]) => (
                   <div
                     key={label}
-                    className="grid grid-cols-[120px_1fr] items-center py-2 border-b border-white/10"
+                    className="grid grid-cols-[110px_1fr] items-center py-2 border-b border-white/10"
                   >
-                    <div className="flex items-center gap-1 min-w-0">
-                      <span className="text-white/80 capitalize truncate">
-                        {label.replace(/([A-Z])/g, " $1")}
-                      </span>
-                      <Info className="w-3 h-3 text-white/50 flex-shrink-0" />
+                    <div className="flex items-center gap-1 truncate text-white/80 capitalize">
+                      {label.replace(/([A-Z])/g, " $1")}
+                      <Info className="w-3 h-3 text-white/50" />
                     </div>
-                    <div className="text-white font-medium">
+                    <div className="text-white font-medium text-xs sm:text-sm">
                       {value}
                     </div>
                   </div>
@@ -143,12 +141,12 @@ export default function PricingTable() {
 
         {/* Mobile View */}
         <div className="lg:hidden">
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 mb-9">
             {plans.map((plan, index) => (
               <button
                 key={plan.name}
                 onClick={() => setSelectedPlan(index)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                   selectedPlan === index
                     ? "bg-[var(--secondary-hover-color)] text-black shadow-lg"
                     : "bg-white/20 text-white hover:bg-white/30"
@@ -159,69 +157,62 @@ export default function PricingTable() {
             ))}
           </div>
 
-          <div className="max-w-md mx-auto">
+          <div className="max-w-sm mx-auto w-full">
             <div
-              className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 ${
+              className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-5 border border-white/20 ${
                 plans[selectedPlan].isPopular
                   ? "ring-2 ring-[var(--secondary-hover-color)] shadow-2xl"
                   : ""
               }`}
             >
               {plans[selectedPlan].isPopular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-[var(--secondary-hover-color)] text-black px-4 py-1 rounded-full text-xs font-semibold">
+                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-[var(--secondary-hover-color)] text-black px-3 py-1 text-center rounded-full text-xs font-semibold">
                     MOST POPULAR
                   </div>
                 </div>
               )}
 
-              <div className="text-center mb-6">
-                <h3 className="text-white font-semibold text-lg mb-2">
+              <div className="text-center mb-5">
+                <h3 className="text-white font-semibold text-base mb-2">
                   {plans[selectedPlan].name}
                 </h3>
-                <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                <p className="text-white/70 text-sm mb-3 leading-snug">
                   {plans[selectedPlan].description}
                 </p>
 
-                <div className="mb-4">
-                  <span className="text-white text-5xl font-bold">
+                <div className="mb-3">
+                  <span className="text-white text-4xl font-bold">
                     ${plans[selectedPlan].price}
                   </span>
-                  <span className="text-white/70 text-lg">
-                    {" "}
+                  <span className="text-white/60 text-sm ml-1">
                     {plans[selectedPlan].period}
                   </span>
                 </div>
 
-                <div className="text-[var(--primary-light-text-color)] text-sm mb-6 capitalize">
-                  {plans[selectedPlan].period.replace("-", " ")}
-                </div>
-
                 <button
-                  className={`w-full py-3 text-lg ${
+                  className={`w-full py-2 rounded text-sm ${
                     plans[selectedPlan].isPopular
                       ? "bg-[var(--secondary-hover-color)] hover:bg-[var(--secondary-color)] text-black"
                       : "bg-white/20 hover:bg-white/30 text-white border border-white/30"
-                  } transition-all duration-300 rounded`}
+                  } transition-all duration-300`}
                 >
                   {plans[selectedPlan].buttonText}
                 </button>
               </div>
 
-              <div className="space-y-4 text-sm">
+              <div className="space-y-3 text-sm">
                 {Object.entries(plans[selectedPlan].features).map(
                   ([label, value]) => (
                     <div
                       key={label}
-                      className="flex justify-between items-start py-3 border-b border-white/10"
+                      className="flex justify-between items-start py-2 border-b border-white/10 text-xs sm:text-sm"
                     >
-                      <div className="flex items-center space-x-2">
-                        <span className="text-white/80 capitalize">
-                          {label.replace(/([A-Z])/g, " $1")}
-                        </span>
+                      <div className="flex items-center gap-1 text-white/80 capitalize">
+                        {label.replace(/([A-Z])/g, " $1")}
                         <Info className="w-4 h-4 text-white/50" />
                       </div>
-                      <span className="text-white text-right font-medium">
+                      <span className="text-white font-medium text-right">
                         {value}
                       </span>
                     </div>

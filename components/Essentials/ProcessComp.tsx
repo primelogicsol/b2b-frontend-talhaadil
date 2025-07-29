@@ -521,344 +521,293 @@ export default function Process() {
         </section>
 
         {/* Empowering Experienced Business Houses Section */}
-        <section className="py-16 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-t-xl shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-[var(--primary-hover-color)] rounded-full blur-3xl animate-pulse"></div>
-            <div
-              className="absolute bottom-10 right-10 w-40 h-40 bg-[var(--secondary-color)] rounded-full blur-3xl animate-pulse"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute top-1/2 left-1/2 w-24 h-24 bg-[var(--secondary-color)] rounded-full blur-2xl animate-pulse"
-              style={{ animationDelay: "2s" }}
-            ></div>
+        <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-t-xl shadow-2xl relative overflow-hidden">
+  {/* Background blobs */}
+  <div className="absolute inset-0 opacity-10">
+    <div className="absolute top-5 left-5 w-20 h-20 sm:w-32 sm:h-32 bg-[var(--primary-hover-color)] rounded-full blur-2xl animate-pulse" />
+    <div className="absolute bottom-5 right-5 w-24 h-24 sm:w-40 sm:h-40 bg-[var(--secondary-color)] rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+    <div className="absolute top-1/2 left-1/2 w-16 h-16 sm:w-24 sm:h-24 bg-[var(--secondary-color)] rounded-full blur-2xl animate-pulse" style={{ animationDelay: "2s" }} />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto">
+    {/* Header */}
+    <div className="text-center mb-10 sm:mb-12 px-4">
+      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+        <span className="bg-gradient-to-r from-[var(--secondary-color)] to-white bg-clip-text text-transparent">
+          Lateral Entry Pathway
+        </span>
+      </h2>
+      <div className="max-w-3xl mx-auto text-base sm:text-lg text-gray-200 leading-relaxed">
+        <p className="mb-3">
+          A <span className="font-bold text-[var(--secondary-hover-color)]">privilege earned through dedication</span> - bypass retention periods while maintaining platform integrity through rigorous HCRF evaluation.
+        </p>
+        <p>
+          Reserved for buyers with significant business experience who have proven their commitment to ethical craftsmanship and sustainable growth.
+        </p>
+      </div>
+    </div>
+
+    {/* Main Grid */}
+    <div className="grid lg:grid-cols-2 gap-10 items-start mb-10 px-2">
+      {/* Left Panel */}
+      <div className="space-y-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 sm:px-8 sm:py-7 border border-white/20 shadow-2xl">
+          <div className="flex items-center mb-4 sm:mb-6">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[var(--secondary-color)] to-[var(--secondary-hover-color)] rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+              <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">HCRF Evaluation Required</h3>
           </div>
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-[var(--secondary-color)] to-white bg-clip-text text-transparent">
-                  Lateral Entry Pathway
-                </span>
-              </h2>
-              <div className="max-w-4xl mx-auto">
-                <p className="text-lg text-gray-200 leading-relaxed mb-4">
-                  A{" "}
-                  <span className="font-bold text-[var(--secondary-hover-color)]">
-                    privilege earned through dedication
-                  </span>{" "}
-                  - bypass retention periods while maintaining platform
-                  integrity through rigorous HCRF evaluation.
-                </p>
-                <p className="text-base text-gray-200 leading-relaxed">
-                  Reserved for buyers with significant business experience who
-                  have proven their commitment to ethical craftsmanship and
-                  sustainable growth. This pathway allows experienced buyers to
-                  advance quickly while ensuring they are well-equipped to lead
-                  and thrive in global markets.
-                </p>
-              </div>
+          <p className="text-gray-200 text-sm sm:text-base leading-relaxed mb-3">
+            Hamadan Craft Revival Foundation will evaluate your business to ensure it aligns with our ethical and operational values.
+          </p>
+          <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Evaluation is mandatory even if you pay for the Lateral Pathway Package.
+          </p>
+          <a
+            href="https://www.hcrf.org.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)] text-white py-3 px-3 text-center rounded-full text-sm sm:text-lg font-semibold transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
+          >
+            Get Evaluated 
+            <ExternalLink className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+
+      {/* Right Panel */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+        {/* Card 1 */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-5 sm:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
+          <div className="flex items-center mb-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
+              <BookOpen className="w-5 h-5 text-white" />
             </div>
-            <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
-              <div className="space-y-6">
-                <div className="bg-white/10 backdrop-blur-lg rounded-2xl px-8 py-7 border border-white/20 shadow-2xl">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[var(--secondary-color)] to-[var(--secondary-hover-color)] rounded-xl flex items-center justify-center mr-4">
-                      <Shield className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white">
-                      HCRF Evaluation Required
-                    </h3>
-                  </div>
-                  <p className="text-gray-200 leading-relaxed mb-4">
-                    Hamadan Craft Revival Foundation, Kashmir's first Craft
-                    Policy Think-Tank, will thoroughly evaluate your business
-                    against industry standards to ensure it aligns with our
-                    ethical and operational values.
-                  </p>
-                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                    Only upon successful evaluation will you be granted access
-                    to this accelerated growth path. This applies even if you
-                    pay for the Lateral Pathway Package, ensuring every buyer
-                  </p>
-                  <a
-                    href="https://www.hcrf.org.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)] text-white py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
-                  >
-                    Get Evaluated Now
-                    <ExternalLink className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </a>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
-                      <BookOpen className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-md font-bold text-white">
-                        CraftLore & ArtStay
-                      </h4>
-                      <span className="text-xs bg-[var(--secondary-hover-color)] text-white px-2 py-1 rounded-full">
-                        FREE 2025
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-gray-300 text-sm">
-                    Exclusive access to premium packages for accelerated growth
-                    & global visibility
-                  </p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
-                      <ListChecks className="w-5 h-5 text-white" />
-                    </div>
-                    <h4 className="text-md font-bold text-white">
-                      Trade Registry
-                    </h4>
-                  </div>
-                  <p className="text-gray-300 text-sm">
-                    Get listed, verified, and ranked in Kashmir handicrafts
-                    global directory
-                  </p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group sm:col-span-2 lg:col-span-1 xl:col-span-2">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
-                      <Store className="w-5 h-5 text-white" />
-                    </div>
-                    <h4 className="text-md font-bold text-white"> 
-                      Offline Business Synergy
-                    </h4>
-                  </div>
-                  <p className="text-gray-300 text-sm">
-                    ArtStay builds synergy between Kashmir's tourism and
-                    handicraft sectors, encouraging collaboration that supports
-                    artisans and enriches visitor experiences. This partnership
-                    brings sustainable growth and business directly to your
-                    doorstep.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/20">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--secondary-hover-color)] mb-2">
-                  700+
-                </div>
-                <div className="text-gray-300 text-sm">Years Legacy</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--secondary-hover-color)] mb-2">
-                  100%
-                </div>
-                <div className="text-gray-300 text-sm">Ethical Standards</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--secondary-hover-color)] mb-2">
-                  24/7
-                </div>
-                <div className="text-gray-300 text-sm">Global Support</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--secondary-hover-color)] mb-2">
-                  ∞
-                </div>
-                <div className="text-gray-300 text-sm">Growth Potential</div>
-              </div>
+            <div>
+              <h4 className="text-sm sm:text-md font-bold text-white">CraftLore & ArtStay</h4>
+              <span className="text-[10px] sm:text-xs bg-[var(--secondary-hover-color)] text-white px-2 py-1 rounded-full">
+                FREE 2025
+              </span>
             </div>
           </div>
-        </section>
+          <p className="text-gray-300 text-xs sm:text-sm">Premium access for accelerated growth & visibility</p>
+        </div>
+
+        {/* Card 2 */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-5 sm:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
+          <div className="flex items-center mb-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
+              <ListChecks className="w-5 h-5 text-white" />
+            </div>
+            <h4 className="text-sm sm:text-md font-bold text-white">Trade Registry</h4>
+          </div>
+          <p className="text-gray-300 text-xs sm:text-sm">Get listed and ranked in global directory</p>
+        </div>
+
+        {/* Card 3 */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-5 sm:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group sm:col-span-2 lg:col-span-1 xl:col-span-2">
+          <div className="flex items-center mb-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-[var(--secondary-hover-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center mr-3">
+              <Store className="w-5 h-5 text-white" />
+            </div>
+            <h4 className="text-sm sm:text-md font-bold text-white">Offline Business Synergy</h4>
+          </div>
+          <p className="text-gray-300 text-xs sm:text-sm">
+            ArtStay connects tourism and craft sectors for artisan-driven growth.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Stats */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 sm:pt-8 border-t border-white/20 px-4">
+      {[
+        ["700+", "Years Legacy"],
+        ["100%", "Ethical Standards"],
+        ["24/7", "Global Support"],
+        ["∞", "Growth Potential"],
+      ].map(([value, label], i) => (
+        <div className="text-center" key={i}>
+          <div className="text-xl sm:text-3xl font-bold text-[var(--secondary-hover-color)] mb-1 sm:mb-2">{value}</div>
+          <div className="text-gray-300 text-xs sm:text-sm">{label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* Pricing Table Section */}
         <PricingTable />
 
         {/* KPI Evaluation Metrics Framework - Slider Design */}
-        <section className="mb-16 py-16 bg-gradient-to-br from-[var(--primary-header-color)] via-white to-[var(--primary-header-color)] rounded-2xl shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `radial-gradient(circle at 25% 25%, var(--secondary-hover-color) 2px, transparent 2px)`,
-                backgroundSize: "50px 50px",
-              }}
-            ></div>
-          </div>
-          <div className="relative z-10 max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent">
-                  KPI Evaluation Framework
-                </span>
-              </h2>
-              <p className="text-xl text-[var(--primary-light-text-color)] max-w-3xl mx-auto">
-                Your pathway to{" "}
-                <span className="font-bold text-[var(--secondary-color)]">
-                  progressive partnerships
-                </span>
-              </p>
-            </div>
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl">
-                <div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{
-                    transform: `translateX(-${currentKPIIndex * 100}%)`,
-                  }}
-                >
-                  {Array.from({ length: Math.ceil(kpiMetrics.length / 3) }).map(
-                    (_, slideIndex) => (
-                      <div key={slideIndex} className="flex-shrink-0 w-full">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white/50 backdrop-blur-sm border border-white/60">
-                          {kpiMetrics
-                            .slice(slideIndex * 3, slideIndex * 3 + 3)
-                            .map((metric, index) => {
-                              const IconComponent = metric.icon;
+        <section className="mb-12 sm:mb-16 py-10 sm:py-16 bg-gradient-to-br from-[var(--primary-header-color)] via-white to-[var(--primary-header-color)] rounded-2xl shadow-2xl relative overflow-hidden">
+  {/* Background pattern */}
+  <div className="absolute inset-0 opacity-5">
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage: `radial-gradient(circle at 25% 25%, var(--secondary-hover-color) 2px, transparent 2px)`,
+        backgroundSize: "50px 50px",
+      }}
+    />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
+    {/* Heading */}
+    <div className="text-center mb-10 sm:mb-12">
+      <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
+        <span className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent">
+          KPI Evaluation Framework
+        </span>
+      </h2>
+      <p className="text-sm sm:text-lg text-[var(--primary-light-text-color)] max-w-xl mx-auto">
+        Your pathway to{" "}
+        <span className="font-bold text-[var(--secondary-color)]">
+          progressive partnerships
+        </span>
+      </p>
+    </div>
+
+    {/* KPI Slider */}
+    <div className="relative">
+      <div className="overflow-hidden rounded-2xl">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${currentKPIIndex * 100}%)`,
+          }}
+        >
+          {Array.from({ length: Math.ceil(kpiMetrics.length / 3) }).map((_, slideIndex) => (
+            <div key={slideIndex} className="flex-shrink-0 w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 bg-white/50 backdrop-blur-sm border border-white/60">
+                {kpiMetrics
+                  .slice(slideIndex * 3, slideIndex * 3 + 3)
+                  .map((metric, index) => {
+                    const IconComponent = metric.icon;
+                    return (
+                      <div
+                        key={slideIndex * 3 + index}
+                        className="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden min-h-[250px] sm:min-h-[280px]"
+                      >
+                        {/* Hover gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[var(--primary-header-color)] opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        
+                        <div className="relative z-10 h-full flex flex-col">
+                          <div className="flex items-center mb-3">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[var(--primary-hover-color)] to-[var(--primary-color)] rounded-xl flex items-center justify-center mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                              {IconComponent && (
+                                <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                              )}
+                            </div>
+                            <h3 className="text-sm sm:text-base font-bold text-[var(--primary-dark-slate)] leading-tight">
+                              {metric.name}
+                            </h3>
+                          </div>
+                          <p className="text-[var(--primary-light-text-color)] text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">
+                            {metric.description}
+                          </p>
+
+                          {/* Levels */}
+                          <div className="space-y-2 mt-auto">
+                            {["Underachiever", "Performer", "Leader"].map((label, i) => {
+                              const value = [metric.underachiever, metric.performer, metric.leader][i];
+                              const bg = [
+                                "from-[var(--secondary-color)] to-[var(--secondary-hover-color)]",
+                                "from-gray-400 to-gray-500",
+                                "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
+                              ][i];
                               return (
-                                <div
-                                  key={slideIndex * 3 + index}
-                                  className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden min-h-[280px]"
-                                >
-                                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[var(--primary-header-color)] opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-                                  <div className="relative z-10 h-full flex flex-col">
-                                    <div className="flex items-center mb-4">
-                                      <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-hover-color)] to-[var(--primary-color)] rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                                        {IconComponent && (
-                                          <IconComponent className="w-6 h-6 text-white" />
-                                        )}
-                                      </div>
-                                      <h3 className="text-lg font-bold text-[var(--primary-dark-slate)] leading-tight">
-                                        {metric.name}
-                                      </h3>
-                                    </div>
-                                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed mb-6 flex-grow">
-                                      {metric.description}
-                                    </p>
-                                    <div className="space-y-3 mt-auto">
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-xs font-medium text-gray-600">
-                                          Underachiever
-                                        </span>
-                                        <span className="px-3 py-1 text-xs font-bold rounded-full bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)] text-white shadow-sm">
-                                          {metric.underachiever}
-                                        </span>
-                                      </div>
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-xs font-medium text-gray-600">
-                                          Performer
-                                        </span>
-                                        <span className="px-3 py-1 text-xs font-bold rounded-full bg-gradient-to-r from-gray-400 to-gray-500 text-white shadow-sm">
-                                          {metric.performer}
-                                        </span>
-                                      </div>
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-xs font-medium text-gray-600">
-                                          Leader
-                                        </span>
-                                        <span className="px-3 py-1 text-xs font-bold rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] text-white shadow-sm">
-                                          {metric.leader}
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div className="mt-4 pt-4 border-t border-gray-100">
-                                      <div className="flex justify-between text-xs text-gray-500 mb-2">
-                                        <span>Performance Scale</span>
-                                        <span>1-10</span>
-                                      </div>
-                                      <div className="w-full bg-gray-200 rounded-full h-2">
-                                        <div
-                                          className="bg-gradient-to-r from-[var(--secondary-color)] via-gray-400 to-[var(--primary-color)] h-2 rounded-full"
-                                          style={{ width: "100%" }}
-                                        ></div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                <div key={label} className="flex items-center justify-between">
+                                  <span className="text-[10px] sm:text-xs font-medium text-gray-600">{label}</span>
+                                  <span className={`px-2 py-0.5 text-[10px] sm:text-xs font-bold rounded-full bg-gradient-to-r ${bg} text-white shadow-sm`}>
+                                    {value}
+                                  </span>
                                 </div>
                               );
                             })}
+                          </div>
+
+                          {/* Progress Bar */}
+                          <div className="mt-3 pt-3 border-t border-gray-100">
+                            <div className="flex justify-between text-[10px] sm:text-xs text-gray-500 mb-1">
+                              <span>Performance Scale</span>
+                              <span>1–10</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2">
+                              <div className="bg-gradient-to-r from-[var(--secondary-color)] via-gray-400 to-[var(--primary-color)] h-full rounded-full w-full" />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )
-                  )}
-                </div>
-              </div>
-              <button
-                onClick={prevKPI}
-                className="absolute top-1/2 left-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
-                aria-label="Previous KPI metrics"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={nextKPI}
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10"
-                aria-label="Next KPI metrics"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-              <div className="flex justify-center mt-8 space-x-2">
-                {Array.from({ length: Math.ceil(kpiMetrics.length / 3) }).map(
-                  (_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentKPIIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentKPIIndex === index
-                          ? "bg-[var(--secondary-hover-color)] scale-125"
-                          : "bg-gray-300 hover:bg-gray-400"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  )
-                )}
-              </div>
-              <div className="text-center mt-4">
-                <span className="text-sm text-[var(--primary-light-text-color)]">
-                  {currentKPIIndex + 1} of {Math.ceil(kpiMetrics.length / 3)} •
-                  Showing {Math.min(3, kpiMetrics.length - currentKPIIndex * 3)}{" "}
-                  of {kpiMetrics.length} metrics
-                </span>
+                    );
+                  })}
               </div>
             </div>
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60">
-                <div className="text-3xl font-bold text-[var(--primary-color)] mb-2">
-                  14
-                </div>
-                <div className="text-[var(--primary-light-text-color)] text-sm font-medium">
-                  Key Metrics
-                </div>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60">
-                <div className="text-3xl font-bold text-[var(--primary-color)] mb-2">
-                  3
-                </div>
-                <div className="text-[var(--primary-light-text-color)] text-sm font-medium">
-                  Performance Levels
-                </div>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60">
-                <div className="text-3xl font-bold text-[var(--primary-hover-color)] mb-2">
-                  8+
-                </div>
-                <div className="text-[var(--primary-light-text-color)] text-sm font-medium">
-                  Leader Score
-                </div>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60">
-                <div className="text-3xl font-bold text-[var(--primary-hover-color)] mb-2">
-                  ∞
-                </div>
-                <div className="text-[var(--primary-light-text-color)] text-sm font-medium">
-                  Growth Opportunities
-                </div>
-              </div>
-            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevKPI}
+        className="absolute border border-1 top-1/2 left-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
+        aria-label="Previous KPI metrics"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      <button
+        onClick={nextKPI}
+        className="absolute border border-1 top-1/2 right-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
+        aria-label="Next KPI metrics"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Slide Indicators */}
+      <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
+        {Array.from({ length: Math.ceil(kpiMetrics.length / 3) }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentKPIIndex(index)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              currentKPIIndex === index
+                ? "bg-[var(--secondary-hover-color)] scale-125"
+                : "bg-gray-300 hover:bg-gray-400"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Current Slide Status */}
+      <div className="text-center mt-3 text-xs sm:text-sm text-[var(--primary-light-text-color)]">
+        {currentKPIIndex + 1} of {Math.ceil(kpiMetrics.length / 3)} • Showing{" "}
+        {Math.min(3, kpiMetrics.length - currentKPIIndex * 3)} of {kpiMetrics.length} metrics
+      </div>
+    </div>
+
+    {/* Summary Cards */}
+    <div className="mt-10 sm:mt-12 grid grid-cols-2 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+      {[
+        { label: "Key Metrics", value: 14 },
+        { label: "Performance Levels", value: 3 },
+        { label: "Leader Score", value: "8+" },
+        { label: "Growth Opportunities", value: "∞" },
+      ].map((item, idx) => (
+        <div key={idx} className="text-center p-4 sm:p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60">
+          <div className="text-xl sm:text-3xl font-bold text-[var(--primary-hover-color)] mb-1">
+            {item.value}
           </div>
-        </section>
+          <div className="text-[10px] sm:text-sm text-[var(--primary-light-text-color)] font-medium">
+            {item.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
         {/* How It Works */}
         <section className="mb-16 py-12 bg-white rounded-xl shadow-lg">

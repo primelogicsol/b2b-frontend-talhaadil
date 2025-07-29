@@ -13,19 +13,19 @@ export default function UserProfilePage() {
         transition={{ duration: 0.5 }}
       >
         {/* Top Section: Profile Picture, Name, Status */}
-        <div className="flex flex-col items-center justify-center p-8 sm:p-12 bg-[var(--primary-color)] text-white">
-          <Image
-            src="/placeholder.svg?height=200&width=200&text=User+Avatar"
-            alt="User Profile Picture"
-            width={200}
-            height={200}
-            className="object-cover rounded-full border-4 border-white shadow-md"
-          />
-          <h2 className="text-3xl sm:text-4xl font-extrabold mt-6">John Doe</h2>
-          <p className="text-sm sm:text-base flex items-center justify-center gap-2 mt-2 text-[var(--secondary-light-color)]">
-        
-          </p>
-        </div>
+        <div className="flex flex-col items-center justify-center px-4 py-8 sm:p-12 bg-[var(--primary-color)] text-white text-center">
+  <Image
+    src="/placeholder.svg?height=200&width=200&text=User+Avatar"
+    alt="User Profile Picture"
+    width={160}
+    height={160}
+    className="object-cover rounded-full border-4 border-white shadow-md w-32 h-32 sm:w-40 sm:h-40"
+  />
+  <h2 className="text-2xl sm:text-4xl font-extrabold mt-4 sm:mt-6 break-words">
+    John Doe
+  </h2>
+</div>
+
 
         {/* Profile Details Section */}
         <section className="p-6 sm:p-8 border-b border-[var(--primary-hover-color)]">

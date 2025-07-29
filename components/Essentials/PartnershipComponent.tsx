@@ -422,10 +422,10 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
                 className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-white/20"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-xl font-black text-[var(--primary-color)]">
+                  <h4 className="text-sm font-black text-[var(--primary-color)]">
                     {advancement.tier}
                   </h4>
-                  <span className="px-3 py-1 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] text-white rounded-full font-bold text-xs shadow-lg">
+                  <span className="px-3 py-1 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] text-white rounded-full font-bold text-[9px] shadow-lg">
                     {advancement.kpiThreshold}
                   </span>
                 </div>
