@@ -299,7 +299,7 @@ const vendorslides = [
       </section>
 
       {/* Global Impact Metrics Section */}
-      <section className="px-4 md:px-8 lg:px-12 py-30">
+      <section className="px-4 md:px-8 lg:px-12 py-30 max-w-[1600px] mx-auto">
         <h1 className="text-center font-extrabold mb-6 text-3xl sm:text-4xl md:text-5xl text-[color:var(--primary-color)]">
           Global Impact Metrics
         </h1>

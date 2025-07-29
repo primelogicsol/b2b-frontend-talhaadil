@@ -86,8 +86,8 @@ export function AnimationCardGrid({ data }: AnimationCardGridProps) {
 
   return (
     <div
-  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ${
-    is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4"
+  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center ${
+    is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4 max-w-7xl mx-auto"
   }`}
 >
   {data.map((card, index) => (

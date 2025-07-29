@@ -46,7 +46,7 @@ export interface FormData {
 }
 
 export default function RegistrationProcess() {
-  const [currentStep, setCurrentStep] = useState(5);
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {
@@ -122,7 +122,7 @@ export default function RegistrationProcess() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="mt-22">
         <ProgressIndicator currentStep={currentStep} totalSteps={7} />
       </div>

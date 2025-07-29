@@ -307,7 +307,7 @@ export function Navbar() {
             />
             <span
               className={`text-white font-bold transition-all duration-500 ${
-                isScrolled ? "text-md" : "text-xl"
+                isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"
               }`}
             >
               Dekoshur Crafts

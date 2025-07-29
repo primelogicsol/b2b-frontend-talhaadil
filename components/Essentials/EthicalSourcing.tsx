@@ -558,7 +558,7 @@ const testimonials = [
               >
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-gradient-to-br rounded-3xl p-8 md:p-12 shadow-2xl max-w-4xl mx-auto">
+                    <div className="bg-gradient-to-br rounded-3xl p-8 md:p-12 max-w-4xl mx-auto border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="flex flex-col md:flex-row items-center gap-8">
                         <div className="flex-shrink-0">
                           <img
