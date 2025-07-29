@@ -136,74 +136,75 @@ export default function ContactUs() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#e4e6eb]">
+    <div className="min-h-screen bg-[#e4e6eb] overflow-x-hidden">
       {/* Hero Section */}
       <section>
         <VerticalHeroSlider />
       </section>
 
       {/* Contact Sections */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {contactSections.map((section, index) => {
-              const IconComponent = section.icon;
-              return (
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+      {contactSections.map((section, index) => {
+        const IconComponent = section.icon;
+        return (
+          <div
+            key={index}
+            className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            {/* Top Color Strip */}
+            <div className={`h-2 bg-gradient-to-r ${section.color}`}></div>
+
+            {/* Content */}
+            <div className="p-6 sm:p-8 flex flex-col justify-between h-full">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div
-                  key={index}
-                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className={`p-3 rounded-full bg-gradient-to-r ${section.color} text-white mr-4 group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <div
-                    className={`h-2 bg-gradient-to-r ${section.color}`}
-                  ></div>
-                  <div className="p-8">
-                    <div className="flex items-center mb-6">
-                      <div
-                        className={`p-3 rounded-full bg-gradient-to-r ${section.color} text-white mr-4 group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-[#0f172a] group-hover:text-[#1b4f68] transition-colors duration-300">
-                        {section.title}
-                      </h3>
-                    </div>
-
-                    <p className="text-[#346880] mb-6 leading-relaxed">
-                      {section.description}
-                    </p>
-
-                    <div className="space-y-3">
-                      <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
-                        <Mail className="w-5 h-5 mr-3" />
-                        <a
-                          href={`mailto:${section.email}`}
-                          className="hover:underline"
-                        >
-                          {section.email}
-                        </a>
-                      </div>
-                      <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
-                        <Phone className="w-5 h-5 mr-3" />
-                        <a
-                          href={`tel:${section.phone}`}
-                          className="hover:underline"
-                        >
-                          {section.phone}
-                        </a>
-                      </div>
-                      <div className="flex items-center text-[#346880]">
-                        <Clock className="w-5 h-5 mr-3" />
-                        <span>{section.hours}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-              );
-            })}
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a] group-hover:text-[#1b4f68] transition-colors duration-300">
+                  {section.title}
+                </h3>
+              </div>
+
+              <p className="text-[#346880] mb-5 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                {section.description}
+              </p>
+
+              <div className="space-y-3 text-[12px] sm:text-base">
+                <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
+                  <Mail className="w- h-5 mr-3" />
+                  <a
+                    href={`mailto:${section.email}`}
+                    className="hover:underline break-all"
+                  >
+                    {section.email}
+                  </a>
+                </div>
+                <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
+                  <Phone className="w-5 h-5 mr-3" />
+                  <a
+                    href={`tel:${section.phone}`}
+                    className="hover:underline"
+                  >
+                    {section.phone}
+                  </a>
+                </div>
+                <div className="flex items-center text-[#346880]">
+                  <Clock className="w-5 h-5 mr-3" />
+                  <span>{section.hours}</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* Location & Office Hours */}
       <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-hover-color)]">
@@ -296,37 +297,36 @@ export default function ContactUs() {
         </div>
       </section>
 
-      {/* Social Media */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] mb-6">
-            Stay <span className="text-[#d85834]">Connected</span>
-          </h2>
-          <p className="text-[#346880] text-lg mb-12 leading-relaxed">
-            Follow us for the latest updates, artisan stories, new product
-            releases, and much more.
-          </p>
+      {/* Social Media */}<section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <div className="max-w-4xl mx-auto text-center">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0f172a] mb-4 sm:mb-6">
+      Stay <span className="text-[#d85834]">Connected</span>
+    </h2>
+    <p className="text-sm sm:text-base md:text-lg text-[#346880] mb-8 sm:mb-12 leading-relaxed">
+      Follow us for the latest updates, artisan stories, new product releases, and much more.
+    </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {socialLinks.map((social, index) => {
-              const IconComponent = social.icon;
-              return (
-                <a
-                  key={index}
-                  href="#"
-                  className={`group bg-gradient-to-br from-[#e4e6eb] to-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${social.color}`}
-                >
-                  <IconComponent className="w-8 h-8 mx-auto mb-3 text-[#1b4f68] group-hover:scale-125 transition-transform duration-300" />
-                  <h4 className="font-semibold text-[#0f172a] mb-1">
-                    {social.name}
-                  </h4>
-                  <p className="text-sm text-[#346880]">{social.handle}</p>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+      {socialLinks.map((social, index) => {
+        const IconComponent = social.icon;
+        return (
+          <a
+            key={index}
+            href="#"
+            className={`group bg-gradient-to-br from-[#e4e6eb] to-white p-4 sm:p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${social.color}`}
+          >
+            <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-[#1b4f68] group-hover:scale-125 transition-transform duration-300" />
+            <h4 className="font-medium sm:font-semibold text-sm sm:text-base text-[#0f172a] mb-1">
+              {social.name}
+            </h4>
+            <p className="text-xs sm:text-sm text-[#346880]">{social.handle}</p>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
 
       {/* Contact Form */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">

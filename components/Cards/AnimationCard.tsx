@@ -85,17 +85,23 @@ export function AnimationCardGrid({ data }: AnimationCardGridProps) {
   const { is4K } = useGlobalContext();
 
   return (
-    <div className={`flex flex-wrap justify-center gap-4 ${is4K ? "px-12 gap-6" : "px-4"}`}>
-      {data.map((card, index) => (
-        <AnimationCard
-          key={index}
-          icon={card.icon}
-          title={card.title}
-          description={card.description}
-          buttonText={card.buttonText}
-          onReadMore={() => alert(`Read more about: ${card.title}`)}
-        />
-      ))}
-    </div>
+    <div
+  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ${
+    is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4"
+  }`}
+>
+  {data.map((card, index) => (
+    <AnimationCard
+      key={index}
+      icon={card.icon}
+      title={card.title}
+      description={card.description}
+      buttonText={card.buttonText}
+      onReadMore={() => alert(`Read more about: ${card.title}`)}
+    />
+  ))}
+</div>
+
+
   );
 }
