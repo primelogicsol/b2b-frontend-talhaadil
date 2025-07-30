@@ -510,7 +510,8 @@ export default function ComprehensiveProductSelection({
           onClick={handle}
           className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
         >
-          ←  
+            <span className="inline">←</span>
+          <span className="hidden md:inline ml-2">Prev</span>
         </button>
         <button
           onClick={handleNext}
@@ -527,7 +528,8 @@ export default function ComprehensiveProductSelection({
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
-          {currentStep === "details" ? "→" : "→"}
+          <span className="hidden md:inline mr-2">Next</span>
+          <span className="inline">→</span>
         </button>
       </div>
     </div>

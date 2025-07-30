@@ -232,7 +232,8 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
           onClick={onNext}
           className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-            →
+           <span className="hidden md:inline mr-2">Next</span>
+          <span className="inline">→</span>
         </button>
       </div>
     </div>

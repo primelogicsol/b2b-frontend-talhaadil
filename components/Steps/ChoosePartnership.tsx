@@ -1,25 +1,25 @@
-"use client"
-import { useEffect, useState } from "react"
-import { FaHandshake, FaCheck, FaLock } from "react-icons/fa"
-  import { useGlobalContext } from "@/components/Context/GlobalProvider"
+"use client";
+import { useEffect, useState } from "react";
+import { FaHandshake, FaCheck, FaLock } from "react-icons/fa";
+import { useGlobalContext } from "@/components/Context/GlobalProvider";
 interface Partnership {
-  id: string
-  title: string
-  description: string
-  retention: string
-  kpiScore: string
-  available: boolean
-  isAltPath?: boolean
+  id: string;
+  title: string;
+  description: string;
+  retention: string;
+  kpiScore: string;
+  available: boolean;
+  isAltPath?: boolean;
 }
 
 interface ChoosePartnershipProps {
   data?: {
-    selected: string
-    title: string
-  }
-  onUpdate: (data: { selected: string; title: string }) => void
-  onNext: () => void
-  onPrev: () => void
+    selected: string;
+    title: string;
+  };
+  onUpdate: (data: { selected: string; title: string }) => void;
+  onNext: () => void;
+  onPrev: () => void;
 }
 
 const partnerships: Partnership[] = [
@@ -89,31 +89,38 @@ const partnerships: Partnership[] = [
     kpiScore: "8+",
     available: false,
   },
-]
+];
 // ... (interfaces unchanged)
 
-export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: ChoosePartnershipProps) {
-  const { is4K } = useGlobalContext()
+export default function ChoosePartnership({
+  data,
+  onUpdate,
+  onNext,
+  onPrev,
+}: ChoosePartnershipProps) {
+  const { is4K } = useGlobalContext();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
-  const [selectedPartnership, setSelectedPartnership] = useState(data?.selected || "")
+  const [selectedPartnership, setSelectedPartnership] = useState(
+    data?.selected || ""
+  );
 
   const handleSelect = (p: Partnership) => {
     if (p.available) {
-      setSelectedPartnership(p.id)
-      onUpdate({ selected: p.id, title: p.title })
+      setSelectedPartnership(p.id);
+      onUpdate({ selected: p.id, title: p.title });
     }
-  }
+  };
 
   const handleNext = () => {
-    if (selectedPartnership) onNext()
-  }
+    if (selectedPartnership) onNext();
+  };
 
   const handleGoToPay = (p: Partnership) => {
-    alert(`Redirecting to payment for ${p.title}…`)
-  }
+    alert(`Redirecting to payment for ${p.title}…`);
+  };
 
   return (
     <div className={`mx-auto px-6 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
@@ -121,22 +128,43 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <FaHandshake className="text-white text-2xl" />
         </div>
-        <h1 className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}>
+        <h1
+          className={`font-bold text-[var(--primary-color)] mb-4 ${
+            is4K ? "text-6xl" : "text-4xl"
+          }`}
+        >
           Choose Your Partnership
         </h1>
-        <p className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"}`}>
-          Select the partnership that best aligns with your business goals and growth strategy
+        <p
+          className={`text-[var(--primary-color)]/70 mx-auto ${
+            is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
+          }`}
+        >
+          Select the partnership that best aligns with your business goals and
+          growth strategy
         </p>
       </div>
 
-      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""}`}>
+      <div
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${
+          is4K ? "gap-12" : ""
+        }`}
+      >
         {partnerships.map((p) => (
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
             className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
-              ${p.available ? "cursor-pointer hover:-translate-y-2" : "opacity-60 grayscale"}
-              ${selectedPartnership === p.id ? "ring-4 ring-[var(--secondary-color)] scale-105" : ""}
+              ${
+                p.available
+                  ? "cursor-pointer hover:-translate-y-2"
+                  : "opacity-60 grayscale"
+              }
+              ${
+                selectedPartnership === p.id
+                  ? "ring-4 ring-[var(--secondary-color)] scale-105"
+                  : ""
+              }
               ${is4K ? "text-lg" : "text-base"}
             `}
           >
@@ -174,35 +202,55 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
               </span>
             </div>
 
-            <h3 className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-2xl" : "text-xl"}`}>{p.title}</h3>
+            <h3
+              className={`font-bold text-[var(--primary-color)] mb-4 ${
+                is4K ? "text-2xl" : "text-xl"
+              }`}
+            >
+              {p.title}
+            </h3>
 
             <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
               <div className="text-center">
-                <p className="text-xs text-[var(--primary-color)]/70 mb-1">Retention</p>
-                <p className="text-sm font-semibold text-[var(--primary-color)]">{p.retention}</p>
+                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
+                  Retention
+                </p>
+                <p className="text-sm font-semibold text-[var(--primary-color)]">
+                  {p.retention}
+                </p>
               </div>
               <div className="w-px bg-[var(--primary-color)]/20"></div>
               <div className="text-center">
-                <p className="text-xs text-[var(--primary-color)]/70 mb-1">KPI Score</p>
-                <p className="text-sm font-semibold text-[var(--primary-color)]">{p.kpiScore}</p>
+                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
+                  KPI Score
+                </p>
+                <p className="text-sm font-semibold text-[var(--primary-color)]">
+                  {p.kpiScore}
+                </p>
               </div>
             </div>
 
-            <p className={`leading-relaxed mb-6 line-clamp-4 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}>
+            <p
+              className={`leading-relaxed mb-6 line-clamp-4 ${
+                is4K ? "text-base" : "text-sm"
+              } text-[var(--primary-color)]/80`}
+            >
               {p.description}
             </p>
 
             {!p.available && (
               <div className="mt-auto space-y-2">
-                <button className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
-                  text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}>
+                <button
+                  className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
+                  text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}
+                >
                   Learn About Fast-Track Options →
                 </button>
                 {p.isAltPath && (
                   <button
                     onClick={(e) => {
-                      e.stopPropagation()
-                      handleGoToPay(p)
+                      e.stopPropagation();
+                      handleGoToPay(p);
                     }}
                     className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
                     text-[var(--primary-color)] border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white`}
@@ -217,13 +265,23 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
       </div>
 
       {selectedPartnership && (
-        <div className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${is4K ? "text-lg" : ""}`}>
+        <div
+          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${
+            is4K ? "text-lg" : ""
+          }`}
+        >
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
               <FaCheck className="text-white text-xl" />
             </div>
             <div>
-              <h3 className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"}`}>Partnership Selected</h3>
+              <h3
+                className={`font-bold text-[var(--primary-color)] ${
+                  is4K ? "text-2xl" : "text-xl"
+                }`}
+              >
+                Partnership Selected
+              </h3>
               <p className="text-[var(--primary-color)]/80">
                 {partnerships.find((p) => p.id === selectedPartnership)?.title}
               </p>
@@ -233,25 +291,28 @@ export default function ChoosePartnership({ data, onUpdate, onNext, onPrev }: Ch
       )}
 
       <div className="flex justify-between items-center mt-8">
+        {/* Prev button */}
         <button
           onClick={onPrev}
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 text-gray-700 rounded-xl transition-all font-medium
-            border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white
-            ${is4K ? "text-lg" : ""}`}
+    border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white
+    ${is4K ? "text-lg" : ""}`}
         >
-          ←
+          <span className="inline">←</span>
+          <span className="hidden md:inline ml-2">Prev</span>
         </button>
+
+        {/* Next button */}
         <button
           onClick={handleNext}
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-xl text-white shadow-lg transition-all font-medium
-            bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)]
-            ${is4K ? "text-lg" : ""}`}
+    bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)]
+    ${is4K ? "text-lg" : ""}`}
         >
-          →
+          <span className="hidden md:inline mr-2">Next</span>
+          <span className="inline">→</span>
         </button>
       </div>
     </div>
-  )
+  );
 }
-
-
