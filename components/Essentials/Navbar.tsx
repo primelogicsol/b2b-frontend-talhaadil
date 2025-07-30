@@ -228,7 +228,7 @@ function MobileDropdown({ title, items, onLinkClick }: MobileDropdownProps) {
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(true); // Set to true for demonstration
+  const [isSignedIn, setIsSignedIn] = useState(false); // Set to true for demonstration
   const router = useRouter();
 
   const blogDropdownItems: DropdownItem[] = [

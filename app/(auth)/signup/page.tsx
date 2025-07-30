@@ -107,6 +107,7 @@ export default function RegisterPage() {
             Login
           </Link>
         </div>
+        <button className="bg-red p-20">TOASTY</button>
       </div>
     </div>
   )
