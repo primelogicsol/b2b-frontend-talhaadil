@@ -1,8 +1,9 @@
-'use client'
+"use client"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import parse from "html-react-parser"
 import SectionTitle from "./SectionTitle"
+import { useGlobalContext } from "../Context/GlobalProvider"
 
 interface FaqItem {
   title: string
@@ -20,7 +21,7 @@ interface FaqProps {
   decoImg2?: string
 }
 
-const deffaqItems: FaqItem[] = [ 
+const deffaqItems: FaqItem[] = [
   {
     title: "What is the purpose of this platform?",
     desc: "This platform aims to connect Kashmiri artisans and startups with global markets.",
@@ -33,7 +34,8 @@ const deffaqItems: FaqItem[] = [
   {
     title: "How can I get started?",
     desc: "To get started, you can sign up on our website and explore the various partnership models available.",
-  }]
+  },
+]
 
 export default function SectionFaq({
   subTitle = "SOLUTEK COMPANY",
@@ -48,9 +50,10 @@ export default function SectionFaq({
   const accordionContentRef = useRef<HTMLDivElement>(null)
   const [openItemIndex, setOpenItemIndex] = useState<number>(-1)
   const [firstItemOpen, setFirstItemOpen] = useState<boolean>(true)
+  const { is4K } = useGlobalContext()
 
   const handleItemClick = (index: number) => {
-    setOpenItemIndex(prev => (index === prev ? -1 : index))
+    setOpenItemIndex((prev) => (index === prev ? -1 : index))
   }
 
   useEffect(() => {
@@ -61,14 +64,24 @@ export default function SectionFaq({
   }, [firstItemOpen])
 
   return (
-    <section className="relative bg-white py-20 px-4">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <section
+      className="relative bg-white py-20 px-4"
+      style={{
+        paddingLeft: is4K ? "8rem" : "1rem",
+        paddingRight: is4K ? "8rem" : "1rem",
+        fontSize: is4K ? "1.125rem" : "1rem", // Apply font size increase
+      }}
+    >
+      <div
+        className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center"
+        style={{ maxWidth: is4K ? "2000px" : "1280px" }}
+      >
         {/* Left Section */}
         <div className="space-y-8">
           <SectionTitle SubTitle={subTitle} Title={sectionTitle} />
           <div>
             <Image
-              src={imgMain}
+              src={imgMain || "/placeholder.svg"}
               alt="faq-main"
               width={600}
               height={700}
@@ -80,9 +93,7 @@ export default function SectionFaq({
         {/* Right Section */}
         <div className="space-y-6">
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">
-              {parse(faqTitle)}
-            </h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2">{parse(faqTitle)}</h3>
             <p className="text-gray-600 text-base">{faqContent}</p>
           </div>
 
@@ -91,9 +102,7 @@ export default function SectionFaq({
               <li
                 key={index}
                 className={`border rounded-lg overflow-hidden transition-all duration-300 shadow-sm ${
-                  index === openItemIndex
-                    ? "bg-orange-50 border-[var(--primary-color)]"
-                    : "bg-white border-gray-200"
+                  index === openItemIndex ? "bg-orange-50 border-[var(--primary-color)]" : "bg-white border-gray-200"
                 }`}
               >
                 <button
@@ -105,9 +114,7 @@ export default function SectionFaq({
                   </span>
                   <span
                     className={`transform transition-transform duration-300 ${
-                      index === openItemIndex
-                        ? "rotate-180 text-[var(--primary-color)]"
-                        : "rotate-0 text-gray-400"
+                      index === openItemIndex ? "rotate-180 text-[var(--primary-color)]" : "rotate-0 text-gray-400"
                     }`}
                   >
                     ▼
@@ -129,14 +136,14 @@ export default function SectionFaq({
 
       {/* Decorative Images */}
       <Image
-        src={decoImg1}
+        src={decoImg1 || "/placeholder.svg"}
         alt="deco1"
         width={96}
         height={96}
         className="absolute top-10 left-0 w-24 animate-pulse hidden md:block"
       />
       <Image
-        src={decoImg2}
+        src={decoImg2 || "/placeholder.svg"}
         alt="deco2"
         width={112}
         height={112}

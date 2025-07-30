@@ -1,9 +1,11 @@
-import { PartnershipPage } from "@/components/Essentials/PartnershipComponent";
-import { PartnershipPageProps } from "@/components/Essentials/PartnershipComponent";
-import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
-import InDepthFAQ from "@/components/Material/InDepthFAQ";
-import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection";
-import HowItWorksSection from "@/components/Section/HowItWorksSection";
+'use client'
+import { PartnershipPage } from "@/components/Essentials/PartnershipComponent"
+import type { PartnershipPageProps } from "@/components/Essentials/PartnershipComponent"
+import VerticalHeroSlider from "@/components/Essentials/VerticalBanner"
+import InDepthFAQ from "@/components/Material/InDepthFAQ"
+import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection"
+import HowItWorksSection from "@/components/Section/HowItWorksSection"
+import { useGlobalContext } from "@/components/Context/GlobalProvider" // Import useGlobalContext
 
 const defaultProps: PartnershipPageProps = {
   vendorTitle: "Why Work With De Koshur?",
@@ -11,103 +13,86 @@ const defaultProps: PartnershipPageProps = {
   vendorIntro:
     "Partnering with De Koshur Crafts means no barriers to success. We provide comprehensive support to help you grow your business with authentic Kashmiri crafts.",
   vendorBenefits: [
-  {
-    title: "Authenticity Provenance Certified",
-    description:
-      "Every product is GI certified to ensure genuine Kashmiri crafts with trusted verified origins worldwide.",
-  },
-  {
-    title: "Global Market Access",
-    description:
-      "Use our strong platform to reach North America and global markets without heavy upfront costs today.",
-  },
-  {
-    title: "Logistics Packaging Support",
-    description:
-      "We handle fast shipping and eco friendly packaging so you can focus only on growth.",
-  },
-  {
-    title: "Professional Product Photos",
-    description:
-      "Receive high quality crafted photos to help your product listings shine bright and attract buyers.",
-  },
-  {
-    title: "CraftLore Global Marketing",
-    description:
-      "Gain free exposure through CraftLore ensuring your crafts are seen across multiple platforms worldwide.",
-  },
-  {
-    title: "Artstay Direct Buyers",
-    description:
-      "Artstay connects buyers directly to your store giving wide global exposure and steady sales.",
-  },
-  {
-    title: "Prime Logic Websites",
-    description:
-      "Our in house team builds and maintains your ecommerce platform completely free of cost.",
-  },
-  {
-    title: "Hamadan Revival Foundation",
-    description:
-      "HCRF supports artisans through advocacy guidance and strong policy initiatives for lasting impact.",
-  },
-  {
-    title: "Progressive Free Services",
-    description:
-      "Meet required KPIs and retention to unlock free marketing development and extended support.",
-  },
-],
+    {
+      title: "Authenticity Provenance Certified",
+      description:
+        "Every product is GI certified to ensure genuine Kashmiri crafts with trusted verified origins worldwide.",
+    },
+    {
+      title: "Global Market Access",
+      description:
+        "Use our strong platform to reach North America and global markets without heavy upfront costs today.",
+    },
+    {
+      title: "Logistics Packaging Support",
+      description: "We handle fast shipping and eco friendly packaging so you can focus only on growth.",
+    },
+    {
+      title: "Professional Product Photos",
+      description: "Receive high quality crafted photos to help your product listings shine bright and attract buyers.",
+    },
+    {
+      title: "CraftLore Global Marketing",
+      description:
+        "Gain free exposure through CraftLore ensuring your crafts are seen across multiple platforms worldwide.",
+    },
+    {
+      title: "Artstay Direct Buyers",
+      description: "Artstay connects buyers directly to your store giving wide global exposure and steady sales.",
+    },
+    {
+      title: "Prime Logic Websites",
+      description: "Our in house team builds and maintains your ecommerce platform completely free of cost.",
+    },
+    {
+      title: "Hamadan Revival Foundation",
+      description: "HCRF supports artisans through advocacy guidance and strong policy initiatives for lasting impact.",
+    },
+    {
+      title: "Progressive Free Services",
+      description: "Meet required KPIs and retention to unlock free marketing development and extended support.",
+    },
+  ],
 
   buyerTitle: "De Koshur Crafts Buyer Partnership Marketplace",
-  buyerTagline:
-    "Every Purchase is a Partnership. Every Buyer Empowers a Legacy.",
+  buyerTagline: "Every Purchase is a Partnership. Every Buyer Empowers a Legacy.",
   buyerDescription:
     "Buyers don't just source products — they enable livelihoods, preserve culture, and scale ethical trade.",
   Title: "Core Trade Partnerships",
-  Description:
-    "Entry-level sourcing relationships that open the door to verified vendor support.",
-  
-    Partnerships: [
-  {
-    title: "Drop Shipping Buyer",
-    description:
-      "Source goods without holding stock while vendors handle orders and ship directly to buyers.",
-    details:
-      "No upfront costs while expanding markets, vendors grow sales, buyers avoid storage or holding risks.",
-    kpi: "KPI 7+",
-    retention: "No retention needed",
-  },
-  {
-    title: "Consignment Product Buyer",
-    description:
-      "List vendor items safely on your platform and only pay after verified customer purchase.",
-    details:
-      "Eliminates warehouse risks while vendors gain exposure, perfect choice for testing new collections carefully.",
-    kpi: "KPI 7+",
-    retention: "Eighteen months needed",
-  },
-  {
-    title: "Certified Import Buyer",
-    description:
-      "Purchase GI certified goods for global trade and manage labeling compliance and customs.",
-    details:
-      "Access new markets with vendor identity protected while ensuring documentation and proper export handling.",
-    kpi: "KPI 8+",
-    retention: "Six months prior",
-  },
-  {
-    title: "Wholesale Distribution Buyer",
-    description:
-      "Place larger orders for resale and access verified traceable product lines across regions.",
-    details:
-      "Faster production cycles with stronger margins allowing vendor scale and improved packaging upgrades.",
-    kpi: "KPI 7+",
-    retention: "Three months prior",
-  },
-],
+  Description: "Entry-level sourcing relationships that open the door to verified vendor support.",
 
-
-
+  Partnerships: [
+    {
+      title: "Drop Shipping Buyer",
+      description: "Source goods without holding stock while vendors handle orders and ship directly to buyers.",
+      details: "No upfront costs while expanding markets, vendors grow sales, buyers avoid storage or holding risks.",
+      kpi: "KPI 7+",
+      retention: "No retention needed",
+    },
+    {
+      title: "Consignment Product Buyer",
+      description: "List vendor items safely on your platform and only pay after verified customer purchase.",
+      details:
+        "Eliminates warehouse risks while vendors gain exposure, perfect choice for testing new collections carefully.",
+      kpi: "KPI 7+",
+      retention: "Eighteen months needed",
+    },
+    {
+      title: "Certified Import Buyer",
+      description: "Purchase GI certified goods for global trade and manage labeling compliance and customs.",
+      details:
+        "Access new markets with vendor identity protected while ensuring documentation and proper export handling.",
+      kpi: "KPI 8+",
+      retention: "Six months prior",
+    },
+    {
+      title: "Wholesale Distribution Buyer",
+      description: "Place larger orders for resale and access verified traceable product lines across regions.",
+      details: "Faster production cycles with stronger margins allowing vendor scale and improved packaging upgrades.",
+      kpi: "KPI 7+",
+      retention: "Three months prior",
+    },
+  ],
 
   tierAdvancementTitle: "Tier Advancement Logic",
   tierAdvancements: [
@@ -136,12 +121,12 @@ const defaultProps: PartnershipPageProps = {
       kpiThreshold: "9–9.5+",
     },
   ],
-    title: "Partnership Opportunities",
+  title: "Partnership Opportunities",
   subtitle: "Discover diverse collaboration pathways tailored to your business needs",
   categories: [
     {
       title: "Core Trade Partnerships",
-    
+
       items: [
         { title: "Drop Shipping Buyer" },
         { title: "Consignment Product Buyer" },
@@ -151,7 +136,7 @@ const defaultProps: PartnershipPageProps = {
     },
     {
       title: "Growth Brand Expansion",
-    
+
       items: [
         { title: "Exhibition Event Buyer" },
         { title: "Auction Bidding Buyer" },
@@ -161,7 +146,7 @@ const defaultProps: PartnershipPageProps = {
     },
     {
       title: "Creative Collaborations",
- 
+
       items: [
         { title: "Design Knowledge Partner" },
         { title: "Media Storytelling Partner" },
@@ -180,16 +165,18 @@ const defaultProps: PartnershipPageProps = {
       ],
     },
   ],
-};
+}
 
 export default function Component() {
+  const { is4K } = useGlobalContext() // Use the hook here
+
   const howItWorksData = {
     title: "How It Works",
     description:
       "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC’s transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
     imageUrl: "/images/onboarding.jpg", // Ensure this image exists in /public/images
     imageAlt: "Onboarding Illustration",
-    mini_desc:" Our Streamlined Onboarding Process",
+    mini_desc: " Our Streamlined Onboarding Process",
     phases: [
       "Registration Phase      ",
       "Document Submission Phase      ",
@@ -202,7 +189,7 @@ export default function Component() {
       "Partnership Launch and Support Phase      ",
       "KPI and Marketplace Engagement Phase      ",
     ],
-  };
+  }
 
   const partnerTestimonials = [
     {
@@ -232,60 +219,60 @@ export default function Component() {
       title: "Co-Founder, Lone Creations",
       avatar: "/images/partners/partner3.jpg",
     },
-  ];
+  ]
 
+  const dummyFAQData = [
+    {
+      id: 1,
+      question: "What is your return policy?",
+      answer: "We offer a 30-day return policy on all items. Contact our support for assistance.",
+    },
+    {
+      id: 2,
+      question: "Do you ship internationally?",
+      answer: "Yes, we ship to most countries worldwide. Shipping fees may vary based on location.",
+    },
+    {
+      id: 3,
+      question: "How can I track my order?",
+      answer: "Once shipped, you’ll receive an email with the tracking number and link.",
+    },
+    {
+      id: 4,
+      question: "Can I modify my order after placing it?",
+      answer: "Modifications are possible within 2 hours of placing the order. Contact support quickly.",
+    },
+    {
+      id: 5,
+      question: "What payment methods are accepted?",
+      answer: "We accept Visa, Mastercard, PayPal, and bank transfers.",
+    },
+    {
+      id: 6,
+      question: "Are your products sustainable?",
+      answer: "Yes! We focus on eco-friendly packaging and responsibly sourced materials.",
+    },
+    {
+      id: 7,
+      question: "Do you offer bulk discounts?",
+      answer: "Yes, for orders over 50 items. Please reach out to our sales team for a quote.",
+    },
+    {
+      id: 8,
+      question: "How do I contact customer support?",
+      answer: "You can email us at support@example.com or use the chat widget on our site.",
+    },
+  ]
 
-const dummyFAQData = [
-  {
-    id: 1,
-    question: "What is your return policy?",
-    answer: "We offer a 30-day return policy on all items. Contact our support for assistance."
-  },
-  {
-    id: 2,
-    question: "Do you ship internationally?",
-    answer: "Yes, we ship to most countries worldwide. Shipping fees may vary based on location."
-  },
-  {
-    id: 3,
-    question: "How can I track my order?",
-    answer: "Once shipped, you’ll receive an email with the tracking number and link."
-  },
-  {
-    id: 4,
-    question: "Can I modify my order after placing it?",
-    answer: "Modifications are possible within 2 hours of placing the order. Contact support quickly."
-  },
-  {
-    id: 5,
-    question: "What payment methods are accepted?",
-    answer: "We accept Visa, Mastercard, PayPal, and bank transfers."
-  },
-  {
-    id: 6,
-    question: "Are your products sustainable?",
-    answer: "Yes! We focus on eco-friendly packaging and responsibly sourced materials."
-  },
-  {
-    id: 7,
-    question: "Do you offer bulk discounts?",
-    answer: "Yes, for orders over 50 items. Please reach out to our sales team for a quote."
-  },
-  {
-    id: 8,
-    question: "How do I contact customer support?",
-    answer: "You can email us at support@example.com or use the chat widget on our site."
-  }
-]
-
-  
   return (
-    <div>
-      <VerticalHeroSlider/>
+    <div >
+      {" "}
+      {/* Apply max-width for 4K */}
+      <VerticalHeroSlider />
       <PartnershipPage {...defaultProps} />
-      <HowItWorksSection {...howItWorksData}/>
+      <HowItWorksSection {...howItWorksData} />
       <HorizontalSwipeSection testimonials={partnerTestimonials} />
-      <InDepthFAQ data={dummyFAQData}/>
+      <InDepthFAQ data={dummyFAQData} />
     </div>
-  );
+  )
 }

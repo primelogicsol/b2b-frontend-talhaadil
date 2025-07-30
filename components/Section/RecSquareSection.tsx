@@ -1,5 +1,8 @@
+"use client"
+
 import Image from "next/image"
 import { CheckSquare, ArrowRight, Laptop } from "lucide-react"
+import { useGlobalContext } from "../Context/GlobalProvider"
 
 interface PartnershipActivationProps {
   mainImage?: string
@@ -22,7 +25,7 @@ const defaultPhases = [
   "Portal Activation",
   "Partnership Launch",
   "KPI Engagement",
-];
+]
 
 export default function RecSquareSection({
   mainImage = "/images/new-pic2.webp?height=600&width=400",
@@ -38,15 +41,25 @@ export default function RecSquareSection({
   readMoreLink = "#",
   appointmentLink = "#",
 }: PartnershipActivationProps) {
+  const { is4K } = useGlobalContext()
+
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center p-4 md:p-8 bg-white max-w-7xl mx-auto rounded-3xl shadow-xl mt-8 lg:gap-16">
+    <div
+      className="flex flex-col lg:flex-row items-center justify-center p-4 md:p-8 bg-white max-w-7xl mx-auto rounded-3xl shadow-xl mt-8 lg:gap-16"
+      style={{
+        maxWidth: is4K ? "2000px" : "1280px",
+        paddingLeft: is4K ? "8rem" : "1rem",
+        paddingRight: is4K ? "8rem" : "1rem",
+        fontSize: is4K ? "1.125rem" : "1rem", // Apply font size increase
+      }}
+    >
       {/* Left Section */}
       <div className="relative w-full lg:w-1/2 flex justify-center items-center p-4 lg:p-0">
         <div className="relative w-full max-w-sm md:max-w-md lg:max-w-[400px] h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl">
           <div className="absolute inset-0 border-4 border-[#FF6A13] rounded-2xl transform translate-x-4 translate-y-4 z-0"></div>
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group z-10">
             <Image
-              src={mainImage}
+              src={mainImage || "/placeholder.svg"}
               alt="Main Partnership Image"
               width={400}
               height={600}
@@ -58,7 +71,7 @@ export default function RecSquareSection({
 
         <div className="absolute -bottom-8 right-0 md:top-1/2 md:right-0 md:-translate-y-1/2 lg:top-1/2 lg:left-[calc(100%-120px)] lg:-translate-y-1/2 p-2 bg-white rounded-2xl shadow-2xl z-20 w-[200px] h-[150px] md:w-[250px] md:h-[200px] border border-white group">
           <Image
-            src={smallImage}
+            src={smallImage || "/placeholder.svg"}
             alt="Small Partnership Image"
             width={250}
             height={200}
@@ -74,25 +87,21 @@ export default function RecSquareSection({
           HOW IT WORKS
         </div>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
-          {title}
-        </h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">{title}</h2>
 
         <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base">{description}</p>
 
-          <ul className="flex flex-col gap-4 text-gray-700 mb-10 text-sm md:text-base items-start">
-            {phases.map((phase, index) => (
-              <li
-                key={index}
-                className="w-full h-full flex items-start justify-start group transition-colors duration-300 hover:text-[#FF6A13]"
-              >
-                <CheckSquare className="w-5 h-5 text-[#FF6A13] mr-3 shrink-0 transition-transform duration-300 group-hover:scale-110 mt-1" />
-                <span className="break-words">{phase}</span>
-              </li>
-            ))}
+        <ul className="flex flex-col gap-4 text-gray-700 mb-10 text-sm md:text-base items-start">
+          {phases.map((phase, index) => (
+            <li
+              key={index}
+              className="w-full h-full flex items-start justify-start group transition-colors duration-300 hover:text-[#FF6A13]"
+            >
+              <CheckSquare className="w-5 h-5 text-[#FF6A13] mr-3 shrink-0 transition-transform duration-300 group-hover:scale-110 mt-1" />
+              <span className="break-words">{phase}</span>
+            </li>
+          ))}
         </ul>
-
-
 
         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
           <a
