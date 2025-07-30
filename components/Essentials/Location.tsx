@@ -1,4 +1,8 @@
+"use client"
 import { Building, Layers, Package, Phone, Warehouse, Truck, Palette, Camera } from "lucide-react"
+import React from "react"
+
+import { useGlobalContext } from "../Context/GlobalProvider"
 
 const locations = [
   {
@@ -62,10 +66,13 @@ const achievements = [
 ]
 
 export default function Location() {
+  const { is4K } = useGlobalContext()
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#1b4f68] text-center mb-12 leading-tight">
+    <section className={`${is4K ? "py-24" : "py-16"} bg-white`}>
+      <div className={`container ${is4K ? "max-w-8xl" : "max-w-6xl"} mx-auto px-4 md:px-6`}>
+        <h1
+          className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-extrabold text-[#1b4f68] text-center mb-12 leading-tight`}
+        >
           Our Global Presence & Impact
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
@@ -74,26 +81,32 @@ export default function Location() {
             {locations.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center p-4 rounded-xl shadow-md bg-white border border-transparent
-                           hover:border-[#d85834] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer"
+                className={`flex items-center ${is4K ? "p-6" : "p-4"} rounded-xl shadow-md bg-white border border-transparent
+                         hover:border-[#d85834] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer`}
               >
-                <item.icon className="w-8 h-8 text-[#d85834] flex-shrink-0 mr-4" />
+                {React.createElement(item.icon, {
+                  className: `${is4K ? "w-10 h-10" : "w-8 h-8"} text-[#d85834] flex-shrink-0 mr-4`,
+                })}
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-[#1b4f68]">{item.title}</h3>
-                  <p className="text-sm text-[#346880]">{item.location}</p>
+                  <h3 className={`${is4K ? "text-xl" : "text-lg"} font-semibold text-[#1b4f68]`}>{item.title}</h3>
+                  <p className={`${is4K ? "text-base" : "text-sm"} text-[#346880]`}>{item.location}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Right side: Bullet points */}
-          <div className="lg:col-span-2 flex flex-col justify-center p-8 rounded-xl bg-[#e4e6eb] shadow-lg">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1b4f68] mb-6">Key Achievements</h2>
+          <div
+            className={`lg:col-span-2 flex flex-col justify-center ${is4K ? "p-10" : "p-8"} rounded-xl bg-[#e4e6eb] shadow-lg`}
+          >
+            <h2 className={`${is4K ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"} font-bold text-[#1b4f68] mb-6`}>
+              Key Achievements
+            </h2>
             <ul className="space-y-4">
               {achievements.map((item, index) => (
                 <li key={index} className="flex items-start gap-3 text-[#0f172a]">
-                  <span className="text-[#d85834] text-2xl leading-none font-bold">•</span>
-                  <p className="flex-1 text-base md:text-lg">{item}</p>
+                  <span className={`${is4K ? "text-3xl" : "text-2xl"} leading-none font-bold`}>•</span>
+                  <p className={`flex-1 ${is4K ? "text-lg md:text-xl" : "text-base md:text-lg"}`}>{item}</p>
                 </li>
               ))}
             </ul>

@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   Search,
   MapPin,
@@ -8,70 +8,62 @@ import {
   Target,
   Leaf,
   Shield,
-  HandHeart,
   ChevronDown,
   ChevronUp,
   Briefcase,
   GraduationCap,
   Mail,
-  Phone,
-  MessageCircle,
-} from "lucide-react";
-import VerticalHeroSlider from "./VerticalBanner";
+} from "lucide-react"
+import VerticalHeroSlider from "./VerticalBanner"
+import { useGlobalContext } from "../Context/GlobalProvider"// Import useGlobalContext
 
 export default function CareersPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("all");
-  const [expandedJob, setExpandedJob] = useState<string | null>(null);
-  const [openDropdown, setOpenDropdown] = useState(false);
-const benefits = [
-  {
-    title: "Make a Difference",
-    description:
-      "Help shape a platform that values craft, supports fair trade, and builds lasting cultural growth."
-  },
-  {
-    title: "Team Collaboration",
-    description:
-      "Work inside a group that shares ideas, builds trust, and grows strong through open support."
-  },
-  {
-    title: "Career Progression",
-    description:
-      "Gain rich learning chances that grow your skill set and keep you moving toward better roles."
-  },
-  {
-    title: "Flexible Schedule",
-    description:
-      "Enjoy a balanced approach that values your time and allows remote work with true freedom."
-  },
-  {
-    title: "Diverse Inclusion",
-    description:
-      "Be part of a team that honors each background and creates space where all members belong."
-  },
-  {
-    title: "Diverse Inclusion",
-    description:
-      "Be part of a team that honors each background and creates space where all members belong."
-  },
-  {
-    title: "Diverse Inclusion",
-    description:
-      "Be part of a team that honors each background and creates space where all members belong."
-  },
-  {
-    title: "Positive Culture",
-    description:
-      "Join a mindful workplace that blends kind values and clear goals for steady shared success."
-  }
-]
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedFilter, setSelectedFilter] = useState("all")
+  const [expandedJob, setExpandedJob] = useState<string | null>(null)
+  const [openDropdown, setOpenDropdown] = useState(false)
+  const { is4K } = useGlobalContext() // Use the hook
+
+  const benefits = [
+    {
+      title: "Make a Difference",
+      description: "Help shape a platform that values craft, supports fair trade, and builds lasting cultural growth.",
+    },
+    {
+      title: "Team Collaboration",
+      description: "Work inside a group that shares ideas, builds trust, and grows strong through open support.",
+    },
+    {
+      title: "Career Progression",
+      description: "Gain rich learning chances that grow your skill set and keep you moving toward better roles.",
+    },
+    {
+      title: "Flexible Schedule",
+      description: "Enjoy a balanced approach that values your time and allows remote work with true freedom.",
+    },
+    {
+      title: "Diverse Inclusion",
+      description: "Be part of a team that honors each background and creates space where all members belong.",
+    },
+    {
+      title: "Diverse Inclusion",
+      description: "Be part of a team that honors each background and creates space where all members belong.",
+    },
+    {
+      title: "Diverse Inclusion",
+      description: "Be part of a team that honors each background and creates space where all members belong.",
+    },
+    {
+      title: "Positive Culture",
+      description: "Join a mindful workplace that blends kind values and clear goals for steady shared success.",
+    },
+  ]
   const filters = [
     { value: "all", label: "All Departments" },
     { value: "operations", label: "Operations" },
     { value: "marketing", label: "Marketing" },
     { value: "support", label: "Support" },
-  ];
+  ]
   const jobOpenings = [
     {
       id: "ecommerce-manager",
@@ -153,7 +145,7 @@ const benefits = [
       ],
       email: "support@dekoshurcrafts.com",
     },
-  ];
+  ]
 
   const internships = [
     {
@@ -168,7 +160,7 @@ const benefits = [
       title: "Operations Intern",
       description: "Assist with inventory management and logistics",
     },
-  ];
+  ]
 
   const coreValues = [
     {
@@ -189,21 +181,19 @@ const benefits = [
       description:
         "We value transparency and ethical practices. Our commitment to fair wages, safe working conditions, and authenticity ensures responsible operations.",
     },
-  ];
+  ]
 
   const filteredJobs = jobOpenings.filter((job) => {
     const matchesSearch =
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter =
-      selectedFilter === "all" ||
-      job.department.toLowerCase() === selectedFilter;
-    return matchesSearch && matchesFilter;
-  });
+      job.description.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesFilter = selectedFilter === "all" || job.department.toLowerCase() === selectedFilter
+    return matchesSearch && matchesFilter
+  })
 
   const toggleJobExpansion = (jobId: string) => {
-    setExpandedJob(expandedJob === jobId ? null : jobId);
-  };
+    setExpandedJob(expandedJob === jobId ? null : jobId)
+  }
 
   return (
     <div className="careers-page overflow-x-hidden">
@@ -663,6 +653,25 @@ const benefits = [
           .container {
             padding: 0 15px;
           }
+
+          @media (min-width: 2560px) {
+            .benefits-grid {
+              grid-template-columns: repeat(4, 1fr);
+              gap: 2.5rem;
+              max-width: 1800px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+          
+            .benefit-card {
+              font-size: 1.2rem;
+            }
+          
+            .benefit-title {
+              font-size: 1.8rem;
+            }
+          }
+          
         }
       `}</style>
 
@@ -673,36 +682,47 @@ const benefits = [
 
       {/* Why Work Section */}
       <section className="section why-work-section">
-        <div className="container">
-          <h2 className="section-title">Why Work at De Koshur Crafts?</h2>
+        <div
+          className="container"
+          style={is4K ? { maxWidth: "2000px", paddingLeft: "290px", paddingRight: "340px" } : {}}
+        >
+          <h2 className="section-title" style={is4K ? { fontSize: "4.5rem" } : {}}>
+            Why Work at De Koshur Crafts?
+          </h2>
           <p
             style={{
               textAlign: "center",
-              fontSize: "1.1rem",
-              maxWidth: "800px",
+              fontSize: is4K ? "2rem" : "1.1rem",
+              maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
               color: "var(--primary-light-text-color)",
             }}
           >
-            We believe in building a supportive, inclusive, and empowering work
-            environment. We are a diverse team committed to sustainability,
-            innovation, and ethical business practices.
+            We believe in building a supportive, inclusive, and empowering work environment. We are a diverse team
+            committed to sustainability, innovation, and ethical business practices.
           </p>
-         <div className="benefits-grid">
-      {benefits.map((b, i) => (
-        <div className="benefit-card" key={i}>
-          <div className="benefit-title">{b.title}</div>
-          <p>{b.description}</p>
-        </div>
-      ))}
-    </div>
+          <div className="benefits-grid">
+            {benefits.map((b, i) => (
+              <div className="benefit-card" key={i}>
+                <div className="benefit-title" style={is4K ? { fontSize: "2.5rem" } : {}}>
+                  {b.title}
+                </div>
+                <p style={is4K ? { fontSize: "1.4rem" } : {}}>{b.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Job Openings Section */}
       <section className="section">
-        <div className="container">
-          <h2 className="section-title">Current Job Openings</h2>
+        <div
+          className="container"
+          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
+        >
+          <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
+            Current Job Openings
+          </h2>
 
           <div className="search-filter-section px-4 py-4">
             <div className="search-container flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between max-w-full">
@@ -714,12 +734,13 @@ const benefits = [
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full border-2 border-[var(--primary-header-color)] rounded-lg py-3 pr-12 pl-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
+                  style={is4K ? { fontSize: "1.2rem", padding: "16px 20px" } : {}}
                 />
                 <button
                   type="button"
                   className="cursor-pointer absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[var(--primary-hover-color)]"
                 >
-                  <Search size={20} />
+                  <Search size={is4K ? 28 : 20} />
                 </button>
               </div>
 
@@ -729,26 +750,29 @@ const benefits = [
                   type="button"
                   onClick={() => setOpenDropdown(!openDropdown)}
                   className="flex justify-between items-center w-full sm:w-[200px] border-2 border-[var(--primary-header-color)] rounded-lg py-3 px-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
+                  style={is4K ? { fontSize: "1.2rem", padding: "16px 20px", width: "250px" } : {}}
                 >
                   {filters.find((f) => f.value === selectedFilter)?.label}
                   <ChevronDown
-                    size={18}
-                    className={`transition-transform duration-200 ${
-                      openDropdown ? "rotate-180" : ""
-                    }`}
+                    size={is4K ? 24 : 18}
+                    className={`transition-transform duration-200 ${openDropdown ? "rotate-180" : ""}`}
                   />
                 </button>
 
                 {openDropdown && (
-                  <ul className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white">
+                  <ul
+                    className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white"
+                    style={is4K ? { width: "250px" } : {}}
+                  >
                     {filters.map((f) => (
                       <li
                         key={f.value}
                         onClick={() => {
-                          setSelectedFilter(f.value);
-                          setOpenDropdown(false);
+                          setSelectedFilter(f.value)
+                          setOpenDropdown(false)
                         }}
                         className="px-4 py-2 cursor-pointer hover:bg-[var(--primary-color)] hover:text-white rounded-lg"
+                        style={is4K ? { fontSize: "1.2rem", padding: "10px 16px" } : {}}
                       >
                         {f.label}
                       </li>
@@ -762,33 +786,34 @@ const benefits = [
           <div className="jobs-grid">
             {filteredJobs.map((job) => (
               <div key={job.id} className="job-card">
-                <div
-                  className="job-header"
-                  onClick={() => toggleJobExpansion(job.id)}
-                >
+                <div className="job-header" onClick={() => toggleJobExpansion(job.id)}>
                   <div className="job-info">
-                    <h3 className="job-title">{job.title}</h3>
-                    <div className="job-meta">
+                    <h3 className="job-title" style={is4K ? { fontSize: "2rem" } : {}}>
+                      {job.title}
+                    </h3>
+                    <div className="job-meta" style={is4K ? { fontSize: "1.1rem" } : {}}>
                       <div className="job-meta-item">
-                        <MapPin size={16} />
+                        <MapPin size={is4K ? 20 : 16} />
                         {job.location}
                       </div>
                       <div className="job-meta-item">
-                        <Clock size={16} />
+                        <Clock size={is4K ? 20 : 16} />
                         {job.type}
                       </div>
                       <div className="job-meta-item">
-                        <Briefcase size={16} />
+                        <Briefcase size={is4K ? 20 : 16} />
                         {job.department}
                       </div>
                     </div>
-                    <p className="job-description">{job.description}</p>
+                    <p className="job-description" style={is4K ? { fontSize: "1.2rem" } : {}}>
+                      {job.description}
+                    </p>
                   </div>
-                  <button className="expand-button">
+                  <button className="expand-button" style={is4K ? { width: "40px", height: "40px" } : {}}>
                     {expandedJob === job.id ? (
-                      <ChevronUp size={20} />
+                      <ChevronUp size={is4K ? 28 : 20} />
                     ) : (
-                      <ChevronDown size={20} />
+                      <ChevronDown size={is4K ? 28 : 20} />
                     )}
                   </button>
                 </div>
@@ -796,8 +821,8 @@ const benefits = [
                 {expandedJob === job.id && (
                   <div className="job-details">
                     <div className="job-section">
-                      <h4>Responsibilities:</h4>
-                      <ul>
+                      <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Responsibilities:</h4>
+                      <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
                         {job.responsibilities.map((resp, index) => (
                           <li key={index}>{resp}</li>
                         ))}
@@ -805,16 +830,20 @@ const benefits = [
                     </div>
 
                     <div className="job-section">
-                      <h4>Skills & Qualifications:</h4>
-                      <ul>
+                      <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Skills & Qualifications:</h4>
+                      <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
                         {job.qualifications.map((qual, index) => (
                           <li key={index}>{qual}</li>
                         ))}
                       </ul>
                     </div>
 
-                    <a href={`mailto:${job.email}`} className="apply-button">
-                      <Mail size={16} />
+                    <a
+                      href={`mailto:${job.email}`}
+                      className="apply-button"
+                      style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
+                    >
+                      <Mail size={is4K ? 20 : 16} />
                       Apply Now
                     </a>
                   </div>
@@ -827,30 +856,36 @@ const benefits = [
 
       {/* Internships Section */}
       <section className="section internships-section">
-        <div className="container">
-          <h2 className="section-title">Internship Opportunities</h2>
+        <div
+          className="container"
+          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
+        >
+          <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
+            Internship Opportunities
+          </h2>
           <p
             style={{
               textAlign: "center",
-              fontSize: "1.1rem",
-              maxWidth: "800px",
+              fontSize: is4K ? "1.5rem" : "1.1rem",
+              maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
               color: "var(--primary-light-text-color)",
             }}
           >
-            We offer internship programs that provide hands-on experience in
-            various aspects of the business, including marketing, e-commerce,
-            operations, and product development.
+            We offer internship programs that provide hands-on experience in various aspects of the business, including
+            marketing, e-commerce, operations, and product development.
           </p>
 
           <div className="internships-grid">
             {internships.map((internship, index) => (
               <div key={index} className="internship-card">
-                <div className="internship-icon">
-                  <GraduationCap size={24} />
+                <div className="internship-icon" style={is4K ? { width: "80px", height: "80px" } : {}}>
+                  <GraduationCap size={is4K ? 32 : 24} />
                 </div>
-                <h3 className="value-title">{internship.title}</h3>
-                <p>{internship.description}</p>
+                <h3 className="value-title" style={is4K ? { fontSize: "1.8rem" } : {}}>
+                  {internship.title}
+                </h3>
+                <p style={is4K ? { fontSize: "1.2rem" } : {}}>{internship.description}</p>
               </div>
             ))}
           </div>
@@ -859,8 +894,9 @@ const benefits = [
             <a
               href="mailto:internships@dekoshurcrafts.com"
               className="apply-button"
+              style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
             >
-              <Mail size={16} />
+              <Mail size={is4K ? 20 : 16} />
               Apply for Internships
             </a>
           </div>
@@ -869,28 +905,36 @@ const benefits = [
 
       {/* Culture & Values Section */}
       <section className="section">
-        <div className="container">
-          <h2 className="section-title">Culture & Values</h2>
+        <div
+          className="container"
+          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
+        >
+          <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
+            Culture & Values
+          </h2>
           <p
             style={{
               textAlign: "center",
-              fontSize: "1.1rem",
-              maxWidth: "800px",
+              fontSize: is4K ? "1.5rem" : "1.1rem",
+              maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
               color: "var(--primary-light-text-color)",
             }}
           >
-            We believe that a strong, cohesive company culture is the key to our
-            success. Here are the core values that drive everything we do at De
-            Koshur Crafts.
+            We believe that a strong, cohesive company culture is the key to our success. Here are the core values that
+            drive everything we do at De Koshur Crafts.
           </p>
 
           <div className="values-grid">
             {coreValues.map((value, index) => (
               <div key={index} className="value-card">
-                <div className="value-icon">{value.icon}</div>
-                <h3 className="value-title">{value.title}</h3>
-                <p>{value.description}</p>
+                <div className="value-icon" style={is4K ? { width: "100px", height: "100px" } : {}}>
+                  {value.icon}
+                </div>
+                <h3 className="value-title" style={is4K ? { fontSize: "1.8rem" } : {}}>
+                  {value.title}
+                </h3>
+                <p style={is4K ? { fontSize: "1.2rem" } : {}}>{value.description}</p>
               </div>
             ))}
           </div>
@@ -898,39 +942,37 @@ const benefits = [
       </section>
 
       {/* How to Apply Section */}
-      <section
-        className="section"
-        style={{ background: "var(--primary-header-color)" }}
-      >
-        <div className="container">
-          <h2 className="section-title">How to Apply</h2>
-          <div
-            style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto" }}
-          >
+      <section className="section" style={{ background: "var(--primary-header-color)" }}>
+        <div
+          className="container"
+          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
+        >
+          <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
+            How to Apply
+          </h2>
+          <div style={{ textAlign: "center", maxWidth: is4K ? "900px" : "600px", margin: "0 auto" }}>
             <p
               style={{
-                fontSize: "1.1rem",
+                fontSize: is4K ? "1.5rem" : "1.1rem",
                 marginBottom: "2rem",
                 color: "var(--primary-light-text-color)",
               }}
             >
-              If you are passionate about sustainability, fair trade, and
-              empowering Kashmiri artisans, De Koshur Crafts might be the
-              perfect place for you.
+              If you are passionate about sustainability, fair trade, and empowering Kashmiri artisans, De Koshur Crafts
+              might be the perfect place for you.
             </p>
             <p
               style={{
-                fontSize: "1.1rem",
+                fontSize: is4K ? "1.5rem" : "1.1rem",
                 marginBottom: "2rem",
                 color: "var(--primary-light-text-color)",
               }}
             >
-              To apply for any open positions, please send your resume and cover
-              letter to careers@dekoshurcrafts.com.
+              To apply for any open positions, please send your resume and cover letter to careers@dekoshurcrafts.com.
             </p>
             <p
               style={{
-                fontSize: "1.2rem",
+                fontSize: is4K ? "1.8rem" : "1.2rem",
                 fontWeight: "600",
                 color: "var(--primary-color)",
               }}
@@ -943,32 +985,41 @@ const benefits = [
 
       {/* Call to Action Section */}
       <section className="cta-section">
-        <div className="container">
-          <h2 className="cta-title">Join Our Team and Make a Difference</h2>
-          <p
-            style={{ fontSize: "1.2rem", marginBottom: "1rem", opacity: "0.9" }}
-          >
-            Are you ready to be part of a mission-driven company that is making
-            a global impact?
+        <div
+          className="container"
+          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
+        >
+          <h2 className="cta-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
+            Join Our Team and Make a Difference
+          </h2>
+          <p style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}>
+            Are you ready to be part of a mission-driven company that is making a global impact?
           </p>
-          <p style={{ fontSize: "1.1rem", opacity: "0.8" }}>
-            We are always looking for passionate individuals to join our team.
-            Browse our open positions or internships, apply today, and become
-            part of De Koshur Crafts.
+          <p style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}>
+            We are always looking for passionate individuals to join our team. Browse our open positions or internships,
+            apply today, and become part of De Koshur Crafts.
           </p>
 
           <div className="cta-buttons">
-            <a href="#job-openings" className="cta-button">
-              <Briefcase size={20} />
+            <a
+              href="#job-openings"
+              className="cta-button"
+              style={is4K ? { fontSize: "1.5rem", padding: "20px 40px" } : {}}
+            >
+              <Briefcase size={is4K ? 28 : 20} />
               Explore Career Opportunities
             </a>
-            <a href="mailto:careers@dekoshurcrafts.com" className="cta-button">
-              <Mail size={20} />
+            <a
+              href="mailto:careers@dekoshurcrafts.com"
+              className="cta-button"
+              style={is4K ? { fontSize: "1.5rem", padding: "20px 40px" } : {}}
+            >
+              <Mail size={is4K ? 28 : 20} />
               Apply Now
             </a>
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }

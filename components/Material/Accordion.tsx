@@ -3,16 +3,8 @@
 import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-  Users,
-  HeartHandshake,
-  GraduationCap,
-  Stethoscope,
-  Building2,
-  Leaf,
-  Factory,
-  Globe2,
-} from "lucide-react"
+import { Users, HeartHandshake, GraduationCap, Stethoscope, Building2, Leaf, Factory, Globe2 } from "lucide-react"
+import { useGlobalContext } from "../Context/GlobalProvider"
 
 interface AccordionItem {
   id: string
@@ -33,21 +25,22 @@ const iconMap: Record<string, React.ElementType> = {
   stethoscope: Stethoscope,
   building2: Building2,
   leaf: Leaf,
-  factory: Factory, 
+  factory: Factory,
   globe2: Globe2,
 }
 
 export default function Accordion({ data }: ResponsiveAccordionProps) {
+  const { is4K } = useGlobalContext()
   const accordionData: AccordionItem[] = data || []
   const [activeItem, setActiveItem] = useState<string>(
-    accordionData[2]?.id || "" // safe fallback
+    accordionData[2]?.id || "", // safe fallback
   )
 
   return (
-    <div className="w-full px-2 md:px-8 flex items-center justify-center">
+    <div className={`w-full ${is4K ? " md:px-24" : "px-2 md:px-8"} flex items-center justify-center`}>
       <div className="w-full">
         {/* Desktop Horizontal Accordion */}
-        <div className="hidden lg:flex gap-4 h-96 w-full">
+        <div className={`hidden lg:flex gap-4 ${is4K ? "h-[500px]" : "h-96"} w-full`}>
           {accordionData.map((item) => {
             const isActive = activeItem === item.id
             const Icon = iconMap[item.icon] // get the actual component
@@ -75,7 +68,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                   transition: { duration: 0.1 },
                 }}
               >
-                <div className="relative h-full w-full p-6 flex flex-col justify-center">
+                <div className={`relative h-full w-full ${is4K ? "p-10" : "p-6"} flex flex-col justify-center`}>
                   <AnimatePresence mode="wait">
                     {isActive ? (
                       <motion.div
@@ -89,15 +82,15 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                         }}
                         className="text-white"
                       >
-                        <div className="flex items-center gap-4 mb-6">
+                        <div className={`flex items-center gap-4 ${is4K ? "mb-8" : "mb-6"}`}>
                           {Icon && (
-                            <Icon className="w-12 h-12 text-[var(--secondary-hover-color)]" />
+                            <Icon
+                              className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-[var(--secondary-hover-color)]`}
+                            />
                           )}
-                          <h2 className="text-4xl font-bold">{item.title}</h2>
+                          <h2 className={`${is4K ? "text-5xl" : "text-4xl"} font-bold`}>{item.title}</h2>
                         </div>
-                        <p className="text-lg leading-relaxed opacity-90">
-                          {item.content}
-                        </p>
+                        <p className={`${is4K ? "text-xl" : "text-lg"} leading-relaxed opacity-90`}>{item.content}</p>
                       </motion.div>
                     ) : (
                       <motion.div
@@ -112,9 +105,9 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                         className="h-full flex flex-col items-center justify-center gap-4"
                       >
                         {Icon && (
-                          <Icon className="w-8 h-8 text-[var(--secondary-hover-color)]" />
+                          <Icon className={`${is4K ? "w-12 h-12" : "w-8 h-8"} text-[var(--secondary-hover-color)]`} />
                         )}
-                        <h3 className="text-white text-xl font-semibold whitespace-nowrap">
+                        <h3 className={`${is4K ? "text-2xl" : "text-xl"} text-white font-semibold whitespace-nowrap`}>
                           {item.title}
                         </h3>
                       </motion.div>
@@ -140,7 +133,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
             return (
               <motion.div
                 key={item.id}
-                className="rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm p-6"
+                className={`rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm ${is4K ? "p-10" : "p-6"}`}
                 initial={{ opacity: 0, y: 60, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
@@ -160,15 +153,13 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
                 }}
               >
                 <div className="text-white">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className={`flex items-center gap-4 ${is4K ? "mb-6" : "mb-4"}`}>
                     {Icon && (
-                      <Icon className="w-8 h-8 text-[var(--secondary-hover-color)]" />
+                      <Icon className={`${is4K ? "w-12 h-12" : "w-8 h-8"} text-[var(--secondary-hover-color)]`} />
                     )}
-                    <h2 className="text-2xl font-bold">{item.title}</h2>
+                    <h2 className={`${is4K ? "text-3xl" : "text-2xl"} font-bold`}>{item.title}</h2>
                   </div>
-                  <p className="text-base leading-relaxed opacity-90">
-                    {item.content}
-                  </p>
+                  <p className={`${is4K ? "text-lg" : "text-base"} leading-relaxed opacity-90`}>{item.content}</p>
                 </div>
               </motion.div>
             )

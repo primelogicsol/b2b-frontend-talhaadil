@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useGlobalContext } from "../Context/GlobalProvider"
 const tabData = {
   brickStores: {
     title: "Brick Stores",
@@ -71,7 +72,7 @@ const tabData = {
         points: [
           "Cart conversion stands at near 53.2%",
           "Average order value holds at $180 here",
-          "Return rate recorded at about twelve %", 
+          "Return rate recorded at about twelve %",
           "Customer retention stays near sixty eight",
         ],
       },
@@ -113,7 +114,7 @@ const tabData = {
         points: [
           "Sell‑through rate stands at around 75%",
           "Average markup recorded at near 2.8×",
-          "Return rate measured low at only 5%", 
+          "Return rate measured low at only 5%",
           "Inventory turns occur about 4× yearly",
         ],
       },
@@ -153,9 +154,9 @@ const tabData = {
       {
         title: "Ops Metrics",
         points: [
-          "Conversion rate stands at near 4.2%", 
+          "Conversion rate stands at near 4.2%",
           "Average order value holds at $280 now",
-          "Return rate recorded at around 8%", 
+          "Return rate recorded at around 8%",
           "Repeat purchase stands at 65 percent",
         ],
       },
@@ -186,7 +187,7 @@ const tabData = {
       {
         title: "Platform Data",
         points: [
-          "Marketplace conversion stays at 4.2%", 
+          "Marketplace conversion stays at 4.2%",
           "Average session length hits 8.5 mins",
           "Basket completion stands at 65 percent",
           "Mobile traffic holds near 72 percent now",
@@ -196,7 +197,7 @@ const tabData = {
         title: "Ops Metrics",
         points: [
           "Order fulfillment measured at ninety six",
-          "Shipping time averages around 12 days", 
+          "Shipping time averages around 12 days",
           "Return rate recorded at around 8 percent",
           "Inventory turnover occurs about 4× yearly",
         ],
@@ -205,8 +206,8 @@ const tabData = {
         title: "Conversion Data",
         points: [
           "First‑time buyers reach near 2.8 percent",
-          "Repeat customers stand at 4.5 percent", 
-          "Cart abandonment stays at 68 percent", 
+          "Repeat customers stand at 4.5 percent",
+          "Cart abandonment stays at 68 percent",
           "Recovery rate stands at 25 percent now",
         ],
       },
@@ -229,7 +230,7 @@ const tabData = {
         title: "Sales Data",
         points: [
           "Sales per sqft range from $850 to $1200",
-          "Conversion rate stands at near 4.8%", 
+          "Conversion rate stands at near 4.8%",
           "Average basket ranges $280 to $450 now",
           "Customer dwell time averages 28 minutes",
         ],
@@ -238,7 +239,7 @@ const tabData = {
         title: "Ops Metrics",
         points: [
           "Inventory turnover occurs near 6× yearly",
-          "Gross margin recorded near 65 to 70%", 
+          "Gross margin recorded near 65 to 70%",
           "Operating costs remain near thirty five",
           "Staff productivity hits $1,200 per day",
         ],
@@ -263,16 +264,16 @@ const tabData = {
         points: [
           "Live auctions revenue totals about $18B",
           "Online bidding revenue totals about $12B",
-          "Hybrid events revenue totals about $8B", 
+          "Hybrid events revenue totals about $8B",
           "Private sales revenue totals about $4B",
         ],
       },
       {
         title: "Bid Metrics",
         points: [
-          "Opening bid conversion stays near 65%", 
-          "Price escalation stands at around 35%", 
-          "Buyer participation is 18 per lot now", 
+          "Opening bid conversion stays near 65%",
+          "Price escalation stands at around 35%",
+          "Buyer participation is 18 per lot now",
           "Completion rate measured at 82 percent",
         ],
       },
@@ -346,17 +347,17 @@ const tabData = {
         title: "Consumer Mix",
         points: [
           "Urban professionals make up forty five %",
-          "Design enthusiasts form twenty eight %", 
-          "Cultural collectors make up seventeen %", 
+          "Design enthusiasts form twenty eight %",
+          "Cultural collectors make up seventeen %",
           "Conscious consumers account for ten %",
         ],
       },
       {
         title: "Age Data",
         points: [
-          "Ages thirty five to forty five hold 40%", 
-          "Ages forty six to fifty five hold 30%", 
-          "Ages twenty five to thirty four hold 20%", 
+          "Ages thirty five to forty five hold 40%",
+          "Ages forty six to fifty five hold 30%",
+          "Ages twenty five to thirty four hold 20%",
           "Ages fifty six and above hold 10%",
         ],
       },
@@ -365,16 +366,16 @@ const tabData = {
         points: [
           "Northeast buyers account for thirty five",
           "West Coast buyers account for thirty now",
-          "Southeast buyers account for twenty %", 
+          "Southeast buyers account for twenty %",
           "Midwest buyers account for fifteen %",
         ],
       },
       {
         title: "Purchase Mode",
         points: [
-          "Online shoppers account for forty five %", 
-          "Store visitors account for thirty now", 
-          "Exhibition buyers account for fifteen %", 
+          "Online shoppers account for forty five %",
+          "Store visitors account for thirty now",
+          "Exhibition buyers account for fifteen %",
           "Auction participants account for ten %",
         ],
       },
@@ -389,7 +390,7 @@ const tabData = {
         points: [
           "Single regulatory framework in operation",
           "Unified logistics system in deployment",
-          "Consistent consumer behavior is noticed", 
+          "Consistent consumer behavior is noticed",
           "Streamlined marketing helps the market",
         ],
       },
@@ -397,43 +398,40 @@ const tabData = {
         title: "Premium Edge",
         points: [
           "Higher profit margins are well achieved",
-          "Better quality recognition is secured", 
-          "Stronger brand positioning is noted", 
+          "Better quality recognition is secured",
+          "Stronger brand positioning is noted",
           "Simplified authentication is applied",
         ],
       },
       {
         title: "Market Growth",
         points: [
-          "Deep penetration of the target market", 
-          "Niche dominance within product areas", 
-          "Better relationships with consumers", 
+          "Deep penetration of the target market",
+          "Niche dominance within product areas",
+          "Better relationships with consumers",
           "Controlled growth across all sectors",
         ],
       },
       {
         title: "Size Scope",
         points: [
-          "Massive market with much opportunity", 
-          "Untapped potential remains available", 
-          "Small current share leaves growth room", 
+          "Massive market with much opportunity",
+          "Untapped potential remains available",
+          "Small current share leaves growth room",
           "Huge growth room still existing here",
         ],
       },
     ],
   },
-};
-
+}
 
 export default function PremiumTabs() {
+  const { is4K } = useGlobalContext()
   const [activeTab, setActiveTab] = useState("brickStores")
 
   return (
-    <div
-      className="p-4 md:p-8 lg:p-12"
-    
-    >
-      <div className="max-w-7xl mx-auto">
+    <div className={`${is4K ? "p-8 md:p-16 lg:p-24" : "p-4 md:p-8 lg:p-12"}`}>
+      <div className={`${is4K ? "max-w-[2000px]" : "max-w-7xl"} mx-auto`}>
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: -30 }}
@@ -441,12 +439,13 @@ export default function PremiumTabs() {
           transition={{ duration: 0.8 }}
         >
           <h1
-            className="text-5xl md:text-6xl font-bold mb-6 text-[var(--secondary-color)] "
-          
+            className={`${is4K ? "text-6xl md:text-7xl" : "text-5xl md:text-6xl"} font-bold mb-6 text-[var(--secondary-color)] `}
           >
-           Business Insights
+            Business Insights
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p
+            className={`${is4K ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} text-gray-700 ${is4K ? "max-w-4xl" : "max-w-3xl"} mx-auto leading-relaxed`}
+          >
             Actionable Data and Strategies to Guide Smarter Decisions
           </p>
         </motion.div>
@@ -459,7 +458,7 @@ export default function PremiumTabs() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div
-            className="flex gap-1 p-2 rounded-full shadow-lg border overflow-x-auto no-scrollbar"
+            className={`flex gap-1 ${is4K ? "p-3" : "p-2"} rounded-full shadow-lg border overflow-x-auto no-scrollbar`}
             style={{
               backgroundColor: "var(--primary-color)",
               borderColor: "var(--primary-light-text-color)",
@@ -470,10 +469,8 @@ export default function PremiumTabs() {
                 <motion.button
                   key={key}
                   onClick={() => setActiveTab(key)}
-                  className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex items-center gap-2 text-sm ${
-                    activeTab === key
-                      ? "text-white shadow-lg"
-                      : "text-white"
+                  className={`relative ${is4K ? "px-8 py-4" : "px-6 py-3"} rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${is4K ? "text-base" : "text-sm"} ${
+                    activeTab === key ? "text-white shadow-lg" : "text-white"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -484,9 +481,7 @@ export default function PremiumTabs() {
                         : "transparent",
                   }}
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    {data.title}
-                  </span>
+                  <span className="relative z-10 flex items-center gap-2">{data.title}</span>
                 </motion.button>
               )
             })}
@@ -520,7 +515,7 @@ export default function PremiumTabs() {
                     y: -8,
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                   }}
-                  className="rounded-2xl shadow-xl p-8 border transition-all duration-300 group cursor-pointer relative overflow-hidden"
+                  className={`rounded-2xl shadow-xl ${is4K ? "p-10" : "p-8"} border transition-all duration-300 group cursor-pointer relative overflow-hidden`}
                   style={{
                     backgroundColor: "var(--primary-color)",
                     borderColor: "var(--primary-light-text-color)",
@@ -534,9 +529,10 @@ export default function PremiumTabs() {
                     initial={false}
                   />
                   <div className="relative z-10">
-                    <div className="flex items-center gap-4 mb-6">
-                     
-                      <h3 className="text-xl font-bold text-gray-100 transition-colors duration-300">
+                    <div className={`flex items-center gap-4 ${is4K ? "mb-8" : "mb-6"}`}>
+                      <h3
+                        className={`${is4K ? "text-2xl" : "text-xl"} font-bold text-gray-100 transition-colors duration-300`}
+                      >
                         {card.title}
                       </h3>
                     </div>
@@ -547,15 +543,15 @@ export default function PremiumTabs() {
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 + pointIndex * 0.05 }}
-                          className="flex items-start gap-3 text-gray-100"
+                          className={`flex items-start gap-3 text-gray-100`}
                         >
                           <motion.div
-                            className="w-2 h-2 rounded-full mt-1"
+                            className={`${is4K ? "w-3 h-3" : "w-2 h-2"} rounded-full mt-1`}
                             style={{
                               background: "white",
                             }}
                           />
-                          <span className="text-sm leading-relaxed -mt-1">{point}</span>
+                          <span className={`${is4K ? "text-base" : "text-sm"} leading-relaxed -mt-1`}>{point}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -565,8 +561,6 @@ export default function PremiumTabs() {
             })}
           </motion.div>
         </AnimatePresence>
-
-      
       </div>
     </div>
   )
