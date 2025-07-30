@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import TeamCard from "../Cards/TeamCard"
-
+import { useGlobalContext } from "../Context/GlobalProvider"
 export interface TeamMember {
   isImportant?: boolean
   isCeo?: boolean
@@ -20,6 +20,7 @@ interface TeamGridProps {
 
 export default function TeamGrid({ team }: TeamGridProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { is4K } = useGlobalContext()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,7 +72,7 @@ export default function TeamGrid({ team }: TeamGridProps) {
         }
       `}</style>
       
-      <div className="max-w-6xl mx-auto">
+      <div className="mx-auto">
         {/* Mobile: Single card slider */}
         <div className="flex flex-col items-center md:hidden">
           <div className="flex justify-center">
@@ -125,9 +126,9 @@ export default function TeamGrid({ team }: TeamGridProps) {
         </div>
 
         {/* Desktop: Grid layout */}
-        <div className="hidden lg:grid gap-8 grid-cols-4 mx-auto max-w-5xl justify-items-center">
+        <div className={`hidden lg:grid grid-cols-4 mx-auto justify-items-center ${is4K ? "max-w-[2000px] gap-16" : "max-w-5xl gap-8"}`}>
           {team.map((member, i) => (
-            <TeamCard key={`desktop-${i}`} {...member} />
+            <TeamCard key={i} {...member} />
           ))}
         </div>
       </div>

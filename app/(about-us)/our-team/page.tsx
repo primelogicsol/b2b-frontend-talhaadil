@@ -1,3 +1,4 @@
+'use client'
 import TeamCard from "@/components/Cards/TeamCard";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
 import RectangleSection from "@/components/Section/RectangleSection";
@@ -5,7 +6,9 @@ import TeamGrid from "@/components/Material/TeamGrid";
 import React from "react";
 import TeamPage from "@/components/Essentials/TeamPage";
 import SectionTitle from "@/components/Section/SectionTitle";
+import { useGlobalContext } from "@/components/Context/GlobalProvider";
 function page() {
+  const {is4K} =  useGlobalContext();
   // ================= DATA ==================
 
   // 2A. TECHNOLOGY & PRODUCT DIVISION — Engineering & DevOps
@@ -720,155 +723,235 @@ function page() {
           ))}
         </div>
       </section> 
-    
-
-      {/* ================= MAIN 2 ================= */}
-      <h1 className="text-xl md:text-3xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+          <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Technology & Product Division
       </h1>
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Engineering & DevOps
       </h2>
-     <TeamGrid team={engineeringDevOps} />
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <TeamGrid team={engineeringDevOps} />
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Blockchain & AI Systems
       </h2>
       <TeamGrid team={blockchainAI} />
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Integration & CMS
       </h2>
       <TeamGrid team={integrationCMS} />
-
       {/* ================= MAIN 3 ================= */}
-      <h1 className="text-xl md:text-3xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Vendor Onboarding & Artisan Support Division
       </h1>
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Onboarding & Training
       </h2>
-     <TeamGrid team={onboardingTraining} />
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <TeamGrid team={onboardingTraining} />
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Support & Welfare
       </h2>
       <TeamGrid team={supportWelfare} />
-
       {/* ================= MAIN 4 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Logistics & Packaging Division
       </h1>
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Logistics Operations
       </h2>
       <TeamGrid team={logisticsOps} />
-
-      <h2 className="text-xl md:text-3xl font-bold text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Packaging & Handling
       </h2>
       <TeamGrid team={packagingHandling} />
-
       {/* ================= MAIN 5 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Sustainability & ESG Division
       </h1>
       <TeamGrid team={sustainabilityESG} />
-
       {/* ================= MAIN 6 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Compliance & Legal Division
       </h1>
       <TeamGrid team={complianceLegal} />
-
       {/* ================= MAIN 7 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Quality Assurance & Traceability Division
       </h1>
-     <TeamGrid team={qualityAssurance} />
-
+      <TeamGrid team={qualityAssurance} />
       {/* ================= MAIN 8 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Global Partnerships & Expansion Division
       </h1>
-
-      <h2 className="text-xl md:text-3xl text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Global Strategy & Franchise
       </h2>
       <TeamGrid team={globalStrategy} />
-
-      <h2 className="text-xl md:text-3xl text-[var(--secondary-color)] mt-12 mb-6 text-center">
+      <h2
+        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
+          is4K ? "text-5xl" : "text-2xl md:text-3xl "
+        }`}
+      >
         Program Operations
       </h2>
       <TeamGrid team={programOps} />
-
       {/* ================= MAIN 9 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Marketing & Buyer Engagement Division
       </h1>
       <TeamGrid team={marketingBuyerEngagement} />
-
       {/* ================= MAIN 10 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Media & Visual Content Division
       </h1>
       <TeamGrid team={mediaContent} />
-
       {/* ================= MAIN 11 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Craft Research & Documentation Division
       </h1>
       <TeamGrid team={craftResearch} />
-
       {/* ================= MAIN 12 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Finance, Grants & Investment Division
       </h1>
       <TeamGrid team={financeDivision} />
-
       {/* ================= MAIN 13 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Customer & Vendor Support Division
       </h1>
       <TeamGrid team={customerVendorSupport} />
-
       {/* ================= MAIN 14 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Trade Intelligence & Risk Division
       </h1>
       <TeamGrid team={tradeIntelligence} />
-
       {/* ================= MAIN 15 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Monitoring & Impact Division
       </h1>
       <TeamGrid team={monitoringImpact} />
-
       {/* ================= MAIN 16 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Localization & Regional Trade Division
       </h1>
       <TeamGrid team={localizationTrade} />
-
       {/* ================= MAIN 17 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Ethics, Inclusion & Transparency Division
       </h1>
       <TeamGrid team={ethicsInclusion} />
       {/* ================= MAIN 18 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Innovation & Craft‑Tech Lab
       </h1>
       <TeamGrid team={innovationLab} />
-
       {/* ================= MAIN 19 ================= */}
-      <h1 className="text-2xl md:text-4xl font-extrabold text-[var(--primary-color)] mt-20 mb-12 text-center">
+      <h1
+        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl "
+        }`}
+      >
         Admin & CMS Control Division
       </h1>
-        <TeamGrid team={adminCMSControl}/>
+      <TeamGrid team={adminCMSControl} />
       <TeamPage />
     </div>
   );

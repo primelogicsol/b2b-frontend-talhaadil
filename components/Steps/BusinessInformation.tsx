@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Building2, Award, CreditCard, AlertTriangle, Star } from "lucide-react"
+import { useGlobalContext } from "@/components/Context/GlobalProvider"
 
 interface BusinessInformationProps {
   data?: any
@@ -15,6 +16,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
+
+  const { is4K } = useGlobalContext()
 
   const [formData, setFormData] = useState(
     data || {
@@ -259,7 +262,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-2">
+    <div className={`mx-auto px-2 ${is4K ? "max-w-[2000px]" : "max-w-5xl"}`}>
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <Building2 className="w-8 h-8 text-white" />

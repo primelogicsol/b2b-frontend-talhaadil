@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
-
+import { useGlobalContext } from "../Context/GlobalProvider"
 type DetailMap = Record<string, string[]>
 
 interface SubCategory {
@@ -41,7 +41,7 @@ export default function ComprehensiveProductSelection({
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
-
+  const { is4K } = useGlobalContext()
   const [selectedCategories, setSelectedCategories] = useState<string[]>(data?.categories ?? [])
   const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(data?.subCategories ?? [])
   const [detailedSelections, setDetailedSelections] = useState<Record<string, DetailMap>>(
@@ -223,7 +223,7 @@ export default function ComprehensiveProductSelection({
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className={`mx-auto px-4 py-8 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
       <div ref={topRef} />
 
       {/* Progress Indicator */}

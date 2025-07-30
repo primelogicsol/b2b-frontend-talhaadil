@@ -1,5 +1,6 @@
 "use client"
 import { useEffect } from "react";
+import { useGlobalContext } from "../Context/GlobalProvider";
 
 interface ApplicationStatusProps {
   onNext: () => void
@@ -58,6 +59,8 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const { is4K } = useGlobalContext();
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed":
@@ -97,7 +100,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4">
+    <div className={`mx-auto px-4 ${is4K ? "max-w-[2000px]" : "max-w-6xl"}`}>
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-[var(--primary-color)] mb-2">Application Status</h1>
         <p className="text-gray-600">Track the progress of your partnership application</p>

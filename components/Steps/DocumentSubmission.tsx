@@ -11,7 +11,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { FileText, Ruler, ShieldCheck } from "lucide-react"; // Retain others as is
-
+import { useGlobalContext } from "../Context/GlobalProvider";
 interface DocumentData {
   businessLicense: File | null;
   taxCertificate: File | null;
@@ -78,6 +78,7 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
       identityProof: null,
     }
   );
+  const { is4K } = useGlobalContext();
   const [draggedOver, setDraggedOver] = useState<string | null>(null);
 
   const handleFileUpload = (documentType: keyof DocumentData, file: File | null) => {
@@ -198,7 +199,7 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6">
+    <div className={`mx-auto px-6 ${is4K ? "max-w-[2000px]" : "max-w-7xl "}`}>
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <FaFileUpload className="text-white w-8 h-8" />

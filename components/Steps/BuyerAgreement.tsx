@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { FileText, CheckCircle } from "lucide-react"
-
+import { useGlobalContext } from "../Context/GlobalProvider"
 interface AgreementData {
   accepted: boolean
 }
@@ -18,7 +18,7 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
+  const { is4K } = useGlobalContext()
   const [accepted, setAccepted] = useState(data?.accepted || false)
 
   const handleAcceptanceChange = (value: boolean) => {
@@ -79,7 +79,7 @@ By checking the acceptance box below, you acknowledge that you have read, unders
   `
 
   return (
-    <div className="max-w-4xl mx-auto px-6">
+    <div className={`mx-auto px-6 ${is4K ? "max-w-[2000px]" : "max-w-6xl"}`}>
       {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">

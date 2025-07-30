@@ -2,12 +2,12 @@
 
 import { useState } from "react"
 import { Key, BarChart, Truck, Briefcase, Check } from "lucide-react" // Import specific icons
-
+import { useGlobalContext } from "../Context/GlobalProvider"
 export default function FinalActivation() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
-
+const { is4K } = useGlobalContext()
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--primary-header-color)] to-white">
+    <div className="bg-gradient-to-br from-[var(--primary-header-color)] to-white">
       {/* Header */}
       <header className="bg-[var(--primary-color)] text-white py-6 px-4 sm:px-6 lg:px-8 shadow-lg">
         <div className="max-w-7xl mx-auto">
@@ -24,7 +24,7 @@ export default function FinalActivation() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className={`mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
         {/* Hero Section */}
         <section className="text-center mb-12 sm:mb-16 animate-fade-in-up">
           <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-12 relative overflow-hidden">
