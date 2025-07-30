@@ -1,5 +1,5 @@
 import { Package, Handshake, GalleryVertical, Globe, Building, Store, Network, Gem } from "lucide-react";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 
 export default function PartnershipModel() {
   const { is4K } = useGlobalContext();

@@ -22,7 +22,7 @@ import {
   Droplets,
   Sun,
 } from "lucide-react";
-import { useGlobalContext } from "../Context/GlobalProvider";
+import { useGlobalContext } from "../../context/ScreenProvider";
 
 export default function EthicalSourcingSustainability() {
   const [isVisible, setIsVisible] = useState(false);

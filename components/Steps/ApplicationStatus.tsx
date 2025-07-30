@@ -1,6 +1,6 @@
 "use client"
 import { useEffect } from "react";
-import { useGlobalContext } from "../Context/GlobalProvider";
+import { useGlobalContext } from "../../context/ScreenProvider";
 
 interface ApplicationStatusProps {
   onNext: () => void

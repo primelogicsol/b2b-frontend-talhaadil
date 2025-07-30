@@ -13,7 +13,7 @@ import {
 } from "lucide-react"
 import { useInView } from "framer-motion"
 import { useState, useEffect, useRef } from "react"
-import { useGlobalContext } from "@/components/Context/GlobalProvider"
+import { useGlobalContext } from "@/context/ScreenProvider"
 export default function TeamPage() {
   const { is4K } = useGlobalContext() // Add this line
   const [isVisible, setIsVisible] = useState(false)

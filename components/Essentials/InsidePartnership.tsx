@@ -22,7 +22,7 @@ import RecSquareSection from "../Section/RecSquareSection"
 import Accordion from "../Material/Accordion"
 import SectionFaq from "../Section/SectionFaq"// Corrected path
 import CostComparisonResponsive from "./CostComparsion"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 // Define types for all the data structures
 export interface ServiceCard {

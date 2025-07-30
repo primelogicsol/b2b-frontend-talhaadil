@@ -11,7 +11,7 @@ import {
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
 import Timeline from "@/components/Material/TimeLine";
 import DiagonalSection from "@/components/Section/DiagonalSection";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 
 export default function OurStoryPage() {
   const { is4K } = useGlobalContext();

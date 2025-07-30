@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 export default function UserProfilePage() {
   const { is4K } = useGlobalContext()

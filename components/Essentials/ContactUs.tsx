@@ -9,7 +9,7 @@ import {
   FaInstagram as Instagram,
   FaLinkedinIn as Linkedin,
 } from "react-icons/fa"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 import {
   Mail,
   Phone,

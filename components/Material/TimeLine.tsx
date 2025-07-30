@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import { CheckCircle, Globe, Users, Award, Star, Sparkles } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 export default function Timeline() {
   const [activeItem, setActiveItem] = useState(0)

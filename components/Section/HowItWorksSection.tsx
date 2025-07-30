@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface HowItWorksProps {
   title: string

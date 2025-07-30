@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface Slide {
   id: number

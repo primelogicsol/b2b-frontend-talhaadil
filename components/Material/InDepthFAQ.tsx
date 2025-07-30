@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useGlobalContext } from "@/components/Context/GlobalProvider" // Import useGlobalContext
+import { useGlobalContext } from "@/context/ScreenProvider" // Import useGlobalContext
 
 interface FAQItem {
   id: number

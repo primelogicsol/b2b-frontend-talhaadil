@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface Platform {
   name: string

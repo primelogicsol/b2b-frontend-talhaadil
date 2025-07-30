@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import parse from "html-react-parser"
 import SectionTitle from "./SectionTitle"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface FaqItem {
   title: string

@@ -2,7 +2,7 @@
 import { Building, Layers, Package, Phone, Warehouse, Truck, Palette, Camera } from "lucide-react"
 import React from "react"
 
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 const locations = [
   {

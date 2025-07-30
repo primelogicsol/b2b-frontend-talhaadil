@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Key, BarChart, Truck, Briefcase, Check } from "lucide-react" // Import specific icons
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 export default function FinalActivation() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
 const { is4K } = useGlobalContext()

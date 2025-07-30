@@ -30,7 +30,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import PricingTable from "@/components/Material/PricingTable"
 import HowItWorksSection from "@/components/Section/HowItWorksSection"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 export default function Process() {
   const { is4K } = useGlobalContext()
 

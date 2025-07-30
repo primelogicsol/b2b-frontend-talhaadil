@@ -58,7 +58,7 @@ export default function VerticalHeroSlider() {
   }
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] overflow-hidden mt-20">
+    <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] overflow-hidden">
       <motion.div
         className="flex flex-col w-full"
         animate={{

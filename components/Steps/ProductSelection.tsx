@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 type DetailMap = Record<string, string[]>
 
 interface SubCategory {

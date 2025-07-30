@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { CheckSquare, ArrowRight, Laptop } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface PartnershipActivationProps {
   mainImage?: string

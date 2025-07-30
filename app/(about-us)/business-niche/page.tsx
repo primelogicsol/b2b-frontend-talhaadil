@@ -6,7 +6,7 @@ import PremiumTabs from "@/components/Material/PremiumTabs"
 import BusinessLocation from "@/components/Essentials/BusinessLocation"
 import { Shirt, Palette, Scissors, TreePine, Settings, Gem, Landmark, Leaf, Gift } from "lucide-react"
 import Location from "@/components/Essentials/Location"
-import { useGlobalContext } from "@/components/Context/GlobalProvider"
+import { useGlobalContext } from "@/context/ScreenProvider"
 
 function page() {
   const { is4K } = useGlobalContext()

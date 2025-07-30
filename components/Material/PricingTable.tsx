@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Info } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface PricingPlan {
   name: string

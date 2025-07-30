@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 
 interface FlipCardProps {
   title: string;

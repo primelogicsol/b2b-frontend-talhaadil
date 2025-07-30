@@ -11,7 +11,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { FileText, Ruler, ShieldCheck } from "lucide-react"; // Retain others as is
-import { useGlobalContext } from "../Context/GlobalProvider";
+import { useGlobalContext } from "../../context/ScreenProvider";
 interface DocumentData {
   businessLicense: File | null;
   taxCertificate: File | null;

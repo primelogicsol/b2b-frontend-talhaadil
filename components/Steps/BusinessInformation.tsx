@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Building2, Award, CreditCard, AlertTriangle, Star } from "lucide-react"
-import { useGlobalContext } from "@/components/Context/GlobalProvider"
+import { useGlobalContext } from "@/context/ScreenProvider"
 
 interface BusinessInformationProps {
   data?: any

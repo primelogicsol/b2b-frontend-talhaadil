@@ -26,7 +26,7 @@ import {
   Heart,
   BarChart3,
 } from "lucide-react"
-import { useGlobalContext } from "@/components/Context/GlobalProvider" // Import useGlobalContext
+import { useGlobalContext } from "@/context/ScreenProvider" // Import useGlobalContext
 
 interface PartnershipBenefit {
   title: string

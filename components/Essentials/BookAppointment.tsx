@@ -19,7 +19,7 @@ import {
   Upload,
   Flag,
 } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface FormData {
   userType: "buyer" | "vendor" | "guest" | ""

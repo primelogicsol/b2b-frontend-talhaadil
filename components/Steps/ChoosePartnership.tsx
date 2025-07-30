@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FaHandshake, FaCheck, FaLock } from "react-icons/fa";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 interface Partnership {
   id: string;
   title: string;

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useGlobalContext } from "../Context/GlobalProvider"; // Adjust path as needed
+import { useGlobalContext } from "../../context/ScreenProvider"; // Adjust path as needed
 
 interface SectionProps {
   subtitle?: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGlobalContext } from "../Context/GlobalProvider";
+import { useGlobalContext } from "../../context/ScreenProvider";
 import { Globe, Heart, Users, Zap } from "lucide-react";
 
 const cards = [

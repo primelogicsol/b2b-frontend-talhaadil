@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 
 export interface AnimationCardProps {
   title?: string;

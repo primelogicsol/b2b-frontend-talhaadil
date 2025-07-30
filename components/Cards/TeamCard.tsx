@@ -1,6 +1,6 @@
 "use client";
 
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 import { VideoIcon as Vimeo, Phone, Share2, MailIcon } from "lucide-react";
 
 export interface TeamMember {

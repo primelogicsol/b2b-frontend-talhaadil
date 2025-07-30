@@ -5,7 +5,7 @@ import VerticalHeroSlider from "@/components/Essentials/VerticalBanner"
 import InDepthFAQ from "@/components/Material/InDepthFAQ"
 import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection"
 import HowItWorksSection from "@/components/Section/HowItWorksSection"
-import { useGlobalContext } from "@/components/Context/GlobalProvider" // Import useGlobalContext
+import { useGlobalContext } from "@/context/ScreenProvider" // Import useGlobalContext
 
 const defaultProps: PartnershipPageProps = {
   vendorTitle: "Why Work With De Koshur?",

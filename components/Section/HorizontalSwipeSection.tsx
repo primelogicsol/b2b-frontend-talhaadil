@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { RiShakeHandsLine } from "react-icons/ri"
-import { useGlobalContext } from "@/components/Context/GlobalProvider" // Import useGlobalContext
+import { useGlobalContext } from "@/context/ScreenProvider" // Import useGlobalContext
 
 interface Testimonial {
   id: number

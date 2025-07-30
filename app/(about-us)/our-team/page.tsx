@@ -6,7 +6,7 @@ import TeamGrid from "@/components/Material/TeamGrid";
 import React from "react";
 import TeamPage from "@/components/Essentials/TeamPage";
 import SectionTitle from "@/components/Section/SectionTitle";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 function page() {
   const {is4K} =  useGlobalContext();
   // ================= DATA ==================

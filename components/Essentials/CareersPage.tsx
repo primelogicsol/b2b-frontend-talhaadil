@@ -15,7 +15,7 @@ import {
   Mail,
 } from "lucide-react"
 import VerticalHeroSlider from "./VerticalBanner"
-import { useGlobalContext } from "../Context/GlobalProvider"// Import useGlobalContext
+import { useGlobalContext } from "../../context/ScreenProvider"// Import useGlobalContext
 
 export default function CareersPage() {
   const [searchTerm, setSearchTerm] = useState("")

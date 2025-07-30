@@ -1,7 +1,7 @@
 "use client"
 
 import { MapPin, Globe, Users, Building2, Truck, Phone, Heart } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 export default function BusinessLocation() {
   const { is4K } = useGlobalContext()

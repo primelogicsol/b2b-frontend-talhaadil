@@ -1,5 +1,5 @@
 "use client";
-import { useGlobalContext } from "@/components/Context/GlobalProvider";
+import { useGlobalContext } from "@/context/ScreenProvider";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import { FlipCard } from "@/components/Cards/FlipCard";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import TeamCard from "../Cards/TeamCard"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 export interface TeamMember {
   isImportant?: boolean
   isCeo?: boolean

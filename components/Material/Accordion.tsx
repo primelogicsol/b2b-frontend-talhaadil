@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Users, HeartHandshake, GraduationCap, Stethoscope, Building2, Leaf, Factory, Globe2 } from "lucide-react"
-import { useGlobalContext } from "../Context/GlobalProvider"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface AccordionItem {
   id: string
