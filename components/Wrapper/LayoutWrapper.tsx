@@ -21,7 +21,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   return (
     <>
       {!isAuthPage && <Navbar />}
+      <main className="pt-20">
       {children}
+      </main>
       {!isAuthPage && <Footer />}
     </>
   );

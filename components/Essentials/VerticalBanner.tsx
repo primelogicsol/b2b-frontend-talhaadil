@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { useGlobalContext } from "@/components/Context/GlobalProvider"
 
 const slides = [
   {
@@ -40,6 +41,7 @@ const slides = [
 
 export default function VerticalHeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { is4K } = useGlobalContext()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -52,18 +54,16 @@ export default function VerticalHeroSlider() {
     if (typeof window !== "undefined") {
       if (window.innerWidth < 640) return currentSlide * 60
       if (window.innerWidth < 1024) return currentSlide * 75
-      return currentSlide * 100
+      return currentSlide * 80
     }
-    return currentSlide * 100
+    return currentSlide * 80
   }
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] overflow-hidden mt-20">
+    <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] overflow-hidden">
       <motion.div
         className="flex flex-col w-full"
-        animate={{
-          y: `-${getSlideOffset()}vh`,
-        }}
+        animate={{ y: `-${getSlideOffset()}vh` }}
         transition={{
           duration: 2,
           ease: [0.25, 0.1, 0.25, 1],
@@ -73,19 +73,22 @@ export default function VerticalHeroSlider() {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className="relative w-full h-[60vh] sm:h-[75vh] lg:h-screen flex-shrink-0"
+            className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] flex-shrink-0"
           >
             <div
-              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
               <div className="absolute inset-0 bg-black/40" />
             </div>
 
-            {/* Centered content */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8">
+            {/* Centered Content */}
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 lg:px-8">
               <motion.h1
-                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+                className={`font-extrabold leading-tight
+                  
+                  ${is4K ? "text-9xl" : "text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"}
+                `}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -99,8 +102,12 @@ export default function VerticalHeroSlider() {
               >
                 {slide.title}
               </motion.h1>
+
               <motion.p
-                className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light opacity-90 max-w-3xl leading-relaxed"
+                className={`mt-4 font-bold opacity-90 max-w-5xl leading-relaxed
+            
+                  ${is4K ? "text-5xl" : "text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"}
+                `}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 0.9 : 0,
@@ -120,14 +127,16 @@ export default function VerticalHeroSlider() {
       </motion.div>
 
       {/* Indicators */}
-      <div className="absolute right-3 sm:right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-20">
+      <div className="absolute right-3 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20">
         <div className="flex flex-col space-y-2 sm:space-y-3">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-white scale-125" : "bg-white/50 hover:bg-white/75"
+                index === currentSlide
+                  ? "bg-white scale-125"
+                  : "bg-white/50 hover:bg-white/75"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -137,20 +146,35 @@ export default function VerticalHeroSlider() {
 
       {/* Arrows */}
       <button
-        onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-        className="absolute left-3 sm:left-4 lg:left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-1.5 sm:p-2 lg:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+        onClick={() =>
+          setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+        }
+        className="absolute left-3 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-1.5 sm:p-2 lg:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
         aria-label="Previous slide"
       >
-        <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
         </svg>
       </button>
+
       <button
-        onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-        className="absolute left-3 sm:left-4 lg:left-8 top-1/2 transform translate-y-6 sm:translate-y-8 z-20 bg-white/20 hover:bg-white/30 text-white p-1.5 sm:p-2 lg:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+        onClick={() =>
+          setCurrentSlide((prev) => (prev + 1) % slides.length)
+        }
+        className="absolute left-3 sm:left-4 lg:left-8 top-1/2 translate-y-6 sm:translate-y-8 z-20 bg-white/20 hover:bg-white/30 text-white p-1.5 sm:p-2 lg:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
         aria-label="Next slide"
       >
-        <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>

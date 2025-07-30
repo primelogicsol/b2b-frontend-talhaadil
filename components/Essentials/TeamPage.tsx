@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Scissors,
   Hammer,
@@ -10,12 +10,13 @@ import {
   Sprout,
   Target,
   Landmark,
-} from "lucide-react";
-import { motion, useInView } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
-
+} from "lucide-react"
+import { useInView } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { useGlobalContext } from "@/components/Context/GlobalProvider"
 export default function TeamPage() {
-  const [isVisible, setIsVisible] = useState(false);
+  const { is4K } = useGlobalContext() // Add this line
+  const [isVisible, setIsVisible] = useState(false)
   const features = [
     {
       icon: <Handshake className="w-8 h-8" />,
@@ -37,7 +38,7 @@ export default function TeamPage() {
       title: "Heritage",
       text: "Cultural preservation",
     },
-  ];
+  ]
   const supportItems = [
     {
       icon: <MessageSquare className="w-8 h-8" />,
@@ -75,7 +76,7 @@ export default function TeamPage() {
       description:
         "Ensuring fair and prompt payments to artisans while managing smooth workflows, robust inventory systems, and highly efficient logistics operations.",
     },
-  ];
+  ]
   const artisans = [
     {
       icon: <Scissors className="w-8 h-8" />,
@@ -131,42 +132,42 @@ export default function TeamPage() {
       description:
         "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
     },
-  ];
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { amount: 0.3, once: true });
+  ]
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { amount: 0.3, once: true })
 
   const stats = [
     { value: 500, label: "Skilled Artisans" },
     { value: 50, label: "Villages" },
     { value: 25, label: "Craft Types" },
     { value: 15, label: "Countries" },
-  ];
+  ]
 
-  const [counts, setCounts] = useState(stats.map(() => 0));
+  const [counts, setCounts] = useState(stats.map(() => 0))
 
   useEffect(() => {
     if (isInView) {
       stats.forEach((stat, idx) => {
-        let current = 0;
+        let current = 0
         const timer = setInterval(() => {
-          current += Math.ceil(stat.value / 50); // step size
+          current += Math.ceil(stat.value / 50) // step size
           if (current >= stat.value) {
-            current = stat.value;
-            clearInterval(timer);
+            current = stat.value
+            clearInterval(timer)
           }
           setCounts((prev) => {
-            const copy = [...prev];
-            copy[idx] = current;
-            return copy;
-          });
-        }, 20);
-      });
+            const copy = [...prev]
+            copy[idx] = current
+            return copy
+          })
+        }, 20)
+      })
     }
-  }, [isInView]);
+  }, [isInView])
 
   useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    setIsVisible(true)
+  }, [])
 
   return (
     <div className="team-page">
@@ -278,9 +279,9 @@ export default function TeamPage() {
         }
 
         .container {
-          max-width: 1400px;
+          max-width: ${is4K ? "2000px" : "1400px"};
           margin: 0 auto;
-          padding: 0 2rem;
+          padding: 0 ${is4K ? "3rem" : "2rem"};
         }
 
         .section {
@@ -295,12 +296,12 @@ export default function TeamPage() {
 
         .section-badge {
           display: inline-block;
-          padding: 0.5rem 1.5rem;
+          padding: ${is4K ? "0.75rem 2rem" : "0.5rem 1.5rem"};
           background: rgba(216, 88, 52, 0.1);
           border: 1px solid var(--secondary-color);
           border-radius: 30px;
           color: var(--secondary-color);
-          font-size: 0.8rem;
+          font-size: ${is4K ? "1rem" : "0.8rem"};
           font-weight: 600;
           margin-bottom: 1rem;
           text-transform: uppercase;
@@ -312,7 +313,7 @@ export default function TeamPage() {
         }
 
         .section-title {
-          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-size: ${is4K ? "clamp(3.5rem, 8vw, 6rem)" : "clamp(2.5rem, 6vw, 4rem)"};
           font-weight: 800;
           margin-bottom: 1.5rem;
           color: var(--primary-color);
@@ -324,9 +325,9 @@ export default function TeamPage() {
         }
 
         .section-subtitle {
-          font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+          font-size: ${is4K ? "clamp(1.4rem, 3vw, 1.8rem)" : "clamp(1.1rem, 2.5vw, 1.4rem)"};
           color: var(--primary-light-text-color);
-          max-width: 600px;
+          max-width: ${is4K ? "900px" : "600px"};
           margin: 0 auto;
           line-height: 1.6;
           opacity: ${isVisible ? 1 : 0};
@@ -336,10 +337,10 @@ export default function TeamPage() {
 
         .hero-stats {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-          gap: 2rem;
-          max-width: 800px;
-          margin: 3rem auto 0; /* Adjusted margin */
+          grid-template-columns: repeat(auto-fit, minmax(${is4K ? "180px" : "120px"}, 1fr));
+          gap: ${is4K ? "3rem" : "2rem"};
+          max-width: ${is4K ? "1200px" : "800px"};
+          margin: 3rem auto 0;
           opacity: ${isVisible ? 1 : 0};
           transform: translateY(${isVisible ? "0" : "30px"});
           transition: all 0.8s ease-out 0.6s;
@@ -347,7 +348,7 @@ export default function TeamPage() {
 
         .hero-stat {
           text-align: center;
-          padding: 1.5rem;
+          padding: ${is4K ? "2rem" : "1.5rem"};
           background: var(--primary-light-text-color);
           backdrop-filter: blur(15px);
           border: 1px solid var(--primary-hover-color);
@@ -364,22 +365,22 @@ export default function TeamPage() {
 
         .hero-stat-number {
           display: block;
-          font-size: clamp(1.8rem, 4vw, 2.5rem);
+          font-size: ${is4K ? "clamp(2.2rem, 5vw, 3.5rem)" : "clamp(1.8rem, 4vw, 2.5rem)"};
           font-weight: 800;
           color: var(--secondary-hover-color);
           margin-bottom: 0.5rem;
         }
 
         .hero-stat-label {
-          font-size: 0.9rem;
+          font-size: ${is4K ? "1.1rem" : "0.9rem"};
           color: var(--secondary-hover-color);
           font-weight: 500;
         }
 
         .artisan-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 2.5rem;
+          grid-template-columns: repeat(auto-fit, minmax(${is4K ? "450px" : "350px"}, 1fr));
+          gap: ${is4K ? "3.5rem" : "2.5rem"};
           margin-bottom: 4rem;
         }
 
@@ -388,7 +389,7 @@ export default function TeamPage() {
           backdrop-filter: blur(20px);
           border: 1px solid var(--primary-color);
           border-radius: 24px;
-          padding: 2.5rem;
+          padding: ${is4K ? "3.5rem" : "2.5rem"};
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
@@ -449,14 +450,14 @@ export default function TeamPage() {
         }
 
         .card-icon {
-          width: 80px;
-          height: 80px;
+          width: ${is4K ? "100px" : "80px"};
+          height: ${is4K ? "100px" : "80px"};
           background: var(--secondary-hover-color);
           border-radius: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 2rem;
+          font-size: ${is4K ? "2.5rem" : "2rem"};
           transition: all 0.4s ease;
           position: relative;
           z-index: 1;
@@ -480,7 +481,7 @@ export default function TeamPage() {
         }
 
         .card-title {
-          font-size: 1.5rem;
+          font-size: ${is4K ? "1.8rem" : "1.5rem"};
           font-weight: 700;
           margin-bottom: 1rem;
           color: var(--primary-hover-color);
@@ -490,7 +491,7 @@ export default function TeamPage() {
         .card-description {
           color: var(--primary-light-text-color);
           line-height: 1.7;
-          font-size: 1rem;
+          font-size: ${is4K ? "1.2rem" : "1rem"};
         }
 
         .quote-section {
@@ -500,7 +501,7 @@ export default function TeamPage() {
             var(--primary-color)
           );
           border-radius: 32px;
-          padding: 1rem 2rem;
+          padding: ${is4K ? "6rem 3rem" : "4rem 2rem"};
           margin: 5rem 0;
           text-align: center;
           position: relative;
@@ -527,27 +528,27 @@ export default function TeamPage() {
         }
 
         .quote-icon {
-          width: 60px;
-          height: 60px;
+          width: ${is4K ? "80px" : "60px"};
+          height: ${is4K ? "80px" : "60px"};
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           margin: 0 auto 2rem;
-          font-size: 1.5rem;
+          font-size: ${is4K ? "2rem" : "1.5rem"};
           position: relative;
           z-index: 1;
         }
 
         .quote-text {
-          font-size: clamp(1.2rem, 3vw, 1.8rem);
+          font-size: ${is4K ? "clamp(1.5rem, 4vw, 2.2rem)" : "clamp(1.2rem, 3vw, 1.8rem)"};
           font-style: italic;
           color: var(--primary-header-color);
           line-height: 1.6;
           position: relative;
           z-index: 1;
           font-weight: 400;
-          max-width: 800px;
+          max-width: ${is4K ? "1200px" : "800px"};
           margin: 0 auto;
         }
 
@@ -556,9 +557,9 @@ export default function TeamPage() {
         }
 
         .support-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 2.5rem;
+            display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(${is4K ? "450px" : "350px"}, 1fr));
+          gap: ${is4K ? "3.5rem" : "2.5rem"};
           margin-bottom: 4rem;
         }
 
@@ -571,7 +572,7 @@ export default function TeamPage() {
           backdrop-filter: blur(20px);
           border: 1px solid var(--primary-color);
           border-radius: 24px;
-          padding: 2.5rem;
+          padding: ${is4K ? "3.5rem" : "2.5rem"};
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
@@ -605,15 +606,15 @@ export default function TeamPage() {
         }
 
         .support-icon {
-          width: 70px;
-          height: 70px;
+          width: ${is4K ? "90px" : "70px"};
+          height: ${is4K ? "90px" : "70px"};
           background: var(--secondary-color);
           border-radius: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 2rem;
-          font-size: 1.5rem;
+          font-size: ${is4K ? "2rem" : "1.5rem"};
           transition: all 0.4s ease;
           position: relative;
           z-index: 1;
@@ -626,7 +627,7 @@ export default function TeamPage() {
 
         .collaboration-section {
           border-radius: 32px;
-          padding: 4rem 3rem;
+          padding: ${is4K ? "6rem 4rem" : "4rem 3rem"};
           margin: 6rem 0;
           border: 1px solid var(--secondary-color);
           position: relative;
@@ -646,14 +647,14 @@ export default function TeamPage() {
 
         .collaboration-content {
           text-align: center;
-          max-width: 900px;
+          max-width: ${is4K ? "1300px" : "900px"};
           margin: 0 auto;
           position: relative;
           z-index: 1;
         }
 
         .collaboration-text {
-          font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+          font-size: ${is4K ? "clamp(1.3rem, 3vw, 1.6rem)" : "clamp(1.1rem, 2.5vw, 1.3rem)"};
           line-height: 1.8;
           color: var(--primary-light-text-color);
           margin-bottom: 2rem;
@@ -661,14 +662,14 @@ export default function TeamPage() {
 
         .collaboration-features {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(auto-fit, minmax(${is4K ? "280px" : "200px"}, 1fr));
+          gap: ${is4K ? "3rem" : "2rem"};
           margin-top: 3rem;
         }
 
         .collaboration-feature {
           text-align: center;
-          padding: 1.5rem;
+          padding: ${is4K ? "2rem" : "1.5rem"};
           background: var(--primary-color);
           border-radius: 19px;
           border-color: var(--primary-hover-color);
@@ -685,26 +686,26 @@ export default function TeamPage() {
         }
 
         .feature-icon {
-          font-size: 2rem;
+          font-size: ${is4K ? "2.5rem" : "2rem"};
           margin-bottom: 1rem;
           display: block;
         }
 
         .feature-title {
-          font-size: 1rem;
+          font-size: ${is4K ? "1.2rem" : "1rem"};
           font-weight: 600;
           margin-bottom: 0.5rem;
         }
           
      
         .feature-text {
-          font-size: 0.9rem;
+          font-size: ${is4K ? "1.1rem" : "0.9rem"};
           color: var(--secondary-hover-color);
         }
 
         .future-section {
           text-align: center;
-          padding: 5rem 3rem;
+          padding: ${is4K ? "7rem 4rem" : "5rem 3rem"};
           background: linear-gradient(
             135deg,
             var(--primary-color),
@@ -728,7 +729,7 @@ export default function TeamPage() {
         }
 
         .future-title {
-          font-size: clamp(2.5rem, 6vw, 3.5rem);
+          font-size: ${is4K ? "clamp(3.5rem, 8vw, 5rem)" : "clamp(2.5rem, 6vw, 3.5rem)"};
           font-weight: 800;
           margin-bottom: 2rem;
           color: var(--primary-header-color);
@@ -738,10 +739,10 @@ export default function TeamPage() {
         }
 
         .future-text {
-          font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+          font-size: ${is4K ? "clamp(1.3rem, 3vw, 1.6rem)" : "clamp(1.1rem, 2.5vw, 1.3rem)"};
           line-height: 1.8;
           color: var(--primary-light-text-color);
-          max-width: 800px;
+          max-width: ${is4K ? "1200px" : "800px"};
           margin: 0 auto 2rem;
           position: relative;
           z-index: 1;
@@ -751,7 +752,7 @@ export default function TeamPage() {
           background: rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(10px);
           border-radius: 20px;
-          padding: 2rem;
+          padding: ${is4K ? "3rem" : "2rem"};
           margin-top: 3rem;
           border: 1px solid rgba(255, 255, 255, 0.1);
           position: relative;
@@ -759,7 +760,7 @@ export default function TeamPage() {
         }
 
         .mission-text {
-          font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+          font-size: ${is4K ? "clamp(1.4rem, 3vw, 1.7rem)" : "clamp(1.2rem, 2.5vw, 1.4rem)"};
           font-weight: 600;
           color: var(--primary-header-color);
           line-height: 1.6;
@@ -860,9 +861,8 @@ export default function TeamPage() {
                 <div className="section-badge">✨ Meet Our Amazing Team</div>
                 <h1 className="section-title">Our Crafting Team</h1>
                 <p className="section-subtitle">
-                  The Artisans Who Make It All Possible. At De Koshur Crafts, we
-                  are not just a business—we are a community of passionate
-                  creators preserving Kashmir's rich heritage.
+                  The Artisans Who Make It All Possible. At De Koshur Crafts, we are not just a business—we are a
+                  community of passionate creators preserving Kashmir's rich heritage.
                 </p>
                 <div className="hero-stats">
                   {stats.map((stat, idx) => (
@@ -878,9 +878,8 @@ export default function TeamPage() {
                 <div className="section-badge">Our Artisans</div>
                 <h2 className="section-title">The Heart of Our Craft</h2>
                 <p className="section-subtitle">
-                  Our artisans, from remote villages to bustling urban centers,
-                  are the heart and soul of our platform. Every piece tells a
-                  story of skill, tradition, and passion.
+                  Our artisans, from remote villages to bustling urban centers, are the heart and soul of our platform.
+                  Every piece tells a story of skill, tradition, and passion.
                 </p>
               </div>
               <div className="artisan-grid">
@@ -897,10 +896,8 @@ export default function TeamPage() {
               <div className="quote-section">
                 <div className="quote-icon">💬</div>
                 <p className="quote-text">
-                  "We are more than just creators. We are custodians of a rich
-                  cultural legacy, and through De Koshur Crafts, we can ensure
-                  that our art continues to be appreciated by people around the
-                  world."
+                  "We are more than just creators. We are custodians of a rich cultural legacy, and through De Koshur
+                  Crafts, we can ensure that our art continues to be appreciated by people around the world."
                 </p>
               </div>
             </section>
@@ -910,9 +907,8 @@ export default function TeamPage() {
                 <div className="section-badge">Support Team</div>
                 <h2 className="section-title">The Backbone of Operations</h2>
                 <p className="section-subtitle">
-                  Behind every successful business is a strong support system.
-                  Our diverse team brings expertise in customer service,
-                  business development, marketing, and operations.
+                  Behind every successful business is a strong support system. Our diverse team brings expertise in
+                  customer service, business development, marketing, and operations.
                 </p>
               </div>
 
@@ -933,26 +929,19 @@ export default function TeamPage() {
                   <h2 className="section-title">The Power of Unity</h2>
                 </div>
                 <p className="collaboration-text">
-                  The De Koshur Crafts team works collaboratively, drawing from
-                  each other's strengths, skills, and perspectives to ensure
-                  that the company remains dynamic, innovative, and
-                  growth-oriented.
+                  The De Koshur Crafts team works collaboratively, drawing from each other's strengths, skills, and
+                  perspectives to ensure that the company remains dynamic, innovative, and growth-oriented.
                 </p>
                 <p className="collaboration-text">
-                  We collaborate with global partners, designers, retailers, and
-                  NGOs to build a thriving ecosystem that connects artisans with
-                  buyers and customers with authentic Kashmiri craftsmanship.
+                  We collaborate with global partners, designers, retailers, and NGOs to build a thriving ecosystem that
+                  connects artisans with buyers and customers with authentic Kashmiri craftsmanship.
                 </p>
 
                 <div className="collaboration-features">
                   {features.map((feature, index) => (
                     <div key={index} className="collaboration-feature">
-                      <span className="feature-icon text-[var(--secondary-hover-color)] ml-[40%]">
-                        {feature.icon}
-                      </span>
-                      <div className="feature-title text-[var(--secondary-hover-color)]">
-                        {feature.title}
-                      </div>
+                      <span className="feature-icon text-[var(--secondary-hover-color)] ml-[40%]">{feature.icon}</span>
+                      <div className="feature-title text-[var(--secondary-hover-color)]">{feature.title}</div>
                       <div className="feature-text">{feature.text}</div>
                     </div>
                   ))}
@@ -963,5 +952,5 @@ export default function TeamPage() {
         </main>
       </div>
     </div>
-  );
+  )
 }
