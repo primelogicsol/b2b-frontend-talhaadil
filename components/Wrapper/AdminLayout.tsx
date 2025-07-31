@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import type React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import type React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useState } from "react"
 import {
   BarChart3,
   Users,
@@ -16,7 +16,8 @@ import {
   LogOut,
   ChevronsLeft,
   ChevronsRight,
-} from "lucide-react";
+  UserCog,
+} from "lucide-react"
 
 const navigation = [
   { name: "Dashboard", href: "/admin", icon: BarChart3 },
@@ -24,16 +25,17 @@ const navigation = [
   { name: "Jobs", href: "/admin/jobs", icon: Briefcase },
   { name: "Team", href: "/admin/team", icon: Building2 },
   { name: "Appointments", href: "/admin/appointments", icon: Calendar },
-];
+  { name: "Other Admins", href: "/admin/other-admins", icon: UserCog },
+]
 
 export default function AdminLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
@@ -61,20 +63,14 @@ export default function AdminLayout({
             onClick={() => setCollapsed(!collapsed)}
             className="hidden lg:flex p-2 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           >
-            {collapsed ? (
-              <ChevronsRight className="w-5 h-5" />
-            ) : (
-              <ChevronsLeft className="w-5 h-5" />
-            )}
+            {collapsed ? <ChevronsRight className="w-5 h-5" /> : <ChevronsLeft className="w-5 h-5" />}
           </button>
         </div>
 
         <nav className="flex-1 px-2 py-6 space-y-2 overflow-y-auto">
           {navigation.map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href !== "/admin" && pathname.startsWith(item.href));
-            const Icon = item.icon;
+            const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href))
+            const Icon = item.icon
             return (
               <Link
                 key={item.name}
@@ -88,25 +84,19 @@ export default function AdminLayout({
               >
                 <div className="flex items-center">
                   <Icon
-                    className={`h-5 w-5 ${
-                      isActive
-                        ? "text-white"
-                        : "text-slate-400 group-hover:text-slate-600"
-                    }`}
+                    className={`h-5 w-5 ${isActive ? "text-white" : "text-slate-400 group-hover:text-slate-600"}`}
                   />
                   {!collapsed && <span className="ml-3">{item.name}</span>}
                 </div>
                 {!collapsed && (
                   <ChevronRight
                     className={`h-4 w-4 transition-transform ${
-                      isActive
-                        ? "text-white/70 rotate-90"
-                        : "text-slate-300 group-hover:text-slate-500"
+                      isActive ? "text-white/70 rotate-90" : "text-slate-300 group-hover:text-slate-500"
                     }`}
                   />
                 )}
               </Link>
-            );
+            )
           })}
         </nav>
 
@@ -145,5 +135,5 @@ export default function AdminLayout({
         <main className="p-6 lg:p-8 mt-14 lg:mt-0">{children}</main>
       </div>
     </div>
-  );
+  )
 }

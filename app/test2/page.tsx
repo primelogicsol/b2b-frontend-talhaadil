@@ -1,64 +1,81 @@
 "use client"
 
 import { useState } from "react"
-import { forgotPassword } from "@/services/auth"
-export default function ForgotPasswordPage() {
+import { registerSuperAdmin } from "@/services/auth"
+
+export default function OtherAdminsPage() {
+  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
-  const [submitted, setSubmitted] = useState(false)
+  const [password, setPassword] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) {
-      alert("Please enter your email address")
-      return
+
+    const payload = {
+      username,
+      email,
+      password,
     }
+
     try {
-      // Replace this with your API call
-    const response = await forgotPassword({ email })
-        console.log("Password reset email sent:", response.data)
-      console.log("Sending password reset email to:", email)
-      setSubmitted(true)
-    } catch (err) {
-      console.error("Error sending reset email", err)
+      const admin= await registerSuperAdmin(payload)
+      console.log(admin)
+
+    } catch (error) {
+      console.error("Error:", error)
+      console.log(error)
+      alert("Something went wrong.")
     }
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-xl">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Forgot Password
-        </h2>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md space-y-4"
+      >
+        <h2 className="text-xl font-semibold text-gray-800">Add New Admin</h2>
 
-        {submitted ? (
-          <p className="text-green-600 text-center">
-            If an account with that email exists, a reset link has been sent.
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-gray-600 mb-1">
-                Email Address
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="mt-1 w-full rounded-md border px-4 py-2 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
 
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              Send Reset Link
-            </button>
-          </form>
-        )}
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="mt-1 w-full rounded-md border px-4 py-2 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="mt-1 w-full rounded-md border px-4 py-2 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 text-white font-medium py-2 rounded-md hover:bg-indigo-700 transition"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   )
 }
