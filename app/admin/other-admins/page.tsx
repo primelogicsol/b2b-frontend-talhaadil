@@ -13,7 +13,7 @@ interface Admin {
     user_management: string[]
     document_verification: string[]
     job_postings: string[]
-    team: string[]
+    
   }
 }
 
@@ -26,7 +26,7 @@ interface AdminFormData {
     user_management: string[]
     document_verification: string[]
     job_postings: string[]
-    team: string[]
+    
   }
 }
 
@@ -34,7 +34,7 @@ const permissionOptions = {
   user_management: ["create", "update", "delete"],
   document_verification: ["review", "approve"],
   job_postings: ["create", "edit"],
-  team: ["create", "update", "delete"],
+
 }
 
 export default function OtherAdminsPage() {
@@ -51,7 +51,7 @@ export default function OtherAdminsPage() {
       user_management: [],
       document_verification: [],
       job_postings: [],
-      team: [],
+      
     },
   })
 
@@ -67,7 +67,7 @@ export default function OtherAdminsPage() {
           user_management: ["create", "update"],
           document_verification: ["review"],
           job_postings: ["create", "edit"],
-          team: ["create"],
+          
         },
       },
       {
@@ -79,7 +79,7 @@ export default function OtherAdminsPage() {
           user_management: ["create", "update", "delete"],
           document_verification: ["review", "approve"],
           job_postings: ["create"],
-          team: ["create", "update"],
+          
         },
       },
     ]
@@ -96,7 +96,7 @@ export default function OtherAdminsPage() {
         user_management: [],
         document_verification: [],
         job_postings: [],
-        team: [],
+        
       },
     })
   }
@@ -138,6 +138,7 @@ export default function OtherAdminsPage() {
 
     if (editingAdmin) {
       // Update existing admin
+
       setAdmins(admins.map((admin) => (admin.id === editingAdmin.id ? { ...admin, ...formData } : admin)))
     } else {
       // Add new admin
@@ -148,6 +149,8 @@ export default function OtherAdminsPage() {
         visibility_level: formData.visibility_level,
         ownership: formData.ownership,
       }
+
+
       setAdmins([...admins, newAdmin])
     }
 
@@ -314,6 +317,7 @@ export default function OtherAdminsPage() {
                   Cancel
                 </button>
                 <button
+              
                   type="submit"
                   className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
