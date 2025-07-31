@@ -1,43 +1,61 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { FcGoogle } from "react-icons/fc"
-import { useState } from "react"
-import { ArrowLeft } from "lucide-react"
-import { login } from "@/services/auth"
-import { useToast } from "@/context/ToastProvider"
-
+import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
+import { login } from "@/services/auth";
+import { useToast } from "@/context/ToastProvider";
+import Cookies from "js-cookie";
 interface LoginData {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 export default function LoginPage() {
-  const [formData, setFormData] = useState<LoginData>({ email: "", password: "" })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const {showToast} = useToast()
-
-  
+  const [formData, setFormData] = useState<LoginData>({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const { showToast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError("")
-    console.log(formData)
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    console.log(formData);
 
     try {
-      const user = await login(formData)
-      // console.log("Logged in user:", user)
-      showToast("Login successful!");
-      localStorage.setItem("user", JSON.stringify(user.data))
-    } catch (err: any) {
-      setError(err.message)
-      showToast(err.response?.data?.detail || "Login failed")
-    } finally {
-      setLoading(false)
-    }
-  }
+      const user = await login(formData);
+      const data = user.data;
 
+      showToast("Login successful!");
+
+      Cookies.set("access_token", data.access_token, {
+        path: "/",
+        sameSite: "Strict",
+        secure: process.env.NODE_ENV === "production",
+      });
+
+      Cookies.set("refresh_token", data.refresh_token, {
+        path: "/",
+        sameSite: "Strict",
+        secure: process.env.NODE_ENV === "production",
+      });
+
+      Cookies.set("user_role", data.user_role);
+      Cookies.set("user_id", data.user_id.toString());
+      Cookies.set("visibility_level", data.visibility_level.toString());
+
+      Cookies.set("ownership", JSON.stringify(data.ownership));
+    } catch (err: any) {
+      setError(err.message);
+      showToast(err.response?.data?.detail || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#1b4f68] to-[#0a192f] p-4 text-white sm:p-6 md:p-8">
       <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-[var(--secondary-light-color)] opacity-10 blur-3xl animate-pulse-fade animation-delay-1000" />
@@ -63,7 +81,10 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           <div>
-            <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="email"
+              className="mb-2 block text-sm font-medium text-gray-300"
+            >
               Email Address
             </label>
             <input
@@ -71,14 +92,19 @@ export default function LoginPage() {
               id="email"
               placeholder="you@example.com"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="password"
+              className="mb-2 block text-sm font-medium text-gray-300"
+            >
               Password
             </label>
             <input
@@ -86,9 +112,8 @@ export default function LoginPage() {
               id="password"
               placeholder="••••••••"
               value={formData.password}
-            
               onChange={(e) => {
-                setFormData({ ...formData, password: e.target.value })
+                setFormData({ ...formData, password: e.target.value });
               }}
               className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
               required
@@ -96,12 +121,13 @@ export default function LoginPage() {
           </div>
 
           <div className="flex items-center justify-between">
-            <Link href="/forgot-password" className="text-sm font-medium text-white hover:underline">
+            <Link
+              href="/forgot-password"
+              className="text-sm font-medium text-white hover:underline"
+            >
               Forgot password?
             </Link>
           </div>
-
-         
 
           <button
             type="submit"
@@ -115,7 +141,9 @@ export default function LoginPage() {
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-gray-700" />
             </div>
-            <div className="relative bg-transparent px-4 text-sm text-gray-400">Or</div>
+            <div className="relative bg-transparent px-4 text-sm text-gray-400">
+              Or
+            </div>
           </div>
 
           <button
@@ -129,11 +157,14 @@ export default function LoginPage() {
 
         <div className="mt-6 text-center text-xs text-gray-300 sm:mt-8 sm:text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-white hover:underline">
+          <Link
+            href="/signup"
+            className="font-medium text-white hover:underline"
+          >
             Register
           </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }

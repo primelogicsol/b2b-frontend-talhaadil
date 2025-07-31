@@ -6,6 +6,7 @@ import { X, Mountain, ChevronRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { UserProfileDisplay } from "./UserProfileDisplay";
+import Cookies from "js-cookie";
 
 interface DropdownItem {
   label: string;
@@ -230,6 +231,16 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Set to true for demonstration
   const router = useRouter();
+   useEffect(() => {
+    const token = Cookies.get('access_token')
+    const user = Cookies.get('user') // Optional if you store user object
+
+    if (token || user) {
+      setIsSignedIn(true)
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
 
   const blogDropdownItems: DropdownItem[] = [
     { label: "Our Values", href: "/our-values" },

@@ -1,114 +1,130 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import type React from "react"
-import { useState } from "react"
-import { ArrowLeft } from "lucide-react" // Replaced react-icons with lucide-react
-import { FcGoogle } from "react-icons/fc"
-import { useToast } from "@/context/ToastProvider"
-import { registerSupplier } from "@/services/auth" // Assuming registerSupplier can handle userType
-import { verifyOtp } from "@/services/auth"
-import { signup } from "@/services/auth"
+import Link from "next/link";
+import type React from "react";
+import { useState } from "react";
+import { ArrowLeft } from "lucide-react"; // Replaced react-icons with lucide-react
+import { FcGoogle } from "react-icons/fc";
+import { useToast } from "@/context/ToastProvider";
+import { registerSupplier } from "@/services/auth"; // Assuming registerSupplier can handle userType
+import { verifyOtp } from "@/services/auth";
+import { signup } from "@/services/auth";
+import Cookies from "js-cookie";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [otp, setOtp] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [showOtpVerification, setShowOtpVerification] = useState(false)
-  const [userType, setUserType] = useState("Buyer") // New state for user type, default to Buyer
-  const [passwordErrors, setPasswordErrors] = useState<string[]>([])
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showOtpVerification, setShowOtpVerification] = useState(false);
+  const [userType, setUserType] = useState("Buyer"); // New state for user type, default to Buyer
+  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
 
-  const { showToast } = useToast()
+  const { showToast } = useToast();
 
   const validatePassword = (pwd: string): string[] => {
-    const errors: string[] = []
+    const errors: string[] = [];
     if (pwd.length < 8) {
-      errors.push("Password must be at least 8 characters long.")
+      errors.push("Password must be at least 8 characters long.");
     }
     if (!/[A-Z]/.test(pwd)) {
-      errors.push("Password must contain at least one uppercase letter.")
+      errors.push("Password must contain at least one uppercase letter.");
     }
     if (!/[a-z]/.test(pwd)) {
-      errors.push("Password must contain at least one lowercase letter.")
+      errors.push("Password must contain at least one lowercase letter.");
     }
     if (!/[0-9]/.test(pwd)) {
-      errors.push("Password must contain at least one number.")
+      errors.push("Password must contain at least one number.");
     }
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
-      errors.push("Password must contain at least one special character.")
+      errors.push("Password must contain at least one special character.");
     }
-    return errors
-  }
+    return errors;
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = e.target.value
-    setPassword(newPassword)
+    const newPassword = e.target.value;
+    setPassword(newPassword);
     if (newPassword) {
-      setPasswordErrors(validatePassword(newPassword))
+      setPasswordErrors(validatePassword(newPassword));
     } else {
-      setPasswordErrors([]) 
+      setPasswordErrors([]);
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if (loading) return // Guard
-    e.preventDefault()
+    if (loading) return; // Guard
+    e.preventDefault();
 
-    const errors = validatePassword(password)
+    const errors = validatePassword(password);
     if (errors.length > 0) {
-      setPasswordErrors(errors)
-      showToast("Please fix password errors.")
-      return
+      setPasswordErrors(errors);
+      showToast("Please fix password errors.");
+      return;
     }
 
     if (password !== confirmPassword) {
-      showToast("Passwords do not match")
-      return
+      showToast("Passwords do not match");
+      return;
     }
 
     try {
-      setLoading(true)
+      setLoading(true);
       // Include userType in the registration payload
       if (userType === "Vendor") {
-        const response = await registerSupplier({ username, email, password })
-        console.log("Signup successful:", response.data)
+        const response = await registerSupplier({ username, email, password });
+        console.log("Signup successful:", response.data);
       } else {
-        const response = await signup({ username, email, password })
-        console.log("Signup successful:", response.data)
+        const response = await signup({ username, email, password });
+        console.log("Signup successful:", response.data);
       }
-      showToast("Registration successful! Please verify your OTP.")
-      setShowOtpVerification(true)
+      showToast("Registration successful! Please verify your OTP.");
+      setShowOtpVerification(true);
     } catch (err: any) {
-      console.log(err)
-      showToast(err.response?.data?.detail || "Signup failed")
+      console.log(err);
+      showToast(err.response?.data?.detail || "Signup failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleOtpVerification = async (e: React.FormEvent) => {
-    if (loading) return
-    e.preventDefault()
+    if (loading) return;
+    e.preventDefault();
     if (!otp || otp.length !== 6) {
-      showToast("Please enter a valid 6-digit OTP")
-      return
+      showToast("Please enter a valid 6-digit OTP");
+      return;
     }
     try {
-      setLoading(true)
-      const response = await verifyOtp({ email, otp })
-      showToast("OTP verified successfully!")
-      localStorage.setItem("user", JSON.stringify(response.data))
+      setLoading(true);
+      const response = await verifyOtp({ email, otp });
+      const data = response.data;
+      showToast("OTP verified successfully!");
+      Cookies.set("access_token", data.access_token, {
+        path: "/",
+        sameSite: "Strict",
+        secure: process.env.NODE_ENV === "production",
+      });
+
+      Cookies.set("refresh_token", data.refresh_token, {
+        path: "/",
+        sameSite: "Strict",
+        secure: process.env.NODE_ENV === "production",
+      });
+
+      Cookies.set("user_role", data.user_role);
+      Cookies.set("user_id", data.user_id.toString());
+      Cookies.set("visibility_level", data.visibility_level.toString());
+
+      Cookies.set("ownership", JSON.stringify(data.ownership));
     } catch (err: any) {
-      showToast(err.response?.data?.detail || "OTP verification failed")
+      showToast(err.response?.data?.detail || "OTP verification failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
-
-
+  };
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#1b4f68] to-[#0a192f] p-4 text-white sm:p-6 md:p-8 lg:p-10 xl:p-12">
@@ -118,11 +134,11 @@ export default function RegisterPage() {
       <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-[var(--primary-color)] opacity-5 blur-3xl animate-float animation-delay-4000" />
 
       <div>
-      <div className="absolute top-8 left-6 z-20">
-        <Link href="/" className="flex items-center">
-          <ArrowLeft className="h-5 w-5 md:h-10 md:w-10" />
-        </Link>
-      </div>
+        <div className="absolute top-8 left-6 z-20">
+          <Link href="/" className="flex items-center">
+            <ArrowLeft className="h-5 w-5 md:h-10 md:w-10" />
+          </Link>
+        </div>
       </div>
 
       <div className="frosted-glass relative z-10 w-full max-w-sm rounded-3xl p-6 shadow-2xl backdrop-blur-lg sm:max-w-md sm:p-8 md:p-10 lg:max-w-lg lg:p-12 xl:max-w-xl xl:p-14 2xl:max-w-2xl 2xl:p-16">
@@ -136,10 +152,16 @@ export default function RegisterPage() {
                 Create your new account and unlock amazing features.
               </p>
             </div>
-            <form className="space-y-5 sm:space-y-6 lg:space-y-7" onSubmit={handleSubmit}>
+            <form
+              className="space-y-5 sm:space-y-6 lg:space-y-7"
+              onSubmit={handleSubmit}
+            >
               {/* User Type Dropdown */}
               <div>
-                <label htmlFor="user-type" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+                <label
+                  htmlFor="user-type"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Account Type
                 </label>
                 <div className="relative">
@@ -171,7 +193,10 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div>
-                <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+                <label
+                  htmlFor="username"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Username
                 </label>
                 <input
@@ -185,7 +210,10 @@ export default function RegisterPage() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+                <label
+                  htmlFor="email"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Email Address
                 </label>
                 <input
@@ -199,7 +227,10 @@ export default function RegisterPage() {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+                <label
+                  htmlFor="password"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Password
                 </label>
                 <input
@@ -234,7 +265,10 @@ export default function RegisterPage() {
                 )}
               </div>
               <div>
-                <label htmlFor="confirm-password" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+                <label
+                  htmlFor="confirm-password"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Confirm Password
                 </label>
                 <input
@@ -258,7 +292,9 @@ export default function RegisterPage() {
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-gray-700" />
                 </div>
-                <div className="relative bg-transparent px-4 text-sm text-gray-400">Or</div>
+                <div className="relative bg-transparent px-4 text-sm text-gray-400">
+                  Or
+                </div>
               </div>
               <button
                 type="button"
@@ -270,7 +306,10 @@ export default function RegisterPage() {
             </form>
             <div className="mt-6 text-center text-xs text-gray-300 sm:mt-8 sm:text-sm lg:text-base">
               Already have an account?{" "}
-              <Link href="/login" className="font-medium text-white hover:underline">
+              <Link
+                href="/login"
+                className="font-medium text-white hover:underline"
+              >
                 Login
               </Link>
             </div>
@@ -285,9 +324,15 @@ export default function RegisterPage() {
                 We've sent a 6-digit code to {email}. Please enter it below.
               </p>
             </div>
-            <form className="space-y-5 sm:space-y-6 lg:space-y-7" onSubmit={handleOtpVerification}>
+            <form
+              className="space-y-5 sm:space-y-6 lg:space-y-7"
+              onSubmit={handleOtpVerification}
+            >
               <div>
-                <label htmlFor="otp" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+                <label
+                  htmlFor="otp"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Enter OTP
                 </label>
                 <input
@@ -299,8 +344,8 @@ export default function RegisterPage() {
                   required
                   value={otp}
                   onChange={(e) => {
-                    const value = e.target.value.replace(/\D/g, "")
-                    setOtp(value)
+                    const value = e.target.value.replace(/\D/g, "");
+                    setOtp(value);
                   }}
                 />
               </div>
@@ -316,7 +361,7 @@ export default function RegisterPage() {
                   type="button"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white sm:text-base"
                   onClick={() => {
-                    showToast("OTP resent successfully!")
+                    showToast("OTP resent successfully!");
                   }}
                 >
                   Didn't receive the code? Resend OTP
@@ -327,8 +372,8 @@ export default function RegisterPage() {
               Want to use a different email?{" "}
               <button
                 onClick={() => {
-                  setShowOtpVerification(false)
-                  setOtp("")
+                  setShowOtpVerification(false);
+                  setOtp("");
                 }}
                 className="font-medium text-white hover:underline"
               >
@@ -339,5 +384,5 @@ export default function RegisterPage() {
         )}
       </div>
     </div>
-  )
+  );
 }
