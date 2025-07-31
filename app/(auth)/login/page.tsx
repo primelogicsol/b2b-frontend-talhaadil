@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { FcGoogle } from "react-icons/fc"
 import { useState } from "react"
-import { RiArrowGoBackFill } from "react-icons/ri"
+import { ArrowLeft } from "lucide-react"
 import { login } from "@/services/auth"
 import { useToast } from "@/context/ToastProvider"
 
@@ -31,8 +31,7 @@ export default function LoginPage() {
       showToast("Login successful!");
     } catch (err: any) {
       setError(err.message)
-      console.log(err)
-      showToast(err.response?.data?.message || "Login failed")
+      showToast(err.response?.data?.detail || "Login failed")
     } finally {
       setLoading(false)
     }
@@ -45,15 +44,15 @@ export default function LoginPage() {
       <div className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-[var(--secondary-color)] opacity-5 blur-3xl animate-float animation-delay-2000" />
       <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-[var(--primary-color)] opacity-5 blur-3xl animate-float animation-delay-4000" />
 
-      <div className="absolute top-4 left-8 z-10">
+      <div className="absolute top-8 left-6 z-20">
         <Link href="/" className="flex items-center">
-          <RiArrowGoBackFill className="h-10 w-10" />
+          <ArrowLeft className="h-5 w-5 md:h-10 md:w-10" />
         </Link>
       </div>
 
       <div className="frosted-glass relative z-10 w-full max-w-sm rounded-3xl p-6 shadow-2xl backdrop-blur-lg sm:max-w-md sm:p-8 md:p-10">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-6xl 2xl:text-7xl">
             Welcome Back
           </h1>
           <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg">
@@ -101,11 +100,7 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          {error && (
-            <div className="text-red-400 text-sm font-medium">
-              {error}
-            </div>
-          )}
+         
 
           <button
             type="submit"
