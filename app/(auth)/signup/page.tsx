@@ -8,7 +8,7 @@ import { RiArrowGoBackFill } from "react-icons/ri"
 import { useToast } from "@/context/ToastProvider"
 import { registerSupplier } from "@/services/auth" // Assuming registerSupplier can handle userType
 import { verifyOtp } from "@/services/auth"
-
+import {signup} from "@/services/auth"
 export default function RegisterPage() {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -30,8 +30,14 @@ export default function RegisterPage() {
     try {
       setLoading(true)
       // Include userType in the registration payload
-      const response = await registerSupplier({ username, email, password})
-      console.log("Signup successful:", response.data)
+      if (userType === "Vendor"){
+        const response = await registerSupplier({ username, email, password})
+        console.log("Signup successful:", response.data)
+      }
+      else{
+        const response = await signup({ username, email, password })
+        console.log("Signup successful:", response.data)
+      }
       showToast("Registration successful! Please verify your OTP.")
       setShowOtpVerification(true)
     } catch (err: any) {
@@ -53,7 +59,7 @@ export default function RegisterPage() {
       setLoading(true)
       const response = await verifyOtp({ email, otp })
       showToast("OTP verified successfully! You can now login.")
-      window.location.href = "/login"
+
     } catch (err: any) {
       showToast(err.response?.data?.message || "OTP verification failed")
     } finally {
@@ -229,7 +235,7 @@ export default function RegisterPage() {
                   type="button"
                   className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
                   onClick={() => {
-                    // Resend OTP logic here
+                    
                     showToast("OTP resent successfully!")
                   }}
                 >

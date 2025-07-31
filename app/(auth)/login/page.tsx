@@ -13,7 +13,6 @@ interface LoginData {
 }
 export default function LoginPage() {
   const [formData, setFormData] = useState<LoginData>({ email: "", password: "" })
-
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const {showToast} = useToast()
@@ -32,6 +31,7 @@ export default function LoginPage() {
       showToast("Login successful!");
     } catch (err: any) {
       setError(err.message)
+      console.log(err)
       showToast(err.response?.data?.message || "Login failed")
     } finally {
       setLoading(false)
