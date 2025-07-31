@@ -85,7 +85,7 @@ export default function VerticalHeroSlider() {
             {/* Centered content */}
             <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8">
               <motion.h1
-                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-9xl font-bold leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -100,7 +100,7 @@ export default function VerticalHeroSlider() {
                 {slide.title}
               </motion.h1>
               <motion.p
-                className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light opacity-90 max-w-3xl leading-relaxed"
+                className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-light opacity-90 max-w-5xl leading-relaxed lg:mb-25 xl:mb-30 2xl:mb-40"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 0.9 : 0,
