@@ -1,12 +1,11 @@
 "use client"
 
 import type React from "react"
-
 import Link from "next/link"
 import { useState } from "react"
 import { ArrowLeft, Mail, Lock, Shield } from "lucide-react"
 import { useToast } from "@/context/ToastProvider"
-import { forgotPassword,resetPassword } from "@/services/auth"
+import { forgotPassword, resetPassword } from "@/services/auth" // Now correctly imported
 
 interface ForgotPasswordData {
   email: string
@@ -27,20 +26,49 @@ export default function ForgotPasswordPage() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const { showToast } = useToast()
+  const { showToast } = useToast() // useToast is still used here
+
+  const [passwordErrors, setPasswordErrors] = useState<string[]>([])
+
+  const validatePassword = (pwd: string): string[] => {
+    const errors: string[] = []
+    if (pwd.length < 8) {
+      errors.push("Password must be at least 8 characters long.")
+    }
+    if (!/[A-Z]/.test(pwd)) {
+      errors.push("Password must contain at least one uppercase letter.")
+    }
+    if (!/[a-z]/.test(pwd)) {
+      errors.push("Password must contain at least one lowercase letter.")
+    }
+    if (!/[0-9]/.test(pwd)) {
+      errors.push("Password must contain at least one number.")
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
+      errors.push("Password must contain at least one special character.")
+    }
+    return errors
+  }
+
+  const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value
+    setFormData({ ...formData, newPassword: newPassword })
+    if (newPassword) {
+      setPasswordErrors(validatePassword(newPassword))
+    } else {
+      setPasswordErrors([])
+    }
+  }
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError("")
-
     try {
       // Simulate API call to send OTP
       console.log("Sending OTP to:", formData.email)
-      const response = await forgotPassword({ email: formData.email
-       })
+      const response = await forgotPassword({ email: formData.email })
       console.log("OTP sent response:", response)
-
       showToast("OTP sent to your email!")
       setCurrentStep("otp")
     } catch (err: any) {
@@ -56,23 +84,25 @@ export default function ForgotPasswordPage() {
     setLoading(true)
     setError("")
 
-    if (formData.newPassword !== formData.confirmPassword) {
-      setError("Passwords don't match")
+    const errors = validatePassword(formData.newPassword)
+    if (errors.length > 0) {
+      setPasswordErrors(errors)
+      showToast("Please fix password errors.")
       setLoading(false)
       return
     }
 
-    if (formData.newPassword.length < 8) {
-      setError("Password must be at least 8 characters")
+    if (formData.newPassword !== formData.confirmPassword) {
+      setError("Passwords don't match")
+      showToast("Passwords don't match")
       setLoading(false)
       return
     }
 
     try {
       // Simulate API call to verify OTP and reset password
-      const response =await resetPassword(formData)
+      const response = await resetPassword(formData)
       console.log("Password reset response:", response)
-
       showToast("Password reset successful!")
       setCurrentStep("success")
     } catch (err: any) {
@@ -95,7 +125,6 @@ export default function ForgotPasswordPage() {
           Enter your email address and we'll send you an OTP to reset your password.
         </p>
       </div>
-
       <form onSubmit={handleEmailSubmit} className="space-y-5 sm:space-y-6">
         <div>
           <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
@@ -111,8 +140,6 @@ export default function ForgotPasswordPage() {
             required
           />
         </div>
-
-        
         <button
           type="submit"
           disabled={loading}
@@ -121,7 +148,6 @@ export default function ForgotPasswordPage() {
           {loading ? "Sending OTP..." : "Send OTP"}
         </button>
       </form>
-
       <div className="mt-6 text-center text-xs text-gray-300 sm:mt-8 sm:text-sm">
         Remember your password?{" "}
         <Link href="/login" className="font-medium text-white hover:underline">
@@ -143,7 +169,6 @@ export default function ForgotPasswordPage() {
           password.
         </p>
       </div>
-
       <form onSubmit={handleOTPSubmit} className="space-y-5 sm:space-y-6">
         <div>
           <label htmlFor="otp" className="mb-2 block text-sm font-medium text-gray-300">
@@ -160,7 +185,6 @@ export default function ForgotPasswordPage() {
             required
           />
         </div>
-
         <div>
           <label htmlFor="newPassword" className="mb-2 block text-sm font-medium text-gray-300">
             New Password
@@ -170,13 +194,33 @@ export default function ForgotPasswordPage() {
             id="newPassword"
             placeholder="••••••••"
             value={formData.newPassword}
-            onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
+            onChange={handleNewPasswordChange}
             className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
             minLength={8}
             required
           />
+          {passwordErrors.length > 0 && (
+            <ul className="mt-2 space-y-1 text-sm text-red-400">
+              {passwordErrors.map((error, index) => (
+                <li key={index} className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mr-1 h-4 w-4 flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {error}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-
         <div>
           <label htmlFor="confirmPassword" className="mb-2 block text-sm font-medium text-gray-300">
             Confirm New Password
@@ -192,16 +236,13 @@ export default function ForgotPasswordPage() {
             required
           />
         </div>
-
-
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || passwordErrors.length > 0}
           className="w-full rounded-xl bg-[var(--primary-color)] p-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-[#0a192f] sm:text-lg disabled:opacity-50"
         >
           {loading ? "Resetting Password..." : "Reset Password"}
         </button>
-
         <button
           type="button"
           onClick={() => setCurrentStep("email")}
@@ -226,7 +267,6 @@ export default function ForgotPasswordPage() {
           Your password has been successfully reset. You can now login with your new password.
         </p>
       </div>
-
       <Link
         href="/login"
         className="block w-full rounded-xl bg-[var(--primary-color)] p-3 text-center text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-[#0a192f] sm:text-lg"
@@ -243,14 +283,12 @@ export default function ForgotPasswordPage() {
       <div className="absolute -right-40 -bottom-40 h-96 w-96 rounded-full bg-[var(--primary-hover-color)] opacity-10 blur-3xl animate-pulse-fade animation-delay-3000" />
       <div className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-[var(--secondary-color)] opacity-5 blur-3xl animate-float animation-delay-2000" />
       <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-[var(--primary-color)] opacity-5 blur-3xl animate-float animation-delay-4000" />
-
       {/* Back button */}
       <div className="absolute top-8 left-6 z-20">
         <Link href="/login" className="flex items-center">
           <ArrowLeft className="h-5 w-5 md:h-10 md:w-10" />
         </Link>
       </div>
-
       {/* Render current step */}
       {currentStep === "email" && renderEmailStep()}
       {currentStep === "otp" && renderOTPStep()}
