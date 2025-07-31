@@ -84,7 +84,7 @@ export default function RegisterPage() {
       setShowOtpVerification(true)
     } catch (err: any) {
       console.log(err)
-      showToast(err.response?.data?.message || "Signup failed")
+      showToast(err.response?.data?.detail || "Signup failed")
     } finally {
       setLoading(false)
     }
@@ -102,7 +102,7 @@ export default function RegisterPage() {
       const response = await verifyOtp({ email, otp })
       showToast("OTP verified successfully! You can now login.")
     } catch (err: any) {
-      showToast(err.response?.data?.message || "OTP verification failed")
+      showToast(err.response?.data?.detail || "OTP verification failed")
     } finally {
       setLoading(false)
     }

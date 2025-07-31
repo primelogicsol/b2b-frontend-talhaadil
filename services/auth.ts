@@ -28,11 +28,19 @@ export const login = (data:{
     password: string;
 }) => api.post("/auth/login", data);
 
-export const forgotPassword = (data: any) =>
-  api.post("/auth/forgot/password?email=" + data.email);
+export const forgotPassword = (data: {
+  email: string;
+}) => {
+  console.log("Forgot password request:", data);
+  return api.post("/auth/forgot/password?email=" + data.email);
+}
 
-export const resetPassword = (data: any) =>
-  api.post("/auth/reset-password", data);
+export const resetPassword = (data:{
+  email: string;
+  otp: string;
+  newPassword: string;
+}) =>
+  api.post("/auth/reset-password?email=" + data.email + "&otp=" + data.otp + "&new_password=" + data.newPassword);
 
 export const changePassword = (data: any) =>
   api.post("/auth/change-password", data);
