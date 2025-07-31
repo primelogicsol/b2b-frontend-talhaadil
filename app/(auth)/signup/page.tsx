@@ -47,10 +47,9 @@ export default function RegisterPage() {
     const newPassword = e.target.value
     setPassword(newPassword)
     if (newPassword) {
-      // Only validate if password is not empty
       setPasswordErrors(validatePassword(newPassword))
     } else {
-      setPasswordErrors([]) // Clear errors if password field is empty
+      setPasswordErrors([]) 
     }
   }
 
@@ -100,13 +99,16 @@ export default function RegisterPage() {
     try {
       setLoading(true)
       const response = await verifyOtp({ email, otp })
-      showToast("OTP verified successfully! You can now login.")
+      showToast("OTP verified successfully!")
+      localStorage.setItem("user", JSON.stringify(response.data))
     } catch (err: any) {
       showToast(err.response?.data?.detail || "OTP verification failed")
     } finally {
       setLoading(false)
     }
   }
+
+
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#1b4f68] to-[#0a192f] p-4 text-white sm:p-6 md:p-8 lg:p-10 xl:p-12">

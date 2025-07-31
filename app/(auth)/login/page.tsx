@@ -27,8 +27,9 @@ export default function LoginPage() {
 
     try {
       const user = await login(formData)
-      console.log("Logged in user:", user)
+      // console.log("Logged in user:", user)
       showToast("Login successful!");
+      localStorage.setItem("user", JSON.stringify(user.data))
     } catch (err: any) {
       setError(err.message)
       showToast(err.response?.data?.detail || "Login failed")
