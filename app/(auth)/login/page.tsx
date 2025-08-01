@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { login } from "@/services/auth";
 import { useToast } from "@/context/ToastProvider";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 interface LoginData {
   email: string;
   password: string;
@@ -19,6 +20,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { showToast } = useToast();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,6 +51,7 @@ export default function LoginPage() {
       Cookies.set("visibility_level", data.visibility_level.toString());
 
       Cookies.set("ownership", JSON.stringify(data.ownership));
+      router.push("/")
     } catch (err: any) {
       setError(err.message);
       showToast(err.response?.data?.detail || "Login failed");

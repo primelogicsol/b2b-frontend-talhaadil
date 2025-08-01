@@ -10,6 +10,7 @@ import { registerSupplier } from "@/services/auth"; // Assuming registerSupplier
 import { verifyOtp } from "@/services/auth";
 import { signup } from "@/services/auth";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
@@ -21,7 +22,7 @@ export default function RegisterPage() {
   const [showOtpVerification, setShowOtpVerification] = useState(false);
   const [userType, setUserType] = useState("Buyer"); // New state for user type, default to Buyer
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
-
+  const router = useRouter();
   const { showToast } = useToast();
 
   const validatePassword = (pwd: string): string[] => {
@@ -119,6 +120,7 @@ export default function RegisterPage() {
       Cookies.set("visibility_level", data.visibility_level.toString());
 
       Cookies.set("ownership", JSON.stringify(data.ownership));
+      router.push("/")
     } catch (err: any) {
       showToast(err.response?.data?.detail || "OTP verification failed");
     } finally {
