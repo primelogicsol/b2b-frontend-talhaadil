@@ -9,6 +9,7 @@ import DocumentSubmission from "@/components/Steps/DocumentSubmission";
 import BuyerAgreement from "@/components/Steps/BuyerAgreement";
 import ApplicationStatus from "@/components/Steps/ApplicationStatus";
 import FinalActivation from "@/components/Steps/FinalActivation";
+import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
 
 export interface FormData {
   partnership?: {
@@ -123,9 +124,9 @@ export default function RegistrationProcess() {
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="mt-22">
+      <VerticalHeroSlider />
+
         <ProgressIndicator currentStep={currentStep} totalSteps={7} />
-      </div>
 
       <div className="pt-34 pb-12">{renderStep()}</div>
     </div>
