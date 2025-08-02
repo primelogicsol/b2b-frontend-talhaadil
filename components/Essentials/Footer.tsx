@@ -33,8 +33,9 @@ export default function Footer() {
     visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: easeOut } },
   };
 
+  // Updated so default link color is white
   const linkVariants = {
-    rest: { x: 0, color: "var(--secondary-light-color)" },
+    rest: { x: 0, color: "#ffffff" },
     hover: {
       x: 8,
       color: "#ffffff",
@@ -63,7 +64,7 @@ export default function Footer() {
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}
-              className=" min-w-8 min-h-8 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
+              className="min-w-8 min-h-8 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
             >
               <Users className="w-4 h-4 text-[var(--secondary-light-color)]" />
             </motion.div>
@@ -99,11 +100,11 @@ export default function Footer() {
               <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] rounded-full flex items-center justify-center">
                 <Shield className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-[var(--secondary-light-color)] bg-clip-text text-transparent">
+              <h2 className="text-2xl font-bold bg-[var(--primary-header-color)] bg-clip-text text-transparent">
                 Craftlore
               </h2>
             </div>
-            <p className="text-[var(--secondary-light-color)] leading-relaxed mb-8 text-sm">
+            <p className="text-white leading-relaxed mb-8 text-sm">
               A non-commercial platform and the world's largest open craft
               repository focused on Kashmir craftsmanship. We empower you with
               knowledge and tools to make informed, independent choices, free
@@ -155,7 +156,7 @@ export default function Footer() {
                 <motion.li key={i}>
                   <motion.a
                     href="#"
-                    className="text-[var(--secondary-light-color)] hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
                     whileHover="hover"
@@ -189,7 +190,7 @@ export default function Footer() {
                 <motion.li key={i}>
                   <motion.a
                     href="#"
-                    className="text-[var(--secondary-light-color)] hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
                     whileHover="hover"
@@ -223,7 +224,7 @@ export default function Footer() {
                 <motion.li key={i}>
                   <motion.a
                     href="#"
-                    className="text-[var(--secondary-light-color)] hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
                     whileHover="hover"
@@ -239,64 +240,60 @@ export default function Footer() {
 
         {/* Newsletter */}
         <motion.div
-  className="mt-16 pt-12 border-t border-[var(--secondary-color)]/50"
-  variants={itemVariants}
->
-  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-    <div>
-      <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-white to-[var(--secondary-light-color)] bg-clip-text text-transparent">
-        Stay Updated
-      </h3>
-      <p className="text-[var(--secondary-light-color)] text-sm">
-        Subscribe to our newsletter for the latest updates.
-      </p>
-    </div>
+          className="mt-16 pt-12 border-t border-[var(--secondary-color)]/50"
+          variants={itemVariants}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-white to-[var(--secondary-light-color)] bg-clip-text text-transparent">
+                Stay Updated
+              </h3>
+              <p className="text-white text-sm">
+                Subscribe to our newsletter for the latest updates.
+              </p>
+            </div>
 
-    {/* Responsive input and button */}
-    <div className="flex flex-col sm:flex-row gap-3 w-full">
-      <motion.input
-        type="email"
-        placeholder="Enter your email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full sm:flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-[var(--secondary-light-color)] focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)]"
-      />
-      <motion.button
-        className="w-full sm:w-auto cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-lg font-semibold text-white"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Subscribe
-        
-
-      </motion.button>
-    </div>
-  </div>
-</motion.div>
-
+            <div className="flex flex-col sm:flex-row gap-3 w-full">
+              <motion.input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full sm:flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)]"
+              />
+              <motion.button
+                className="w-full sm:w-auto cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-lg font-semibold text-white"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Subscribe
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Bottom */}
         <motion.div
           className="mt-12 pt-8 border-t border-[var(--secondary-color)]/50 flex flex-col md:flex-row justify-between items-center gap-4"
           variants={itemVariants}
         >
-          <p className="text-[var(--secondary-light-color)] text-sm">
+          <p className="text-white text-sm">
             © 2025 Craftlore. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <p className="text-[var(--secondary-light-color)]">
+            <p className="text-white">
               Powered and Maintained by Prime Logic Solutions USA
             </p>
             <div className="flex gap-4">
               <motion.a
                 href="#"
-                className="text-[var(--secondary-light-color)] hover:text-white"
+                className="text-white hover:text-white"
               >
                 Terms
               </motion.a>
               <motion.a
                 href="#"
-                className="text-[var(--secondary-light-color)] hover:text-white"
+                className="text-white hover:text-white"
               >
                 Privacy
               </motion.a>

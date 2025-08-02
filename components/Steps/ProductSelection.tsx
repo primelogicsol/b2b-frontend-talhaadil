@@ -344,10 +344,10 @@ export default function ComprehensiveProductSelection({
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Specific Products</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Choose the specific products you work with from your selected categories
-            </p>
+            </p> 
           </div>
-          <div className="bg-white rounded-3xl shadow-lg p-8 mb-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="bg-white rounded-3xl shadow-lg sm:px-0 py-6 lg:px-30 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
               {getAvailableSubCategories().map((subCategory) => (
                 <label
                   key={subCategory.id}
@@ -449,7 +449,7 @@ export default function ComprehensiveProductSelection({
                                   return (
                                     <label
                                       key={index}
-                                      className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 ${
+                                      className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 pl-4 ${
                                         isSelected
                                           ? "bg-[var(--secondary-light-color)] border-2 border-[var(--secondary-color)]"
                                           : "hover:bg-white border-2 border-transparent"
