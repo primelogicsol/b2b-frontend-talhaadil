@@ -33,6 +33,15 @@ const partnerships: Partnership[] = [
     available: true,
   },
   {
+    id: "drop",
+    title: "DKC Bidding Auction",
+    description:
+      "Only DKC Drop Shipping partners are currently being onboarded.The DKC Bidding Auction, the world’s first premium Kashmir Craft auction platform, is temporarily closed for new registrations.It will reopen soon for selected, high-performing vendors.",
+    retention: "No requirement",
+    kpiScore: "No requirement",
+    available: true,  
+  },
+  {
     id: "consignment",
     title: "DKC Consignment",
     description:
@@ -231,7 +240,7 @@ export default function ChoosePartnership({
             </div>
 
             <p
-              className={`leading-relaxed mb-6 line-clamp-4 ${
+              className={`leading-relaxed mb-6 ${
                 is4K ? "text-base" : "text-sm"
               } text-[var(--primary-color)]/80`}
             >
