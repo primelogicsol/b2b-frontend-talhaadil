@@ -556,7 +556,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
 
         {/* Form Content */}
         <div
-          className={`bg-white rounded-2xl md:rounded-3xl shadow-xl p-6 md:p-8 lg:p-12 ${is4K ? "xl:p-16" : ""} mb-6 md:mb-8 ${is4K ? "lg:mb-12" : ""} transition-all duration-300 hover:shadow-2xl`}
+          className={`bg-white rounded-2xl md:rounded-3xl shadow-md p-6 md:p-8 lg:p-12 ${is4K ? "xl:p-16" : ""} mb-6 md:mb-8 ${is4K ? "lg:mb-12" : ""} transition-all duration-300 hover:shadow-2xl`}
         >
           <div className="animate-fadeIn">{renderStepContent()}</div>
         </div>
@@ -565,7 +565,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
         <div className="flex justify-between items-center">
           <button
             onClick={handlePrev}
-            className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} bg-gray-300 text-gray-700 rounded-xl hover:bg-gray-400 transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95`}
+            className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} text-[var(--primary-color)] rounded-xl border border-[var(--primary-color)] transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95`}
           >
             <span className="inline">←</span>
             <span className="hidden md:inline ml-2">BACK</span>
@@ -576,7 +576,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
             className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} rounded-xl transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95 ${
               canProceedToNext()
                 ? currentStep === 4
-                  ? "bg-green-600 hover:bg-green-700 text-white shadow-lg"
+                  ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white shadow-lg"
                   : "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white shadow-lg"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
