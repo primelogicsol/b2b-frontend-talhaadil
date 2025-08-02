@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Key, BarChart, Truck, Briefcase, Check } from "lucide-react" // Import specific icons
 import { useGlobalContext } from "../../context/ScreenProvider"
+import Image from "next/image"
 export default function FinalActivation() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
 const { is4K } = useGlobalContext()
@@ -79,6 +80,7 @@ const { is4K } = useGlobalContext()
                 <br />
                 Director De Koshur Crafts / B2B Connect USA
               </p>
+              <Image src="/images/signature.png" alt="Partnership Activation" width={350} height={350} className="-mt-8"/>
             </div>
           </div>
         </section>

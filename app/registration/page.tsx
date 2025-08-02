@@ -36,10 +36,13 @@ export interface FormData {
     detailedSelections: Record<string, any>;
   };
   documents?: {
-    businessLicense: File | null;
-    taxCertificate: File | null;
-    bankStatement: File | null;
-    identityProof: File | null;
+   businessRegistration: File | null
+  businessLicense: File | null
+  adhaarCard: File | null
+  artisanId: File | null
+  bankStatement: File | null
+  productCatalog: File | null
+  certifications: File | null
   };
   agreement?: {
     accepted: boolean;
@@ -47,7 +50,7 @@ export interface FormData {
 }
 
 export default function RegistrationProcess() {
-  const [currentStep, setCurrentStep] = useState(5);
+  const [currentStep, setCurrentStep] = useState(6);
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {

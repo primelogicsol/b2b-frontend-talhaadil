@@ -1,6 +1,7 @@
-"use client";
+"use client"
+import { useEffect, useState } from "react"
+import type React from "react"
 
-import { useEffect, useState } from "react";
 import {
   FaBuilding,
   FaFileInvoice,
@@ -9,109 +10,147 @@ import {
   FaFilePdf,
   FaFileUpload,
   FaCheckCircle,
-} from "react-icons/fa";
-import { FileText, Ruler, ShieldCheck } from "lucide-react"; // Retain others as is
-import { useGlobalContext } from "../../context/ScreenProvider";
+  FaCertificate,
+  FaBook,
+} from "react-icons/fa"
+import { FileText, Ruler, ShieldCheck } from "lucide-react"
+import { useGlobalContext } from "../../context/ScreenProvider"
+
 interface DocumentData {
-  businessLicense: File | null;
-  taxCertificate: File | null;
-  bankStatement: File | null;
-  identityProof: File | null;
+  businessRegistration: File | null
+  businessLicense: File | null
+  adhaarCard: File | null
+  artisanId: File | null
+  bankStatement: File | null
+  productCatalog: File | null
+  certifications: File | null
 }
 
 interface DocumentSubmissionProps {
-  data?: DocumentData;
-  onUpdate: (data: DocumentData) => void;
-  onNext: () => void;
-  onPrev: () => void;
+  data?: DocumentData
+  onUpdate: (data: DocumentData) => void
+  onNext: () => void
+  onPrev: () => void
 }
 
 const documentTypes = [
   {
-    key: "businessLicense" as keyof DocumentData,
-    title: "Business License",
+    key: "businessRegistration" as keyof DocumentData,
+    title: "Business Registration",
     description: "Valid business registration certificate",
     icon: <FaBuilding size={32} className="text-[var(--primary-color)]" />,
     required: true,
-    formats: "PDF, JPG, PNG",
-    maxSize: "10MB",
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
   },
   {
-    key: "taxCertificate" as keyof DocumentData,
-    title: "Tax Certificate",
-    description: "Tax identification certificate",
+    key: "businessLicense" as keyof DocumentData,
+    title: "Business License",
+    description: "Business license certificate",
     icon: <FaFileInvoice size={32} className="text-[var(--primary-color)]" />,
+    required: false,
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
+  },
+  {
+    key: "adhaarCard" as keyof DocumentData,
+    title: "Contact Person - Adhaar Card",
+    description: "Adhaar card of the contact person",
+    icon: <FaIdCard size={32} className="text-[var(--primary-color)]" />,
     required: true,
-    formats: "PDF, JPG, PNG",
-    maxSize: "10MB",
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
+  },
+  {
+    key: "artisanId" as keyof DocumentData,
+    title: "Artisan ID Card",
+    description: "Artisan ID card (If applicable)",
+    icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
+    required: false,
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
   },
   {
     key: "bankStatement" as keyof DocumentData,
     title: "Bank Statement",
-    description: "Recent bank statement (last 3 months)",
+    description: "Upload last 3 months statement",
     icon: <FaUniversity size={32} className="text-[var(--primary-color)]" />,
-    required: true,
-    formats: "PDF, JPG, PNG",
-    maxSize: "10MB",
+    required: false,
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
   },
   {
-    key: "identityProof" as keyof DocumentData,
-    title: "Identity Proof",
-    description: "Government-issued ID or passport",
-    icon: <FaIdCard size={32} className="text-[var(--primary-color)]" />,
-    required: true,
-    formats: "PDF, JPG, PNG",
-    maxSize: "10MB",
+    key: "productCatalog" as keyof DocumentData,
+    title: "Product Catalog",
+    description: "Complete product catalog with pricing",
+    icon: <FaBook size={32} className="text-[var(--primary-color)]" />,
+    required: false,
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
   },
-];
+  {
+    key: "certifications" as keyof DocumentData,
+    title: "Certifications",
+    description: "Relevant certifications and awards",
+    icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
+    required: false,
+    formats: "PDF, PNG, JPEG, DOC, DOCX",
+    maxSize: "50MB",
+  },
+]
 
 export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: DocumentSubmissionProps) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
   const [documents, setDocuments] = useState<DocumentData>(
     data || {
+      businessRegistration: null,
       businessLicense: null,
-      taxCertificate: null,
+      adhaarCard: null,
+      artisanId: null,
       bankStatement: null,
-      identityProof: null,
-    }
-  );
-  const { is4K } = useGlobalContext();
-  const [draggedOver, setDraggedOver] = useState<string | null>(null);
+      productCatalog: null,
+      certifications: null,
+    },
+  )
+
+  const { is4K } = useGlobalContext()
+  const [draggedOver, setDraggedOver] = useState<string | null>(null)
 
   const handleFileUpload = (documentType: keyof DocumentData, file: File | null) => {
-    const updated = { ...documents, [documentType]: file };
-    setDocuments(updated);
-    onUpdate(updated);
-  };
+    const updated = { ...documents, [documentType]: file }
+    setDocuments(updated)
+    onUpdate(updated)
+  }
 
   const handleDragOver = (e: React.DragEvent, key: string) => {
-    e.preventDefault();
-    setDraggedOver(key);
-  };
-  const handleDragLeave = () => setDraggedOver(null);
+    e.preventDefault()
+    setDraggedOver(key)
+  }
+
+  const handleDragLeave = () => setDraggedOver(null)
+
   const handleDrop = (e: React.DragEvent, key: keyof DocumentData) => {
-    e.preventDefault();
-    setDraggedOver(null);
-    const file = e.dataTransfer.files[0];
-    if (file) handleFileUpload(key, file);
-  };
+    e.preventDefault()
+    setDraggedOver(null)
+    const file = e.dataTransfer.files[0]
+    if (file) handleFileUpload(key, file)
+  }
 
   const handleNext = () => {
-    const allRequired = documentTypes
-      .filter((d) => d.required)
-      .every((d) => documents[d.key] !== null);
-    if (allRequired) onNext();
-  };
+    const allRequired = documentTypes.filter((d) => d.required).every((d) => documents[d.key] !== null)
+    if (allRequired) onNext()
+  }
 
-  const getUploadedCount = () => Object.values(documents).filter(Boolean).length;
+  const getUploadedCount = () => Object.values(documents).filter(Boolean).length
 
-  const FileCard = ({ documentType }: { documentType: typeof documentTypes[0] }) => {
-    const file = documents[documentType.key];
-    const uploaded = !!file;
-    const isDrag = draggedOver === documentType.key;
+  const FileCard = ({ documentType }: { documentType: (typeof documentTypes)[0] }) => {
+    const file = documents[documentType.key]
+    const uploaded = !!file
+    const isDrag = draggedOver === documentType.key
+
     return (
       <div className="bg-white rounded-3xl overflow-hidden transition-shadow hover:shadow-xl">
         <div className={`p-6 ${uploaded ? "bg-green-50" : "bg-gray-50"}`}>
@@ -121,31 +160,26 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
               <div>
                 <h3 className="text-lg font-bold text-[var(--primary-color)]">
                   {documentType.title}
-                  {documentType.required && (
-                    <span className="text-[var(--secondary-color)] ml-1">*</span>
-                  )}
+                  {documentType.required && <span className="text-[var(--secondary-color)] ml-1">*</span>}
                 </h3>
                 <p className="text-sm text-gray-600">{documentType.description}</p>
               </div>
             </div>
-            {uploaded && (
-              <FaCheckCircle className="text-green-500 w-7 h-7" />
-            )}
+            {uploaded && <FaCheckCircle className="text-green-500 w-7 h-7" />}
           </div>
           <div className="flex justify-between text-xs text-gray-500">
             <span>Format: {documentType.formats}</span>
             <span>Max: {documentType.maxSize}</span>
           </div>
         </div>
-
         <div className="p-6">
           <div
             className={`border-2 border-dashed rounded-2xl p-8 text-center transition-colors ${
               isDrag
                 ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
                 : uploaded
-                ? "border-green-800 bg-green-50"
-                : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
+                  ? "border-green-800 bg-green-50"
+                  : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
             }`}
             onDragOver={(e) => handleDragOver(e, documentType.key)}
             onDragLeave={handleDragLeave}
@@ -155,24 +189,15 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
               type="file"
               id={documentType.key}
               hidden
-              accept=".pdf,.jpg,.jpeg,.png"
-              onChange={(e) =>
-                handleFileUpload(
-                  documentType.key,
-                  e.target.files?.[0] || null
-                )
-              }
+              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+              onChange={(e) => handleFileUpload(documentType.key, e.target.files?.[0] || null)}
             />
             <label htmlFor={documentType.key} className="cursor-pointer">
               {uploaded ? (
                 <div className="space-y-3">
                   <FaFilePdf className="text-green-700 w-16 h-16 mx-auto" />
-                  <p className="text-lg font-semibold text-green-800 mb-1">
-                    {file.name}
-                  </p>
-                  <p className="text-sm text-green-600">
-                    {(file.size / 1024 / 1024).toFixed(2)} MB
-                  </p>
+                  <p className="text-lg font-semibold text-green-800 mb-1">{file.name}</p>
+                  <p className="text-sm text-green-600">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                   <p className="text-sm text-[var(--secondary-color)] mt-3 font-medium">
                     Click to replace or drag new file
                   </p>
@@ -183,9 +208,7 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
                   <p className="text-lg font-semibold text-gray-700 mb-2">
                     {isDrag ? "Drop your file here" : "Upload Document"}
                   </p>
-                  <p className="text-sm text-gray-500 mb-3">
-                    Click to browse or drag and drop your file
-                  </p>
+                  <p className="text-sm text-gray-500 mb-3">Click to browse or drag and drop your file</p>
                   <div className="inline-flex items-center px-4 py-2 bg-[var(--primary-color)] text-white rounded-xl text-sm font-medium hover:bg-[var(--primary-hover-color)]">
                     Choose File
                   </div>
@@ -195,8 +218,8 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
           </div>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className={`mx-auto px-6 ${is4K ? "max-w-[2000px]" : "max-w-7xl "}`}>
@@ -204,21 +227,17 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <FaFileUpload className="text-white w-8 h-8" />
         </div>
-        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">
-          Document Submission
-        </h1>
+        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Document Submission</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Upload the required documents to complete your partnership application.
-          All documents will be securely stored and reviewed by our team.
+          Upload the required documents to complete your partnership application. All documents will be securely stored
+          and reviewed by our team.
         </p>
       </div>
 
       {/* Progress Overview */}
       <div className="bg-white rounded-3xl p-8 mb-12">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-            Upload Progress
-          </h2>
+          <h2 className="text-2xl font-bold text-[var(--primary-color)]">Upload Progress</h2>
           <div className="text-right">
             <p className="text-3xl font-bold text-[var(--secondary-color)]">
               {getUploadedCount()}/{documentTypes.length}
@@ -235,7 +254,6 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
             }}
           ></div>
         </div>
-
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {documentTypes.map((d) => (
             <div key={d.key} className="flex items-center space-x-3 p-3 rounded-xl bg-gray-50">
@@ -265,39 +283,74 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
           </div>
           <div className="flex-1">
             <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">
-              Upload Guidelines & Tips
+              Document Upload Request & Catalog Interface Guideline Checklist
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Accepted Formats</h4>
+                  <h4 className="font-semibold text-gray-800">Document Accepted Formats</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
-                  <li>• PDF (preferred)</li>
-                  <li>• JPG/JPEG</li>
-                  <li>• PNG</li>
-                  <li>• DOC/DOCX</li>
+                  <li>• PDF (Preferred)</li>
+                  <li>• PNG, JPEG</li>
+                  <li>• DOC, DOCX</li>
                 </ul>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Ruler className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Requirements</h4>
+                  <h4 className="font-semibold text-gray-800">File Specifications</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
-                  <li>• Max file size: 10MB</li>
-                  <li>• Clear, readable scans</li>
+                  <li>• Size: 1MB to 50MB</li>
+                  <li>• Image Resolution: 300 DPI+</li>
+                  <li>• Clear, Uncorrupted Files</li>
                 </ul>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Security</h4>
+                  <h4 className="font-semibold text-gray-800">File Naming Convention</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
-                  <li>• Files are encrypted & scanned</li>
-                  <li>• GDPR compliant</li>
+                  <li>• CompanyRegistration.pdf</li>
+                  <li>• ProductCatalog.docx</li>
+                  <li>• Adhaar.png</li>
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <FaBook className="w-4 h-4 text-[var(--primary-color)]" />
+                  <h4 className="font-semibold text-gray-800">Catalog Content</h4>
+                </div>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Introduction</li>
+                  <li>• Product Description & Price</li>
+                  <li>• Certifications (if any)</li>
+                  <li>• Business & Contact Info</li>
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-[var(--primary-color)]" />
+                  <h4 className="font-semibold text-gray-800">Catalog Layout & Design</h4>
+                </div>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Page Size: A4</li>
+                  <li>• Orientation: Portrait</li>
+                  <li>• Font Size: 12 pt</li>
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Ruler className="w-4 h-4 text-[var(--primary-color)]" />
+                  <h4 className="font-semibold text-gray-800">Catalog Standard Margins</h4>
+                </div>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Top: 1 inch (25.4 mm)</li>
+                  <li>• Bottom: 1 inch (25.4 mm)</li>
+                  <li>• Left/Right: 1 inch (25.4 mm)</li>
                 </ul>
               </div>
             </div>
@@ -311,18 +364,18 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
           onClick={onPrev}
           className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
-           <span className="inline">←</span>
-          <span className="hidden md:inline ml-2">Prev</span> 
+          <span className="inline">←</span>
+          <span className="hidden md:inline ml-2">Prev</span>
         </button>
         <button
           onClick={handleNext}
           disabled={!documentTypes.filter((d) => d.required).every((d) => documents[d.key])}
           className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
         >
-            <span className="hidden md:inline mr-2">Next</span>
+          <span className="hidden md:inline mr-2">Next</span>
           <span className="inline">→</span>
         </button>
       </div>
     </div>
-  );
+  )
 }

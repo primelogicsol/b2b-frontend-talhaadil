@@ -1,6 +1,6 @@
 "use client"
-import { useEffect } from "react";
-import { useGlobalContext } from "../../context/ScreenProvider";
+import { useEffect } from "react"
+import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface ApplicationStatusProps {
   onNext: () => void
@@ -52,14 +52,44 @@ const requiredActions = [
   },
 ]
 
+const applicationHistory = [
+  {
+    id: "document-submission-history",
+    title: "Document Submission",
+    description: "All required documents received",
+    timestamp: "1/21/2024, 3:00:00 PM",
+    type: "completed",
+  },
+  {
+    id: "initial-review-history",
+    title: "Initial Review",
+    description: "Document verification in progress",
+    timestamp: "1/21/2024, 4:00:00 PM",
+    type: "completed",
+  },
+  {
+    id: "application-created",
+    title: "Application Created",
+    description: "Partnership application submitted successfully",
+    timestamp: "1/20/2024, 2:15:00 PM",
+    type: "completed",
+  },
+  {
+    id: "profile-verification",
+    title: "Profile Verification",
+    description: "Business profile information verified",
+    timestamp: "1/20/2024, 2:30:00 PM",
+    type: "completed",
+  },
+]
+
 export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusProps) {
+  // ✅ Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
-   // ✅ Scroll to top on component mount
-   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
-  const { is4K } = useGlobalContext();
+  const { is4K } = useGlobalContext()
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -83,6 +113,29 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         )
       default:
         return null
+    }
+  }
+
+  const getHistoryIcon = (type: string) => {
+    switch (type) {
+      case "completed":
+        return (
+          <div className="w-6 h-6 bg-[var(--primary-color)] rounded-full flex items-center justify-center">
+            <span className="text-white text-xs">✓</span>
+          </div>
+        )
+      case "in-progress":
+        return (
+          <div className="w-6 h-6 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
+            <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        )
+      default:
+        return (
+          <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center">
+            <span className="text-white text-xs">•</span>
+          </div>
+        )
     }
   }
 
@@ -111,7 +164,6 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         <div className="lg:col-span-2">
           <div className="bg-white rounded-2xl shadow-lg px-6 py-10">
             <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6">Application Timeline</h2>
-
             <div className="space-y-6">
               {statusStages.map((stage, index) => (
                 <div key={stage.id} className="flex items-start space-x-4">
@@ -123,23 +175,17 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                       />
                     )}
                   </div>
-
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="text-lg font-medium text-gray-900">{stage.title}</h3>
-                      {stage.date && (
-                        <span className="text-sm text-gray-500">{new Date(stage.date).toLocaleDateString()}</span>
-                      )}
+                     
                     </div>
-
                     <p className="text-sm text-gray-600 mb-2">{stage.description}</p>
-
                     {stage.estimatedCompletion && (
                       <p className="text-xs text-[var(--secondary-color)] font-medium">
                         Estimated completion: {stage.estimatedCompletion}
                       </p>
                     )}
-
                     <div className="mt-2">
                       <span
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -168,7 +214,6 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         <div className="lg:col-span-1">
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6">Required Actions</h2>
-
             <div className="space-y-4">
               {requiredActions.map((action) => (
                 <div
@@ -195,11 +240,9 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                       </span>
                     )}
                   </div>
-
                   <p className={`text-xs mb-2 ${action.completed ? "text-gray-500" : "text-gray-600"}`}>
                     {action.description}
                   </p>
-
                   {!action.completed && (
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-gray-500">
@@ -211,7 +254,6 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                 </div>
               ))}
             </div>
-
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">
               <h4 className="text-sm font-medium text-[var(--primary-color)] mb-2">Need Help?</h4>
               <p className="text-xs text-gray-600 mb-3">
@@ -226,13 +268,39 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         </div>
       </div>
 
+      {/* Application History */}
+      <div className="mt-8">
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6">Application History</h2>
+          <div className="space-y-4">
+            {applicationHistory.map((item, index) => (
+              <div
+                key={item.id}
+                className="flex items-start space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex flex-col items-center">
+                  {getHistoryIcon(item.type)}
+                  {index < applicationHistory.length - 1 && <div className="w-0.5 h-8 mt-2 bg-gray-200" />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-base font-medium text-gray-900">{item.title}</h3>
+                    <span className="text-sm text-gray-500">{item.timestamp}</span>
+                  </div>
+                  <p className="text-sm text-gray-600">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="flex items-center mt-8 justify-end">
-        
         <button
           onClick={onNext}
           className="px-8 py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
         >
-           <span className="hidden md:inline mr-2">Next</span>
+          <span className="hidden md:inline mr-2">Next</span>
           <span className="inline">→</span>
         </button>
       </div>
