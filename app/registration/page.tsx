@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ProgressIndicator from "@/components/Steps/ProgressIndicator";
 import ChoosePartnership from "@/components/Steps/ChoosePartnership";
 import BusinessInformation from "@/components/Steps/BusinessInformation";
