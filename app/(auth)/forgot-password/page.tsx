@@ -3,9 +3,9 @@
 import type React from "react"
 import Link from "next/link"
 import { useState } from "react"
-import { ArrowLeft, Mail, Lock, Shield } from "lucide-react"
+import { ArrowLeft, Mail, Lock, Shield, Eye, EyeOff } from "lucide-react"
 import { useToast } from "@/context/ToastProvider"
-import { forgotPassword, resetPassword } from "@/services/auth" // Now correctly imported
+import { forgotPassword, resetPassword } from "@/services/auth"
 
 interface ForgotPasswordData {
   email: string
@@ -18,6 +18,7 @@ type Step = "email" | "otp" | "success"
 
 export default function ForgotPasswordPage() {
   const [currentStep, setCurrentStep] = useState<Step>("email")
+  
   const [formData, setFormData] = useState<ForgotPasswordData>({
     email: "",
     otp: "",
@@ -26,9 +27,12 @@ export default function ForgotPasswordPage() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const { showToast } = useToast() // useToast is still used here
-
+  const { showToast } = useToast()
   const [passwordErrors, setPasswordErrors] = useState<string[]>([])
+
+  // Password visibility toggles
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const validatePassword = (pwd: string): string[] => {
     const errors: string[] = []
@@ -44,7 +48,7 @@ export default function ForgotPasswordPage() {
     if (!/[0-9]/.test(pwd)) {
       errors.push("Password must contain at least one number.")
     }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
+    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(pwd)) {
       errors.push("Password must contain at least one special character.")
     }
     return errors
@@ -65,14 +69,12 @@ export default function ForgotPasswordPage() {
     setLoading(true)
     setError("")
     try {
-      // Simulate API call to send OTP
-      console.log("Sending OTP to:", formData.email)
       const response = await forgotPassword({ email: formData.email })
       console.log("OTP sent response:", response)
       showToast("OTP sent to your email!")
       setCurrentStep("otp")
     } catch (err: any) {
-      setError(err.response.data.detail || "Failed to send OTP")
+      setError(err.response?.data?.detail || "Failed to send OTP")
       showToast("Failed to send OTP")
     } finally {
       setLoading(false)
@@ -100,13 +102,12 @@ export default function ForgotPasswordPage() {
     }
 
     try {
-      // Simulate API call to verify OTP and reset password
       const response = await resetPassword(formData)
       console.log("Password reset response:", response)
       showToast("Password reset successful!")
       setCurrentStep("success")
     } catch (err: any) {
-      showToast(err.response.data.detail || "Failed to reset password")
+      showToast(err.response?.data?.detail || "Failed to reset password")
     } finally {
       setLoading(false)
     }
@@ -163,10 +164,11 @@ export default function ForgotPasswordPage() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--primary-color)]/20">
           <Shield className="h-8 w-8 text-[var(--primary-color)]" />
         </div>
-        <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl">Verify OTP</h1>
+        <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl">
+          Verify OTP
+        </h1>
         <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg">
-          Enter the OTP sent to <span className="font-semibold text-white">{formData.email}</span> and your new
-          password.
+          Enter the OTP sent to <span className="font-semibold text-white">{formData.email}</span> and your new password.
         </p>
       </div>
       <form onSubmit={handleOTPSubmit} className="space-y-5 sm:space-y-6">
@@ -185,20 +187,31 @@ export default function ForgotPasswordPage() {
             required
           />
         </div>
+
+        {/* New Password with Eye Icon */}
         <div>
           <label htmlFor="newPassword" className="mb-2 block text-sm font-medium text-gray-300">
             New Password
           </label>
-          <input
-            type="password"
-            id="newPassword"
-            placeholder="••••••••"
-            value={formData.newPassword}
-            onChange={handleNewPasswordChange}
-            className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
-            minLength={8}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showNewPassword ? "text" : "password"}
+              id="newPassword"
+              placeholder="••••••••"
+              value={formData.newPassword}
+              onChange={handleNewPasswordChange}
+              className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+              minLength={8}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowNewPassword(!showNewPassword)}
+              className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
+            >
+              {showNewPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
           {passwordErrors.length > 0 && (
             <ul className="mt-2 space-y-1 text-sm text-red-400">
               {passwordErrors.map((error, index) => (
@@ -221,21 +234,33 @@ export default function ForgotPasswordPage() {
             </ul>
           )}
         </div>
+
+        {/* Confirm Password with Eye Icon */}
         <div>
           <label htmlFor="confirmPassword" className="mb-2 block text-sm font-medium text-gray-300">
             Confirm New Password
           </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="••••••••"
-            value={formData.confirmPassword}
-            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-            className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
-            minLength={8}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              id="confirmPassword"
+              placeholder="••••••••"
+              value={formData.confirmPassword}
+              onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+              className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white placeholder-gray-400 transition-all duration-300 focus:border-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+              minLength={8}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
+            >
+              {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+
         <button
           type="submit"
           disabled={loading || passwordErrors.length > 0}
@@ -283,12 +308,14 @@ export default function ForgotPasswordPage() {
       <div className="absolute -right-40 -bottom-40 h-96 w-96 rounded-full bg-[var(--primary-hover-color)] opacity-10 blur-3xl animate-pulse-fade animation-delay-3000" />
       <div className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-[var(--secondary-color)] opacity-5 blur-3xl animate-float animation-delay-2000" />
       <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-[var(--primary-color)] opacity-5 blur-3xl animate-float animation-delay-4000" />
+
       {/* Back button */}
       <div className="absolute top-8 left-6 z-20">
         <Link href="/login" className="flex items-center">
           <ArrowLeft className="h-5 w-5 md:h-10 md:w-10" />
         </Link>
       </div>
+
       {/* Render current step */}
       {currentStep === "email" && renderEmailStep()}
       {currentStep === "otp" && renderOTPStep()}
