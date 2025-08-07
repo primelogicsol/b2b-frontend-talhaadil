@@ -89,7 +89,7 @@ export default function DiagonalSection({
               <div className="absolute inset-0 border-4 border-[var(--primary-color)] rounded-xl z-10 pointer-events-none"></div>
               <div className="absolute inset-[4px] border-4 border-gray-900 rounded-xl z-10 pointer-events-none"></div>
               <Image
-                src={mainImage}
+                src='/images/cop.jpeg'
                 alt="Main visual"
                 width={600}
                 height={700}
@@ -102,14 +102,14 @@ export default function DiagonalSection({
                 is4K
                   ? "w-[250px] h-[300px]"
                   : "w-[150px] h-[200px] md:w-[200px] md:h-[250px]"
-              } transform rotate-[15deg] skew-x-[10deg] rounded-xl overflow-hidden border-4 border-[var(--primary-color)] z-10 group transition-transform duration-300 hover:scale-105`}
+              } transform rotate-[15deg] skew-x-[10deg] rounded-xl overflow-hidden border-4 border-[var(--primary-color)] z-50 group transition-transform duration-300 hover:scale-105`}
             >
               <Image
-                src={smallImage}
+                src='/images/download.jpeg'
                 alt="Decorative"
                 width={200}
                 height={250}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:rotate-1"
+                className="w-full h-full object-cover transition-transform duration-300 z-50 group-hover:scale-110 group-hover:rotate-1"
               />
             </div>
           </div>

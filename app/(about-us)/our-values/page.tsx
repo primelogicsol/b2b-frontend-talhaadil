@@ -19,6 +19,22 @@ import {
   Sparkles,
   Sun,
   Cloud,
+  Package,
+  GalleryVertical,
+  Building,
+  Store,
+  Network,
+  Gem,
+  Boxes,
+  Gavel,
+  Tag,
+  PenTool,
+  Video,
+  GraduationCap,
+  Lightbulb,
+  Coins,
+  Library,
+  BarChart
 } from "lucide-react";
 import DiagonalSection from "@/components/Section/DiagonalSection";
 import OurVision from "@/components/Essentials/OurVision";
@@ -26,6 +42,129 @@ import EthicalSourcingSustainability from "@/components/Essentials/EthicalSourci
 
 export default function MainPage() {
   const { is4K } = useGlobalContext();
+  // Default data if no props are passed
+  const coreTradeModels = [
+    {
+      model: "Drop Shipping Buyer",
+      subtitle: "Zero-inventory model for small resellers",
+      purpose:
+        "Start selling without inventory. Vendors ship directly to your customers. Best for e-commerce beginners.",
+      icon: Package
+    },
+    {
+      model: "Consignment Buyer",
+      subtitle: "Risk-free retail listing",
+      purpose:
+        "List crafts on shelves or platforms and pay only on sale. Ideal for boutiques testing new markets.",
+      icon: Store
+    },
+    {
+      model: "Import Buyer",
+      subtitle: "Global sourcing with compliance",
+      purpose:
+        "Buy GI-tagged crafts with proper documentation. Expand certified Kashmiri goods to global markets.",
+      icon: Globe
+    },
+    {
+      model: "Wholesale Buyer",
+      subtitle: "Bulk orders for resale",
+      purpose:
+        "Order in volume for retail chains or hotel stores. Get better margins and enable vendor scaling.",
+      icon:Boxes,
+    },
+  ];
+
+  const growthExpansionModels = [
+    {
+      model: "Exhibition Buyer",
+      subtitle: "Event-based exposure for vendors",
+      purpose:
+        "Attend or co-host expos. Gain exclusivity and co-branding options while boosting vendor visibility.",
+      icon: GalleryVertical,
+    },
+    {
+      model: "Auction Buyer",
+      subtitle: "Premium crafts via bidding",
+      purpose:
+        "Bid on rare, high-value crafts with smart contract transparency. Ideal for collectors and curators.",
+      icon: Gavel,
+    },
+    {
+      model: "White-Label Buyer",
+      subtitle: "Private-label branding",
+      purpose:
+        "Rebrand crafts under your identity while preserving ethical sourcing. Ideal for conscious brands.",
+      icon: Tag,
+    },
+    {
+      model: "Space-Sharing Buyer",
+      subtitle: "Retail shelf partnership",
+      purpose:
+        "Offer vendor products physical shelf space in your store. Drives customer visibility and sales.",
+      icon: Building,
+    },
+  ];
+
+  const creativeModels = [
+    {
+      model: "Design Partner",
+      subtitle: "Co-create new product lines",
+      purpose:
+        "Collaborate on design and seasonal collections. Ideal for studios and indie brands driving innovation.",
+      icon: PenTool,
+    },
+    {
+      model: "Storytelling Partner",
+      subtitle: "Craft-focused media creation",
+      purpose:
+        "Produce videos or blogs that highlight artisan journeys. Boost vendor narratives and brand equity.",
+      icon: Video,
+    },
+    {
+      model: "Mentorship Buyer",
+      subtitle: "Vendor training and guidance",
+      purpose:
+        "Guide artisans on pricing, cataloging, and marketing. Ideal for experienced buyers and mentors.",
+      icon: GraduationCap,
+    },
+    {
+      model: "Innovation Patron",
+      subtitle: "Support craft innovation",
+      purpose:
+        "Sponsor new tools, sustainable materials, or dying techniques. Best for ESG-aligned partners.",
+      icon: Lightbulb,
+    },
+  ];
+  const institutionalModels = [
+    {
+      model: "Strategic Investor",
+      subtitle: "Equity and infra for scale",
+      purpose:
+        "Invest in artisan growth through retail, supply chain, or tech. Supports platform and vendor scale.",
+      icon: Coins,
+    },
+    {
+      model: "Museum/Institutional Buyer",
+      subtitle: "Cultural-grade sourcing",
+      purpose:
+        "Acquire heritage collections for archival or research. Validate crafts for cultural prestige.",
+      icon:Library,
+    },
+    {
+      model: "NGO/Government Buyer",
+      subtitle: "Public good procurement",
+      purpose:
+        "Source through SDG and CSR initiatives. Vendors gain formal recognition and project backing.",
+      icon: ShieldCheck,
+    },
+    {
+      model: "Impact Measurement Buyer",
+      subtitle: "Data-driven traceability",
+      purpose:
+        "Track ESG and SDG metrics for artisans. Use reports for funding, transparency, and trust.",
+      icon: BarChart,
+    },
+  ];
 
   const whatSetsUsApartCards = [
     {
@@ -137,7 +276,11 @@ export default function MainPage() {
               is4K ? "max-w-[1800px] py-32" : "max-w-6xl py-4 md:py-10 lg:py-12"
             }`}
           >
-            <div className={`${is4K ? "gap-12" : "gap-8"} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`}>
+            <div
+              className={`${
+                is4K ? "gap-12" : "gap-8"
+              } grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`}
+            >
               {cards.map((card, index) => (
                 <FlipCard key={index} {...card} />
               ))}
@@ -146,7 +289,11 @@ export default function MainPage() {
         </div>
       </section>
 
-      <section className={`px-2 ${is4K ? "py-32" : "py-16"} md:px-6 lg:px-8 bg-white text-center`}>
+      <section
+        className={`px-2 ${
+          is4K ? "py-32" : "py-16"
+        } md:px-6 lg:px-8 bg-white text-center`}
+      >
         <h2
           className={`${
             is4K ? "text-7xl mb-20" : "text-3xl md:text-4xl lg:text-5xl mb-12"
@@ -158,7 +305,26 @@ export default function MainPage() {
       </section>
 
       <section>
-        <PartnershipModel />
+        <PartnershipModel
+          title="Core Trade Partnerships"
+          subtitle="Entry-level sourcing tiers for verified vendor access."
+          models={coreTradeModels}
+        />
+        <PartnershipModel
+          title="Growth & Brand Expansion Partnerships"
+          subtitle="For buyers amplifying artisan exposure and market reach."
+          models={growthExpansionModels}
+        />
+        <PartnershipModel
+          title="Creative & Collaborative Partnerships"
+          subtitle="Empowering artisans through co-creation and storytelling."
+          models={creativeModels}
+        />
+        <PartnershipModel
+          title="Institutional & Strategic Partnerships"
+          subtitle="For buyers creating systemic uplift and public value."
+          models={institutionalModels}
+        />
       </section>
 
       <section className={`${is4K ? "px-40" : "px-4 xl:px-0"}`}>
