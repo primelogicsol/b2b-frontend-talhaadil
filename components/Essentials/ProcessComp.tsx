@@ -1233,8 +1233,8 @@ export default function Process() {
                 onClick={prevKPI}
                 className={
                   is4K
-                    ? "absolute border border-1 top-1/2 left-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
-                    : "absolute border border-1 top-1/2 left-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
+                    ? "absolute border top-1/2 left-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
+                    : "absolute border top-1/2 left-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
                 }
                 aria-label="Previous KPI metrics"
               >
@@ -1244,8 +1244,8 @@ export default function Process() {
                 onClick={nextKPI}
                 className={
                   is4K
-                    ? "absolute border border-1 top-1/2 right-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
-                    : "absolute border border-1 top-1/2 right-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
+                    ? "absolute border top-1/2 right-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
+                    : "absolute border top-1/2 right-1 -translate-y-1/2 bg-transparent text-[var(--primary-color)] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--primary-hover-color)] focus:outline-none z-10"
                 }
                 aria-label="Next KPI metrics"
               >

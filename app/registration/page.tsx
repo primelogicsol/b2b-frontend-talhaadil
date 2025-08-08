@@ -1,6 +1,6 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProgressIndicator from "@/components/Steps/ProgressIndicator";
 import ChoosePartnership from "@/components/Steps/ChoosePartnership";
 import BusinessInformation from "@/components/Steps/BusinessInformation";
@@ -36,13 +36,13 @@ export interface FormData {
     detailedSelections: Record<string, any>;
   };
   documents?: {
-   businessRegistration: File | null
-  businessLicense: File | null
-  adhaarCard: File | null
-  artisanId: File | null
-  bankStatement: File | null
-  productCatalog: File | null
-  certifications: File | null
+    businessRegistration: File | null
+    businessLicense: File | null
+    adhaarCard: File | null
+    artisanId: File | null
+    bankStatement: File | null
+    productCatalog: File | null
+    certifications: File | null
   };
   agreement?: {
     accepted: boolean;
@@ -129,7 +129,7 @@ export default function RegistrationProcess() {
     <div className="bg-gradient-to-br from-gray-50 to-gray-100">
       <VerticalHeroSlider />
 
-        <ProgressIndicator currentStep={currentStep} totalSteps={7} />
+      <ProgressIndicator currentStep={currentStep} totalSteps={7} />
 
       <div className="pt-34 pb-12">{renderStep()}</div>
     </div>

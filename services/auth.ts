@@ -38,8 +38,19 @@ export const login = (data:{
 export const forgotPassword = (data: {
   email: string;
 }) => {
-  console.log("Forgot password request:", data);
   return api.post("/auth/forgot/password?email=" + data.email);
+}
+
+export const resendOTP = (data: { email: string }) => {
+  return api.post("/auth/resend-otp", data);
+};
+
+export const googleRegister = () =>{
+  window.location.href= `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
+}
+
+export const googleCallback = (code: string) => {
+  return api.get(`/auth/google-callback`);
 }
 
 export const resetPassword = (data:{
