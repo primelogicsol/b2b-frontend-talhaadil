@@ -39,42 +39,17 @@ const fallbackData: FeatureItem[] = [
     desc: "Effortlessly source high-quality, ethical Kashmiri crafts for business.",
     isimage: true,
   },
-  {
-    img: "/assets/images/feature5.png",
-    title: "Investor",
-    desc: "Maximize returns by investing in Kashmiri craft businesses with global potential.",
-    isimage: true,
-  },
-  {
-    img: "/assets/images/feature6.png",
-    title: "Brick & Mortar",
-    desc: "Partner with Kashmiri craft suppliers for physical retail spaces.",
-    isimage: true,
-  },
-  {
-    img: "/assets/images/feature7.png",
-    title: "Franchise",
-    desc: "Expand your USA-based franchise with established Kashmiri craft brands.",
-    isimage: true,
-  },
-  {
-      img: "/assets/images/feature7.png",
-    title: "Verified Artisans",
-    desc: "Partner with pre-verified artisans to ensure quality and trust.",
-       isimage: true,
-  },
+
 ];
 
 const Features = ({ data }: FeaturesProps) => {
   const featuresData = data && data.length > 0 ? data : fallbackData;
 
   return (
-    <section className="pb-20">
-      <div className="max-w-7xl mx-auto px-4 flex justify-center">
-        <div  className={
-    `grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-5 justify-center items-center ` +
-    (featuresData[0].isimage ? 'lg:grid-cols-8' : 'lg:grid-cols-6')
-  }>
+    <section className="lg:pb-20">
+      <div className="px-4 flex justify-center">
+        <div  className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8" 
+  >
           {featuresData.map((item, i) => (
             <FeatureCard
               key={i}

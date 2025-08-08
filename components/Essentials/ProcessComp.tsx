@@ -26,6 +26,9 @@ import {
   ListChecks,
   Store,
   ExternalLink,
+  Eye,
+  Building,
+  Crown,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import PricingTable from "@/components/Material/PricingTable"
@@ -40,7 +43,7 @@ export default function Process() {
       "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC’s transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
     imageUrl: "/images/onboarding.jpg", // Ensure this image exists in /public/images
     imageAlt: "Onboarding Illustration",
-    mini_desc: " Our Streamlined Onboarding Process",
+    mini_desc: " Our Onboarding Process",
     phases: [
       "Registration Phase      ",
       "Document Submission Phase      ",
@@ -183,14 +186,14 @@ export default function Process() {
       icon: Cpu,
     },
   ]
-  const partnershipLevels = [
+    const partnershipLevels = [
     {
       level: 1,
       type: "Drop Shipping",
       retention: "≥ 18 Months at Ecommerce Platform",
       kpi: "≥ 7+ Aggregate Platform Performance Score",
       next: "Consignment",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: Package,
       description:
         "The Drop Shipping level is your entry point into the De Koshur Crafts ecosystem. Without needing to hold inventory or manage logistics, artisans and vendors can sell their products directly through our ecommerce channels. This model allows you to test your product-market fit, generate early traction, and familiarize yourself with our standards. Our platform handles packaging, shipping, and customer service—enabling you to focus on production and quality. This stage is ideal for emerging artisans or businesses exploring global outreach with low upfront risk.",
     },
@@ -200,7 +203,7 @@ export default function Process() {
       retention: "≥ 6 Months at Consignment Platform",
       kpi: "≥ 7+ Aggregate Platform Performance Score",
       next: "Exhibition",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: Store,
       description:
         "The Consignment level offers enhanced exposure through our curated retail platforms—both online and physical. Your products are featured in premium digital showcases and occasionally in temporary installations, without requiring full ownership transfer. You earn revenue upon each successful sale, which minimizes financial burden while expanding visibility. Vendors at this level build credibility, refine product offerings, and benefit from customer insights gathered via our marketing and analytics support. This phase prepares you for hands-on engagement with selective markets and customers.",
     },
@@ -210,7 +213,7 @@ export default function Process() {
       retention: "≥ 6 Months at Exhibition Platform",
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Import Export",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: Eye,
       description:
         "At the Exhibition level, artisans showcase their products at exclusive trade events, pop-ups, exhibitions, and showroom experiences organized by De Koshur Crafts. This stage is a catalyst for visibility and networking, connecting you directly with global buyers, media, influencers, and retail scouts. The focus here is on storytelling, craftsmanship, and brand elevation. Successful vendors gain real-time feedback, build customer loyalty, and solidify their identity as premium craft producers with global potential.",
     },
@@ -220,7 +223,7 @@ export default function Process() {
       retention: "≥ 6 Months at Import Export Platform",
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Subsidiary",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: Globe,
       description:
         "This level opens international trade doors. Vendors at the Import Export stage become part of our cross-border logistics network, allowing their products to reach international distributors, retailers, and platforms under structured compliance. We assist with export documentation, customs regulations, freight handling, and packaging standardization. Your brand now travels globally, benefiting from shared credibility and ecosystem-wide logistics. This phase is key for artisans aiming to scale and build recurring overseas demand while maintaining craft integrity.",
     },
@@ -230,7 +233,7 @@ export default function Process() {
       retention: "≥ 12 Months at Subsidiary Platform",
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Brick & Mortar",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: TrendingUp,
       description:
         "This is the transition from partner to stakeholder. The Investor level is for collaborators who have demonstrated sustained performance and wish to invest in De Koshur Crafts' vision. Investors gain equity opportunities, strategic influence, and access to joint ventures, including platform expansion, market penetration strategies, and innovation labs. This role is both financial and strategic—focusing on long-term ecosystem development, rural upliftment, craft revival, and infrastructure scaling.",
     },
@@ -240,7 +243,7 @@ export default function Process() {
       retention: "≥ 24 Months at Brick & Mortar Platform",
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Franchise",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: Building,
       description:
         "Partners at this level establish their own physical retail outlets in domestic or international cities under the De Koshur Crafts brand or as co-branded ventures. We provide full architectural guidance, store layout templates, visual merchandising strategy, point-of-sale systems, and training for in-store staff. You gain supply chain integration, interior branding support, and access to limited edition artisan lines. This level focuses on expanding the offline footprint and offering immersive cultural retail experiences to global consumers.",
     },
@@ -250,23 +253,10 @@ export default function Process() {
       retention: "≥ 6 Months at Franchise Platform",
       kpi: "≥ 8+ Aggregate Platform Performance Score",
       next: "Enjoy Collaborative US-Kashmir-India Craft Business in the USA",
-      image: "/placeholder.svg?height=200&width=300",
+      icon: Crown,
       description:
         "This is the pinnacle of our partnership ecosystem. Franchisees operate under the De Koshur Crafts umbrella with full rights to use our brand identity, design systems, global catalogs, sourcing network, and marketing playbooks. You become an official DKC brand custodian in your region, with dedicated support from our central and regional teams. Franchisees benefit from cross-country collaborations, access to flagship events, shared customer bases, technology infrastructure, and participation in high-level strategy dialogues. The goal is to create globally respected hubs that celebrate, sell, and scale the soul of Kashmiri artistry.",
     },
-  ]
-
-  const onboardingPhases = [
-    "Registration Phase",
-    "Document Submission Phase",
-    "Eligibility Review Phase",
-    "Agreement and Certification Phase",
-    "Profile Setup Phase",
-    "Partnership-Specific Onboarding Phase",
-    "Training and Resource Checkup Phase",
-    "Portal Access Activation Phase",
-    "Partnership Launch and Support Phase",
-    "KPI and Marketplace Engagement Phase",
   ]
 
   const [currentLevelIndex, setCurrentLevelIndex] = useState(0)
@@ -477,71 +467,75 @@ export default function Process() {
         </section>
 
         {/* Buyer Partnership Framework and Pathway - Slider */}
-        <section className="mb-16 relative py-12 bg-[var(--primary-hover-color)] rounded-xl shadow-lg px-6">
-          <h2
+       <section className="mb-16 relative py-12 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-xl shadow-lg px-6">
+        <h2
+          className={
+            is4K
+              ? "text-4xl sm:text-5xl font-bold text-center mb-10 bg-gradient-to-r from-[var(--secondary-color)] to-white bg-clip-text text-transparent"
+              : "text-3xl sm:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-[var(--secondary-color)] to-white bg-clip-text text-transparent"
+          }
+        >
+          Buyer Partnership Framework and Pathway
+        </h2>
+        <p
+          className={
+            is4K
+              ? "text-xl text-[var(--primary-header-color)] text-center max-w-5xl mx-auto mb-8"
+              : "text-lg text-[var(--primary-header-color)] text-center max-w-4xl mx-auto mb-6"
+          }
+        >
+          At De Koshur Crafts, we understand that every business is unique. That's why we offer flexible partnership
+          pathways tailored to your goals, strengths, and vision. Whether you're sourcing for a boutique or expanding
+          your retail business, our programs are designed to provide access to authentic Kashmiri products with ease
+          and confidence, while ensuring the highest standards of quality, ethics, and sustainability.
+        </p>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentLevelIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
             className={
               is4K
-                ? "text-4xl sm:text-5xl font-bold text-center mb-10 text-[var(--secondary-color)]"
-                : "text-3xl sm:text-4xl font-bold text-center mb-8 text-[var(--secondary-color)]"
+                ? "text-xl text-[var(--secondary-hover-color)] text-center max-w-5xl mx-auto mb-8"
+                : "text-lg text-[var(--secondary-hover-color)] text-center max-w-4xl mx-auto mb-6"
             }
           >
-            Buyer Partnership Framework and Pathway
-          </h2>
-          <p
-            className={
-              is4K
-                ? "text-xl text-[var(--primary-header-color)] text-center max-w-5xl mx-auto mb-8"
-                : "text-lg text-[var(--primary-header-color)] text-center max-w-4xl mx-auto mb-6"
-            }
-          >
-            At De Koshur Crafts, we understand that every business is unique. That's why we offer flexible partnership
-            pathways tailored to your goals, strengths, and vision. Whether you're sourcing for a boutique or expanding
-            your retail business, our programs are designed to provide access to authentic Kashmiri products with ease
-            and confidence, while ensuring the highest standards of quality, ethics, and sustainability.
-          </p>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentLevelIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className={
-                is4K
-                  ? "text-xl text-[var(--secondary-hover-color)] text-center max-w-5xl mx-auto mb-8"
-                  : "text-lg text-[var(--secondary-hover-color)] text-center max-w-4xl mx-auto mb-6"
-              }
-            >
-              {partnershipLevels[currentLevelIndex].description}
-            </motion.div>
-          </AnimatePresence>
+            {partnershipLevels[currentLevelIndex].description}
+          </motion.div>
+        </AnimatePresence>
+        <div
+          className={
+            is4K
+              ? "relative w-full max-w-5xl mx-auto overflow-hidden"
+              : "relative w-full max-w-4xl mx-auto overflow-hidden"
+          }
+        >
           <div
-            className={
-              is4K
-                ? "relative w-full max-w-5xl mx-auto overflow-hidden"
-                : "relative w-full max-w-4xl mx-auto overflow-hidden"
-            }
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentLevelIndex * 100}%)` }}
           >
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentLevelIndex * 100}%)` }}
-            >
-              {partnershipLevels.map((level) => (
+            {partnershipLevels.map((level) => {
+              const IconComponent = level.icon
+              return (
                 <div
                   key={level.level}
                   className={
                     is4K
-                      ? "flex-shrink-0 w-full p-10 rounded-lg shadow-md border border-gray-200 bg-[var(--primary-header-color)] flex flex-col md:flex-row items-center gap-8 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
-                      : "flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-[var(--primary-header-color)] flex flex-col md:flex-row items-center gap-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
+                      ? "flex-shrink-0 w-full p-10 rounded-lg shadow-md border border-gray-200 bg-gradient-to-br from-[var(--secondary-hover-color)] to-gray-50 flex flex-col md:flex-row items-center gap-8 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
+                      : "flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-gradient-to-br from-[var(--secondary-hover-color)] to-gray-50 flex flex-col md:flex-row items-center gap-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
                   }
                 >
-                  <img
-                    src={level.image || "/placeholder.svg"}
-                    alt={`Level ${level.level}: ${level.type}`}
-                    width={200}
-                    height={150}
-                    className="rounded-lg object-cover shadow-sm md:w-1/3 transition-transform duration-300 group-hover:scale-105"
-                  />
+                  <div className="rounded-lg md:w-1/3 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center p-8">
+                    <IconComponent 
+                      className={
+                        is4K 
+                          ? "w-24 h-24 text-[var(--primary-color)]" 
+                          : "w-20 h-20 text-[var(--primary-color)]"
+                      } 
+                    />
+                  </div>
                   <div className="md:w-2/3 text-left">
                     <h3
                       className={
@@ -573,53 +567,25 @@ export default function Process() {
                     </ul>
                   </div>
                 </div>
-              ))}
-            </div>
-            <button
-              onClick={prevLevel}
-              className="absolute top-1/2 left-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10 ml-1"
-              aria-label="Previous partnership level"
-            >
-              <ChevronLeft className={is4K ? "w-5 h-5" : "w-4 h-4"} />
-            </button>
-            <button
-              onClick={nextLevel}
-              className="absolute top-1/2 right-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10 mr-1"
-              aria-label="Next partnership level"
-            >
-              <ChevronRight className={is4K ? "w-5 h-5" : "w-4 h-4"} />
-            </button>
+              )
+            })}
           </div>
-          <p
-            className={
-              is4K
-                ? "text-2xl sm:text-3xl font-bold text-center mt-14 text-[var(--primary-header-color)]"
-                : "text-xl sm:text-2xl font-bold text-center mt-12 text-[var(--primary-header-color)]"
-            }
+          <button
+            onClick={prevLevel}
+            className="absolute top-1/2 left-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10 ml-1"
+            aria-label="Previous partnership level"
           >
-            Enjoy Collaborative US-Kashmir-India Craft Business in the USA
-          </p>
-          <p
-            className={
-              is4K
-                ? "text-xl sm:text-2xl text-[var(--primary-header-color)] text-center mt-5"
-                : "text-lg sm:text-xl text-[var(--primary-header-color)] text-center mt-4"
-            }
+            <ChevronLeft className={is4K ? "w-5 h-5" : "w-4 h-4"} />
+          </button>
+          <button
+            onClick={nextLevel}
+            className="absolute top-1/2 right-0 -translate-y-1/2 bg-[var(--primary-color)] text-[var(--primary-header-color)] p-1 rounded-full shadow-md transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-hover-color)] z-10 mr-1"
+            aria-label="Next partnership level"
           >
-            Our Six-Year Promise: Empowering You for Secure Success & Independence in Kashmir Luxury Craft.
-          </p>
-          <p
-            className={
-              is4K
-                ? "text-xl sm:text-2xl text-[var(--primary-header-color)] text-center mt-3"
-                : "text-lg sm:text-xl text-[var(--primary-header-color)] text-center mt-2"
-            }
-          >
-            Let’s build your path to independence & success today. Empower yourself, inspire others, lead the way as
-            true global entrepreneur.
-          </p>
-        </section>
-
+            <ChevronRight className={is4K ? "w-5 h-5" : "w-4 h-4"} />
+          </button>
+        </div>
+      </section>
         {/* What happens if a buyer is not eligible for the next level of partnership? */}
         <section className="mb-16 py-12 bg-white rounded-xl shadow-lg">
           <h2

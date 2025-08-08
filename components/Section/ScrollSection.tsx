@@ -26,40 +26,51 @@ interface KashmiriArtisansSectionProps {
 
 const defaultFeatures: Feature[] = [
   {
-    title: "Flexibility & Zero Upfront Investment",
+    title: "Full Profit Retention",
     description:
-      "Our platform offers unparalleled flexibility to showcase your crafts in the market without upfront investment.",
+      "No commissions or intermediaries—artisans keep 100% of their earnings, ensuring fair compensation for their work.",
   },
   {
-    title: "Professional Branding & Marketing",
+    title: "Transparent Buyer Access",
     description:
-      "Boost visibility through professional marketing tools, exhibitions, and promotions. Our platform helps you connect with global buyers, showcasing your crafts and increasing demand with effective branding and marketing strategies.",
+      "Connect directly with buyers and build long-term, trust-based relationships without gatekeeping platforms or brokers.",
   },
   {
-    title: "Global Market Access",
+    title: "Artisan-Controlled Pricing",
     description:
-      "Expand your reach beyond local markets. Our platform connects you with a global network of buyers, opening new opportunities for your unique products.",
+      "Vendors set their own prices, reflecting the true value of their craftsmanship without middleman interference.",
   },
   {
-    title: "Community & Support",
+    title: "Custom Orders & Feedback",
     description:
-      "Join a vibrant community of artisans. Access resources, workshops, and peer support to enhance your skills and grow your business.",
+      "Receive custom orders directly from buyers and use their feedback to improve your craft and grow your business.",
   },
   {
-    title: "Sustainable Practices",
+    title: "Own Your Digital Storefront",
     description:
-      "We promote and support sustainable and ethical practices in handicraft production, ensuring fair trade and environmental responsibility.",
+      "Get a personalized, easy-to-manage digital storefront to display and sell your products globally—no tech skills needed.",
   },
   {
-    title: "Cultural Preservation",
+    title: "Zero Upfront Investment",
     description:
-      "Our mission includes preserving and promoting the rich cultural heritage of Kashmiri craftsmanship for future generations.",
+      "Start showcasing and selling your crafts with no initial financial barriers—our platform is risk-free for artisans.",
   },
-];
+  {
+    title: "Skill Development & Support",
+    description:
+      "Access training, resources, and a supportive artisan community to refine your skills and boost your income potential.",
+  },
+  {
+    title: "Sustainable Artisan Prosperity",
+    description:
+      "Our model fosters long-term economic independence, helping artisans thrive through direct access to global demand.",
+  }
+]
+
 
 export default function ScrollSection({
-  mainTitle = "Discover Our Business Location",
-  mainDescription = "Elevating Kashmiri craftsmanship through American business processes, consumer tastes, and technology innovation. We connect you at no cost with North America, representing 80% of the global handicraft market.",
+  mainTitle = "Empowering Kashmiri Artisans by Removing Middlemen",
+  mainDescription = "We eliminate unnecessary intermediaries by directly connecting Kashmiri artisans with buyers—especially in high-demand global markets like the U.S. This transparent, commission-free approach ensures artisans receive the full value of their work, boosting income and long-term prosperity.",
   imageSrc = "/images/kashmiri-artisans.png",
   imageAlt = "Group of people sitting in a modern office setting",
   imageLabel = "PLATFORM UNIQUENESS",
@@ -182,26 +193,14 @@ export default function ScrollSection({
             {mainDescription}
           </p>
 
-          <div className="mt-8 relative group overflow-hidden rounded-lg shadow-lg">
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              width={600}
-              height={400}
-              className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-              priority
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white text-sm font-semibold uppercase tracking-wider p-4">
-              {imageLabel}
-            </div>
-          </div>
+         
         </div>
 
         {/* Right */}
         <div className="relative flex flex-col">
           <div
             ref={scrollContainerRef}
-            className="flex flex-col gap-8 max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] overflow-y-auto no-scrollbar"
+            className="flex flex-col gap-8 max-h-[400px] lg:max-h-[420px] overflow-y-auto no-scrollbar"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
@@ -252,10 +251,7 @@ export default function ScrollSection({
             </button>
           </div>
 
-          <div
-            className="mt-8 self-center w-4 h-4 rounded-full border-2 border-red-500 bg-[var(--primary-color)] animate-pulse
-                          lg:absolute lg:bottom-4 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0"
-          ></div>
+         
         </div>
       </div>
     </div>

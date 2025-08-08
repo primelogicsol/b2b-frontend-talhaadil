@@ -47,7 +47,7 @@ export default function HowItWorksSection({
           <img
             src={imageUrl || "/placeholder.svg"}
             alt={imageAlt}
-            width={600}
+            width={500}
             height={1000}
             className={
               is4K
@@ -56,7 +56,7 @@ export default function HowItWorksSection({
             }
           />
         </div>
-        <div className="md:w-1/2 space-y-4 text-left">
+        <div className="text-left">
           <h3
             className={
               is4K
