@@ -52,7 +52,7 @@ export function FlipCard({
           <h3 className={`${is4K ? "text-2xl" : "text-xl"} font-semibold text-white mb-3`}>
             {title}
           </h3>
-          <p className={`${is4K ? "text-base" : "text-sm"} text-gray-200 leading-relaxed`}>
+          <p className={`${is4K ? "text-base" : "text-sm"} text-gray-200 leading-relaxed text-left md:text-center`}>
             {detailedDescription}
           </p>
         </div>

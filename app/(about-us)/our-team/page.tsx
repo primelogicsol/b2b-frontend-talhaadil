@@ -714,7 +714,7 @@ function page() {
       Team Members Section
        <section className="py-20 bg-[var(--primary-color)] text-center">
       <SectionTitle SubTitle='Our Team' Title='Our Leadership Team'/>
-        <p className="text-gray-300 mb-12 mt-6 max-w-3xl mx-auto">
+        <p className="text-gray-300 mb-12 mt-6 max-w-3xl mx-auto px-2">
           Our core team members bring vision, innovation, and commitment to the heart of De Koshur Crafts.
         </p>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-items-center max-w-6xl mx-auto ">

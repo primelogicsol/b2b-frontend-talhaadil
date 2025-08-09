@@ -690,8 +690,9 @@ export default function CareersPage() {
             Why Work at De Koshur Crafts?
           </h2>
           <p
+          className="text-left lg:text-center px-3 lg:px-0"
             style={{
-              textAlign: "center",
+           
               fontSize: is4K ? "2rem" : "1.1rem",
               maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
@@ -864,8 +865,9 @@ export default function CareersPage() {
             Internship Opportunities
           </h2>
           <p
+            className="text-left lg:text-center px-3 lg:px-0"
             style={{
-              textAlign: "center",
+             
               fontSize: is4K ? "1.5rem" : "1.1rem",
               maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
@@ -913,8 +915,9 @@ export default function CareersPage() {
             Culture & Values
           </h2>
           <p
+            className="text-left lg:text-center px-3 lg:px-0"
             style={{
-              textAlign: "center",
+             
               fontSize: is4K ? "1.5rem" : "1.1rem",
               maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
@@ -934,7 +937,9 @@ export default function CareersPage() {
                 <h3 className="value-title" style={is4K ? { fontSize: "1.8rem" } : {}}>
                   {value.title}
                 </h3>
-                <p style={is4K ? { fontSize: "1.2rem" } : {}}>{value.description}</p>
+                <p 
+                className="text-left lg:text-center px-1 lg:px-0"
+                style={is4K ? { fontSize: "1.2rem" } : {}}>{value.description}</p>
               </div>
             ))}
           </div>
@@ -952,6 +957,7 @@ export default function CareersPage() {
           </h2>
           <div style={{ textAlign: "center", maxWidth: is4K ? "900px" : "600px", margin: "0 auto" }}>
             <p
+            className ="text-left lg:text-center px-3 lg:px-0"
               style={{
                 fontSize: is4K ? "1.5rem" : "1.1rem",
                 marginBottom: "2rem",
@@ -962,6 +968,7 @@ export default function CareersPage() {
               might be the perfect place for you.
             </p>
             <p
+             className ="text-left lg:text-center px-3 lg:px-0"
               style={{
                 fontSize: is4K ? "1.5rem" : "1.1rem",
                 marginBottom: "2rem",
@@ -971,6 +978,7 @@ export default function CareersPage() {
               To apply for any open positions, please send your resume and cover letter to careers@dekoshurcrafts.com.
             </p>
             <p
+             className ="text-left lg:text-center px-3 lg:px-0"
               style={{
                 fontSize: is4K ? "1.8rem" : "1.2rem",
                 fontWeight: "600",
@@ -992,23 +1000,17 @@ export default function CareersPage() {
           <h2 className="cta-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
             Join Our Team and Make a Difference
           </h2>
-          <p style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}>
+          <p 
+           className ="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}>
             Are you ready to be part of a mission-driven company that is making a global impact?
           </p>
-          <p style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}>
+          <p className ="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}>
             We are always looking for passionate individuals to join our team. Browse our open positions or internships,
             apply today, and become part of De Koshur Crafts.
           </p>
 
           <div className="cta-buttons">
-            <a
-              href="#job-openings"
-              className="cta-button"
-              style={is4K ? { fontSize: "1.5rem", padding: "20px 40px" } : {}}
-            >
-              <Briefcase size={is4K ? 28 : 20} />
-              Explore Career Opportunities
-            </a>
+           
             <a
               href="mailto:careers@dekoshurcrafts.com"
               className="cta-button"

@@ -236,7 +236,7 @@ export default function MainPage() {
 
       <section className={`${is4K ? "mt-52" : "mt-30 lg:mt-20"}`}>
         <DiagonalSection
-          subtitle="WELCOME TO B2B CONNECT - USA"
+          subtitle="WELCOME TO B2B CONNECT USA"
           title="Empowering Kashmiri Artisans, Startups in Accessing American"
           highlight="Markets"
           description="At De Koshur Crafts, our mission transcends the typical e-commerce experience.We believe that authentic Kashmiri craftsmanship deserves global respect, recognition, and reach.Our platform empowers artisans, preserves heritage crafts, and connects them to international markets through sustainable, fair trade practices and innovation."

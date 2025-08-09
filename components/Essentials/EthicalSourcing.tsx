@@ -1,5 +1,7 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
@@ -86,10 +88,10 @@ const testimonials = [
   ];
 
   const sustainabilityStats = [
-    { label: "CO₂ Reduced", value: "2,500", unit: "tons", icon: TreePine },
-    { label: "Water Saved", value: "1.2M", unit: "liters", icon: Droplets },
-    { label: "Renewable Energy", value: "85", unit: "%", icon: Sun },
-    { label: "Waste Diverted", value: "95", unit: "%", icon: Recycle },
+    { label: "CO₂ Reduced", value: 2500, unit: "tons", icon: TreePine },
+    { label: "Water Saved", value: 12000, unit: "liters", icon: Droplets },
+    { label: "Renewable Energy", value: 85, unit: "%", icon: Sun },
+    { label: "Waste Diverted", value: 95, unit: "%", icon: Recycle },
   ];
 
   const processSteps = [
@@ -283,7 +285,7 @@ const testimonials = [
               Better Future
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-8">
+          <p className="text-lg md:text-xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-8 text-left px-2">
             At De Koshur Crafts, we are committed to ethically sourcing products
             and ensuring that our entire supply chain is sustainable, from raw
             materials to the finished product.
@@ -320,45 +322,54 @@ const testimonials = [
         </div>
       </section>
 
-      {/* Sustainability Stats Slider */}
-      <section
-        className={`scroll-section text-[var(--primary-hover-color)] ${
-          is4K ? "py-24 px-20" : "py-16 px-4"
+{/* Sustainability Stats Slider */}
+<section
+  className={`scroll-section text-[var(--primary-hover-color)] ${
+    is4K ? "py-24 px-20" : "py-16 px-4"
+  }`}
+>
+  <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
+    <div className="text-center mb-12">
+      <h2
+        className={`font-bold mb-4 ${
+          is4K ? "text-5xl" : "text-3xl md:text-4xl"
         }`}
       >
-        <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
-          <div className="text-center mb-12">
-            <h2
-              className={`font-bold mb-4 ${
-                is4K ? "text-5xl" : "text-3xl md:text-4xl"
-              }`}
-            >
-              Our <span className="text-[var(--secondary-color)]">Impact</span>{" "}
-              in Numbers
-            </h2>
+        Our <span className="text-[var(--secondary-color)]">Impact</span>{" "}
+        in Numbers
+      </h2>
+    </div>
+    <div className="grid md:grid-cols-4 gap-8">
+      {sustainabilityStats.map((stat, index) => {
+        const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
+        return (
+          <div
+            ref={ref}
+            key={index}
+            className="group bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-light-text-color)] rounded-2xl p-8 text-center hover:scale-105 transition-all duration-500 hover:shadow-2xl"
+            style={{ animationDelay: `${index * 0.2}s` }}
+          >
+            <div className="bg-[var(--secondary-hover-color)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+              <stat.icon className="w-8 h-8 text-white" />
+            </div>
+            <div className="text-4xl font-bold text-[var(--secondary-hover-color)] mb-2">
+              {inView ? (
+                <CountUp end={stat.value} duration={2} separator="," />
+              ) : (
+                0
+              )}
+            </div>
+            <div className="text-sm text-gray-200 mb-1">{stat.unit}</div>
+            <div className="text-lg font-semibold text-gray-200">
+              {stat.label}
+            </div>
           </div>
-          <div className="grid md:grid-cols-4 gap-8">
-            {sustainabilityStats.map((stat, index) => (
-              <div
-                key={index}
-                className="group bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-light-text-color)] rounded-2xl p-8 text-center hover:scale-105 transition-all duration-500 hover:shadow-2xl"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="bg-[var(--secondary-hover-color)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
-                  <stat.icon className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-[var(--secondary-hover-color)] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-200 mb-1">{stat.unit}</div>
-                <div className="text-lg font-semibold text-gray-200">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* Ethical Sourcing Principles */}
       <section
@@ -439,70 +450,60 @@ const testimonials = [
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {sustainabilityPractices.map((practice, index) => {
-              const ref = useRef(null);
-              const isInView = useInView(ref, { amount: 0.3 });
-              const [count, setCount] = useState(0);
+             {sustainabilityPractices.map((practice, index) => {
+        const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
-              useEffect(() => {
-                if (isInView) {
-                  let start = 0;
-                  const timer = setInterval(() => {
-                    start += 1;
-                    setCount(start);
-                    if (start >= practice.percentage) clearInterval(timer);
-                  }, 2);
-                  return () => clearInterval(timer);
-                }
-              }, [isInView, practice.percentage]);
-
-              return (
-                <div
-                  key={index}
-                  ref={ref}
-                  className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
-                >
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    {/* Icon */}
-                    <div className="flex flex-col items-center sm:items-start">
-                      <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
-                        <practice.icon className="w-7 h-7 text-white" />
-                      </div>
-                    </div>
-
-                    {/* Right Section */}
-                    <div className="flex-1 w-full flex flex-col gap-2">
-                      {/* Heading + Percentage */}
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
-                          {practice.title}
-                        </h3>
-                        <span className="text-xl font-bold text-[var(--primary-cyan-color)] sm:self-start">
-                          {count}%
-                        </span>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {practice.description}
-                      </p>
-
-                      {/* Progress Bar */}
-                      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                        <motion.div
-                          className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: isInView ? `${practice.percentage}%` : "0%",
-                          }}
-                          transition={{ duration: 3, ease: "easeOut" }}
-                        />
-                      </div>
-                    </div>
-                  </div>
+        return (
+          <div
+            key={index}
+            ref={ref}
+            className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+          >
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* Icon */}
+              <div className="flex flex-col items-center sm:items-start">
+                <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                  <practice.icon className="w-7 h-7 text-white" />
                 </div>
-              );
-            })}
+              </div>
+
+              {/* Right Section */}
+              <div className="flex-1 w-full flex flex-col gap-2">
+                {/* Heading + Percentage */}
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
+                    {practice.title}
+                  </h3>
+                  <span className="text-xl font-bold text-[var(--primary-cyan-color)] sm:self-start">
+                    {inView ? (
+                      <CountUp end={practice.percentage} duration={2} suffix="%" />
+                    ) : (
+                      "0%"
+                    )}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {practice.description}
+                </p>
+
+                {/* Progress Bar */}
+                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                  <motion.div
+                    className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
+                    initial={{ width: "0%" }}
+                    animate={{
+                      width: inView ? `${practice.percentage}%` : "0%",
+                    }}
+                    transition={{ duration: 3, ease: "easeOut" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
           </div>
 
           {/* Carbon Footprint Card */}
@@ -510,7 +511,7 @@ const testimonials = [
             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-y-32 translate-x-32"></div>
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="bg-[var(--secondary-hover-color)] bg-opacity-20 w-16 h-16 rounded-2xl flex items-center justify-center">
+                <div className="bg-transparent bg-opacity-20 w-16 h-16 rounded-2xl flex items-center justify-center">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
                 <h3
@@ -567,7 +568,7 @@ const testimonials = [
                             className="w-24 h-24 rounded-full object-cover border-4 border-[var(--secondary-color)]"
                           />
                         </div>
-                        <div className="flex-1 text-center md:text-left">
+                        <div className="flex-1 text-left">
                           <div className="flex justify-center md:justify-start gap-1 mb-4">
                             {[...Array(testimonial.rating)].map((_, i) => (
                               <Star
@@ -586,7 +587,7 @@ const testimonials = [
                             <div className="text-[var(--secondary-color)] font-semibold">
                               {testimonial.craft}
                             </div>
-                            <div className="flex items-center justify-center md:justify-start gap-2 text-gray-600 mt-2">
+                            <div className="flex items-center md:justify-start gap-2 text-gray-600 mt-2">
                               <MapPin className="w-4 h-4" />
                               {testimonial.location}
                             </div>
@@ -651,7 +652,7 @@ const testimonials = [
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2
-                className={`font-bold mb-6 ${
+                className={`font-bold mb-6 text-center md:text-left ${
                   is4K ? "text-5xl" : "text-3xl md:text-4xl"
                 }`}
               >

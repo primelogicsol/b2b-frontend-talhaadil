@@ -264,7 +264,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
     description: string
     accent?: boolean
   }> = ({ title, description, accent = false }) => (
-    <div className={is4K ? "text-center mb-24 px-6" : "text-center mb-20 px-4"}>
+    <div className={is4K ? "text-center mb-24 px-6" : "text-center mb-20 px-2 lg:px-4"}>
       {" "}
       {/* Increased margin and padding */}
       <div className="relative inline-block">
@@ -285,7 +285,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
         className={
           is4K
             ? "text-2xl text-gray-700 max-w-5xl mx-auto leading-relaxed mt-10 font-medium"
-            : "text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mt-8 font-medium"
+            : "text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mt-8 font-medium text-left lg:text-center"
         }
       >
         {" "}
@@ -353,7 +353,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
         >
           {" "}
           {/* Increased max-width */}
-          <div className="mb-8">
+          <div className="mb-4">
             <h2
               className={
                 is4K

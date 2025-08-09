@@ -895,7 +895,7 @@ export default function TeamPage() {
               </div>
               <div className="quote-section">
                 <div className="quote-icon">💬</div>
-                <p className="quote-text">
+                <p className="quote-text text-left lg:text-center">
                   "We are more than just creators. We are custodians of a rich cultural legacy, and through De Koshur
                   Crafts, we can ensure that our art continues to be appreciated by people around the world."
                 </p>
@@ -906,7 +906,7 @@ export default function TeamPage() {
               <div className="section-header">
                 <div className="section-badge">Support Team</div>
                 <h2 className="section-title">The Backbone of Operations</h2>
-                <p className="section-subtitle">
+                <p className="section-subtitle text-left lg:text-center">
                   Behind every successful business is a strong support system. Our diverse team brings expertise in
                   customer service, business development, marketing, and operations.
                 </p>
@@ -928,11 +928,11 @@ export default function TeamPage() {
                   <div className="section-badge">Collaboration</div>
                   <h2 className="section-title">The Power of Unity</h2>
                 </div>
-                <p className="collaboration-text">
+                <p className="collaboration-text text-left lg:text-center">
                   The De Koshur Crafts team works collaboratively, drawing from each other's strengths, skills, and
                   perspectives to ensure that the company remains dynamic, innovative, and growth-oriented.
                 </p>
-                <p className="collaboration-text">
+                <p className="collaboration-text text-left lg:text-center">
                   We collaborate with global partners, designers, retailers, and NGOs to build a thriving ecosystem that
                   connects artisans with buyers and customers with authentic Kashmiri craftsmanship.
                 </p>

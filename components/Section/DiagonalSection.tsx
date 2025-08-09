@@ -18,7 +18,7 @@ interface SectionProps {
 }
 
 export default function DiagonalSection({
-  subtitle = "WELCOME TO B2B CONNECT - USA",
+  subtitle = "WELCOME TO B2B CONNECT USA",
   title = "Empowering Kashmiri Artisans, Startups in Accessing American",
   highlight = "Markets",
   description = "At De Koshur Crafts, our mission transcends the typical e-commerce experience.We believe that authentic Kashmiri craftsmanship deserves global respect, recognition, and reach.Our platform empowers artisans, preserves heritage crafts, and connects them to international markets through sustainable, fair trade practices and innovation.",
@@ -135,8 +135,8 @@ export default function DiagonalSection({
           </h1>
           <p
             className={`${
-              is4K ? "text-xl" : "text-base md:text-lg"
-            } text-gray-700 leading-relaxed mb-8`}
+              is4K ? "text-xl" :"text-base md:text-lg"
+            } text-gray-700 leading-relaxed mb-8 text-left px-2`}
           >
             {description}
           </p>
@@ -145,7 +145,7 @@ export default function DiagonalSection({
             {steps.map((text, i) => {
               const [before, after] = text.split(":");
               return (
-                <div key={i} className="flex items-start group">
+                <div key={i} className="flex items-start group text-left">
                   <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 mr-4 transition-all duration-300"></div>
                   <p
                     className={`font-bold ${
@@ -155,7 +155,9 @@ export default function DiagonalSection({
                     <span className="text-[var(--secondary-color)]">
                       {before}
                     </span>
+                    <span className="font-medium text-gray-700">
                     {after ? `:${after}` : ""}
+                    </span>
                   </p>
                 </div>
               );

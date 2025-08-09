@@ -62,7 +62,7 @@ Meet the people who are bringing this vision to life.`,
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-col justify-center text-center lg:text-left mt-12 lg:mt-0 px-2 sm:px-0">
+        <div className="flex flex-col justify-center text-center lg:text-left mt-12 lg:mt-0 px-1 sm:px-0">
           <div className="flex items-center justify-center lg:justify-start mb-4">
             <div className="w-8 h-1 bg-[var(--secondary-color)] rounded-full mr-3"></div>
             <p className="text-sm font-semibold text-gray-600 uppercase tracking-wider">{tagline}</p>
@@ -71,7 +71,7 @@ Meet the people who are bringing this vision to life.`,
             {title} <span className="text-[var(--secondary-color)]">{highlightedWords.one}</span> and{" "}
             <span className="text-[var(--secondary-color)]">{highlightedWords.two}</span>
           </h1>
-          <p className="text-base sm:text-lg text-[var(--primary-light-text-color)] mb-8 max-w-2xl mx-auto lg:mx-0 whitespace-pre-line">
+          <p className="text-base sm:text-lg text-[var(--primary-light-text-color)] mb-8 max-w-2xl mx-auto lg:mx-0 whitespace-pre-line text-left lg:text-center">
             {description}
           </p>
 
@@ -81,7 +81,7 @@ Meet the people who are bringing this vision to life.`,
             </div>
             <div>
               <h3 className="text-center lg:text-left lg:-ml-14 text-lg sm:text-xl font-bold text-[var(--primary-dark-slate)] mb-2">{subTitle}</h3>
-              <p className="text-center text-sm sm:text-base text-[var(--primary-light-text-color)] max-w-2xl mx-auto lg:mx-0">{subDescription}</p>
+              <p className="text-sm sm:text-base text-[var(--primary-light-text-color)] max-w-2xl mx-auto lg:mx-0 text-left lg:text-center">{subDescription}</p>
             </div>
           </div>
 
