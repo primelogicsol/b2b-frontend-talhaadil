@@ -92,7 +92,7 @@ export default function ScrollVideoSection({
   items?: MediaItem[];
 }) {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans">
+    <div className="min-h-screen bg-white text-gray-900 font-sans px-5">
       <style jsx global>{`
         body {
           background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);

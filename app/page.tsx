@@ -35,6 +35,7 @@ import ScrollSection from "@/components/Section/ScrollSection";
 import MainPageCards from "@/components/Cards/MainPageCards";
 import RecSquareSection from "@/components/Section/RecSquareSection";
 import Homepage from "@/components/Essentials/HomePage";
+import KashmirCraftsCarousel from "@/components/Material/ProfitBox";
 // Screen detection hook
 
 const howItWorksData = {
@@ -364,6 +365,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
       <BannerWithFeatures />
+          <Homepage/>
 
       {/* About Us Sections */}
       <section className="py-16 lg:py-24 bg-gray-50">
@@ -578,287 +580,7 @@ export default function LandingPage() {
       {/* Process Section */}
       <RecSquareSection />
 
-      {/* Profit Box Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden pt-20 pb-30">
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center opacity-20"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        >
-          <svg
-            width={is4K ? "1000" : "800"}
-            height={is4K ? "1000" : "800"}
-            viewBox={`0 0 ${is4K ? "1000" : "800"} ${is4K ? "1000" : "800"}`}
-          >
-            {createDottedEarth()}
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="relative z-10 text-center py-8"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="text-gray-400 text-sm mb-2"
-            whileHover={{ scale: 1.05, color: "#fb923c" }}
-          >
-            Hand ♡ Made
-          </motion.div>
-          <motion.div
-            className="text-white text-lg font-light"
-            whileHover={{ scale: 1.05, color: "#fb923c" }}
-          >
-            Kashmir India Sourced
-          </motion.div>
-        </motion.div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="space-y-8">
-              {leftMetrics.map((metric, index) => (
-                <MetricCard
-                  key={index}
-                  icon={metric.icon}
-                  title={metric.title}
-                  value={metric.value}
-                  position="left"
-                  index={index}
-                />
-              ))}
-            </div>
-
-            <motion.div
-              className="bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              whileHover={{ backgroundColor: "rgba(30, 41, 59, 0.6)" }}
-            >
-              <motion.div className="text-center mb-8">
-                <motion.h2
-                  className="text-3xl font-bold text-white mb-2"
-                  whileHover={{ scale: 1.05, color: "#fb923c" }}
-                >
-                  Boutique
-                </motion.h2>
-                <motion.h3
-                  className="text-xl text-gray-300 font-medium"
-                  whileHover={{ color: "#ffffff" }}
-                >
-                  Product Range
-                </motion.h3>
-              </motion.div>
-
-              <div className="grid grid-cols-2 gap-3">
-                {products.map((product, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-slate-700/50 hover:bg-slate-600/50 transition-all duration-300 rounded-lg px-3 py-4 text-center text-white font-medium cursor-pointer border border-slate-600/30 hover:border-slate-500/50"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "rgba(249, 115, 22, 0.2)",
-                      borderColor: "rgba(249, 115, 22, 0.5)",
-                      color: "#fb923c",
-                      y: -2,
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {product}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <div className="space-y-8">
-              {rightMetrics.map((metric, index) => (
-                <MetricCard
-                  key={index}
-                  icon={metric.icon}
-                  title={metric.title}
-                  value={metric.value}
-                  position="right"
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <ScrollSection />
-
-      {/* Call to Action Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0 opacity-10"
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, white 2px, transparent 2px)",
-            backgroundSize: "50px 50px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-8"
-              whileHover={{ scale: 1.05 }}
-            >
-              <Sparkles className="w-5 h-5 text-[var(--secondary-light-color)]" />
-              <span className="text-white font-medium">
-                Ready to Transform Your Business?
-              </span>
-            </motion.div>
-
-            <h2
-              className={`font-bold text-white mb-6 ${
-                is4K ? "text-6xl" : "text-3xl lg:text-5xl"
-              }`}
-            >
-              Start Your Journey{" "}
-              <span className="text-[var(--secondary-light-color)]">
-                With Us Today
-              </span>
-            </h2>
-
-            <p
-              className={`text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed ${
-                is4K ? "text-2xl" : "text-lg lg:text-xl"
-              }`}
-            >
-              Join thousands of successful artisans and businesses who have
-              transformed their reach through our platform. Choose your path to
-              global success.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{
-                scale: 1.02,
-                backgroundColor: "rgba(255, 255, 255, 0.15)",
-              }}
-            >
-              <div className="w-16 h-16 bg-[var(--secondary-color)] rounded-full flex items-center justify-center mx-auto mb-6">
-                <UserPlus className="w-8 h-8 text-white" />
-              </div>
-              <h3
-                className={`font-bold text-white mb-4 ${
-                  is4K ? "text-3xl" : "text-xl lg:text-2xl"
-                }`}
-              >
-                Register as Partner
-              </h3>
-              <p
-                className={`text-white/80 mb-6 ${
-                  is4K ? "text-xl" : "text-base"
-                }`}
-              >
-                Join our network of successful artisans and businesses. Get
-                access to global markets, professional tools, and ongoing
-                support to grow your craft business.
-              </p>
-              <motion.button
-                className={`w-full bg-[var(--secondary-color)] hover:bg-[var(--secondary-color)]/90 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
-                  is4K ? "py-6 text-xl" : "py-4 text-lg"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <UserPlus className="w-5 h-5" />
-                Register Now
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              whileHover={{
-                scale: 1.02,
-                backgroundColor: "rgba(255, 255, 255, 0.15)",
-              }}
-            >
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Calendar className="w-8 h-8 text-[var(--primary-color)]" />
-              </div>
-              <h3
-                className={`font-bold text-white mb-4 ${
-                  is4K ? "text-3xl" : "text-xl lg:text-2xl"
-                }`}
-              >
-                Book Consultation
-              </h3>
-              <p
-                className={`text-white/80 mb-6 ${
-                  is4K ? "text-xl" : "text-base"
-                }`}
-              >
-                Schedule a personalized consultation with our experts. Discover
-                the best partnership model for your business and get answers to
-                all your questions.
-              </p>
-              <motion.button
-                className={`w-full bg-white px-2 hover:bg-gray-100 text-[var(--primary-color)] font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
-                  is4K ? "py-6 text-xl" : "py-4 text-lg"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Calendar className="w-10 h-5" />
-                Appointment
-                <ArrowRight className="w-8 h-5" />
-              </motion.button>
-            </motion.div>
-          </div>
-
-          <motion.div
-            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-white/80"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-[var(--secondary-light-color)]" />
-              <span>No upfront costs</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-[var(--secondary-light-color)]" />
-              <span>24/7 support</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-[var(--secondary-light-color)]" />
-              <span>Global market access</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
+      {/* <KashmirCraftsCarousel/> */}
       <MainPageCards />
         <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
       <div className="text-center mt-16 mb-6">
@@ -924,7 +646,7 @@ export default function LandingPage() {
         </div>
       </section>
     </div>
-    <Homepage/>
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

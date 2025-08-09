@@ -1,24 +1,31 @@
-"use client"
+export interface CraftDetails {
+  annual_revenue: string
+  global_export: string
+  artisans: string
+  market_growth: string
+  quality_rating: string
+  sustainability: string
+  market_share: string
+  product_range: string
+  customer_satisfaction: string
+  avg_production_time: string
+  energy_efficiency: string
+  innovation_index: string
+}
 
-import { useState } from "react"
-import {
-  ChevronLeft,
-  ChevronRight,
-  DollarSign,
-  Globe,
-  Users,
-  TrendingUp,
-  Award,
-  Leaf,
-  Target,
-  Key,
-  Heart,
-  Clock,
-  Zap,
-  Star,
-} from "lucide-react"
+export interface Subcategory {
+  name: string
+  id: string
+  details: CraftDetails
+}
 
-const categories = [
+export interface Category {
+  name: string
+  id: string
+  subcategories: Subcategory[]
+}
+
+export const categories: Category[] = [
   {
     name: "Boutique",
     id: "cat1",
@@ -361,7 +368,7 @@ const categories = [
     subcategories: [
       {
         name: "Papermachieware",
-        id: " papermachieware",
+        id: "papermachieware", // Corrected: Removed leading space
         details: {
           annual_revenue: "$160M+",
           global_export: "78%",
@@ -938,216 +945,3 @@ const categories = [
     ],
   },
 ]
-
-export default function KashmirCraftsCarousel() {
-  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
-  const [selectedSubcategoryIndex, setSelectedSubcategoryIndex] = useState(0)
-
-  const currentCategory = categories[currentCategoryIndex]
-  const selectedSubcategory = currentCategory.subcategories[selectedSubcategoryIndex]
-
-  const nextCategory = () => {
-    setCurrentCategoryIndex((prev) => (prev + 1) % categories.length)
-    setSelectedSubcategoryIndex(0) // Reset to first subcategory
-  }
-
-  const prevCategory = () => {
-    setCurrentCategoryIndex((prev) => (prev - 1 + categories.length) % categories.length)
-    setSelectedSubcategoryIndex(0) // Reset to first subcategory
-  }
-
-  const getMetricIcon = (key: string) => {
-    switch (key) {
-      case "annual_revenue":
-        return <DollarSign className="w-5 h-5" />
-      case "global_export":
-        return <Globe className="w-5 h-5" />
-      case "artisans":
-        return <Users className="w-5 h-5" />
-      case "market_growth":
-        return <TrendingUp className="w-5 h-5" />
-      case "quality_rating":
-        return <Award className="w-5 h-5" />
-      case "sustainability":
-        return <Leaf className="w-5 h-5" />
-      case "market_share":
-        return <Target className="w-5 h-5" />
-      case "product_range":
-        return <Key className="w-5 h-5" />
-      case "customer_satisfaction":
-        return <Heart className="w-5 h-5" />
-      case "avg_production_time":
-        return <Clock className="w-5 h-5" />
-      case "energy_efficiency":
-        return <Zap className="w-5 h-5" />
-      case "innovation_index":
-        return <Star className="w-5 h-5" />
-      default:
-        return (
-          <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]" />
-        )
-    }
-  }
-
-  const formatMetricKey = (key: string) => {
-    return key
-      .split("_")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ")
-  }
-
-  const detailsKeys = Object.keys(selectedSubcategory.details)
-  const leftColumnDetails = detailsKeys.slice(0, Math.ceil(detailsKeys.length / 2))
-  const rightColumnDetails = detailsKeys.slice(Math.ceil(detailsKeys.length / 2))
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a3a4a] to-[#2a5f7a] text-white p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center overflow-x-hidden">
-      <div className="max-w-7xl w-full mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-            Dekoshur Crafts
-          </h1>
-          <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto">Hand ♡ Made | Kashmir India Sourced</p>
-        </div>
-
-        {/* Category Carousel Navigation */}
-        <div className="relative flex items-center justify-center mb-12 px-8 sm:px-12 md:px-0">
-          <button
-            onClick={prevCategory}
-            className="absolute left-0 top-1/2 -translate-y-1/2 group flex items-center justify-center w-14 h-14 rounded-full bg-white/15 hover:bg-white/25 transition-all duration-300 hover:scale-110 z-10 shadow-lg"
-            aria-label="Previous category"
-          >
-            <ChevronLeft className="w-8 h-8 text-white group-hover:text-[var(--secondary-color)] transition-colors" />
-          </button>
-
-          <h2 className="text-3xl md:text-5xl font-bold text-white text-center">{currentCategory.name}</h2>
-
-          <button
-            onClick={nextCategory}
-            className="absolute right-0 top-1/2 -translate-y-1/2 group flex items-center justify-center w-14 h-14 rounded-full bg-white/15 hover:bg-white/25 transition-all duration-300 hover:scale-110 z-10 shadow-lg"
-            aria-label="Next category"
-          >
-            <ChevronRight className="w-8 h-8 text-white group-hover:text-[var(--secondary-color)] transition-colors" />
-          </button>
-        </div>
-
-        {/* Main Content Area: Details + Subcategory Card */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-center gap-8 lg:gap-12 w-full">
-          {/* Left Details Column (visible on lg+, stacks on smaller) */}
-          <div className="hidden lg:flex flex-1 w-full lg:w-auto flex-col space-y-6 lg:space-y-8 order-2 lg:order-1">
-            {leftColumnDetails.map((key, index) => (
-              <div
-                key={key}
-                className="flex items-center space-x-4 animate-fadeInUp"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="p-3 rounded-full bg-white/10 text-white flex-shrink-0">{getMetricIcon(key)}</div>
-                <div>
-                  <p className="text-lg font-semibold text-gray-200">{formatMetricKey(key)}</p>
-                  <p className="text-xl font-bold text-white">{selectedSubcategory.details[key as keyof typeof selectedSubcategory.details]}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Central Subcategory Card */}
-          <div className="bg-[#1b4f68] rounded-3xl p-6 md:p-8 shadow-2xl border border-white/10 flex-shrink-0 w-full max-w-md lg:max-w-sm order-1 lg:order-2 animate-fadeInUp">
-            <div className="text-center mb-6">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">{currentCategory.name}</h3>
-              <p className="text-lg text-gray-300">Product Range</p>
-            </div>
-            {/* Subcategory Tabs: Two columns on lg+, single row scrollable on smaller */}
-            <div
-              className="flex flex-nowrap overflow-x-auto whitespace-nowrap gap-4 pb-2 -mb-2 scrollbar-hide
-                      lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible lg:whitespace-normal lg:pb-0 lg:mb-0"
-            >
-              {currentCategory.subcategories.map((sub, index) => (
-                <button
-                  key={sub.id}
-                  onClick={() => setSelectedSubcategoryIndex(index)}
-                  className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-base transition-all duration-300 shadow-md
-                  ${
-                    selectedSubcategoryIndex === index
-                      ? "bg-[var(--secondary-color)] text-white scale-105"
-                      : "bg-white/10 text-gray-200 hover:bg-white/20 hover:text-white"
-                  }
-                  lg:w-full lg:text-center`}
-                >
-                  {sub.name}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Details Column (visible on lg+, stacks on smaller) */}
-          <div className="hidden lg:flex flex-1 w-full lg:w-auto flex-col space-y-6 lg:space-y-8 order-3 lg:order-3">
-            {rightColumnDetails.map((key, index) => (
-              <div
-                key={key}
-                className="flex items-center space-x-4 animate-fadeInUp"
-                style={{ animationDelay: `${index * 100 + 300}ms` }}
-              >
-                <div className="p-3 rounded-full bg-white/10 text-white flex-shrink-0">{getMetricIcon(key)}</div>
-                <div>
-                  <p className="text-lg font-semibold text-gray-200">{formatMetricKey(key)}</p>
-                  <p className="text-xl font-bold text-white">{selectedSubcategory.details[key as keyof typeof selectedSubcategory.details]}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Combined Details for Mobile/Tablet (visible on md- and below) */}
-          <div className="lg:hidden w-full mt-8 space-y-6 animate-fadeInUp">
-            {detailsKeys.map((key, index) => (
-              <div
-                key={key}
-                className="flex items-center space-x-4 bg-white/5 rounded-xl p-4 shadow-md"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="p-3 rounded-full bg-white/10 text-white flex-shrink-0">{getMetricIcon(key)}</div>
-                <div>
-                  <p className="text-base font-semibold text-gray-200">{formatMetricKey(key)}</p>
-                  <p className="text-lg font-bold text-white">{selectedSubcategory.details[key as keyof typeof selectedSubcategory.details]}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-      :root {
-        --primary-hover-color: #2a5f7a;
-        --primary-color: #1b4f68;
-        --secondary-color: #d85834;
-        --secondary-light-color: #f9c6b2;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fadeInUp {
-        animation: fadeInUp 0.6s ease-out forwards;
-      }
-
-      /* Hide scrollbar for subcategory tabs */
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      .scrollbar-hide {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-      }
-    `}</style>
-    </div>
-  )
-}
