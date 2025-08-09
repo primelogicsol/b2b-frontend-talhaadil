@@ -64,3 +64,12 @@ export const changePassword = (data: any) =>
   api.post("/auth/change-password", data);
 
 export const logout = () => api.post("/auth/logout");
+
+
+export const refreshToken = (refreshToken : string) => {
+  return api.post("/auth/refresh-token", {
+      "refresh_token": refreshToken
+  }, {
+   
+  });
+}

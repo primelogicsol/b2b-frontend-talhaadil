@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 // Create the base Axios instance
 const api = axios.create({
@@ -7,10 +8,17 @@ const api = axios.create({
 
 // Central place to read user and tokens
 const getUser = () => {
-  const userString = localStorage.getItem('user')
-  return userString ? JSON.parse(userString) : null
-}
+  const access_token = Cookies.get("access_token");
+  const refresh_token = Cookies.get("refresh_token");
 
+  if (access_token && refresh_token) {
+    return {
+      access_token,
+      refresh_token,
+    };
+  }
+  return null;
+};
 // Add request interceptor to attach access token if needed
 api.interceptors.request.use(
   (config) => {

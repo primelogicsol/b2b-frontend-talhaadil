@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { FiLock } from "react-icons/fi";
 import { X, Mountain, ChevronRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { UserProfileDisplay } from "./UserProfileDisplay";
 import Cookies from "js-cookie";
+
 
 interface DropdownItem {
   label: string;
@@ -21,6 +23,7 @@ interface DesktopDropdownProps {
   title: string;
   items: NestedDropdownItem[];
   isActive?: boolean;
+  isSignedIn?: boolean;
 }
 
 interface MobileDropdownProps {
@@ -69,32 +72,47 @@ function DesktopSubDropdown({ item }: { item: NestedDropdownItem }) {
     </div>
   );
 }
-
-function DesktopDropdown({ title, items, isActive }: DesktopDropdownProps) {
+function DesktopDropdown({ title, items, isActive, isSignedIn }: DesktopDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isPartnership = title.toLowerCase() === "partnerships";
+
+  const handleMouseEnter = () => {
+    if (!isPartnership || isSignedIn) {
+      setIsOpen(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isPartnership || isSignedIn) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <div
       className="relative group"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <button
-        className={`py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${
+        className={`flex items-center gap-2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${
           isActive
             ? "text-[var(--secondary-color)]"
             : "hover:text-[var(--secondary-hover-color)]"
         }`}
       >
         {title}
+        {isPartnership && !isSignedIn && <FiLock size={14} />}
         <span
           className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${
             isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
           }`}
         />
       </button>
+
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && (!isPartnership || isSignedIn) && (
           <motion.div
             className="absolute left-0 mt-2 w-48 bg-white shadow-xl rounded-lg py-2 z-10"
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -121,7 +139,6 @@ function DesktopDropdown({ title, items, isActive }: DesktopDropdownProps) {
     </div>
   );
 }
-
 function MobileSubDropdown({
   item,
   onLinkClick,
@@ -231,9 +248,13 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Set to true for demonstration
   const router = useRouter();
+   const user_role = Cookies.get('user_role')
+   console.log(user_role)
    useEffect(() => {
     const token = Cookies.get('access_token')
-    const user = Cookies.get('user') // Optional if you store user object
+    const user = Cookies.get('user')
+   
+   
 
     if (token || user) {
       setIsSignedIn(true)
@@ -251,7 +272,7 @@ export function Navbar() {
     { label: "Contact Us", href: "/contact" },
   ];
 
-  const pageDropdownItems: NestedDropdownItem[] = [
+  const pageDropdownItems:NestedDropdownItem[] =  user_role === "buyer" ? ( [
   {
     label: "Core Trade",
     href: "/buyer/core-partnerships",
@@ -291,7 +312,28 @@ export function Navbar() {
       { label: "NGO & Government", href: "/buyer/strategic/ngo-gov" },
       { label: "Impact Measurement", href: "/buyer/strategic/impact" },
     ],
-  }]
+  }]) : (
+    [{
+    label: "Core Trade",
+    href: "/buyer/core-partnerships",
+    subItems: [
+      { label: "Drop Shipping", href: "/buyer/core/dropshipping" },
+      { label: "Consignment", href: "/buyer/core/consignment" },
+      { label: "Import", href: "/buyer/core/import" },
+      { label: "Wholesale & Distribution", href: "/buyer/core/wholesale" },
+    ],
+  },
+  {
+    label: "Brand Expansion ",
+    href: "/buyer/expansion-partnerships",
+    subItems: [
+      { label: "Exhibition & Event Organizer", href: "/buyer/expansion/exhibition" },
+      { label: "Auction & Bidding", href: "/buyer/expansion/auction" },
+      { label: "White-Label", href: "/buyer/expansion/white-label" },
+      { label: "Brick & Mortar Space-Sharing", href: "/buyer/expansion/space-sharing" },
+    ],
+  },]
+  )
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -334,8 +376,8 @@ export function Navbar() {
               Home
               <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
             </Link>
-            <DesktopDropdown title="About Us" items={blogDropdownItems} />
-            <DesktopDropdown title="Partnerships" items={pageDropdownItems} />
+            <DesktopDropdown title="About Us" items={blogDropdownItems}/>
+            <DesktopDropdown title="Partnerships" items={pageDropdownItems} isSignedIn={isSignedIn}/>
             <Link
               href="/process"
               className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
