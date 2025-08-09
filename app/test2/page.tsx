@@ -4,7 +4,8 @@ import ApplicationStatus from '@/components/Steps/ApplicationStatus'
 import KashmirCraftsCarousel from '@/components/Material/ProfitBox'
 function page() {
   return (
-   <KashmirCraftsCarousel/>
+  //  <KashmirCraftsCarousel/>
+    <div>HELLLO</div>
   )
 }
 
