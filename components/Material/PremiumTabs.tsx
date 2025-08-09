@@ -444,7 +444,7 @@ export default function PremiumTabs() {
             Business Insights
           </h1>
           <p
-            className={`${is4K ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} text-gray-700 ${is4K ? "max-w-4xl" : "max-w-3xl"} mx-auto leading-relaxed`}
+            className={`${is4K ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} text-center px-2 md:text-center lg:text-center text-gray-700 ${is4K ? "max-w-4xl" : "max-w-3xl"} mx-auto leading-relaxed`}
           >
             Actionable Data and Strategies to Guide Smarter Decisions
           </p>

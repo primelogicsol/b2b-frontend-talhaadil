@@ -392,7 +392,7 @@ export default function OurStoryPage() {
             <p
               className={`text-lg md:text-xl ${
                 is4K ? "text-4xl" : ""
-              } text-gray-700 max-w-4xl ${is4K ? "max-w-6xl" : ""} mx-auto`}
+              } text-gray-700 text-left lg:text-center md:text-center px-1 max-w-4xl ${is4K ? "max-w-6xl" : ""} mx-auto`}
             >
               Our platform provides more than just a marketplace; it is a
               holistic support system designed to help artisans expand their
@@ -570,7 +570,7 @@ export default function OurStoryPage() {
             <h2
               className={`text-3xl md:text-4xl lg:text-5xl ${
                 is4K ? "text-8xl" : ""
-              } font-bold mb-6 md:mb-8 ${is4K ? "mb-12" : ""}`}
+              } font-bold text-left lg:text-center md:text-center mb-6 md:mb-8 ${is4K ? "mb-12" : ""}`}
               style={{ color: "var(--primary-color)" }}
             >
               The Heart of De Koshur Crafts: The Artisans
@@ -578,7 +578,7 @@ export default function OurStoryPage() {
             <p
               className={`text-lg md:text-xl ${
                 is4K ? "text-4xl" : ""
-              } text-gray-700 max-w-4xl ${
+              } text-gray-700 text-left md:text-center lg:text-center max-w-4xl ${
                 is4K ? "max-w-6xl" : ""
               } mx-auto leading-relaxed`}
             >
@@ -673,9 +673,9 @@ export default function OurStoryPage() {
           </h2>
           <p
             className={`text-lg md:text-xl ${
-              is4K ? "text-4xl" : ""
+              is4K ? "text-4xl" : "text-left md:text-center lg:text-center"
             } text-gray-700 mb-12 md:mb-16 ${is4K ? "mb-24" : ""} max-w-4xl ${
-              is4K ? "max-w-6xl" : ""
+              is4K ? "max-w-6xl" : "ext-left md:text-center lg:text-center"
             } mx-auto`}
           >
             We are creating a future where authentic crafts, sustainability, and

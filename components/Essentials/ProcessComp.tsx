@@ -305,7 +305,7 @@ export default function Process() {
             className={
               is4K
                 ? "text-xl sm:text-2xl text-[var(--primary-light-text-color)] max-w-4xl mx-auto mb-10 animate-fade-in-delay"
-                : "text-lg sm:text-xl text-[var(--primary-light-text-color)] max-w-3xl mx-auto mb-8 animate-fade-in-delay"
+                : "text-lg sm:text-xl text-left px-1 md:text-center lg:text-center text-[var(--primary-light-text-color)] max-w-3xl mx-auto mb-8 animate-fade-in-delay"
             }
           >
             At De Koshur Crafts, our Buyer Partnership Process is designed to provide seamless access to exclusive
@@ -450,7 +450,7 @@ export default function Process() {
             className={
               is4K
                 ? "text-2xl sm:text-3xl font-bold mt-14 text-[var(--primary-dark-slate)]"
-                : "text-xl sm:text-2xl font-bold mt-12 text-[var(--primary-dark-slate)]"
+                : "text-xl sm:text-2xl font-bold mt-12 text-[var(--primary-dark-slate)] "
             }
           >
             Handicraft Progressive Business Model for Every Vision
@@ -459,7 +459,7 @@ export default function Process() {
             className={
               is4K
                 ? "text-xl sm:text-2xl text-[var(--primary-light-text-color)] mt-3"
-                : "text-lg sm:text-xl text-[var(--primary-light-text-color)] mt-2"
+                : "text-lg sm:text-xl text-[var(--primary-light-text-color)] text-left px-2 md:text-center lg:text-center mt-2"
             }
           >
             Crafting US Next Generations with 700+ Old Legacy of Kashmir Handicraft Together
@@ -481,7 +481,7 @@ export default function Process() {
           className={
             is4K
               ? "text-xl text-[var(--primary-header-color)] text-center max-w-5xl mx-auto mb-8"
-              : "text-lg text-[var(--primary-header-color)] text-center max-w-4xl mx-auto mb-6"
+              : "text-lg text-[var(--primary-header-color)] text-left px-1 md:text-center lg:text-center max-w-4xl mx-auto mb-6"
           }
         >
           At De Koshur Crafts, we understand that every business is unique. That's why we offer flexible partnership
@@ -499,7 +499,7 @@ export default function Process() {
             className={
               is4K
                 ? "text-xl text-[var(--secondary-hover-color)] text-center max-w-5xl mx-auto mb-8"
-                : "text-lg text-[var(--secondary-hover-color)] text-center max-w-4xl mx-auto mb-6"
+                : "text-lg text-[var(--secondary-hover-color)] text-left px-1 md:text-center lg:text-center max-w-4xl mx-auto mb-6"
             }
           >
             {partnershipLevels[currentLevelIndex].description}
@@ -601,7 +601,7 @@ export default function Process() {
             className={
               is4K
                 ? "text-xl text-[var(--primary-light-text-color)] text-center max-w-5xl mx-auto mb-12"
-                : "text-lg text-[var(--primary-light-text-color)] text-center max-w-4xl mx-auto mb-10"
+                : "text-lg text-[var(--primary-light-text-color)] text-left px-1 md:text-center lg:text-center max-w-4xl mx-auto mb-10"
             }
           >
             At De Koshur Crafts, we believe in empowering ambitious buyers to achieve their goals without compromising
@@ -798,14 +798,14 @@ export default function Process() {
                     : "max-w-3xl mx-auto text-base sm:text-lg text-gray-200 leading-relaxed"
                 }
               >
-                <p className="mb-3">
+                <p className="mb-3 text-left px-1 md:text-center lg:text-center">
                   A{" "}
-                  <span className="font-bold text-[var(--secondary-hover-color)]">
+                  <span className="font-bold text-[var(--secondary-hover-color)] text-left px-1 md:text-center lg:text-center">
                     privilege earned through dedication
                   </span>{" "}
-                  - bypass retention periods while maintaining platform integrity through rigorous HCRF evaluation.
+                  bypass retention periods while maintaining platform integrity through rigorous HCRF evaluation.
                 </p>
-                <p>
+                <p className="text-left px-1 md:text-center lg:text-center">
                   Reserved for buyers with significant business experience who have proven their commitment to ethical
                   craftsmanship and sustainable growth.
                 </p>

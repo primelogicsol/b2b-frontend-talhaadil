@@ -37,7 +37,7 @@ export default function HowItWorksSection({
         className={
           is4K
             ? "text-xl text-[var(--primary-light-text-color)] text-center max-w-5xl mx-auto mb-12"
-            : "text-lg text-[var(--primary-light-text-color)] text-center max-w-4xl mx-auto mb-10"
+            : "text-lg text-left lg:text-center md:text-center  text-[var(--primary-light-text-color)] text-center max-w-4xl mx-auto mb-10"
         }
       >
         {description}

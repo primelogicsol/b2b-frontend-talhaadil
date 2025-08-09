@@ -20,7 +20,7 @@ export default function BusinessLocation() {
             </h2>
 
             <p
-              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-base md:text-lg lg:text-xl"} text-gray-700 leading-relaxed ${is4K ? "max-w-5xl" : "max-w-4xl"} mx-auto`}
+              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-base md:text-lg lg:text-xl"} text-left md:text-center lg:text-center px-2 text-gray-700 leading-relaxed ${is4K ? "max-w-5xl" : "max-w-4xl"} mx-auto`}
             >
               At De Koshur Crafts, we are committed to not just promoting Kashmiri craftsmanship, but also ensuring that
               local artisans have access to global markets. Our business footprint extends from the heart of Kashmir to
@@ -119,7 +119,7 @@ export default function BusinessLocation() {
               </h2>
             </div>
             <p
-              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-gray-700 max-w-4xl mx-auto text-sm md:text-base lg:text-lg"} leading-relaxed`}
+              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-gray-700 max-w-4xl mx-auto text-sm md:text-base lg:text-lg"} text-left md:text-center lg:text-center  leading-relaxed`}
             >
               Our roots are deeply tied to Kashmir, where most of our artisans are located. We work directly with
               artisans from Kashmir, Srinagar, and other parts of India, empowering them to create exceptional products
@@ -135,19 +135,19 @@ export default function BusinessLocation() {
               >
                 Srinagar
               </h3>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"}`}>
+              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
                 The heart of Kashmiri crafts, where we collaborate with artisans to produce Pashmina shawls, Papier
                 Mâché art, and Kani weaving.
               </p>
             </div>
             <div className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}>
-              <MapPin className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`} />
+              <MapPin className={`${is4K ? "w-16 h-16" : "w-12 h-12"}  text-gray-200 mx-auto mb-4 `} />
               <h3
                 className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold text-gray-200 mb-3`}
               >
                 Jammu & Kashmir
               </h3>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"}`}>
+              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
                 Throughout the region, we work with woodcarvers, silk weavers, and embroiderers to create unique
                 handcrafted products.
               </p>
@@ -161,7 +161,7 @@ export default function BusinessLocation() {
               >
                 Rural Areas
               </h3>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"}`}>
+              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
                 We ensure that even artisans from remote areas have access to essential resources, proper training, and
                 a global platform to showcase their crafts.
               </p>
@@ -181,9 +181,9 @@ export default function BusinessLocation() {
               The Importance of Our Locations
             </h2>
             <p
-              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-base md:text-lg lg:text-xl"} leading-relaxed ${is4K ? "max-w-5xl" : "max-w-4xl"} mx-auto`}
+              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-base md:text-lg lg:text-xl"} leading-relaxed  text-left md:text-center lg:text-center${is4K ? "max-w-5xl" : "max-w-4xl"} mx-auto`}
             >
-              Each of our business locations—Washington, D.C., Kashmir, and our global retail hubs—plays an essential
+              Each of our business locations Washington, D.C., Kashmir, and our global retail hubs plays an essential
               role in our ability to promote authentic Kashmiri craftsmanship and empower artisans. By expanding our
               presence in global markets while maintaining our roots in Kashmir, we continue to ensure that the legacy
               of Kashmiri crafts thrives in the modern world.
@@ -202,13 +202,13 @@ export default function BusinessLocation() {
             <div className="flex items-center justify-center mb-4">
               <Globe className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-[var(--secondary-color)] mr-3`} />
               <h2
-                className={`${is4K ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} font-bold text-[var(--primary-color)]`}
+                className={`${is4K ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} text-left md:text-center lg:text-center font-bold text-[var(--primary-color)]`}
               >
                 Global Expansion: Reaching New Markets
               </h2>
             </div>
             <p
-              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-gray-700 max-w-4xl mx-auto text-sm md:text-base lg:text-lg"} leading-relaxed`}
+              className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-gray-700 max-w-4xl mx-auto text-sm md:text-base lg:text-lg"} text-left md:text-center lg:text-center leading-relaxed`}
             >
               As part of our global vision, De Koshur Crafts has expanded its presence across several regions, ensuring
               that Kashmiri handicrafts are introduced to luxury markets and design-conscious consumers worldwide.
@@ -231,7 +231,7 @@ export default function BusinessLocation() {
                   United States
                 </h3>
               </div>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-700 text-sm md:text-base"} text-center`}>
+              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-700 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
                 Our products are proudly sold through 200+ trusted retail partners across the country, including
                 renowned luxury boutiques and premium home decor retailers operating nationwide.
               </p>
@@ -251,7 +251,7 @@ export default function BusinessLocation() {
                   Europe
                 </h3>
               </div>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-700 text-sm md:text-base"} text-center`}>
+              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-700 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
                 We have expanded our market presence to several European countries, including France, Germany, and the
                 UK, focusing on high-end home décor and fashion accessories.
               </p>
@@ -271,7 +271,7 @@ export default function BusinessLocation() {
                   Asia
                 </h3>
               </div>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-700 text-sm md:text-base"} text-center`}>
+              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-700 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
                 We have a rapidly growing base of consumers in Japan, Hong Kong, and India, who deeply appreciate the
                 rich cultural heritage and the uniqueness of Kashmiri crafts.
               </p>

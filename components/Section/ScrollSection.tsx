@@ -70,7 +70,7 @@ const defaultFeatures: Feature[] = [
 
 export default function ScrollSection({
   mainTitle = "Empowering Kashmiri Artisans by Removing Middlemen",
-  mainDescription = "We eliminate unnecessary intermediaries by directly connecting Kashmiri artisans with buyers—especially in high-demand global markets like the U.S. This transparent, commission-free approach ensures artisans receive the full value of their work, boosting income and long-term prosperity.",
+  mainDescription = "We eliminate unnecessary intermediaries by directly connecting Kashmiri artisans with buyers especially in high demand global markets like the U.S. This transparent, commission-free approach ensures artisans receive the full value of their work, boosting income and long-term prosperity.",
   imageSrc = "/images/kashmiri-artisans.png",
   imageAlt = "Group of people sitting in a modern office setting",
   imageLabel = "PLATFORM UNIQUENESS",
@@ -210,7 +210,7 @@ export default function ScrollSection({
                 className="bg-white p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
               >
                 <div className="w-12 h-0.5 bg-[var(--primary-color)] mb-2"></div>
-                <h2 className="text-xl font-bold text-gray-900">
+                <h2 className="text-xl  font-bold text-gray-900">
                   {feature.title}
                 </h2>
                 <p className="mt-2 text-gray-600">{feature.description}</p>

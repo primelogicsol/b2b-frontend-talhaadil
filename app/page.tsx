@@ -287,19 +287,19 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className={`font-bold text-gray-900 mb-4 ${is4K ? 'text-6xl' : 'text-3xl lg:text-5xl'}`}>
+            <h2 className={`font-bold text-gray-900 mb-4  md:text-center lg:text-center ${is4K ? 'text-6xl' : 'text-3xl lg:text-5xl'}`}>
               About <span className="text-[var(--secondary-color)]">Our Mission</span>
             </h2>
-            <p className={`text-gray-600 max-w-3xl mx-auto ${is4K ? 'text-2xl' : 'text-lg'}`}>
+            <p className={`text-gray-600 max-w-3xl mx-auto text-left px-1 ${is4K ? 'text-2xl' : 'text-lg'}`}>
               Discover the values, story, team, and unique business approach that drives our commitment to Kashmiri artisans.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid text-left grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {aboutSections.map((section, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-2xl p-8 lg:p-10 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-white text-left rounded-2xl p-8 lg:p-10 shadow-lg hover:shadow-xl transition-all duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -310,7 +310,7 @@ export default function LandingPage() {
                   className="flex items-center gap-4 mb-6"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="w-16 h-16 bg-[var(--secondary-light-color)] rounded-full flex items-center justify-center text-[var(--primary-color)]">
+                  <div className="w-16 h-16 text-left bg-[var(--secondary-light-color)] rounded-full flex items-center justify-center text-[var(--primary-color)]">
                     {section.icon}
                   </div>
                   <h3 className={`font-bold text-gray-900 ${is4K ? 'text-3xl' : 'text-xl lg:text-2xl'}`}>
@@ -336,7 +336,7 @@ export default function LandingPage() {
 
       {/* Partnerships Section */}
       {/* Partnerships Section */}
-      <section className={`bg-gray-900 ${is4K ? 'py-24 px-12' : 'py-16 px-4'}`}>
+      <section className={`bg-gray-900 text-left ${is4K ? 'py-24 px-12' : 'py-16 px-4'}`}>
         <div className={`${is4K ? 'max-w-9xl' : 'max-w-7xl'} mx-auto`}>
           <motion.div
             className="text-center mb-16"
@@ -345,10 +345,10 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className={`${is4K ? 'text-6xl' : 'text-4xl md:text-5xl'} font-bold text-white mb-6`}>
+            <h2 className={`${is4K ? 'text-6xl' : 'text-4xl md:text-5xl'} lg:text-center md:text-center font-bold text-white mb-6`}>
               Partnership <span className="text-[var(--secondary-color)]">Opportunities</span>
             </h2>
-            <p className={`${is4K ? 'text-2xl max-w-4xl' : 'text-xl max-w-3xl'} mx-auto text-gray-300`}>
+            <p className={`${is4K ? 'text-2xl max-w-4xl' : 'text-xl max-w-3xl'} mx-auto text-left text-gray-300`}>
               Discover diverse partnership models designed to expand your reach and maximize your impact in the global handicraft market.
             </p>
           </motion.div>
@@ -602,14 +602,14 @@ export default function LandingPage() {
                 model for your business and get answers to all your questions.
               </p>
               <motion.button
-                className={`w-full bg-white hover:bg-gray-100 text-[var(--primary-color)] font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${is4K ? 'py-6 text-xl' : 'py-4 text-lg'
+                className={`w-full bg-white px-2 hover:bg-gray-100 text-[var(--primary-color)] font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${is4K ? 'py-6 text-xl' : 'py-4 text-lg'
                   }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Calendar className="w-5 h-5" />
-                Book Appointment
-                <ArrowRight className="w-5 h-5" />
+                <Calendar className="w-10 h-5" />
+               Appointment
+                <ArrowRight className="w-8 h-5" />
               </motion.button>
             </motion.div>
           </div>

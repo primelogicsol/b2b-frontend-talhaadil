@@ -250,7 +250,7 @@ export default function InsidePartnership({
                       {item.title}
                     </h3>
                     {/* Description */}
-                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-[var(--primary-light-text-color)] text-left px-1 md:text-center lg:text-center text-sm leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -295,7 +295,7 @@ export default function InsidePartnership({
                       {item.title}
                     </h3>
                     {/* Description */}
-                    <p className="text-[var(--primary-light-text-color)] text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-left px-1 md:text-center lg:text-center text-[var(--primary-light-text-color)] text-sm leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -321,16 +321,16 @@ export default function InsidePartnership({
       >
         <div className="max-w-7xl mx-auto" style={{ maxWidth: is4K ? "2000px" : "1280px" }}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-[var(--primary-color)] animate-on-scroll">
+            <h2 className="text-4xl  font-bold mb-4 text-[var(--primary-color)] animate-on-scroll">
               Zero Fees for 2025 Drop-Shipping
             </h2>
-            <p className="text-xl text-[var(--primary-light-text-color)] mb-2">
+            <p className="text-left px-1 md:text-center lg:text-center text-xl text-[var(--primary-light-text-color)] mb-2">
               Tailored Plans for Every Stage of Your Growth Journey
             </p>
-            <p className="text-lg text-[var(--foreground)] mb-2">
+            <p className="text-left px-1 md:text-center lg:text-center text-lg text-[var(--foreground)] mb-2">
               Empowering Artisans & Businesses with Flexible Plans
             </p>
-            <p className="text-base text-[var(--primary-light-text-color)]">
+            <p className="text-left px-1 md:text-center lg:text-center text-base text-[var(--primary-light-text-color)]">
               From Starter to Premium, Unlock Exclusive Benefits at Every Step
             </p>
           </div>
@@ -532,7 +532,7 @@ export default function InsidePartnership({
                 </h3>
                 {/* Description */}
                 <p
-                  className={`text-sm leading-relaxed text-center mb-6 ${
+                  className={`text-left px-2 md:text-center lg:text-center text-sm leading-relaxed text-center mb-6 ${
                     service.featured ? "text-[var(--white)] opacity-90" : "text-[var(--foreground)]"
                   }`}
                 >
@@ -541,16 +541,16 @@ export default function InsidePartnership({
                 {/* Special indicator for featured card */}
 
                 {service.featured && (
-                  <p className="text-md text-[var(--secondary-color)] mb-1 font-bold">You are currently here</p>
+                  <p className="text-md text-[var(--secondary-color)] mb-1 font-bold text-left px-1 md:text-center lg:text-center">You are currently here</p>
                 )}
 
                 {/* Read More Button */}
                 <div className="text-center">
                   <button
-                    className={`inline-flex items-center font-semibold text-sm transition-all duration-300 ${
+                    className={`inline-flex items-center font-semibold text-sm transition-all duration-300  ${
                       service.featured
                         ? "text-[var(--white)] hover:text-[var(--secondary-hover-color)]"
-                        : "text-[var(--primary-color)] hover:text-[var(--secondary-color)]"
+                        : "text-[var(--primary-color)]  hover:text-[var(--secondary-color)]"
                     }`}
                   >
                     READ MORE
@@ -577,7 +577,7 @@ export default function InsidePartnership({
       >
         <div className="max-w-7xl mx-auto text-center" style={{ maxWidth: is4K ? "2000px" : "1280px" }}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Ready to Partner with Us?</h2>
-          <p className="text-base sm:text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90">
+          <p className="text-left px-3 md:text-center lg:text-center text-base sm:text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90">
             Join our network of successful businesses. Register today or book an appointment to discuss your needs.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

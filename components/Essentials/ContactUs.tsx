@@ -417,7 +417,7 @@ export default function ContactUs() {
             >
               Get in <span className="text-[var(--secondary-color)]">Touch</span>
             </h2>
-            <p className={is4K ? "text-[#346880] text-xl leading-relaxed" : "text-[#346880] text-lg leading-relaxed"}>
+            <p className={is4K ? "text-[#346880] text-xl leading-relaxed" : "text-[#346880] text-lg px-2 text-left md:text-center lg:text-center sleading-relaxed"}>
               For general inquiries, please fill out the contact form below, and we will get back to you as soon as
               possible.
             </p>

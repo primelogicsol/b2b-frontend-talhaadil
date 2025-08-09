@@ -87,9 +87,9 @@ export default function RecSquareSection({
           HOW IT WORKS
         </div>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">{title}</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6 text-left px-3 md:text-center lg:text-center">{title}</h2>
 
-        <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base">{description}</p>
+        <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base text-left px-2 md:text-center lg:text-center">{description}</p>
 
         <ul className="flex flex-col gap-4 text-gray-700 mb-10 text-sm md:text-base items-start">
           {phases.map((phase, index) => (

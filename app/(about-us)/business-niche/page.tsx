@@ -170,7 +170,7 @@ function page() {
             Our Niche Products
           </h2>
           <p
-            className={`text-center text-lg text-[color:var(--secondary-color)] mb-16 max-w-3xl mx-auto ${is4K ? "2xl:text-xl 2xl:mb-20" : ""}`}
+            className={`text-center md:text-center lg:text-center text-lg text-[color:var(--secondary-color)] mb-16 max-w-3xl mx-auto ${is4K ? "2xl:text-xl 2xl:mb-20" : ""}`}
           >
             Each piece represents centuries of perfected tradition and cultural heritage
           </p>
@@ -190,7 +190,7 @@ function page() {
                 >
                   {item.title}
                 </h3>
-                <p className={`text-gray-200 text-center leading-relaxed ${is4K ? "2xl:text-lg" : ""}`}>
+                <p className={`text-gray-200 text-left md:text-center lg:text-center leading-relaxed ${is4K ? "2xl:text-lg" : ""}`}>
                   {item.description}
                 </p>
               </div>
@@ -210,7 +210,7 @@ function page() {
             What Makes Us Unique
           </h2>
           <p
-            className={`text-center text-lg text-[color:var(--secondary-color)] mb-16 max-w-3xl mx-auto ${is4K ? "2xl:text-xl 2xl:mb-20" : ""}`}
+            className={`text-center md:text-center lg:text-center text-lg text-[color:var(--secondary-color)] mb-16 max-w-3xl mx-auto ${is4K ? "2xl:text-xl 2xl:mb-20" : ""}`}
           >
             Standing out in the handmade crafts market through authenticity and ethical practices
           </p>
@@ -274,7 +274,7 @@ function page() {
             Our Global Audience
           </h2>
           <p
-            className={`text-center text-lg mb-16 max-w-3xl mx-auto opacity-90 ${is4K ? "2xl:text-xl 2xl:mb-20" : ""}`}
+            className={`text-center md:text-center lg:text-center px-2 text-lg mb-16 max-w-3xl mx-auto opacity-90 ${is4K ? "2xl:text-xl 2xl:mb-20" : ""}`}
           >
             Serving customers who value authenticity, tradition, and ethical business practices
           </p>
@@ -291,7 +291,7 @@ function page() {
                 >
                   {card.title}
                 </h3>
-                <p className={`text-sm text-gray-700 ${is4K ? "2xl:text-base" : ""}`}>{card.description}</p>
+                <p className={`text-sm text-left md:text-center lg:text-center text-gray-700 ${is4K ? "2xl:text-base" : ""}`}>{card.description}</p>
               </div>
             ))}
           </div>
@@ -354,7 +354,7 @@ function page() {
             Our Future Vision
           </h2>
           <p
-            className={`text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 ${is4K ? "2xl:text-2xl 2xl:mb-10" : ""}`}
+            className={`text-lg text-left  md:text-center lg:text-center sm:text-xl text-gray-700 leading-relaxed mb-8 ${is4K ? "2xl:text-2xl 2xl:mb-10" : ""}`}
           >
             Expanding our global reach while staying true to our roots. We aim to be the go-to destination for luxury
             Kashmiri crafts, offering customers an authentic, sustainable, and impactful shopping experience through new
