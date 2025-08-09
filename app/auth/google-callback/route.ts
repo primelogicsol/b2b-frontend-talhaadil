@@ -1,15 +1,15 @@
-import jwt from "jsonwebtoken";
-
-const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
-
-export default function handler(req:any, res:any) {
-  // You can grab any query params from req.query if you want
-  const { code, state } = req.query;
-  console.log(code,state)
 
 
-  // Sign the JWT
-  
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const code = searchParams.get("code");
+  const state = searchParams.get("state");
 
-  res.status(200).json();
+  console.log(code, state);
+
+
+  return new Response(
+    JSON.stringify({}),
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
 }
