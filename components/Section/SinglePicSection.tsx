@@ -1,253 +1,190 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
+import type React from "react"
 
-interface HeroData {
-  welcomeText: string
-  title: string
-  highlightWord: string
-  description: string
-  steps: Array<{
-    title: string
-    description: string
-  }>
-  footerTitle: string
-  footerSubtitle: string
-  imageUrl: string
-  imageAlt: string
-}
-
-const defaultData: HeroData = {
-  welcomeText: "WELCOME TO B2B CONNECT - USA",
-  title: "Empowering Kashmiri Artisans, Startups in Accessing American",
-  highlightWord: "Markets",
-  description:
-    "A transformative and progressive platform with an investment of $3.7 million, connecting Kashmir's artisans, startups, and businesses to global markets, fostering fair trade, preserving heritage, and unlocking boundless opportunities for sustainable growth.",
-  steps: [
-    {
-      title: "Dream It:",
-      description: "Envision your goals. We'll provide the roadmap",
-    },
-    {
-      title: "Define It:",
-      description: "Select the partnership model tailored to your ambitions.",
-    },
-    {
-      title: "Deliver It:",
-      description: "Upload your credentials, verify your status, and join a league of visionary partners.",
-    },
-    {
-      title: "Dominate It:",
-      description: "Access our resources and watch your business flourish on the global stage.",
-    },
-  ],
-  footerTitle: "Handicraft Progressive Business Model for Every Vision",
-  footerSubtitle:
-    "Crafting Kashmir's Next Generations Future Together | Amir-e-Kabir's Legacy, Reimagined for Today's World",
-  imageUrl: "/placeholder.svg?height=600&width=500",
-  imageAlt: "Business professionals collaborating",
-}
-
-interface B2BConnectHeroProps {
-  data?: HeroData
-}
-
-export default function SinglePicSection({ data = defaultData }: B2BConnectHeroProps) {
-  const [isImageHovered, setIsImageHovered] = useState(false)
+import { useGlobalContext } from "@/context/ScreenProvider"
+export default function SinglePicSection() {
+  const { is4K } = useGlobalContext()
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left side - Image */}
-          <div className="relative flex justify-center lg:justify-start">
-            <div
-              className="relative group cursor-pointer"
-              onMouseEnter={() => setIsImageHovered(true)}
-              onMouseLeave={() => setIsImageHovered(false)}
-            >
-              {/* Enhanced decorative elements */}
-              <div className="absolute -top-12 -left-12 w-32 h-32 pointer-events-none">
-                <div
-                  className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-left transition-all duration-700 ${
-                    isImageHovered ? "scale-x-150 shadow-lg" : "scale-x-100"
-                  }`}
-                  style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
-                />
-                <div
-                  className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-top transition-all duration-700 ${
-                    isImageHovered ? "scale-y-150 shadow-lg" : "scale-y-100"
-                  }`}
-                  style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
-                />
-              </div>
+    <section
+      className="w-full bg-white"
+      style={
+        {
+          "--primary-hover-color": "#2a5f7a",
+          "--primary-color": "#1b4f68",
+          "--primary-light-text-color": "#346880",
+          "--primary-header-color": "#e4e6eb",
+          "--secondary-hover-color": "#f48261",
+          "--secondary-color": "#d85834",
+          "--secondary-light-color": "#f9c6b2",
+        } as React.CSSProperties
+      }
+    >
+      <div className={`max-w-7xl mx-auto ${is4K ? "px-16 py-32" : "px-8 py-16"}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-${is4K ? "16" : "12"} items-center`}>
+          {/* Left Side - Image with Sidebar */}
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-lg">
+              <img
+                alt="Team collaboration - hands coming together"
+                className={`w-full ${is4K ? "h-[800px]" : "h-[500px] md:h-[700px]"} object-cover`}
+              />
 
-              <div className="absolute -bottom-12 -right-12 w-32 h-32 pointer-events-none">
-                <div
-                  className={`absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-right transition-all duration-700 ${
-                    isImageHovered ? "scale-x-150 shadow-lg" : "scale-x-100"
-                  }`}
-                  style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
-                />
-                <div
-                  className={`absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t from-[var(--primary-color)] via-[var(--primary-color)] to-red-400 transform origin-bottom transition-all duration-700 ${
-                    isImageHovered ? "scale-y-150 shadow-lg" : "scale-y-100"
-                  }`}
-                  style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.4))" }}
-                />
-              </div>
-
-              {/* Additional floating accent elements */}
-              <div className="absolute -top-6 -right-6 w-4 h-4 bg-[var(--primary-color)] rounded-full opacity-60 animate-pulse"></div>
+              {/* Orange Sidebar */}
               <div
-                className="absolute -bottom-4 -left-4 w-3 h-3 bg-red-400 rounded-full opacity-40 animate-pulse"
-                style={{ animationDelay: "1s" }}
-              ></div>
-
-              {/* Enhanced stylish organic-geometric image container */}
-              <div
-                className={`relative w-96 h-96 sm:w-[28rem] sm:h-[28rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden transition-all duration-700 ${
-                  isImageHovered ? "scale-110" : "scale-100"
-                }`}
+                className={`absolute left-0 top-0 ${is4K ? "w-24" : "w-16 md:w-20"} h-full flex items-center justify-center`}
+                style={{ backgroundColor: "var(--secondary-color)" }}
               >
-                {/* Main organic shape container */}
-                <div
-                  className={`relative w-full h-full transition-all duration-700 ${
-                    isImageHovered ? "shadow-2xl" : "shadow-xl"
-                  }`}
-                  style={{
-                    clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                    background: "linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)",
-                    filter: isImageHovered
-                      ? "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.25))"
-                      : "drop-shadow(0 15px 35px rgba(0, 0, 0, 0.15))",
-                  }}
-                >
-                  {/* Inner glow effect */}
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      background: "radial-gradient(circle at center, rgba(249, 115, 22, 0.3) 0%, transparent 70%)",
-                    }}
-                  />
-
-                  <div
-                    className="absolute inset-3 overflow-hidden"
-                    style={{
-                      clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                    }}
+                <div className="transform -rotate-90 whitespace-nowrap">
+                  <span
+                    className={`text-white font-medium ${is4K ? "text-2xl tracking-wider" : "text-lg md:text-xl tracking-wide"}`}
                   >
-                    <Image
-                      src={data.imageUrl || "/placeholder.svg"}
-                      alt={data.imageAlt}
-                      fill
-                      className={`object-cover transition-all duration-700 ${
-                        isImageHovered ? "scale-110 brightness-110 contrast-105" : "scale-105"
-                      }`}
-                    />
-
-                    {/* Overlay gradient for better visual appeal */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/10 via-transparent to-purple-600/10 transition-opacity duration-700 ${
-                        isImageHovered ? "opacity-30" : "opacity-0"
-                      }`}
-                    />
-                  </div>
-
-                  {/* Animated border effect */}
-                  <div
-                    className={`absolute inset-0 border-2 border-[var(--primary-color)]/30 transition-all duration-700 ${
-                      isImageHovered ? "border-[var(--primary-color)]/60 animate-pulse" : ""
-                    }`}
-                    style={{
-                      clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                    }}
-                  />
+                    Your Link to Kashmir Craft Markets
+                  </span>
                 </div>
+              </div>
 
-                {/* Secondary floating shape */}
+              {/* Chain Link Icon */}
+              <div className={`absolute ${is4K ? "bottom-12 left-12" : "bottom-6 left-6 md:bottom-8 md:left-8"}`}>
                 <div
-                  className={`absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-[var(--primary-color)]/20 to-red-400/20 transition-all duration-1000 ${
-                    isImageHovered ? "scale-125 rotate-12" : "scale-100 rotate-0"
-                  }`}
-                  style={{
-                    clipPath:
-                      "polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%)",
-                    filter: "blur(1px)",
-                  }}
-                />
-
-                {/* Third accent shape */}
-                <div
-                  className={`absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-tr from-purple-400/15 to-[var(--primary-light-text-color)]/15 transition-all duration-1200 ${
-                    isImageHovered ? "scale-110 -rotate-6" : "scale-100 rotate-0"
-                  }`}
-                  style={{
-                    clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
-                    filter: "blur(0.5px)",
-                  }}
-                />
-
-                {/* Morphing background accent */}
-                <div
-                  className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-5 transition-all duration-2000 ${
-                    isImageHovered ? "scale-125 rotate-3" : "scale-100 rotate-0"
-                  }`}
-                  style={{
-                    background: "conic-gradient(from 0deg, #f97316, #ef4444, #8b5cf6, #06b6d4, #f97316)",
-                    clipPath: "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)",
-                    filter: "blur(2px)",
-                  }}
-                />
+                  className={`${is4K ? "w-16 h-16" : "w-10 h-10 md:w-12 md:h-12"} rounded-full flex items-center justify-center`}
+                  style={{ backgroundColor: "var(--secondary-color)" }}
+                >
+                  <svg
+                    className={`${is4K ? "w-8 h-8" : "w-5 h-5 md:w-6 md:h-6"} text-white`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right side - Content */}
-          <div className="space-y-8">
-            {/* Welcome text */}
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-0.5 bg-[var(--primary-color)]"></div>
-              <span className="text-sm font-semibold text-gray-600 tracking-wider uppercase">{data.welcomeText}</span>
+          {/* Right Side - Content */}
+          <div className={`${is4K ? "pl-16" : "pl-0 lg:pl-8"}`}>
+            {/* Header */}
+            <div className="flex items-center mb-2">
+              <div
+                className={`${is4K ? "w-16 h-1" : "w-12 h-0.5"} mr-4`}
+                style={{ backgroundColor: "var(--secondary-color)" }}
+              ></div>
+              <span
+                className={`${is4K ? "text-xl" : "text-sm md:text-base"} font-medium tracking-wide uppercase`}
+                style={{ color: "var(--primary-light-text-color)" }}
+              >
+                WELCOME TO B2B CONNECT - USA
+              </span>
             </div>
 
-            {/* Main heading */}
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                {data.title}{" "}
-                <span className="text-[var(--primary-color)] relative">
-                  {data.highlightWord}
-                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-[var(--primary-color)] opacity-30 rounded-full"></div>
-                </span>
-              </h1>
+            {/* Main Heading */}
+            <h1
+              className={`${is4K ? "text-7xl mb-12" : "text-2xl md:text-3xl lg:text-4xl mb-8"} font-bold leading-9`}
+              style={{ color: "var(--primary-color)" }}
+            >
+              Empowering USA-Based Buyers in <br className="hidden md:block" />
+              Accessing Kashmiri Craft <span style={{ color: "var(--secondary-color)" }}>Markets</span>
+            </h1>
 
-              <p className="text-lg text-gray-600 leading-relaxed italic max-w-2xl">{data.description}</p>
-            </div>
+            {/* Description Paragraph */}
+            <p
+              className={`${is4K ? "text-2xl mb-16 leading-relaxed" : "text-base md:text-[20px] lg:text-[16px] mb-10 leading-relaxed"} `}
+              style={{ color: "var(--primary-light-text-color)" }}
+            >
+              A Transformative Platform Connecting USA Buyers with Kashmiri Artisans and Authentic Products. The De
+              Koshur Crafts platform opens a direct line to premium Kashmiri handicrafts for buyers across the USA,
+              supporting ethical trade, preserving cultural heritage, and offering businesses competitive pricing and
+              unmatched craftsmanship.
+            </p>
 
-            {/* Steps */}
-            <div className="space-y-6">
-              {data.steps.map((step, index) => (
-                <div key={index} className="flex items-start space-x-4 group cursor-pointer">
-                  <div className="w-8 h-0.5 bg-[var(--primary-color)] mt-3 transition-all duration-300 group-hover:w-12"></div>
-                  <div className="flex-1">
-                    <span className="font-semibold text-gray-900 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
-                      {step.title}
+            {/* Feature Points */}
+            <div className={`space-y-${is4K ? "8" : "2"}`}>
+              {/* Dream It */}
+              <div className="flex items-start">
+                <div
+                  className={`${is4K ? "w-16 h-1 mt-2" : "w-12 h-0.5 mt-1"} mr-6 flex-shrink-0`}
+                  style={{ backgroundColor: "var(--secondary-color)" }}
+                ></div>
+                <div>
+                  <h3
+                    className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl lg:text-[19px] "} font-semibold`}
+                    style={{ color: "var(--primary-color)" }}
+                  >
+                    Dream It:{" "}
+                    <span className={`${is4K ? "text-xl" : "text-base md:text-[16px] lg:text-[17px]"} font-normal`}>
+                      Envision your store or product lineup. We'll provide the roadmap for sourcing products that meet
+                      your unique business needs.
                     </span>
-                    <span className="text-gray-700 ml-2">{step.description}</span>
-                  </div>
+                  </h3>
                 </div>
-              ))}
+              </div>
+
+              {/* Define It */}
+              <div className="flex items-start">
+                <div
+                  className={`${is4K ? "w-16 h-1 mt-4" : "w-12 h-0.5 mt-3"} mr-6 flex-shrink-0`}
+                  style={{ backgroundColor: "var(--secondary-color)" }}
+                ></div>
+                <div>
+                  <h3
+                    className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"} font-semibold`}
+                    style={{ color: "var(--primary-color)" }}
+                  >
+                    Define It:{" "}
+                    <span className={`${is4K ? "text-xl" : "text-base md:text-[16px] lg:text-[17px]"} font-normal`}>
+                      Browse our curated collections and select from a wide range of products that best fit your market
+                      & Order directly from artisans or suppliers, and manage your purchases with easy shipping options
+                      and tracking systems.
+                    </span>
+                  </h3>
+                </div>
+              </div>
+
+              {/* Dominate It */}
+              <div className="flex items-start">
+                <div
+                  className={`${is4K ? "w-16 h-1 mt-4" : "w-12 h-0.5 mt-3"} mr-6 flex-shrink-0`}
+                  style={{ backgroundColor: "var(--secondary-color)" }}
+                ></div>
+                <div>
+                  <h3
+                    className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"} font-semibold`}
+                    style={{ color: "var(--primary-color)" }}
+                  >
+                    Dominate It:{" "}
+                    <span className={`${is4K ? "text-xl" : "text-base "}md:text-[16px] lg:text-[17px] font-normal`}>
+                      Stand out in the marketplace by offering authentic Kashmiri products that tell a rich cultural
+                      story.
+                    </span>
+                  </h3>
+                </div>
+              </div>
             </div>
 
-            {/* Footer */}
-            <div className="pt-8 border-t border-gray-200">
-              <h3 className="text-xl font-bold text-[var(--primary-color)] mb-2">{data.footerTitle}</h3>
-              <p className="text-sm text-gray-600">{data.footerSubtitle}</p>
+            {/* Bottom Text */}
+            <div className={`${is4K ? "mt-20" : "mt-3"}`}>
+              <h2
+                className={`${is4K ? "text-3xl mb-4" : "text-xl md:text-[20px] mb-3"} font-bold`}
+                style={{ color: "var(--secondary-color)" }}
+              >
+                Handicraft Progressive Business Model for Every Vision
+              </h2>
+              <p
+                className={`${is4K ? "text-xl" : "text-sm md:text-base"}`}
+                style={{ color: "var(--primary-light-text-color)" }}
+              >
+                Crafting US Next Generations with 700+ Old Legacy of Kashmir Handicraft Together
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

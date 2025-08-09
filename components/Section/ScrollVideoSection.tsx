@@ -83,7 +83,7 @@ function MediaSlider({
 
 
 export default function ScrollVideoSection({
-  heading = "At De Koshur Crafts, our mission transcends the typical e-commerce experience. We are driven by a single, unyielding belief: that authentic Kashmiri craftsmanship deserves recognition, respect, and a global stage. Our goal is to empower artisans, preserve their ancient crafts, and connect them to a thriving international market, ensuring sustainability and fair trade at every step of the way.",
+  heading = "At De Koshur Crafts, our mission goes far beyond the boundaries of a typical e-commerce experience. We are deeply driven by a powerful and unwavering belief: that the authentic and timeless craftsmanship of Kashmiri artisans deserves not only recognition but also the utmost respect and a prominent platform on the global stage. Our ultimate goal is to empower these talented artisans by preserving their ancient, heritage-rich crafts and connecting them directly to a vibrant and thriving international marketplace. We are committed to ensuring sustainability and promoting fair trade practices at every step of this journey, fostering an environment where artisans can flourish and their unique cultural legacy can be celebrated and sustained for generations to come.",
   introLabel = "Our Mission",
   items, // optional to override media
 }: {
