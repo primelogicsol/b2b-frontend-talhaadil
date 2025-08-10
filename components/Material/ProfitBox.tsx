@@ -1301,62 +1301,71 @@ export default function KashmirCraftsCarousel() {
 
       {/* Desktop Category Navigation */}
       <div className="hidden md:flex items-center justify-center mb-12 px-8 relative z-10">
-        <motion.button
-          onClick={prevCategory}
-          className={`group flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"} rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-8`}
-          aria-label="Previous category"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ChevronLeft
-            className={`${is4K ? "w-12 h-12" : "w-8 h-8"} text-white group-hover:text-[var(--secondary-color)] transition-colors`}
-          />
-        </motion.button>
+  {/* Fixed container for arrows + text */}
+  <div className="flex items-center" style={{ width: is4K ? "800px" : "500px" }}>
+    
+    {/* Left Arrow - fixed position */}
+    <motion.button
+      onClick={prevCategory}
+      className={`group  flex-shrink-0 flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"} rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
+      aria-label="Previous category"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <ChevronLeft
+        className={`${is4K ? "w-12 h-12" : "w-8 h-8"} text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+      />
+    </motion.button>
 
-        <motion.div
-          className="text-center cursor-pointer select-none"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <motion.h2
-            className={`${is4K ? "text-7xl" : "text-3xl md:text-5xl"} font-bold text-white mb-2 tracking-tight`}
-            whileHover={{ scale: 1.02, color: "#fb923c" }}
-            transition={{ duration: 0.2 }}
-          >
-            {currentCategory.name}
-          </motion.h2>
-          <div className="flex justify-center space-x-2 mt-4">
-            {categories.map((_, index) => (
-              <motion.div
-                key={index}
-                className={`${is4K ? "w-4 h-4" : "w-3 h-3"} rounded-full transition-all duration-300 ${
-                  currentCategoryIndex === index
-                    ? "bg-[var(--secondary-color)] scale-125"
-                    : "bg-white/30 hover:bg-white/50"
-                }`}
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.button
-          onClick={nextCategory}
-          className={`group flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"} rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-8`}
-          aria-label="Next category"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ChevronRight
-            className={`${is4K ? "w-12 h-12" : "w-8 h-8"} text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+    {/* Center Text - fixed width area */}
+    <motion.div
+      className="text-center cursor-pointer select-none flex-1 px-6"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+    >
+      <motion.h2
+        className={`${is4K ? "text-7xl" : "text-3xl md:text-5xl"} font-bold text-white mb-2 tracking-tight break-words`}
+        whileHover={{ scale: 1.02, color: "#fb923c" }}
+        transition={{ duration: 0.2 }}
+      >
+        {currentCategory.name}
+      </motion.h2>
+      <div className="flex justify-center space-x-2 mt-4">
+        {categories.map((_, index) => (
+          <motion.div
+            key={index}
+            className={`${is4K ? "w-4 h-4" : "w-3 h-3"} rounded-full transition-all duration-300 ${
+              currentCategoryIndex === index
+                ? "bg-[var(--secondary-color)] scale-125"
+                : "bg-white/30 hover:bg-white/50"
+            }`}
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 0.9 }}
           />
-        </motion.button>
+        ))}
       </div>
+    </motion.div>
+
+    {/* Right Arrow - fixed position */}
+    <motion.button
+      onClick={nextCategory}
+      className={`group flex-shrink-0 flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"} rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
+      aria-label="Next category"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <ChevronRight
+        className={`${is4K ? "w-12 h-12" : "w-8 h-8"} text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+      />
+    </motion.button>
+    
+  </div>
+</div>
+
 
       {/* Main Content Layout */}
       <div className="relative z-10 px-4 md:px-8 pb-12">
@@ -1379,64 +1388,67 @@ export default function KashmirCraftsCarousel() {
 
           {/* Center - Subcategory Tabs */}
           <motion.div
-            className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            whileHover={{
-              backgroundColor: "rgba(30, 41, 59, 0.6)",
-              borderColor: "rgba(71, 85, 105, 0.7)",
-              transition: { duration: 0.3 },
-            }}
-          >
-            <motion.div
-              className="text-center mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <motion.h3
-                className={`${is4K ? "text-5xl" : "text-3xl"} font-bold text-white mb-2`}
-                whileHover={{ scale: 1.05, color: "#fb923c" }}
-                transition={{ duration: 0.2 }}
-              >
-                {currentCategory.name}
-              </motion.h3>
-              <motion.p
-                className={`${is4K ? "text-2xl" : "text-lg"} text-gray-300 font-medium`}
-                whileHover={{ color: "#ffffff" }}
-                transition={{ duration: 0.2 }}
-              >
-                Product Range
-              </motion.p>
-            </motion.div>
+  className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl"
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.3 }}
+  whileHover={{
+    backgroundColor: "rgba(30, 41, 59, 0.6)",
+    borderColor: "rgba(71, 85, 105, 0.7)",
+    transition: { duration: 0.3 },
+  }}
+>
+  <motion.div
+    className="text-center mb-8"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.5 }}
+  >
+    <motion.h3
+      className={`${is4K ? "text-5xl" : "text-3xl"} font-bold text-white mb-2`}
+      whileHover={{ scale: 1.05, color: "#fb923c" }}
+      transition={{ duration: 0.2 }}
+    >
+      {currentCategory.name}
+    </motion.h3>
+    <motion.p
+      className={`${is4K ? "text-2xl" : "text-lg"} text-gray-300 font-medium`}
+      whileHover={{ color: "#ffffff" }}
+      transition={{ duration: 0.2 }}
+    >
+      Product Range
+    </motion.p>
+  </motion.div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {currentCategory.subcategories.map((sub, index) => (
-                <motion.button
-                  key={sub.id}
-                  onClick={() => setSelectedSubcategoryIndex(index)}
-                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${is4K ? "text-xl" : "text-base"} ${
-                    selectedSubcategoryIndex === index
-                      ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
-                      : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
-                  }`}
-                  whileHover={{
-                    scale: 1.05,
-                    backgroundColor: "rgba(249, 115, 22, 0.2)",
-                    borderColor: "rgba(249, 115, 22, 0.5)",
-                    color: "#fb923c",
-                    y: -2,
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.span whileHover={{ fontWeight: 600 }} transition={{ duration: 0.2 }}>
-                    {sub.name}
-                  </motion.span>
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
+  <div className="grid grid-cols-2 gap-4">
+    {currentCategory.subcategories.map((sub, index) => (
+      <motion.button
+        key={sub.id}
+        onClick={() => setSelectedSubcategoryIndex(index)}
+        className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${
+          is4K ? "text-xl" : "text-base"
+        } ${
+          selectedSubcategoryIndex === index
+            ? "bg-[var(--secondary-color)] text-white scale-105"
+            : "bg-slate-700/50 text-gray-200 border border-slate-600/30 hover:bg-slate-600/50"
+        }`}
+        whileHover={{
+          scale: 1.05,
+          y: -2,
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <motion.span
+          whileHover={{ fontWeight: 600 }}
+          transition={{ duration: 0.2 }}
+        >
+          {sub.name}
+        </motion.span>
+      </motion.button>
+    ))}
+  </div>
+</motion.div>
+
 
           {/* Right Metrics */}
           <div className="col-span-4 space-y-8">
