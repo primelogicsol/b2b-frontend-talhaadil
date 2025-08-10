@@ -47,7 +47,7 @@ const categories = [
         name: "Cashmere",
         id: "cashmere",
         details: {
-          annual_revenue: "$160M+",
+          annual_revenue: "$140M+",
           global_export: "78%",
           artisans: "88000+",
           market_growth: "17% YoY",
@@ -1182,7 +1182,7 @@ export default function KashmirCraftsCarousel() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden"
+      className="bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden"
       style={
         {
           "--primary-hover-color": "#2a5f7a",
@@ -1194,7 +1194,7 @@ export default function KashmirCraftsCarousel() {
     >
       {/* Animated Dotted Earth Background */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center opacity-20"
+        className="absolute inset-0 flex items-center justify-center opacity-100"
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
       >
@@ -1266,7 +1266,7 @@ export default function KashmirCraftsCarousel() {
 
         <div
           ref={categoryScrollRef}
-          className="flex flex-grow gap-3 overflow-x-auto scrollbar-hide pb-2"
+          className="flex flex-grow gap-3 overflow-x-auto no-scrollbar pb-2"
           style={{ scrollSnapType: "x mandatory" }}
         >
           {categories.map((category, index) => (
@@ -1475,7 +1475,7 @@ export default function KashmirCraftsCarousel() {
 
             <div
               ref={subcategoryScrollRef}
-              className="flex flex-nowrap overflow-x-auto whitespace-nowrap gap-3 pb-2 scrollbar-hide"
+              className="flex flex-nowrap no-scrollbar overflow-x-auto whitespace-nowrap gap-3 pb-2"
               style={{ scrollSnapType: "x mandatory" }}
             >
               {currentCategory.subcategories.map((sub, index) => (

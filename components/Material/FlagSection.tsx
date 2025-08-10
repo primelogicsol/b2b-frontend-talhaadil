@@ -58,7 +58,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4">
+      <div className="relative z-10 w-full h-[90vh] flex flex-col items-center justify-center p-4">
         {/* Top Right Text */}
         <div className="absolute top-8 right-2 text-center lg:right-[20%] text-white text-md md:text-lg lg:text-xl">
           <p className="font-semibold drop-shadow-md">
