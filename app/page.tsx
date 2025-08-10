@@ -36,6 +36,7 @@ import MainPageCards from "@/components/Cards/MainPageCards";
 import RecSquareSection from "@/components/Section/RecSquareSection";
 import Homepage from "@/components/Essentials/HomePage";
 import KashmirCraftsCarousel from "@/components/Material/ProfitBox";
+import FlagSection from "@/components/Material/FlagSection";
 // Screen detection hook
 
 const howItWorksData = {
@@ -671,6 +672,8 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </footer>
+
+      <FlagSection/>
     </div>
   );
 }
