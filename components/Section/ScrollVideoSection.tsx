@@ -36,7 +36,7 @@ function MediaSlider({
   const currentMedia = items[currentIndex];
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+    <div className="relative w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg">
       {currentMedia.type === "video" ? (
         <video
           key={currentMedia.src}
@@ -54,7 +54,7 @@ function MediaSlider({
           key={currentMedia.src}
           src={currentMedia.src}
           alt={currentMedia.title}
-          width={800}
+          width={700}
           height={450}
           className="w-full h-auto object-cover aspect-video"
         />
@@ -83,8 +83,8 @@ function MediaSlider({
 
 
 export default function ScrollVideoSection({
-  heading = "At De Koshur Crafts, our mission goes far beyond the boundaries of a typical e-commerce experience. We are deeply driven by a powerful and unwavering belief: that the authentic and timeless craftsmanship of Kashmiri artisans deserves not only recognition but also the utmost respect and a prominent platform on the global stage. Our ultimate goal is to empower these talented artisans by preserving their ancient, heritage-rich crafts and connecting them directly to a vibrant and thriving international marketplace. We are committed to ensuring sustainability and promoting fair trade practices at every step of this journey, fostering an environment where artisans can flourish and their unique cultural legacy can be celebrated and sustained for generations to come.",
-  introLabel = "Our Mission",
+  heading = "At De Koshur Crafts, our mission goes far beyond the boundaries of a typical e-commerce experience. We are deeply driven by a powerful and unwavering belief: that the authentic and timeless craftsmanship of Kashmiri artisans deserves not only recognition but also the utmost respect and a prominent platform on the global stage. Our ultimate goal is to empower these talented artisans by preserving their ancient, heritage-rich crafts and connecting them directly to a vibrant and thriving international marketplace. We are committed to ensuring sustainability and promoting fair trade practices ",
+  introLabel = "About Us",
   items, // optional to override media
 }: {
   heading?: string;
@@ -92,7 +92,7 @@ export default function ScrollVideoSection({
   items?: MediaItem[];
 }) {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans px-5">
+    <div className="bg-white text-gray-900 font-sans px-5 max-w-6xl mx-auto">
       <style jsx global>{`
         body {
           background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
@@ -101,7 +101,7 @@ export default function ScrollVideoSection({
       `}</style>
 
       <main className="container mx-auto px-4 py-12 md:py-20">
-        <section className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
+        <section className="grid md:grid-cols-2 gap-12 items-center mb-6 md:mb-12">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-0.5 bg-[var(--secondary-color)]"/>

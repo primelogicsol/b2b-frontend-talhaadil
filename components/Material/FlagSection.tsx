@@ -27,13 +27,13 @@ export default function HeroSection() {
   const getLogoPositionClasses = (position: string) => {
     switch (position) {
       case "top-left":
-        return "top-[10%] left-[10%] md:top-[15%] md:left-[15%]";
+        return "top-[10%] left-[10%] md:top-[17%] md:left-[17%]";
       case "top-right":
-        return "top-[10%] right-[10%] md:top-[15%] md:right-[15%]";
+        return "top-[10%] right-[10%] md:top-[17%] md:right-[17%]";
       case "bottom-right":
-        return "bottom-[10%] right-[10%] md:bottom-[15%] md:right-[15%]";
+        return "bottom-[10%] right-[10%] md:bottom-[17%] md:right-[17%]";
       case "bottom-left":
-        return "bottom-[10%] left-[10%] md:bottom-[15%] md:left-[15%]";
+        return "bottom-[10%] left-[10%] md:bottom-[17%] md:left-[17%]";
       case "left":
         return "left-[5%] top-1/2 -translate-y-1/2 md:left-[10%]";
       case "right":
@@ -87,7 +87,7 @@ export default function HeroSection() {
             <button
               key={index}
               onClick={() => setSelectedLogoSrc(logo.src)}
-              className={`absolute w-20 h-20 md:w-26 md:h-26 lg:w-36 lg:h-36 rounded-full overflow-hidden transition-transform duration-200 hover:scale-110 ${getLogoPositionClasses(
+              className={`absolute w-24 h-24 md:w-26 md:h-26 lg:w-36 lg:h-36 rounded-full overflow-hidden transition-transform duration-200 hover:scale-110 ${getLogoPositionClasses(
                 logo.position
               )}`}
               aria-label={`Select ${logo.alt}`}

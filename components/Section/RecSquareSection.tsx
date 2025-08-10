@@ -31,12 +31,9 @@ export default function RecSquareSection({
   mainImage = "/images/new-pic2.webp?height=600&width=400",
   smallImage = "/images/new-pic2.webp?height=200&width=250",
   title = "Swift Partnership Activation",
-  description = `Expand your reach and minimize risk with De Koshur Crafts' Consignment Partnership in the USA. This
-  partnership allows you to display your products in premium retail spaces while retaining ownership until the
-  products are sold. With our expert guidance, we handle everything from inventory management to logistics,
-  ensuring your products reach the right audience in top U.S. locations. Our consignment model offers
-  flexibility and reducing upfront costs, providing you with the opportunity to test the U.S. market and scale
-  at your own pace while benefiting from our extensive network and industry expertise.`,
+  description = `Experience a seamless journey from registration to partnership, empowering USA-based buyers with tools, training, and support to thrive in a global marketplace.
+
+`,
   phases = defaultPhases,
   readMoreLink = "#",
   appointmentLink = "#",
@@ -91,13 +88,13 @@ export default function RecSquareSection({
 
         <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base text-left px-2 ">{description}</p>
 
-        <ul className="flex flex-col gap-4 text-gray-700 mb-10 text-sm md:text-base items-start">
+        <ul className="flex flex-col gap-2 text-gray-700 mb-10 text-sm md:text-base items-start">
           {phases.map((phase, index) => (
             <li
               key={index}
               className="w-full h-full flex items-start justify-start group transition-colors duration-300 hover:text-[#FF6A13]"
             >
-              <CheckSquare className="w-5 h-5 text-[#FF6A13] mr-3 shrink-0 transition-transform duration-300 group-hover:scale-110 mt-1" />
+              <CheckSquare className="w-5 h-5 text-[#FF6A13] mr-3 shrink-0 transition-transform duration-300 group-hover:scale-110" />
               <span className="break-words">{phase}</span>
             </li>
           ))}

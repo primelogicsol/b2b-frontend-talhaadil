@@ -2,12 +2,13 @@
 
 import type React from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
-
+import Link from "next/link";
 export interface AnimationCardProps {
   title?: string;
   description?: string;
   icon?: React.ReactNode;
   buttonText?: string;
+  link?: string;
   onReadMore?: () => void;
 }
 
@@ -16,6 +17,7 @@ export function AnimationCard({
   description = "Upgrade to the latest energy and efficient air conditioning Frost technology with Eco Cool",
   icon,
   buttonText = "READ MORE",
+  link = "",
   onReadMore,
 }: AnimationCardProps) {
   const { is4K } = useGlobalContext();
@@ -60,6 +62,14 @@ export function AnimationCard({
         >
           {description}
         </p>
+        {link && (
+          <Link
+            href={link}
+            className="inline-block px-4 py-2 bg-[var(--primary-color)] text-white rounded-md hover:bg-[var(--primary-hover-color)] no-underline"
+          >
+            Read More
+          </Link>
+        )}
       </div>
 
       <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-700">
@@ -75,6 +85,7 @@ export interface CardData {
   title: string;
   description: string;
   buttonText?: string;
+  link?: string;
 }
 
 interface AnimationCardGridProps {
@@ -86,22 +97,21 @@ export function AnimationCardGrid({ data }: AnimationCardGridProps) {
 
   return (
     <div
-  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center ${
-    is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4 max-w-7xl mx-auto"
-  }`}
->
-  {data.map((card, index) => (
-    <AnimationCard
-      key={index}
-      icon={card.icon}
-      title={card.title}
-      description={card.description}
-      buttonText={card.buttonText}
-      onReadMore={() => alert(`Read more about: ${card.title}`)}
-    />
-  ))}
-</div>
-
-
+      className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center ${
+        is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4 max-w-7xl mx-auto"
+      }`}
+    >
+      {data.map((card, index) => (
+        <AnimationCard
+          key={index}
+          icon={card.icon}
+          title={card.title}
+          description={card.description}
+          buttonText={card.buttonText}
+          link={card.link}
+          onReadMore={() => alert(`Read more about: ${card.title}`)}
+        />
+      ))}
+    </div>
   );
 }

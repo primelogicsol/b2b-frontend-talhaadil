@@ -98,7 +98,7 @@ export default function MainPageCards() {
 
   return (
     <div
-      className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-8 mt-4 bg-gradient-to-br from-slate-50 to-slate-100"
+      className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-8 mt-4 bg-gradient-to-br from-slate-200 to-slate-100"
       style={
         {
           "--primary-color": "#1b4f68",
@@ -114,7 +114,7 @@ export default function MainPageCards() {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-2 sm:mb-4 px-4">
             Why you need De Koshur Crafts Partnerships ?
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mx-auto px-4 leading-relaxed">
             Empowering Kashmiri artisans through innovative solutions that
             bridge traditional craftsmanship with global market access
           </p>

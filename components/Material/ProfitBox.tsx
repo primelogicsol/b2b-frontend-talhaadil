@@ -116,8 +116,26 @@ const categories = [
         },
       },
       {
-        name: "Bags & Purses",
+        name: "Bags",
         id: "bags",
+        details: {
+          annual_revenue: "$160M+",
+          global_export: "78%",
+          artisans: "88000+",
+          market_growth: "17% YoY",
+          quality_rating: "4.8/5",
+          sustainability: "96%",
+          market_share: "30%",
+          product_range: "80+",
+          customer_satisfaction: "97%",
+          avg_production_time: "60 Days",
+          energy_efficiency: "95%",
+          innovation_index: "4.6/5",
+        },
+      },
+      {
+        name: "Purses",
+        id: "purses",
         details: {
           annual_revenue: "$160M+",
           global_export: "78%",

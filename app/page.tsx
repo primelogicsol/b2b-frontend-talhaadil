@@ -2,6 +2,7 @@
 import Counter from "@/components/Material/Counter";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useEffect, useState, useCallback } from "react";
+import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -26,6 +27,10 @@ import {
   Lightbulb,
   Shield,
   Handshake,
+  ShieldCheck,
+  Scale,
+  BookOpen,
+  MapPin,
 } from "lucide-react";
 import BannerWithFeatures from "@/components/Material/BannerwithFeatures";
 import { useRef, createRef } from "react";
@@ -37,6 +42,7 @@ import RecSquareSection from "@/components/Section/RecSquareSection";
 import Homepage from "@/components/Essentials/HomePage";
 import KashmirCraftsCarousel from "@/components/Material/ProfitBox";
 import FlagSection from "@/components/Material/FlagSection";
+import Location from "@/components/Essentials/Location";
 // Screen detection hook
 
 const howItWorksData = {
@@ -60,30 +66,30 @@ const howItWorksData = {
   ],
 };
 
-
-  const buyerslides = [
-    { id: 1, title: "Individual Purchasers", number: 1523 },
-    { id: 2, title: "Retail Customers", number: 351 },
-    { id: 3, title: "Wholesale Purchasers", number: 311 },
-    { id: 4, title: "Online Purchasers", number: 18 },
-    { id: 5, title: "Interior Designers", number: 68 },
-    { id: 6, title: "Corporate Purchasers", number: 8 },
-    { id: 7, title: "Art Preservationists", number: 205 },
-    { id: 8, title: "Global Merchandisers", number: 52 },
-    { id: 10, title: "Hospitality Chains", number: 21 },
-    { id: 11, title: "Fashion Designers", number: 28 },
-  ]
-  const vendorslides = [
-    { id: 1, title: "Individual Artisans", number: 1032 },
-    { id: 2, title: "Artisan Communities", number: 15 },
-    { id: 3, title: "Small Businesses", number: 23 },
-    { id: 4, title: "Women Entrepreneurs", number: 6 },
-    { id: 5, title: "Export Specialists", number: 17 },
-    { id: 6, title: "Online Merchandisers", number: 22 },
-    { id: 7, title: "Design Professionals", number: 3 },
-    { id: 8, title: "Luxury Merchandisers", number: 16 },
-    { id: 9, title: "Wholesale Suppliers", number: 13 },
-    { id: 10, title: "Craft Professionals", number: 7 },]
+const buyerslides = [
+  { id: 1, title: "Individual Purchasers", number: 1523 },
+  { id: 2, title: "Retail Customers", number: 351 },
+  { id: 3, title: "Wholesale Purchasers", number: 311 },
+  { id: 4, title: "Online Purchasers", number: 18 },
+  { id: 5, title: "Interior Designers", number: 68 },
+  { id: 6, title: "Corporate Purchasers", number: 8 },
+  { id: 7, title: "Art Preservationists", number: 205 },
+  { id: 8, title: "Global Merchandisers", number: 52 },
+  { id: 10, title: "Hospitality Chains", number: 21 },
+  { id: 11, title: "Fashion Designers", number: 28 },
+];
+const vendorslides = [
+  { id: 1, title: "Individual Artisans", number: 1032 },
+  { id: 2, title: "Artisan Communities", number: 15 },
+  { id: 3, title: "Small Businesses", number: 23 },
+  { id: 4, title: "Women Entrepreneurs", number: 6 },
+  { id: 5, title: "Export Specialists", number: 17 },
+  { id: 6, title: "Online Merchandisers", number: 22 },
+  { id: 7, title: "Design Professionals", number: 3 },
+  { id: 8, title: "Luxury Merchandisers", number: 16 },
+  { id: 9, title: "Wholesale Suppliers", number: 13 },
+  { id: 10, title: "Craft Professionals", number: 7 },
+];
 
 // Partnership data
 const partnershipCategories = [
@@ -146,6 +152,41 @@ const partnershipCategories = [
   },
 ];
 
+const whatSetsUsApartCards = [
+  {
+    icon: <Scale className="w-8 h-8" />,
+    title: "Our Values",
+    description:
+      "We are committed to authenticity, fair practices, and cultural preservation, ensuring every step aligns with our core principles.",
+    buttonText: "READ MORE",
+    link: "/our-values",
+  },
+  {
+    icon: <BookOpen className="w-8 h-8" />,
+    title: "Our Story",
+    description:
+      "From the valleys of Kashmir to the global stage, our journey is driven by passion, craftsmanship, and a mission to empower artisans.",
+    buttonText: "READ MORE",
+    link: "/our-story",
+  },
+  {
+    icon: <Target className="w-8 h-8" />,
+    title: "Business Niche",
+    description:
+      "We specialize in connecting authentic Kashmiri handmade products to worldwide buyers, blending tradition with modern reach.",
+    buttonText: "READ MORE",
+    link: "/business-niche",
+  },
+  {
+    icon: <MapPin className="w-8 h-8" />,
+    title: "Our Location",
+    description:
+      "Our roots are in the heart of Kashmir, where artistry and heritage meet — and from where we connect to the world.",
+    buttonText: "READ MORE",
+    link: "/our-location",
+  },
+];
+
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("buyer");
   const { is4K } = useGlobalContext();
@@ -158,38 +199,6 @@ export default function LandingPage() {
   // Scroll animations
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
-
-  // About Us sections data
-  const aboutSections = [
-    {
-      title: "Our Values",
-      content:
-        "At the heart of our mission lies an unwavering commitment to integrity, sustainability, and innovation. We believe in preserving the authentic craftsmanship of Kashmir while embracing modern business practices. Our values guide every partnership, ensuring fair trade, environmental responsibility, and cultural preservation. We foster transparency in all our dealings and maintain the highest ethical standards.",
-      icon: <Shield className="w-8 h-8" />,
-      href: "/about/values",
-    },
-    {
-      title: "Our Story",
-      content:
-        "Founded with a vision to bridge the gap between traditional Kashmiri artisans and global markets, our journey began with a simple belief: exceptional craftsmanship deserves worldwide recognition. Over the years, we've built a platform that honors centuries-old traditions while leveraging cutting-edge technology. Our story is one of cultural preservation, economic empowerment, and sustainable growth, connecting artisans with opportunities they never thought possible.",
-      icon: <Building className="w-8 h-8" />,
-      href: "/about/story",
-    },
-    {
-      title: "Our Team",
-      content:
-        "Our diverse team combines deep cultural understanding with modern business expertise. From artisan liaisons who speak the language of craft to technology specialists who build seamless digital experiences, every team member contributes to our mission. We believe in collaborative leadership, where traditional wisdom meets innovative thinking, creating solutions that benefit everyone in our ecosystem.",
-      icon: <Users className="w-8 h-8" />,
-      href: "/about/team",
-    },
-    {
-      title: "Business Niche",
-      content:
-        "We specialize in premium Kashmiri handicrafts, focusing on authentic products that tell stories of heritage and skill. Our niche encompasses luxury textiles, traditional jewelry, and artisanal home décor, serving discerning customers who value authenticity and quality. By concentrating on high-value, culturally significant products, we ensure sustainable livelihoods for artisans while delivering exceptional value to our global clientele.",
-      icon: <Lightbulb className="w-8 h-8" />,
-      href: "/about/niche",
-    },
-  ];
 
   // Profit metrics data
   const products = [
@@ -235,37 +244,36 @@ export default function LandingPage() {
     { icon: <Star size={20} />, title: "Innovation Index", value: "4.6/5" },
   ];
 
-  // Scroll features data
   const scrollFeatures = [
     {
-      title: "Flexibility & Zero Upfront Investment",
+      title: "Direct Market Access",
       description:
-        "Our platform offers unparalleled flexibility to showcase your crafts in the market without upfront investment.",
+        "Eliminate the middlemen. Showcase your creations directly to buyers worldwide, ensuring you get the full value of your work.",
     },
     {
-      title: "Professional Branding & Marketing",
+      title: "Seamless Branding & Outreach",
       description:
-        "Boost visibility through professional marketing tools, exhibitions, and promotions. Our platform helps you connect with global buyers.",
+        "From storytelling to social media, gain professional branding and marketing support that amplifies your voice and vision.",
     },
     {
-      title: "Global Market Access",
+      title: "Global Connections",
       description:
-        "Expand your reach beyond local markets. Our platform connects you with a global network of buyers, opening new opportunities.",
+        "Tap into a vast network of international buyers, collectors, and enthusiasts who value authentic Kashmiri craftsmanship.",
     },
     {
-      title: "Community & Support",
+      title: "Thriving Artisan Network",
       description:
-        "Join a vibrant community of artisans. Access resources, workshops, and peer support to enhance your skills and grow your business.",
+        "Collaborate, share knowledge, and grow alongside a supportive community of artisans and craft entrepreneurs.",
     },
     {
-      title: "Sustainable Practices",
+      title: "Ethical & Sustainable Growth",
       description:
-        "We promote and support sustainable and ethical practices in handicraft production, ensuring fair trade and environmental responsibility.",
+        "Embrace fair trade principles and eco-friendly practices that honor both the artisan and the environment.",
     },
     {
-      title: "Cultural Preservation",
+      title: "Heritage in Every Thread",
       description:
-        "Our mission includes preserving and promoting the rich cultural heritage of Kashmiri craftsmanship for future generations.",
+        "Preserve and celebrate the timeless artistry of Kashmiri crafts, passing its beauty and traditions to future generations.",
     },
   ];
 
@@ -366,83 +374,17 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
       <BannerWithFeatures />
-          <Homepage/>
+      <Homepage />
 
       {/* About Us Sections */}
-      <section className="py-16 lg:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2
-              className={`font-bold text-gray-900 mb-4  md:text-center lg:text-center ${
-                is4K ? "text-6xl" : "text-3xl lg:text-5xl"
-              }`}
-            >
-              About{" "}
-              <span className="text-[var(--secondary-color)]">Our Mission</span>
-            </h2>
-            <p
-              className={`text-gray-600 max-w-3xl mx-auto text-left px-1 ${
-                is4K ? "text-2xl" : "text-lg"
-              }`}
-            >
-              Discover the values, story, team, and unique business approach
-              that drives our commitment to Kashmiri artisans.
-            </p>
-          </motion.div>
-
-          <div className="grid text-left grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {aboutSections.map((section, index) => (
-              <motion.div
-                key={index}
-                className="bg-white text-left rounded-2xl p-8 lg:p-10 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                <motion.div
-                  className="flex items-center gap-4 mb-6"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="w-16 h-16 text-left bg-[var(--secondary-light-color)] rounded-full flex items-center justify-center text-[var(--primary-color)]">
-                    {section.icon}
-                  </div>
-                  <h3
-                    className={`font-bold text-gray-900 ${
-                      is4K ? "text-3xl" : "text-xl lg:text-2xl"
-                    }`}
-                  >
-                    {section.title}
-                  </h3>
-                </motion.div>
-
-                <p
-                  className={`text-gray-600 mb-6 leading-relaxed ${
-                    is4K ? "text-xl" : "text-base"
-                  }`}
-                >
-                  {section.content}
-                </p>
-
-                <Link
-                  href={section.href}
-                  className="inline-flex items-center gap-2 text-[var(--primary-color)] hover:text-[var(--secondary-color)] font-semibold transition-colors duration-300"
-                >
-                  Read More <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <section
+        className="px-2 pb-6
+             
+              md:px-6 lg:px-8 bg-white text-center"
+      >
+        <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
-
+      <ScrollSection features={scrollFeatures} />
       {/* Partnerships Section */}
       {/* Partnerships Section */}
       <section
@@ -477,25 +419,6 @@ export default function LandingPage() {
             >
               Buyer Progressive Partnership Framework and Pathway
             </h3>
-            <p
-              className={`${
-                is4K ? "text-xl max-w-4xl" : "text-lg max-w-3xl"
-              } text-gray-300`}
-            >
-              De Koshur Crafts offers progressive partnership models for
-              U.S.-based buyers to source, distribute, and expand in the luxury
-              Kashmiri handicraft market. Partnerships covers Reseller,
-              Consignment, Exhibition, Import Export, Subsidiary, Brick &
-              Mortar, Franchise, and Luxury Bidding & Auction.
-            </p>
-            <p
-              className={`${
-                is4K ? "text-xl max-w-4xl" : "text-lg max-w-3xl"
-              } text-gray-300`}
-            >
-              Meet your goals seamlessly through De Koshur Crafts Marketplace
-              while optimizing your business needs.
-            </p>
           </motion.div>
 
           <div className={`grid md:grid-cols-2 ${is4K ? "gap-12" : "gap-8"}`}>
@@ -583,97 +506,74 @@ export default function LandingPage() {
 
       {/* <KashmirCraftsCarousel/> */}
       <MainPageCards />
-        <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
-      <div className="text-center mt-16 mb-6">
-        <h2
-          className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${
-            is4K ? "2xl:text-6xl 2xl:mb-6" : ""
-          }`}
-        >
-          Our Reach
-        </h2>
-      </div>
-
-      <div className="flex justify-center space-x-6 border-[var(--primary-color)]">
-        <button
-          onClick={() => setActiveTab("buyer")}
-          className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${
-            activeTab === "buyer"
-              ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
-              : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
-          }`}
-        >
-          Buyer
-        </button>
-        <button
-          onClick={() => setActiveTab("vendor")}
-          className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${
-            activeTab === "vendor"
-              ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
-              : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
-          }`}
-        >
-          Vendor
-        </button>
-      </div>
-
-      <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
-        <div className="container mx-auto px-4 text-center">
-          {activeTab === "buyer" && (
-            <>
-              <h3
-                className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
-                  is4K ? "2xl:text-4xl 2xl:mb-4" : ""
-                }`}
-              >
-                Buyer
-              </h3>
-              <Counter slides={buyerslides} />
-            </>
-          )}
-
-          {activeTab === "vendor" && (
-            <>
-              <h3
-                className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
-                  is4K ? "2xl:text-4xl 2xl:mb-4" : ""
-                }`}
-              >
-                Vendor
-              </h3>
-              <Counter slides={vendorslides} />
-            </>
-          )}
-        </div>
-      </section>
-    </div>
-    <KashmirCraftsCarousel/>
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+      <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
+        <div className="text-center mt-16 mb-6">
+          <h2
+            className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${
+              is4K ? "2xl:text-6xl 2xl:mb-6" : ""
+            }`}
           >
-            <h3 className={`font-bold mb-4 ${is4K ? "text-3xl" : "text-xl"}`}>
-              Kashmir Crafts Global
-            </h3>
-            <p
-              className={`text-gray-400 mb-8 ${is4K ? "text-xl" : "text-base"}`}
-            >
-              Connecting authentic craftsmanship with global opportunities
-            </p>
-            <div className="flex justify-center items-center gap-2 text-gray-500">
-              <Heart className="w-4 h-4 text-red-500" />
-              <span>Made with love for artisans worldwide</span>
-            </div>
-          </motion.div>
+            Our Reach
+          </h2>
         </div>
-      </footer>
 
-      <FlagSection/>
+        <div className="flex justify-center space-x-6 border-[var(--primary-color)]">
+          <button
+            onClick={() => setActiveTab("buyer")}
+            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${
+              activeTab === "buyer"
+                ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
+                : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
+            }`}
+          >
+            Buyer
+          </button>
+          <button
+            onClick={() => setActiveTab("vendor")}
+            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${
+              activeTab === "vendor"
+                ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
+                : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
+            }`}
+          >
+            Vendor
+          </button>
+        </div>
+
+        <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
+          <div className="container mx-auto px-4 text-center">
+            {activeTab === "buyer" && (
+              <>
+                <h3
+                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
+                    is4K ? "2xl:text-4xl 2xl:mb-4" : ""
+                  }`}
+                >
+                  Buyer
+                </h3>
+                <Counter slides={buyerslides} />
+              </>
+            )}
+
+            {activeTab === "vendor" && (
+              <>
+                <h3
+                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
+                    is4K ? "2xl:text-4xl 2xl:mb-4" : ""
+                  }`}
+                >
+                  Vendor
+                </h3>
+                <Counter slides={vendorslides} />
+              </>
+            )}
+          </div>
+        </section>
+      </div>
+      <KashmirCraftsCarousel />
+
+      <FlagSection />
+      <Location />
     </div>
   );
 }
