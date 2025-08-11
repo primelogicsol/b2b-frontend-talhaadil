@@ -1,8 +1,8 @@
 "use client"
-
 import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
 import { useGlobalContext } from "../../context/ScreenProvider"
+
 type DetailMap = Record<string, string[]>
 
 interface SubCategory {
@@ -37,10 +37,10 @@ export default function ComprehensiveProductSelection({
   onPrev,
 }: ComprehensiveProductSelectionProps) {
   const topRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
+
   const { is4K } = useGlobalContext()
   const [selectedCategories, setSelectedCategories] = useState<string[]>(data?.categories ?? [])
   const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(data?.subCategories ?? [])
@@ -50,6 +50,7 @@ export default function ComprehensiveProductSelection({
   const [expandedSubCategory, setExpandedSubCategory] = useState<string | null>(null)
   const [currentStep, setCurrentStep] = useState<"categories" | "subcategories" | "details">("categories")
   const [showAllProducts, setShowAllProducts] = useState<Record<string, boolean>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const scrollToTop = () => {
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -63,12 +64,87 @@ export default function ComprehensiveProductSelection({
     })
   }
 
+  // API submission function
+  const submitProductData = async (productData: ProductData) => {
+    try {
+      setIsSubmitting(true)
+
+      // Create linked/nested structure
+      const linkedData = selectedCategories
+        .map((categoryId) => {
+          const category = categories.find((cat) => cat.id === categoryId)
+          if (!category) return null
+
+          // Get subcategories for this category
+          const categorySubcategories = category.subcategories
+            .filter((sub) => selectedSubCategories.includes(sub.id))
+            .map((subcategory) => {
+              // Get specifications for this subcategory
+              const specifications: Record<string, string> = {}
+              const subDetails = detailedSelections[subcategory.id] || {}
+
+              Object.entries(subDetails).forEach(([specKey, specValues]) => {
+                if (specValues && specValues.length > 0) {
+                  specifications[specKey] = specValues[0] // Since we only allow single selection
+                }
+              })
+
+              return {
+                subcategoryId: subcategory.id,
+                subcategoryName: subcategory.name,
+                specifications: specifications,
+              }
+            })
+            .filter((sub) => Object.keys(sub.specifications).length > 0) // Only include subcategories with specifications
+
+          return {
+            categoryId: category.id,
+            categoryName: category.name,
+            subcategories: categorySubcategories,
+          }
+        })
+        .filter(Boolean) // Remove null entries
+
+      // Format the final submission data
+      const submissionData = {
+        selectedData: linkedData,
+       
+      }
+      console.log(submissionData)
+    //delay of 2 seconds
+     await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      // const response = await fetch("/api/submit-product-selection", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(submissionData),
+      // })
+
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`)
+      // }
+
+      // const result = await response.json()
+      // console.log("Data submitted successfully:", result)
+
+      // Call onNext only after successful submission
+      onNext()
+    } catch (error) {
+      console.error("Error submitting product data:", error)
+      // You can add user-friendly error handling here
+      alert("Failed to submit data. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const handleCategorySelect = (categoryId: string) => {
     const updatedCategories = selectedCategories.includes(categoryId)
       ? selectedCategories.filter((id) => id !== categoryId)
       : [...selectedCategories, categoryId]
     setSelectedCategories(updatedCategories)
-
     if (!updatedCategories.includes(categoryId)) {
       const category = categories.find((cat) => cat.id === categoryId)
       if (category) {
@@ -92,7 +168,6 @@ export default function ComprehensiveProductSelection({
       ? selectedSubCategories.filter((id) => id !== subId)
       : [...selectedSubCategories, subId]
     setSelectedSubCategories(updated)
-
     if (!updated.includes(subId)) {
       const updatedDetails: Record<string, DetailMap> = {
         ...detailedSelections,
@@ -109,7 +184,6 @@ export default function ComprehensiveProductSelection({
   const handleDetailSelect = (subId: string, detailKey: string, value: string) => {
     const updatedDetails: Record<string, DetailMap> = { ...detailedSelections }
     if (!updatedDetails[subId]) updatedDetails[subId] = {}
-
     // For specifications, only allow one selection per detail key
     const current = updatedDetails[subId][detailKey] || []
     if (current.includes(value)) {
@@ -119,7 +193,6 @@ export default function ComprehensiveProductSelection({
       // If not selected, replace with this single selection
       updatedDetails[subId][detailKey] = [value]
     }
-
     setDetailedSelections(updatedDetails)
     updateData(selectedCategories, selectedSubCategories, updatedDetails)
   }
@@ -164,7 +237,6 @@ export default function ComprehensiveProductSelection({
     for (const subCategoryId of selectedSubCategories) {
       const details = getSubCategoryDetails(subCategoryId)
       if (!details) continue
-
       for (const detailKey of Object.keys(details)) {
         const hasSelection = detailedSelections[subCategoryId]?.[detailKey]?.length > 0
         if (!hasSelection) {
@@ -175,7 +247,7 @@ export default function ComprehensiveProductSelection({
     return true
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentStep === "categories" && selectedCategories.length > 0) {
       setCurrentStep("subcategories")
       scrollToTop()
@@ -183,11 +255,17 @@ export default function ComprehensiveProductSelection({
       setCurrentStep("details")
       scrollToTop()
     } else if (currentStep === "details" && areAllSpecificationsSelected()) {
-      onNext()
+      // Submit data to API before proceeding
+      const currentData = {
+        categories: selectedCategories,
+        subCategories: selectedSubCategories,
+        detailedSelections: detailedSelections,
+      }
+      await submitProductData(currentData)
     }
   }
 
-  const handle  = () => {
+  const handlePrev = () => {
     if (currentStep === "details") {
       setCurrentStep("subcategories")
       scrollToTop()
@@ -225,7 +303,6 @@ export default function ComprehensiveProductSelection({
   return (
     <div className={`mx-auto px-4 py-8 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
       <div ref={topRef} />
-
       {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex items-center justify-center space-x-4 mb-4">
@@ -344,7 +421,7 @@ export default function ComprehensiveProductSelection({
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Specific Products</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Choose the specific products you work with from your selected categories
-            </p> 
+            </p>
           </div>
           <div className="bg-white rounded-3xl shadow-lg sm:px-0 py-6 lg:px-30 mb-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
@@ -407,7 +484,6 @@ export default function ComprehensiveProductSelection({
               const subCategory = getAvailableSubCategories().find((sub) => sub.id === subCategoryId)
               const details = getSubCategoryDetails(subCategoryId)
               if (!subCategory || !details) return null
-
               return (
                 <div
                   key={subCategoryId}
@@ -421,7 +497,6 @@ export default function ComprehensiveProductSelection({
                     <div className="flex justify-between items-center">
                       <h3 className="text-2xl font-bold">{subCategory.name}</h3>
                       <div className="flex items-center space-x-4">
-                        
                         <span
                           className={`transform transition-transform ${
                             expandedSubCategory === subCategoryId ? "rotate-180" : ""
@@ -507,29 +582,42 @@ export default function ComprehensiveProductSelection({
       {/* Navigation */}
       <div className="flex justify-between items-center">
         <button
-          onClick={handle}
-          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+          onClick={handlePrev}
+          disabled={isSubmitting}
+          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-            <span className="inline">←</span>
+          <span className="inline">←</span>
           <span className="hidden md:inline ml-2">Prev</span>
         </button>
         <button
           onClick={handleNext}
           disabled={
+            isSubmitting ||
             (currentStep === "categories" && selectedCategories.length === 0) ||
             (currentStep === "subcategories" && selectedSubCategories.length === 0) ||
             (currentStep === "details" && !areAllSpecificationsSelected())
           }
           className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${
-            (currentStep === "categories" && selectedCategories.length > 0) ||
-            (currentStep === "subcategories" && selectedSubCategories.length > 0) ||
-            (currentStep === "details" && areAllSpecificationsSelected())
+            !isSubmitting &&
+            (
+              (currentStep === "categories" && selectedCategories.length > 0) ||
+                (currentStep === "subcategories" && selectedSubCategories.length > 0) ||
+                (currentStep === "details" && areAllSpecificationsSelected())
+            )
               ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
-          <span className="hidden md:inline mr-2">Next</span>
-          <span className="inline">→</span>
+          {isSubmitting ? (
+            <>
+              <span className="hidden md:inline mr-2">Submitting...</span>
+            </>
+          ) : (
+            <>
+              <span className="hidden md:inline mr-2">{currentStep === "details" ? "Submit" : "Next"}</span>
+              <span className="inline">→</span>
+            </>
+          )}
         </button>
       </div>
     </div>

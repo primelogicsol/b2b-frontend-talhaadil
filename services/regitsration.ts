@@ -15,3 +15,18 @@ export const sendInfo = (body : any) => {
     },
   });
 };
+export const submitDocumentToAPI = (body: any) => {
+  const formData = new FormData();
+  formData.append("file", body.file); // only 'file' — no 'file_name'
+    console.log(formData)
+  return api.post(
+    `/user/documents?document_type=${body.document_type}`,
+    formData,
+    {
+      headers: {
+        requiresAuth: true,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+};
