@@ -386,120 +386,130 @@ export default function LandingPage() {
       </section>
       <ScrollSection features={scrollFeatures} />
       {/* Partnerships Section */}
-      {/* Partnerships Section */}
-      <section
-        className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
-          is4K ? "py-24 px-12" : "py-16 px-4"
-        }`}
+ {/* Partnerships Section */}
+<section
+  className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
+    is4K ? "py-28 px-20" : "py-16 px-4"
+  }`}
+>
+  <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
+    {/* Header */}
+    <motion.div
+      className="text-center mb-16 flex flex-col items-center gap-6"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <img
+        src="/images/main-page-image.png"
+        alt="De Koshur Crafts Logo"
+        className={`${is4K ? "w-[300px]" : "w-40"} h-auto`}
+      />
+      <h2
+        className={`${
+          is4K ? "text-6xl" : "text-3xl md:text-4xl"
+        } font-bold text-white`}
       >
-        <div className={`${is4K ? "max-w-9xl" : "max-w-7xl"} mx-auto`}>
+        Tailored for Your Success
+      </h2>
+      <h3
+        className={`${
+          is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
+        } text-white font-semibold`}
+      >
+        Buyer Progressive Partnership Framework and Pathway
+      </h3>
+    </motion.div>
+
+    {/* Grid */}
+    <div className={`grid md:grid-cols-2 ${is4K ? "gap-14" : "gap-8"}`}>
+      {partnershipCategories.map((category, index) => {
+        const ref = useRef(null);
+        const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+        return (
           <motion.div
-            className="text-center mb-16 flex flex-col items-center gap-6"
+            key={index}
+            ref={ref}
+            className={`bg-gray-800 ${
+              is4K ? "p-14" : "p-8"
+            } rounded-lg border border-gray-700 hover:border-[var(--secondary-color)] transition-all duration-300`}
             initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            animate={
+              isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+            }
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ scale: 1.02 }}
           >
-            <img
-              src="/images/main-page-image.png" // replace with your logo image path
-              alt="De Koshur Crafts Logo"
-              className="w-150 h-auto" // small logo size, adjust if needed
-            />
-            <h2
-              className={`${
-                is4K ? "text-5xl" : "text-3xl md:text-4xl"
-              } font-bold text-white`}
-            >
-              Tailored for Your Success
-            </h2>
+            {/* Category Title */}
             <h3
               className={`${
-                is4K ? "text-3xl max-w-4xl" : "text-xl max-w-3xl"
-              } text-white font-semibold`}
+                is4K ? "text-4xl" : "text-2xl"
+              } font-bold text-white mb-4`}
             >
-              Buyer Progressive Partnership Framework and Pathway
+              {category.label}
             </h3>
-          </motion.div>
 
-          <div className={`grid md:grid-cols-2 ${is4K ? "gap-12" : "gap-8"}`}>
-            {partnershipCategories.map((category, index) => {
-              const ref = useRef(null);
-              const isInView = useInView(ref, { once: true, margin: "-100px" });
+            {/* Summary */}
+            <p
+              className={`${
+                is4K ? "text-xl" : "text-lg"
+              } text-gray-300 mb-6`}
+            >
+              {category.summary}
+            </p>
 
-              return (
-                <motion.div
-                  key={index}
-                  ref={ref}
-                  className={`bg-gray-800 ${
-                    is4K ? "p-12" : "p-8"
-                  } rounded-lg border border-gray-700 hover:border-[var(--secondary-color)] transition-all duration-300`}
-                  initial={{ opacity: 0, y: 50 }}
+            {/* Subitems */}
+            <ul className="space-y-3 mb-8">
+              {category.subItems.map((item, itemIndex) => (
+                <motion.li
+                  key={itemIndex}
+                  className="flex items-center gap-3 text-gray-400"
+                  initial={{ opacity: 0, x: -20 }}
                   animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                    isInView
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 0, x: -20 }
                   }
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.1 + itemIndex * 0.05,
+                  }}
                 >
-                  <h3
-                    className={`${
-                      is4K ? "text-4xl" : "text-2xl"
-                    } font-bold text-white mb-4`}
-                  >
-                    {category.label}
-                  </h3>
-                  <p
-                    className={`${
-                      is4K ? "text-xl" : "text-lg"
-                    } text-gray-300 mb-6`}
-                  >
-                    {category.summary}
-                  </p>
-                  <ul className={`space-y-3 mb-8`}>
-                    {category.subItems.map((item, itemIndex) => (
-                      <motion.li
-                        key={itemIndex}
-                        className="flex items-center gap-3 text-gray-400"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={
-                          isInView
-                            ? { opacity: 1, x: 0 }
-                            : { opacity: 0, x: -20 }
-                        }
-                        transition={{
-                          duration: 0.4,
-                          delay: index * 0.1 + itemIndex * 0.05,
-                        }}
-                      >
-                        <CheckCircle
-                          size={is4K ? 24 : 20}
-                          className="text-[var(--secondary-color)] flex-shrink-0"
-                        />
-                        <Link
-                          href={item.href}
-                          className={`${
-                            is4K ? "text-lg" : "text-base"
-                          } hover:text-white transition-colors duration-200`}
-                        >
-                          {item.label}
-                        </Link>
-                      </motion.li>
-                    ))}
-                  </ul>
+                  <CheckCircle
+                    size={is4K ? 28 : 20}
+                    className="text-[var(--secondary-color)] flex-shrink-0"
+                  />
                   <Link
-                    href={category.href}
-                    className={`inline-flex items-center gap-2 ${
-                      is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
-                    } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--primary-color)] transition-colors duration-300`}
+                    href={item.href}
+                    className={`${
+                      is4K ? "text-lg" : "text-base"
+                    } hover:text-white transition-colors duration-200`}
                   >
-                    Read More
-                    <ArrowRight size={is4K ? 24 : 20} />
+                    {item.label}
                   </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* Read More Button */}
+            <Link
+              href={category.href}
+              className={`inline-flex items-center gap-2 ${
+                is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
+              } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--primary-color)] transition-colors duration-300`}
+            >
+              Read More
+              <ArrowRight size={is4K ? 28 : 20} />
+            </Link>
+          </motion.div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
 
       {/* Process Section */}
       <RecSquareSection />

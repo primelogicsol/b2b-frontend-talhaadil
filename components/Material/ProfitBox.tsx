@@ -1104,7 +1104,7 @@ export default function KashmirCraftsCarousel() {
       default:
         return (
           <div
-            className={`w-${is4K ? "8" : "6"} h-${is4K ? "8" : "6"} rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
+            className={`w-${is4K ? "8" : "6"} h-${is4K ? "9" : "6"} rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
           />
         )
     }
@@ -1200,7 +1200,7 @@ export default function KashmirCraftsCarousel() {
 
   return (
     <div
-      className="bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden"
+      className={`${is4K ? " py-30" : " "}  bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
       style={
         {
           "--primary-hover-color": "#2a5f7a",
@@ -1212,7 +1212,7 @@ export default function KashmirCraftsCarousel() {
     >
       {/* Animated Dotted Earth Background */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center opacity-100"
+        className={`absolute inset-0 flex items-center justify-center opacity-100`}
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
       >

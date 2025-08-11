@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useGlobalContext } from "@/context/ScreenProvider";
 
 interface MediaItem {
   type: "video" | "image";
@@ -36,7 +37,7 @@ function MediaSlider({
   const currentMedia = items[currentIndex];
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg">
+    <div className="relative w-full max-w-6xl 2xl:max-w-7xl mx-auto rounded-xl overflow-hidden shadow-lg">
       {currentMedia.type === "video" ? (
         <video
           key={currentMedia.src}
@@ -54,17 +55,19 @@ function MediaSlider({
           key={currentMedia.src}
           src={currentMedia.src}
           alt={currentMedia.title}
-          width={700}
-          height={450}
+          width={1600}
+          height={900}
           className="w-full h-auto object-cover aspect-video"
         />
       )}
 
-      <div className="absolute top-4 left-4 text-white text-sm font-medium bg-black bg-opacity-50 px-3 py-1 rounded-md">
+      {/* title overlay */}
+      <div className="absolute top-4 left-4 text-white text-sm md:text-base lg:text-lg font-medium bg-black bg-opacity-50 px-3 py-1 rounded-md">
         {currentMedia.title}
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex space-x-2">
+      {/* slider dots */}
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex space-x-2">
         {items.map((_, index) => (
           <button
             key={index}
@@ -80,19 +83,19 @@ function MediaSlider({
   );
 }
 
-
-
 export default function ScrollVideoSection({
-  heading = "At De Koshur Crafts, our mission goes far beyond the boundaries of a typical e-commerce experience. We are deeply driven by a powerful and unwavering belief: that the authentic and timeless craftsmanship of Kashmiri artisans deserves not only recognition but also the utmost respect and a prominent platform on the global stage. Our ultimate goal is to empower these talented artisans by preserving their ancient, heritage-rich crafts and connecting them directly to a vibrant and thriving international marketplace. We are committed to ensuring sustainability and promoting fair trade practices ",
-  introLabel = "About Us",
-  items, // optional to override media
+  heading = "At De Koshur Crafts, our mission goes far beyond the boundaries of a typical e-commerce experience. We are deeply driven by a powerful and unwavering belief: that the authentic and timeless craftsmanship of Kashmiri artisans deserves not only recognition but also the utmost respect and a prominent platform on the global stage. Our ultimate goal is to empower these talented artisans by preserving their ancient, heritage-rich crafts and connecting them directly to a vibrant and thriving international marketplace. We are committed to ensuring sustainability and promoting fair trade practices at every step of this journey, fostering an environment where artisans can flourish and their unique cultural legacy can be celebrated and sustained for generations to come.",
+  introLabel = "Our Mission",
+  items,
 }: {
   heading?: string;
   introLabel?: string;
   items?: MediaItem[];
 }) {
+  const { is4K } = useGlobalContext();
+
   return (
-    <div className="bg-white text-gray-900 font-sans px-5 max-w-6xl mx-auto">
+    <div className="bg-white text-gray-900 font-sans px-5">
       <style jsx global>{`
         body {
           background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
@@ -100,16 +103,17 @@ export default function ScrollVideoSection({
         }
       `}</style>
 
-      <main className="container mx-auto px-4 py-12 md:py-20">
-        <section className="grid md:grid-cols-2 gap-12 items-center mb-6 md:mb-12">
+      <main className="container mx-auto px-4 py-12 md:py-20 2xl:px-8">
+        {/* top section */}
+        <section className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-0.5 bg-[var(--secondary-color)]"/>
-              <p className="text-2xl md:text-3xl lg:text-5xl uppercase text-[var(--secondary-color)] font-extrabold mb-5">
+              <div className="w-12 h-0.5 bg-[var(--secondary-color)]" />
+              <p className="text-2xl md:text-3xl lg:text-5xl 2xl:text-6xl uppercase text-[var(--secondary-color)] font-extrabold mb-5">
                 {introLabel}
               </p>
             </div>
-            <h1 className="text-lg">
+            <h1 className="text-base md:text-lg lg:text-xl 2xl:text-2xl leading-relaxed">
               {heading}
             </h1>
           </div>
@@ -119,50 +123,45 @@ export default function ScrollVideoSection({
           </div>
         </section>
 
-        {/* you can keep your bottom sections exactly the same */}
-        <section className="grid md:grid-cols-2 gap-12 md:gap-16">
+        {/* bottom section */}
+        <section className="grid md:grid-cols-2 gap-12 md:gap-16 2xl:gap-24">
           {/* bottom left */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-0.5 bg-[var(--secondary-color)]"/>
-                <p className="text-lg font-semibold text-gray-800">
-                  Dream It:{" "}
-                  <span className="font-normal text-gray-700">
-                    Envision your store or product lineup. We&apos;ll provide the roadmap for sourcing products that meet your unique business needs ethically made Kashmiri handicrafts
-                  </span>
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-0.5 bg-[var(--secondary-color)]"/>
-                <p className="text-lg font-semibold text-gray-800">
-                  Define It:{" "}
-                  <span className="font-normal text-gray-700">
-                    Seamless shipping, tracking, and logistics. Certified authenticity ensures GI-tagged crafts, fair trade, and empowerment with advance blockchain verification and market trends.
-                  </span>
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-0.5 bg-[var(--secondary-color)]"/>
-                <p className="text-lg font-semibold text-gray-800">
-                  Dominate It:{" "}
-                  <span className="font-normal text-gray-700">
-                    We operate across United States of America with major facilitation hubs at New York, D.C., Los Angeles, San Francisco, Chicago, Houston, and Miami.
-                  </span>
-                </p>
-              </div>
+              {[
+                {
+                  title: "Dream It:",
+                  desc: "Envision your store or product lineup. We’ll provide the roadmap for sourcing products that meet your unique business needs ethically made Kashmiri handicrafts",
+                },
+                {
+                  title: "Define It:",
+                  desc: "Seamless shipping, tracking, and logistics. Certified authenticity ensures GI-tagged crafts, fair trade, and empowerment with advance blockchain verification and market trends.",
+                },
+                {
+                  title: "Dominate It:",
+                  desc: "We operate across United States of America with major facilitation hubs at New York, D.C., Los Angeles, San Francisco, Chicago, Houston, and Miami.",
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="w-8 h-0.5 bg-[var(--secondary-color)]" />
+                  <p className="text-lg font-semibold text-gray-800">
+                    {item.title}{" "}
+                    <span className="font-normal text-gray-700">{item.desc}</span>
+                  </p>
+                </div>
+              ))}
             </div>
-            <p className="font-bold text-lg text-[var(--secondary-color)]">
+            <p className="font-bold text-lg 2xl:text-xl text-[var(--secondary-color)]">
               Handicraft Progressive Business Model for Every Vision
               <br />
-              <span className="text-gray-700 font-normal text-base">
+              <span className="text-gray-700 font-normal text-base 2xl:text-lg">
                 Crafting US Next Generations with 700+ Old Legacy of Kashmiri Handicraft Together
               </span>
             </p>
           </div>
 
           {/* bottom right */}
-          <div className="space-y-6 text-gray-700">
+          <div className="space-y-6 text-gray-700 text-base lg:text-lg 2xl:text-xl leading-relaxed">
             <p>
               We enjoy <span className="font-bold text-gray-900">Global Leadership in Kashmir Handicrafts</span>, Business Innovation, Craft Advocacy, and Research Excellence.
             </p>

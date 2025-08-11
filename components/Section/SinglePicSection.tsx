@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useGlobalContext } from "@/context/ScreenProvider"
+
 export default function SinglePicSection() {
   const { is4K } = useGlobalContext()
 
@@ -21,24 +21,35 @@ export default function SinglePicSection() {
         } as React.CSSProperties
       }
     >
-      <div className={`max-w-7xl mx-auto ${is4K ? "px-16 py-32" : "px-8 py-16"}`}>
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-${is4K ? "16" : "12"} items-center`}>
+      <div className={`max-w-[1600px] mx-auto ${is4K ? "px-20 py-32" : "px-6 md:px-8 py-16"}`}>
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 items-center ${
+            is4K ? "gap-16" : "gap-12"
+          }`}
+        >
           {/* Left Side - Image with Sidebar */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg">
               <img
+                src="/your-image.jpg"
                 alt="Team collaboration - hands coming together"
-                className={`w-full ${is4K ? "h-[800px]" : "h-[500px] md:h-[700px]"} object-cover`}
+                className={`w-full object-cover ${
+                  is4K ? "h-[1200px]" : "h-[500px] md:h-[700px]"
+                }`}
               />
 
               {/* Orange Sidebar */}
               <div
-                className={`absolute left-0 top-0 ${is4K ? "w-24" : "w-16 md:w-20"} h-full flex items-center justify-center`}
+                className={`absolute left-0 top-0 ${
+                  is4K ? "w-24" : "w-16 md:w-20"
+                } h-full flex items-center justify-center`}
                 style={{ backgroundColor: "var(--secondary-color)" }}
               >
                 <div className="transform -rotate-90 whitespace-nowrap">
                   <span
-                    className={`text-white font-medium ${is4K ? "text-2xl tracking-wider" : "text-lg md:text-xl tracking-wide"}`}
+                    className={`text-white font-medium ${
+                      is4K ? "text-2xl tracking-wider" : "text-lg md:text-xl tracking-wide"
+                    }`}
                   >
                     Your Link to Kashmir Craft Markets
                   </span>
@@ -46,9 +57,17 @@ export default function SinglePicSection() {
               </div>
 
               {/* Chain Link Icon */}
-              <div className={`absolute ${is4K ? "bottom-12 left-12" : "bottom-6 left-6 md:bottom-8 md:left-8"}`}>
+              <div
+                className={`absolute ${
+                  is4K
+                    ? "bottom-12 left-12"
+                    : "bottom-6 left-6 md:bottom-8 md:left-8"
+                }`}
+              >
                 <div
-                  className={`${is4K ? "w-16 h-16" : "w-10 h-10 md:w-12 md:h-12"} rounded-full flex items-center justify-center`}
+                  className={`rounded-full flex items-center justify-center ${
+                    is4K ? "w-16 h-16" : "w-10 h-10 md:w-12 md:h-12"
+                  }`}
                   style={{ backgroundColor: "var(--secondary-color)" }}
                 >
                   <svg
@@ -74,7 +93,7 @@ export default function SinglePicSection() {
               <div
                 className={`${is4K ? "w-16 h-1" : "w-12 h-0.5"} mr-4`}
                 style={{ backgroundColor: "var(--secondary-color)" }}
-              ></div>
+              />
               <span
                 className={`${is4K ? "text-xl" : "text-sm md:text-base"} font-medium tracking-wide uppercase`}
                 style={{ color: "var(--primary-light-text-color)" }}
@@ -85,90 +104,61 @@ export default function SinglePicSection() {
 
             {/* Main Heading */}
             <h1
-              className={`${is4K ? "text-7xl mb-12" : "text-2xl md:text-3xl lg:text-4xl mb-8"} font-bold leading-9`}
+              className={`${is4K ? "text-7xl mb-12" : "text-2xl md:text-3xl lg:text-4xl mb-8"} font-bold leading-tight`}
               style={{ color: "var(--primary-color)" }}
             >
-              Empowering USA-Based Buyers in <br className="hidden md:block" />
-              Accessing Kashmiri Craft <span style={{ color: "var(--secondary-color)" }}>Markets</span>
+              Empowering USA-Based Buyers in{" "}
+              <br className="hidden md:block" />
+              Accessing Kashmiri Craft{" "}
+              <span style={{ color: "var(--secondary-color)" }}>Markets</span>
             </h1>
 
             {/* Description Paragraph */}
             <p
-              className={`${is4K ? "text-2xl mb-16 leading-relaxed" : "text-base md:text-[20px] lg:text-[16px] mb-10 leading-relaxed"} `}
+              className={`${is4K ? "text-2xl mb-16 leading-relaxed" : "text-base md:text-lg lg:text-[16px] mb-10 leading-relaxed"}`}
               style={{ color: "var(--primary-light-text-color)" }}
             >
-              A Transformative Platform Connecting USA Buyers with Kashmiri Artisans and Authentic Products. The De
-              Koshur Crafts platform opens a direct line to premium Kashmiri handicrafts for buyers across the USA,
-              supporting ethical trade, preserving cultural heritage, and offering businesses competitive pricing and
-              unmatched craftsmanship.
+              A Transformative Platform Connecting USA Buyers with Kashmiri Artisans and Authentic Products...
             </p>
 
             {/* Feature Points */}
-            <div className={`space-y-${is4K ? "8" : "2"}`}>
-              {/* Dream It */}
-              <div className="flex items-start">
-                <div
-                  className={`${is4K ? "w-16 h-1 mt-2" : "w-12 h-0.5 mt-1"} mr-6 flex-shrink-0`}
-                  style={{ backgroundColor: "var(--secondary-color)" }}
-                ></div>
-                <div>
-                  <h3
-                    className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl lg:text-[19px] "} font-semibold`}
-                    style={{ color: "var(--primary-color)" }}
-                  >
-                    Dream It:{" "}
-                    <span className={`${is4K ? "text-xl" : "text-base md:text-[16px] lg:text-[17px]"} font-normal`}>
-                      Envision your store or product lineup. We'll provide the roadmap for sourcing products that meet
-                      your unique business needs.
-                    </span>
-                  </h3>
+            <div className={`${is4K ? "space-y-8" : "space-y-3"}`}>
+              {[
+                {
+                  title: "Dream It:",
+                  desc: "Envision your store or product lineup. We'll provide the roadmap..."
+                },
+                {
+                  title: "Define It:",
+                  desc: "Browse our curated collections and select from a wide range..."
+                },
+                {
+                  title: "Dominate It:",
+                  desc: "Stand out in the marketplace by offering authentic Kashmiri products..."
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-start">
+                  <div
+                    className={`${is4K ? "w-16 h-1 mt-2" : "w-12 h-0.5 mt-1"} mr-6 flex-shrink-0`}
+                    style={{ backgroundColor: "var(--secondary-color)" }}
+                  />
+                  <div>
+                    <h3
+                      className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"} font-semibold`}
+                      style={{ color: "var(--primary-color)" }}
+                    >
+                      {item.title}{" "}
+                      <span className={`${is4K ? "text-xl" : "text-base md:text-[16px]"} font-normal`}>
+                        {item.desc}
+                      </span>
+                    </h3>
+                  </div>
                 </div>
-              </div>
-
-              {/* Define It */}
-              <div className="flex items-start">
-                <div
-                  className={`${is4K ? "w-16 h-1 mt-4" : "w-12 h-0.5 mt-3"} mr-6 flex-shrink-0`}
-                  style={{ backgroundColor: "var(--secondary-color)" }}
-                ></div>
-                <div>
-                  <h3
-                    className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"} font-semibold`}
-                    style={{ color: "var(--primary-color)" }}
-                  >
-                    Define It:{" "}
-                    <span className={`${is4K ? "text-xl" : "text-base md:text-[16px] lg:text-[17px]"} font-normal`}>
-                      Browse our curated collections and select from a wide range of products that best fit your market
-                      & Order directly from artisans or suppliers, and manage your purchases with easy shipping options
-                      and tracking systems.
-                    </span>
-                  </h3>
-                </div>
-              </div>
-
-              {/* Dominate It */}
-              <div className="flex items-start">
-                <div
-                  className={`${is4K ? "w-16 h-1 mt-4" : "w-12 h-0.5 mt-3"} mr-6 flex-shrink-0`}
-                  style={{ backgroundColor: "var(--secondary-color)" }}
-                ></div>
-                <div>
-                  <h3
-                    className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"} font-semibold`}
-                    style={{ color: "var(--primary-color)" }}
-                  >
-                    Dominate It:{" "}
-                    <span className={`${is4K ? "text-xl" : "text-base "}md:text-[16px] lg:text-[17px] font-normal`}>
-                      Stand out in the marketplace by offering authentic Kashmiri products that tell a rich cultural
-                      story.
-                    </span>
-                  </h3>
-                </div>
-              </div>
+              ))}
             </div>
 
             {/* Bottom Text */}
-            <div className={`${is4K ? "mt-20" : "mt-3"}`}>
+            <div className={`${is4K ? "mt-20" : "mt-4"}`}>
               <h2
                 className={`${is4K ? "text-3xl mb-4" : "text-xl md:text-[20px] mb-3"} font-bold`}
                 style={{ color: "var(--secondary-color)" }}
