@@ -1,62 +1,61 @@
 "use client";
-
-import Image from "next/image";
 import { useState } from "react";
+import * as LucideIcons from "lucide-react";
+import Link from "next/link";
+import type React from "react";
 
 interface FeatureItem {
-  img?: string;
+  icon: keyof typeof LucideIcons;
   title: string;
   desc: string;
-  isimage: boolean;
+  link: string;
 }
 
 interface FeaturesProps {
   data?: FeatureItem[];
 }
 
+// ✅ Shortened & balanced descriptions (10 words each)
 const fallbackData: FeatureItem[] = [
   {
-    img: "/assets/images/feature1.png",
-    title: "Drop shipping",
-    desc: "Explore authentic Kashmiri crafts for your thriving online marketplace.",
-    isimage: true,
+    icon: "ShoppingCart",
+    title: "Core Trade",
+    desc: "We focus on trade quality, efficiency, and lasting global reliability.",
+    link: "/core-trade",
   },
   {
-    img: "/assets/images/feature2.png",
-    title: "Consignment",
-    desc: "Establish lasting relationships with verified Kashmiri artisans for products.",
-    isimage: true,
+    icon: "Rocket",
+    title: "Brand Growth",
+    desc: "We help brands expand reach, boost presence, and achieve success.",
+    link: "/brand-growth",
   },
   {
-    img: "/assets/images/feature3.png",
-    title: "Exhibition",
-    desc: "Discover exclusive Kashmiri collections showcased at global events.",
-    isimage: true,
+    icon: "Users",
+    title: "Collaborative",
+    desc: "We build networks, share resources, and create mutual business growth.",
+    link: "/collaborative",
   },
   {
-    img: "/assets/images/feature4.png",
-    title: "Import Export",
-    desc: "Effortlessly source high-quality, ethical Kashmiri crafts for business.",
-    isimage: true,
+    icon: "Building",
+    title: "Institutional",
+    desc: "We partner with firms, strengthen ties, and foster lasting trust.",
+    link: "/institutional",
   },
-
 ];
 
 const Features = ({ data }: FeaturesProps) => {
   const featuresData = data && data.length > 0 ? data : fallbackData;
-
   return (
-    <section className="lg:pb-20">
-      <div className="px-4 flex justify-center">
-        <div  className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8" 
-  >
+    <section className="py-8 lg:py-20">
+      <div className="flex justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
           {featuresData.map((item, i) => (
             <FeatureCard
               key={i}
-              img={item.img}
+              icon={item.icon}
               title={item.title}
               desc={item.desc}
-              isimage={item.isimage}
+              link={item.link}
             />
           ))}
         </div>
@@ -66,74 +65,74 @@ const Features = ({ data }: FeaturesProps) => {
 };
 
 interface FeatureCardProps {
-  img?: string;
+  icon: keyof typeof LucideIcons;
   title: string;
   desc: string;
-  isimage: boolean;
+  link: string;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ img, title, desc, isimage }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) => {
   const [hovered, setHovered] = useState(false);
+  const IconComponent = LucideIcons[icon];
 
   return (
-    <div
-      className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer w-35 h-40 ${
-        hovered
-          ? "border-[var(--primary-hover-color)] bg-[var(--secondary-color)] text-white"
-          : "border-gray-200 bg-gray-100"
-      }`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {isimage && (
-        <>
-          <div
-            className={`absolute inset-0 transition-transform duration-500 bg-cover bg-center z-0 ${
-              hovered ? "opacity-100 rotate-x-0" : "opacity-0 -rotate-x-90"
-            }`}
-            style={{
-              backgroundImage: "url(/assets/images/feature7.png)",
-              transformStyle: "preserve-3d",
-            }}
-          />
-          <div className="relative z-10 mx-auto mt-2 w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-white/40">
-            <div
-              className={`absolute inset-0 rounded-full bg-[#171a2b] transition-transform duration-500 ${
-                hovered ? "scale-100" : "scale-0"
-              }`}
-            />
-            {img && (
-              <Image
-                src={img}
-                alt="icon"
-                width={40}
-                height={40}
-                className={`relative z-10 transition duration-500 ${
-                  hovered ? "invert brightness-0" : ""
-                }`}
-              />
-            )}
-          </div>
-        </>
-      )}
+    <Link href={link} className="block">
+      <div
+        className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer p-4 flex flex-col items-center justify-center h-[190px] w-[190px]`}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          backgroundColor: hovered ? "var(--secondary-color)" : "rgb(243 244 246)",
+          borderColor: hovered ? "var(--primary-hover-color)" : "rgb(229 231 235)",
+          color: hovered ? "#fff" : "#111",
+        }}
+      >
+        {/* Hover background image */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-500 bg-cover bg-center z-0 ${
+            hovered ? "opacity-100" : "opacity-0"
+          }`}
+          style={{
+            backgroundImage: "url(/assets/images/feature7.png)",
+          }}
+        />
 
-      <div className="relative z-10 mt-2 px-2">
-        <h6
-          className={`text-md font-semibold transition-colors duration-500 ${
-            hovered ? "text-white" : "text-gray-900"
-          }`}
-        >
-          {title}
-        </h6>
-        <p
-          className={`mt-2 text-[10px] transition-colors duration-500 ${
-            hovered ? "text-white" : "text-gray-600"
-          }`}
-        >
-          {desc}
-        </p>
+        {/* Icon */}
+        <div className="relative z-10 mx-auto mb-2 w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-white/40">
+          <div
+            className={`absolute inset-0 rounded-full bg-[#171a2b] transition-transform duration-500 ${
+              hovered ? "scale-100" : "scale-0"
+            }`}
+          />
+          {IconComponent && (
+            <IconComponent
+              className={`relative z-10 transition duration-500 ${
+                hovered ? "text-white" : "text-gray-900"
+              }`}
+              size={24}
+            />
+          )}
+        </div>
+
+        {/* Text */}
+        <div className="relative z-10 px-2">
+          <h6
+            className={`text-base sm:text-lg font-semibold transition-colors duration-500 ${
+              hovered ? "text-white" : "text-gray-900"
+            }`}
+          >
+            {title}
+          </h6>
+          <p
+            className={`mt-1 text-[0.65rem] sm:text-xs transition-colors duration-500 ${
+              hovered ? "text-white" : "text-gray-600"
+            }`}
+          >
+            {desc}
+          </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

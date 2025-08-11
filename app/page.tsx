@@ -5,6 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import Image from "next/image";
 import Link from "next/link";
+import { UserPlus, CalendarCheck } from "lucide-react"
 import {
   DollarSign,
   Globe,
@@ -20,7 +21,6 @@ import {
   ChevronDown,
   ArrowRight,
   Calendar,
-  UserPlus,
   CheckCircle,
   Sparkles,
   Building,
@@ -91,66 +91,57 @@ const vendorslides = [
   { id: 10, title: "Craft Professionals", number: 7 },
 ];
 
-// Partnership data
 const partnershipCategories = [
   {
     label: "Core Trade",
-    href: "/buyer/core-partnerships",
+    href: "/core-trade",
     summary:
       "Trade-centric partnerships including dropshipping and distribution.",
     subItems: [
-      { label: "Drop Shipping", href: "/buyer/core/dropshipping" },
-      { label: "Consignment", href: "/buyer/core/consignment" },
-      { label: "Import", href: "/buyer/core/import" },
-      { label: "Wholesale & Distribution", href: "/buyer/core/wholesale" },
+      { label: "Drop Shipping & E-Commerce", href: "/core-trade/dropshipping-ecommerce" },
+      { label: "Import & Export", href: "/core-trade/import-export" },
+      { label: "Wholesale & Distribution", href: "/core-trade/wholesale-distribution" },
+      { label: "Consignment", href: "/core-trade/consignment" },
     ],
   },
   {
     label: "Brand Expansion",
-    href: "/buyer/expansion-partnerships",
+    href: "/brand-growth",
     summary:
       "Expand reach via exhibitions, white-label, and physical space-sharing.",
     subItems: [
-      {
-        label: "Exhibition & Event Organizer",
-        href: "/buyer/expansion/exhibition",
-      },
-      { label: "Auction & Bidding", href: "/buyer/expansion/auction" },
-      { label: "White-Label", href: "/buyer/expansion/white-label" },
-      {
-        label: "Brick & Mortar Space-Sharing",
-        href: "/buyer/expansion/space-sharing",
-      },
+      { label: "Auction & Bidding", href: "/brand-growth/auction-bidding" },
+      { label: "White-Label", href: "/brand-growth/white-label" },
+      { label: "Exhibition", href: "/brand-growth/exhibition" },
+      { label: "Brick & Mortar Space-Sharing", href: "/brand-growth/brick-mortar" },
     ],
   },
   {
     label: "Collaborative",
-    href: "/buyer/collaborative-partnerships",
+    href: "/collaborative",
     summary:
       "Collaboration through design, media, mentorship, and craft innovation.",
     subItems: [
-      { label: "Knowledge & Design", href: "/buyer/collab/knowledge-design" },
-      {
-        label: "Storytelling & Media",
-        href: "/buyer/collab/storytelling-media",
-      },
-      { label: "Buyer Mentorship Program", href: "/buyer/collab/mentorship" },
-      { label: "Craft Innovation Patron", href: "/buyer/collab/innovation" },
+      { label: "Packaging", href: "/collaborative/packaging" },
+      { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
+      { label: "Storytelling & Media", href: "/collaborative/storytelling-media" },
+      { label: "Warehouse", href: "/collaborative/warehouse" },
     ],
   },
   {
     label: "Institutional",
-    href: "/buyer/strategic-partnerships",
+    href: "/institutional",
     summary:
       "Institutional alliances with NGOs, museums, and strategic investors.",
     subItems: [
-      { label: "Strategic Investor", href: "/buyer/strategic/investor" },
-      { label: "Museum/Institutional", href: "/buyer/strategic/museum" },
-      { label: "NGO & Government", href: "/buyer/strategic/ngo-gov" },
-      { label: "Impact Measurement", href: "/buyer/strategic/impact" },
+      { label: "Museum / Institutional", href: "/institutional/museum-institutional" },
+      { label: "Technology Partnership", href: "/institutional/technology-partnership" },
+      { label: "NGO & Government", href: "/institutional/ngo-government" },
+      { label: "Logistics", href: "/institutional/logistics" },
     ],
   },
 ];
+
 
 const whatSetsUsApartCards = [
   {
@@ -179,11 +170,12 @@ const whatSetsUsApartCards = [
   },
   {
     icon: <MapPin className="w-8 h-8" />,
-    title: "Our Location",
+    title: "Our Team",
     description:
-      "Our roots are in the heart of Kashmir, where artistry and heritage meet — and from where we connect to the world.",
+      "A dedicated group of skilled professionals working together to deliver excellence and innovation every day.",
     buttonText: "READ MORE",
-    link: "/our-location",
+    link: "/our-team",
+
   },
 ];
 
@@ -386,6 +378,7 @@ export default function LandingPage() {
       </section>
       <ScrollSection features={scrollFeatures} />
       {/* Partnerships Section */}
+
  {/* Partnerships Section */}
 <section
   className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
@@ -498,7 +491,7 @@ export default function LandingPage() {
               href={category.href}
               className={`inline-flex items-center gap-2 ${
                 is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
-              } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--primary-color)] transition-colors duration-300`}
+              } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--secondary-hover-color)] transition-colors duration-300`}
             >
               Read More
               <ArrowRight size={is4K ? 28 : 20} />
@@ -584,6 +577,68 @@ export default function LandingPage() {
 
       <FlagSection />
       <Location />
+
+            {/* New Banner Section */}
+            <section
+      className="w-full py-16 md:py-24 lg:py-18 text-white"
+      style={{
+        background: "var(--primary-hover-color)",
+      }}
+    >
+      <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center gap-8">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+          Unlock Your Potential: Join Our Community!
+        </h2>
+        <p className="max-w-3xl text-lg md:text-xl lg:text-2xl opacity-90">
+          Discover a world of opportunities. Whether you're looking to connect with like-minded individuals or seeking
+          expert guidance, we're here to help you thrive.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+          {/* Registration Card/Block */}
+          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
+            <UserPlus className="h-12 w-12 text-white mb-4" />
+            <h3 className="text-2xl font-bold mb-2">Become a Member</h3>
+            <p className="text-base opacity-80 mb-6">
+              Access exclusive content, connect with experts, and grow your skills within our vibrant community.
+            </p>
+            <Link href="/registration" className="w-full">
+              <button
+                className="w-full bg-white rounded-lg font-semibold transition-colors duration-300 px-8 py-4 text-lg shadow-md hover:shadow-xl"
+                style={{
+                  color: "var(--primary-color)",
+                  backgroundColor: "white",
+                  "--tw-ring-color": "var(--primary-color)", // For focus ring if needed
+                }}
+              >
+                Register Now
+              </button>
+            </Link>
+          </div>
+
+          {/* Book Appointment Card/Block */}
+          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
+            <CalendarCheck className="h-12 w-12 text-white mb-4" />
+            <h3 className="text-2xl font-bold mb-2">Book an Appointment</h3>
+            <p className="text-base opacity-80 mb-6">
+              Schedule a personalized session with our specialists to get tailored advice and support for your needs.
+            </p>
+            <Link href="/appointment" className="w-full">
+              <button
+                className="w-full bg-white rounded-lg font-semibold transition-colors duration-300 px-8 py-4 text-lg shadow-md hover:shadow-xl"
+                style={{
+                  color: "var(--primary-color)",
+                  backgroundColor: "white",
+                  "--tw-ring-color": "var(--primary-color)", // For focus ring if needed
+                }}
+              >
+                Schedule a Call
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+
     </div>
   );
 }

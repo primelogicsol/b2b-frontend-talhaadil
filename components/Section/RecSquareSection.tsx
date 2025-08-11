@@ -13,6 +13,7 @@ interface PartnershipActivationProps {
   readMoreLink?: string
   appointmentLink?: string
 }
+
 const defaultPhases = [
   "Registration Start",
   "Document Submission",
@@ -31,12 +32,10 @@ export default function RecSquareSection({
   mainImage = "/images/new-pic2.webp?height=600&width=400",
   smallImage = "/images/new-pic2.webp?height=200&width=250",
   title = "Swift Partnership Activation",
-  description = `Experience a seamless journey from registration to partnership, empowering USA-based buyers with tools, training, and support to thrive in a global marketplace.
-
-`,
+  description = `Experience a seamless journey from registration to partnership, empowering USA-based buyers with tools, training, and support to thrive in a global marketplace.`,
   phases = defaultPhases,
-  readMoreLink = "#",
-  appointmentLink = "#",
+  readMoreLink = "/process",
+  appointmentLink = "/appointment",
 }: PartnershipActivationProps) {
   const { is4K } = useGlobalContext()
 
@@ -47,7 +46,7 @@ export default function RecSquareSection({
         maxWidth: is4K ? "2000px" : "1280px",
         paddingLeft: is4K ? "8rem" : "1rem",
         paddingRight: is4K ? "8rem" : "1rem",
-        fontSize: is4K ? "1.125rem" : "1rem", // Apply font size increase
+        fontSize: is4K ? "1.125rem" : "1rem",
       }}
     >
       {/* Left Section */}
@@ -84,9 +83,13 @@ export default function RecSquareSection({
           HOW IT WORKS
         </div>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6 text-left px-3">{title}</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6 text-left px-3">
+          {title}
+        </h2>
 
-        <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base text-left px-2 ">{description}</p>
+        <p className="text-gray-700 leading-relaxed mb-8 text-sm md:text-base text-left px-2 ">
+          {description}
+        </p>
 
         <ul className="flex flex-col gap-2 text-gray-700 mb-10 text-sm md:text-base items-start">
           {phases.map((phase, index) => (
