@@ -77,7 +77,7 @@ export default function Footer() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            SUBSCRIBE TODAY
+            REGISTER
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </motion.button>
         </div>
@@ -266,7 +266,7 @@ export default function Footer() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Subscribe
+               JOIN
               </motion.button>
             </div>
           </div>

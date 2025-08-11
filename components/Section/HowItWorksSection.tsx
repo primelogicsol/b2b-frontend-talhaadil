@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useGlobalContext } from "../../context/ScreenProvider"
-
+import Link from "next/link"
 interface HowItWorksProps {
   title: string
   description: string
@@ -97,26 +97,30 @@ export default function HowItWorksSection({
         </div>
       </div>
       <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-        <button
-          className={
-            is4K
-              ? "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
-              : "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
-          }
-        >
-          Register Now
-        </button>
+  <Link href="/registration" passHref>
+    <button
+      className={
+        is4K
+          ? "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
+          : "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
+      }
+    >
+      Register Now
+    </button>
+  </Link>
 
-        <button
-          className={
-            is4K
-              ? "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
-              : "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
-          }
-        >
-          Book Appointment
-        </button>
-      </div>
+  <Link href="/appointment" passHref>
+    <button
+      className={
+        is4K
+          ? "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
+          : "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
+      }
+    >
+      Book Appointment
+    </button>
+  </Link>
+</div>
     </section>
   )
 }

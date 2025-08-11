@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useGlobalContext } from "../../context/ScreenProvider";
 import { Globe, Heart, Users, Zap } from "lucide-react";
 
@@ -107,28 +108,31 @@ export default function OurVision() {
               </p>
             </div>
 
-            {/* Call to Action */}
-            <div className="pt-4">
-              <button
-                className={`inline-flex items-center font-semibold rounded-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 ${
-                  is4K ? "px-10 py-6 text-xl" : "px-8 py-4 text-base"
-                } text-white`}
-                style={{
-                  backgroundColor: "var(--secondary-color)",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.target as HTMLButtonElement).style.backgroundColor =
-                    "var(--secondary-hover-color)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.target as HTMLButtonElement).style.backgroundColor =
-                    "var(--secondary-color)")
-                }
-              >
-                Join Our Movement
-                <Heart className={`${is4K ? "ml-3 w-6 h-6" : "ml-2 w-5 h-5"}`} />
-              </button>
-            </div>
+        {/* Call to Action */}
+        <div className="pt-4">
+          <Link href="/registration">
+            <button
+              className={`inline-flex items-center font-semibold rounded-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 ${
+                is4K ? "px-10 py-6 text-xl" : "px-8 py-4 text-base"
+              } text-white`}
+              style={{
+                backgroundColor: "var(--secondary-color)",
+              }}
+              onMouseEnter={(e) =>
+                ((e.target as HTMLButtonElement).style.backgroundColor =
+                  "var(--secondary-hover-color)")
+              }
+              onMouseLeave={(e) =>
+                ((e.target as HTMLButtonElement).style.backgroundColor =
+                  "var(--secondary-color)")
+              }
+            >
+              Join Our Movement
+              <Heart className={`${is4K ? "ml-3 w-6 h-6" : "ml-2 w-5 h-5"}`} />
+            </button>
+          </Link>
+        </div>
+
           </div>
 
           {/* Right Column - Cards */}
