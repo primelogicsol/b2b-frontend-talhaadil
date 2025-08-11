@@ -94,14 +94,7 @@ interface AnimationCardGridProps {
 export function AnimationCardGrid({ data }: AnimationCardGridProps) {
   const { is4K } = useGlobalContext();
 
-  // Assign fixed links to first 4 cards
-  const linkMap = [
-    "/our-values",
-    "/our-story",
-    "/buisness-niche",
-    "/our-team",
-  ];
-
+ 
   return (
     <div
       className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center ${
@@ -115,7 +108,7 @@ export function AnimationCardGrid({ data }: AnimationCardGridProps) {
           title={card.title}
           description={card.description}
           buttonText={card.buttonText}
-          link={linkMap[index] || card.link || ""}
+          link={card.link || ""}
           onReadMore={() => alert(`Read more about: ${card.title}`)}
         />
       ))}

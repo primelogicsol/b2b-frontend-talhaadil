@@ -607,7 +607,7 @@ export default function LandingPage() {
                 style={{
                   color: "var(--primary-color)",
                   backgroundColor: "white",
-                  "--tw-ring-color": "var(--primary-color)", // For focus ring if needed
+                 // For focus ring if needed
                 }}
               >
                 Register Now
@@ -628,7 +628,7 @@ export default function LandingPage() {
                 style={{
                   color: "var(--primary-color)",
                   backgroundColor: "white",
-                  "--tw-ring-color": "var(--primary-color)", // For focus ring if needed
+                
                 }}
               >
                 Schedule a Call
