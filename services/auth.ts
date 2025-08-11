@@ -14,12 +14,13 @@ export const registerSupplier = (data: {
 
 export const registerSuperAdmin = (data: any) =>
   api.post("/auth/register-super-admin", data);
-export const registerSubAdmin = (data:any) =>
-  api.post("/auth/register-sub-admin", data, {
+export const registerSubAdmin = (data:any) =>{
+  return api.post("/auth/register-sub-admin", data, {
     headers: {
       requiresAuth: true,
     },
   });
+}
 export const updateSubAdmin = (userId: string, data: any) =>
   api.put(`/auth/update-sub-admin?user_id=${userId}`, data, {
     headers: {

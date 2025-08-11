@@ -1,14 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  Building2,
-  Award,
-  CreditCard,
-  AlertTriangle,
-  Star,
-} from "lucide-react";
+import { Building2, Award, CreditCard, AlertTriangle, Star } from 'lucide-react';
 import { useGlobalContext } from "@/context/ScreenProvider";
 import { useToast } from "@/context/ToastProvider";
+import { sendInfo } from "@/services/regitsration";
 interface BusinessInformationProps {
   data?: any;
   onUpdate: (data: any) => void;
@@ -107,6 +102,15 @@ export default function BusinessInformation({
       },
     }
   );
+  const certificationMap = {
+  GICertification: "GI Certification",
+  handloomMark: "Handloom Mark",
+  craftMark: "Craft Mark",
+  indiaHandmade: "India Handmade",
+  qualityCouncil: "Quality Council",
+  exportCouncil: "Export Council",
+  blockChain: "Blockchain"
+};
 
   // Handler for basic user info
   const handleUserInfoChange = (field: string, value: string) => {
@@ -196,11 +200,77 @@ export default function BusinessInformation({
     onUpdate(updatedData);
   };
 
-  // ✅ Fixed validation - only check REQUIRED fields (marked with *)
+  // Handler for form submission
+const handleSubmit = async () => {
+  try {
+    // Transform form data to match API structure
+    const apiPayload = {
+      business_name: formData.businessInfo.businessName,
+      business_legal_structure: formData.businessInfo.businessLegalStructure,
+      business_type: formData.businessInfo.businessType,
+      year_established: formData.businessInfo.businessEstablishedYear || 1800,
+      business_registration_number: formData.businessInfo.businessRegistrationNumber,
+      brand_affiliations: formData.businessInfo.brandAffiliations || "",
+      website: formData.businessInfo.website || "",
+      annual_turnover: formData.businessInfo.annualTurnover || "",
+      gst_number: formData.businessInfo.gstNumber,
+      tax_identification_number: formData.businessInfo.taxIdentificationNumber,
+      import_export_code: formData.businessInfo.importExportCode || "",
+      street_address_1: formData.businessInfo.streetAddress1,
+      street_address_2: formData.businessInfo.streetAddress2 || "",
+      city: formData.businessInfo.city,
+      state_region: formData.businessInfo.stateRegion,
+      postal_code: formData.businessInfo.postalCode,
+      country: formData.businessInfo.country,
+      contact_person_name: formData.businessContact.name,
+      contact_email: formData.businessContact.email,
+      contact_phone: formData.businessContact.phone,
+      contact_whatsapp: formData.businessContact.whatsapp || "",
+      contact_district: formData.businessContact.district,
+      contact_pin_code: formData.businessContact.pinCode,
+      contact_state: formData.businessContact.state,
+      contact_country: formData.businessContact.country,
+      material_standard: formData.credibilityAssessment.materialStandard,
+      quality_level: formData.credibilityAssessment.qualityLevel,
+      sustainability_level: formData.credibilityAssessment.sustainabilityLevel,
+      service_level: formData.credibilityAssessment.serviceLevel,
+      standards_level: formData.credibilityAssessment.standardsLevel,
+      ethics_level: formData.credibilityAssessment.ethicsLevel,
+  certifications: Object.entries(formData.certifications)
+    .filter(([_, value]) => value)
+    .map(([key]) => certificationMap[key as keyof typeof certificationMap]),
+  bank_name: formData.bankingInfo.bankName,
+      account_name: formData.bankingInfo.accountName,
+      account_type: formData.bankingInfo.accountType,
+      account_number: formData.bankingInfo.accountNumber,
+      ifsc_code: formData.bankingInfo.ifscCode,
+      swift_bis_code: formData.bankingInfo.swiftBisCode || "",
+      iban_code: formData.bankingInfo.ibanCode || "",
+      kyc_challenges: formData.complianceIssues["Have you faced challenges with KYC regulations recently?"] || false,
+      gst_compliance_issues: formData.complianceIssues["Any issues with GST compliance in transactions?"] || false,
+      fema_payment_issues: formData.complianceIssues["Difficulties with FEMA for international payments recently?"] || false,
+      digital_banking_issues: formData.complianceIssues["Have digital banking regulations impacted your operations?"] || false,
+      fraud_cybersecurity_issues: formData.complianceIssues["Encountered any fraud or cybersecurity issues recently?"] || false,
+      payment_gateway_compliance_issues: formData.complianceIssues["Challenges with payment gateway compliance or security regulations?"] || false,
+      account_activity_issues: formData.complianceIssues["Any account activity issues or fraudulent claims made?"] || false,
+      regulatory_actions: formData.complianceIssues["Have regulatory actions been taken against your account?"] || false
+    };
+    console.log(apiPayload["certifications"])
+    // Make API call
+    const response = sendInfo(apiPayload)
+    const data = (await response).data
+    console.log(data)
+     onNext()
+  } catch (error: any) {
+    showToast("Network error. Please try again.")
+    console.log(error?.response?.data)
+    console.error('Network Error:', error);
+  }
+};
+
+  // ✅ Modified validation and submission
   const handleNext = () => {
     const requiredFields = [
-      // Basic user info (if these exist in your form - adjust as needed)
-
       // Business info - only required fields
       formData.businessInfo.businessName,
       formData.businessInfo.businessLegalStructure,
@@ -236,7 +306,8 @@ export default function BusinessInformation({
     );
 
     if (emptyFields.length === 0) {
-      onNext();
+      handleSubmit(); // Call the API submission function
+     
     } else {
       showToast(
         "Please fill in all required fields (marked with *) before continuing."
