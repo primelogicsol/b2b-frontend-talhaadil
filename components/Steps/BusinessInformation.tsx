@@ -1,29 +1,25 @@
-"use client";
-import { useEffect, useState } from "react";
-import { Building2, Award, CreditCard, AlertTriangle, Star } from 'lucide-react';
-import { useGlobalContext } from "@/context/ScreenProvider";
-import { useToast } from "@/context/ToastProvider";
-import { sendInfo } from "@/services/regitsration";
+"use client"
+import { useEffect, useState } from "react"
+import { Building2, Award, CreditCard, AlertTriangle, Star } from "lucide-react"
+import { useGlobalContext } from "@/context/ScreenProvider"
+import { useToast } from "@/context/ToastProvider"
+import { sendInfo } from "@/services/regitsration"
+
 interface BusinessInformationProps {
-  data?: any;
-  onUpdate: (data: any) => void;
-  onNext: () => void;
-  onPrev: () => void;
+  data?: any
+  onUpdate: (data: any) => void
+  onNext: () => void
+  onPrev: () => void
 }
 
-export default function BusinessInformation({
-  data,
-  onUpdate,
-  onNext,
-  onPrev,
-}: BusinessInformationProps) {
+export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: BusinessInformationProps) {
   // ✅ Scroll to top on component mount
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  const { showToast } = useToast();
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
-  const { is4K } = useGlobalContext();
+  const { showToast } = useToast()
+  const { is4K } = useGlobalContext()
   const [formData, setFormData] = useState(
     data || {
       id: 0,
@@ -69,7 +65,6 @@ export default function BusinessInformation({
         serviceLevel: 5,
         ethicsLevel: 5,
         standardsLevel: 5,
-        
       },
       certifications: {
         GICertification: false,
@@ -95,32 +90,51 @@ export default function BusinessInformation({
         "Difficulties with FEMA for international payments recently?": false,
         "Have digital banking regulations impacted your operations?": false,
         "Encountered any fraud or cybersecurity issues recently?": false,
-        "Challenges with payment gateway compliance or security regulations?":
-          false,
+        "Challenges with payment gateway compliance or security regulations?": false,
         "Any account activity issues or fraudulent claims made?": false,
         "Have regulatory actions been taken against your account?": false,
       },
+    },
+  )
+
+  // ✅ Load data from localStorage on component mount
+  useEffect(() => {
+    const savedData = localStorage.getItem("businessRegistrationData")
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData)
+        setFormData(parsedData)
+        onUpdate(parsedData)
+      } catch (error) {
+        console.error("Error parsing saved data:", error)
+      }
     }
-  );
+  }, [])
+
+  // ✅ Save to localStorage whenever formData changes
+  useEffect(() => {
+    localStorage.setItem("businessRegistrationData", JSON.stringify(formData))
+  }, [formData])
+
   const certificationMap = {
-  GICertification: "GI Certification",
-  handloomMark: "Handloom Mark",
-  craftMark: "Craft Mark",
-  indiaHandmade: "India Handmade",
-  qualityCouncil: "Quality Council",
-  exportCouncil: "Export Council",
-  blockChain: "Blockchain"
-};
+    GICertification: "GI Certification",
+    handloomMark: "Handloom Mark",
+    craftMark: "Craft Mark",
+    indiaHandmade: "India Handmade",
+    qualityCouncil: "Quality Council",
+    exportCouncil: "Export Council",
+    blockChain: "Blockchain",
+  }
 
   // Handler for basic user info
   const handleUserInfoChange = (field: string, value: string) => {
     const updatedData = {
       ...formData,
       [field]: value,
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for business info
   const handleBusinessInfoChange = (field: string, value: string | number) => {
@@ -130,10 +144,10 @@ export default function BusinessInformation({
         ...formData.businessInfo,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for business contact
   const handleBusinessContactChange = (field: string, value: string) => {
@@ -143,10 +157,10 @@ export default function BusinessInformation({
         ...formData.businessContact,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for credibility assessment
   const handleCredibilityChange = (field: string, value: number) => {
@@ -156,10 +170,10 @@ export default function BusinessInformation({
         ...formData.credibilityAssessment,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for certifications
   const handleCertificationChange = (field: string, value: boolean) => {
@@ -169,10 +183,10 @@ export default function BusinessInformation({
         ...formData.certifications,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for banking info
   const handleBankingInfoChange = (field: string, value: string) => {
@@ -182,10 +196,10 @@ export default function BusinessInformation({
         ...formData.bankingInfo,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for compliance issues
   const handleComplianceChange = (field: string, value: boolean) => {
@@ -195,78 +209,87 @@ export default function BusinessInformation({
         ...formData.complianceIssues,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   // Handler for form submission
-const handleSubmit = async () => {
-  try {
-    // Transform form data to match API structure
-    const apiPayload = {
-      business_name: formData.businessInfo.businessName,
-      business_legal_structure: formData.businessInfo.businessLegalStructure,
-      business_type: formData.businessInfo.businessType,
-      year_established: formData.businessInfo.businessEstablishedYear || 1800,
-      business_registration_number: formData.businessInfo.businessRegistrationNumber,
-      brand_affiliations: formData.businessInfo.brandAffiliations || "",
-      website: formData.businessInfo.website || "",
-      annual_turnover: formData.businessInfo.annualTurnover || "",
-      gst_number: formData.businessInfo.gstNumber,
-      tax_identification_number: formData.businessInfo.taxIdentificationNumber,
-      import_export_code: formData.businessInfo.importExportCode || "",
-      street_address_1: formData.businessInfo.streetAddress1,
-      street_address_2: formData.businessInfo.streetAddress2 || "",
-      city: formData.businessInfo.city,
-      state_region: formData.businessInfo.stateRegion,
-      postal_code: formData.businessInfo.postalCode,
-      country: formData.businessInfo.country,
-      contact_person_name: formData.businessContact.name,
-      contact_email: formData.businessContact.email,
-      contact_phone: formData.businessContact.phone,
-      contact_whatsapp: formData.businessContact.whatsapp || "",
-      contact_district: formData.businessContact.district,
-      contact_pin_code: formData.businessContact.pinCode,
-      contact_state: formData.businessContact.state,
-      contact_country: formData.businessContact.country,
-      material_standard: formData.credibilityAssessment.materialStandard,
-      quality_level: formData.credibilityAssessment.qualityLevel,
-      sustainability_level: formData.credibilityAssessment.sustainabilityLevel,
-      service_level: formData.credibilityAssessment.serviceLevel,
-      standards_level: formData.credibilityAssessment.standardsLevel,
-      ethics_level: formData.credibilityAssessment.ethicsLevel,
-  certifications: Object.entries(formData.certifications)
-    .filter(([_, value]) => value)
-    .map(([key]) => certificationMap[key as keyof typeof certificationMap]),
-  bank_name: formData.bankingInfo.bankName,
-      account_name: formData.bankingInfo.accountName,
-      account_type: formData.bankingInfo.accountType,
-      account_number: formData.bankingInfo.accountNumber,
-      ifsc_code: formData.bankingInfo.ifscCode,
-      swift_bis_code: formData.bankingInfo.swiftBisCode || "",
-      iban_code: formData.bankingInfo.ibanCode || "",
-      kyc_challenges: formData.complianceIssues["Have you faced challenges with KYC regulations recently?"] || false,
-      gst_compliance_issues: formData.complianceIssues["Any issues with GST compliance in transactions?"] || false,
-      fema_payment_issues: formData.complianceIssues["Difficulties with FEMA for international payments recently?"] || false,
-      digital_banking_issues: formData.complianceIssues["Have digital banking regulations impacted your operations?"] || false,
-      fraud_cybersecurity_issues: formData.complianceIssues["Encountered any fraud or cybersecurity issues recently?"] || false,
-      payment_gateway_compliance_issues: formData.complianceIssues["Challenges with payment gateway compliance or security regulations?"] || false,
-      account_activity_issues: formData.complianceIssues["Any account activity issues or fraudulent claims made?"] || false,
-      regulatory_actions: formData.complianceIssues["Have regulatory actions been taken against your account?"] || false
-    };
-    console.log(apiPayload["certifications"])
-    // Make API call
-    const response = sendInfo(apiPayload)
-    const data = (await response).data
-    console.log(data)
-     onNext()
-  } catch (error: any) {
-    showToast("Network error. Please try again.")
-    console.log(error?.response?.data)
-    console.error('Network Error:', error);
+  const handleSubmit = async () => {
+    try {
+      // Transform form data to match API structure
+      const apiPayload = {
+        business_name: formData.businessInfo.businessName,
+        business_legal_structure: formData.businessInfo.businessLegalStructure,
+        business_type: formData.businessInfo.businessType,
+        year_established: formData.businessInfo.businessEstablishedYear || 1800,
+        business_registration_number: formData.businessInfo.businessRegistrationNumber,
+        brand_affiliations: formData.businessInfo.brandAffiliations || "",
+        website: formData.businessInfo.website || "",
+        annual_turnover: formData.businessInfo.annualTurnover || "",
+        gst_number: formData.businessInfo.gstNumber,
+        tax_identification_number: formData.businessInfo.taxIdentificationNumber,
+        import_export_code: formData.businessInfo.importExportCode || "",
+        street_address_1: formData.businessInfo.streetAddress1,
+        street_address_2: formData.businessInfo.streetAddress2 || "",
+        city: formData.businessInfo.city,
+        state_region: formData.businessInfo.stateRegion,
+        postal_code: formData.businessInfo.postalCode,
+        country: formData.businessInfo.country,
+        contact_person_name: formData.businessContact.name,
+        contact_email: formData.businessContact.email,
+        contact_phone: formData.businessContact.phone,
+        contact_whatsapp: formData.businessContact.whatsapp || "",
+        contact_district: formData.businessContact.district,
+        contact_pin_code: formData.businessContact.pinCode,
+        contact_state: formData.businessContact.state,
+        contact_country: formData.businessContact.country,
+        material_standard: formData.credibilityAssessment.materialStandard,
+        quality_level: formData.credibilityAssessment.qualityLevel,
+        sustainability_level: formData.credibilityAssessment.sustainabilityLevel,
+        service_level: formData.credibilityAssessment.serviceLevel,
+        standards_level: formData.credibilityAssessment.standardsLevel,
+        ethics_level: formData.credibilityAssessment.ethicsLevel,
+        certifications: Object.entries(formData.certifications)
+          .filter(([_, value]) => value)
+          .map(([key]) => certificationMap[key as keyof typeof certificationMap]),
+        bank_name: formData.bankingInfo.bankName,
+        account_name: formData.bankingInfo.accountName,
+        account_type: formData.bankingInfo.accountType,
+        account_number: formData.bankingInfo.accountNumber,
+        ifsc_code: formData.bankingInfo.ifscCode,
+        swift_bis_code: formData.bankingInfo.swiftBisCode || "",
+        iban_code: formData.bankingInfo.ibanCode || "",
+        kyc_challenges: formData.complianceIssues["Have you faced challenges with KYC regulations recently?"] || false,
+        gst_compliance_issues: formData.complianceIssues["Any issues with GST compliance in transactions?"] || false,
+        fema_payment_issues:
+          formData.complianceIssues["Difficulties with FEMA for international payments recently?"] || false,
+        digital_banking_issues:
+          formData.complianceIssues["Have digital banking regulations impacted your operations?"] || false,
+        fraud_cybersecurity_issues:
+          formData.complianceIssues["Encountered any fraud or cybersecurity issues recently?"] || false,
+        payment_gateway_compliance_issues:
+          formData.complianceIssues["Challenges with payment gateway compliance or security regulations?"] || false,
+        account_activity_issues:
+          formData.complianceIssues["Any account activity issues or fraudulent claims made?"] || false,
+        regulatory_actions:
+          formData.complianceIssues["Have regulatory actions been taken against your account?"] || false,
+      }
+
+      console.log(apiPayload["certifications"])
+
+      // Make API call
+      const response = sendInfo(apiPayload)
+      const data = (await response).data
+      console.log(data)
+
+      onNext()
+    } catch (error: any) {
+      showToast("Network error. Please try again.")
+      console.log(error?.response?.data)
+      console.error("Network Error:", error)
+    }
   }
-};
 
   // ✅ Modified validation and submission
   const handleNext = () => {
@@ -283,7 +306,6 @@ const handleSubmit = async () => {
       formData.businessInfo.postalCode,
       formData.businessInfo.gstNumber,
       formData.businessInfo.taxIdentificationNumber,
-
       // Business contact - only required fields
       formData.businessContact.name,
       formData.businessContact.email,
@@ -292,28 +314,22 @@ const handleSubmit = async () => {
       formData.businessContact.pinCode,
       formData.businessContact.state,
       formData.businessContact.country,
-
       // Banking info - only required fields
       formData.bankingInfo.bankName,
       formData.bankingInfo.accountName,
       formData.bankingInfo.accountType,
       formData.bankingInfo.accountNumber,
       formData.bankingInfo.ifscCode,
-    ];
+    ]
 
-    const emptyFields = requiredFields.filter(
-      (field) => !field || field.toString().trim() === ""
-    );
+    const emptyFields = requiredFields.filter((field) => !field || field.toString().trim() === "")
 
     if (emptyFields.length === 0) {
-      handleSubmit(); // Call the API submission function
-     
+      handleSubmit() // Call the API submission function
     } else {
-      showToast(
-        "Please fill in all required fields (marked with *) before continuing."
-      );
+      showToast("Please fill in all required fields (marked with *) before continuing.")
     }
-  };
+  }
 
   // ✅ Fixed completion percentage - only count required fields
   const getCompletionPercentage = () => {
@@ -330,7 +346,6 @@ const handleSubmit = async () => {
       formData.businessInfo.postalCode,
       formData.businessInfo.gstNumber,
       formData.businessInfo.taxIdentificationNumber,
-
       // Business contact - only required fields
       formData.businessContact.name,
       formData.businessContact.email,
@@ -339,24 +354,23 @@ const handleSubmit = async () => {
       formData.businessContact.pinCode,
       formData.businessContact.state,
       formData.businessContact.country,
-
       // Banking info - only required fields
       formData.bankingInfo.bankName,
       formData.bankingInfo.accountName,
       formData.bankingInfo.accountType,
       formData.bankingInfo.accountNumber,
       formData.bankingInfo.ifscCode,
-    ];
+    ]
 
     const filledFields = requiredFields.filter((field) => {
       if (typeof field === "string") {
-        return field.trim() !== "";
+        return field.trim() !== ""
       }
-      return field !== null && field !== undefined && field !== 0;
-    }).length;
+      return field !== null && field !== undefined && field !== 0
+    }).length
 
-    return Math.round((filledFields / requiredFields.length) * 100);
-  };
+    return Math.round((filledFields / requiredFields.length) * 100)
+  }
 
   return (
     <div className={`mx-auto px-2 ${is4K ? "max-w-[2000px]" : "max-w-5xl"}`}>
@@ -364,25 +378,18 @@ const handleSubmit = async () => {
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <Building2 className="w-8 h-8 text-white" />
         </div>
-        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">
-          Complete Business Registration
-        </h1>
+        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Complete Business Registration</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Please provide comprehensive business details for partnership
-          registration. This information helps us understand your business
-          better and assess partnership opportunities.
+          Please provide comprehensive business details for partnership registration. This information helps us
+          understand your business better and assess partnership opportunities.
         </p>
       </div>
 
       {/* Progress Bar */}
       <div className="bg-white rounded-3xl shadow-xl p-6 mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-[var(--primary-color)]">
-            Form Completion
-          </h3>
-          <span className="text-2xl font-bold text-[var(--secondary-color)]">
-            {getCompletionPercentage()}%
-          </span>
+          <h3 className="text-lg font-semibold text-[var(--primary-color)]">Form Completion</h3>
+          <span className="text-2xl font-bold text-[var(--secondary-color)]">{getCompletionPercentage()}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3">
           <div
@@ -399,37 +406,24 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Business Details
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Details</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Business Name *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Business Name *</label>
               <input
                 type="text"
                 value={formData.businessInfo.businessName}
-                onChange={(e) =>
-                  handleBusinessInfoChange("businessName", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("businessName", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter your business name"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Business Legal Structure *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Business Legal Structure *</label>
               <select
                 value={formData.businessInfo.businessLegalStructure}
-                onChange={(e) =>
-                  handleBusinessInfoChange(
-                    "businessLegalStructure",
-                    e.target.value
-                  )
-                }
+                onChange={(e) => handleBusinessInfoChange("businessLegalStructure", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select legal structure</option>
@@ -442,14 +436,10 @@ const handleSubmit = async () => {
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Business Type *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Business Type *</label>
               <select
                 value={formData.businessInfo.businessType}
-                onChange={(e) =>
-                  handleBusinessInfoChange("businessType", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("businessType", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select business type</option>
@@ -463,17 +453,12 @@ const handleSubmit = async () => {
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Year Established
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Year Established</label>
               <input
                 type="number"
                 value={formData.businessInfo.businessEstablishedYear || ""}
                 onChange={(e) =>
-                  handleBusinessInfoChange(
-                    "businessEstablishedYear",
-                    Number.parseInt(e.target.value) || 0
-                  )
+                  handleBusinessInfoChange("businessEstablishedYear", Number.parseInt(e.target.value) || 0)
                 }
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="YYYY"
@@ -482,59 +467,40 @@ const handleSubmit = async () => {
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Business Registration Number *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Business Registration Number *</label>
               <input
                 type="text"
                 value={formData.businessInfo.businessRegistrationNumber}
-                onChange={(e) =>
-                  handleBusinessInfoChange(
-                    "businessRegistrationNumber",
-                    e.target.value
-                  )
-                }
+                onChange={(e) => handleBusinessInfoChange("businessRegistrationNumber", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter registration number"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Brand Affiliations
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Brand Affiliations</label>
               <input
                 type="text"
                 value={formData.businessInfo.brandAffiliations || ""}
-                onChange={(e) =>
-                  handleBusinessInfoChange("brandAffiliations", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("brandAffiliations", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter brand affiliations"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Website
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Website</label>
               <input
                 type="url"
                 value={formData.businessInfo.website || ""}
-                onChange={(e) =>
-                  handleBusinessInfoChange("website", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("website", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="https://www.example.com"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Annual Turnover
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Annual Turnover</label>
               <select
                 value={formData.businessInfo.annualTurnover}
-                onChange={(e) =>
-                  handleBusinessInfoChange("annualTurnover", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("annualTurnover", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select annual turnover</option>
@@ -552,51 +518,34 @@ const handleSubmit = async () => {
 
           {/* Tax & Registration Information */}
           <div className="mt-8 pt-8 border-t">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
-              Tax & Registration Information
-            </h3>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Tax & Registration Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  GST Number *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">GST Number *</label>
                 <input
                   type="text"
                   value={formData.businessInfo.gstNumber}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("gstNumber", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("gstNumber", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter GST number"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Tax Identification Number *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Tax Identification Number *</label>
                 <input
                   type="text"
                   value={formData.businessInfo.taxIdentificationNumber}
-                  onChange={(e) =>
-                    handleBusinessInfoChange(
-                      "taxIdentificationNumber",
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => handleBusinessInfoChange("taxIdentificationNumber", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter TIN"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Import Export Code
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Import Export Code</label>
                 <input
                   type="text"
                   value={formData.businessInfo.importExportCode || ""}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("importExportCode", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("importExportCode", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter IEC (if applicable)"
                 />
@@ -611,36 +560,26 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Business Address
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Address</h2>
           </div>
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Street Address 1 *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Street Address 1 *</label>
                 <input
                   type="text"
                   value={formData.businessInfo.streetAddress1}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("streetAddress1", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("streetAddress1", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter street address"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Street Address 2
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Street Address 2</label>
                 <input
                   type="text"
                   value={formData.businessInfo.streetAddress2 || ""}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("streetAddress2", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("streetAddress2", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter additional address info"
                 />
@@ -648,57 +587,41 @@ const handleSubmit = async () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  City *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">City *</label>
                 <input
                   type="text"
                   value={formData.businessInfo.city}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("city", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("city", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter city"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  State/Region *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">State/Region *</label>
                 <input
                   type="text"
                   value={formData.businessInfo.stateRegion}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("stateRegion", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("stateRegion", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter state/region"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Postal Code *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Postal Code *</label>
                 <input
                   type="text"
                   value={formData.businessInfo.postalCode}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("postalCode", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("postalCode", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter postal code"
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Country *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Country *</label>
               <select
                 value={formData.businessInfo.country}
-                onChange={(e) =>
-                  handleBusinessInfoChange("country", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("country", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select country</option>
@@ -722,63 +645,45 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Business Contact Person
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Contact Person</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Contact Person Name *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Contact Person Name *</label>
               <input
                 type="text"
                 value={formData.businessContact.name}
-                onChange={(e) =>
-                  handleBusinessContactChange("name", e.target.value)
-                }
+                onChange={(e) => handleBusinessContactChange("name", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter contact person name"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Email Address *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Email Address *</label>
               <input
                 type="email"
                 value={formData.businessContact.email}
-                onChange={(e) =>
-                  handleBusinessContactChange("email", e.target.value)
-                }
+                onChange={(e) => handleBusinessContactChange("email", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter email address"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Phone Number *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Phone Number *</label>
               <input
                 type="tel"
                 value={formData.businessContact.phone}
-                onChange={(e) =>
-                  handleBusinessContactChange("phone", e.target.value)
-                }
+                onChange={(e) => handleBusinessContactChange("phone", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter phone number"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                WhatsApp Number
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">WhatsApp Number</label>
               <input
                 type="tel"
                 value={formData.businessContact.whatsapp || ""}
-                onChange={(e) =>
-                  handleBusinessContactChange("whatsapp", e.target.value)
-                }
+                onChange={(e) => handleBusinessContactChange("whatsapp", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter WhatsApp number"
               />
@@ -787,48 +692,34 @@ const handleSubmit = async () => {
 
           {/* Contact Person Address */}
           <div className="mt-8 pt-8 border-t">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
-              Contact Person Address
-            </h3>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Contact Person Address</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  District *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">District *</label>
                 <input
                   type="text"
                   value={formData.businessContact.district}
-                  onChange={(e) =>
-                    handleBusinessContactChange("district", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessContactChange("district", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter district"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Pin Code *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Pin Code *</label>
                 <input
                   type="text"
                   value={formData.businessContact.pinCode}
-                  onChange={(e) =>
-                    handleBusinessContactChange("pinCode", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessContactChange("pinCode", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter pin code"
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  State *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">State *</label>
                 <input
                   type="text"
                   value={formData.businessContact.state}
-                  onChange={(e) =>
-                    handleBusinessContactChange("state", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessContactChange("state", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter state"
                 />
@@ -836,14 +727,10 @@ const handleSubmit = async () => {
             </div>
             <div className="mt-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Country *
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Country *</label>
                 <select
                   value={formData.businessContact.country}
-                  onChange={(e) =>
-                    handleBusinessContactChange("country", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessContactChange("country", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 >
                   <option value="">Select country</option>
@@ -868,9 +755,7 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Star className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Credibility Assessment
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Credibility Assessment</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -882,21 +767,14 @@ const handleSubmit = async () => {
               { key: "ethicsLevel", label: "Ethics Level" },
             ].map(({ key, label }) => (
               <div key={key} className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  {label}
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">{label}</label>
                 <div className="flex items-center space-x-3">
                   <input
                     type="range"
                     min="1"
                     max="10"
                     value={formData.credibilityAssessment[key]}
-                    onChange={(e) =>
-                      handleCredibilityChange(
-                        key,
-                        Number.parseInt(e.target.value)
-                      )
-                    }
+                    onChange={(e) => handleCredibilityChange(key, Number.parseInt(e.target.value))}
                     className="flex-1 h-2 bg-gray-200 rounded-lg"
                   />
                   <span className="w-8 text-center font-bold text-[var(--primary-color)]">
@@ -914,27 +792,18 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Award className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Certifications
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Certifications</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(formData.certifications).map(([key, value]) => (
-              <label
-                key={key}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
+              <label key={key} className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={Boolean(value)}
-                  onChange={(e) =>
-                    handleCertificationChange(key, e.target.checked)
-                  }
+                  onChange={(e) => handleCertificationChange(key, e.target.checked)}
                   className="w-4 h-4 text-[var(--primary-color)] rounded"
                 />
-                <span className="text-sm text-gray-700 capitalize">
-                  {key.replace(/([A-Z])/g, " $1").trim()}
-                </span>
+                <span className="text-sm text-gray-700 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</span>
               </label>
             ))}
           </div>
@@ -946,48 +815,34 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <CreditCard className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Banking Information
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Banking Information</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Bank Name *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Bank Name *</label>
               <input
                 type="text"
                 value={formData.bankingInfo.bankName}
-                onChange={(e) =>
-                  handleBankingInfoChange("bankName", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("bankName", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter bank name"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Account Name *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Account Name *</label>
               <input
                 type="text"
                 value={formData.bankingInfo.accountName}
-                onChange={(e) =>
-                  handleBankingInfoChange("accountName", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("accountName", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter account holder name"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Account Type *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Account Type *</label>
               <select
                 value={formData.bankingInfo.accountType}
-                onChange={(e) =>
-                  handleBankingInfoChange("accountType", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("accountType", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select account type</option>
@@ -998,57 +853,41 @@ const handleSubmit = async () => {
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Account Number *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Account Number *</label>
               <input
                 type="text"
                 value={formData.bankingInfo.accountNumber}
-                onChange={(e) =>
-                  handleBankingInfoChange("accountNumber", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("accountNumber", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter account number"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                IFSC Code *
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">IFSC Code *</label>
               <input
                 type="text"
                 value={formData.bankingInfo.ifscCode}
-                onChange={(e) =>
-                  handleBankingInfoChange("ifscCode", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("ifscCode", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter IFSC code"
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                SWIFT/BIS Code
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">SWIFT/BIS Code</label>
               <input
                 type="text"
                 value={formData.bankingInfo.swiftBisCode || ""}
-                onChange={(e) =>
-                  handleBankingInfoChange("swiftBisCode", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("swiftBisCode", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter SWIFT/BIS code (for international)"
               />
             </div>
             <div className="md:col-span-2 space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                IBAN Code
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">IBAN Code</label>
               <input
                 type="text"
                 value={formData.bankingInfo.ibanCode || ""}
-                onChange={(e) =>
-                  handleBankingInfoChange("ibanCode", e.target.value)
-                }
+                onChange={(e) => handleBankingInfoChange("ibanCode", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter IBAN code (for international)"
               />
@@ -1062,27 +901,18 @@ const handleSubmit = async () => {
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <AlertTriangle className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Banking Information
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Compliance Issues</h2>
           </div>
           <div className="grid grid-cols-1 gap-4">
             {Object.entries(formData.complianceIssues).map(([key, value]) => (
-              <label
-                key={key}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
+              <label key={key} className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={Boolean(value)}
-                  onChange={(e) =>
-                    handleComplianceChange(key, e.target.checked)
-                  }
+                  onChange={(e) => handleComplianceChange(key, e.target.checked)}
                   className="w-4 h-4 text-red-600 rounded"
                 />
-                <span className="text-sm text-gray-700 capitalize">
-                  {key}
-                </span>
+                <span className="text-sm text-gray-700 capitalize">{key}</span>
               </label>
             ))}
           </div>
@@ -1106,5 +936,5 @@ const handleSubmit = async () => {
         </button>
       </div>
     </div>
-  );
+  )
 }
