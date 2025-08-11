@@ -276,7 +276,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
           formData.complianceIssues["Have regulatory actions been taken against your account?"] || false,
       }
 
-      console.log(apiPayload["certifications"])
+      localStorage.setItem("businessRegistrationData", JSON.stringify(apiPayload))
 
       // Make API call
       const response = sendInfo(apiPayload)

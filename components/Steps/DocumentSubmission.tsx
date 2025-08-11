@@ -202,26 +202,24 @@ const handleSubmitAll = async () => {
     const docKey = firstDocTypeConfig.key
     const docData = documents[docKey]
 
-    // if (firstDocTypeConfig.multiple) {
-    //   const files = docData as File[]
-    //   if (files[0]) {
-    //     const apiDocType = `${String(docKey)}_1`
-    //     await submitDocumentToAPI({ document_type: apiDocType, file: files[0] })
-    //   }
-    // } else {
-    //   const file = docData as File | null
-    //   if (file) {
-    //     const response = await submitDocumentToAPI({ document_type: String(docKey), file })
-    //     console.log(response.data)
-    //   }
-    // }
-    setTimeout(() => {
-      
-    }, 2000);
+    if (firstDocTypeConfig.multiple) {
+      const files = docData as File[]
+      if (files[0]) {
+        const apiDocType = `${String(docKey)}_1`
+        const response = await submitDocumentToAPI({ document_type: apiDocType, file: files[0] })
+        console.log(response.data)
+      }
+    } else {
+      const file = docData as File | null
+      if (file) {
+        const response = await submitDocumentToAPI({ document_type: String(docKey), file })
+        console.log(response.data)
+      }
+    }
+   
   onNext()
   } catch (error:any) {
-
-    console.log(error.response.data)
+    console.log(error)
     console.error("Error submitting first document:", error)
   } finally {
     setIsSubmitting(false)

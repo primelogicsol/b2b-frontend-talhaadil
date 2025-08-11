@@ -50,7 +50,7 @@ export interface FormData {
 }
 
 export default function RegistrationProcess() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(5);
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {
