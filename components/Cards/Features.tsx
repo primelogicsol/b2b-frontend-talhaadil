@@ -73,7 +73,8 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) => {
   const [hovered, setHovered] = useState(false);
-  const IconComponent = LucideIcons[icon];
+  const IconComponent = LucideIcons[icon] as React.ComponentType<{ size?: number; className?: string }>;
+
 
   return (
     <Link href={link} className="block">
