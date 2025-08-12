@@ -100,7 +100,7 @@ const partnershipCategories = [
     subItems: [
       { label: "Drop Shipping & E-Commerce", href: "/core-trade/dropshipping-ecommerce" },
       { label: "Import & Export", href: "/core-trade/import-export" },
-      { label: "Wholesale & Distribution", href: "/core-trade/wholesale-distribution" },
+      { label: "Wholesale & Distribution", href: "/core-trade/wholesale&distribution" },
       { label: "Consignment", href: "/core-trade/consignment" },
     ],
   },
@@ -110,10 +110,10 @@ const partnershipCategories = [
     summary:
       "Expand reach via exhibitions, white-label, and physical space-sharing.",
     subItems: [
-      { label: "Auction & Bidding", href: "/brand-growth/auction-bidding" },
+      { label: "Auction & Bidding", href: "/brand-growth/auction&bidding" },
       { label: "White-Label", href: "/brand-growth/white-label" },
       { label: "Exhibition", href: "/brand-growth/exhibition" },
-      { label: "Brick & Mortar Space-Sharing", href: "/brand-growth/brick-mortar" },
+      { label: "Brick & Mortar ", href: "/brand-growth/brick&mortar" },
     ],
   },
   {
@@ -124,7 +124,7 @@ const partnershipCategories = [
     subItems: [
       { label: "Packaging", href: "/collaborative/packaging" },
       { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
-      { label: "Storytelling & Media", href: "/collaborative/storytelling-media" },
+      { label: "Storytelling & Media", href: "/collaborative/storytelling&media" },
       { label: "Warehouse", href: "/collaborative/warehouse" },
     ],
   },
@@ -136,7 +136,7 @@ const partnershipCategories = [
     subItems: [
       { label: "Museum / Institutional", href: "/institutional/museum-institutional" },
       { label: "Technology Partnership", href: "/institutional/technology-partnership" },
-      { label: "NGO & Government", href: "/institutional/ngo-government" },
+      { label: "NGO & Government", href: "/institutional/ngo&government" },
       { label: "Logistics", href: "/institutional/logistics" },
     ],
   },

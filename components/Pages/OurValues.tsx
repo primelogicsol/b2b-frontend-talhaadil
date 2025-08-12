@@ -45,126 +45,128 @@ export default function OurValue() {
   // Default data if no props are passed
   const coreTradeModels = [
     {
-      model: "Drop Shipping Buyer",
+      model: "DropShipping/Ecommerce",
       subtitle: "Zero-inventory model for small resellers",
       purpose:
-        "Start selling without inventory. Vendors ship directly to your customers. Best for e-commerce beginners.",
+        "Sell products without stocking inventory. Vendors ship directly to customers, making it ideal for online resellers and beginners.",
       icon: Package
     },
     {
-      model: "Consignment Buyer",
+      model: "Consignment",
       subtitle: "Risk-free retail listing",
       purpose:
-        "List crafts on shelves or platforms and pay only on sale. Ideal for boutiques testing new markets.",
+        "Place products in stores/platforms and pay vendors only after a sale. Perfect for testing market demand without upfront cost.",
       icon: Store
     },
     {
-      model: "Import Buyer",
+      model: "Import Export",
       subtitle: "Global sourcing with compliance",
       purpose:
-        "Buy GI-tagged crafts with proper documentation. Expand certified Kashmiri goods to global markets.",
+        "Facilitate cross-border trade with certified and documented crafts. Ideal for expanding authentic Kashmiri goods internationally.",
       icon: Globe
     },
     {
-      model: "Wholesale Buyer",
+      model: "Wholesale & Distribution",
       subtitle: "Bulk orders for resale",
       purpose:
-        "Order in volume for retail chains or hotel stores. Get better margins and enable vendor scaling.",
-      icon:Boxes,
+        "Purchase large quantities at discounted rates for resale in retail chains, marketplaces, or hospitality outlets.",
+      icon: Boxes
     },
   ];
-
+  
   const growthExpansionModels = [
     {
-      model: "Exhibition Buyer",
+      model: "Exhibition",
       subtitle: "Event-based exposure for vendors",
       purpose:
-        "Attend or co-host expos. Gain exclusivity and co-branding options while boosting vendor visibility.",
+        "Participate in trade shows or cultural expos to showcase products, connect with buyers, and boost brand recognition.",
       icon: GalleryVertical,
     },
     {
-      model: "Auction Buyer",
+      model: "Auction & Bidding",
       subtitle: "Premium crafts via bidding",
       purpose:
-        "Bid on rare, high-value crafts with smart contract transparency. Ideal for collectors and curators.",
+        "Sell high-value or rare crafts through a bidding process, creating exclusivity and competitive pricing opportunities.",
       icon: Gavel,
     },
     {
-      model: "White-Label Buyer",
+      model: "White-Label",
       subtitle: "Private-label branding",
       purpose:
-        "Rebrand crafts under your identity while preserving ethical sourcing. Ideal for conscious brands.",
+        "Rebrand artisan-made products under your own label while maintaining ethical sourcing and production integrity.",
       icon: Tag,
     },
     {
-      model: "Space-Sharing Buyer",
+      model: "Brick & Mortar",
       subtitle: "Retail shelf partnership",
       purpose:
-        "Offer vendor products physical shelf space in your store. Drives customer visibility and sales.",
+        "Offer physical retail space for artisan products, increasing visibility and encouraging customer engagement.",
       icon: Building,
     },
   ];
-
+  
   const creativeModels = [
     {
-      model: "Design Partner",
+      model: "Design Collaboration",
       subtitle: "Co-create new product lines",
       purpose:
-        "Collaborate on design and seasonal collections. Ideal for studios and indie brands driving innovation.",
+        "Work directly with artisans to create custom designs or seasonal collections that reflect shared creativity.",
       icon: PenTool,
     },
     {
-      model: "Storytelling Partner",
+      model: "Storytelling & Media",
       subtitle: "Craft-focused media creation",
       purpose:
-        "Produce videos or blogs that highlight artisan journeys. Boost vendor narratives and brand equity.",
+        "Produce visual or written content showcasing artisan stories to strengthen brand image and customer connection.",
       icon: Video,
     },
     {
-      model: "Mentorship Buyer",
+      model: "Warehouse",
       subtitle: "Vendor training and guidance",
       purpose:
-        "Guide artisans on pricing, cataloging, and marketing. Ideal for experienced buyers and mentors.",
+        "Provide storage, logistics, and operational support for artisan goods, streamlining inventory management.",
       icon: GraduationCap,
     },
     {
-      model: "Innovation Patron",
+      model: "Packaging",
       subtitle: "Support craft innovation",
       purpose:
-        "Sponsor new tools, sustainable materials, or dying techniques. Best for ESG-aligned partners.",
+        "Enhance product presentation with high-quality, sustainable, and brand-aligned packaging solutions.",
       icon: Lightbulb,
     },
   ];
+  
   const institutionalModels = [
     {
-      model: "Strategic Investor",
+      model: "Logistics",
       subtitle: "Equity and infra for scale",
       purpose:
-        "Invest in artisan growth through retail, supply chain, or tech. Supports platform and vendor scale.",
+        "Offer transportation, supply chain solutions, and infrastructure to ensure efficient product movement and delivery.",
       icon: Coins,
     },
     {
-      model: "Museum/Institutional Buyer",
+      model: "Museum/Institutional",
       subtitle: "Cultural-grade sourcing",
       purpose:
-        "Acquire heritage collections for archival or research. Validate crafts for cultural prestige.",
-      icon:Library,
+        "Acquire heritage-grade crafts for preservation, exhibition, and educational purposes in cultural institutions.",
+      icon: Library,
     },
     {
-      model: "NGO/Government Buyer",
+      model: "NGO & Government",
       subtitle: "Public good procurement",
       purpose:
-        "Source through SDG and CSR initiatives. Vendors gain formal recognition and project backing.",
+        "Partner with public and nonprofit entities to source crafts for social impact, development goals, and community projects.",
       icon: ShieldCheck,
     },
     {
-      model: "Impact Measurement Buyer",
+      model: "Technology Partnership",
       subtitle: "Data-driven traceability",
       purpose:
-        "Track ESG and SDG metrics for artisans. Use reports for funding, transparency, and trust.",
+        "Integrate technology for tracking production, quality, and sustainability metrics to ensure transparency and trust.",
       icon: BarChart,
     },
   ];
+  
 
   const whatSetsUsApartCards = [
     {

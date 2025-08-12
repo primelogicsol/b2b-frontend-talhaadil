@@ -291,7 +291,7 @@ if (user_role === "buyer") {
       subItems: [
         { label: "Drop Shipping", href: "/core-trade/dropshipping-ecommerce" },
         { label: "Export", href: "/core-trade/import-export" },
-        { label: "Distribution", href: "/core-trade/wholesale-distribution" },
+        { label: "Distribution", href: "/core-trade/wholesale&distribution" },
         { label: "Consignment", href: "/core-trade/consignment" },
       ],
     },
@@ -299,10 +299,10 @@ if (user_role === "buyer") {
       label: "Brand Expansion",
       href: "/brand-growth",
       subItems: [
-        { label: "Auction", href: "/brand-growth/auction-bidding" },
+        { label: "Auction", href: "/brand-growth/auction&bidding" },
         { label: "White-Label", href: "/brand-growth/white-label" },
         { label: "Exhibition", href: "/brand-growth/exhibition" },
-        { label: "Brick & Mortar", href: "/brand-growth/brick-mortar" },
+        { label: "Brick & Mortar", href: "/brand-growth/brick&mortar" },
       ],
     },
     {
@@ -311,7 +311,7 @@ if (user_role === "buyer") {
       subItems: [
         { label: "Packaging", href: "/collaborative/packaging" },
         { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
-        { label: "Storytelling & Media", href: "/collaborative/storytelling-media" },
+        { label: "Storytelling & Media", href: "/collaborative/storytelling&media" },
         { label: "Warehouse", href: "/collaborative/warehouse" },
       ],
     },
@@ -321,7 +321,7 @@ if (user_role === "buyer") {
       subItems: [
         { label: "Institutional", href: "/institutional/museum-institutional" },
         { label: "Logistics", href: "/institutional/logistics" },
-        { label: "NGO Supplier", href: "/institutional/ngo-government" },
+        { label: "NGO Supplier", href: "/institutional/ngo&government" },
         { label: "Technology Partnership", href: "/institutional/technology-partnership" },
       ],
     },
@@ -334,7 +334,7 @@ if (user_role === "buyer") {
       subItems: [
         { label: "E-Commerce", href: "/core-trade/dropshipping-ecommerce" },
         { label: "Import", href: "/core-trade/import-export" },
-        { label: "Wholesale", href: "/core-trade/wholesale-distribution" },
+        { label: "Wholesale", href: "/core-trade/wholesale&distribution" },
         { label: "Consignment", href: "/core-trade/consignment" },
       ],
     },
@@ -342,10 +342,10 @@ if (user_role === "buyer") {
       label: "Brand Expansion",
       href: "/brand-growth",
       subItems: [
-        { label: "Bidding", href: "/brand-growth/auction-bidding" },
+        { label: "Bidding", href: "/brand-growth/auction&bidding" },
         { label: "White-Label", href: "/brand-growth/white-label" },
         { label: "Exhibition", href: "/brand-growth/exhibition" },
-        { label: "Brick & Mortar", href: "/brand-growth/brick-mortar" },
+        { label: "Brick & Mortar", href: "/brand-growth/brick&mortar" },
       ],
     },
     {
@@ -354,7 +354,7 @@ if (user_role === "buyer") {
       subItems: [
         { label: "Packaging", href: "/collaborative/packaging" },
         { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
-        { label: "Storytelling & Media", href: "/collaborative/storytelling-media" },
+        { label: "Storytelling & Media", href: "/collaborative/storytelling&media" },
         { label: "Warehouse", href: "/collaborative/warehouse" },
       ],
     },
@@ -364,7 +364,7 @@ if (user_role === "buyer") {
       subItems: [
         { label: "Museum", href: "/institutional/museum-institutional" },
         { label: "Logistics", href: "/institutional/logistics" },
-        { label: "NGO Buyer", href: "/institutional/ngo-government" },
+        { label: "NGO Buyer", href: "/institutional/ngo&government" },
         { label: "Technology Partnership", href: "/institutional/technology-partnership" },
       ],
     },
