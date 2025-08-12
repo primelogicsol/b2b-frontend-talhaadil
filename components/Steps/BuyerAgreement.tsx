@@ -3,8 +3,30 @@ import { useState, useEffect } from "react"
 import { CheckCircle, Building, User, CreditCard, FileCheck } from "lucide-react"
 import { useGlobalContext } from "@/context/ScreenProvider"
 import jsPDF from "jspdf"
-import type { FormData, BuyerAgreementProps } from "@/types/BuyerAgreement"
 
+export interface FormData {
+  businessName: string
+  businessType: string
+  einNumber: string
+  tinNumber: string
+  contactPerson: string
+  email: string
+  phoneNumber: string
+  bankName: string
+  accountNumber: string
+  routingNumber: string
+  bankAddress: string
+  signatoryName: string
+  signatureDate: string
+  accepted: boolean
+}
+
+export interface BuyerAgreementProps {
+  data?: Partial<FormData>
+  onUpdate: (data: FormData) => void
+  onNext: () => void
+  onPrev: () => void
+}
 const termsContent = `1. Definitions and Scope
 "Buyer" refers to the party purchasing products through DKC's drop shipping partnership.
 "Platform" refers to DKC's e-commerce website and related drop shipping services.
@@ -506,7 +528,7 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
                 onChange={(e) => updateFormData("email", e.target.value)}
                 className={`w-full px-4 py-3 md:py-4 ${
                   is4K ? "lg:px-6 lg:py-5 xl:px-8 xl:py-6" : ""
-                } border border-[var(--primary-color)] border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
+                } border border-[var(--primary-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
                   is4K ? "lg:text-lg xl:text-xl" : ""
                 } hover:border-[var(--primary-hover-color)]`}
               />
