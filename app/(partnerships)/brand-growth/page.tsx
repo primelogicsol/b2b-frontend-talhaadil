@@ -63,36 +63,41 @@ const defaultProps: PartnershipPageProps = {
 
   Partnerships: [
     {
-      title: "Drop Shipping Buyer",
-      description: "Source goods without holding stock while vendors handle orders and ship directly to buyers.",
+      title: "Exhibition",
+      description: "Showcase vendor products at curated events where buyers can browse, order, and connect directly.",
       details: "No upfront costs while expanding markets, vendors grow sales, buyers avoid storage or holding risks.",
       kpi: "KPI 7+",
       retention: "No retention needed",
+      link:'brand-growth/exhibition',
     },
     {
-      title: "Consignment Product Buyer",
-      description: "List vendor items safely on your platform and only pay after verified customer purchase.",
+      title: "Auction",
+      description: "Sell unique or limited vendor items through competitive bidding to maximize value and exposure.",
       details:
         "Eliminates warehouse risks while vendors gain exposure, perfect choice for testing new collections carefully.",
       kpi: "KPI 7+",
       retention: "Eighteen months needed",
+      link:'brand-growth/auction&bidding',
     },
     {
-      title: "Certified Import Buyer",
-      description: "Purchase GI certified goods for global trade and manage labeling compliance and customs.",
+      title: "White Label",
+      description: "Offer GI-certified goods under your own brand while ensuring labeling and compliance standards.",
       details:
         "Access new markets with vendor identity protected while ensuring documentation and proper export handling.",
       kpi: "KPI 8+",
       retention: "Six months prior",
+      link:'brand-growth/white-label',
     },
     {
-      title: "Wholesale Distribution Buyer",
-      description: "Place larger orders for resale and access verified traceable product lines across regions.",
+      title: "Brick & Mortar",
+      description: "Stock physical stores with verified, traceable products for trusted and scalable retail sales.",
       details: "Faster production cycles with stronger margins allowing vendor scale and improved packaging upgrades.",
       kpi: "KPI 7+",
       retention: "Three months prior",
+      link:'brand-growth/brick&mortar',
     },
   ],
+  
 
   tierAdvancementTitle: "Tier Advancement Logic",
   tierAdvancements: [
@@ -128,40 +133,40 @@ const defaultProps: PartnershipPageProps = {
       title: "Core Trade Partnerships",
 
       items: [
-        { title: "Drop Shipping Buyer" },
-        { title: "Consignment Product Buyer" },
-        { title: "Certified Import Buyer" },
-        { title: "Wholesale Distribution Buyer" },
+        { title: "Drop Shipping / E-commerce" },
+        { title: "Consignment " },
+        { title: "Certified Import Export" },
+        { title: "Wholesale & Distribution" },
       ],
     },
     {
       title: "Growth Brand Expansion",
 
       items: [
-        { title: "Exhibition Event Buyer" },
-        { title: "Auction Bidding Buyer" },
-        { title: "Private Label Buyer" },
-        { title: "Retail Space Buyer" },
+        { title: "Exhibition " },
+        { title: "Auction & Bidding " },
+        { title: "White Label" },
+        { title: "Brick & Mortar" },
       ],
     },
     {
       title: "Creative Collaborations",
 
       items: [
-        { title: "Design Knowledge Partner" },
-        { title: "Media Storytelling Partner" },
-        { title: "Buyer Mentor Program" },
-        { title: "Craft Innovation Patron" },
+        { title: "Design Collaboration" },
+        { title: "Media & Storytelling " },
+        { title: "Warehouse" },
+        { title: "Packaging" },
       ],
     },
     {
       title: "Institutional Strategies",
 
       items: [
-        { title: "Strategic Investor Buyer" },
-        { title: "Museum Archive Buyer" },
-        { title: "NGO Project Buyer" },
-        { title: "Impact Measure Buyer" },
+        { title: "Logistics" },
+        { title: "Museum / Institutional" },
+        { title: "NGO & Government" },
+        { title: "Technology Partnership" },
       ],
     },
   ],

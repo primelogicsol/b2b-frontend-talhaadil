@@ -68,6 +68,7 @@ const defaultProps: PartnershipPageProps = {
       details: "No upfront costs while expanding markets, vendors grow sales, buyers avoid storage or holding risks.",
       kpi: "KPI 7+",
       retention: "No retention needed",
+      link:'core-trade/dropshipping-ecommerce',
     },
     {
       title: "Consignment Product Buyer",
@@ -76,6 +77,7 @@ const defaultProps: PartnershipPageProps = {
         "Eliminates warehouse risks while vendors gain exposure, perfect choice for testing new collections carefully.",
       kpi: "KPI 7+",
       retention: "Eighteen months needed",
+      link:'core-trade/consignment',
     },
     {
       title: "Certified Import Buyer",
@@ -84,13 +86,15 @@ const defaultProps: PartnershipPageProps = {
         "Access new markets with vendor identity protected while ensuring documentation and proper export handling.",
       kpi: "KPI 8+",
       retention: "Six months prior",
+      link:'core-trade/import-export',
     },
     {
-      title: "Wholesale Distribution Buyer",
+      title: "Wholesale & Distribution Buyer",
       description: "Place larger orders for resale and access verified traceable product lines across regions.",
       details: "Faster production cycles with stronger margins allowing vendor scale and improved packaging upgrades.",
       kpi: "KPI 7+",
       retention: "Three months prior",
+      link:'core-trade/wholesale&distribution',
     },
   ],
 
@@ -128,40 +132,40 @@ const defaultProps: PartnershipPageProps = {
       title: "Core Trade Partnerships",
 
       items: [
-        { title: "Drop Shipping Buyer" },
-        { title: "Consignment Product Buyer" },
-        { title: "Certified Import Buyer" },
-        { title: "Wholesale Distribution Buyer" },
+        { title: "Drop Shipping / E-commerce" },
+        { title: "Consignment " },
+        { title: "Certified Import Export" },
+        { title: "Wholesale & Distribution" },
       ],
     },
     {
       title: "Growth Brand Expansion",
 
       items: [
-        { title: "Exhibition Event Buyer" },
-        { title: "Auction Bidding Buyer" },
-        { title: "Private Label Buyer" },
-        { title: "Retail Space Buyer" },
+        { title: "Exhibition " },
+        { title: "Auction & Bidding " },
+        { title: "White Label" },
+        { title: "Brick & Mortar" },
       ],
     },
     {
       title: "Creative Collaborations",
 
       items: [
-        { title: "Design Knowledge Partner" },
-        { title: "Media Storytelling Partner" },
-        { title: "Buyer Mentor Program" },
-        { title: "Craft Innovation Patron" },
+        { title: "Design Collaboration" },
+        { title: "Media & Storytelling " },
+        { title: "Warehouse" },
+        { title: "Packaging" },
       ],
     },
     {
       title: "Institutional Strategies",
 
       items: [
-        { title: "Strategic Investor Buyer" },
-        { title: "Museum Archive Buyer" },
-        { title: "NGO Project Buyer" },
-        { title: "Impact Measure Buyer" },
+        { title: "Logistics" },
+        { title: "Museum / Institutional" },
+        { title: "NGO & Government" },
+        { title: "Technology Partnership" },
       ],
     },
   ],

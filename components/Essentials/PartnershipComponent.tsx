@@ -27,6 +27,7 @@ import {
   BarChart3,
 } from "lucide-react"
 import { useGlobalContext } from "@/context/ScreenProvider" // Import useGlobalContext
+import Link from "next/link"
 
 interface PartnershipBenefit {
   title: string
@@ -126,80 +127,73 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
     }
 
     return (
-      <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 hover:border-[var(--primary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--primary-color)]/20 transform hover:-translate-y-2 ">
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 via-transparent to-[var(--secondary-color)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div className={is4K ? "relative p-10" : "relative p-8"}>
-          {" "}
-          {/* Increased padding */}
-          <div className="flex items-start justify-between mb-6">
-            <div
-              className={
-                is4K
-                  ? "w-20 h-20 rounded-2xl bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] flex items-center justify-center shadow-lg"
-                  : "w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] flex items-center justify-center shadow-lg"
-              }
-            >
-              {" "}
-              {/* Increased size */}
-              {getIcon(partnership.title)}
-            </div>
-            <div className="flex gap-2">
-              <span
-                className={
-                  is4K
-                    ? "px-6 py-3 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-color)]/80 text-white text-base font-bold rounded-full shadow-lg"
-                    : "px-4 py-2 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-color)]/80 text-white text-xs font-bold rounded-full shadow-lg"
-                }
-              >
-                {" "}
-                {/* Increased font size and padding */}
-                {partnership.kpi}
-              </span>
-            </div>
-          </div>
-          <h3
+<div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 hover:border-[var(--primary-color)] transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--primary-color)]/20 transform hover:-translate-y-2">
+  <Link href={partnership.link} className="block h-full">
+    <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 via-transparent to-[var(--secondary-color)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    <div className={is4K ? "relative p-10" : "relative p-8"}>
+      <div className="flex items-start justify-between mb-6">
+        <div
+          className={
+            is4K
+              ? "w-20 h-20 rounded-2xl bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] flex items-center justify-center shadow-lg"
+              : "w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] flex items-center justify-center shadow-lg"
+          }
+        >
+          {getIcon(partnership.title)}
+        </div>
+        <div className="flex gap-2">
+          <span
             className={
               is4K
-                ? "text-3xl font-bold text-[var(--primary-color)] mb-5 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300"
-                : "text-2xl font-bold text-[var(--primary-color)] mb-4 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300"
+                ? "px-6 py-3 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-color)]/80 text-white text-base font-bold rounded-full shadow-lg"
+                : "px-4 py-2 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-color)]/80 text-white text-xs font-bold rounded-full shadow-lg"
             }
           >
-            {" "}
-            {/* Increased font size */}
-            {partnership.title}
-          </h3>
-          <p
-            className={
-              is4K
-                ? "text-gray-700 mb-8 leading-relaxed text-xl font-medium"
-                : "text-gray-700 mb-6 leading-relaxed text-lg font-medium"
-            }
-          >
-            {" "}
-            {/* Increased font size and margin */}
-            {partnership.description}
-          </p>
-          <p className={is4K ? "text-gray-600 mb-8 leading-relaxed text-lg" : "text-gray-600 mb-6 leading-relaxed"}>
-            {" "}
-            {/* Increased font size and margin */}
-            {partnership.details}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <span
-              className={
-                is4K
-                  ? "px-6 py-3 bg-gradient-to-r from-[var(--secondary-light-color)] to-[var(--secondary-light-color)]/70 text-[var(--secondary-color)] rounded-full font-semibold text-base shadow-md"
-                  : "px-4 py-2 bg-gradient-to-r from-[var(--secondary-light-color)] to-[var(--secondary-light-color)]/70 text-[var(--secondary-color)] rounded-full font-semibold text-sm shadow-md"
-              }
-            >
-              {" "}
-              {/* Increased font size and padding */}
-              {partnership.retention}
-            </span>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary-color)] via-[var(--secondary-color)] to-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            {partnership.kpi}
+          </span>
         </div>
       </div>
+
+      <h3
+        className={
+          is4K
+            ? "text-3xl font-bold text-[var(--primary-color)] mb-5 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300"
+            : "text-2xl font-bold text-[var(--primary-color)] mb-4 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300"
+        }
+      >
+        {partnership.title}
+      </h3>
+
+      <p
+        className={
+          is4K
+            ? "text-gray-700 mb-8 leading-relaxed text-xl font-medium"
+            : "text-gray-700 mb-6 leading-relaxed text-lg font-medium"
+        }
+      >
+        {partnership.description}
+      </p>
+
+      <p className={is4K ? "text-gray-600 mb-8 leading-relaxed text-lg" : "text-gray-600 mb-6 leading-relaxed"}>
+        {partnership.details}
+      </p>
+
+      <div className="flex flex-wrap gap-3">
+        <span
+          className={
+            is4K
+              ? "px-6 py-3 bg-gradient-to-r from-[var(--secondary-light-color)] to-[var(--secondary-light-color)]/70 text-[var(--secondary-color)] rounded-full font-semibold text-base shadow-md"
+              : "px-4 py-2 bg-gradient-to-r from-[var(--secondary-light-color)] to-[var(--secondary-light-color)]/70 text-[var(--secondary-color)] rounded-full font-semibold text-sm shadow-md"
+          }
+        >
+          {partnership.retention}
+        </span>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary-color)] via-[var(--secondary-color)] to-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+    </div>
+  </Link>
+</div>
     )
   }
 

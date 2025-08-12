@@ -1,38 +1,9 @@
-"use client";
-import { useState, useEffect } from "react";
-import {
-  CheckCircle,
-  Building,
-  User,
-  CreditCard,
-  FileCheck,
-} from "lucide-react";
-import { useGlobalContext } from "@/context/ScreenProvider";
-import jsPDF from "jspdf";
-
-interface FormData {
-  businessName: string;
-  businessType: string;
-  einNumber: string;
-  tinNumber: string;
-  contactPerson: string;
-  email: string;
-  phoneNumber: string;
-  bankName: string;
-  accountNumber: string;
-  routingNumber: string;
-  bankAddress: string;
-  signatoryName: string;
-  signatureDate: string;
-  accepted: boolean;
-}
-
-interface BuyerAgreementProps {
-  data?: Partial<FormData>;
-  onUpdate: (data: FormData) => void;
-  onNext: () => void;
-  onPrev: () => void;
-}
+"use client"
+import { useState, useEffect } from "react"
+import { CheckCircle, Building, User, CreditCard, FileCheck } from "lucide-react"
+import { useGlobalContext } from "@/context/ScreenProvider"
+import jsPDF from "jspdf"
+import type { FormData, BuyerAgreementProps } from "@/types/BuyerAgreement"
 
 const termsContent = `1. Definitions and Scope
 "Buyer" refers to the party purchasing products through DKC's drop shipping partnership.
@@ -185,16 +156,11 @@ Base Commission Rates:
 - Customer Rating above 4.8/5: -0.3% reduction.
 
 22. Legal Disclaimers
-This agreement is governed under U.S. law and is legally binding under federal and applicable state laws.`;
+This agreement is governed under U.S. law and is legally binding under federal and applicable state laws.`
 
-export default function BuyerAgreement({
-  data,
-  onUpdate,
-  onNext,
-  onPrev,
-}: BuyerAgreementProps) {
-  const { is4K } = useGlobalContext();
-  const [currentStep, setCurrentStep] = useState(1);
+export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: BuyerAgreementProps) {
+  const { is4K } = useGlobalContext()
+  const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState<FormData>({
     businessName: data?.businessName || "",
     businessType: data?.businessType || "",
@@ -210,15 +176,15 @@ export default function BuyerAgreement({
     signatoryName: data?.signatoryName || "",
     signatureDate: data?.signatureDate || "",
     accepted: data?.accepted || false,
-  });
+  })
 
   // Load data from localStorage and pre-fill form
   useEffect(() => {
-    const savedBusinessData = localStorage.getItem("businessRegistrationData");
+    const savedBusinessData = localStorage.getItem("businessRegistrationData")
     if (savedBusinessData) {
       try {
-        const businessData = JSON.parse(savedBusinessData);
-        console.log(businessData);
+        const businessData = JSON.parse(savedBusinessData)
+        console.log(businessData)
         // Map business information to buyer agreement fields
         const preFilledData: FormData = {
           businessName: businessData.business_name,
@@ -237,117 +203,99 @@ export default function BuyerAgreement({
           signatoryName: formData.signatoryName,
           signatureDate: formData.signatureDate,
           accepted: formData.accepted,
-        };
-        setFormData(preFilledData);
-        onUpdate(preFilledData);
-        console.log(preFilledData);
+        }
+        setFormData(preFilledData)
+        onUpdate(preFilledData)
+        console.log(preFilledData)
       } catch (error) {
-        console.error("Error parsing saved business data:", error);
+        console.error("Error parsing saved business data:", error)
       }
     }
-  }, []);
+  }, [])
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentStep]);
+  // Removed the auto-scroll useEffect that was causing unwanted page scrolling
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // }, [currentStep]);
 
   const steps = [
     { number: 1, title: "Business Information", icon: Building },
     { number: 2, title: "Contact Details", icon: User },
     { number: 3, title: "Banking Information", icon: CreditCard },
     { number: 4, title: "Legal Terms", icon: FileCheck },
-  ];
+  ]
 
   const updateFormData = (field: keyof FormData, value: string | boolean) => {
-    const updatedData = { ...formData, [field]: value };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    const updatedData = { ...formData, [field]: value }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
   const canProceedToNext = () => {
     switch (currentStep) {
       case 1:
-        return (
-          formData.businessName &&
-          formData.businessType &&
-          formData.einNumber &&
-          formData.tinNumber
-        );
+        return formData.businessName && formData.businessType && formData.einNumber && formData.tinNumber
       case 2:
-        return formData.contactPerson && formData.email && formData.phoneNumber;
+        return formData.contactPerson && formData.email && formData.phoneNumber
       case 3:
-        return (
-          formData.bankName &&
-          formData.accountNumber &&
-          formData.routingNumber &&
-          formData.bankAddress
-        );
+        return formData.bankName && formData.accountNumber && formData.routingNumber && formData.bankAddress
       case 4:
-        return (
-          formData.signatoryName && formData.signatureDate && formData.accepted
-        );
+        return formData.signatoryName && formData.signatureDate && formData.accepted
       default:
-        return false;
+        return false
     }
-  };
+  }
 
   const generatePDF = () => {
-    const doc = new jsPDF();
-    const pageWidth = doc.internal.pageSize.width;
-    const pageHeight = doc.internal.pageSize.height;
-    const margin = 20;
-    let yPosition = margin;
+    const doc = new jsPDF()
+    const pageWidth = doc.internal.pageSize.width
+    const pageHeight = doc.internal.pageSize.height
+    const margin = 20
+    let yPosition = margin
 
     // Colors (converted to RGB)
-    const primaryColor = [27, 79, 104]; // #1b4f68
-    const secondaryColor = [216, 88, 52]; // #d85834
-    const lightGray = [128, 128, 128];
+    const primaryColor = [27, 79, 104] // #1b4f68
+    const secondaryColor = [216, 88, 52] // #d85834
+    const lightGray = [128, 128, 128]
 
     // Helper function to add text with word wrapping
-    const addWrappedText = (
-      text: string,
-      x: number,
-      y: number,
-      maxWidth: number,
-      fontSize = 10
-    ) => {
-      doc.setFontSize(fontSize);
-      const lines = doc.splitTextToSize(text, maxWidth);
-      doc.text(lines, x, y);
-      return y + lines.length * fontSize * 0.4;
-    };
+    const addWrappedText = (text: string, x: number, y: number, maxWidth: number, fontSize = 10) => {
+      doc.setFontSize(fontSize)
+      const lines = doc.splitTextToSize(text, maxWidth)
+      doc.text(lines, x, y)
+      return y + lines.length * fontSize * 0.4
+    }
 
     // Header
-    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    doc.rect(0, 0, pageWidth, 40, "F");
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
+    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.rect(0, 0, pageWidth, 40, "F")
+    doc.setTextColor(255, 255, 255)
+    doc.setFontSize(16)
+    doc.setFont("helvetica", "bold")
     doc.text("De Koshur Crafts Bazaar LLC", pageWidth / 2, 15, {
       align: "center",
-    });
-    doc.setFontSize(12);
+    })
+    doc.setFontSize(12)
     doc.text("United States of America", pageWidth / 2, 25, {
       align: "center",
-    });
-    doc.setFontSize(14);
+    })
+    doc.setFontSize(14)
     doc.text("Drop Shipping Buyer Partnership Agreement", pageWidth / 2, 35, {
       align: "center",
-    });
+    })
 
-    yPosition = 60;
+    yPosition = 60
 
     // Business Information Section
-    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("Business Information", margin, yPosition);
-    yPosition += 15;
+    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.setFontSize(14)
+    doc.setFont("helvetica", "bold")
+    doc.text("Business Information", margin, yPosition)
+    yPosition += 15
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0)
+    doc.setFontSize(10)
+    doc.setFont("helvetica", "normal")
 
     const businessInfo = [
       `Business Name: ${formData.businessName}`,
@@ -361,147 +309,125 @@ export default function BuyerAgreement({
       `Account Number: ${formData.accountNumber}`,
       `Routing Number: ${formData.routingNumber}`,
       `Bank Address: ${formData.bankAddress}`,
-    ];
+    ]
 
     businessInfo.forEach((info) => {
-      doc.text(info, margin, yPosition);
-      yPosition += 8;
-    });
+      doc.text(info, margin, yPosition)
+      yPosition += 8
+    })
 
-    yPosition += 10;
+    yPosition += 10
 
     // Agreement Terms Section
-    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("Agreement Terms & Conditions", margin, yPosition);
-    yPosition += 15;
+    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.setFontSize(14)
+    doc.setFont("helvetica", "bold")
+    doc.text("Agreement Terms & Conditions", margin, yPosition)
+    yPosition += 15
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(9);
-    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0)
+    doc.setFontSize(9)
+    doc.setFont("helvetica", "normal")
 
     // Split content into pages
-    const lines = doc.splitTextToSize(termsContent, pageWidth - 2 * margin);
-    const linesPerPage = Math.floor((pageHeight - 100) / 4); // Approximate lines per page
+    const lines = doc.splitTextToSize(termsContent, pageWidth - 2 * margin)
+    const linesPerPage = Math.floor((pageHeight - 100) / 4) // Approximate lines per page
 
     for (let i = 0; i < lines.length; i += linesPerPage) {
       if (i > 0) {
-        doc.addPage();
-        yPosition = margin;
+        doc.addPage()
+        yPosition = margin
       }
 
-      const pageLines = lines.slice(i, i + linesPerPage);
+      const pageLines = lines.slice(i, i + linesPerPage)
       pageLines.forEach((line: string) => {
         if (line.match(/^\d+\./)) {
-          doc.setTextColor(
-            secondaryColor[0],
-            secondaryColor[1],
-            secondaryColor[2]
-          );
-          doc.setFont("helvetica", "bold");
+          doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+          doc.setFont("helvetica", "bold")
         } else {
-          doc.setTextColor(0, 0, 0);
-          doc.setFont("helvetica", "normal");
+          doc.setTextColor(0, 0, 0)
+          doc.setFont("helvetica", "normal")
         }
-        doc.text(line, margin, yPosition);
-        yPosition += 4;
-      });
+        doc.text(line, margin, yPosition)
+        yPosition += 4
+      })
     }
 
     // Add new page for signature
-    doc.addPage();
-    yPosition = margin;
+    doc.addPage()
+    yPosition = margin
 
     // Digital Signature Section
-    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("Digital Signature", margin, yPosition);
-    yPosition += 20;
+    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.setFontSize(14)
+    doc.setFont("helvetica", "bold")
+    doc.text("Digital Signature", margin, yPosition)
+    yPosition += 20
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0)
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "normal")
 
     // Signature box
-    doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    doc.setLineWidth(1);
-    doc.rect(margin, yPosition, pageWidth - 2 * margin, 60);
+    doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.setLineWidth(1)
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 60)
 
-    doc.text(
-      `Authorized Signatory: ${formData.signatoryName}`,
-      margin + 10,
-      yPosition + 20
-    );
-    doc.text(`Date: ${formData.signatureDate}`, margin + 10, yPosition + 35);
-    doc.text("Status: Digitally Accepted", margin + 10, yPosition + 50);
+    doc.text(`Authorized Signatory: ${formData.signatoryName}`, margin + 10, yPosition + 20)
+    doc.text(`Date: ${formData.signatureDate}`, margin + 10, yPosition + 35)
+    doc.text("Status: Digitally Accepted", margin + 10, yPosition + 50)
 
-    yPosition += 80;
+    yPosition += 80
 
     // Legal disclaimer
-    doc.setFillColor(244, 244, 244);
-    doc.rect(margin, yPosition, pageWidth - 2 * margin, 30, "F");
-    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-    doc.setFontSize(8);
-    doc.text(
-      "This agreement constitutes a legally binding contract under U.S. law.",
-      margin + 5,
-      yPosition + 10
-    );
+    doc.setFillColor(244, 244, 244)
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 30, "F")
+    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2])
+    doc.setFontSize(8)
+    doc.text("This agreement constitutes a legally binding contract under U.S. law.", margin + 5, yPosition + 10)
     doc.text(
       "Digital signatures collected comply with applicable electronic signature laws.",
       margin + 5,
-      yPosition + 20
-    );
+      yPosition + 20,
+    )
 
     // Footer
-    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    doc.setFontSize(8);
-    doc.text(
-      `Generated on: ${new Date().toLocaleDateString()}`,
-      pageWidth - margin,
-      pageHeight - 10,
-      {
-        align: "right",
-      }
-    );
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.setFontSize(8)
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, pageWidth - margin, pageHeight - 10, {
+      align: "right",
+    })
 
     // Save the PDF
     const fileName = `DKC_Buyer_Agreement_${formData.businessName.replace(
       /\s+/g,
-      "_"
-    )}_${new Date().toISOString().split("T")[0]}.pdf`;
-    doc.save(fileName);
-  };
+      "_",
+    )}_${new Date().toISOString().split("T")[0]}.pdf`
+    doc.save(fileName)
+  }
 
   const handleNext = () => {
     if (currentStep < 4 && canProceedToNext()) {
-      setCurrentStep(currentStep + 1);
+      setCurrentStep(currentStep + 1)
     } else if (currentStep === 4 && canProceedToNext()) {
-      // Generate and download PDF before proceeding
-     
-      onNext();
+      // Generate and download PDF before proceeding...
+      onNext()
     }
-  };
+  }
 
   const handlePrev = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      setCurrentStep(currentStep - 1)
     } else {
-      onPrev();
+      onPrev()
     }
-  };
+  }
 
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${
-              is4K ? "lg:gap-8 xl:gap-10" : ""
-            }`}
-          >
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${is4K ? "lg:gap-8 xl:gap-10" : ""}`}>
             <div className="space-y-2">
               <input
                 type="text"
@@ -555,22 +481,16 @@ export default function BuyerAgreement({
               />
             </div>
           </div>
-        );
+        )
       case 2:
         return (
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${
-              is4K ? "lg:gap-8 xl:gap-10" : ""
-            }`}
-          >
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${is4K ? "lg:gap-8 xl:gap-10" : ""}`}>
             <div className="space-y-2">
               <input
                 type="text"
                 placeholder="Contact Person"
                 value={formData.contactPerson}
-                onChange={(e) =>
-                  updateFormData("contactPerson", e.target.value)
-                }
+                onChange={(e) => updateFormData("contactPerson", e.target.value)}
                 className={`w-full px-4 py-3 md:py-4 ${
                   is4K ? "lg:px-6 lg:py-5 xl:px-8 xl:py-6" : ""
                 } border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
@@ -605,14 +525,10 @@ export default function BuyerAgreement({
               />
             </div>
           </div>
-        );
+        )
       case 3:
         return (
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${
-              is4K ? "lg:gap-8 xl:gap-10" : ""
-            }`}
-          >
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${is4K ? "lg:gap-8 xl:gap-10" : ""}`}>
             <div className="space-y-2">
               <input
                 type="text"
@@ -631,9 +547,7 @@ export default function BuyerAgreement({
                 type="text"
                 placeholder="Account Number"
                 value={formData.accountNumber}
-                onChange={(e) =>
-                  updateFormData("accountNumber", e.target.value)
-                }
+                onChange={(e) => updateFormData("accountNumber", e.target.value)}
                 className={`w-full px-4 py-3 md:py-4 ${
                   is4K ? "lg:px-6 lg:py-5 xl:px-8 xl:py-6" : ""
                 } border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
@@ -646,9 +560,7 @@ export default function BuyerAgreement({
                 type="text"
                 placeholder="Routing Number"
                 value={formData.routingNumber}
-                onChange={(e) =>
-                  updateFormData("routingNumber", e.target.value)
-                }
+                onChange={(e) => updateFormData("routingNumber", e.target.value)}
                 className={`w-full px-4 py-3 md:py-4 ${
                   is4K ? "lg:px-6 lg:py-5 xl:px-8 xl:py-6" : ""
                 } border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
@@ -670,18 +582,14 @@ export default function BuyerAgreement({
               />
             </div>
           </div>
-        );
+        )
       case 4:
         return (
-          <div
-            className={`space-y-6 ${is4K ? "lg:space-y-8 xl:space-y-10" : ""}`}
-          >
+          <div className={`space-y-6 ${is4K ? "lg:space-y-8 xl:space-y-10" : ""}`}>
             {/* Terms Content */}
             <div className="bg-white rounded-2xl  overflow-hidden">
               <div
-                className={`h-64 md:h-80 lg:h-96 ${
-                  is4K ? "xl:h-[32rem]" : ""
-                } overflow-y-auto p-4 md:p-6 ${
+                className={`h-64 md:h-80 lg:h-96 ${is4K ? "xl:h-[32rem]" : ""} overflow-y-auto p-4 md:p-6 ${
                   is4K ? "lg:p-8 xl:p-10" : ""
                 } border-b border-gray-200`}
               >
@@ -694,7 +602,7 @@ export default function BuyerAgreement({
                     .trim()
                     .split("\n")
                     .map((line, index) => {
-                      const isHeading = /^\d+\.\s/.test(line.trim());
+                      const isHeading = /^\d+\.\s/.test(line.trim())
                       return (
                         <p
                           key={index}
@@ -708,11 +616,12 @@ export default function BuyerAgreement({
                         >
                           {line}
                         </p>
-                      );
+                      )
                     })}
                 </div>
               </div>
             </div>
+
             {/* Legal Disclaimers */}
             <div
               className={`bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-xl p-4 md:p-6 ${
@@ -725,13 +634,7 @@ export default function BuyerAgreement({
                     is4K ? "lg:w-8 lg:h-8 xl:w-10 xl:h-10" : ""
                   } bg-[var(--secondary-color)] rounded-full flex items-center justify-center`}
                 >
-                  <span
-                    className={`text-white text-xs ${
-                      is4K ? "lg:text-sm xl:text-base" : ""
-                    } font-bold`}
-                  >
-                    !
-                  </span>
+                  <span className={`text-white text-xs ${is4K ? "lg:text-sm xl:text-base" : ""} font-bold`}>!</span>
                 </div>
                 <div>
                   <h3
@@ -741,42 +644,26 @@ export default function BuyerAgreement({
                   >
                     Legal Disclaimers
                   </h3>
-                  <p
-                    className={`text-sm md:text-base ${
-                      is4K ? "lg:text-lg xl:text-xl" : ""
-                    } text-gray-700`}
-                  >
-                    This agreement constitutes a legally binding contract under
-                    U.S. law. Digital signatures collected comply with
-                    applicable electronic signature laws.
+                  <p className={`text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} text-gray-700`}>
+                    This agreement constitutes a legally binding contract under U.S. law. Digital signatures collected
+                    comply with applicable electronic signature laws.
                   </p>
                 </div>
               </div>
             </div>
+
             {/* Digital Signature Section */}
-            <div
-              className={`space-y-4 ${is4K ? "lg:space-y-6 xl:space-y-8" : ""}`}
-            >
-              <h3
-                className={`text-lg md:text-xl ${
-                  is4K ? "lg:text-2xl xl:text-3xl" : ""
-                } font-semibold text-gray-800`}
-              >
+            <div className={`space-y-4 ${is4K ? "lg:space-y-6 xl:space-y-8" : ""}`}>
+              <h3 className={`text-lg md:text-xl ${is4K ? "lg:text-2xl xl:text-3xl" : ""} font-semibold text-gray-800`}>
                 Digital Signature
               </h3>
-              <div
-                className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${
-                  is4K ? "lg:gap-8 xl:gap-10" : ""
-                }`}
-              >
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${is4K ? "lg:gap-8 xl:gap-10" : ""}`}>
                 <div className="space-y-2">
                   <input
                     type="text"
                     placeholder="Authorized Signatory Name"
                     value={formData.signatoryName}
-                    onChange={(e) =>
-                      updateFormData("signatoryName", e.target.value)
-                    }
+                    onChange={(e) => updateFormData("signatoryName", e.target.value)}
                     className={`w-full px-4 py-3 md:py-4 ${
                       is4K ? "lg:px-6 lg:py-5 xl:px-8 xl:py-6" : ""
                     } border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
@@ -789,9 +676,7 @@ export default function BuyerAgreement({
                     type="date"
                     placeholder="dd/mm/yyyy"
                     value={formData.signatureDate}
-                    onChange={(e) =>
-                      updateFormData("signatureDate", e.target.value)
-                    }
+                    onChange={(e) => updateFormData("signatureDate", e.target.value)}
                     className={`w-full px-4 py-3 md:py-4 ${
                       is4K ? "lg:px-6 lg:py-5 xl:px-8 xl:py-6" : ""
                     } border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 text-sm md:text-base ${
@@ -801,6 +686,7 @@ export default function BuyerAgreement({
                 </div>
               </div>
             </div>
+
             {/* Acceptance Checkbox */}
             <div
               className={`flex items-start space-x-3 p-4 md:p-6 ${
@@ -818,20 +704,17 @@ export default function BuyerAgreement({
               />
               <label
                 htmlFor="agreement-acceptance"
-                className={`text-sm md:text-base ${
-                  is4K ? "lg:text-lg xl:text-xl" : ""
-                } text-gray-700 cursor-pointer`}
+                className={`text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} text-gray-700 cursor-pointer`}
               >
-                I accept the terms and conditions and authorize the generation
-                of a PDF copy of this agreement
+                I accept the terms and conditions and authorize the generation of a PDF copy of this agreement
               </label>
             </div>
           </div>
-        );
+        )
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   return (
     <div
@@ -841,11 +724,7 @@ export default function BuyerAgreement({
     >
       <div className={`${is4K ? "max-w-6xl" : "max-w-4xl"} mx-auto`}>
         {/* Header */}
-        <div
-          className={`text-center mb-6 md:mb-8 ${
-            is4K ? "lg:mb-12 xl:mb-16" : ""
-          }`}
-        >
+        <div className={`text-center mb-6 md:mb-8 ${is4K ? "lg:mb-12 xl:mb-16" : ""}`}>
           <h1
             className={`text-[var(--secondary-color)] text-lg md:text-xl lg:text-2xl ${
               is4K ? "xl:text-3xl" : ""
@@ -860,26 +739,20 @@ export default function BuyerAgreement({
           >
             Drop Shipping Buyer Partnership Agreement
           </h2>
-          <p
-            className={`text-[var(--secondary-color)] text-base md:text-lg ${
-              is4K ? "lg:text-xl xl:text-2xl" : ""
-            }`}
-          >
+          <p className={`text-[var(--secondary-color)] text-base md:text-lg ${is4K ? "lg:text-xl xl:text-2xl" : ""}`}>
             Fill out the e Agreement.
           </p>
         </div>
+
         {/* Progress Steps */}
         <div className={`mb-8 md:mb-12 ${is4K ? "lg:mb-16 xl:mb-20" : ""}`}>
-          <div
-            className={`flex items-center justify-between ${
-              is4K ? "max-w-5xl" : "max-w-3xl"
-            } mx-auto`}
-          >
+          <div className={`flex items-center justify-between ${is4K ? "max-w-5xl" : "max-w-3xl"} mx-auto`}>
             {steps.map((step, index) => {
-              const Icon = step.icon;
-              const isActive = currentStep === step.number;
-              const isCompleted = currentStep > step.number;
-              const isClickable = currentStep >= step.number;
+              const Icon = step.icon
+              const isActive = currentStep === step.number
+              const isCompleted = currentStep > step.number
+              const isClickable = currentStep >= step.number
+
               return (
                 <div key={step.number} className="flex items-center flex-1">
                   <div
@@ -895,22 +768,16 @@ export default function BuyerAgreement({
                         isCompleted
                           ? "bg-[var(--primary-color)] text-white shadow-lg"
                           : isActive
-                          ? "bg-[var(--primary-color)] text-white shadow-lg scale-110"
-                          : "bg-gray-300 text-gray-600"
+                            ? "bg-[var(--primary-color)] text-white shadow-lg scale-110"
+                            : "bg-gray-300 text-gray-600"
                       }`}
                     >
                       {isCompleted ? (
                         <CheckCircle
-                          className={`w-5 h-5 md:w-6 md:h-6 ${
-                            is4K ? "lg:w-8 lg:h-8 xl:w-10 xl:h-10" : ""
-                          }`}
+                          className={`w-5 h-5 md:w-6 md:h-6 ${is4K ? "lg:w-8 lg:h-8 xl:w-10 xl:h-10" : ""}`}
                         />
                       ) : (
-                        <span
-                          className={`text-sm md:text-base ${
-                            is4K ? "lg:text-lg xl:text-xl" : ""
-                          } font-semibold`}
-                        >
+                        <span className={`text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} font-semibold`}>
                           {step.number}
                         </span>
                       )}
@@ -919,9 +786,7 @@ export default function BuyerAgreement({
                       className={`text-xs md:text-sm ${
                         is4K ? "lg:text-base xl:text-lg" : ""
                       } mt-2 text-center transition-colors duration-300 ${
-                        isActive
-                          ? "text-[var(--primary-color)] font-semibold"
-                          : "text-gray-600"
+                        isActive ? "text-[var(--primary-color)] font-semibold" : "text-gray-600"
                       }`}
                     >
                       {step.title}
@@ -929,32 +794,28 @@ export default function BuyerAgreement({
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`flex-1 h-0.5 ${
-                        is4K ? "lg:h-1" : ""
-                      } mx-2 md:mx-4 ${
+                      className={`flex-1 h-0.5 ${is4K ? "lg:h-1" : ""} mx-2 md:mx-4 ${
                         is4K ? "lg:mx-6 xl:mx-8" : ""
                       } transition-colors duration-300 ${
-                        currentStep > step.number
-                          ? "bg-[var(--primary-color)]"
-                          : "bg-gray-300"
+                        currentStep > step.number ? "bg-[var(--primary-color)]" : "bg-gray-300"
                       }`}
                     />
                   )}
                 </div>
-              );
+              )
             })}
           </div>
         </div>
+
         {/* Form Content */}
         <div
           className={`bg-white rounded-2xl md:rounded-3xl shadow-md p-6 md:p-8 lg:p-12 ${
             is4K ? "xl:p-16" : ""
-          } mb-6 md:mb-8 ${
-            is4K ? "lg:mb-12" : ""
-          } transition-all duration-300 hover:shadow-2xl`}
+          } mb-6 md:mb-8 ${is4K ? "lg:mb-12" : ""} transition-all duration-300 hover:shadow-2xl`}
         >
           <div className="animate-fadeIn">{renderStepContent()}</div>
         </div>
+
         {/* Navigation Buttons */}
         <div className="flex justify-between items-center">
           <button
@@ -968,6 +829,7 @@ export default function BuyerAgreement({
             <span className="inline">←</span>
             <span className="hidden md:inline ml-2">BACK</span>
           </button>
+
           <button
             onClick={handleNext}
             disabled={!canProceedToNext()}
@@ -983,13 +845,12 @@ export default function BuyerAgreement({
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            <span className="hidden md:inline mr-2">
-              {currentStep === 4 ? "SUBMIT" : "NEXT"}
-            </span>
+            <span className="hidden md:inline mr-2">{currentStep === 4 ? "SUBMIT" : "NEXT"}</span>
             <span className="inline">{currentStep === 4 ? "" : "→"}</span>
           </button>
         </div>
       </div>
+
       <style jsx>{`
         :root {
           --secondary-hover-color: #f48261;
@@ -1000,6 +861,7 @@ export default function BuyerAgreement({
           --primary-light-text-color: #346880;
           --primary-header-color: #e4e6eb;
         }
+
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -1010,12 +872,15 @@ export default function BuyerAgreement({
             transform: translateY(0);
           }
         }
+
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;
         }
+
         input:focus {
           transform: translateY(-1px);
         }
+
         @media (max-width: 640px) {
           .grid-cols-1 {
             gap: 1rem;
@@ -1023,5 +888,5 @@ export default function BuyerAgreement({
         }
       `}</style>
     </div>
-  );
+  )
 }
