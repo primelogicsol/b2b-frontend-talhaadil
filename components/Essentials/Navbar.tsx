@@ -320,9 +320,9 @@ if (user_role === "buyer") {
       href: "/institutional",
       subItems: [
         { label: "Institutional", href: "/institutional/museum-institutional" },
-        { label: "Technology Partnership", href: "/institutional/technology-partnership" },
-        { label: "NGO Supplier", href: "/institutional/ngo-government" },
         { label: "Logistics", href: "/institutional/logistics" },
+        { label: "NGO Supplier", href: "/institutional/ngo-government" },
+        { label: "Technology Partnership", href: "/institutional/technology-partnership" },
       ],
     },
   ];
@@ -363,9 +363,9 @@ if (user_role === "buyer") {
       href: "/institutional",
       subItems: [
         { label: "Museum", href: "/institutional/museum-institutional" },
-        { label: "Technology Partnership", href: "/institutional/technology-partnership" },
-        { label: "NGO Buyer", href: "/institutional/ngo-government" },
         { label: "Logistics", href: "/institutional/logistics" },
+        { label: "NGO Buyer", href: "/institutional/ngo-government" },
+        { label: "Technology Partnership", href: "/institutional/technology-partnership" },
       ],
     },
   ];

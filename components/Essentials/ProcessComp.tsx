@@ -187,77 +187,168 @@ export default function Process() {
     },
   ]
     const partnershipLevels = [
-    {
-      level: 1,
-      type: "Drop Shipping",
-      retention: "≥ 18 Months at Ecommerce Platform",
-      kpi: "≥ 7+ Aggregate Platform Performance Score",
-      next: "Consignment",
-      icon: Package,
-      description:
-        "The Drop Shipping level is your entry point into the De Koshur Crafts ecosystem. Without needing to hold inventory or manage logistics, artisans and vendors can sell their products directly through our ecommerce channels. This model allows you to test your product-market fit, generate early traction, and familiarize yourself with our standards. Our platform handles packaging, shipping, and customer service—enabling you to focus on production and quality. This stage is ideal for emerging artisans or businesses exploring global outreach with low upfront risk.",
-    },
-    {
-      level: 2,
-      type: "Consignment",
-      retention: "≥ 6 Months at Consignment Platform",
-      kpi: "≥ 7+ Aggregate Platform Performance Score",
-      next: "Exhibition",
-      icon: Store,
-      description:
-        "The Consignment level offers enhanced exposure through our curated retail platforms—both online and physical. Your products are featured in premium digital showcases and occasionally in temporary installations, without requiring full ownership transfer. You earn revenue upon each successful sale, which minimizes financial burden while expanding visibility. Vendors at this level build credibility, refine product offerings, and benefit from customer insights gathered via our marketing and analytics support. This phase prepares you for hands-on engagement with selective markets and customers.",
-    },
-    {
-      level: 3,
-      type: "Exhibition",
-      retention: "≥ 6 Months at Exhibition Platform",
-      kpi: "≥ 8+ Aggregate Platform Performance Score",
-      next: "Import Export",
-      icon: Eye,
-      description:
-        "At the Exhibition level, artisans showcase their products at exclusive trade events, pop-ups, exhibitions, and showroom experiences organized by De Koshur Crafts. This stage is a catalyst for visibility and networking, connecting you directly with global buyers, media, influencers, and retail scouts. The focus here is on storytelling, craftsmanship, and brand elevation. Successful vendors gain real-time feedback, build customer loyalty, and solidify their identity as premium craft producers with global potential.",
-    },
-    {
-      level: 4,
-      type: "Import Export",
-      retention: "≥ 6 Months at Import Export Platform",
-      kpi: "≥ 8+ Aggregate Platform Performance Score",
-      next: "Subsidiary",
-      icon: Globe,
-      description:
-        "This level opens international trade doors. Vendors at the Import Export stage become part of our cross-border logistics network, allowing their products to reach international distributors, retailers, and platforms under structured compliance. We assist with export documentation, customs regulations, freight handling, and packaging standardization. Your brand now travels globally, benefiting from shared credibility and ecosystem-wide logistics. This phase is key for artisans aiming to scale and build recurring overseas demand while maintaining craft integrity.",
-    },
-    {
-      level: 5,
-      type: "Investor",
-      retention: "≥ 12 Months at Subsidiary Platform",
-      kpi: "≥ 8+ Aggregate Platform Performance Score",
-      next: "Brick & Mortar",
-      icon: TrendingUp,
-      description:
-        "This is the transition from partner to stakeholder. The Investor level is for collaborators who have demonstrated sustained performance and wish to invest in De Koshur Crafts' vision. Investors gain equity opportunities, strategic influence, and access to joint ventures, including platform expansion, market penetration strategies, and innovation labs. This role is both financial and strategic—focusing on long-term ecosystem development, rural upliftment, craft revival, and infrastructure scaling.",
-    },
-    {
-      level: 6,
-      type: "Brick & Mortar",
-      retention: "≥ 24 Months at Brick & Mortar Platform",
-      kpi: "≥ 8+ Aggregate Platform Performance Score",
-      next: "Franchise",
-      icon: Building,
-      description:
-        "Partners at this level establish their own physical retail outlets in domestic or international cities under the De Koshur Crafts brand or as co-branded ventures. We provide full architectural guidance, store layout templates, visual merchandising strategy, point-of-sale systems, and training for in-store staff. You gain supply chain integration, interior branding support, and access to limited edition artisan lines. This level focuses on expanding the offline footprint and offering immersive cultural retail experiences to global consumers.",
-    },
-    {
-      level: 7,
-      type: "DKC Brand Franchise",
-      retention: "≥ 6 Months at Franchise Platform",
-      kpi: "≥ 8+ Aggregate Platform Performance Score",
-      next: "Enjoy Collaborative US-Kashmir-India Craft Business in the USA",
-      icon: Crown,
-      description:
-        "This is the pinnacle of our partnership ecosystem. Franchisees operate under the De Koshur Crafts umbrella with full rights to use our brand identity, design systems, global catalogs, sourcing network, and marketing playbooks. You become an official DKC brand custodian in your region, with dedicated support from our central and regional teams. Franchisees benefit from cross-country collaborations, access to flagship events, shared customer bases, technology infrastructure, and participation in high-level strategy dialogues. The goal is to create globally respected hubs that celebrate, sell, and scale the soul of Kashmiri artistry.",
-    },
-  ]
+  {
+    level: 1,
+    type: "Drop Shipping / E-Commerce",
+    retention: "No requirement",
+    kpi: "No requirement",
+    next: "Consignment",
+    icon: Package,
+    description:
+      "This entry-level model allows resellers to expand online without inventory or logistics management. Vendors act as fulfillment partners, shipping directly to buyers while focusing on quality and customer engagement. Ideal for testing market demand with minimal risk, while benefiting from scalable reach and efficient business setup.",
+  },
+  {
+    level: 2,
+    type: "Consignment",
+    retention: "18 months",
+    kpi: "7+",
+    next: "Import Export",
+    icon: Store,
+    description:
+      "Consignors provide goods to consignees for sale, retaining ownership until purchase. This model reduces risk while enabling access to premium retail channels. Revenue is shared per sale, ensuring sustainable operations. Vendors strengthen market credibility, refine offerings, and gain valuable insights for long-term business planning.",
+  },
+  {
+    level: 3,
+    type: "Import Export",
+    retention: "6 months",
+    kpi: "7+",
+    next: "Wholesale & Distribution",
+    icon: Globe,
+    description:
+      "Exporters and importers engage in structured international trade partnerships. This level grants global market access, requiring adherence to trade regulations and quality standards. Vendors expand beyond domestic markets, establishing international credibility, diversifying revenue streams, and building resilient supply chains with trusted overseas partners.",
+  },
+  {
+    level: 4,
+    type: "Wholesale & Distribution",
+    retention: "12 months",
+    kpi: "8+",
+    next: "Exhibition",
+    icon: TrendingUp,
+    description:
+      "Wholesalers and distributors form bulk-trade partnerships for high-volume sales. Designed for established businesses, this model emphasizes strong networks and consistent demand. Vendors benefit from economies of scale, predictable revenue cycles, and brand recognition in both domestic and global wholesale marketplaces, enabling sustainable long-term growth.",
+  },
+  {
+    level: 5,
+    type: "Exhibition",
+    retention: "6 months",
+    kpi: "7+",
+    next: "Auction & Bidding",
+    icon: Eye,
+    description:
+      "Exhibitors showcase their offerings to targeted audiences at premium events and trade shows. This stage provides direct exposure, networking opportunities, and the chance to highlight craftsmanship. It strengthens brand presence, builds buyer trust, and fosters new business relationships through curated, high-visibility market platforms.",
+  },
+  {
+    level: 6,
+    type: "Auction & Bidding",
+    retention: "24 months",
+    kpi: "8+",
+    next: "White Label",
+    icon: Crown,
+    description:
+      "Specialized auctions connect sellers of premium crafts with competitive bidders. Products are authenticated to ensure buyer confidence. This partnership targets high-value transactions, providing exclusivity, prestige, and a platform for unique items. Vendors benefit from higher margins and brand positioning in premium marketplaces.",
+  },
+  {
+    level: 7,
+    type: "White Label",
+    retention: "18 months",
+    kpi: "8+",
+    next: "Brick & Mortar",
+    icon: Package,
+    description:
+      "Producers manufacture goods for brand owners under private labels. This partnership allows customization while leveraging established production capabilities. Vendors focus on craftsmanship, while buyers manage branding and marketing. The model builds long-term manufacturing relationships and expands both partners’ market influence without added retail risk.",
+  },
+  {
+    level: 8,
+    type: "Brick & Mortar",
+    retention: "12 months",
+    kpi: "7+",
+    next: "Design Collaboration",
+    icon: Building,
+    description:
+      "Space providers and tenants collaborate on premium retail stores in prime locations. Vendors benefit from established foot traffic and an immersive customer experience. This stage strengthens offline presence, supports experiential marketing, and allows deeper engagement with customers through personalized, in-store product presentations.",
+  },
+  {
+    level: 9,
+    type: "Design Collaboration",
+    retention: "9 months",
+    kpi: "7+",
+    next: "Storytelling & Media",
+    icon: Crown,
+    description:
+      "Collaboration suppliers and partners co-create unique designs merging tradition and modern aesthetics. This partnership focuses on innovation and brand differentiation, appealing to niche markets. Vendors gain creative freedom while accessing collaborative networks, ensuring both artistic expression and market competitiveness for long-term growth.",
+  },
+  {
+    level: 10,
+    type: "Storytelling & Media",
+    retention: "6 months",
+    kpi: "6+",
+    next: "Warehouse",
+    icon: Package,
+    description:
+      "Content suppliers work with media buyers to share cultural narratives and heritage. This model enhances brand identity by showcasing authentic stories, building emotional connections with audiences. Vendors leverage media reach to elevate brand value, attract loyal customers, and create meaningful cultural impact.",
+  },
+  {
+    level: 11,
+    type: "Warehouse",
+    retention: "12 months",
+    kpi: "7+",
+    next: "Packaging",
+    icon: Store,
+    description:
+      "Warehouse providers and clients partner to streamline storage and distribution processes. This stage focuses on efficient inventory management, ensuring timely deliveries and reduced logistical costs. Vendors gain operational stability and scalability, while buyers enjoy reliable fulfillment services tailored to specialized product needs.",
+  },
+  {
+    level: 12,
+    type: "Packaging",
+    retention: "6 months",
+    kpi: "6+",
+    next: "Logistics",
+    icon: Package,
+    description:
+      "Packaging suppliers provide sustainable, culturally aligned designs for premium crafts. This partnership elevates brand presentation, enhances customer experience, and supports eco-friendly practices. Vendors and buyers collaborate to create packaging that protects products while reflecting the artistry and cultural heritage of their origins.",
+  },
+  {
+    level: 13,
+    type: "Logistics",
+    retention: "9 months",
+    kpi: "7+",
+    next: "Museum / Institutional",
+    icon: Globe,
+    description:
+      "Logistics providers and clients coordinate specialized transportation for delicate crafts. The focus is on safety, timeliness, and cost efficiency. Vendors benefit from secure handling, while buyers ensure products arrive in optimal condition. This stage enhances reliability and supports scaling to broader markets.",
+  },
+  {
+    level: 14,
+    type: "Museum / Institutional",
+    retention: "36 months",
+    kpi: "9+",
+    next: "NGO & Government",
+    icon: Eye,
+    description:
+      "Institutional suppliers collaborate with museums to showcase heritage pieces globally. This partnership fosters cultural preservation, education, and global recognition of craftsmanship. Vendors gain prestige and exposure, while buyers enrich collections, exhibitions, and cultural narratives through authentic, high-quality artisan contributions.",
+  },
+  {
+    level: 15,
+    type: "NGO & Government",
+    retention: "24 months",
+    kpi: "8+",
+    next: "Technology Partnership",
+    icon: Store,
+    description:
+      "NGO suppliers and buyers collaborate on initiatives that support artisans and promote community development. This partnership blends social responsibility with sustainable trade, creating long-term economic benefits. Vendors contribute to impactful projects, while buyers advance cultural preservation and rural economic empowerment.",
+  },
+  {
+    level: 16,
+    type: "Technology Partnership",
+    retention: "18 months",
+    kpi: "8+",
+    next: null,
+    icon: TrendingUp,
+    description:
+      "Technology providers and clients partner to digitize and promote crafts. This stage integrates innovation into traditional models, enhancing market reach, operational efficiency, and customer engagement. Vendors gain tools for scaling, while buyers leverage technology to modernize the craft industry and drive growth.",
+  },
+];
+
 
   const [currentLevelIndex, setCurrentLevelIndex] = useState(0)
   const [currentKPIIndex, setCurrentKPIIndex] = useState(0)
