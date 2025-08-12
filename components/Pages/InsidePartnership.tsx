@@ -21,7 +21,7 @@ import { Pagination } from "swiper/modules"
 import RecSquareSection from "../Section/RecSquareSection"
 import Accordion from "../Material/Accordion"
 import SectionFaq from "../Section/SectionFaq"// Corrected path
-import CostComparisonResponsive from "./CostComparsion"
+import CostComparisonResponsive from "../Essentials/CostComparsion"
 import { useGlobalContext } from "../../context/ScreenProvider"
 
 // Define types for all the data structures

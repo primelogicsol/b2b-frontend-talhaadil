@@ -1,5 +1,5 @@
-import { PartnershipPage } from "@/components/Essentials/PartnershipComponent"
-import type { PartnershipPageProps } from "@/components/Essentials/PartnershipComponent"
+import { PartnershipPage } from "@/components/Pages/PartnershipComponent"
+import type { PartnershipPageProps } from "@/components/Pages/PartnershipComponent"
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner"
 import InDepthFAQ from "@/components/Material/InDepthFAQ"
 import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection"

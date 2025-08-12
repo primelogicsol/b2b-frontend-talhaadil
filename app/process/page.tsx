@@ -1,4 +1,4 @@
-import Process from '@/components/Essentials/ProcessComp'
+import Process from '@/components/Pages/ProcessComp'
 import VerticalHeroSlider from '@/components/Essentials/VerticalBanner'
 
 function page() {

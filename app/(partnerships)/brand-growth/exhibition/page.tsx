@@ -1,6 +1,6 @@
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
 import { Users, Target, DollarSign, Shield } from "lucide-react";
-import InsidePartnership from "@/components/Essentials/InsidePartnership";
+import InsidePartnership from "@/components/Pages/InsidePartnership";
 
 export default function Page() {
   // Data for HomePage component
