@@ -413,7 +413,7 @@ if (user_role === "buyer") {
               <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
             </Link>
             <DesktopDropdown title="About Us" items={blogDropdownItems} />
-            <DesktopDropdown title="Partnerships" items={pageDropdownItems} isSignedIn={isSignedIn} />
+            <DesktopDropdown title="Partnerships" items={pageDropdownItems} isSignedIn={true} />
             <Link
               href={isSignedIn ? "/process" : "#"}
               className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out flex items-center"
