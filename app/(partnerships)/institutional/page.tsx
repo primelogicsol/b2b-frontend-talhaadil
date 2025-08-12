@@ -1,12 +1,9 @@
-'use client'
 import { PartnershipPage } from "@/components/Essentials/PartnershipComponent"
 import type { PartnershipPageProps } from "@/components/Essentials/PartnershipComponent"
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner"
 import InDepthFAQ from "@/components/Material/InDepthFAQ"
 import HorizontalSwipeSection from "@/components/Section/HorizontalSwipeSection"
 import HowItWorksSection from "@/components/Section/HowItWorksSection"
-import { useGlobalContext } from "@/context/ScreenProvider" 
-import Link from "next/link"
 const defaultProps: PartnershipPageProps = {
   vendorTitle: "Why Work With De Koshur?",
   vendorSubtitle: "Your One-Stop Solution for Success",
@@ -174,7 +171,6 @@ const defaultProps: PartnershipPageProps = {
 }
 
 export default function Component() {
-  const { is4K } = useGlobalContext() // Use the hook here
 
   const howItWorksData = {
     title: "How It Works",
