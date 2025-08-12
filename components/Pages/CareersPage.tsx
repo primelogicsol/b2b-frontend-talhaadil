@@ -14,7 +14,7 @@ import {
   GraduationCap,
   Mail,
 } from "lucide-react"
-import VerticalHeroSlider from "./VerticalBanner"
+import VerticalHeroSlider from "../Essentials/VerticalBanner"
 import { useGlobalContext } from "../../context/ScreenProvider"// Import useGlobalContext
 
 export default function CareersPage() {

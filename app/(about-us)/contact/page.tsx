@@ -1,4 +1,4 @@
-import ContactUs from "@/components/Essentials/ContactUs"
+import ContactUs from "@/components/Pages/ContactUs"
 export default function Home() {
   return <ContactUs />
 }

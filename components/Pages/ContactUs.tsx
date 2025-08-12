@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import VerticalHeroSlider from "./VerticalBanner" // Assuming this path
+import VerticalHeroSlider from "../Essentials/VerticalBanner" // Assuming this path
 import {
   FaFacebookF as Facebook,
   FaTwitter as Twitter,
