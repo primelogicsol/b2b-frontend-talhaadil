@@ -201,21 +201,22 @@ const handleSubmitAll = async () => {
     const firstDocTypeConfig = documentTypes[0] // Only the first document type
     const docKey = firstDocTypeConfig.key
     const docData = documents[docKey]
+     await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    if (firstDocTypeConfig.multiple) {
-      const files = docData as File[]
-      if (files[0]) {
-        const apiDocType = `${String(docKey)}_1`
-        const response = await submitDocumentToAPI({ document_type: apiDocType, file: files[0] })
-        console.log(response.data)
-      }
-    } else {
-      const file = docData as File | null
-      if (file) {
-        const response = await submitDocumentToAPI({ document_type: String(docKey), file })
-        console.log(response.data)
-      }
-    }
+    // if (firstDocTypeConfig.multiple) {
+    //   const files = docData as File[]
+    //   if (files[0]) {
+    //     const apiDocType = `${String(docKey)}_1`
+    //     const response = await submitDocumentToAPI({ document_type: apiDocType, file: files[0] })
+    //     console.log(response.data)
+    //   }
+    // } else {
+    //   const file = docData as File | null
+    //   if (file) {
+    //     const response = await submitDocumentToAPI({ document_type: String(docKey), file })
+    //     console.log(response.data)
+    //   }
+    // }
    
   onNext()
   } catch (error:any) {

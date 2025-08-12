@@ -40,6 +40,7 @@ interface PartnershipTier {
   details: string
   kpi: string
   retention: string
+  link: string
 }
 
 interface TierAdvancement {
