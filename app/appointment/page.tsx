@@ -12,7 +12,7 @@ export default function Page() {
         const res = await fetch('/api/get-ip')
         const data = await res.json()
         console.log("User IP:", data.ip)
-        const result = await fetch(`http://ip-api.com/json/${data.ip}`)
+        const result = await fetch(`https://ip-api.com/json/${data.ip}`)
         const dataresult = await result.json()
         console.log('User country:',dataresult)
 
