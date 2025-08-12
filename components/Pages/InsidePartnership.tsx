@@ -30,6 +30,7 @@ export interface ServiceCard {
   description: string
   icon: keyof typeof serviceIconMap
   featured: boolean
+  href? : string
 }
 
 export interface AccordionItem {
@@ -109,8 +110,45 @@ export default function InsidePartnership({
   costComparison,
   pricingPlans,
   faqs,
-  serviceCards,
+  
+  
 }: HomePageProps) {
+  const serviceCards: ServiceCard[] = [
+  {
+    title: "Core Trade",
+    description:
+      "Partnerships for dropshipping, import/export, wholesale, and consignment to grow trade scale.",
+    icon: "shoppingCart" as "shoppingCart",
+    href: "/core-trade",
+    featured: false,
+  },
+  {
+    title: "Brand Expansion",
+    description:
+      "Expand market reach via exhibitions, white-label deals, auctions, and physical store collaborations.",
+    icon: "building" as "building",
+    href: "/brand-growth",
+    featured: false,
+  },
+  {
+    title: "Collaborative",
+    description:
+      "Join forces in design, packaging, media storytelling, and innovative approaches to craftwork.",
+    icon: "handshake" as "handshake",
+    href: "/collaborative",
+    featured: false,
+  },
+  {
+    title: "Institutional",
+    description:
+      "Form alliances with NGOs, museums, and strategic investors for impactful and large-scale work.",
+    icon: "warehouse" as "warehouse",
+    href: "/institutional",
+    featured: false,
+  },
+];
+
+
   const [isYearly, setIsYearly] = useState(false)
   const [expandedItems, setExpandedItems] = useState<number[]>([0])
   const { is4K } = useGlobalContext()
@@ -532,7 +570,7 @@ export default function InsidePartnership({
                 </h3>
                 {/* Description */}
                 <p
-                  className={`text-left px-2 md:text-center lg:text-center text-sm leading-relaxed text-center mb-6 ${
+                  className={`px-2 md:text-center lg:text-center text-sm leading-relaxed text-center mb-6 ${
                     service.featured ? "text-[var(--white)] opacity-90" : "text-[var(--foreground)]"
                   }`}
                 >
@@ -540,19 +578,18 @@ export default function InsidePartnership({
                 </p>
                 {/* Special indicator for featured card */}
 
-                {service.featured && (
-                  <p className="text-md text-[var(--secondary-color)] mb-1 font-bold text-left px-1 md:text-center lg:text-center">You are currently here</p>
-                )}
+               
 
                 {/* Read More Button */}
                 <div className="text-center">
                   <button
-                    className={`inline-flex items-center font-semibold text-sm transition-all duration-300  ${
-                      service.featured
-                        ? "text-[var(--white)] hover:text-[var(--secondary-hover-color)]"
-                        : "text-[var(--primary-color)]  hover:text-[var(--secondary-color)]"
-                    }`}
-                  >
+                  onClick={()=>{
+                    if (service.href) {
+                      window.location.href = service.href
+                    }
+                  }}
+                    className=
+                    "inline-flex items-center font-semibold text-sm transition-all duration-300 text-[var(--primary-color)]  hover:text-[var(--secondary-color)]">
                     READ MORE
                     <svg
                       className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"

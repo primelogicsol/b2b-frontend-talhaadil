@@ -5,9 +5,7 @@ import type React from "react";
 export default function Loading() {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-white"
-     
-    >
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white"    >
       <div className="relative">
         <div
           className="w-32 h-32 md:w-40 md:h-40 rounded-full animate-spin"

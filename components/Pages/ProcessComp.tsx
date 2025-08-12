@@ -407,8 +407,8 @@ export default function Process() {
             <div
               className={
                 is4K
-                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
-                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
               }
             >
               <Zap
@@ -440,8 +440,8 @@ export default function Process() {
             <div
               className={
                 is4K
-                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
-                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
               }
             >
               <CheckCircle
@@ -473,8 +473,8 @@ export default function Process() {
             <div
               className={
                 is4K
-                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
-                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
               }
             >
               <Globe
@@ -506,8 +506,8 @@ export default function Process() {
             <div
               className={
                 is4K
-                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
-                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-light-text-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  ? "flex flex-col items-center p-8 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
+                  : "flex flex-col items-center p-6 rounded-lg shadow-md bg-[var(--primary-color)] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-100"
               }
             >
               <Handshake
