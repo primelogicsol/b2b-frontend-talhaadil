@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
+import { useAuthentication } from "@/context/AuthenticationWrapper"
 
 export function UserProfileDisplay({ userName, userAvatarSrc, onClick }: {
   userName: string,
@@ -12,18 +12,9 @@ export function UserProfileDisplay({ userName, userAvatarSrc, onClick }: {
   const [open, setOpen] = useState(false)
   const dropdownRef = useRef(null)
   const router = useRouter();
+   const  { handleLogout } = useAuthentication()
 
-  function handleLogout(){
-    Cookies.remove("access_token")
-    Cookies.remove("refresh_token")
-    Cookies.remove("user_role")
-    Cookies.remove("user_id")
-    Cookies.remove("visibility_level")
-    Cookies.remove("ownership")
-
-    router.push("/login") // or any other route
-
-  }
+  
   // Close dropdown if click happens outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

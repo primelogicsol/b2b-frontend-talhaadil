@@ -32,7 +32,7 @@ const fallbackData: FeatureItem[] = [
   {
     icon: "Users",
     title: "Collaborative",
-    desc: "We build networks, share resources, and create mutual business growth.",
+    desc: "We build networks, share resources, and create business growth.",
     link: "/collaborative",
   },
   {
@@ -79,7 +79,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) =>
   return (
     <Link href={link} className="block">
       <div
-        className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer p-4 flex flex-col items-center justify-center h-[190px] w-[190px]`}
+        className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer p-4 flex flex-col items-center justify-center h-[160px] w-[160px] md:h-[180px] md:w-[180px]`}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{

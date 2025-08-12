@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { UserProfileDisplay } from "./UserProfileDisplay";
 import Cookies from "js-cookie";
+import { useAuthentication } from "@/context/AuthenticationWrapper";
 
 
 interface DropdownItem {
@@ -30,6 +31,7 @@ interface MobileDropdownProps {
   title: string;
   items: NestedDropdownItem[];
   onLinkClick?: () => void;
+  isSignedIn?: boolean;
 }
 
 function DesktopSubDropdown({ item }: { item: NestedDropdownItem }) {
@@ -96,18 +98,16 @@ function DesktopDropdown({ title, items, isActive, isSignedIn }: DesktopDropdown
       onMouseLeave={handleMouseLeave}
     >
       <button
-        className={`flex items-center gap-2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${
-          isActive
-            ? "text-[var(--secondary-color)]"
-            : "hover:text-[var(--secondary-hover-color)]"
-        }`}
+        className={`flex items-center gap-2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${isActive
+          ? "text-[var(--secondary-color)]"
+          : "hover:text-[var(--secondary-hover-color)]"
+          }`}
       >
         {title}
         {isPartnership && !isSignedIn && <FiLock size={14} />}
         <span
-          className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${
-            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-          }`}
+          className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+            }`}
         />
       </button>
 
@@ -156,9 +156,8 @@ function MobileSubDropdown({
       >
         <span>{item.label}</span>
         <ChevronDown
-          className={`w-4 h-4 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
-          }`}
+          className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"
+            }`}
         />
       </button>
       <AnimatePresence>
@@ -190,24 +189,32 @@ function MobileSubDropdown({
   );
 }
 
-function MobileDropdown({ title, items, onLinkClick }: MobileDropdownProps) {
+function MobileDropdown({ title, items, onLinkClick, isSignedIn }: MobileDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isPartnership = title.toLowerCase() === "partnerships";
+
+  const toggleDropdown = () => {
+    if (!isPartnership || isSignedIn) {
+      setIsOpen(!isOpen);
+    }
+  };
 
   return (
     <div className="w-full">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleDropdown}
         className="w-full flex items-center gap-2 py-4 px-10 text-white text-lg font-medium hover:bg-white/10 rounded-lg transition-all duration-300"
       >
         <span>{title}</span>
+        {isPartnership && !isSignedIn && <FiLock size={16} />}
         <ChevronDown
-          className={`w-5 h-5 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
-          }`}
+          className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"
+            }`}
         />
       </button>
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && (!isPartnership || isSignedIn) && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -246,15 +253,16 @@ function MobileDropdown({ title, items, onLinkClick }: MobileDropdownProps) {
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false); // Set to true for demonstration
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const { handleLogout } = useAuthentication();
   const router = useRouter();
-   const user_role = Cookies.get('user_role')
-   console.log(user_role)
-   useEffect(() => {
+  const user_role = Cookies.get('user_role')
+  console.log(user_role)
+  useEffect(() => {
     const token = Cookies.get('access_token')
-   
-   
-   
+
+
+
 
     if (token) {
       setIsSignedIn(true)
@@ -273,68 +281,97 @@ export function Navbar() {
     { label: "Contact Us", href: "/contact" },
   ];
 
-  const pageDropdownItems:NestedDropdownItem[] =  user_role === "buyer" ? ( [
-  {
-    label: "Core Trade",
-    href: "/buyer/core-partnerships",
-    subItems: [
-      { label: "Drop Shipping", href: "/buyer/core/dropshipping" },
-      { label: "Consignment", href: "/buyer/core/consignment" },
-      { label: "Import", href: "/buyer/core/import" },
-      { label: "Wholesale & Distribution", href: "/buyer/core/wholesale" },
-    ],
-  },
-  {
-    label: "Brand Expansion ",
-    href: "/buyer/expansion-partnerships",
-    subItems: [
-      { label: "Exhibition & Event Organizer", href: "/buyer/expansion/exhibition" },
-      { label: "Auction & Bidding", href: "/buyer/expansion/auction" },
-      { label: "White-Label", href: "/buyer/expansion/white-label" },
-      { label: "Brick & Mortar Space-Sharing", href: "/buyer/expansion/space-sharing" },
-    ],
-  },
-  {
-    label: "Collaborative",
-    href: "/buyer/collaborative-partnerships",
-    subItems: [
-      { label: "Knowledge & Design", href: "/buyer/collab/knowledge-design" },
-      { label: "Storytelling & Media", href: "/buyer/collab/storytelling-media" },
-      { label: "Buyer Mentorship Program", href: "/buyer/collab/mentorship" },
-      { label: "Craft Innovation Patron", href: "/buyer/collab/innovation" },
-    ],
-  },
-  {
-    label: "Institutional",
-    href: "/buyer/strategic-partnerships",
-    subItems: [
-      { label: "Strategic Investor", href: "/buyer/strategic/investor" },
-      { label: "Museum/Institutional", href: "/buyer/strategic/museum" },
-      { label: "NGO & Government", href: "/buyer/strategic/ngo-gov" },
-      { label: "Impact Measurement", href: "/buyer/strategic/impact" },
-    ],
-  }]) : (
-    [{
-    label: "Core Trade",
-    href: "/buyer/core-partnerships",
-    subItems: [
-      { label: "Drop Shipping", href: "/buyer/core/dropshipping" },
-      { label: "Consignment", href: "/buyer/core/consignment" },
-      { label: "Import", href: "/buyer/core/import" },
-      { label: "Wholesale & Distribution", href: "/buyer/core/wholesale" },
-    ],
-  },
-  {
-    label: "Brand Expansion ",
-    href: "/buyer/expansion-partnerships",
-    subItems: [
-      { label: "Exhibition & Event Organizer", href: "/buyer/expansion/exhibition" },
-      { label: "Auction & Bidding", href: "/buyer/expansion/auction" },
-      { label: "White-Label", href: "/buyer/expansion/white-label" },
-      { label: "Brick & Mortar Space-Sharing", href: "/buyer/expansion/space-sharing" },
-    ],
-  },]
-  )
+  let pageDropdownItems: NestedDropdownItem[] = [];
+
+if (user_role === "buyer") {
+  pageDropdownItems = [
+    {
+      label: "Core Trade",
+      href: "/core-trade",
+      subItems: [
+        { label: "Drop Shipping", href: "/core-trade/dropshipping-ecommerce" },
+        { label: "Export", href: "/core-trade/import-export" },
+        { label: "Distribution", href: "/core-trade/wholesale-distribution" },
+        { label: "Consignment", href: "/core-trade/consignment" },
+      ],
+    },
+    {
+      label: "Brand Expansion",
+      href: "/brand-growth",
+      subItems: [
+        { label: "Auction", href: "/brand-growth/auction-bidding" },
+        { label: "White-Label", href: "/brand-growth/white-label" },
+        { label: "Exhibition", href: "/brand-growth/exhibition" },
+        { label: "Brick & Mortar", href: "/brand-growth/brick-mortar" },
+      ],
+    },
+    {
+      label: "Collaborative",
+      href: "/collaborative",
+      subItems: [
+        { label: "Packaging", href: "/collaborative/packaging" },
+        { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
+        { label: "Storytelling & Media", href: "/collaborative/storytelling-media" },
+        { label: "Warehouse", href: "/collaborative/warehouse" },
+      ],
+    },
+    {
+      label: "Institutional",
+      href: "/institutional",
+      subItems: [
+        { label: "Institutional", href: "/institutional/museum-institutional" },
+        { label: "Technology Partnership", href: "/institutional/technology-partnership" },
+        { label: "NGO Supplier", href: "/institutional/ngo-government" },
+        { label: "Logistics", href: "/institutional/logistics" },
+      ],
+    },
+  ];
+} else {
+  pageDropdownItems = [
+    {
+      label: "Core Trade",
+      href: "/core-trade",
+      subItems: [
+        { label: "E-Commerce", href: "/core-trade/dropshipping-ecommerce" },
+        { label: "Import", href: "/core-trade/import-export" },
+        { label: "Wholesale", href: "/core-trade/wholesale-distribution" },
+        { label: "Consignment", href: "/core-trade/consignment" },
+      ],
+    },
+    {
+      label: "Brand Expansion",
+      href: "/brand-growth",
+      subItems: [
+        { label: "Bidding", href: "/brand-growth/auction-bidding" },
+        { label: "White-Label", href: "/brand-growth/white-label" },
+        { label: "Exhibition", href: "/brand-growth/exhibition" },
+        { label: "Brick & Mortar", href: "/brand-growth/brick-mortar" },
+      ],
+    },
+    {
+      label: "Collaborative",
+      href: "/collaborative",
+      subItems: [
+        { label: "Packaging", href: "/collaborative/packaging" },
+        { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
+        { label: "Storytelling & Media", href: "/collaborative/storytelling-media" },
+        { label: "Warehouse", href: "/collaborative/warehouse" },
+      ],
+    },
+    {
+      label: "Institutional",
+      href: "/institutional",
+      subItems: [
+        { label: "Museum", href: "/institutional/museum-institutional" },
+        { label: "Technology Partnership", href: "/institutional/technology-partnership" },
+        { label: "NGO Buyer", href: "/institutional/ngo-government" },
+        { label: "Logistics", href: "/institutional/logistics" },
+      ],
+    },
+  ];
+}
+
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -344,11 +381,10 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${
-          isScrolled
-            ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2"
-            : "py-4"
-        }`}
+        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${isScrolled
+          ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2"
+          : "py-4"
+          }`}
       >
         <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
           <Link
@@ -360,9 +396,8 @@ export function Navbar() {
               className="text-[var(--secondary-color)]"
             />
             <span
-              className={`text-white font-bold transition-all duration-500 ${
-                isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"
-              }`}
+              className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"
+                }`}
             >
               Dekoshur Crafts
             </span>
@@ -377,22 +412,38 @@ export function Navbar() {
               Home
               <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
             </Link>
-            <DesktopDropdown title="About Us" items={blogDropdownItems}/>
-            <DesktopDropdown title="Partnerships" items={pageDropdownItems} isSignedIn={true}/>
+            <DesktopDropdown title="About Us" items={blogDropdownItems} />
+            <DesktopDropdown title="Partnerships" items={pageDropdownItems} isSignedIn={isSignedIn} />
             <Link
-              href="/process"
-              className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
+              href={isSignedIn ? "/process" : "#"}
+              className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out flex items-center"
+              onClick={(e) => {
+                if (!isSignedIn) {
+                  e.preventDefault();
+                  return;
+                }
+              }}
             >
               Process
+              {!isSignedIn && <FiLock size={14} className="ml-2" />}
               <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
             </Link>
+
             <Link
-              href="/registration"
-              className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
+              href={isSignedIn ? "/registration" : "#"}
+              className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out flex items-center"
+              onClick={(e) => {
+                if (!isSignedIn) {
+                  e.preventDefault();
+                  return;
+                }
+              }}
             >
               Registration
+              {!isSignedIn && <FiLock size={14} className="ml-2" />}
               <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
             </Link>
+
             <Link
               href="/appointment"
               className="py-2 text-white text-md font-medium relative group hover:text-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out"
@@ -528,21 +579,38 @@ export function Navbar() {
                       title="Partnerships"
                       items={pageDropdownItems}
                       onLinkClick={() => setIsMobileMenuOpen(false)}
+                      isSignedIn={isSignedIn}
                     />
                     <Link
-                      href="/process"
+                      href={isSignedIn ? "/process" : "#"}
                       className="flex items-center py-4 px-6 text-white text-lg font-medium hover:bg-white/10 rounded-lg mx-4 transition-all duration-300"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        if (!isSignedIn) {
+                          e.preventDefault();
+                          return;
+                        }
+                        setIsMobileMenuOpen(false);
+                      }}
                     >
                       <span>Process</span>
+                      {!isSignedIn && <FiLock size={16} className="ml-2" />}
                     </Link>
+
                     <Link
-                      href="/registration"
+                      href={isSignedIn ? "/registration" : "#"}
                       className="flex items-center py-4 px-6 text-white text-lg font-medium hover:bg-white/10 rounded-lg mx-4 transition-all duration-300"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        if (!isSignedIn) {
+                          e.preventDefault();
+                          return;
+                        }
+                        setIsMobileMenuOpen(false);
+                      }}
                     >
                       <span>Registration</span>
+                      {!isSignedIn && <FiLock size={16} className="ml-2" />}
                     </Link>
+
                     <Link
                       href="/appointment"
                       className="flex items-center py-4 px-6 text-white text-lg font-medium hover:bg-white/10 rounded-lg mx-4 transition-all duration-300"
@@ -556,22 +624,33 @@ export function Navbar() {
                 {/* Bottom Actions */}
                 <div className="p-6 border-t border-white/10 space-y-3">
                   {isSignedIn ? (
-                    <button
-                      className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        router.push("/profile");
-                      }}
-                    >
-                      <span>View Profile</span>
-                    </button>
+                    <>
+                      <button
+                        className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          router.push("/profile");
+                        }}
+                      >
+                        <span>View Profile</span>
+                      </button>
+                      <button
+                        className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          router.push("/login");
+                        }}
+                      >
+                        <span>Logout</span>
+                      </button>
+                    </>
                   ) : (
                     <>
                       <button
                         className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
                         onClick={() => {
                           setIsMobileMenuOpen(false);
-                          router.push("/login");
+                          handleLogout()
                         }}
                       >
                         <span>Log In</span>

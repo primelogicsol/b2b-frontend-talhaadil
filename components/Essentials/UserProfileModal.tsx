@@ -6,6 +6,7 @@ import { useGlobalContext } from "../../context/ScreenProvider"
 
 export default function UserProfilePage() {
   const { is4K } = useGlobalContext()
+ 
 
   return (
     <main

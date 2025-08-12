@@ -187,54 +187,6 @@ export default function LandingPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
 
-  const refs = useRef(partnershipCategories.map(() => createRef()));
-  // Scroll animations
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
-
-  // Profit metrics data
-  const products = [
-    "Pashmina",
-    "Kani",
-    "Cashmere",
-    "Silk",
-    "Bags & Purses",
-    "Jackets",
-    "Kaftans",
-    "Kurtas",
-    "Pherans",
-    "Jewelry",
-  ];
-
-  const leftMetrics = [
-    {
-      icon: <DollarSign size={20} />,
-      title: "Annual Revenue",
-      value: "$160M+",
-    },
-    { icon: <Globe size={20} />, title: "Global Export", value: "78%" },
-    { icon: <Users size={20} />, title: "Artisans", value: "88000+" },
-    {
-      icon: <TrendingUp size={20} />,
-      title: "Market Growth",
-      value: "17% YoY",
-    },
-    { icon: <Award size={20} />, title: "Quality Rating", value: "4.8/5" },
-    { icon: <Target size={20} />, title: "Sustainability", value: "96%" },
-  ];
-
-  const rightMetrics = [
-    { icon: <Target size={20} />, title: "Market Share", value: "30%" },
-    { icon: <Award size={20} />, title: "Product Range", value: "80+" },
-    { icon: <Heart size={20} />, title: "Customer Satisfaction", value: "97%" },
-    {
-      icon: <Clock size={20} />,
-      title: "Avg Production Time",
-      value: "60 Days",
-    },
-    { icon: <Zap size={20} />, title: "Energy Efficiency", value: "93%" },
-    { icon: <Star size={20} />, title: "Innovation Index", value: "4.6/5" },
-  ];
 
   const scrollFeatures = [
     {
@@ -391,7 +343,7 @@ export default function LandingPage() {
       className="text-center mb-16 flex flex-col items-center gap-6"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.2 }}
       viewport={{ once: true }}
     >
       <img
@@ -432,7 +384,7 @@ export default function LandingPage() {
             animate={
               isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
             }
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
             whileHover={{ scale: 1.02 }}
           >
             {/* Category Title */}
