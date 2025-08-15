@@ -2,13 +2,13 @@
 
 import api from "@/lib/axios";
 
-export const postappointment = (query: {
-    user_type: "buyer" | "vendor" | "guest";
-    appointment_type: "virtual" | "offline";
+export const postAppointment = (query: {
+    user_type: "buyer" | "vendor" | "guest" | "";
+    appointment_type: "virtual" | "offline" | "";
     appointment_date: string; // YYYY-MM-DD
     appointment_time: string; // HH:MM
     purpose: string; // max 255 chars
-    virtual_platform?: "Zoom" | "Google Meet" | "MS Teams";
+    virtual_platform?: any
     office_location?: "USA Office – HQ" | "Kashmir India";
     country?: "USA" | "India";
   }, file?: File) => {
