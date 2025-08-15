@@ -15,6 +15,13 @@ export const sendInfo = (body : any) => {
     },
   });
 };
+export const sendAgreement = (body : any) => {
+  return api.post("/registration/agreement", body, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
 export const submitDocumentToAPI = (body: any) => {
   const formData = new FormData();
   formData.append("file", body.file); // only 'file' — no 'file_name'
@@ -32,3 +39,29 @@ export const submitDocumentToAPI = (body: any) => {
 };
 
 
+export const submitProductsToAPI = (body: any) => {
+  return api.post(
+    `/registration/products`,
+    body,
+    {
+      headers: {
+        requiresAuth: true,
+      },
+    }
+  );
+};
+
+export const getDocumentStatus = () => {
+  return api.get(`/user/documents/progress`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+export const getVerificationStatus = () => {
+  return api.get(`/verification/status`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};

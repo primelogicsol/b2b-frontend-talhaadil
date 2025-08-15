@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
 import { useGlobalContext } from "../../context/ScreenProvider"
+import { submitProductsToAPI } from "@/services/regitsration"
 
 type DetailMap = Record<string, string[]>
 
@@ -111,30 +112,15 @@ export default function ComprehensiveProductSelection({
        
       }
       console.log(submissionData)
-    //delay of 2 seconds
-     await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // const response = await fetch("/api/submit-product-selection", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(submissionData),
-      // })
+      // Call the API to submit the product data
+      const response = await submitProductsToAPI(submissionData)
+      console.log(response)
 
-      // if (!response.ok) {
-      //   throw new Error(`HTTP error! status: ${response.status}`)
-      // }
 
-      // const result = await response.json()
-      // console.log("Data submitted successfully:", result)
-
-      // Call onNext only after successful submission
-      onNext()
-    } catch (error) {
+    } catch (error:any) {
       console.error("Error submitting product data:", error)
-      // You can add user-friendly error handling here
-      alert("Failed to submit data. Please try again.")
+      console.log(error)
     } finally {
       setIsSubmitting(false)
     }
