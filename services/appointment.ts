@@ -2,7 +2,7 @@
 
 import api from "@/lib/axios";
 
-export const postAppointment = (query: {
+export const postappointment = (query: {
     user_type: "buyer" | "vendor" | "guest" | "";
     appointment_type: "virtual" | "offline" | "";
     appointment_date: string; // YYYY-MM-DD
