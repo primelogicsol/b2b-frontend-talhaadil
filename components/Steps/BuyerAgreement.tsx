@@ -896,7 +896,7 @@ export default function BuyerAgreement({
               is4K ? "lg:text-xl xl:text-2xl" : ""
             }`}
           >
-            Fill out the e Agreement.
+            Fill out the eAgreement.
           </p>
         </div>
 

@@ -1,31 +1,32 @@
-"use client"
-import { useEffect, useState } from "react"
-import { FaHandshake, FaCheck, FaLock } from "react-icons/fa"
-import { useGlobalContext } from "@/context/ScreenProvider"
-import { sendLevel } from "@/services/regitsration"
-
+"use client";
+import { useEffect, useState } from "react";
+import { FaHandshake, FaCheck, FaLock } from "react-icons/fa";
+import { useGlobalContext } from "@/context/ScreenProvider";
+import { sendLevel } from "@/services/regitsration";
+import Cookies from "js-cookie";
+import { useToast } from "@/context/ToastProvider";
 interface Partnership {
-  id: string
-  level: number
-  partnership_name: string
-  vendor: string
-  buyer: string
-  description: string
-  retention: string
-  kpiScore: string
-  available: boolean
-  isAltPath?: boolean
+  id: string;
+  level: number;
+  partnership_name: string;
+  vendor: string;
+  buyer: string;
+  description: string;
+  retention: string;
+  kpiScore: string;
+  available: boolean;
+  isAltPath?: boolean;
 }
 
 interface ChoosePartnershipProps {
   data?: {
-    selected: string
-    title: string
-  }
-  onUpdate: (data: { selected: string; title: string }) => void
-  onNext: () => void
-  onPrev: () => void
-  user_role?: "buyer" | "vendor" // Add user role prop
+    selected: string;
+    title: string;
+  };
+  onUpdate: (data: { selected: string; title: string }) => void;
+  onNext: () => void;
+  onPrev: () => void;
+  user_role?: "buyer" | "vendor"; // Add user role prop
 }
 const partnerships: Partnership[] = [
   {
@@ -39,7 +40,6 @@ const partnerships: Partnership[] = [
     retention: "No requirement",
     kpiScore: "No requirement",
     available: true,
-
   },
   {
     id: "consignment",
@@ -231,81 +231,113 @@ export default function ChoosePartnership({
   onUpdate,
   onNext,
   onPrev,
-  user_role = "vendor",
 }: ChoosePartnershipProps) {
-  const { is4K } = useGlobalContext()
-  const [selectedPartnership, setSelectedPartnership] = useState(data?.selected || "")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { is4K } = useGlobalContext();
+  const [selectedPartnership, setSelectedPartnership] = useState(
+    data?.selected || ""
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [user_role, setUserRole] = useState<"buyer" | "vendor">("buyer");
+  const { showToast } = useToast();
+  useEffect(() => {
+    const roleFromCookie = Cookies.get("user_role") as
+      | "vendor"
+      | "buyer"
+      | undefined;
+    if (roleFromCookie) {
+      setUserRole(roleFromCookie);
+    }
+  }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const handleSelect = (p: Partnership) => {
     if (p.available) {
-      setSelectedPartnership(p.id)
-      const roleBasedTitle = user_role === "buyer" ? p.buyer : p.vendor
-      onUpdate({ selected: p.id, title: `${p.partnership_name} - ${roleBasedTitle}` })
+      setSelectedPartnership(p.id);
+      const roleBasedTitle = user_role === "buyer" ? p.buyer : p.vendor;
+      onUpdate({
+        selected: p.id,
+        title: `${p.partnership_name} - ${roleBasedTitle}`,
+      });
     }
-  }
+  };
 
   const submitPartnershipSelection = async (partnershipData: any) => {
     try {
-      setIsSubmitting(true)
-      console.log(partnershipData)
+      setIsSubmitting(true);
+      console.log(partnershipData);
       const response = sendLevel({
         levels: [partnershipData.selected],
         is_lateral: partnershipData.isLateral || false,
+      });
+
+      data = (await response).data;
+      console.log("Partnership selection submitted successfully:", data);
+    } catch (error: any) {
+      const errorMsg = error?.response?.data?.detail;
+
+      if (errorMsg === "User already has registration levels") {
+        showToast("You have already submitted the information.");
+        setTimeout(() => {
+          onNext();
+        }, 4000);
+      } else {
+        showToast("Network error. Please try again.");
       }
-      )
 
-      data = (await response).data
-      console.log("Partnership selection submitted successfully:", data)
+      console.error("Network Error:", error);
 
-    } catch (error) {
-
-
-      console.error("Error submitting partnership selection:", error)
-      throw error
+      console.error("Error submitting partnership selection:", error);
+      throw error;
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleNext = async () => {
     if (selectedPartnership) {
       try {
         const selectedData = {
           selected: selectedPartnership,
-          title: partnerships.find((p) => p.id === selectedPartnership)?.partnership_name || "",
-          isLateral: partnerships.find((p) => p.id === selectedPartnership)?.isAltPath || false,
-        }
+          title:
+            partnerships.find((p) => p.id === selectedPartnership)
+              ?.partnership_name || "",
+          isLateral:
+            partnerships.find((p) => p.id === selectedPartnership)?.isAltPath ||
+            false,
+        };
 
-        await submitPartnershipSelection(selectedData)
-        onNext()
+        await submitPartnershipSelection(selectedData);
+        onNext();
       } catch (error) {
         // Error already handled in submitPartnershipSelection
       }
     }
-  }
+  };
 
   const handleGoToPay = (p: Partnership) => {
-    alert(`Redirecting to payment for ${p.partnership_name} - ${user_role === "buyer" ? p.buyer : p.vendor}…`)
-  }
+    alert(
+      `Redirecting to payment for ${p.partnership_name} - ${
+        user_role === "buyer" ? p.buyer : p.vendor
+      }…`
+    );
+  };
 
   const getRoleBasedTitle = (p: Partnership) => {
-    return user_role === "buyer" ? p.buyer : p.vendor
-  }
+    return user_role === "buyer" ? p.buyer : p.vendor;
+  };
 
   const getRoleBasedDescription = (p: Partnership) => {
-    const baseDescription = p.description
+    const baseDescription = p.description;
     const roleContext =
       user_role === "buyer"
         ? `As a ${p.buyer}, you will benefit from this partnership structure.`
-        : `As a ${p.vendor}, you will provide services in this partnership model.`
+        : `As a ${p.vendor}, you will provide services in this partnership model.`;
 
-    return `${baseDescription} ${roleContext}`
-  }
+    return `${baseDescription} ${roleContext}`;
+  };
 
   return (
     <div className={`mx-auto px-6 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
@@ -313,11 +345,20 @@ export default function ChoosePartnership({
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <FaHandshake className="text-white text-2xl" />
         </div>
-        <h1 className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}>
+        <h1
+          className={`font-bold text-[var(--primary-color)] mb-4 ${
+            is4K ? "text-6xl" : "text-4xl"
+          }`}
+        >
           Choose Your Partnership
         </h1>
-        <p className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"}`}>
-          Select the partnership that best aligns with your business goals as a {user_role}
+        <p
+          className={`text-[var(--primary-color)]/70 mx-auto ${
+            is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
+          }`}
+        >
+          Select the partnership that best aligns with your business goals as a{" "}
+          {user_role}
         </p>
         <div className="mt-4 inline-flex items-center px-4 py-2 bg-[var(--secondary-light-color)] rounded-full">
           <span className="text-sm font-semibold text-[var(--primary-color)]">
@@ -327,15 +368,25 @@ export default function ChoosePartnership({
       </div>
 
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""}`}
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${
+          is4K ? "gap-12" : ""
+        }`}
       >
         {partnerships.map((p) => (
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
             className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
-              ${p.available ? "cursor-pointer hover:-translate-y-2" : "opacity-60 grayscale"}
-              ${selectedPartnership === p.id ? "ring-4 ring-[var(--secondary-color)] scale-105" : ""}
+              ${
+                p.available
+                  ? "cursor-pointer hover:-translate-y-2"
+                  : "opacity-60 grayscale"
+              }
+              ${
+                selectedPartnership === p.id
+                  ? "ring-4 ring-[var(--secondary-color)] scale-105"
+                  : ""
+              }
               ${is4K ? "text-lg" : "text-base"}
             `}
           >
@@ -367,16 +418,21 @@ export default function ChoosePartnership({
 
             <div className="flex justify-start mb-6 mt-6">
               <span
-                className={`px-4 py-2 text-sm font-semibold rounded-full ${p.available
+                className={`px-4 py-2 text-sm font-semibold rounded-full ${
+                  p.available
                     ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
                     : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
-                  }`}
+                }`}
               >
                 {p.available ? "Available Now" : "Requirements Not Met"}
               </span>
             </div>
 
-            <h3 className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"}`}>
+            <h3
+              className={`font-bold text-[var(--primary-color)] mb-2 ${
+                is4K ? "text-2xl" : "text-xl"
+              }`}
+            >
               {p.partnership_name}
             </h3>
 
@@ -386,17 +442,29 @@ export default function ChoosePartnership({
 
             <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
               <div className="text-center">
-                <p className="text-xs text-[var(--primary-color)]/70 mb-1">Retention</p>
-                <p className="text-sm font-semibold text-[var(--primary-color)]">{p.retention}</p>
+                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
+                  Retention
+                </p>
+                <p className="text-sm font-semibold text-[var(--primary-color)]">
+                  {p.retention}
+                </p>
               </div>
               <div className="w-px bg-[var(--primary-color)]/20"></div>
               <div className="text-center">
-                <p className="text-xs text-[var(--primary-color)]/70 mb-1">KPI Score</p>
-                <p className="text-sm font-semibold text-[var(--primary-color)]">{p.kpiScore}</p>
+                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
+                  KPI Score
+                </p>
+                <p className="text-sm font-semibold text-[var(--primary-color)]">
+                  {p.kpiScore}
+                </p>
               </div>
             </div>
 
-            <p className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}>
+            <p
+              className={`leading-relaxed mb-6 ${
+                is4K ? "text-base" : "text-sm"
+              } text-[var(--primary-color)]/80`}
+            >
               {getRoleBasedDescription(p)}
             </p>
 
@@ -411,8 +479,8 @@ export default function ChoosePartnership({
                 {p.isAltPath && (
                   <button
                     onClick={(e) => {
-                      e.stopPropagation()
-                      handleGoToPay(p)
+                      e.stopPropagation();
+                      handleGoToPay(p);
                     }}
                     className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
                     text-[var(--primary-color)] border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white`}
@@ -428,20 +496,31 @@ export default function ChoosePartnership({
 
       {selectedPartnership && (
         <div
-          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${is4K ? "text-lg" : ""
-            }`}
+          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${
+            is4K ? "text-lg" : ""
+          }`}
         >
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
               <FaCheck className="text-white text-xl" />
             </div>
             <div>
-              <h3 className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"}`}>
+              <h3
+                className={`font-bold text-[var(--primary-color)] ${
+                  is4K ? "text-2xl" : "text-xl"
+                }`}
+              >
                 Partnership Selected
               </h3>
               <p className="text-[var(--primary-color)]/80">
-                {partnerships.find((p) => p.id === selectedPartnership)?.partnership_name} -{" "}
-                {getRoleBasedTitle(partnerships.find((p) => p.id === selectedPartnership)!)}
+                {
+                  partnerships.find((p) => p.id === selectedPartnership)
+                    ?.partnership_name
+                }{" "}
+                -{" "}
+                {getRoleBasedTitle(
+                  partnerships.find((p) => p.id === selectedPartnership)!
+                )}
               </p>
             </div>
           </div>
@@ -454,7 +533,9 @@ export default function ChoosePartnership({
           disabled={isSubmitting}
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 text-gray-700 rounded-xl transition-all font-medium
             border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white
-            ${is4K ? "text-lg" : ""} ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+            ${is4K ? "text-lg" : ""} ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
           <span className="inline">←</span>
           <span className="hidden md:inline ml-2">Prev</span>
@@ -466,12 +547,18 @@ export default function ChoosePartnership({
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-xl text-white shadow-lg transition-all font-medium
             bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)]
             ${is4K ? "text-lg" : ""} 
-            ${!selectedPartnership || isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+            ${
+              !selectedPartnership || isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
         >
-          <span className="hidden md:inline mr-2">{isSubmitting ? "Submitting..." : "Next"}</span>
+          <span className="hidden md:inline mr-2">
+            {isSubmitting ? "Submitting..." : "Next"}
+          </span>
           <span className="inline">{isSubmitting ? "" : "→"}</span>
         </button>
       </div>
     </div>
-  )
+  );
 }
