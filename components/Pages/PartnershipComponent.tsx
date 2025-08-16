@@ -294,6 +294,29 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Vendor Benefits Section */}
+            {/* Core Trade Partnerships */}
+      <section className={is4K ? "py-32 px-16 relative" : "py-24 px-6 lg:px-12 relative"}>
+        {" "}
+        {/* Increased padding */}
+        <div className={is4K ? "max-w-[1800px] mx-auto" : "max-w-7xl mx-auto"}>
+          {" "}
+          {/* Increased max-width */}
+          <SectionHeader title={Title} description={Description} />
+          <div
+            className={
+              is4K
+                ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+                : "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+            }
+          >
+            {" "}
+            {/* Increased gap */}
+            {Partnerships.map((partnership, index) => (
+              <PartnershipCard key={index} partnership={partnership} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
       <section
         className={is4K ? "py-32 px-16 relative overflow-hidden" : "py-24 px-6 lg:px-12 relative overflow-hidden"}
       >
@@ -485,29 +508,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({
         </div>
       </section>
 
-      {/* Core Trade Partnerships */}
-      <section className={is4K ? "py-32 px-16 relative" : "py-24 px-6 lg:px-12 relative"}>
-        {" "}
-        {/* Increased padding */}
-        <div className={is4K ? "max-w-[1800px] mx-auto" : "max-w-7xl mx-auto"}>
-          {" "}
-          {/* Increased max-width */}
-          <SectionHeader title={Title} description={Description} />
-          <div
-            className={
-              is4K
-                ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
-                : "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
-            }
-          >
-            {" "}
-            {/* Increased gap */}
-            {Partnerships.map((partnership, index) => (
-              <PartnershipCard key={index} partnership={partnership} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section
         className={

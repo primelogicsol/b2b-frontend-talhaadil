@@ -300,9 +300,8 @@ export default function AppointmentScheduler() {
       const file = (formData as any).file || undefined;
   
       console.log("Sending booking request:", queryParams, file);
-  
-      // Call API
-      const response = await postappointment(queryParams, file);
+  // @ts-ignore
+  const response = await postappointment(queryParams, file);  
   
       console.log("Booking successful:", response.data);
       setIsBooked(true);

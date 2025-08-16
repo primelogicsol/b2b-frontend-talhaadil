@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   Check,
   ShoppingCart,
@@ -13,82 +13,86 @@ import {
   AlertCircle,
   XCircle,
   CheckCircle,
-} from "lucide-react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/css"
-import "swiper/css/pagination"
-import { Pagination } from "swiper/modules"
-import RecSquareSection from "../Section/RecSquareSection"
-import Accordion from "../Material/Accordion"
-import SectionFaq from "../Section/SectionFaq"// Corrected path
-import CostComparisonResponsive from "../Essentials/CostComparsion"
-import { useGlobalContext } from "../../context/ScreenProvider"
+} from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import RecSquareSection from "../Section/RecSquareSection";
+import Accordion from "../Material/Accordion";
+import SectionFaq from "../Section/SectionFaq"; // Corrected path
+import CostComparisonResponsive from "../Essentials/CostComparsion";
+import { useGlobalContext } from "../../context/ScreenProvider";
+import RectangleSection from "../Section/RectangleSection";
+import InDepthFAQ from "../Material/InDepthFAQ";
+import PartnershipSection from "../Section/PartnershipSection";
+import { usePathname } from "next/navigation";
 
 // Define types for all the data structures
 export interface ServiceCard {
-  title: string
-  description: string
-  icon: keyof typeof serviceIconMap
-  featured: boolean
-  href? : string
+  title: string;
+  description: string;
+  icon: keyof typeof serviceIconMap;
+  featured: boolean;
+  href?: string;
 }
 
 export interface AccordionItem {
-  id: string
-  title: string
-  content: string
-  icon: string
+  id: string;
+  title: string;
+  content: string;
+  icon: string;
 }
 
 export interface HexagonalAdvantage {
-  number: string
-  title: string
-  description: string
-  color: string
+  number: string;
+  title: string;
+  description: string;
+  color: string;
 }
 export interface PlatformEntry {
-  name: string
-  value: string
-  isOurPlatform: boolean
+  name: string;
+  value: string;
+  isOurPlatform: boolean;
 }
 
 export interface CostComparisonItem {
-  feature: string
+  feature: string;
   platforms: {
-    deKoshurCrafts: PlatformEntry
-    eprolo: PlatformEntry
-    modalyst: PlatformEntry
-    spocket: PlatformEntry
-    cjdropshipping: PlatformEntry
-  }
+    deKoshurCrafts: PlatformEntry;
+    eprolo: PlatformEntry;
+    modalyst: PlatformEntry;
+    spocket: PlatformEntry;
+    cjdropshipping: PlatformEntry;
+  };
 }
 export interface PricingPlan {
-  name: string
+  name: string;
   price: {
-    monthly: number
-    yearly: number
-  }
-  earlyAdopters: string
-  features: string[]
-  popular: boolean
-  description: string
+    monthly: number;
+    yearly: number;
+  };
+  earlyAdopters: string;
+  features: string[];
+  popular: boolean;
+  description: string;
 }
 
 export interface FaqItem {
-  title: string
-  desc: string
+  title: string;
+  desc: string;
 }
 
 export interface HomePageProps {
-  heroTitle: string
-  heroDescription: string
-  accordionData: AccordionItem[]
-  comparisonData: CostComparisonItem[]
-  hexagonalAdvantages: HexagonalAdvantage[]
-  costComparison: CostComparisonItem[]
-  pricingPlans: PricingPlan[]
-  faqs: FaqItem[]
-  serviceCards: ServiceCard[]
+  heroTitle: string;
+  heroDescription: string;
+  accordionData: AccordionItem[];
+  comparisonData: CostComparisonItem[];
+  hexagonalAdvantages: HexagonalAdvantage[];
+  costComparison: CostComparisonItem[];
+  pricingPlans: PricingPlan[];
+  faqs: FaqItem[];
+  serviceCards: ServiceCard[];
 }
 
 const serviceIconMap = {
@@ -99,7 +103,57 @@ const serviceIconMap = {
   store: Store,
   warehouse: Warehouse,
   handshake: Handshake,
-}
+};
+
+const dummyFAQData = [
+  {
+    id: 1,
+    question: "What is your return policy?",
+    answer:
+      "We offer a 30-day return policy on all items. Contact our support for assistance.",
+  },
+  {
+    id: 2,
+    question: "Do you ship internationally?",
+    answer:
+      "Yes, we ship to most countries worldwide. Shipping fees may vary based on location.",
+  },
+  {
+    id: 3,
+    question: "How can I track my order?",
+    answer:
+      "Once shipped, you’ll receive an email with the tracking number and link.",
+  },
+  {
+    id: 4,
+    question: "Can I modify my order after placing it?",
+    answer:
+      "Modifications are possible within 2 hours of placing the order. Contact support quickly.",
+  },
+  {
+    id: 5,
+    question: "What payment methods are accepted?",
+    answer: "We accept Visa, Mastercard, PayPal, and bank transfers.",
+  },
+  {
+    id: 6,
+    question: "Are your products sustainable?",
+    answer:
+      "Yes! We focus on eco-friendly packaging and responsibly sourced materials.",
+  },
+  {
+    id: 7,
+    question: "Do you offer bulk discounts?",
+    answer:
+      "Yes, for orders over 50 items. Please reach out to our sales team for a quote.",
+  },
+  {
+    id: 8,
+    question: "How do I contact customer support?",
+    answer:
+      "You can email us at support@example.com or use the chat widget on our site.",
+  },
+];
 
 export default function InsidePartnership({
   heroTitle = "Swift Partnership Activation",
@@ -110,105 +164,106 @@ export default function InsidePartnership({
   costComparison,
   pricingPlans,
   faqs,
-  
-  
 }: HomePageProps) {
   const serviceCards: ServiceCard[] = [
-  {
-    title: "Core Trade",
-    description:
-      "Partnerships for dropshipping, import/export, wholesale, and consignment to grow trade scale.",
-    icon: "shoppingCart" as "shoppingCart",
-    href: "/core-trade",
-    featured: false,
-  },
-  {
-    title: "Brand Expansion",
-    description:
-      "Expand market reach via exhibitions, white-label deals, auctions, and physical store collaborations.",
-    icon: "building" as "building",
-    href: "/brand-growth",
-    featured: false,
-  },
-  {
-    title: "Collaborative",
-    description:
-      "Join forces in design, packaging, media storytelling, and innovative approaches to craftwork.",
-    icon: "handshake" as "handshake",
-    href: "/collaborative",
-    featured: false,
-  },
-  {
-    title: "Institutional",
-    description:
-      "Form alliances with NGOs, museums, and strategic investors for impactful and large-scale work.",
-    icon: "warehouse" as "warehouse",
-    href: "/institutional",
-    featured: false,
-  },
-];
+    {
+      title: "Core Trade",
+      description:
+        "Partnerships for dropshipping, import/export, wholesale, and consignment to grow trade scale.",
+      icon: "shoppingCart" as "shoppingCart",
+      href: "/core-trade",
+      featured: false,
+    },
+    {
+      title: "Brand Expansion",
+      description:
+        "Expand market reach via exhibitions, white-label deals, auctions, and physical store collaborations.",
+      icon: "building" as "building",
+      href: "/brand-growth",
+      featured: false,
+    },
+    {
+      title: "Collaborative",
+      description:
+        "Join forces in design, packaging, media storytelling, and innovative approaches to craftwork.",
+      icon: "handshake" as "handshake",
+      href: "/collaborative",
+      featured: false,
+    },
+    {
+      title: "Institutional",
+      description:
+        "Form alliances with NGOs, museums, and strategic investors for impactful and large-scale work.",
+      icon: "warehouse" as "warehouse",
+      href: "/institutional",
+      featured: false,
+    },
+  ];
 
-
-  const [isYearly, setIsYearly] = useState(false)
-  const [expandedItems, setExpandedItems] = useState<number[]>([0])
-  const { is4K } = useGlobalContext()
+  const [isYearly, setIsYearly] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<number[]>([0]);
+  const { is4K } = useGlobalContext();
+   const pathname = usePathname();
+  const currentPathStart = pathname?.slice(0, 4).toLowerCase();
 
   const toggleExpanded = (index: number) => {
-    setExpandedItems((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]))
-  }
+    setExpandedItems((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
 
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -50px 0px",
-    }
+    };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("animate-in")
+          entry.target.classList.add("animate-in");
         }
-      })
-    }, observerOptions)
+      });
+    }, observerOptions);
 
-    const animatedElements = document.querySelectorAll(".animate-on-scroll")
-    animatedElements.forEach((el) => observer.observe(el))
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
+    animatedElements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
   const getPerformanceIcon = (level: string) => {
     switch (level) {
       case "excellent":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-green-600" />;
       case "good":
-        return <CheckCircle className="w-4 h-4 text-blue-600" />
+        return <CheckCircle className="w-4 h-4 text-blue-600" />;
       case "moderate":
-        return <AlertCircle className="w-4 h-4 text-yellow-600" />
+        return <AlertCircle className="w-4 h-4 text-yellow-600" />;
       case "limited":
-        return <AlertCircle className="w-4 h-4 text-orange-600" />
+        return <AlertCircle className="w-4 h-4 text-orange-600" />;
       case "poor":
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-red-600" />;
       default:
-        return <AlertCircle className="w-4 h-4 text-gray-600" />
+        return <AlertCircle className="w-4 h-4 text-gray-600" />;
     }
-  }
+  };
 
   const getPerformanceColor = (level: string) => {
     switch (level) {
       case "excellent":
-        return "bg-green-50 border-green-200"
+        return "bg-green-50 border-green-200";
       case "good":
-        return "bg-blue-50 border-blue-200"
+        return "bg-blue-50 border-blue-200";
       case "moderate":
-        return "bg-yellow-50 border-yellow-200"
+        return "bg-yellow-50 border-yellow-200";
       case "limited":
-        return "bg-orange-50 border-orange-200"
+        return "bg-orange-50 border-orange-200";
       case "poor":
-        return "bg-red-50 border-red-200"
+        return "bg-red-50 border-red-200";
       default:
-        return "bg-gray-50 border-gray-200"
+        return "bg-gray-50 border-gray-200";
     }
-  }
+  };
 
   return (
     <div
@@ -217,28 +272,43 @@ export default function InsidePartnership({
     >
       {/* Hero Section */}
       <section
-        className="py-16 px-4"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        className="py-8 px-4"
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
-        <RecSquareSection title={heroTitle} description={heroDescription} />
+        <RectangleSection />
       </section>
-
-      {/* Key Features Accordion */}
       <section
         className="py-16 px-4 bg-[var(--white)]"
-        style={{ paddingLeft: is4K ? "6rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "6rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
-        <div className="max-w-7xl mx-auto" style={{ maxWidth: is4K ? "2000px" : "1280px" }}>
+        <div
+          className="max-w-7xl mx-auto"
+          style={{ maxWidth: is4K ? "2000px" : "1280px" }}
+        >
           <h2 className="text-4xl font-bold text-center mb-12 text-[var(--primary-dark-slate)] animate-on-scroll">
             Key Features
           </h2>
           <Accordion data={accordionData} />
         </div>
       </section>
+  
+
+      <section>
+        <PartnershipSection />
+      </section>
       {/* Comparison Section */}
       <section
         className="py-12 px-4"
-        style={{ paddingLeft: is4K ? "6rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "6rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
         <h2 className="text-2xl md:text-4xl xl:text-5xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
           Platform Features
@@ -248,16 +318,26 @@ export default function InsidePartnership({
       {/* Advantages Section (Hexagonal Design) */}
       <section
         className="py-16 px-4 bg-white"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
-        <div className="max-w-6xl mx-auto" style={{ maxWidth: is4K ? "1800px" : "1152px" }}>
+        <div
+          className="max-w-6xl mx-auto"
+          style={{ maxWidth: is4K ? "1800px" : "1152px" }}
+        >
           <h2 className="text-4xl font-bold text-center mb-16 text-[var(--primary-dark-slate)] animate-on-scroll">
             Advantages
           </h2>
           {/* First Row of Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {hexagonalAdvantages.slice(0, 4).map((item, index) => (
-              <div key={index} className="text-center animate-on-scroll" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div
+                key={index}
+                className="text-center animate-on-scroll"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div
                   className="h-full flex flex-col justify-between p-6 border-2 border-[var(--primary-color)] rounded-lg shadow-lg
   transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-xl group bg-white"
@@ -288,7 +368,9 @@ export default function InsidePartnership({
                       {item.title}
                     </h3>
                     {/* Description */}
-                    <p className="text-[var(--primary-light-text-color)] text-left px-1 md:text-center lg:text-center text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-[var(--primary-light-text-color)] text-left px-1 md:text-center lg:text-center text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -333,7 +415,9 @@ export default function InsidePartnership({
                       {item.title}
                     </h3>
                     {/* Description */}
-                    <p className="text-left px-1 md:text-center lg:text-center text-[var(--primary-light-text-color)] text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-left px-1 md:text-center lg:text-center text-[var(--primary-light-text-color)] text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -341,23 +425,56 @@ export default function InsidePartnership({
           </div>
         </div>
       </section>
-
-      <section
+       <section
+        className="py-16 px-4 bg-[var(--background)]"
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
+      >
+        <SectionFaq
+          subTitle="SUPPORT CENTER"
+          sectionTitle="Frequently Asked Questions"
+          faqTitle="Complete <span>Guide</span>"
+          faqContent="Find answers to common questions about our drop shipping and private label services"
+          faqItems={faqs}
+        />
+      </section>
+       <section
         className="py-12 px-4"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
         <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
           Cost Comparison with Other Platforms
         </h2>
         <CostComparisonResponsive costComparison={comparisonData} />
       </section>
+    <section
+        className="py-8 px-4"
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
+      >
+        <RecSquareSection title={heroTitle} description={heroDescription} />
+      </section>
+     
 
       {/* Pricing Section */}
       <section
         className="py-16 px-4 bg-[var(--white)]"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
-        <div className="max-w-7xl mx-auto" style={{ maxWidth: is4K ? "2000px" : "1280px" }}>
+        <div
+          className="max-w-7xl mx-auto"
+          style={{ maxWidth: is4K ? "2000px" : "1280px" }}
+        >
           <div className="text-center mb-16">
             <h2 className="text-4xl  font-bold mb-4 text-[var(--primary-color)] animate-on-scroll">
               Zero Fees for 2025 Drop-Shipping
@@ -432,13 +549,19 @@ export default function InsidePartnership({
                       </div>
                     )}
                     <div className="text-center mb-6">
-                      <h3 className="text-2xl font-bold text-[var(--primary-dark-slate)] mb-2">{plan.name}</h3>
-                      <p className="text-sm text-[var(--foreground)] mb-4">{plan.description}</p>
+                      <h3 className="text-2xl font-bold text-[var(--primary-dark-slate)] mb-2">
+                        {plan.name}
+                      </h3>
+                      <p className="text-sm text-[var(--foreground)] mb-4">
+                        {plan.description}
+                      </p>
                       <div className="mb-4">
                         <span className="text-4xl font-bold text-[var(--primary-color)]">
                           ${isYearly ? plan.price.yearly : plan.price.monthly}
                         </span>
-                        <span className="text-[var(--primary-light-text-color)]">/{isYearly ? "year" : "month"}</span>
+                        <span className="text-[var(--primary-light-text-color)]">
+                          /{isYearly ? "year" : "month"}
+                        </span>
                       </div>
                       <div className="bg-[var(--secondary-light-color)] px-3 py-1 rounded-full inline-block">
                         <span className="text-sm font-semibold text-[var(--secondary-color)]">
@@ -450,7 +573,9 @@ export default function InsidePartnership({
                       {plan.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start">
                           <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                          <span className="text-[var(--foreground)] text-sm">{feature}</span>
+                          <span className="text-[var(--foreground)] text-sm">
+                            {feature}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -482,13 +607,19 @@ export default function InsidePartnership({
                   </div>
                 )}
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-center mb-2">{plan.name}</h3>
-                  <p className="text-sm text-[var(--foreground)] mb-4">{plan.description}</p>
+                  <h3 className="text-2xl font-bold text-center mb-2">
+                    {plan.name}
+                  </h3>
+                  <p className="text-sm text-[var(--foreground)] mb-4">
+                    {plan.description}
+                  </p>
                   <div className="mb-4">
                     <span className="text-4xl font-bold text-[var(--primary-color)]">
                       ${isYearly ? plan.price.yearly : plan.price.monthly}
                     </span>
-                    <span className="text-[var(--primary-light-text-color)]">/{isYearly ? "year" : "month"}</span>
+                    <span className="text-[var(--primary-light-text-color)]">
+                      /{isYearly ? "year" : "month"}
+                    </span>
                   </div>
                   <div className="bg-[var(--secondary-light-color)] px-3 py-1 rounded-full inline-block">
                     <span className="text-sm font-semibold text-[var(--secondary-color)]">
@@ -500,7 +631,9 @@ export default function InsidePartnership({
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start">
                       <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-[var(--foreground)] text-sm">{feature}</span>
+                      <span className="text-[var(--foreground)] text-sm">
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -514,108 +647,115 @@ export default function InsidePartnership({
       </section>
 
       {/* FAQ Section */}
-      <section
-        className="py-16 px-4 bg-[var(--background)]"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
-      >
-        <SectionFaq
-          subTitle="SUPPORT CENTER"
-          sectionTitle="Frequently Asked Questions"
-          faqTitle="Complete <span>Guide</span>"
-          faqContent="Find answers to common questions about our drop shipping and private label services"
-          faqItems={faqs}
-        />
+       <section>
+        <InDepthFAQ data={dummyFAQData} />
       </section>
+     
 
       {/* Our Services Section (moved to bottom) */}
       <section
         className="py-16 px-4 bg-[var(--background)]"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
-        <div className="max-w-6xl mx-auto" style={{ maxWidth: is4K ? "2000px" : "1152px" }}>
+        <div
+          className="max-w-6xl mx-auto"
+          style={{ maxWidth: is4K ? "2000px" : "1152px" }}
+        >
           <h2 className="text-4xl font-bold text-center mb-16 text-[var(--primary-dark-slate)] animate-on-scroll">
-            Our Services
+            Partnerships
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 ">
-            {serviceCards.map((service, index) => (
-              <div
-                key={index}
-                className={`relative p-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll group ${
-                  service.featured
-                    ? "bg-[var(--primary-color)] text-[var(--white)]"
-                    : "bg-[var(--white)] text-[var(--primary-dark-slate)] hover:shadow-lg border"
+       {serviceCards.map((service, index) => {
+        const servicePathStart = service.href?.slice(0, 4).toLowerCase();
+        const isActive = currentPathStart === servicePathStart;
+
+        return (
+          <div
+            key={index}
+            className={`relative p-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll group ${
+              service.featured || isActive
+                ? "bg-[var(--primary-color)] text-[var(--white)]"
+                : "bg-[var(--white)] text-[var(--primary-dark-slate)] hover:shadow-lg border"
+            }`}
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <div
+              className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto ${
+                service.featured || isActive
+                  ? "bg-[var(--white)] text-[var(--secondary-color)]"
+                  : "bg-[var(--secondary-light-color)] text-[var(--secondary-color)]"
+              } transition-all duration-300`}
+            >
+              {(() => {
+                const IconComponent = serviceIconMap[service.icon];
+                return IconComponent ? <IconComponent className="w-8 h-8" /> : null;
+              })()}
+            </div>
+            <h3
+              className={`text-xl font-bold mb-4 text-center ${
+                service.featured || isActive
+                  ? "text-[var(--white)]"
+                  : "text-[var(--primary-dark-slate)]"
+              }`}
+            >
+              {service.title}
+            </h3>
+            <p
+              className={`px-2 md:text-center lg:text-center text-sm leading-relaxed text-center mb-6 ${
+                service.featured || isActive ? "text-[var(--white)] opacity-90" : "text-[var(--foreground)]"
+              }`}
+            >
+              {service.description}
+            </p>
+            <div className="text-center">
+              <button
+                onClick={() => service.href && (window.location.href = service.href)}
+                className={`inline-flex items-center font-semibold text-sm transition-all duration-300 ${
+                  service.featured || isActive
+                    ? "text-[var(--white)] hover:text-[var(--secondary-color)]"
+                    : "text-[var(--primary-color)] hover:text-[var(--secondary-color)]"
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Icon Circle */}
-                <div
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto ${
-                    service.featured
-                      ? "bg-[var(--white)] text-[var(--secondary-color)]"
-                      : "bg-[var(--secondary-light-color)] text-[var(--secondary-color)]"
-                  } transition-all duration-300`}
+                READ MORE
+                <svg
+                  className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  {(() => {
-                    const IconComponent = serviceIconMap[service.icon]
-                    return IconComponent ? <IconComponent className="w-8 h-8" /> : null
-                  })()}
-                </div>
-                {/* Title */}
-                <h3
-                  className={`text-xl font-bold mb-4 text-center ${
-                    service.featured ? "text-[var(--white)]" : "text-[var(--primary-dark-slate)]"
-                  }`}
-                >
-                  {service.title}
-                </h3>
-                {/* Description */}
-                <p
-                  className={`px-2 md:text-center lg:text-center text-sm leading-relaxed text-center mb-6 ${
-                    service.featured ? "text-[var(--white)] opacity-90" : "text-[var(--foreground)]"
-                  }`}
-                >
-                  {service.description}
-                </p>
-                {/* Special indicator for featured card */}
-
-               
-
-                {/* Read More Button */}
-                <div className="text-center">
-                  <button
-                  onClick={()=>{
-                    if (service.href) {
-                      window.location.href = service.href
-                    }
-                  }}
-                    className=
-                    "inline-flex items-center font-semibold text-sm transition-all duration-300 text-[var(--primary-color)]  hover:text-[var(--secondary-color)]">
-                    READ MORE
-                    <svg
-                      className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            ))}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        );
+      })}
           </div>
         </div>
       </section>
+     
 
       {/* New Call to Action Banner */}
       <section
         className="py-12 mb-1 px-4 bg-[var(--primary-color)] text-[var(--primary-header-color)] animate-on-scroll"
-        style={{ paddingLeft: is4K ? "8rem" : "1rem", paddingRight: is4K ? "8rem" : "1rem" }}
+        style={{
+          paddingLeft: is4K ? "8rem" : "1rem",
+          paddingRight: is4K ? "8rem" : "1rem",
+        }}
       >
-        <div className="max-w-7xl mx-auto text-center" style={{ maxWidth: is4K ? "2000px" : "1280px" }}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Ready to Partner with Us?</h2>
+        <div
+          className="max-w-7xl mx-auto text-center"
+          style={{ maxWidth: is4K ? "2000px" : "1280px" }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Ready to Partner with Us?
+          </h2>
           <p className="text-left px-3 md:text-center lg:text-center text-base sm:text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90">
-            Join our network of successful businesses. Register today or book an appointment to discuss your needs.
+            Join our network of successful businesses. Register today or book an
+            appointment to discuss your needs.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button
@@ -637,5 +777,5 @@ export default function InsidePartnership({
         </div>
       </section>
     </div>
-  )
+  );
 }

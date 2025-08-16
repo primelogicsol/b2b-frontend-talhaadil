@@ -268,8 +268,27 @@ export default function ChoosePartnership({
     try {
       setIsSubmitting(true);
       console.log(partnershipData);
+
+      const selectedPartnership = partnerships.find(
+        (p) => p.id === partnershipData.selected
+      );
+      const selectedLevel = selectedPartnership?.level || 1;
+
+      // Get all partnership IDs from level 1 up to the selected level
+      const allLevelsUpToSelected = partnerships
+        .filter((p) => p.level <= selectedLevel)
+        .sort((a, b) => a.level - b.level)
+        .map((p) => p.id);
+
+      const lastElement =
+        allLevelsUpToSelected[allLevelsUpToSelected.length - 1];
+
+      if (lastElement) {
+        localStorage.setItem("partnershipType", lastElement);
+      }
+
       const response = sendLevel({
-        levels: [partnershipData.selected],
+        levels: allLevelsUpToSelected, // Send all levels instead of just the selected one
         is_lateral: partnershipData.isLateral || false,
       });
 

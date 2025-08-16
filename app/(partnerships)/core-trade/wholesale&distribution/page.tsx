@@ -6,7 +6,7 @@ export default function Page() {
   // Data for HomePage component
   const homePageData = {
     heroTitle: "Swift Partnership Activation",
-    heroDescription: `Expand your reach and minimize risk with De Koshur Crafts' Consignment Partnership in the USA. This partnership allows you to display your products in premium retail spaces while retaining ownership until the products are sold. With our expert guidance, we handle everything from inventory management to logistics, ensuring your products reach the right audience in top U.S. locations. Our consignment model offers flexibility and reducing upfront costs, providing you with the opportunity to test the U.S. market and scale at your own pace while benefiting from our extensive network and industry expertise.`,
+    heroDescription: `Expand your reach and minimize risk with De Koshur Crafts' Consignment Partnership in the USA. This partnership allows you to display your products in premium retail spaces while retaining ownership until the products are sold.`,
 
     // Dynamic Accordion Data
     accordionData: [

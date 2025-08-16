@@ -1,6 +1,6 @@
 import api from "@/lib/axios";
 
-export const sendLevel = (body: { levels: [string]; is_lateral: boolean }) => {
+export const sendLevel = (body: { levels: string[]; is_lateral: boolean }) => {
     console.log(body)
   return api.post("/registration/level", body, {
     headers: {
