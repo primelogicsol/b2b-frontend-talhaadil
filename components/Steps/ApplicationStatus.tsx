@@ -154,9 +154,34 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
 
   return (
     <div className={`mx-auto px-4 ${is4K ? "max-w-[2000px]" : "max-w-6xl"}`}>
+      
+
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-[var(--primary-color)] mb-2">Application Status</h1>
         <p className="text-gray-600">Track the progress of your partnership application</p>
+      </div>
+
+      {/* Business Information Section */}
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6">Business Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Business Name</label>
+            <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">Tech Solutions Inc.</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Business Type</label>
+            <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">Technology Services</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Contact Name</label>
+            <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">John Smith</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Contact Email</label>
+            <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">john.smith@techsolutions.com</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -178,7 +203,6 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="text-lg font-medium text-gray-900">{stage.title}</h3>
-                     
                     </div>
                     <p className="text-sm text-gray-600 mb-2">{stage.description}</p>
                     {stage.estimatedCompletion && (

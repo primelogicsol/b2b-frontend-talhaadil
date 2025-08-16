@@ -380,14 +380,14 @@ export default function ComprehensiveProductSelection({
                 onClick={() => handleCategorySelect(category.id)}
                 className={`bg-white rounded-3xl shadow-lg p-6 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${
                   selectedCategories.includes(category.id)
-                    ? "ring-3 ring-[var(--secondary-color)] bg-gradient-to-br from-[var(--secondary-light-color)] to-white"
+                    ? "ring-3 ring-green-50 bg-gradient-to-br from-[#b7ec86] to-white"
                     : "hover:shadow-2xl"
                 }`}
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-bold text-[var(--primary-color)] leading-tight">{category.name}</h3>
                   {selectedCategories.includes(category.id) && (
-                    <div className="w-8 h-8 bg-[var(--secondary-color)] rounded-full flex items-center justify-center flex-shrink-0 ml-2">
+                    <div className="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center flex-shrink-0 ml-2">
                       <span className="text-white text-lg font-bold">✓</span>
                     </div>
                   )}
@@ -443,7 +443,7 @@ export default function ComprehensiveProductSelection({
                         key={subCategory.id}
                         className={`flex items-center space-x-3 cursor-pointer p-4 rounded-2xl transition-all duration-200 ${
                           selectedSubCategories.includes(subCategory.id)
-                            ? "bg-[var(--secondary-light-color)] border-2 border-[var(--secondary-color)]"
+                            ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
                             : "hover:bg-gray-50 border-2 border-transparent"
                         }`}
                       >
@@ -451,7 +451,7 @@ export default function ComprehensiveProductSelection({
                           type="checkbox"
                           checked={selectedSubCategories.includes(subCategory.id)}
                           onChange={() => handleSubCategorySelect(subCategory.id)}
-                          className="w-5 h-5 appearance-none border-2 border-gray-300 rounded checked:bg-[var(--secondary-color)] checked:border-[var(--secondary-color)] focus:ring-2 focus:ring-[var(--secondary-color)] focus:ring-offset-2"
+                          className="w-5 h-5 appearance-none border-2 border-gray-300 rounded checked:bg-[var(--primary-color)] checked:border-[var(--primary-hover-color)] focus:ring-2 focus:ring-[var(--secondary-color)] focus:ring-offset-2"
                           style={{
                             backgroundImage: selectedSubCategories.includes(subCategory.id)
                               ? `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e")`
@@ -543,7 +543,7 @@ export default function ComprehensiveProductSelection({
                                       key={index}
                                       className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 pl-4 ${
                                         isSelected
-                                          ? "bg-[var(--secondary-light-color)] border-2 border-[var(--secondary-color)]"
+                                          ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
                                           : "hover:bg-white border-2 border-transparent"
                                       }`}
                                     >
