@@ -1,6 +1,6 @@
-"use client";
-import { useEffect, useState } from "react";
-import type React from "react";
+"use client"
+import { useEffect, useState } from "react"
+import type React from "react"
 
 import {
   FaBuilding,
@@ -12,111 +12,192 @@ import {
   FaCheckCircle,
   FaCertificate,
   FaBook,
-} from "react-icons/fa";
-import { FileText, Ruler, ShieldCheck } from "lucide-react";
-import { useGlobalContext } from "../../context/ScreenProvider";
-import { submitDocumentToAPI } from "@/services/regitsration";
+} from "react-icons/fa"
+import { FileText, Ruler, ShieldCheck } from "lucide-react"
+import { useGlobalContext } from "../../context/ScreenProvider"
+import { submitDocumentToAPI } from "@/services/regitsration"
+import Cookies from "js-cookie"
 interface DocumentData {
-  business_registration: File | null;
-  business_license: File | null;
-  adhaar_card: File | null;
-  artisan_id_card: File | null;
-  bank_statement: File | null;
-  product_catalog: File[];
-  certifications: File[];
+  business_registration: File | null
+  business_license: File | null
+  adhaar_card: File | null
+  artisan_id_card: File | null
+  bank_statement: File | null
+  product_catalog: File[]
+  certifications: File[]
 }
 
 interface DocumentSubmissionProps {
-  data?: DocumentData;
-  onUpdate: (data: DocumentData) => void;
-  onNext: () => void;
-  onPrev: () => void;
+  data?: DocumentData
+  onUpdate: (data: DocumentData) => void
+  onNext: () => void
+  onPrev: () => void
 }
 
-const documentTypes = [
-  {
-    key: "business_registration" as keyof DocumentData,
-    title: "Business Registration",
-    description: "Valid business registration certificate",
-    icon: <FaBuilding size={32} className="text-[var(--primary-color)]" />,
-    required: true,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: false,
-  },
-  {
-    key: "business_license" as keyof DocumentData,
-    title: "Business License",
-    description: "Business license certificate",
-    icon: <FaFileInvoice size={32} className="text-[var(--primary-color)]" />,
-    required: false,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: false,
-  },
-  {
-    key: "adhaar_card" as keyof DocumentData,
-    title: "Contact Person - Adhaar Card",
-    description: "Adhaar card of the contact person",
-    icon: <FaIdCard size={32} className="text-[var(--primary-color)]" />,
-    required: true,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: false,
-  },
-  {
-    key: "artisan_id_card" as keyof DocumentData,
-    title: "Artisan ID Card",
-    description: "Artisan ID card (If applicable)",
-    icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
-    required: false,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: false,
-  },
-  {
-    key: "bank_statement" as keyof DocumentData,
-    title: "Bank Statement",
-    description: "Upload last 3 months statement",
-    icon: <FaUniversity size={32} className="text-[var(--primary-color)]" />,
-    required: false,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: false,
-  },
-  {
-    key: "product_catalog" as keyof DocumentData,
-    title: "Product Catalog",
-    description: "Complete product catalog with pricing",
-    icon: <FaBook size={32} className="text-[var(--primary-color)]" />,
-    required: false,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: true,
-  },
-  {
-    key: "certifications" as keyof DocumentData,
-    title: "Certifications",
-    description: "Relevant certifications and awards",
-    icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
-    required: false,
-    formats: "PDF, PNG, JPEG, DOC, DOCX",
-    maxSize: "50MB",
-    multiple: true,
-  },
-];
+const getUserRoleFromCookies = (): "vendor" | "buyer" => {
+  return (Cookies.get("user_role") as "vendor" | "buyer") || "vendor"
+}
+const getDocumentTypes = (userRole: string) => {
+  if (userRole === "buyer") {
+    return [
+      {
+        key: "business_registration" as keyof DocumentData,
+        title: "Articles of Incorporation",
+        description: "Valid articles of incorporation",
+        icon: <FaBuilding size={32} className="text-[var(--primary-color)]" />,
+        required: true,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "business_license" as keyof DocumentData,
+        title: "Business License",
+        description: "Business license certificate",
+        icon: <FaFileInvoice size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "adhaar_card" as keyof DocumentData,
+        title: "Driver License",
+        description: "Photo identification document",
+        icon: <FaIdCard size={32} className="text-[var(--primary-color)]" />,
+        required: true,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "artisan_id_card" as keyof DocumentData,
+        title: "Trade License",
+        description: "Trade license (If applicable)",
+        icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "bank_statement" as keyof DocumentData,
+        title: "Bank Statement",
+        description: "Upload last 3 months statement",
+        icon: <FaUniversity size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "product_catalog" as keyof DocumentData,
+        title: "Product Catalog with prices",
+        description: "Complete product catalog with pricing",
+        icon: <FaBook size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: true,
+      },
+      {
+        key: "certifications" as keyof DocumentData,
+        title: "Certifications",
+        description: "Relevant certifications and awards",
+        icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: true,
+      },
+    ]
+  } else {
+    // vendor role
+    return [
+      {
+        key: "business_registration" as keyof DocumentData,
+        title: "Business Registration Certificate",
+        description: "Valid business registration certificate",
+        icon: <FaBuilding size={32} className="text-[var(--primary-color)]" />,
+        required: true,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "business_license" as keyof DocumentData,
+        title: "Business License",
+        description: "Business license certificate",
+        icon: <FaFileInvoice size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "adhaar_card" as keyof DocumentData,
+        title: "Aadhaar Card",
+        description: "Aadhaar card of the contact person",
+        icon: <FaIdCard size={32} className="text-[var(--primary-color)]" />,
+        required: true,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "artisan_id_card" as keyof DocumentData,
+        title: "Artsian ID Card",
+        description: "Photo identification document",
+        icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "bank_statement" as keyof DocumentData,
+        title: "Artisan/Trade License",
+        description: "Artisan or trade license document",
+        icon: <FaUniversity size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: false,
+      },
+      {
+        key: "product_catalog" as keyof DocumentData,
+        title: "Bank Statement",
+        description: "Upload last 3 months statement",
+        icon: <FaBook size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: true,
+      },
+      {
+        key: "certifications" as keyof DocumentData,
+        title: "Catalog/Certifications",
+        description: "Product catalog and relevant certifications",
+        icon: <FaCertificate size={32} className="text-[var(--primary-color)]" />,
+        required: false,
+        formats: "PDF, PNG, JPEG, DOC, DOCX",
+        maxSize: "50MB",
+        multiple: true,
+      },
+    ]
+  }
+}
 
-// Placeholder API function - Replace with your actual API call
+export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: DocumentSubmissionProps) {
+  const [userRole, setUserRole] = useState<string>("vendor")
+  const [documentTypes, setDocumentTypes] = useState(getDocumentTypes("vendor"))
 
-export default function DocumentSubmission({
-  data,
-  onUpdate,
-  onNext,
-  onPrev,
-}: DocumentSubmissionProps) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+    window.scrollTo({ top: 0, behavior: "smooth" })
+    const role = getUserRoleFromCookies()
+    setUserRole(role)
+    setDocumentTypes(getDocumentTypes(role))
+  }, [])
 
   const [documents, setDocuments] = useState<DocumentData>(
     data || {
@@ -127,155 +208,142 @@ export default function DocumentSubmission({
       bank_statement: null,
       product_catalog: [],
       certifications: [],
-    }
-  );
+    },
+  )
 
-  const { is4K } = useGlobalContext();
-  const [draggedOver, setDraggedOver] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { is4K } = useGlobalContext()
+  const [draggedOver, setDraggedOver] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleFileUpload = (
-    documentType: keyof DocumentData,
-    file: File | null
-  ) => {
-    const updated = { ...documents, [documentType]: file };
-    setDocuments(updated);
-    onUpdate(updated);
-  };
+  const handleFileUpload = (documentType: keyof DocumentData, file: File | null) => {
+    const updated = { ...documents, [documentType]: file }
+    setDocuments(updated)
+    onUpdate(updated)
+  }
 
   const handleRemoveSingleFile = (documentType: keyof DocumentData) => {
-    const updated = { ...documents, [documentType]: null };
-    setDocuments(updated);
-    onUpdate(updated);
-  };
+    const updated = { ...documents, [documentType]: null }
+    setDocuments(updated)
+    onUpdate(updated)
+  }
 
-  const handleAddFiles = (
-    documentType: keyof DocumentData,
-    filesToAdd: FileList | null
-  ) => {
-    if (!filesToAdd || filesToAdd.length === 0) return;
+  const handleAddFiles = (documentType: keyof DocumentData, filesToAdd: FileList | null) => {
+    if (!filesToAdd || filesToAdd.length === 0) return
 
-    const currentFiles = (documents[documentType] as File[]) || [];
-    const newFiles = Array.from(filesToAdd);
+    const currentFiles = (documents[documentType] as File[]) || []
+    const newFiles = Array.from(filesToAdd)
     const updated = {
       ...documents,
       [documentType]: [...currentFiles, ...newFiles],
-    };
-    setDocuments(updated);
-    onUpdate(updated);
-  };
+    }
+    setDocuments(updated)
+    onUpdate(updated)
+  }
 
-  const handleRemoveMultiFile = (
-    documentType: keyof DocumentData,
-    indexToRemove: number
-  ) => {
-    const currentFiles = (documents[documentType] as File[]) || [];
-    const updatedFiles = currentFiles.filter(
-      (_, index) => index !== indexToRemove
-    );
-    const updated = { ...documents, [documentType]: updatedFiles };
-    setDocuments(updated);
-    onUpdate(updated);
-  };
+  const handleRemoveMultiFile = (documentType: keyof DocumentData, indexToRemove: number) => {
+    const currentFiles = (documents[documentType] as File[]) || []
+    const updatedFiles = currentFiles.filter((_, index) => index !== indexToRemove)
+    const updated = { ...documents, [documentType]: updatedFiles }
+    setDocuments(updated)
+    onUpdate(updated)
+  }
 
   const handleDragOver = (e: React.DragEvent, key: string) => {
-    e.preventDefault();
-    setDraggedOver(key);
-  };
+    e.preventDefault()
+    setDraggedOver(key)
+  }
 
-  const handleDragLeave = () => setDraggedOver(null);
+  const handleDragLeave = () => setDraggedOver(null)
 
   const handleDrop = (e: React.DragEvent, key: keyof DocumentData) => {
-    e.preventDefault();
-    setDraggedOver(null);
-    const files = e.dataTransfer.files;
-    const docType = documentTypes.find((d) => d.key === key);
+    e.preventDefault()
+    setDraggedOver(null)
+    const files = e.dataTransfer.files
+    const docType = documentTypes.find((d) => d.key === key)
     if (files && files.length > 0 && docType) {
       if (docType.multiple) {
-        handleAddFiles(key, files);
+        handleAddFiles(key, files)
       } else {
-        handleFileUpload(key, files[0]);
+        handleFileUpload(key, files[0])
       }
     }
-  };
+  }
 
   const handleSubmitAll = async () => {
     const allRequired = documentTypes
       .filter((d) => d.required)
       .every((d) => {
-        const doc = documents[d.key];
+        const doc = documents[d.key]
         if (d.multiple) {
-          return (doc as File[]).length > 0;
+          return (doc as File[]).length > 0
         }
-        return doc !== null;
-      });
+        return doc !== null
+      })
 
     if (!allRequired) {
-      alert("Please upload all required documents before proceeding.");
-      return;
+      alert("Please upload all required documents before proceeding.")
+      return
     }
 
-    setIsSubmitting(true);
+    setIsSubmitting(true)
     try {
       for (const docTypeConfig of documentTypes) {
-        const docKey = docTypeConfig.key;
-        const docData = documents[docKey];
+        const docKey = docTypeConfig.key
+        const docData = documents[docKey]
 
         if (docTypeConfig.multiple) {
-          const files = docData as File[];
+          const files = docData as File[]
           if (files[0]) {
             const response = await submitDocumentToAPI({
               document_type: String(docKey),
               file: files[0],
-            });
-            console.log(response.data);
+            })
+            console.log(response.data)
           }
         } else {
-          const file = docData as File | null;
+          const file = docData as File | null
           if (file) {
             const response = await submitDocumentToAPI({
               document_type: String(docKey),
               file,
-            });
-            console.log(response.data);
+            })
+            console.log(response.data)
           }
         }
       }
 
-      onNext();
+      onNext()
     } catch (error: any) {
-      console.log(error);
-      console.error("Error submitting first document:", error);
+      console.log(error)
+      console.error("Error submitting first document:", error)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const getUploadedCount = () => {
-    let count = 0;
+    let count = 0
     documentTypes.forEach((d) => {
-      const doc = documents[d.key];
+      const doc = documents[d.key]
       if (d.multiple) {
-        count += (doc as File[]).length > 0 ? 1 : 0; // Count as 1 if any file is uploaded for multiple
+        count += (doc as File[]).length > 0 ? 1 : 0 // Count as 1 if any file is uploaded for multiple
       } else if (doc !== null) {
-        count += 1;
+        count += 1
       }
-    });
-    return count;
-  };
+    })
+    return count
+  }
 
   const FileCard = ({
     documentType,
   }: {
-    documentType: (typeof documentTypes)[0];
+    documentType: (typeof documentTypes)[0]
   }) => {
-    const isMultiFile = documentType.multiple;
-    const files = isMultiFile ? (documents[documentType.key] as File[]) : [];
-    const file = !isMultiFile
-      ? (documents[documentType.key] as File | null)
-      : null;
-    const uploaded = isMultiFile ? files.length > 0 : !!file;
-    const isDrag = draggedOver === documentType.key;
+    const isMultiFile = documentType.multiple
+    const files = isMultiFile ? (documents[documentType.key] as File[]) : []
+    const file = !isMultiFile ? (documents[documentType.key] as File | null) : null
+    const uploaded = isMultiFile ? files.length > 0 : !!file
+    const isDrag = draggedOver === documentType.key
 
     return (
       <div className="bg-white rounded-3xl overflow-hidden transition-shadow hover:shadow-xl">
@@ -286,15 +354,9 @@ export default function DocumentSubmission({
               <div>
                 <h3 className="text-lg font-bold text-[var(--primary-color)]">
                   {documentType.title}
-                  {documentType.required && (
-                    <span className="text-[var(--secondary-color)] ml-1">
-                      *
-                    </span>
-                  )}
+                  {documentType.required && <span className="text-[var(--secondary-color)] ml-1">*</span>}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  {documentType.description}
-                </p>
+                <p className="text-sm text-gray-600">{documentType.description}</p>
               </div>
             </div>
             {uploaded && <FaCheckCircle className="text-green-500 w-7 h-7" />}
@@ -310,8 +372,8 @@ export default function DocumentSubmission({
               isDrag
                 ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
                 : uploaded
-                ? "border-green-800 bg-green-50"
-                : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
+                  ? "border-green-800 bg-green-50"
+                  : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
             }`}
             onDragOver={(e) => handleDragOver(e, documentType.key)}
             onDragLeave={handleDragLeave}
@@ -326,10 +388,7 @@ export default function DocumentSubmission({
               onChange={(e) =>
                 isMultiFile
                   ? handleAddFiles(documentType.key, e.target.files)
-                  : handleFileUpload(
-                      documentType.key,
-                      e.target.files?.[0] || null
-                    )
+                  : handleFileUpload(documentType.key, e.target.files?.[0] || null)
               }
             />
             <label htmlFor={documentType.key} className="cursor-pointer">
@@ -338,23 +397,18 @@ export default function DocumentSubmission({
                   {isMultiFile ? (
                     <>
                       <FaFileUpload className="text-green-700 w-16 h-16 mx-auto" />
-                      <p className="text-lg font-semibold text-green-800 mb-1">
-                        {files.length} file(s) uploaded
-                      </p>
+                      <p className="text-lg font-semibold text-green-800 mb-1">{files.length} file(s) uploaded</p>
                       <ul className="text-sm text-green-600 list-disc list-inside text-left mx-auto max-w-xs">
                         {files.map((f, index) => (
-                          <li
-                            key={f.name + index}
-                            className="flex justify-between items-center"
-                          >
+                          <li key={f.name + index} className="flex justify-between items-center">
                             <span>
                               {f.name} ({(f.size / 1024 / 1024).toFixed(2)} MB)
                             </span>
                             <button
                               type="button"
                               onClick={(e) => {
-                                e.stopPropagation();
-                                handleRemoveMultiFile(documentType.key, index);
+                                e.stopPropagation()
+                                handleRemoveMultiFile(documentType.key, index)
                               }}
                               className="text-red-500 hover:text-red-700 ml-2"
                             >
@@ -371,14 +425,12 @@ export default function DocumentSubmission({
                     <>
                       <FaFilePdf className="text-green-700 w-16 h-16 mx-auto" />
                       <div className="flex items-center justify-center gap-2">
-                        <p className="text-lg font-semibold text-green-800 mb-1">
-                          {file?.name}
-                        </p>
+                        <p className="text-lg font-semibold text-green-800 mb-1">{file?.name}</p>
                         <button
                           type="button"
                           onClick={(e) => {
-                            e.stopPropagation();
-                            handleRemoveSingleFile(documentType.key);
+                            e.stopPropagation()
+                            handleRemoveSingleFile(documentType.key)
                           }}
                           className="text-red-500 hover:text-red-700 text-sm"
                         >
@@ -386,9 +438,7 @@ export default function DocumentSubmission({
                         </button>
                       </div>
                       <p className="text-sm text-green-600">
-                        {file
-                          ? `${(file.size / 1024 / 1024).toFixed(2)} MB`
-                          : ""}
+                        {file ? `${(file.size / 1024 / 1024).toFixed(2)} MB` : ""}
                       </p>
                       <p className="text-sm text-[var(--secondary-color)] mt-3 font-medium">
                         Click to replace or drag new file
@@ -402,9 +452,7 @@ export default function DocumentSubmission({
                   <p className="text-lg font-semibold text-gray-700 mb-2">
                     {isDrag ? "Drop your file here" : "Upload Document"}
                   </p>
-                  <p className="text-sm text-gray-500 mb-3">
-                    Click to browse or drag and drop your file
-                  </p>
+                  <p className="text-sm text-gray-500 mb-3">Click to browse or drag and drop your file</p>
                   <div className="inline-flex items-center px-4 py-2 bg-[var(--primary-color)] text-white rounded-xl text-sm font-medium hover:bg-[var(--primary-hover-color)]">
                     Choose File
                   </div>
@@ -414,8 +462,8 @@ export default function DocumentSubmission({
           </div>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className={`mx-auto px-6 ${is4K ? "max-w-[2000px]" : "max-w-7xl "}`}>
@@ -423,22 +471,17 @@ export default function DocumentSubmission({
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <FaFileUpload className="text-white w-8 h-8" />
         </div>
-        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">
-          Document Submission
-        </h1>
+        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Document Submission</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Upload the required documents to complete your partnership
-          application. All documents will be securely stored and reviewed by our
-          team.
+          Upload the required documents to complete your partnership application. All documents will be securely stored
+          and reviewed by our team.
         </p>
       </div>
 
       {/* Progress Overview */}
       <div className="bg-white rounded-3xl p-8 mb-12">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-            Upload Progress
-          </h2>
+          <h2 className="text-2xl font-bold text-[var(--primary-color)]">Upload Progress</h2>
           <div className="text-right">
             <p className="text-3xl font-bold text-[var(--secondary-color)]">
               {getUploadedCount()}/{documentTypes.length}
@@ -451,17 +494,13 @@ export default function DocumentSubmission({
             className="h-3 rounded-full transition-all duration-500"
             style={{
               width: `${(getUploadedCount() / documentTypes.length) * 100}%`,
-              background:
-                "linear-gradient(to right, var(--primary-color), var(--secondary-color))",
+              background: "linear-gradient(to right, var(--primary-color), var(--secondary-color))",
             }}
           ></div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {documentTypes.map((d) => (
-            <div
-              key={d.key}
-              className="flex items-center space-x-3 p-3 rounded-xl bg-gray-50"
-            >
+            <div key={d.key} className="flex items-center space-x-3 p-3 rounded-xl bg-gray-50">
               {d.multiple ? (
                 (documents[d.key] as File[]).length > 0 ? (
                   <FaCheckCircle className="text-green-500 w-5 h-5" />
@@ -473,9 +512,7 @@ export default function DocumentSubmission({
               ) : (
                 <span className="text-gray-500 text-xs">○</span>
               )}
-              <span className="text-sm font-medium text-gray-700">
-                {d.title}
-              </span>
+              <span className="text-sm font-medium text-gray-700">{d.title}</span>
             </div>
           ))}
         </div>
@@ -502,9 +539,7 @@ export default function DocumentSubmission({
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">
-                    Document Accepted Formats
-                  </h4>
+                  <h4 className="font-semibold text-gray-800">Document Accepted Formats</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
                   <li>• PDF (Preferred)</li>
@@ -515,9 +550,7 @@ export default function DocumentSubmission({
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Ruler className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">
-                    File Specifications
-                  </h4>
+                  <h4 className="font-semibold text-gray-800">File Specifications</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
                   <li>• Size: 1MB to 50MB</li>
@@ -528,9 +561,7 @@ export default function DocumentSubmission({
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">
-                    File Naming Convention
-                  </h4>
+                  <h4 className="font-semibold text-gray-800">File Naming Convention</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
                   <li>• CompanyRegistration.pdf</li>
@@ -541,9 +572,7 @@ export default function DocumentSubmission({
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <FaBook className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">
-                    Catalog Content
-                  </h4>
+                  <h4 className="font-semibold text-gray-800">Catalog Content</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
                   <li>• Introduction</li>
@@ -555,9 +584,7 @@ export default function DocumentSubmission({
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">
-                    Catalog Layout & Design
-                  </h4>
+                  <h4 className="font-semibold text-gray-800">Catalog Layout & Design</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
                   <li>• Page Size: A4</li>
@@ -568,9 +595,7 @@ export default function DocumentSubmission({
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Ruler className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">
-                    Catalog Standard Margins
-                  </h4>
+                  <h4 className="font-semibold text-gray-800">Catalog Standard Margins</h4>
                 </div>
                 <ul className="space-y-1 text-gray-600">
                   <li>• Top: 1 inch (25.4 mm)</li>
@@ -599,11 +624,11 @@ export default function DocumentSubmission({
             !documentTypes
               .filter((d) => d.required)
               .every((d) => {
-                const doc = documents[d.key];
+                const doc = documents[d.key]
                 if (d.multiple) {
-                  return (doc as File[]).length > 0;
+                  return (doc as File[]).length > 0
                 }
-                return doc !== null;
+                return doc !== null
               })
           }
           className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
@@ -619,5 +644,5 @@ export default function DocumentSubmission({
         </button>
       </div>
     </div>
-  );
+  )
 }
