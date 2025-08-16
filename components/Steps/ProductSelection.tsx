@@ -3,6 +3,17 @@ import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
 import { useGlobalContext } from "../../context/ScreenProvider"
 import { submitProductsToAPI } from "@/services/regitsration"
+import Cookies from "js-cookie"
+const getUserRoleFromCookies = (): "vendor" | "buyer" => {
+  return (Cookies.get("user_role") as "vendor" | "buyer") || "vendor"
+}
+
+function replaceVendorWithBuyer(text: string, userRole: string | null): string {
+  if (userRole === "buyer") {
+    return text.replace(/vendor/gi, "Buyer")
+  }
+  return text
+}
 
 type DetailMap = Record<string, string[]>
 
@@ -43,6 +54,7 @@ export default function ComprehensiveProductSelection({
   }, [])
 
   const { is4K } = useGlobalContext()
+  const [userRole, setUserRole] = useState<string | null>(null)
   const [selectedCategories, setSelectedCategories] = useState<string[]>(data?.categories ?? [])
   const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(data?.subCategories ?? [])
   const [detailedSelections, setDetailedSelections] = useState<Record<string, DetailMap>>(
@@ -52,6 +64,11 @@ export default function ComprehensiveProductSelection({
   const [currentStep, setCurrentStep] = useState<"categories" | "subcategories" | "details">("categories")
   const [showAllProducts, setShowAllProducts] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    const role = getUserRoleFromCookies()
+    setUserRole(role)
+  }, [])
 
   const scrollToTop = () => {
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -109,16 +126,13 @@ export default function ComprehensiveProductSelection({
       // Format the final submission data
       const submissionData = {
         selectedData: linkedData,
-       
       }
       console.log(submissionData)
 
       // Call the API to submit the product data
       const response = await submitProductsToAPI(submissionData)
       console.log(response)
-
-
-    } catch (error:any) {
+    } catch (error: any) {
       console.error("Error submitting product data:", error)
       console.log(error)
     } finally {
@@ -203,11 +217,14 @@ export default function ComprehensiveProductSelection({
     return null
   }
 
-  const formatDetailKey = (key: string) =>
-    key
+  const formatDetailKey = (key: string) => {
+    const formatted = key
       .split("_")
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(" ")
+
+    return replaceVendorWithBuyer(formatted, userRole)
+  }
 
   const getTotalSelections = (): number => {
     let total = 0
@@ -410,31 +427,44 @@ export default function ComprehensiveProductSelection({
             </p>
           </div>
           <div className="bg-white rounded-3xl shadow-lg sm:px-0 py-6 lg:px-30 mb-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-              {getAvailableSubCategories().map((subCategory) => (
-                <label
-                  key={subCategory.id}
-                  className={`flex items-center space-x-3 cursor-pointer p-4 rounded-2xl transition-all duration-200 ${
-                    selectedSubCategories.includes(subCategory.id)
-                      ? "bg-[var(--secondary-light-color)] border-2 border-[var(--secondary-color)]"
-                      : "hover:bg-gray-50 border-2 border-transparent"
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedSubCategories.includes(subCategory.id)}
-                    onChange={() => handleSubCategorySelect(subCategory.id)}
-                    className="w-5 h-5 appearance-none border-2 border-gray-300 rounded checked:bg-[var(--secondary-color)] checked:border-[var(--secondary-color)] focus:ring-2 focus:ring-[var(--secondary-color)] focus:ring-offset-2"
-                    style={{
-                      backgroundImage: selectedSubCategories.includes(subCategory.id)
-                        ? `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e")`
-                        : "none",
-                    }}
-                  />
-                  <span className="text-sm font-medium text-gray-700 leading-tight">{subCategory.name}</span>
-                </label>
-              ))}
-            </div>
+            {selectedCategories.map((categoryId) => {
+              const category = categories.find((cat) => cat.id === categoryId)
+              if (!category) return null
+
+              return (
+                <div key={categoryId} className="mb-8 last:mb-0">
+                  {/* Category heading */}
+                  <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4 px-4">{category.name}</h3>
+
+                  {/* Subcategories grid for this category */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 px-4">
+                    {category.subcategories.map((subCategory) => (
+                      <label
+                        key={subCategory.id}
+                        className={`flex items-center space-x-3 cursor-pointer p-4 rounded-2xl transition-all duration-200 ${
+                          selectedSubCategories.includes(subCategory.id)
+                            ? "bg-[var(--secondary-light-color)] border-2 border-[var(--secondary-color)]"
+                            : "hover:bg-gray-50 border-2 border-transparent"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedSubCategories.includes(subCategory.id)}
+                          onChange={() => handleSubCategorySelect(subCategory.id)}
+                          className="w-5 h-5 appearance-none border-2 border-gray-300 rounded checked:bg-[var(--secondary-color)] checked:border-[var(--secondary-color)] focus:ring-2 focus:ring-[var(--secondary-color)] focus:ring-offset-2"
+                          style={{
+                            backgroundImage: selectedSubCategories.includes(subCategory.id)
+                              ? `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e")`
+                              : "none",
+                          }}
+                        />
+                        <span className="text-sm font-medium text-gray-700 leading-tight">{subCategory.name}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
@@ -507,6 +537,7 @@ export default function ComprehensiveProductSelection({
                                 {values.map((value, index) => {
                                   const isSelected =
                                     detailedSelections[subCategoryId]?.[detailKey]?.includes(value) || false
+                                  const displayValue = replaceVendorWithBuyer(value, userRole)
                                   return (
                                     <label
                                       key={index}
@@ -526,7 +557,7 @@ export default function ComprehensiveProductSelection({
                                           accentColor: "var(--primary-color)",
                                         }}
                                       />
-                                      <span className="text-sm text-gray-700 leading-relaxed">{value}</span>
+                                      <span className="text-sm text-gray-700 leading-relaxed">{displayValue}</span>
                                     </label>
                                   )
                                 })}
