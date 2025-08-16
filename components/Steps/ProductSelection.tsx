@@ -1,8 +1,7 @@
 "use client"
 import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
-import { useGlobalContext } from "../../context/ScreenProvider"
-import { submitProductsToAPI } from "@/services/regitsration"
+import { useGlobalContext } from "@/context/ScreenProvider"
 import Cookies from "js-cookie"
 const getUserRoleFromCookies = (): "vendor" | "buyer" => {
   return (Cookies.get("user_role") as "vendor" | "buyer") || "vendor"
@@ -103,7 +102,7 @@ export default function ComprehensiveProductSelection({
 
               Object.entries(subDetails).forEach(([specKey, specValues]) => {
                 if (specValues && specValues.length > 0) {
-                  specifications[specKey] = specValues[0] // Since we only allow single selection
+                  specifications[specKey] = specValues.join(", ") // Join values if multiple are selected
                 }
               })
 
@@ -130,8 +129,9 @@ export default function ComprehensiveProductSelection({
       console.log(submissionData)
 
       // Call the API to submit the product data
-      const response = await submitProductsToAPI(submissionData)
-      console.log(response)
+      // const response = await submitProductsToAPI(submissionData)
+      // console.log(response)
+      // onNext()
     } catch (error: any) {
       console.error("Error submitting product data:", error)
       console.log(error)
@@ -180,19 +180,33 @@ export default function ComprehensiveProductSelection({
     }
   }
 
-  // Modified to handle single selection per specification category
   const handleDetailSelect = (subId: string, detailKey: string, value: string) => {
     const updatedDetails: Record<string, DetailMap> = { ...detailedSelections }
     if (!updatedDetails[subId]) updatedDetails[subId] = {}
-    // For specifications, only allow one selection per detail key
+
     const current = updatedDetails[subId][detailKey] || []
-    if (current.includes(value)) {
-      // If already selected, remove it
-      updatedDetails[subId][detailKey] = []
+    const allowMultiple = isMultipleSelectionAllowed(detailKey)
+
+    if (allowMultiple) {
+      // For multiple selection specifications
+      if (current.includes(value)) {
+        // Remove if already selected
+        updatedDetails[subId][detailKey] = current.filter((v) => v !== value)
+      } else {
+        // Add to existing selections
+        updatedDetails[subId][detailKey] = [...current, value]
+      }
     } else {
-      // If not selected, replace with this single selection
-      updatedDetails[subId][detailKey] = [value]
+      // For single selection specifications, still store as array
+      if (current.includes(value)) {
+        // If already selected, remove it (deselect)
+        updatedDetails[subId][detailKey] = []
+      } else {
+        // Replace with this single selection (stored as array)
+        updatedDetails[subId][detailKey] = [value]
+      }
     }
+
     setDetailedSelections(updatedDetails)
     updateData(selectedCategories, selectedSubCategories, updatedDetails)
   }
@@ -250,11 +264,78 @@ export default function ComprehensiveProductSelection({
     return true
   }
 
+  const validateSubcategorySelection = (): boolean => {
+    for (const categoryId of selectedCategories) {
+      const category = categories.find((cat) => cat.id === categoryId)
+      if (!category) continue
+
+      const categorySubcategoryIds = category.subcategories.map((sub) => sub.id)
+      const hasSelectedSubcategory = categorySubcategoryIds.some((subId) => selectedSubCategories.includes(subId))
+
+      if (!hasSelectedSubcategory) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const isMultipleSelectionAllowed = (detailKey: string): boolean => {
+    const multipleSelectionKeys = [
+      // Existing multiple selection types
+      "colors_available",
+      "sizes_available",
+      "patterns_available",
+      "designs_available",
+      "features",
+      "accessories_included",
+
+      // Additional logical multiple selection types
+      "occasions", // One item can be suitable for multiple occasions (casual, formal, business)
+      "care_instructions", // Multiple care methods can apply (machine wash, dry clean, hand wash)
+      "certifications", // Products can have multiple certifications (organic, fair trade, etc.)
+      "styles", // Multiple style variations (modern, classic, vintage)
+      "finishes", // Multiple finish options (matte, glossy, textured)
+      "textures", // Multiple texture options (smooth, rough, ribbed)
+      "compatible_with", // Compatible with multiple items/systems
+      "suitable_for", // Suitable for multiple uses/environments
+      "benefits", // Multiple benefits (comfort, durability, style)
+      "applications", // Multiple applications/uses
+      "variations", // Multiple variations available
+      "options", // General options that can be multiple
+    ]
+
+    // Single selection types (explicitly defined for clarity)
+    const singleSelectionKeys = [
+      "material_type", // Usually one primary material
+      "brand", // One brand per product
+      "gender", // One target gender
+      "fit_type", // One fit style (regular, slim, loose)
+      "season", // One primary season
+      "age_group", // One target age group
+      "weight_category", // One weight class
+      "size_category", // One size category
+      "origin_country", // One country of origin
+      "manufacturer", // One manufacturer
+      "collection", // One collection/series
+      "model", // One model number/name
+    ]
+
+    const lowerKey = detailKey.toLowerCase()
+
+    // Check if it's explicitly a single selection type
+    if (singleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))) {
+      return false
+    }
+
+    // Check if it's a multiple selection type
+    return multipleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))
+  }
+
   const handleNext = async () => {
     if (currentStep === "categories" && selectedCategories.length > 0) {
       setCurrentStep("subcategories")
       scrollToTop()
-    } else if (currentStep === "subcategories" && selectedSubCategories.length > 0) {
+    } else if (currentStep === "subcategories" && selectedSubCategories.length > 0 && validateSubcategorySelection()) {
       setCurrentStep("details")
       scrollToTop()
     } else if (currentStep === "details" && areAllSpecificationsSelected()) {
@@ -423,8 +504,13 @@ export default function ComprehensiveProductSelection({
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Specific Products</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose the specific products you work with from your selected categories
+              Choose at least one product from each selected category
             </p>
+            {selectedSubCategories.length > 0 && !validateSubcategorySelection() && (
+              <div className="mt-4 p-3 bg-yellow-100 border border-yellow-400 rounded-lg text-yellow-800 text-sm max-w-md mx-auto">
+                Please select at least one product from each category to continue
+              </div>
+            )}
           </div>
           <div className="bg-white rounded-3xl shadow-lg sm:px-0 py-6 lg:px-30 mb-12">
             {selectedCategories.map((categoryId) => {
@@ -475,7 +561,7 @@ export default function ComprehensiveProductSelection({
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Product Specifications</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Select one specification for each category (single selection only)
+              Select specifications for each product (some allow multiple selections)
             </p>
             <div className="mt-4 text-sm text-gray-500">
               Progress:{" "}
@@ -528,10 +614,11 @@ export default function ComprehensiveProductSelection({
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {Object.entries(details).map(([detailKey, values]) => {
                           if (!Array.isArray(values)) return null
+                          const allowMultiple = isMultipleSelectionAllowed(detailKey)
                           return (
                             <div key={detailKey} className="bg-gray-50 rounded-2xl py-6 px-3">
                               <h4 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
-                                {formatDetailKey(detailKey)} (Select one)
+                                {formatDetailKey(detailKey)} ({allowMultiple ? "Select multiple" : "Select one"})
                               </h4>
                               <div className="space-y-2 max-h-60 overflow-y-auto">
                                 {values.map((value, index) => {
@@ -548,8 +635,8 @@ export default function ComprehensiveProductSelection({
                                       }`}
                                     >
                                       <input
-                                        type="radio"
-                                        name={`${subCategoryId}-${detailKey}`}
+                                        type={allowMultiple ? "checkbox" : "radio"}
+                                        name={allowMultiple ? undefined : `${subCategoryId}-${detailKey}`}
                                         checked={isSelected}
                                         onChange={() => handleDetailSelect(subCategoryId, detailKey, value)}
                                         className="w-4 h-4 mt-0.5 border-2 border-gray-300 focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 flex-shrink-0"
@@ -611,14 +698,17 @@ export default function ComprehensiveProductSelection({
           disabled={
             isSubmitting ||
             (currentStep === "categories" && selectedCategories.length === 0) ||
-            (currentStep === "subcategories" && selectedSubCategories.length === 0) ||
+            (currentStep === "subcategories" &&
+              (selectedSubCategories.length === 0 || !validateSubcategorySelection())) ||
             (currentStep === "details" && !areAllSpecificationsSelected())
           }
           className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${
             !isSubmitting &&
             (
               (currentStep === "categories" && selectedCategories.length > 0) ||
-                (currentStep === "subcategories" && selectedSubCategories.length > 0) ||
+                (currentStep === "subcategories" &&
+                  selectedSubCategories.length > 0 &&
+                  validateSubcategorySelection()) ||
                 (currentStep === "details" && areAllSpecificationsSelected())
             )
               ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"

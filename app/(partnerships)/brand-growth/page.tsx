@@ -129,7 +129,7 @@ const defaultProps: PartnershipPageProps = {
   subtitle: "Discover diverse collaboration pathways tailored to your business needs",
   categories: [
     {
-      title: "Core Trade Partnerships",
+      title: "Brand Growth Partnerships",
 
       items: [
         { title: "Drop Shipping / E-commerce" },

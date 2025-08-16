@@ -55,7 +55,7 @@ const defaultProps: PartnershipPageProps = {
   buyerTagline: "Every Purchase is a Partnership. Every Buyer Empowers a Legacy.",
   buyerDescription:
     "Buyers don't just source products — they enable livelihoods, preserve culture, and scale ethical trade.",
-  Title: "Core Trade Partnerships",
+  Title: "Institutional Partnerships",
   Description: "Entry-level sourcing relationships that open the door to verified vendor support.",
 
   Partnerships: [
