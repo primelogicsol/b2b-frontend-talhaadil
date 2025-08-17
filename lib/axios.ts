@@ -54,12 +54,9 @@ api.interceptors.response.use(
         })
 
         const newAccessToken = res.data.access_token
+        Cookies.set("access_token", newAccessToken)
 
-        // Update the stored user object with new access token
-        const updatedUser = { ...user, access_token: newAccessToken }
-        localStorage.setItem('user', JSON.stringify(updatedUser))
 
-        // Retry original request with new token
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
         return api(originalRequest)
       } catch (refreshError) {

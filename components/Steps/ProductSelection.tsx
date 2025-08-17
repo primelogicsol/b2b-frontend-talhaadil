@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react"
 import { categories } from "@/lib/categories"
 import { useGlobalContext } from "@/context/ScreenProvider"
 import Cookies from "js-cookie"
+import { submitProductsToAPI } from "@/services/regitsration"
 const getUserRoleFromCookies = (): "vendor" | "buyer" => {
   return (Cookies.get("user_role") as "vendor" | "buyer") || "vendor"
 }
@@ -96,13 +97,12 @@ export default function ComprehensiveProductSelection({
           const categorySubcategories = category.subcategories
             .filter((sub) => selectedSubCategories.includes(sub.id))
             .map((subcategory) => {
-              // Get specifications for this subcategory
-              const specifications: Record<string, string> = {}
+              const specifications: Record<string, string[]> = {}
               const subDetails = detailedSelections[subcategory.id] || {}
 
               Object.entries(subDetails).forEach(([specKey, specValues]) => {
                 if (specValues && specValues.length > 0) {
-                  specifications[specKey] = specValues.join(", ") // Join values if multiple are selected
+                  specifications[specKey] = specValues // Keep as array, even if single value
                 }
               })
 
@@ -112,7 +112,7 @@ export default function ComprehensiveProductSelection({
                 specifications: specifications,
               }
             })
-            .filter((sub) => Object.keys(sub.specifications).length > 0) // Only include subcategories with specifications
+            .filter((sub) => Object.keys(sub.specifications).length > 0)
 
           return {
             categoryId: category.id,
@@ -128,10 +128,9 @@ export default function ComprehensiveProductSelection({
       }
       console.log(submissionData)
 
-      // Call the API to submit the product data
-      // const response = await submitProductsToAPI(submissionData)
-      // console.log(response)
-      // onNext()
+      const response = await submitProductsToAPI(submissionData)
+      console.log(response)
+      onNext()
     } catch (error: any) {
       console.error("Error submitting product data:", error)
       console.log(error)
@@ -391,13 +390,12 @@ export default function ComprehensiveProductSelection({
       <div className="mb-8">
         <div className="flex items-center justify-center space-x-4 mb-4">
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-              currentStep === "categories"
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "categories"
                 ? "bg-[var(--secondary-color)] text-white"
                 : selectedCategories.length > 0
                   ? "bg-[var(--primary-color)] text-white"
                   : "bg-gray-300 text-gray-600"
-            }`}
+              }`}
           >
             1
           </div>
@@ -405,13 +403,12 @@ export default function ComprehensiveProductSelection({
             className={`w-16 h-1 ${selectedCategories.length > 0 ? "bg-[var(--primary-color)]" : "bg-gray-300"}`}
           ></div>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-              currentStep === "subcategories"
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "subcategories"
                 ? "bg-[var(--secondary-color)] text-white"
                 : selectedSubCategories.length > 0
                   ? "bg-[var(--primary-color)] text-white"
                   : "bg-gray-300 text-gray-600"
-            }`}
+              }`}
           >
             2
           </div>
@@ -419,13 +416,12 @@ export default function ComprehensiveProductSelection({
             className={`w-16 h-1 ${selectedSubCategories.length > 0 ? "bg-[var(--primary-color)]" : "bg-gray-300"}`}
           ></div>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-              currentStep === "details"
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "details"
                 ? "bg-[var(--secondary-color)] text-white"
                 : getTotalSelections() > 0
                   ? "bg-[var(--primary-color)] text-white"
                   : "bg-gray-300 text-gray-600"
-            }`}
+              }`}
           >
             3
           </div>
@@ -459,11 +455,10 @@ export default function ComprehensiveProductSelection({
               <div
                 key={category.id}
                 onClick={() => handleCategorySelect(category.id)}
-                className={`bg-white rounded-3xl shadow-lg p-6 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${
-                  selectedCategories.includes(category.id)
+                className={`bg-white rounded-3xl shadow-lg p-6 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${selectedCategories.includes(category.id)
                     ? "ring-3 ring-green-50 bg-gradient-to-br from-[#b7ec86] to-white"
                     : "hover:shadow-2xl"
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-bold text-[var(--primary-color)] leading-tight">{category.name}</h3>
@@ -527,11 +522,10 @@ export default function ComprehensiveProductSelection({
                     {category.subcategories.map((subCategory) => (
                       <label
                         key={subCategory.id}
-                        className={`flex items-center space-x-3 cursor-pointer p-4 rounded-2xl transition-all duration-200 ${
-                          selectedSubCategories.includes(subCategory.id)
+                        className={`flex items-center space-x-3 cursor-pointer p-4 rounded-2xl transition-all duration-200 ${selectedSubCategories.includes(subCategory.id)
                             ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
                             : "hover:bg-gray-50 border-2 border-transparent"
-                        }`}
+                          }`}
                       >
                         <input
                           type="checkbox"
@@ -600,9 +594,8 @@ export default function ComprehensiveProductSelection({
                       <h3 className="text-2xl font-bold">{subCategory.name}</h3>
                       <div className="flex items-center space-x-4">
                         <span
-                          className={`transform transition-transform ${
-                            expandedSubCategory === subCategoryId ? "rotate-180" : ""
-                          }`}
+                          className={`transform transition-transform ${expandedSubCategory === subCategoryId ? "rotate-180" : ""
+                            }`}
                         >
                           ▼
                         </span>
@@ -628,11 +621,10 @@ export default function ComprehensiveProductSelection({
                                   return (
                                     <label
                                       key={index}
-                                      className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 pl-4 ${
-                                        isSelected
+                                      className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 pl-4 ${isSelected
                                           ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
                                           : "hover:bg-white border-2 border-transparent"
-                                      }`}
+                                        }`}
                                     >
                                       <input
                                         type={allowMultiple ? "checkbox" : "radio"}
@@ -702,18 +694,17 @@ export default function ComprehensiveProductSelection({
               (selectedSubCategories.length === 0 || !validateSubcategorySelection())) ||
             (currentStep === "details" && !areAllSpecificationsSelected())
           }
-          className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${
-            !isSubmitting &&
-            (
-              (currentStep === "categories" && selectedCategories.length > 0) ||
+          className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${!isSubmitting &&
+              (
+                (currentStep === "categories" && selectedCategories.length > 0) ||
                 (currentStep === "subcategories" &&
                   selectedSubCategories.length > 0 &&
                   validateSubcategorySelection()) ||
                 (currentStep === "details" && areAllSpecificationsSelected())
-            )
+              )
               ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
-          }`}
+            }`}
         >
           {isSubmitting ? (
             <>

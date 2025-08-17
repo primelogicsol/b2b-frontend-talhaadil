@@ -20,7 +20,7 @@ import {
   Flag,
 } from "lucide-react"
 import { useGlobalContext } from "../../context/ScreenProvider"
-import { postappointment } from "@/services/appointment"
+import { postAppointment } from "@/services/appointment"
 interface FormData {
   userType: "buyer" | "vendor" | "guest" | ""
   guestCountry?: "usa" | "india" | ""
@@ -280,37 +280,41 @@ export default function AppointmentScheduler() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    try {
-      // Build query params object from your formData state
-      const queryParams = {
-        user_type: formData.userType,                 // buyer | vendor | guest
-        appointment_type: formData.appointmentMode,   // virtual | offline
-        appointment_date: formData.date,              // YYYY-MM-DD
-        appointment_time: formData.time,              // HH:MM
-        purpose: formData.purpose,                    // max 255 chars
-        country: formData.guestCountry || undefined,  // optional
-        office_location: formData.office || undefined, // optional
-        // If virtual, you might map appointmentMode to virtual_platform
-        virtual_platform:
-          formData.appointmentMode === "virtual" ? formData.office : undefined,
-      };
-  
-      // Optional: if you have a file upload in formData
-      const file = (formData as any).file || undefined;
-  
-      console.log("Sending booking request:", queryParams, file);
-  // @ts-ignore
-  const response = await postappointment(queryParams, file);  
-  
-      console.log("Booking successful:", response.data);
-      setIsBooked(true);
-    } catch (error) {
-      console.error("Booking failed:", error);
-      setIsBooked(false);
-    }
-  };
+  const body = {
+  user_type: formData.userType,                // buyer | vendor | guest
+  appointment_type: formData.appointmentMode,  // virtual | offline
+  appointment_date: formData.date,             // YYYY-MM-DD
+  appointment_time: formData.time,             // HH:MM
+  time_zone: formData.timeZone,                // required
+  purpose: formData.purpose,                   // max 255 chars
+  first_name: formData.firstName,              // required
+  last_name: formData.lastName,                // required
+  business_name: formData.businessName,        // required
+  email: formData.email,                       // required
+  phone_number: formData.phoneNumber,          // required
+  website: formData.website || null,           // optional
+  country: formData.guestCountry || null,      // optional
+  office_location: formData.office || null,    // optional
+  virtual_platform:
+    formData.appointmentMode === "virtual" ? formData.platform : null,
+};
 
+// Optional file upload
+const file = (formData as any).file || undefined;
+
+console.log("Sending booking request:", body, file);
+
+try {
+  // @ts-ignore
+  const response = await postAppointment(body, file);
+
+  console.log("Booking successful:", response.data);
+  setIsBooked(true);
+} catch (error) {
+  console.error("Booking failed:", error);
+  setIsBooked(false);
+}
+  }
   const isFormValid = () => {
     const baseValid =
       formData.userType &&

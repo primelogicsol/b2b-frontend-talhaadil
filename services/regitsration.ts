@@ -65,3 +65,12 @@ export const getVerificationStatus = () => {
     },
   });
 };
+
+
+export const getUserInfo = () => {
+  return api.get(`/registration/registration_info`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+}
