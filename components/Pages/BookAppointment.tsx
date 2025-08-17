@@ -105,6 +105,20 @@ export default function AppointmentScheduler() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
+  const setOfficeByCountry = () => {
+    const country = getEffectiveCountry()
+    if (country === "usa") {
+      return "USA Office – HQ"
+    } else {
+      return "Kashmir India"
+    }
+  }
+  const getEffectiveTimeZone = (): "EST" | "IST" | null => {
+    const country = getEffectiveCountry()
+    if (country === "usa") return "EST"
+    if (country === "india") return "IST"
+    return null
+  }
   // Get user's effective country
   const getEffectiveCountry = (): "usa" | "india" | null => {
     if (formData.userType === "buyer") return "usa"
@@ -280,46 +294,50 @@ export default function AppointmentScheduler() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  const body = {
-  user_type: formData.userType,                // buyer | vendor | guest
-  appointment_type: formData.appointmentMode,  // virtual | offline
-  appointment_date: formData.date,             // YYYY-MM-DD
-  appointment_time: formData.time,             // HH:MM
-  time_zone: formData.timeZone,                // required
-  purpose: formData.purpose,                   // max 255 chars
-  first_name: formData.firstName,              // required
-  last_name: formData.lastName,                // required
-  business_name: formData.businessName,        // required
-  email: formData.email,                       // required
-  phone_number: formData.phoneNumber,          // required
-  website: formData.website || null,           // optional
-  country: formData.guestCountry || null,      // optional
-  office_location: formData.office || null,    // optional
-  virtual_platform:
-    formData.appointmentMode === "virtual" ? formData.platform : null,
-};
+    const body = {
+      user_type: formData.userType,                // buyer | vendor | guest
+      appointment_type: formData.appointmentMode === "in-person" ? "offline" : formData.appointmentMode,  // virtual | offline
+      appointment_date: formData.date,             // YYYY-MM-DD
+      appointment_time: formData.time,             // HH:MM
+      time_zone: getEffectiveTimeZone(),           // required
+      purpose: formData.purpose,                   // max 255 chars
+      first_name: formData.firstName,              // required
+      last_name: formData.lastName,                // required
+      business_name: formData.businessName,        // required
+      email: formData.email,                       // required
+      phone_number: formData.phone,                // required
+      website: formData.website || null,           // optional
+      country: getEffectiveCountry(),              // optional
+      ...(formData.appointmentMode === "in-person" && {
+        office_location: setOfficeByCountry(),              // only if in-person
+      }),
+    };
 
-// Optional file upload
-const file = (formData as any).file || undefined;
 
-console.log("Sending booking request:", body, file);
+    console.log(body)
 
-try {
-  // @ts-ignore
-  const response = await postAppointment(body, file);
 
-  console.log("Booking successful:", response.data);
-  setIsBooked(true);
-} catch (error) {
-  console.error("Booking failed:", error);
-  setIsBooked(false);
-}
+    // Optional file upload
+    const file = (formData as any).file || undefined;
+
+    console.log("Sending booking request:", body, file);
+
+    try {
+      // @ts-ignore
+      const response = await postAppointment(body, file);
+
+      console.log("Booking successful:", response.data);
+      setIsBooked(true);
+    } catch (error) {
+      console.error("Booking failed:", error);
+      setIsBooked(false);
+    }
   }
   const isFormValid = () => {
     const baseValid =
       formData.userType &&
       formData.appointmentMode &&
-      (formData.appointmentMode === "virtual" || formData.office) &&
+      
       formData.purpose &&
       formData.date &&
       formData.time &&
@@ -393,11 +411,10 @@ try {
             ].map((option) => (
               <label
                 key={option.value}
-                className={`flex items-center border-2 rounded-lg cursor-pointer transition-all ${
-                  formData.userType === option.value
-                    ? "border-[var(--primary-color)] bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
+                className={`flex items-center border-2 rounded-lg cursor-pointer transition-all ${formData.userType === option.value
+                  ? "border-[var(--primary-color)] bg-blue-50"
+                  : "border-gray-200 hover:border-gray-300"
+                  }`}
                 style={{ padding: is4K ? "24px" : "16px" }}
               >
                 <input
@@ -444,11 +461,10 @@ try {
 
             <div className="grid md:grid-cols-2" style={{ gap: is4K ? "32px" : "24px" }}>
               <label
-                className={`flex items-center border-2 rounded-lg cursor-pointer transition-all ${
-                  formData.guestCountry === "usa"
-                    ? "border-[var(--primary-color)] bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
+                className={`flex items-center border-2 rounded-lg cursor-pointer transition-all ${formData.guestCountry === "usa"
+                  ? "border-[var(--primary-color)] bg-blue-50"
+                  : "border-gray-200 hover:border-gray-300"
+                  }`}
                 style={{ padding: is4K ? "24px" : "16px" }}
               >
                 <input
@@ -474,11 +490,10 @@ try {
               </label>
 
               <label
-                className={`flex items-center border-2 rounded-lg cursor-pointer transition-all ${
-                  formData.guestCountry === "india"
-                    ? "border-[var(--primary-color)] bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
+                className={`flex items-center border-2 rounded-lg cursor-pointer transition-all ${formData.guestCountry === "india"
+                  ? "border-[var(--primary-color)] bg-blue-50"
+                  : "border-gray-200 hover:border-gray-300"
+                  }`}
                 style={{ padding: is4K ? "24px" : "16px" }}
               >
                 <input
@@ -519,11 +534,10 @@ try {
 
             <div className="grid md:grid-cols-2" style={{ gap: is4K ? "32px" : "24px" }}>
               <div
-                className={`border-2 rounded-lg cursor-pointer transition-all ${
-                  formData.appointmentMode === "virtual"
-                    ? "border-[var(--primary-color)] bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
+                className={`border-2 rounded-lg cursor-pointer transition-all ${formData.appointmentMode === "virtual"
+                  ? "border-[var(--primary-color)] bg-blue-50"
+                  : "border-gray-200 hover:border-gray-300"
+                  }`}
                 style={{ padding: is4K ? "32px" : "24px" }}
                 onClick={() => updateFormData("appointmentMode", "virtual")}
               >
@@ -553,11 +567,10 @@ try {
               </div>
 
               <div
-                className={`border-2 rounded-lg cursor-pointer transition-all ${
-                  formData.appointmentMode === "in-person"
-                    ? "border-[var(--primary-color)] bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
+                className={`border-2 rounded-lg cursor-pointer transition-all ${formData.appointmentMode === "in-person"
+                  ? "border-[var(--primary-color)] bg-blue-50"
+                  : "border-gray-200 hover:border-gray-300"
+                  }`}
                 style={{ padding: is4K ? "32px" : "24px" }}
                 onClick={() => updateFormData("appointmentMode", "in-person")}
               >
@@ -597,7 +610,7 @@ try {
               style={{ marginBottom: is4K ? "32px" : "24px" }}
             >
               <MapPin className="mr-3" size={is4K ? 32 : 24} />
-              Select Office Location
+              Office Location
             </h2>
 
             {/* Desktop/Tablet Table View */}
@@ -620,16 +633,7 @@ try {
                     >
                       Phone
                     </th>
-                    <th
-                      className={`border border-[var(--primary-hover-color)] text-left font-semibold ${is4K ? "text-xl p-6" : "text-base p-4"}`}
-                    >
-                      Days & Time
-                    </th>
-                    <th
-                      className={`border border-[var(--primary-hover-color)] text-center font-semibold ${is4K ? "text-xl p-6" : "text-base p-4"}`}
-                    >
-                      Select
-                    </th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -649,21 +653,7 @@ try {
                       >
                         {office.phone}
                       </td>
-                      <td className={`border border-gray-200 text-gray-700 ${is4K ? "text-lg p-6" : "text-sm p-4"}`}>
-                        {office.schedule}
-                      </td>
-                      <td className={`border border-gray-200 text-center ${is4K ? "p-6" : "p-4"}`}>
-                        <input
-                          type="radio"
-                          name="office"
-                          value={office.id}
-                          checked={formData.office === office.id}
-                          onChange={(e) => updateFormData("office", e.target.value)}
-                          className="text-[var(--primary-color)] bg-gray-100 border-gray-300 focus:ring-[var(--primary-color)] focus:ring-2 accent-[var(--primary-color)]"
-                          style={{ width: is4K ? "24px" : "20px", height: is4K ? "24px" : "20px" }}
-                          required={formData.appointmentMode === "in-person"}
-                        />
-                      </td>
+
                     </tr>
                   ))}
                 </tbody>
@@ -675,27 +665,18 @@ try {
               {getFilteredOffices().map((office) => (
                 <div
                   key={office.id}
-                  className={`border rounded-lg transition-all duration-200 ${
-                    formData.office === office.id
-                      ? "border-[var(--primary-color)] shadow-md"
-                      : "border-gray-200 bg-white hover:border-gray-300"
-                  }`}
+                  className={`border rounded-lg transition-all duration-200 ${formData.office === office.id
+                    ? "border-[var(--primary-color)] shadow-md"
+                    : "border-gray-200 bg-white hover:border-gray-300"
+                    }`}
                   style={{ padding: is4K ? "24px" : "16px" }}
                 >
                   <div className="flex items-start justify-between" style={{ marginBottom: is4K ? "18px" : "12px" }}>
                     <div className="flex items-center flex-1">
-                      <h3 className={`font-semibold text-gray-900 ${is4K ? "text-2xl" : "text-lg"}`}>{office.name}</h3>
+                      <h3 className={`font-semibold text-gray-900 ${is4K ? "text-2xl" : "text-lg"}`}>
+                        {office.name}
+                      </h3>
                     </div>
-                    <input
-                      type="radio"
-                      name="office"
-                      value={office.id}
-                      checked={formData.office === office.id}
-                      onChange={(e) => updateFormData("office", e.target.value)}
-                      className="text-[var(--primary-color)] bg-gray-100 border-gray-300 focus:ring-[var(--primary-color)] focus:ring-2 accent-[var(--primary-color)] mt-1"
-                      style={{ width: is4K ? "24px" : "20px", height: is4K ? "24px" : "20px" }}
-                      required={formData.appointmentMode === "in-person"}
-                    />
                   </div>
 
                   <div className={`space-y-2 ${is4K ? "text-lg" : "text-sm"}`} style={{ gap: is4K ? "12px" : "8px" }}>
@@ -712,14 +693,8 @@ try {
                       </span>
                       <span className="text-gray-700 font-mono">{office.phone}</span>
                     </div>
-
-                    <div className="flex items-center">
-                      <span className={`font-medium text-gray-600 flex-shrink-0 ${is4K ? "w-20" : "w-16"}`}>
-                        Hours:
-                      </span>
-                      <span className="text-gray-700">{office.schedule}</span>
-                    </div>
                   </div>
+
                 </div>
               ))}
             </div>
@@ -752,9 +727,8 @@ try {
                     return (
                       <label
                         key={day}
-                        className={`flex items-center border-b border-gray-100 cursor-pointer hover:bg-gray-50 ${
-                          formData.date === day ? "bg-blue-50 border-[var(--primary-color)]" : ""
-                        }`}
+                        className={`flex items-center border-b border-gray-100 cursor-pointer hover:bg-gray-50 ${formData.date === day ? "bg-blue-50 border-[var(--primary-color)]" : ""
+                          }`}
                         style={{ padding: is4K ? "18px" : "12px" }}
                       >
                         <input
@@ -797,9 +771,8 @@ try {
                       availableTimeSlots.map((slot) => (
                         <label
                           key={slot.time}
-                          className={`flex items-center border-b border-gray-100 cursor-pointer hover:bg-gray-50 ${
-                            formData.time === slot.time ? "bg-blue-50 border-[var(--primary-color)]" : ""
-                          }`}
+                          className={`flex items-center border-b border-gray-100 cursor-pointer hover:bg-gray-50 ${formData.time === slot.time ? "bg-blue-50 border-[var(--primary-color)]" : ""
+                            }`}
                           style={{ padding: is4K ? "18px" : "12px" }}
                         >
                           <input
@@ -1188,6 +1161,7 @@ function BookingConfirmation({ formData }: { formData: FormData }) {
 
           <div className="flex flex-col sm:flex-row justify-center" style={{ gap: is4K ? "24px" : "16px" }}>
             <button
+             
               className={`bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-lg font-semibold flex items-center justify-center ${is4K ? "text-xl px-8 py-4" : "text-base px-6 py-3"}`}
             >
               <User className="mr-2" size={is4K ? 20 : 16} style={{ marginRight: is4K ? "12px" : "8px" }} />
