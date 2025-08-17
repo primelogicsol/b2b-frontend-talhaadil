@@ -214,53 +214,51 @@ This agreement is governed under U.S. law and is legally binding under federal a
     const doc = new jsPDF()
     const pageWidth = doc.internal.pageSize.width
     const pageHeight = doc.internal.pageSize.height
-    const margin = 20
+    const margin = 25
     let yPosition = margin
-
-    // Colors (converted to RGB)
-    const primaryColor = [27, 79, 104] // #1b4f68
-    const secondaryColor = [216, 88, 52] // #d85834
-    const lightGray = [128, 128, 128]
-
-    // Helper function to add text with word wrapping
-    const addWrappedText = (text: string, x: number, y: number, maxWidth: number, fontSize = 10) => {
-      doc.setFontSize(fontSize)
-      const lines = doc.splitTextToSize(text, maxWidth)
-      doc.text(lines, x, y)
-      return y + lines.length * fontSize * 0.4
-    }
-
-    // Header
+  
+    const primaryColor = [20, 53, 80]
+    const secondaryColor = [183, 28, 28]
+    const accentColor = [55, 65, 81]
+    const lightGray = [107, 114, 128]
+    const backgroundGray = [249, 250, 251]
+  
+    // HEADER
     doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2])
-    doc.rect(0, 0, pageWidth, 40, "F")
+    doc.rect(0, 0, pageWidth, 50, "F")
+  
+    doc.setDrawColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.setLineWidth(2)
+    doc.line(0, 50, pageWidth, 50)
+  
     doc.setTextColor(255, 255, 255)
-    doc.setFontSize(16)
+    doc.setFontSize(20)
     doc.setFont("helvetica", "bold")
-    doc.text("De Koshur Crafts Bazaar LLC", pageWidth / 2, 15, {
-      align: "center",
-    })
-    doc.setFontSize(12)
-    doc.text("United States of America", pageWidth / 2, 25, {
-      align: "center",
-    })
-    doc.setFontSize(14)
-    doc.text(partnershipTitle, pageWidth / 2, 35, {
-      align: "center",
-    })
-
-    yPosition = 60
-
-    // Business Information Section
-    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
-    doc.setFontSize(14)
-    doc.setFont("helvetica", "bold")
-    doc.text("Business Information", margin, yPosition)
-    yPosition += 15
-
-    doc.setTextColor(0, 0, 0)
-    doc.setFontSize(10)
+    doc.text("De Koshur Crafts Bazaar LLC", pageWidth / 2, 18, { align: "center" })
+    doc.setFontSize(11)
     doc.setFont("helvetica", "normal")
-
+    doc.text("United States of America", pageWidth / 2, 28, { align: "center" })
+    doc.setFontSize(14)
+    doc.setFont("helvetica", "bold")
+    doc.text(partnershipTitle, pageWidth / 2, 40, { align: "center" })
+  
+    yPosition = 70
+  
+    // BUSINESS INFO HEADER
+    doc.setFillColor(backgroundGray[0], backgroundGray[1], backgroundGray[2])
+    doc.rect(margin - 5, yPosition - 5, pageWidth - 2 * margin + 10, 20, "F")
+  
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.setFontSize(14)
+    doc.setFont("helvetica", "bold")
+    doc.text("BUSINESS INFORMATION", margin, yPosition + 7)
+  
+    yPosition += 25
+  
+    // BUSINESS INFO
+    doc.setTextColor(accentColor[0], accentColor[1], accentColor[2])
+    doc.setFontSize(10)
+  
     const businessInfo = [
       `Business Name: ${formData.businessName}`,
       `Business Type: ${formData.businessType}`,
@@ -274,101 +272,147 @@ This agreement is governed under U.S. law and is legally binding under federal a
       `Routing Number: ${formData.routingNumber}`,
       `Bank Address: ${formData.bankAddress}`,
     ]
-
-    businessInfo.forEach((info) => {
-      doc.text(info, margin, yPosition)
-      yPosition += 8
-    })
-
-    yPosition += 10
-
-    // Agreement Terms Section
-    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
-    doc.setFontSize(14)
-    doc.setFont("helvetica", "bold")
-    doc.text("Agreement Terms & Conditions", margin, yPosition)
-    yPosition += 15
-
-    doc.setTextColor(0, 0, 0)
-    doc.setFontSize(9)
-    doc.setFont("helvetica", "normal")
-
-    const termsContent = getTermsContent()
-
-    // Split content into pages
-    const lines = doc.splitTextToSize(termsContent, pageWidth - 2 * margin)
-    const linesPerPage = Math.floor((pageHeight - 100) / 4) // Approximate lines per page
-
-    for (let i = 0; i < lines.length; i += linesPerPage) {
-      if (i > 0) {
-        doc.addPage()
-        yPosition = margin
+  
+    businessInfo.forEach((info, index) => {
+      if (index % 2 === 0) {
+        doc.setFillColor(248, 250, 252)
+        doc.rect(margin - 3, yPosition - 4, pageWidth - 2 * margin + 6, 10, "F")
       }
-
-      const pageLines = lines.slice(i, i + linesPerPage)
-      pageLines.forEach((line: string) => {
-        if (line.match(/^\d+\./)) {
-          doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
-          doc.setFont("helvetica", "bold")
-        } else {
-          doc.setTextColor(0, 0, 0)
-          doc.setFont("helvetica", "normal")
-        }
-        doc.text(line, margin, yPosition)
-        yPosition += 4
-      })
-    }
-
-    // Add new page for signature
-    doc.addPage()
-    yPosition = margin
-
-    // Digital Signature Section
-    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+  
+      const [label, value] = info.split(": ")
+      doc.setFont("helvetica", "bold")
+      doc.text(label + ":", margin, yPosition)
+      doc.setFont("helvetica", "normal")
+      const labelWidth = doc.getTextWidth(label + ": ")
+      doc.text(value || "", margin + labelWidth + 2, yPosition)
+  
+      yPosition += 8 // tighter + consistent spacing
+    })
+  
+    yPosition += 15
+  
+    // TERMS HEADER
+    doc.setFillColor(backgroundGray[0], backgroundGray[1], backgroundGray[2])
+    doc.rect(margin - 5, yPosition - 5, pageWidth - 2 * margin + 10, 20, "F")
+  
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
     doc.setFontSize(14)
     doc.setFont("helvetica", "bold")
-    doc.text("Digital Signature", margin, yPosition)
-    yPosition += 20
-
-    doc.setTextColor(0, 0, 0)
+    doc.text("AGREEMENT TERMS & CONDITIONS", margin, yPosition + 7)
+  
+    yPosition += 25
+  
+    // TERMS CONTENT
+    doc.setTextColor(accentColor[0], accentColor[1], accentColor[2])
+    doc.setFontSize(10)
+    doc.setFont("helvetica", "normal")
+  
+    const termsContent = getTermsContent()
+    const lines = doc.splitTextToSize(termsContent, pageWidth - 2 * margin)
+  
+    lines.forEach((line: string) => {
+      if (yPosition > pageHeight - 40) { // page-break check
+        doc.addPage()
+        yPosition = margin + 15
+      }
+  
+      if (line.match(/^\d+\./)) {
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+        doc.setFont("helvetica", "bold")
+        doc.setFontSize(10.5)
+      } else {
+        doc.setTextColor(accentColor[0], accentColor[1], accentColor[2])
+        doc.setFont("helvetica", "normal")
+        doc.setFontSize(10)
+      }
+      doc.text(line, margin, yPosition)
+      yPosition += 5 // consistent line spacing
+    })
+  
+    doc.addPage()
+    yPosition = margin + 20
+  
+    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.rect(0, yPosition - 15, pageWidth, 35, "F")
+    doc.setTextColor(255, 255, 255)
+    doc.setFontSize(18)
+    doc.setFont("helvetica", "bold")
+    doc.text("DIGITAL SIGNATURE", pageWidth / 2, yPosition, {
+      align: "center",
+    })
+  
+    yPosition += 40
+  
+    doc.setTextColor(accentColor[0], accentColor[1], accentColor[2])
     doc.setFontSize(12)
     doc.setFont("helvetica", "normal")
-
-    // Signature box
+  
+    doc.setFillColor(backgroundGray[0], backgroundGray[1], backgroundGray[2])
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 80, "F")
+  
+    doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.setLineWidth(2)
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 80)
+  
+    doc.setDrawColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.setLineWidth(1)
+    doc.rect(margin + 15, yPosition + 15, 50, 25)
+    doc.setFontSize(8)
+    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2])
+    doc.text("SIGNATURE", margin + 25, yPosition + 30, { align: "center" })
+  
+    doc.setTextColor(accentColor[0], accentColor[1], accentColor[2])
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "bold")
+    doc.text("Authorized Signatory:", margin + 80, yPosition + 25)
+    doc.setFont("helvetica", "normal")
+    doc.text(formData.signatoryName, margin + 80, yPosition + 35)
+  
+    doc.setFont("helvetica", "bold")
+    doc.text("Date:", margin + 80, yPosition + 50)
+    doc.setFont("helvetica", "normal")
+    doc.text(formData.signatureDate, margin + 80, yPosition + 60)
+  
+    doc.setFont("helvetica", "bold")
+    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.text("Status: ✓ DIGITALLY ACCEPTED", margin + 15, yPosition + 70)
+  
+    yPosition += 100
+  
+    doc.setFillColor(248, 250, 252)
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 40, "F")
+    doc.setDrawColor(lightGray[0], lightGray[1], lightGray[2])
+    doc.setLineWidth(0.5)
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 40)
+  
+    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2])
+    doc.setFontSize(9)
+    doc.setFont("helvetica", "bold")
+    doc.text("LEGAL DISCLAIMER", margin + 5, yPosition + 12)
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(8)
+    doc.text("This agreement constitutes a legally binding contract under U.S. law.", margin + 5, yPosition + 22)
+    doc.text("Digital signatures collected comply with applicable electronic signature laws.", margin + 5, yPosition + 30)
+  
     doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2])
     doc.setLineWidth(1)
-    doc.rect(margin, yPosition, pageWidth - 2 * margin, 60)
-
-    doc.text(`Authorized Signatory: ${formData.signatoryName}`, margin + 10, yPosition + 20)
-    doc.text(`Date: ${formData.signatureDate}`, margin + 10, yPosition + 35)
-    doc.text("Status: Digitally Accepted", margin + 10, yPosition + 50)
-
-    yPosition += 80
-
-    // Legal disclaimer
-    doc.setFillColor(244, 244, 244)
-    doc.rect(margin, yPosition, pageWidth - 2 * margin, 30, "F")
-    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2])
-    doc.setFontSize(8)
-    doc.text("This agreement constitutes a legally binding contract under U.S. law.", margin + 5, yPosition + 10)
-    doc.text(
-      "Digital signatures collected comply with applicable electronic signature laws.",
-      margin + 5,
-      yPosition + 20,
-    )
-
-    // Footer
+    doc.line(margin, pageHeight - 25, pageWidth - margin, pageHeight - 25)
+  
     doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-    doc.setFontSize(8)
-    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, pageWidth - margin, pageHeight - 10, {
+    doc.setFontSize(9)
+    doc.setFont("helvetica", "normal")
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, pageWidth - margin, pageHeight - 15, {
       align: "right",
     })
-
+    doc.text("De Koshur Crafts Bazaar LLC - Confidential Document", margin, pageHeight - 15)
+  
     const pdfBlob = doc.output("blob")
     const blobUrl = URL.createObjectURL(pdfBlob)
     window.open(blobUrl, "_blank")
     return pdfBlob
   }
+  
+  
 
   const handleGenerateAndUpload = async () => {
     const pdfBlob = generatePDF()
