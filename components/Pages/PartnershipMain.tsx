@@ -205,7 +205,7 @@ export default function CoreTradeLanding() {
                     className="flex items-start gap-3"
                     variants={fadeInUp}
                   >
-                    <XCircle className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" />
+                    <XCircle className="w-5 h-5 text-[var(--secondary-color)] mt-1 flex-shrink-0" />
                     <p
                       className={`text-gray-700 ${
                         is4K ? "text-xl" : "text-base"
@@ -235,7 +235,7 @@ export default function CoreTradeLanding() {
                     className="flex items-start gap-3"
                     variants={fadeInUp}
                   >
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-[var(--primary-color)] mt-1 flex-shrink-0" />
                     <p
                       className={`text-gray-700 ${
                         is4K ? "text-xl" : "text-base"
@@ -266,7 +266,7 @@ export default function CoreTradeLanding() {
           <motion.h2
             className={`${
               is4K ? "text-6xl mb-20" : "text-4xl md:text-5xl mb-16"
-            } font-bold text-center font-serif`}
+            } font-bold text-center font-sans`}
             variants={itemVariants}
           >
             <span className="gradient-text font-sans">
@@ -483,29 +483,23 @@ export default function CoreTradeLanding() {
         </motion.div>
       </motion.section>
 
-      <motion.section
-        className={`${is4K ? "py-40" : "py-24"} px-4 bg-white `}
+  <motion.section
+        className={`${is4K ? "py-40" : "py-24"} px-4 bg-white`}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
-        <div
-          className={`${is4K ? "max-w-[1800px]" : "max-w-[1200px]"} mx-auto`}
-        >
+        <div className={`${is4K ? "max-w-[1800px]" : "max-w-[1200px]"} mx-auto`}>
           <motion.h2
-            className={`${
-              is4K ? "text-6xl mb-20" : "text-4xl md:text-5xl mb-16"
-            } font-bold text-center font-serif`}
+            className={`${is4K ? "text-6xl mb-20" : "text-4xl md:text-5xl mb-16"} font-bold text-center font-sans text-[var(--primary-color)]`}
             variants={itemVariants}
           >
-            <span className="gradient-text font-sans">
-              {coreTradeData.workflow.heading}
-            </span>
+            <span className="gradient-text font-sans">{coreTradeData.workflow.heading}</span>
           </motion.h2>
 
           <div className="flex justify-center mb-12">
-            <div className="bg-gray-100 p-2 rounded-2xl">
+            <div className="bg-gray-100 p-2 rounded-2xl flex ">
               <button
                 className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                   activeWorkflow === "standard"
@@ -539,12 +533,8 @@ export default function CoreTradeLanding() {
               className="bg-gradient-to-br from-gray-50 to-white p-10 rounded-3xl shadow-xl border border-gray-200/50"
             >
               <h3
-                className={`${
-                  is4K ? "text-4xl" : "text-3xl"
-                } font-bold mb-8 text-center font-serif ${
-                  activeWorkflow === "standard"
-                    ? "text-[var(--primary-color)]"
-                    : "text-[var(--secondary-color)]"
+                className={`${is4K ? "text-4xl" : "text-3xl"} font-bold mb-8 text-center font-sans ${
+                  activeWorkflow === "standard" ? "text-[var(--primary-color)]" : "text-[var(--secondary-color)]"
                 }`}
               >
                 {activeWorkflow === "standard"
@@ -552,7 +542,7 @@ export default function CoreTradeLanding() {
                   : coreTradeData.workflow.fastTrack.title}
               </h3>
 
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="hidden md:flex flex-wrap justify-center gap-4">
                 {(activeWorkflow === "standard"
                   ? coreTradeData.workflow.standard.steps
                   : coreTradeData.workflow.fastTrack.steps
@@ -581,6 +571,32 @@ export default function CoreTradeLanding() {
                       }`}
                     >
                       {step}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="md:hidden space-y-4">
+                {(activeWorkflow === "standard"
+                  ? coreTradeData.workflow.standard.steps
+                  : coreTradeData.workflow.fastTrack.steps
+                ).map((step, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                        activeWorkflow === "standard" ? "bg-[var(--primary-color)]" : "bg-[var(--secondary-color)]"
+                      }`}
+                    >
+                      {index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-lg font-semibold text-gray-800">{step}</div>
                     </div>
                   </motion.div>
                 ))}

@@ -680,7 +680,7 @@ export default function InsidePage() {
                     </div>
 
                     {/* Desktop Layout */}
-                    <div className="relative z-10 flex justify-between items-start">
+                    <div className="relative z-10 justify-between items-start hidden md:flex">
                         {/* Progress Line */}
                         <div className="absolute top-12 left-12 right-12 h-1 bg-[var(--secondary-light-color)] z-0">
                             <div
