@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import AdminLayout from "./AdminLayout";
 import { Navbar } from "@/components/Essentials/Navbar";
 import Footer from "@/components/Essentials/Footer";
+import DashboardLayout from "./UserLayout";
 import type React from "react";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
@@ -12,6 +13,12 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   // Admin pages
   if (pathname.startsWith("/admin")) {
     return <AdminLayout>{children}</AdminLayout>;
+  }
+  if (pathname.startsWith('/user')){
+    return (<DashboardLayout>
+      {children}
+    </DashboardLayout>)
+
   }
 
   // Auth pages
