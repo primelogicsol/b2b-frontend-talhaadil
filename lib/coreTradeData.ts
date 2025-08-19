@@ -1,6 +1,6 @@
 export const coreTradeData = {
   hero: {
-    headline: "Core Trade Partnerships — The Gateway to Global Craft Commerce",
+    headline: "Core Trade Partnerships  The Gateway to Global Craft Commerce",
     subtext:
       "Begin your journey into structured, transparent, and fair trade. Core Trade connects Vendors and Buyers through four partnership models: Dropshipping, Consignment, Wholesale, and Certified Import/Export.",
     ctaButtons: ["Start Core Trade Partnership", "Apply as a Vendor", "Apply as a Buyer"],
@@ -354,7 +354,7 @@ export const coreTradeData = {
       title: "Standard Path",
       subtitle: "(Default progression for all partners)",
       features: [
-        "Free — no upfront or lateral fee.",
+        "Free  no upfront or lateral fee.",
         "Dropshipping requires no KPI, no retention (universal entry).",
         "KPI 7+ and retention (3–18 months) apply only to Consignment, Wholesale, and Export.",
         "Best for: Partners who want steady, sustainable growth.",

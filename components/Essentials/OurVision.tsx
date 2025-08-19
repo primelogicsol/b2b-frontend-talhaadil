@@ -90,7 +90,7 @@ export default function OurVision() {
                 As we look to the future, we envision a global marketplace where
                 Kashmiri artisans are celebrated, empowered, and recognized for
                 their incredible craftsmanship. De Koshur Crafts is not just a
-                marketplace—it is a movement that seeks to build a sustainable,
+                marketplaceit is a movement that seeks to build a sustainable,
                 fair trade ecosystem that connects artisans, buyers, and
                 cultural enthusiasts.
               </p>

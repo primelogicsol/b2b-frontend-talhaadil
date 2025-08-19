@@ -11,7 +11,7 @@ export default function OurTeam() {
   const {is4K} =  useGlobalContext();
   // ================= DATA ==================
 
-  // 2A. TECHNOLOGY & PRODUCT DIVISION — Engineering & DevOps
+  // 2A. TECHNOLOGY & PRODUCT DIVISION  Engineering & DevOps
   const engineeringDevOps = [
     {
       name: "Zeeshan Ahmed",
@@ -39,7 +39,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 2B. TECHNOLOGY & PRODUCT DIVISION — Blockchain & AI Systems
+  // 2B. TECHNOLOGY & PRODUCT DIVISION  Blockchain & AI Systems
   const blockchainAI = [
     {
       name: "Sara Khan",
@@ -67,7 +67,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 2C. TECHNOLOGY & PRODUCT DIVISION — Integration & CMS
+  // 2C. TECHNOLOGY & PRODUCT DIVISION  Integration & CMS
   const integrationCMS = [
     {
       name: "Sadia Noor",
@@ -95,7 +95,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 3A. VENDOR ONBOARDING & ARTISAN SUPPORT — Onboarding & Training
+  // 3A. VENDOR ONBOARDING & ARTISAN SUPPORT  Onboarding & Training
   const onboardingTraining = [
     {
       name: "Hafsa Rehman",
@@ -123,7 +123,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 3B. VENDOR ONBOARDING & ARTISAN SUPPORT — Support & Welfare
+  // 3B. VENDOR ONBOARDING & ARTISAN SUPPORT  Support & Welfare
   const supportWelfare = [
     {
       name: "Amir Junaid",
@@ -151,7 +151,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 4A. LOGISTICS & PACKAGING — Logistics Operations
+  // 4A. LOGISTICS & PACKAGING  Logistics Operations
   const logisticsOps = [
     {
       name: "Owais Khan",
@@ -179,7 +179,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 4B. LOGISTICS & PACKAGING — Packaging & Handling
+  // 4B. LOGISTICS & PACKAGING  Packaging & Handling
   const packagingHandling = [
     {
       name: "Imran Ali",
@@ -291,7 +291,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 8A. GLOBAL PARTNERSHIPS — Global Strategy & Franchise
+  // 8A. GLOBAL PARTNERSHIPS  Global Strategy & Franchise
   const globalStrategy = [
     {
       name: "Muneeb Hassan",
@@ -319,7 +319,7 @@ export default function OurTeam() {
     },
   ];
 
-  // 8B. GLOBAL PARTNERSHIPS — Program Operations
+  // 8B. GLOBAL PARTNERSHIPS  Program Operations
   const programOps = [
     {
       name: "Rashid Mehmood",

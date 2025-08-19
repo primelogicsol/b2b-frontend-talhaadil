@@ -861,7 +861,7 @@ export default function TeamPage() {
                 <div className="section-badge">✨ Meet Our Amazing Team</div>
                 <h1 className="section-title">Our Crafting Team</h1>
                 <p className="section-subtitle">
-                  The Artisans Who Make It All Possible. At De Koshur Crafts, we are not just a business—we are a
+                  The Artisans Who Make It All Possible. At De Koshur Crafts, we are not just a businesswe are a
                   community of passionate creators preserving Kashmir's rich heritage.
                 </p>
                 <div className="hero-stats">

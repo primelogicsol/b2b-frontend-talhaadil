@@ -705,7 +705,7 @@ const testimonials = [
                 >
                   Every initiative we undertake directly uplifts local artisans,
                   safeguards centuries-old cultural heritage, and drives
-                  long-term, sustainable development—ensuring a resilient and
+                  long-term, sustainable developmentensuring a resilient and
                   thriving future for the valley and its communities.
                 </p>
               </div>

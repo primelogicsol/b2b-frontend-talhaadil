@@ -54,7 +54,7 @@ const defaultProps: PartnershipPageProps = {
   buyerTitle: "De Koshur Crafts Buyer Partnership Marketplace",
   buyerTagline: "Every Purchase is a Partnership. Every Buyer Empowers a Legacy.",
   buyerDescription:
-    "Buyers don't just source products — they enable livelihoods, preserve culture, and scale ethical trade.",
+    "Buyers don't just source products  they enable livelihoods, preserve culture, and scale ethical trade.",
   Title: "Institutional Partnerships",
   Description: "Entry-level sourcing relationships that open the door to verified vendor support.",
 

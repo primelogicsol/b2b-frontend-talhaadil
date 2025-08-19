@@ -36,7 +36,7 @@ export default function MissionSection() {
             Brand <span className="text-[var(--secondary-color)]">Credentials</span>
           </h2>
           <p className="text-gray-600 text-base">
-        Our mission is to deliver innovative technology solutions that not only solve complex business challenges but also inspire lasting trust among our clients and partners. We are committed to driving measurable business growth by leveraging cutting‑edge tools, strategic insights, and forward‑thinking approaches. Every solution we design is built with the future in mind—empowering organizations to adapt, thrive, and lead in a rapidly evolving digital landscape. Through our work, we aim to create a better, smarter, and more connected digital future for businesses and communities alike.
+        Our mission is to deliver innovative technology solutions that not only solve complex business challenges but also inspire lasting trust among our clients and partners. We are committed to driving measurable business growth by leveraging cutting‑edge tools, strategic insights, and forward‑thinking approaches. Every solution we design is built with the future in mindempowering organizations to adapt, thrive, and lead in a rapidly evolving digital landscape. Through our work, we aim to create a better, smarter, and more connected digital future for businesses and communities alike.
           </p>
         </motion.div>
 

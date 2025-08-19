@@ -618,7 +618,7 @@ export default function Process() {
                       : "flex-shrink-0 w-full p-8 rounded-lg shadow-md border border-gray-200 bg-gradient-to-br from-[var(--primary-header-color)] to-gray-50 flex flex-col md:flex-row items-center gap-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
                   }
                 >
-                  <div className="rounded-lg md:w-1/3 transition-transform duration-300 group-hover:scale-105 group-hover:scale-105  flex items-center justify-center p-8">
+                  <div className="rounded-lg md:w-1/3 transition-transform duration-300 group-hover:scale-105  flex items-center justify-center p-8">
                     <IconComponent 
                       className={
                         is4K 

@@ -34,7 +34,7 @@ export default function TeamVisionSection() {
             The De Koshur Crafts team works collaboratively, drawing from each other’s strengths,
             skills, and perspectives to ensure that the company remains dynamic, innovative, and
             growth-oriented. Our commitment to ethical business practices and sustainability is shared
-            by everyone — this collective passion is what drives us.
+            by everyone  this collective passion is what drives us.
           </p>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
@@ -84,7 +84,7 @@ export default function TeamVisionSection() {
 
           <p className="text-lg leading-relaxed max-w-4xl mx-auto text-gray-600">
             As we look ahead, we’re excited about expanding our reach, creating more opportunities for
-            artisans, and enhancing our technology — all while staying grounded in sustainability and
+            artisans, and enhancing our technology  all while staying grounded in sustainability and
             cultural preservation.
           </p>
 

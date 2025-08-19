@@ -28,7 +28,7 @@ const defaultFeatures: Feature[] = [
   {
     title: "Full Profit Retention",
     description:
-      "No commissions or intermediaries—artisans keep 100% of their earnings, ensuring fair compensation for their work.",
+      "No commissions or intermediariesartisans keep 100% of their earnings, ensuring fair compensation for their work.",
   },
   {
     title: "Transparent Buyer Access",
@@ -48,12 +48,12 @@ const defaultFeatures: Feature[] = [
   {
     title: "Own Your Digital Storefront",
     description:
-      "Get a personalized, easy-to-manage digital storefront to display and sell your products globally—no tech skills needed.",
+      "Get a personalized, easy-to-manage digital storefront to display and sell your products globallyno tech skills needed.",
   },
   {
     title: "Zero Upfront Investment",
     description:
-      "Start showcasing and selling your crafts with no initial financial barriers—our platform is risk-free for artisans.",
+      "Start showcasing and selling your crafts with no initial financial barriersour platform is risk-free for artisans.",
   },
   {
     title: "Skill Development & Support",

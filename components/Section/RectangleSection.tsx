@@ -23,7 +23,7 @@ export default function RectangleSection({
   title = "Passionate Individuals Driving",
   highlightedWords = { one: "Tradition", two: "Innovation" },
   description = `
-At De Koshur Crafts, our team is the heart of everything we do. Our team members are more than just employees—they are passionate individuals who are deeply committed to preserving the rich heritage of Kashmiri craftsmanship while empowering artisans to thrive in the global marketplace. Each member brings a unique set of skills, experience, and vision to the table, working together towards a shared mission of empowerment, sustainability, and ethical business practices.
+At De Koshur Crafts, our team is the heart of everything we do. Our team members are more than just employeesthey are passionate individuals who are deeply committed to preserving the rich heritage of Kashmiri craftsmanship while empowering artisans to thrive in the global marketplace. Each member brings a unique set of skills, experience, and vision to the table, working together towards a shared mission of empowerment, sustainability, and ethical business practices.
 Meet the people who are bringing this vision to life.`,
   subTitle = "Empowering Artisans, Shaping Futures",
   subDescription = `Our diverse team blends traditional wisdom with forward-thinking strategies to build a sustainable future for Kashmiri crafts. From design and logistics to storytelling and outreach, every role plays a vital part in uplifting artisan communities.`,

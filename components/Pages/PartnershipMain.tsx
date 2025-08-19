@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
+import { motion, AnimatePresence, easeInOut,Variants } from "framer-motion";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
 import { coreTradeData } from "@/lib/coreTradeData";
@@ -278,6 +278,7 @@ export default function CoreTradeLanding() {
             <motion.div
               className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-2xl border border-white/50 relative overflow-hidden group"
               variants={itemVariants}
+              //@ts-ignore
               whileHover={cardHoverVariants.hover}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -324,6 +325,7 @@ export default function CoreTradeLanding() {
             <motion.div
               className="bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--primary-color)] rounded-3xl p-10 shadow-2xl text-white relative overflow-hidden group"
               variants={itemVariants}
+              //@ts-ignore
               whileHover={cardHoverVariants.hover}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

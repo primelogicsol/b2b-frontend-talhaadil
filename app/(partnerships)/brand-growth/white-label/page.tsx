@@ -295,7 +295,7 @@ hexagonalAdvantages: [
   number: "02",
   title: "Curated Handmade Selection",
   description:
-    "Access a curated range of handmade pieces that reflect Kashmir's cultural legacy — not found in mass-market stores.",
+    "Access a curated range of handmade pieces that reflect Kashmir's cultural legacy  not found in mass-market stores.",
   color: "bg-[var(--secondary-color)]",
 },
   {

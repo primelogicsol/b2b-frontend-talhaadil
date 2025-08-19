@@ -1,5 +1,5 @@
 "use client"
-
+import { useRouter } from "next/navigation"
 import type React from "react"
 import { useState, useEffect } from "react"
 import {
@@ -100,6 +100,7 @@ export default function AppointmentScheduler() {
   const [isBooked, setIsBooked] = useState(false)
   const [availableDays, setAvailableDays] = useState<string[]>([])
   const [availableTimeSlots, setAvailableTimeSlots] = useState<TimeSlot[]>([])
+  const  [isLoading,setLoading] = useState(false)
 
   const updateFormData = (field: keyof FormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -293,7 +294,9 @@ export default function AppointmentScheduler() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
+    setLoading(true)
     const body = {
       user_type: formData.userType,                // buyer | vendor | guest
       appointment_type: formData.appointmentMode === "in-person" ? "offline" : formData.appointmentMode,  // virtual | offline
@@ -314,7 +317,7 @@ export default function AppointmentScheduler() {
     };
 
 
-    console.log(body)
+    
 
 
     // Optional file upload
@@ -331,6 +334,8 @@ export default function AppointmentScheduler() {
     } catch (error) {
       console.error("Booking failed:", error);
       setIsBooked(false);
+    }finally{
+      setLoading(false);
     }
   }
   const isFormValid = () => {
@@ -1023,11 +1028,11 @@ export default function AppointmentScheduler() {
           <div className="bg-white rounded-lg shadow-lg" style={{ padding: is4K ? "48px" : "32px" }}>
             <button
               type="submit"
-              disabled={!isFormValid()}
+              disabled={!isFormValid() || isLoading}
               className={`w-full bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center ${is4K ? "text-2xl py-6 px-8" : "text-lg py-4 px-6"}`}
             >
               <CheckCircle className="mr-3" size={is4K ? 32 : 24} style={{ marginRight: is4K ? "18px" : "12px" }} />
-              BOOK APPOINTMENT
+              {isLoading ? "LOADING..." : "BOOK APPOINTMENT"}
             </button>
           </div>
         )}
@@ -1039,6 +1044,7 @@ export default function AppointmentScheduler() {
 function BookingConfirmation({ formData }: { formData: FormData }) {
   const { is4K } = useGlobalContext()
   const selectedOffice = offices.find((o) => o.id === formData.office)
+  const router = useRouter()
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -1054,6 +1060,14 @@ function BookingConfirmation({ formData }: { formData: FormData }) {
   const getTimezone = () => {
     const country = getEffectiveCountry()
     return country === "usa" ? "EST" : "IST"
+  }
+   const setOfficeByCountry = () => {
+    const country = getEffectiveCountry()
+    if (country === "usa") {
+      return "USA Office – HQ"
+    } else {
+      return "Kashmir India"
+    }
   }
 
   return (
@@ -1115,7 +1129,7 @@ function BookingConfirmation({ formData }: { formData: FormData }) {
                 Mode:
               </p>
               <p className={is4K ? "text-lg" : "text-base"}>
-                {formData.appointmentMode === "virtual" ? "Virtual Meeting" : `In-Person at ${selectedOffice?.name}`}
+                {formData.appointmentMode === "virtual" ? "Virtual Meeting" : `In-Person at ${setOfficeByCountry()}`}
               </p>
             </div>
             <div>
@@ -1161,7 +1175,9 @@ function BookingConfirmation({ formData }: { formData: FormData }) {
 
           <div className="flex flex-col sm:flex-row justify-center" style={{ gap: is4K ? "24px" : "16px" }}>
             <button
-             
+             onClick={()=>{
+              router.push('/registration')
+             }}
               className={`bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-lg font-semibold flex items-center justify-center ${is4K ? "text-xl px-8 py-4" : "text-base px-6 py-3"}`}
             >
               <User className="mr-2" size={is4K ? 20 : 16} style={{ marginRight: is4K ? "12px" : "8px" }} />
@@ -1189,6 +1205,9 @@ function BookingConfirmation({ formData }: { formData: FormData }) {
             Register now so we can best support your appointment.
           </p>
           <button
+           onClick={()=>{
+              router.push('/registration')
+             }}
             className={`bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-lg font-semibold flex items-center justify-center mx-auto ${is4K ? "text-xl px-10 py-4" : "text-base px-8 py-3"}`}
           >
             <User className="mr-2" size={is4K ? 20 : 16} style={{ marginRight: is4K ? "12px" : "8px" }} />

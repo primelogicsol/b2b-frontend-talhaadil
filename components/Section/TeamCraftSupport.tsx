@@ -71,7 +71,7 @@ export default function TeamCraftSupport() {
           </div>
 
           <p className="text-lg max-w-4xl mx-auto text-gray-600 leading-relaxed">
-            At De Koshur Crafts, we are not just a business—we are a community. Our artisans, from remote
+            At De Koshur Crafts, we are not just a businesswe are a community. Our artisans, from remote
             villages to bustling cities, are the heart of our platform. Every piece tells a story of skill,
             tradition, and passion passed down through generations.
           </p>

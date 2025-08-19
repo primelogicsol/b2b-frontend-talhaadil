@@ -65,7 +65,7 @@ export default function OurStoryPage() {
                   and artistic heritage. For centuries, the artisans of Kashmir
                   have been weaving intricate Pashmina shawls, crafting Kani
                   woven textiles, and creating exquisite Papier Mâché
-                  artifacts—each piece a testament to the region's deep-rooted
+                  artifactseach piece a testament to the region's deep-rooted
                   artistry and skilled craftsmanship.
                 </p>
                 <p>
@@ -191,13 +191,13 @@ export default function OurStoryPage() {
                   , the founder of De Koshur Crafts, recognized the critical
                   need to preserve and promote Kashmir's rich crafts. As a
                   native Kashmiri, Fayaz saw the struggles that artisans were
-                  facing firsthand—many were at risk of losing their craft to
+                  facing firsthandmany were at risk of losing their craft to
                   modern mass production, while others struggled to find fair
                   buyers for their works.
                 </p>
                 <p>
                   With a deep passion for his heritage and an entrepreneurial
-                  spirit, Fayaz decided to create De Koshur Crafts—a platform
+                  spirit, Fayaz decided to create De Koshur Craftsa platform
                   that would not only connect artisans with global markets but
                   also provide them with the tools, support, and resources to
                   grow their businesses.
