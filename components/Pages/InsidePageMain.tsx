@@ -24,7 +24,7 @@ type LandingPageData = {
         features: { icon: string; title: string; description: string }[]
         exclusivity: string
     }
-    capabilities: {
+    capabilities?: {
         heading: string
         sections: { icon: string; title: string; items: string[] }[]
     }
@@ -38,7 +38,7 @@ type LandingPageData = {
         packages: { name: string; price: string; features: string[] }[]
         range: string
     }
-    technology: {
+    technology?: {
         heading: string
         description: string
         features: { icon: string; title: string; description: string }[]
@@ -54,10 +54,10 @@ type LandingPageData = {
         steps: string[]
     }
     faq: { question: string; answer: string }[]
-    apiIntegration: {
-        heading: string
-        description: string
-        features: { icon: string; title: string; description: string }[]
+    apiIntegration?: {
+        heading?: string
+        description?: string
+        features?: { icon: string; title: string; description: string }[]
         support: { title: string; description: string; note: string }
     }
     finalCta: {
@@ -350,7 +350,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                 </div>
             </motion.section>
 
-            <section className={`px-4 md:px-8 lg:px-12 py-12 ${is4K ? "mx-auto max-w-[2400px] 2xl:py-20" : ""}`}>
+            {landingPageData.capabilities && <section className={`px-4 md:px-8 lg:px-12 py-12 ${is4K ? "mx-auto max-w-[2400px] 2xl:py-20" : ""}`}>
                 <div className={`w-full ${is4K ? " md:px-24" : "px-2 md:px-8"} flex items-center justify-center`}>
                     <div className="w-full">
                         {/* Heading */}
@@ -494,7 +494,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                     </div>
                 </div>
 
-            </section>
+            </section>}
             {/* Slide-Up Content Section */}
             <section className="w-full py-16 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)]">
                 <div className="max-w-4xl mx-auto">
@@ -622,7 +622,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
             </motion.section>
 
             {/* Technology Section */}
-            <motion.section
+            {landingPageData.technology && (<motion.section
                 className="bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-white py-20"
                 initial="hidden"
                 whileInView="visible"
@@ -675,60 +675,63 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                         <p className={`${is4K ? "text-lg" : "text-base"} text-white`}>{landingPageData.technology.support}</p>
                     </motion.div>
                 </div>
-            </motion.section>
-            <motion.section
-                className={`${containerClass} mx-auto px-6 py-32 relative overflow-hidden`}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={staggerContainer}
-            >
+            </motion.section>)}
+            {landingPageData.platformAdvantage && (
+                <motion.section
+                    className={`${containerClass} mx-auto px-6 py-32 relative overflow-hidden`}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer}
+                >
 
-                <div className="relative z-10">
-                    <motion.h2
-                        className={`${subHeadingClass} font-black text-center mb-12 bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)] bg-clip-text text-transparent drop-shadow-sm text-2xl md:text-3xl lg:text-4xl`}
-                        variants={fadeInUp}
-                    >
-                        {landingPageData.platformAdvantage.heading}
-                    </motion.h2>
+                    <div className="relative z-10">
+                        <motion.h2
+                            className={`${subHeadingClass} font-black text-center mb-12 bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)] bg-clip-text text-transparent drop-shadow-sm text-2xl md:text-3xl lg:text-4xl`}
+                            variants={fadeInUp}
+                        >
+                            {landingPageData.platformAdvantage.heading}
+                        </motion.h2>
 
-                    <motion.p
-                        className={`${is4K ? "text-xl" : "text-lg"} text-center mb-20 text-[var(--primary-color)]/80 leading-relaxed max-w-5xl mx-auto font-medium`}
-                        variants={fadeInUp}
-                    >
-                        {landingPageData.platformAdvantage.description}
-                    </motion.p>
+                        <motion.p
+                            className={`${is4K ? "text-xl" : "text-lg"} text-center mb-20 text-[var(--primary-color)]/80 leading-relaxed max-w-5xl mx-auto font-medium`}
+                            variants={fadeInUp}
+                        >
+                            {landingPageData.platformAdvantage.description}
+                        </motion.p>
 
-                    <div className="space-y-8">
-                        {landingPageData.platformAdvantage.sections.map((section, index) => (
-                            <motion.div
-                                key={index}
-                                className="group bg-white/80 backdrop-blur-sm p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-[var(--primary-hover-color)]/50 hover:-translate-y-2"
-                                variants={fadeInUp}
-                            >
-                                <div className="w-20 h-1.5 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] rounded-full mb-8 group-hover:w-32 transition-all duration-500"></div>
-
-                                <h3
-                                    className={`${is4K ? "text-3xl" : "text-2xl"} font-bold mb-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent`}
+                        <div className="space-y-8">
+                            {landingPageData.platformAdvantage.sections.map((section, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="group bg-white/80 backdrop-blur-sm p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-[var(--primary-hover-color)]/50 hover:-translate-y-2"
+                                    variants={fadeInUp}
                                 >
-                                    {section.title}
-                                </h3>
-                                <div className="grid sm:grid-cols-2 gap-6">
-                                    {section.items.map((item, itemIndex) => (
-                                        <div
-                                            key={itemIndex}
-                                            className={`${is4K ? "text-lg" : "text-base"} text-[var(--primary-color)]/90 leading-relaxed flex items-start gap-3 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300`}
-                                        >
-                                            <div className="w-2 h-2 bg-[var(--secondary-color)] rounded-full mt-2.5 flex-shrink-0"></div>
-                                            <span className="font-medium">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
+                                    <div className="w-20 h-1.5 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] rounded-full mb-8 group-hover:w-32 transition-all duration-500"></div>
+
+                                    <h3
+                                        className={`${is4K ? "text-3xl" : "text-2xl"} font-bold mb-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent`}
+                                    >
+                                        {section.title}
+                                    </h3>
+                                    <div className="grid sm:grid-cols-2 gap-6">
+                                        {section.items.map((item, itemIndex) => (
+                                            <div
+                                                key={itemIndex}
+                                                className={`${is4K ? "text-lg" : "text-base"} text-[var(--primary-color)]/90 leading-relaxed flex items-start gap-3 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300`}
+                                            >
+                                                <div className="w-2 h-2 bg-[var(--secondary-color)] rounded-full mt-2.5 flex-shrink-0"></div>
+                                                <span className="font-medium">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </motion.section>
+                </motion.section>
+
+            )}
             <section>
                 <div className="w-full max-w-4xl mx-auto p-6 md:p-8">
                     {/* Header */}
@@ -841,7 +844,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
 
 
             {/* API Integration Section */}
-            <motion.section
+            {landingPageData.apiIntegration && (<motion.section
                 className={`${containerClass} mx-auto px-6 py-20 relative`}
                 initial="hidden"
                 whileInView="visible"
@@ -849,23 +852,31 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                 variants={staggerContainer}
             >
                 {/* Heading */}
-                <motion.h2
+                {landingPageData.apiIntegration.heading &&(
+                      <motion.h2
                     className={`${subHeadingClass} font-extrabold text-center mb-8  text-2xl md:text-3xl lg:text-4xl text-[var(--primary-color)]`}
                     variants={fadeInUp}
                 >
                     {landingPageData.apiIntegration.heading}
                 </motion.h2>
+                ) }
+              
 
                 {/* Description */}
-                <motion.p
+                {landingPageData.apiIntegration.description && (
+                    
+                      <motion.p
                     className={`${is4K ? "text-lg" : "text-base"} text-center mb-16 text-gray-700 leading-relaxed max-w-3xl mx-auto`}
                     variants={fadeInUp}
                 >
                     {landingPageData.apiIntegration.description}
                 </motion.p>
 
+                )}
+              
                 {/* Features Grid */}
-                <motion.div
+                {landingPageData.apiIntegration.features && (
+                     <motion.div
                     className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
                     variants={staggerContainer}
                 >
@@ -893,7 +904,10 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                     })}
                 </motion.div>
 
+                )}
+               
                 {/* Support Section */}
+
                 <motion.div
                     className="bg-gradient-to-r from-[var(--primary-color)]/10 to-[var(--secondary-light-color)]/20 p-10 rounded-2xl shadow-lg border border-white/20"
                     variants={fadeInUp}
@@ -914,7 +928,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                         {landingPageData.apiIntegration.support.note}
                     </p>
                 </motion.div>
-            </motion.section>
+            </motion.section>)}
             {/* Final CTA Section */}
             <section className="bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)] text-white py-20">
                 <div className={`${containerClass} mx-auto px-6 text-center`}>

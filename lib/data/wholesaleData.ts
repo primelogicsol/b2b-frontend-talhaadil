@@ -302,40 +302,6 @@ export const wholesaleData = {
           "ROI-based wholesale performance tracking.",
         ],
       },
-      {
-        title: "Customer Engagement Tools",
-        items: [
-          "Digital wholesale catalogs and bulk product showcases.",
-          "Product videos, bulk samples, and 3D configurators.",
-        ],
-      },
-      {
-        title: "Loyalty & Rewards Programs",
-        items: [
-          "Volume-based rewards and tiered wholesale benefits.",
-          "Exclusive wholesale memberships and privileges.",
-          "Referral incentives for distributor networks.",
-          "Cross-partner wholesale collaboration programs.",
-        ],
-      },
-      {
-        title: "Customer Financing Solutions",
-        items: [
-          "Wholesale credit facilities and terms.",
-          "Bulk order financing and payment plans.",
-          "Trade credit and extended payment options.",
-          "Volume-based financing solutions.",
-        ],
-      },
-      {
-        title: "Product Protection Plans",
-        items: [
-          "Bulk order insurance and damage coverage.",
-          "Wholesale product replacement guarantees.",
-          "Volume order protection and quality assurance.",
-          "Customized coverage for high-value bulk shipments.",
-        ],
-      },
     ],
   },
   workflow: {

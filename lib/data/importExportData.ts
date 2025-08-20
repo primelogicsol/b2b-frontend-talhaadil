@@ -269,50 +269,7 @@ export const importExportData = {
             "Continuous penetration testing and monitoring.",
           ],
         },
-        {
-          title: "Built-in Marketing Automation",
-          items: [
-            "AI-powered personalization and segmentation.",
-            "Multi-channel automation (email, social, mobile).",
-            "Smart content marketing and chatbots.",
-            "Geo and demographic targeting.",
-            "ROI-based campaign tracking.",
-          ],
-        },
-        {
-          title: "Customer Engagement Tools",
-          items: [
-            "Digital catalogs, lookbooks, and AR try-ons.",
-            "Product videos, mailing catalogs, and 3D configurators.",
-          ],
-        },
-        {
-          title: "Loyalty & Rewards Programs",
-          items: [
-            "Points-based rewards and tiered loyalty.",
-            "Paid memberships and exclusive benefits.",
-            "Referral incentives and gamified loyalty.",
-            "Cross-partner redemption programs.",
-          ],
-        },
-        {
-          title: "Customer Financing Solutions",
-          items: [
-            "Store-branded credit cards.",
-            "Installment payments and Buy Now, Pay Later.",
-            "Lease-to-own and layaway plans.",
-            "Deferred interest financing.",
-          ],
-        },
-        {
-          title: "Product Protection Plans",
-          items: [
-            "Extended warranties and accidental damage coverage.",
-            "Product replacement and service plans.",
-            "Price protection refunds.",
-            "Customized coverage for high-ticket items.",
-          ],
-        },
+       
       ],
     },
     workflow: {

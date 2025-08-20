@@ -69,47 +69,6 @@ export const brickMortarData = {
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },
-    capabilities: {
-      heading: "Everything You Need for Physical Retail Success",
-      sections: [
-        {
-          title: "Store Operations",
-          icon: "Store",
-          items: [
-            "Fully managed staffing and daily operations.",
-            "Licensing and compliance handled by De Koshur Crafts.",
-            "Omni-channel integration for in-store and online sales.",
-          ],
-        },
-        {
-          title: "Marketing & Visibility",
-          icon: "BarChart3",
-          items: [
-            "Geo-fenced marketing campaigns for local customers.",
-            "Digital catalog and in-store promotions.",
-            "SEO and social media support via Prime Logic Solutions.",
-          ],
-        },
-        {
-          title: "Analytics & Insights",
-          icon: "LineChart",
-          items: [
-            "Real-time sales and inventory tracking.",
-            "Customer engagement and foot traffic analytics.",
-            "KPI and retention dashboards for performance monitoring.",
-          ],
-        },
-        {
-          title: "Logistics Support",
-          icon: "Truck",
-          items: [
-            "Optional warehousing in U.S. hubs for inventory management.",
-            "Streamlined reverse logistics for unsold stock.",
-            "Visa support documentation for vendor store visits.",
-          ],
-        },
-      ],
-    },
     eligibility: {
       heading: "Shared Brick & Mortar Entry Rules",
       requirements: [
@@ -184,145 +143,48 @@ export const brickMortarData = {
       ],
       range: "Range: $1,600–$4,500/month",
     },
-    technology: {
-      heading: "Technology That Powers Our Platform",
-      description: "De Koshur Crafts is built with modern, scalable, and secure digital infrastructure, developed and maintained by Prime Logic Solutions, our dedicated software, web development, and digital marketing partner.",
-      features: [
-        {
-          icon: "Cog",
-          title: "Frameworks",
-          description: "React.js, Next.js, Node.js for high-performance user experience.",
-        },
-        {
-          icon: "Cloud",
-          title: "Cloud Infrastructure",
-          description: "AWS and serverless architecture for scalability and reliability.",
-        },
-        {
-          icon: "Link",
-          title: "Blockchain Tools",
-          description: "Ethereum smart contracts for traceability and fraud prevention.",
-        },
-        {
-          icon: "BarChart3",
-          title: "AI & Data",
-          description: "KPI analytics, predictive demand modeling, and AI-driven matchmaking.",
-        },
-        {
-          icon: "Globe",
-          title: "AR/VR Tech",
-          description: "Virtual showrooms for buyers to preview in-store products.",
-        },
-        {
-          icon: "Shield",
-          title: "Security",
-          description: "SSL encryption, KYC verification, and secure API integrations.",
-        },
-        {
-          icon: "Package",
-          title: "Automation",
-          description: "End-to-end store operations and logistics automation.",
-        },
-        {
-          icon: "Smartphone",
-          title: "Mobile Experience",
-          description: "Seamless, responsive, and PWA-enabled mobile platform.",
-        },
-      ],
-      support: "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
-    },
-    platformAdvantage: {
-      heading: "Our Platform Advantage",
-      description: "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced retail capabilities.",
-      sections: [
-        {
-          title: "MACH Architecture & Cloud-Based AI Tech",
-          items: [
-            "Microservices for modular scaling.",
-            "API-First approach for seamless integrations.",
-            "Cloud-Native hosting on Azure.",
-            "Headless Commerce with PWA.",
-            "Database Intelligence for decision-making.",
-            "Geofencing for advanced customer targeting.",
-          ],
-        },
-        {
-          title: "Advanced API Integrations",
-          items: [
-            "Storefront and customer experience personalization.",
-            "Fraud prevention via Stripe Radar API.",
-            "Faceted search and voice commerce.",
-            "Real-time shipping and inventory APIs.",
-            "Order management and fulfillment APIs.",
-            "AI Chatbots with multilingual QnA and human handoff.",
-          ],
-        },
-        {
-          title: "Powerful CMS (Content Management System)",
-          items: [
-            "Advanced content authoring and workflow control.",
-            "Centralized content repository across channels.",
-            "Personalized content delivery and A/B testing.",
-            "Metadata modeling, content tagging, and SEO support.",
-          ],
-        },
-        {
-          title: "Security & Data Integrity",
-          items: [
-            "PCI DSS compliance.",
-            "Intrusion detection and threat monitoring.",
-            "Multi-factor authentication (IAM).",
-            "End-to-end encryption and access management.",
-            "Continuous penetration testing and monitoring.",
-          ],
-        },
-        {
-          title: "Built-in Marketing Automation",
-          items: [
-            "AI-powered personalization and segmentation.",
-            "Multi-channel automation (email, social, mobile).",
-            "Smart content marketing and chatbots.",
-            "Geo and demographic targeting.",
-            "ROI-based campaign tracking.",
-          ],
-        },
-        {
-          title: "Customer Engagement Tools",
-          items: [
-            "Digital catalogs, lookbooks, and AR try-ons.",
-            "Product videos, mailing catalogs, and 3D configurators.",
-          ],
-        },
-        {
-          title: "Loyalty & Rewards Programs",
-          items: [
-            "Points-based rewards and tiered loyalty.",
-            "Paid memberships and exclusive benefits.",
-            "Referral incentives and gamified loyalty.",
-            "Cross-partner redemption programs.",
-          ],
-        },
-        {
-          title: "Customer Financing Solutions",
-          items: [
-            "Store-branded credit cards.",
-            "Installment payments and Buy Now, Pay Later.",
-            "Lease-to-own and layaway plans.",
-            "Deferred interest financing.",
-          ],
-        },
-        {
-          title: "Product Protection Plans",
-          items: [
-            "Extended warranties and accidental damage coverage.",
-            "Product replacement and service plans.",
-            "Price protection refunds.",
-            "Customized coverage for high-ticket items.",
-          ],
-        },
+  platformAdvantage: {
+  heading: "Store Rental Packages & Vendor Policies",
+  description: "Flexible store rental options with transparent pricing, location-based adjustments, and clear vendor participation policies.",
+  sections: [
+    {
+      title: "Store Rental Packages",
+      items: [
+        "Local Community Outlet — $1,600/month: Neighborhood-centric boutique exposure, ideal for first-time physical retail.",
+        "Lifestyle Mall Store (Shared Section) — $2,550/month: Shared mall section with steady walk-in traffic and seasonal promotions.",
+        "Premium Urban Store (Prime City Centers) — $3,300/month: Located in high-footfall urban hubs, targeting professionals and tourists.",
+        "Flagship Showcase Store (Cultural & Heritage Zones) — $4,500/month: Iconic heritage districts for maximum brand authority.",
       ],
     },
-    workflow: {
+    {
+      title: "Store Location Options",
+      items: [
+        "Entry Zone (Premium Front Display) → +25% of base rent: Prime visibility at the entrance for flagship lines.",
+        "Central Aisle (High Foot Traffic) → +15% of base rent: Balanced exposure and engagement.",
+        "Sidewall / Mid-Shelf → Standard (no surcharge): Strong visibility for curated displays and niche categories.",
+        "Rear / Corner Showcase → –10% of base rent: Spotlight placement for collectibles or complementary crafts.",
+        "Example: Lifestyle Mall ($2,550) + Entry Zone (+25%) = $3,187.50/month.",
+      ],
+    },
+    {
+      title: "Multiple Spaces & Non-Overlapping Inventory Policy",
+      items: [
+        "Vendors may choose to rent multiple spaces across different locations/packages.",
+        "Overlapping inventory is not allowed within the same store (e.g., if one vendor sells carpets, others in the same store cannot sell carpets).",
+        "Vendors must select distinct categories such as walnut furniture, papier-mâché, pashmina, copperware, etc.",
+        "Categories are verified and locked during onboarding to ensure fairness and diversity.",
+      ],
+    },
+    {
+      title: "Visa Support for Vendors",
+      items: [
+        "U.S.-standard supporting documents provided for vendor visits to their physical store.",
+        "Visa outcomes depend on embassy/consular interviews; approvals are not guaranteed.",
+      ],
+    },
+  ],
+},
+  workflow: {
       heading: "Shared Brick & Mortar Pathway",
       steps: [
         "Apply",
@@ -359,47 +221,6 @@ export const brickMortarData = {
         answer: "Yes, visa support documents are provided, but approval depends on your embassy interview.",
       },
     ],
-    apiIntegration: {
-      heading: "Integrate Shared Stores with Your Platform",
-      description: "Seamlessly connect our shared brick-and-mortar tools with your e-commerce systems for real-time inventory, sales, and analytics integration.",
-      features: [
-        {
-          icon: "PlugZap",
-          title: "E-Commerce Connectors",
-          description: "Pre-built integrations for Shopify, WooCommerce, Magento, and BigCommerce.",
-        },
-        {
-          icon: "Wrench",
-          title: "Custom Store Support",
-          description: "REST and GraphQL APIs for syncing inventory, sales, and analytics.",
-        },
-        {
-          icon: "Package",
-          title: "Automated Fulfillment",
-          description: "Real-time inventory and order routing for store operations.",
-        },
-        {
-          icon: "ShieldCheck",
-          title: "Secure API Gateways",
-          description: "Encrypted communication with token-based authentication.",
-        },
-        {
-          icon: "BarChart3",
-          title: "Analytics API",
-          description: "Access real-time sales, stock, and engagement metrics.",
-        },
-        {
-          icon: "Puzzle",
-          title: "Retail Modules",
-          description: "APIs for in-store branding, inventory, and omni-channel sync.",
-        },
-      ],
-      support: {
-        title: "Prime Logic Solutions Support Guarantee",
-        description: "Our technology partner provides integration, setup, and support services at no additional cost.",
-        note: "API documentation and sandbox available for partners.",
-      },
-    },
     finalCta: {
       heading: "Own a Storefront Without Operational Hassles",
       subtext: "Scale globally with a physical presence powered by omni-channel tech. We run the store—you grow the brand.",

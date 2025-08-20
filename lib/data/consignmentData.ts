@@ -314,33 +314,8 @@ export const consignmentPageData = {
           "Omnichannel experiences across retail + online.",
         ],
       },
-      {
-        title: "Loyalty & Rewards",
-        items: [
-          "Tiered points-based loyalty programs.",
-          "Exclusive memberships and perks.",
-          "Referral bonuses and gamified incentives.",
-          "Cross-brand reward redemption options.",
-        ],
-      },
-      {
-        title: "Customer Financing",
-        items: [
-          "Flexible installment and BNPL plans.",
-          "Store-branded credit solutions.",
-          "Lease-to-own and layaway programs.",
-          "Deferred interest payment options.",
-        ],
-      },
-      {
-        title: "Product Protection",
-        items: [
-          "Extended warranty and accidental coverage.",
-          "Refunds through price protection policies.",
-          "Replacement and service guarantees.",
-          "Custom coverage for premium products.",
-        ],
-      },
+     
+      
     ],
   },
   workflow: {

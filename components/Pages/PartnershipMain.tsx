@@ -795,7 +795,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           }`}
           variants={fadeInUp}
         >
-          Partnership Fee Summary
+          Partnership
+           Fee Summary
         </motion.h2>
 
         <div className="space-y-6">
