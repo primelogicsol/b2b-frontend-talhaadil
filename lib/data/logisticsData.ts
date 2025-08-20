@@ -63,6 +63,11 @@ export const logisticsData = {
           title: "Geographical Indication Protection",
           description: "Ensuring authentic crafts only.",
         },
+        {
+          icon: "ScrollText",
+          title: "Geographical Indication Protection",
+          description: "Ensuring authentic crafts only.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — optimized for artisan-focused logistics.",
     },
@@ -195,6 +200,11 @@ export const logisticsData = {
           icon: "Package",
           title: "Automation",
           description: "End-to-end logistics and compliance automation.",
+        },
+        {
+          icon: "Smartphone",
+          title: "Mobile Experience",
+          description: "Responsive, PWA-enabled logistics tracking platform.",
         },
         {
           icon: "Smartphone",

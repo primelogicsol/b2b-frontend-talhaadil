@@ -61,6 +61,11 @@ export const museumInstitutionalsData = {
           title: "Craft Appraisal",
           description: "AI-assisted valuations with expert reviews for accurate pricing.",
         },
+        {
+          icon: "Tag",
+          title: "Craft Appraisal",
+          description: "AI-assisted valuations with expert reviews for accurate pricing.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },
@@ -165,6 +170,21 @@ export const museumInstitutionalsData = {
           title: "Support Team",
           description: "Prime Logic Solutions offers submission guidance and support.",
         },
+        {
+          icon: "Users",
+          title: "Support Team",
+          description: "Prime Logic Solutions offers submission guidance and support.",
+        },
+        {
+          icon: "Users",
+          title: "Support Team",
+          description: "Prime Logic Solutions offers submission guidance and support.",
+        },
+        {
+          icon: "Users",
+          title: "Support Team",
+          description: "Prime Logic Solutions offers submission guidance and support.",
+        },
       ],
       support: "Visa approval is not guaranteed and depends on individual embassy interviews.",
     },
@@ -245,6 +265,16 @@ export const museumInstitutionalsData = {
           icon: "Package",
           title: "Exhibition Coordination",
           description: "APIs for logistics, insurance, and display management.",
+        },
+        {
+          icon: "BarChart3",
+          title: "Analytics Integration",
+          description: "Access KPIs and sustainability metrics via API.",
+        },
+        {
+          icon: "BarChart3",
+          title: "Analytics Integration",
+          description: "Access KPIs and sustainability metrics via API.",
         },
         {
           icon: "BarChart3",

@@ -76,6 +76,21 @@ export const consignmentPageData = {
         title: "Omnichannel Visibility",
         description: "Placement in retail + online AR showrooms.",
       },
+      {
+        icon: "Globe",
+        title: "Omnichannel Visibility",
+        description: "Placement in retail + online AR showrooms.",
+      },
+      {
+        icon: "Globe",
+        title: "Omnichannel Visibility",
+        description: "Placement in retail + online AR showrooms.",
+      },
+      {
+        icon: "Globe",
+        title: "Omnichannel Visibility",
+        description: "Placement in retail + online AR showrooms.",
+      },
     ],
     exclusivity:
       "Exclusively designed for low-risk retail trade of Kashmiri handmade crafts.",
@@ -220,6 +235,16 @@ export const consignmentPageData = {
         icon: "Globe",
         title: "AR/VR",
         description: "Virtual retail shelves & showrooms",
+      },
+      {
+        icon: "Shield",
+        title: "Security",
+        description: "PCI DSS, encrypted APIs, secure KYC",
+      },
+      {
+        icon: "Shield",
+        title: "Security",
+        description: "PCI DSS, encrypted APIs, secure KYC",
       },
       {
         icon: "Shield",

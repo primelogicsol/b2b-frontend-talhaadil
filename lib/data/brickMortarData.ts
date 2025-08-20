@@ -56,6 +56,16 @@ export const brickMortarData = {
           title: "Strategic Placement",
           description: "Stores in community hubs, malls, urban centers, and heritage zones.",
         },
+        {
+          icon: "MapPin",
+          title: "Strategic Placement",
+          description: "Stores in community hubs, malls, urban centers, and heritage zones.",
+        },
+        {
+          icon: "MapPin",
+          title: "Strategic Placement",
+          description: "Stores in community hubs, malls, urban centers, and heritage zones.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },
@@ -142,6 +152,24 @@ export const brickMortarData = {
             "High-footfall urban hub placement",
             "Targeted marketing for professionals and tourists",
             "Advanced analytics dashboard",
+          ],
+        },
+        {
+          name: "Flagship Showcase Store",
+          price: "$4,500/month",
+          features: [
+            "Heritage and cultural zone placement",
+            "Premium branding and display options",
+            "Dedicated account support",
+          ],
+        },
+        {
+          name: "Flagship Showcase Store",
+          price: "$4,500/month",
+          features: [
+            "Heritage and cultural zone placement",
+            "Premium branding and display options",
+            "Dedicated account support",
           ],
         },
         {

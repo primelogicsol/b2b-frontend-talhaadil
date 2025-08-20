@@ -55,6 +55,16 @@ export const exhibitionData = {
           title: "Post-Event Analytics",
           description: "Lead-generation reports and performance metrics.",
         },
+        {
+          icon: "BarChart3",
+          title: "Post-Event Analytics",
+          description: "Lead-generation reports and performance metrics.",
+        },
+        {
+          icon: "BarChart3",
+          title: "Post-Event Analytics",
+          description: "Lead-generation reports and performance metrics.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },

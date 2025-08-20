@@ -61,6 +61,11 @@ export const ngoGovernmentData = {
           title: "Logistics Support",
           description: "Program-level logistics and packaging for seamless delivery.",
         },
+        {
+          icon: "Package",
+          title: "Logistics Support",
+          description: "Program-level logistics and packaging for seamless delivery.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },
@@ -159,6 +164,21 @@ export const ngoGovernmentData = {
           icon: "ScrollText",
           title: "Authenticity Records",
           description: "GI proof and blockchain registry for artisan verification.",
+        },
+        {
+          icon: "Users",
+          title: "Support Team",
+          description: "Prime Logic Solutions provides application and setup support.",
+        },
+        {
+          icon: "Users",
+          title: "Support Team",
+          description: "Prime Logic Solutions provides application and setup support.",
+        },
+        {
+          icon: "Users",
+          title: "Support Team",
+          description: "Prime Logic Solutions provides application and setup support.",
         },
         {
           icon: "Users",

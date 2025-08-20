@@ -61,6 +61,11 @@ export const auctionBiddingData = {
           title: "Auction Cataloging",
           description: "Every item recorded in the digital Craft Repository.",
         },
+        {
+          icon: "Folder",
+          title: "Auction Cataloging",
+          description: "Every item recorded in the digital Craft Repository.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },

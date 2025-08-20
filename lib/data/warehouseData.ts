@@ -61,6 +61,11 @@ export const warehousData = {
           title: "Reverse Logistics",
           description: "Minimized costs with direct reselling from warehouses.",
         },
+        {
+          icon: "Truck",
+          title: "Reverse Logistics",
+          description: "Minimized costs with direct reselling from warehouses.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },

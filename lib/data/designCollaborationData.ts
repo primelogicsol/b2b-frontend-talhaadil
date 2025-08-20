@@ -70,6 +70,21 @@ export const designCollaborationData = {
           title: "Trade Registry",
           description: "Transparent contracts and collaboration history storage.",
         },
+        {
+          icon: "Folder",
+          title: "Trade Registry",
+          description: "Transparent contracts and collaboration history storage.",
+        },
+        {
+          icon: "Folder",
+          title: "Trade Registry",
+          description: "Transparent contracts and collaboration history storage.",
+        },
+        {
+          icon: "Folder",
+          title: "Trade Registry",
+          description: "Transparent contracts and collaboration history storage.",
+        },
       ],
       exclusivity: "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
     },
