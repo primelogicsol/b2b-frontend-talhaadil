@@ -1,6 +1,6 @@
-export const coreTradeData = {
-  hero: {
-    headline: "Core Trade Partnerships  The Gateway to Global Craft Commerce",
+ export const coreTradeData = {
+   hero: {
+    headline: "Core Trade Partnerships — The Gateway to Global Craft Commerce",
     subtext:
       "Begin your journey into structured, transparent, and fair trade. Core Trade connects Vendors and Buyers through four partnership models: Dropshipping, Consignment, Wholesale, and Certified Import/Export.",
     ctaButtons: ["Start Core Trade Partnership", "Apply as a Vendor", "Apply as a Buyer"],
@@ -53,7 +53,7 @@ export const coreTradeData = {
     {
       id: "dropshipping",
       name: "Dropshipping",
-      icon: "truck",
+      icon: "Truck",
       kpi: "None",
       retention: "None",
       bestFor: "Online stores, new artisans, small-scale buyers.",
@@ -64,7 +64,7 @@ export const coreTradeData = {
     {
       id: "consignment",
       name: "Consignment",
-      icon: "shopping-bag",
+      icon: "ShoppingBag",
       kpi: "7+",
       retention: "18 months",
       bestFor: "Boutiques, retail stores, artisan groups.",
@@ -75,7 +75,7 @@ export const coreTradeData = {
     {
       id: "wholesale",
       name: "Wholesale",
-      icon: "package",
+      icon: "Package",
       kpi: "7+",
       retention: "3 months",
       bestFor: "Distributors, chain stores, large buyers.",
@@ -86,7 +86,7 @@ export const coreTradeData = {
     {
       id: "export",
       name: "Certified Import/Export",
-      icon: "globe",
+      icon: "Globe",
       kpi: "Buyer 7+ / Vendor 8+",
       retention: "6 months",
       bestFor: "Compliance-driven trade, larger distributors.",
@@ -116,7 +116,7 @@ export const coreTradeData = {
     tracks: [
       {
         name: "Dropshipping",
-        icon: "truck",
+        icon: "Truck",
         bestFor: "Small vendors & online buyers",
         kpi: "None",
         retention: "None",
@@ -125,7 +125,7 @@ export const coreTradeData = {
       },
       {
         name: "Consignment",
-        icon: "shopping-bag",
+        icon: "ShoppingBag",
         bestFor: "Boutiques, seasonal retailers",
         kpi: "7+",
         retention: "18 months",
@@ -134,7 +134,7 @@ export const coreTradeData = {
       },
       {
         name: "Wholesale",
-        icon: "package",
+        icon: "Package",
         bestFor: "Distributors, chain stores",
         kpi: "7+",
         retention: "3 months",
@@ -143,7 +143,7 @@ export const coreTradeData = {
       },
       {
         name: "Certified Import/Export",
-        icon: "globe",
+        icon: "Globe",
         bestFor: "Compliance-driven partners",
         kpi: "8+",
         retention: "6 months",
@@ -177,7 +177,7 @@ export const coreTradeData = {
         options: [
           "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
           "If evaluation is promising → pay Lateral Fee.",
-          "Skip retention → direct entry into advanced pillars.",
+          "Skip retention → Girect entry into advanced pillars.",
         ],
       },
       {
@@ -194,7 +194,7 @@ export const coreTradeData = {
   feePackages: [
     {
       track: "Dropshipping",
-      icon: "truck",
+      icon: "Truck",
       onboarding: "Free only if enrolled within next 6 months (6-month free access). Afterward → Paid Packages.",
       packages: [
         {
@@ -232,7 +232,7 @@ export const coreTradeData = {
     },
     {
       track: "Consignment",
-      icon: "shopping-bag",
+      icon: "ShoppingBag",
       onboarding: "$200 (one-time, covers contracts + setup)",
       packages: [
         {
@@ -271,7 +271,7 @@ export const coreTradeData = {
     },
     {
       track: "Wholesale",
-      icon: "package",
+      icon: "Package",
       onboarding: "$500 (one-time, covers compliance + contracts)",
       packages: [
         {
@@ -310,7 +310,7 @@ export const coreTradeData = {
     },
     {
       track: "Export",
-      icon: "globe",
+      icon: "Globe",
       onboarding: "$1,000 (one-time, covers GI/fair-trade verification & compliance)",
       packages: [
         {
@@ -354,7 +354,7 @@ export const coreTradeData = {
       title: "Standard Path",
       subtitle: "(Default progression for all partners)",
       features: [
-        "Free  no upfront or lateral fee.",
+        "Free — no upfront or lateral fee.",
         "Dropshipping requires no KPI, no retention (universal entry).",
         "KPI 7+ and retention (3–18 months) apply only to Consignment, Wholesale, and Export.",
         "Best for: Partners who want steady, sustainable growth.",
@@ -374,8 +374,8 @@ export const coreTradeData = {
       ],
       note: "Paid: Only after KHCRF evaluation confirms eligibility.",
       cta: "Apply for KHCRF Fast-Track",
-    },
-  },
+  },
+},
   faq: [
     {
       question: "What is Lateral Entry?",

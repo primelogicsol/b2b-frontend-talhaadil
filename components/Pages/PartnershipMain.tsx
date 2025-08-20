@@ -1,25 +1,18 @@
 "use client";
-
+import * as Icons from "lucide-react"
 import { motion, AnimatePresence, easeInOut,Variants } from "framer-motion";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
 import {
-  Truck,
-  ShoppingBag,
-  Package,
-  Globe,
   CheckCircle,
   XCircle,
   ArrowRight,
   Star,
-  Users,
   TrendingUp,
   Shield,
   Zap,
   ChevronDown,
-  Clock,
-  Target,
-  Rocket,
+
 } from "lucide-react";
 import Image from "next/image";
 import EligibilityQuiz from "../Essentials/ElgibiltyProvider";
@@ -71,14 +64,9 @@ const itemVariants = {
   },
 };
 
-const iconMap = {
-  truck: Truck,
-  "shopping-bag": ShoppingBag,
-  package: Package,
-  globe: Globe,
-};
 
-interface CoreTradeData {
+
+type pageData = {
   hero: {
     headline: string;
     subtext: string;
@@ -170,7 +158,7 @@ interface CoreTradeData {
   }>;
 }
 
-export default function MainPartnership({ coreTradeData }: { coreTradeData: CoreTradeData }) {
+export function MainPartnership({ pageData }: { pageData: pageData }) {
   const { is4K } = useGlobalContext();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [activeFeeAccordion, setActiveFeeAccordion] = useState<string | null>(
@@ -209,7 +197,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
               variants={fadeInUp}
             >
-              {coreTradeData.hero.headline}
+              {pageData.hero.headline}
             </motion.h1>
             <motion.p
               className={`text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed ${
@@ -217,13 +205,13 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
               variants={fadeInUp}
             >
-              {coreTradeData.hero.subtext}
+              {pageData.hero.subtext}
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               variants={fadeInUp}
             >
-              {coreTradeData.hero.ctaButtons.map((button, index) => (
+              {pageData.hero.ctaButtons.map((button, index) => (
                 <motion.button
                   key={index}
                   className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
@@ -276,7 +264,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
               variants={fadeInUp}
             >
-              {coreTradeData.whyCoreTrade.heading}
+              {pageData.whyCoreTrade.heading}
             </motion.h2>
 
             {/* Problems */}
@@ -290,7 +278,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                 Current Problems:
               </h3>
               <div className="space-y-4">
-                {coreTradeData.whyCoreTrade.problems.map((problem, index) => (
+                {pageData.whyCoreTrade.problems.map((problem, index) => (
                   <motion.div
                     key={index}
                     className="flex items-start gap-3"
@@ -320,7 +308,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                 Core Trade Provides:
               </h3>
               <div className="space-y-4">
-                {coreTradeData.whyCoreTrade.solutions.map((solution, index) => (
+                {pageData.whyCoreTrade.solutions.map((solution, index) => (
                   <motion.div
                     key={index}
                     className="flex items-start gap-3"
@@ -361,7 +349,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
             variants={itemVariants}
           >
             <span className="gradient-text font-sans">
-              {coreTradeData.eligibility.heading}
+              {pageData.eligibility.heading}
             </span>
           </motion.h2>
 
@@ -378,7 +366,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                   is4K ? "text-4xl" : "text-3xl"
                 } font-bold text-[var(--primary-color)] mb-8 font-sans relative z-10`}
               >
-                {coreTradeData.eligibility.standard.title}
+                {pageData.eligibility.standard.title}
               </h3>
               <div className="space-y-6 relative z-10">
                 <div className="p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200/50">
@@ -388,7 +376,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                     <strong className="text-[var(--primary-color)]">
                       Vendors:
                     </strong>{" "}
-                    {coreTradeData.eligibility.standard.vendors}
+                    {pageData.eligibility.standard.vendors}
                   </p>
                 </div>
                 <div className="p-6 bg-gradient-to-r from-purple-50 to-purple-100/50 rounded-2xl border border-purple-200/50">
@@ -398,7 +386,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                     <strong className="text-[var(--primary-color)]">
                       Buyers:
                     </strong>{" "}
-                    {coreTradeData.eligibility.standard.buyers}
+                    {pageData.eligibility.standard.buyers}
                   </p>
                 </div>
                 <div className="p-6 bg-gradient-to-r from-[var(--secondary-light-color)]/50 to-orange-100/50 rounded-2xl border border-orange-200/50">
@@ -407,7 +395,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                       is4K ? "text-xl" : "text-lg"
                     } text-[var(--primary-color)] font-semibold`}
                   >
-                    👉 {coreTradeData.eligibility.standard.note}
+                    👉 {pageData.eligibility.standard.note}
                   </p>
                 </div>
               </div>
@@ -428,17 +416,17 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                   is4K ? "text-4xl" : "text-3xl"
                 } font-bold mb-8 font-sans relative z-10`}
               >
-                ✨ {coreTradeData.eligibility.lateral.title}
+                ✨ {pageData.eligibility.lateral.title}
               </h3>
               <p
                 className={`${
                   is4K ? "text-2xl" : "text-xl"
                 } mb-8 opacity-95 relative z-10`}
               >
-                {coreTradeData.eligibility.lateral.description}
+                {pageData.eligibility.lateral.description}
               </p>
               <ul className="space-y-4 mb-10 relative z-10">
-                {coreTradeData.eligibility.lateral.points.map(
+                {pageData.eligibility.lateral.points.map(
                   (point, index) => (
                     <motion.li
                       key={index}
@@ -460,7 +448,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {coreTradeData.eligibility.lateral.cta}
+                {pageData.eligibility.lateral.cta}
               </motion.button>
             </motion.div>
           </div>
@@ -484,7 +472,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
           }`}
           variants={fadeInUp}
         >
-          Choose Your Core Trade Path
+          Choose Your Partnership Path
         </motion.h2>
 
         <motion.div
@@ -494,8 +482,8 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
           whileInView="animate"
           viewport={{ once: true }}
         >
-          {coreTradeData.tracks.map((track, index) => {
-            const IconComponent = iconMap[track.icon as keyof typeof iconMap];
+          {pageData.tracks.map((track, index) => {
+              const IconComponent = (Icons as any)[track.icon] || Icons.HelpCircle
             return (
               <motion.div
                 key={track.id}
@@ -586,7 +574,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
             className={`${is4K ? "text-6xl mb-20" : "text-4xl md:text-5xl mb-16"} font-bold text-center font-sans text-[var(--primary-color)]`}
             variants={itemVariants}
           >
-            <span className="gradient-text font-sans">{coreTradeData.workflow.heading}</span>
+            <span className="gradient-text font-sans">{pageData.workflow.heading}</span>
           </motion.h2>
 
           <div className="flex justify-center mb-12">
@@ -629,22 +617,22 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
                 }`}
               >
                 {activeWorkflow === "standard"
-                  ? coreTradeData.workflow.standard.title
-                  : coreTradeData.workflow.fastTrack.title}
+                  ? pageData.workflow.standard.title
+                  : pageData.workflow.fastTrack.title}
               </h3>
 
               <div className="hidden md:flex flex-wrap justify-center gap-4">
                 {(activeWorkflow === "standard"
-                  ? coreTradeData.workflow.standard.steps
-                  : coreTradeData.workflow.fastTrack.steps
+                  ? pageData.workflow.standard.steps
+                  : pageData.workflow.fastTrack.steps
                 ).map((step, index) => (
                   <motion.div
                     key={index}
                     className={`flex items-center gap-4 ${
                       index <
                       (activeWorkflow === "standard"
-                        ? coreTradeData.workflow.standard.steps
-                        : coreTradeData.workflow.fastTrack.steps
+                        ? pageData.workflow.standard.steps
+                        : pageData.workflow.fastTrack.steps
                       ).length -
                         1
                         ? 'after:content-["→"] after:text-2xl after:text-gray-400'
@@ -669,8 +657,8 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
 
               <div className="md:hidden space-y-4">
                 {(activeWorkflow === "standard"
-                  ? coreTradeData.workflow.standard.steps
-                  : coreTradeData.workflow.fastTrack.steps
+                  ? pageData.workflow.standard.steps
+                  : pageData.workflow.fastTrack.steps
                 ).map((step, index) => (
                   <motion.div
                     key={index}
@@ -710,11 +698,11 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
           }`}
           variants={fadeInUp}
         >
-          {coreTradeData.journey.heading}
+          {pageData.journey.heading}
         </motion.h2>
 
         <div className="space-y-8">
-          {coreTradeData.journey.steps.map((step, index) => (
+          {pageData.journey.steps.map((step, index) => (
             <motion.div
               key={index}
               className="bg-white rounded-xl p-8 shadow-lg"
@@ -807,13 +795,13 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
           }`}
           variants={fadeInUp}
         >
-          Core Trade Fee Summary
+          Partnership Fee Summary
         </motion.h2>
 
         <div className="space-y-6">
-          {coreTradeData.feePackages.map((feePackage, index) => {
+          {pageData.feePackages.map((feePackage, index) => {
             const IconComponent =
-              iconMap[feePackage.icon as keyof typeof iconMap];
+              (Icons as any)[feePackage.icon] || Icons.HelpCircle;
             return (
               <motion.div
                 key={index}
@@ -946,7 +934,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
           }`}
           variants={fadeInUp}
         >
-          {coreTradeData.comparison.heading}
+          {pageData.comparison.heading}
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -964,15 +952,15 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
             >
               <Shield className="w-8 h-8" />
-              {coreTradeData.comparison.standard.title}
+              {pageData.comparison.standard.title}
             </h3>
             <p
               className={`text-gray-600 mb-6 ${is4K ? "text-xl" : "text-base"}`}
             >
-              {coreTradeData.comparison.standard.subtitle}
+              {pageData.comparison.standard.subtitle}
             </p>
             <div className="space-y-3 mb-6">
-              {coreTradeData.comparison.standard.features.map(
+              {pageData.comparison.standard.features.map(
                 (feature, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
@@ -993,7 +981,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
             >
               <TrendingUp className="w-4 h-4 mt-1 flex-shrink-0" />
-              {coreTradeData.comparison.standard.note}
+              {pageData.comparison.standard.note}
             </p>
             <motion.button
               className={`w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300 ${
@@ -1002,7 +990,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {coreTradeData.comparison.standard.cta}
+              {pageData.comparison.standard.cta}
             </motion.button>
           </motion.div>
 
@@ -1020,15 +1008,15 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
             >
               <Zap className="w-8 h-8" />
-              {coreTradeData.comparison.lateral.title}
+              {pageData.comparison.lateral.title}
             </h3>
             <p
               className={`text-gray-600 mb-6 ${is4K ? "text-xl" : "text-base"}`}
             >
-              {coreTradeData.comparison.lateral.subtitle}
+              {pageData.comparison.lateral.subtitle}
             </p>
             <div className="space-y-3 mb-6">
-              {coreTradeData.comparison.lateral.features.map(
+              {pageData.comparison.lateral.features.map(
                 (feature, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
@@ -1049,7 +1037,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               }`}
             >
               <Star className="w-4 h-4 mt-1 flex-shrink-0" />
-              {coreTradeData.comparison.lateral.note}
+              {pageData.comparison.lateral.note}
             </p>
             <motion.button
               className={`w-full bg-[var(--secondary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--secondary-color)]/90 transition-all duration-300 ${
@@ -1058,7 +1046,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {coreTradeData.comparison.lateral.cta}
+              {pageData.comparison.lateral.cta}
             </motion.button>
           </motion.div>
         </div>
@@ -1082,7 +1070,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
         </motion.h2>
 
         <div className="max-w-4xl mx-auto space-y-4">
-          {coreTradeData.faq.map((item, index) => (
+          {pageData.faq.map((item, index) => (
             <motion.div
               key={index}
               className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
@@ -1161,7 +1149,7 @@ export default function MainPartnership({ coreTradeData }: { coreTradeData: Core
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             variants={fadeInUp}
           >
-            {coreTradeData.hero.ctaButtons.map((button, index) => (
+            {pageData.hero.ctaButtons.map((button, index) => (
               <motion.button
                 key={index}
                 className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
