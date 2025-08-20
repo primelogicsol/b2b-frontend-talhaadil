@@ -3,42 +3,66 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-const slides = [
+const defaultSlides = [
   {
     id: 1,
     image: "/placeholder.svg?height=800&width=1200",
     title: "Discover Amazing Experiences",
     subtitle: "Unleash your potential with our innovative solutions",
-    buttonText: "Get Started",
-    buttonLink: "#",
+    primaryButton: {
+      text: "Get Started",
+      link: "#",
+    },
+    secondaryButton: {
+      text: "Watch Demo",
+      link: "#demo",
+    },
   },
   {
     id: 2,
     image: "/placeholder.svg?height=800&width=1200",
     title: "Transform Your Business",
     subtitle: "Take your company to the next level with cutting-edge technology",
-    buttonText: "Learn More",
-    buttonLink: "#",
+    primaryButton: {
+      text: "Learn More",
+      link: "#learn",
+    },
+    secondaryButton: {
+      text: "View Case Studies",
+      link: "#cases",
+    },
   },
   {
     id: 3,
     image: "/placeholder.svg?height=800&width=1200",
     title: "Innovation Meets Excellence",
     subtitle: "Join thousands of satisfied customers worldwide",
-    buttonText: "Join Now",
-    buttonLink: "#",
+    primaryButton: {
+      text: "Join Now",
+      link: "#join",
+    },
+    secondaryButton: {
+      text: "See Reviews",
+      link: "#reviews",
+    },
   },
   {
     id: 4,
     image: "/placeholder.svg?height=800&width=1200",
     title: "Your Success Story Starts Here",
     subtitle: "Professional solutions tailored to your unique needs",
-    buttonText: "Contact Us",
-    buttonLink: "#",
+    primaryButton: {
+      text: "Contact Us",
+      link: "#contact",
+    },
+    secondaryButton: {
+      text: "Free Consultation",
+      link: "#consultation",
+    },
   },
 ]
 
-export default function VerticalHeroSlider() {
+export default function VerticalHeroSlider({ slides = defaultSlides }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
@@ -46,7 +70,7 @@ export default function VerticalHeroSlider() {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 4000)
     return () => clearInterval(timer)
-  }, [])
+  }, [slides.length])
 
   const getSlideOffset = () => {
     if (typeof window !== "undefined") {
@@ -61,9 +85,7 @@ export default function VerticalHeroSlider() {
     <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] overflow-hidden mt-20 bg-[var(--primary-color)]">
       <motion.div
         className="flex flex-col w-full"
-        animate={{
-          y: `-${getSlideOffset()}vh`,
-        }}
+        animate={{ y: `-${getSlideOffset()}vh` }}
         transition={{
           duration: 2,
           ease: [0.25, 0.1, 0.25, 1],
@@ -71,10 +93,7 @@ export default function VerticalHeroSlider() {
         }}
       >
         {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className="relative w-full h-[60vh] sm:h-[75vh] lg:h-screen flex-shrink-0"
-          >
+          <div key={slide.id} className="relative w-full h-[60vh] sm:h-[75vh] lg:h-screen flex-shrink-0">
             <div
               className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${slide.image})` }}
@@ -82,38 +101,53 @@ export default function VerticalHeroSlider() {
               <div className="absolute inset-0 bg-black/40" />
             </div>
 
-            {/* Centered content */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 flex flex-col items-start justify-center text-left text-white h-full px-4 sm:px-6 lg:px-8 max-w-4xl">
               <motion.h1
-                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-9xl font-bold leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-7xl 2xl:text-9xl font-bold leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
                   y: currentSlide === index ? 0 : 50,
                 }}
-                transition={{
-                  duration: 1.5,
-                  delay: 0.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
+                transition={{ duration: 1.5, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 {slide.title}
               </motion.h1>
+
               <motion.p
-                className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-light opacity-90 max-w-5xl leading-relaxed lg:mb-25 xl:mb-30 2xl:mb-40"
+                className="text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-light opacity-90 max-w-3xl leading-relaxed mb-6 lg:mb-8"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 0.9 : 0,
                   y: currentSlide === index ? 0 : 30,
                 }}
-                transition={{
-                  duration: 1.5,
-                  delay: 0.4,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
+                transition={{ duration: 1.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 {slide.subtitle}
               </motion.p>
+
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{
+                  opacity: currentSlide === index ? 1 : 0,
+                  y: currentSlide === index ? 0 : 30,
+                }}
+                transition={{ duration: 1.5, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <a
+                  href={slide.primaryButton.link}
+                  className="bg-white text-black px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors duration-300"
+                >
+                  {slide.primaryButton.text}
+                </a>
+                <a
+                  href={slide.secondaryButton.link}
+                  className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-black transition-colors duration-300"
+                >
+                  {slide.secondaryButton.text}
+                </a>
+              </motion.div>
             </div>
           </div>
         ))}
@@ -145,6 +179,7 @@ export default function VerticalHeroSlider() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
         </svg>
       </button>
+
       <button
         onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
         className="absolute left-3 sm:left-4 lg:left-8 top-1/2 transform translate-y-6 sm:translate-y-8 z-20 bg-white/20 hover:bg-white/30 text-white p-1.5 sm:p-2 lg:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"

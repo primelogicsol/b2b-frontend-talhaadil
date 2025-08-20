@@ -3,7 +3,6 @@
 import { motion, AnimatePresence, easeInOut,Variants } from "framer-motion";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
-import { coreTradeData } from "@/lib/coreTradeData";
 import {
   Truck,
   ShoppingBag,
@@ -79,7 +78,99 @@ const iconMap = {
   globe: Globe,
 };
 
-export default function CoreTradeLanding() {
+interface CoreTradeData {
+  hero: {
+    headline: string;
+    subtext: string;
+    ctaButtons: string[];
+  };
+  whyCoreTrade: {
+    heading: string;
+    problems: string[];
+    solutions: string[];
+  };
+  eligibility: {
+    heading: string;
+    standard: {
+      title: string;
+      vendors: string;
+      buyers: string;
+      note: string;
+    };
+    lateral: {
+      title: string;
+      description: string;
+      points: string[];
+      cta: string;
+    };
+  };
+  tracks: Array<{
+    id: string | number;
+    icon: string;
+    name: string;
+    kpi: string;
+    retention: string;
+    bestFor: string;
+    benefit: string;
+    cta: string;
+    fastTrackAvailable?: boolean;
+  }>;
+  workflow: {
+    heading: string;
+    standard: {
+      title: string;
+      steps: string[];
+    };
+    fastTrack: {
+      title: string;
+      steps: string[];
+    };
+  };
+  journey: {
+    heading: string;
+    steps: Array<{
+      title: string;
+      options?: string[];
+      description?: string;
+      note?: string;
+      pathways?: string[];
+    }>;
+  };
+  feePackages: Array<{
+    icon: string;
+    track: string;
+    range: string;
+    onboarding: string;
+    packages: Array<{
+      name: string;
+      price: string;
+      features: string[];
+    }>;
+  }>;
+  comparison: {
+    heading: string;
+    standard: {
+      title: string;
+      subtitle: string;
+      features: string[];
+      note: string;
+      cta: string;
+    };
+    lateral: {
+      title: string;
+      subtitle: string;
+      features: string[];
+      note: string;
+      cta: string;
+    };
+  };
+  faq: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+export default function MainPartnership({ coreTradeData }: { coreTradeData: CoreTradeData }) {
   const { is4K } = useGlobalContext();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [activeFeeAccordion, setActiveFeeAccordion] = useState<string | null>(

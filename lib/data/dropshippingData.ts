@@ -1,4 +1,4 @@
-export const landingPageData = {
+export const dropshippingData = {
   hero: {
     headline:
       "Dropshipping Partnerships  Zero-Risk Entry Into Global Craft Trade",

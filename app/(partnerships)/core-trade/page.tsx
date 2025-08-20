@@ -1,5 +1,5 @@
-import CoreTradeLanding from "@/components/Pages/PartnershipMain"
-
+import MainPartnership from "@/components/Pages/PartnershipMain" 
+import { coreTradeData } from "@/lib/data/coreTradeData"
 export default function Home() {
-  return <CoreTradeLanding />
+  return <MainPartnership coreTradeData={coreTradeData} />
 }

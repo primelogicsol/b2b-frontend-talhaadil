@@ -5,11 +5,11 @@ import { useGlobalContext } from "@/context/ScreenProvider";
 function BannerWithFeatures() {
   const { is4K } = useGlobalContext()
   return (
-    <div className="relative mb-20">
+    <div className="relative mb-50">
       <VerticalHeroSlider />
       <div
         className="mt-6 flex justify-center mx-4 lg:mx-0
-             lg:mt-0 lg:absolute lg:inset-x-0 lg:-bottom-40"
+             lg:mt-0 lg:absolute lg:inset-x-0 lg:-bottom-75"
       >
         <Features />
       </div>

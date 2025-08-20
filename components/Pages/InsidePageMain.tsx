@@ -4,12 +4,70 @@ import { useState, useEffect } from "react"
 import { motion, useInView, Variants, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
 import { useGlobalContext } from "@/context/ScreenProvider"
-import { landingPageData } from "@/lib/landingPageData"
 import Image from "next/image"
 import { XCircle, CheckCircle } from "lucide-react"
 import * as Icons from "lucide-react"
 
-export default function InsidePage() {
+type LandingPageData = {
+    hero: {
+        headline: string
+        subtext: string
+        ctaButtons: string[]
+    }
+    whyDropshipping: {
+        heading: string
+        problems: string[]
+        solutions: string[]
+    }
+    platformDifference: {
+        heading: string
+        features: { icon: string; title: string; description: string }[]
+        exclusivity: string
+    }
+    capabilities: {
+        heading: string
+        sections: { icon: string; title: string; items: string[] }[]
+    }
+    eligibility: {
+        heading: string
+        requirements: string[]
+    }
+    pricing: {
+        heading: string
+        freeOffer: { title: string; description: string; note: string }
+        packages: { name: string; price: string; features: string[] }[]
+        range: string
+    }
+    technology: {
+        heading: string
+        description: string
+        features: { icon: string; title: string; description: string }[]
+        support: string
+    }
+    platformAdvantage: {
+        heading: string
+        description: string
+        sections: { title: string; items: string[] }[]
+    }
+    workflow: {
+        heading: string
+        steps: string[]
+    }
+    faq: { question: string; answer: string }[]
+    apiIntegration: {
+        heading: string
+        description: string
+        features: { icon: string; title: string; description: string }[]
+        support: { title: string; description: string; note: string }
+    }
+    finalCta: {
+        heading: string
+        subtext: string
+        ctaButtons: string[]
+    }
+}
+
+export default function InsidePage({ landingPageData }: { landingPageData: LandingPageData }) {
     const [activeStep, setActiveStep] = useState<number | null>(null)
     const { is4K } = useGlobalContext()
     const [slideUpVisible, setSlideUpVisible] = useState(false)
