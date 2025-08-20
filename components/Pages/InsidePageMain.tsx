@@ -44,7 +44,7 @@ type LandingPageData = {
         features: { icon: string; title: string; description: string }[]
         support: string
     }
-    platformAdvantage: {
+    platformAdvantage?: {
         heading: string
         description: string
         sections: { title: string; items: string[] }[]
