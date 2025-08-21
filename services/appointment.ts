@@ -39,3 +39,13 @@ export const postAppointment = (
     }
   });
 };
+
+
+
+export const getAllAppointments = () => {
+  return api.get(`/appointments/`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { Users, Plus, Edit, Trash2, X } from "lucide-react"
 import { registerSubAdmin, updateSubAdmin } from "@/services/auth"
 import { useToast } from "@/context/ToastProvider"
+import { getAllUsers } from "@/services/admin"
 interface Admin {
   id: string
   username: string
@@ -44,6 +45,7 @@ export default function OtherAdminsPage() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [loading, setLoading] = useState(false)
   const [editingAdmin, setEditingAdmin] = useState<Admin | null>(null)
+  const [getLoading,setGetLoading] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null)
   const [formData, setFormData] = useState<AdminFormData>({
     username: "",
@@ -58,36 +60,40 @@ export default function OtherAdminsPage() {
     },
   })
 
+
   // Mock data initialization
-  useEffect(() => {
-    const mockAdmins: Admin[] = [
-      {
-        id: "1",
-        username: "john_admin",
-        email: "john@example.com",
-        visibility_level: 3,
-        ownership: {
-          user_management: ["create", "update"],
-          document_verification: ["review"],
-          job_postings: ["create", "edit"],
+useEffect(() => {
+  const fetchAdmins = async () => {
+    setGetLoading(true)
+    try {
+      const response = await getAllUsers()
+      const apiUsers: any[] = response.data;
+      console.log(apiUsers)
 
-        },
-      },
-      {
-        id: "2",
-        username: "sarah_manager",
-        email: "sarah@example.com",
-        visibility_level: 2,
-        ownership: {
-          user_management: ["create", "update", "delete"],
-          document_verification: ["review", "approve"],
-          job_postings: ["create"],
+      const transformedAdmins: Admin[] = apiUsers
+        .filter(user => user.role === "sub_admin")
+        .map(user => ({
+          id: String(user.id),
+          username: user.username || "",
+          email: user.email || "",
+          visibility_level: user.visibility_level ?? 1,
+          ownership: {
+            user_management: user.ownership?.user_management ?? [],
+            document_verification: user.ownership?.document_verification ?? [],
+            job_postings: user.ownership?.job_postings ?? [],
+          },
+        }));
 
-        },
-      },
-    ]
-    setAdmins(mockAdmins)
-  }, [])
+      setAdmins(transformedAdmins);
+    } catch (error) {
+      console.error("Failed to fetch admins:", error);
+    }finally{
+      setGetLoading(false)
+    }
+  };
+  
+  fetchAdmins();
+}, []);
 
   const resetForm = () => {
     setFormData({
@@ -198,6 +204,13 @@ export default function OtherAdminsPage() {
   const getPermissionsSummary = (ownership: Admin["ownership"]) => {
     const totalPermissions = Object.values(ownership).flat().length
     return `${totalPermissions} permissions`
+  }
+    if (getLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      </div>
+    )
   }
 
   return (

@@ -22,7 +22,7 @@ export const registerSubAdmin = (data:any) =>{
   });
 }
 export const updateSubAdmin = (userId: string, data: any) =>
-  api.put(`/auth/update-sub-admin?user_id=${userId}`, data, {
+  api.put(`/auth/update-sub-admin/${userId}`, data, {
     headers: {
       requiresAuth: true,
     },
