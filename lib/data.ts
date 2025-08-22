@@ -161,6 +161,170 @@ export interface MonthlyData {
   appointments: number
 }
 
+export const mockUsers: User[] = [
+  {
+    id: 1,
+    name: "Amit Sharma",
+    email: "amit.sharma@example.com",
+    phone: "+91-9876543210",
+    kpiScore: 8.5,
+    documents: [],
+    joinDate: "2023-05-14",
+    status: "active",
+    type: "vendor",
+    department: "Textiles",
+
+    businessInfo: {
+      businessName: "Sharma Textiles Pvt Ltd",
+      businessLegalStructure: "Private Limited",
+      businessType: "Manufacturing",
+      businessEstablishedYear: 2010,
+      businessRegistrationNumber: "TXL123456",
+      brandAffiliations: "Handloom Heritage",
+      streetAddress1: "12 Industrial Road",
+      city: "Mumbai",
+      stateRegion: "Maharashtra",
+      country: "India",
+      postalCode: "400001",
+      website: "https://sharmatextiles.com",
+      annualTurnover: "₹5 Crore",
+      gstNumber: "27AAAAA0000A1Z5",
+      taxIdentificationNumber: "ABCDE1234F",
+      importExportCode: "IEC1234567"
+    },
+
+    businessContact: {
+      name: "Rajesh Kumar",
+      email: "rajesh.kumar@example.com",
+      phone: "+91-9123456780",
+      whatsapp: "+91-9123456780",
+      district: "South Mumbai",
+      pinCode: "400001",
+      state: "Maharashtra",
+      country: "India"
+    },
+
+    credibilityAssessment: {
+      materialStandard: 8,
+      qualityLevel: 9,
+      sustainabilityLevel: 7,
+      serviceLevel: 8,
+      standardsLevel: 9
+    },
+
+    certifications: {
+      seekingAuthenticity: true,
+      giCertification: true,
+      handloomMark: true,
+      craftMark: false,
+      indiaHandmade: true,
+      qualityCouncil: true,
+      exportCouncil: true,
+      blockChain: false
+    },
+
+    bankingInfo: {
+      bankName: "HDFC Bank",
+      accountName: "Sharma Textiles Pvt Ltd",
+      accountType: "Current",
+      accountNumber: "123456789012",
+      ifscCode: "HDFC0001234",
+      swiftBisCode: "HDFCINBB",
+      ibanCode: "IN91HDFC00012345678901"
+    },
+
+    complianceIssues: {
+      kycChallenges: false,
+      gstComplianceIssues: false,
+      femaPaymentDifficulties: false,
+      digitalBankingImpact: false,
+      fraudCybersecurityIssues: false,
+      paymentGatewayChallenges: false,
+      accountActivityIssues: false,
+      regulatoryActions: false
+    }
+  },
+  {
+    id: 2,
+    name: "Sofia Khan",
+    email: "sofia.khan@example.com",
+    phone: "+44-7712345678",
+    kpiScore: 7.2,
+    documents: [],
+    joinDate: "2022-11-02",
+    status: "pending",
+    type: "buyer",
+
+    businessInfo: {
+      businessName: "Khan Imports Ltd",
+      businessLegalStructure: "Limited Company",
+      businessType: "Wholesale",
+      businessEstablishedYear: 2018,
+      businessRegistrationNumber: "KHN789012",
+      streetAddress1: "45 Queen Street",
+      city: "London",
+      stateRegion: "Greater London",
+      country: "UK",
+      postalCode: "SW1A 1AA",
+      website: "https://khanimports.co.uk",
+      annualTurnover: "£1.2 Million",
+      gstNumber: "UKVAT123456",
+      taxIdentificationNumber: "GB123456789"
+    },
+
+    businessContact: {
+      name: "Sofia Khan",
+      email: "sofia.khan@example.com",
+      phone: "+44-7712345678",
+      district: "Westminster",
+      pinCode: "SW1A 1AA",
+      state: "London",
+      country: "UK"
+    },
+
+    credibilityAssessment: {
+      materialStandard: 6,
+      qualityLevel: 7,
+      sustainabilityLevel: 8,
+      serviceLevel: 7,
+      standardsLevel: 6
+    },
+
+    certifications: {
+      seekingAuthenticity: false,
+      giCertification: false,
+      handloomMark: false,
+      craftMark: true,
+      indiaHandmade: false,
+      qualityCouncil: false,
+      exportCouncil: false,
+      blockChain: true
+    },
+
+    bankingInfo: {
+      bankName: "Barclays Bank",
+      accountName: "Khan Imports Ltd",
+      accountType: "Business",
+      accountNumber: "9876543210",
+      ifscCode: "BARCGB22",
+      swiftBisCode: "BARCGB22",
+      ibanCode: "GB29BARC20000012345678"
+    },
+
+    complianceIssues: {
+      kycChallenges: false,
+      gstComplianceIssues: true,
+      femaPaymentDifficulties: false,
+      digitalBankingImpact: true,
+      fraudCybersecurityIssues: false,
+      paymentGatewayChallenges: true,
+      accountActivityIssues: false,
+      regulatoryActions: false
+    }
+  }
+]
+
+
 
 export const mockJobs: Job[] = [
   {

@@ -6,6 +6,7 @@ import { Users, Plus, Edit, Trash2, X } from "lucide-react"
 import { registerSubAdmin, updateSubAdmin } from "@/services/auth"
 import { useToast } from "@/context/ToastProvider"
 import { getAllUsers } from "@/services/admin"
+
 interface Admin {
   id: string
   username: string
@@ -15,7 +16,7 @@ interface Admin {
     user_management: string[]
     document_verification: string[]
     job_postings: string[]
-
+    team: string[]
   }
 }
 
@@ -28,7 +29,7 @@ interface AdminFormData {
     user_management: string[]
     document_verification: string[]
     job_postings: string[]
-
+    team: string[]
   }
 }
 
@@ -36,7 +37,7 @@ const permissionOptions = {
   user_management: ["create", "update", "delete"],
   document_verification: ["review", "approve"],
   job_postings: ["create", "edit"],
-
+  team: ["edit", "view"]
 }
 
 export default function OtherAdminsPage() {
@@ -45,7 +46,7 @@ export default function OtherAdminsPage() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [loading, setLoading] = useState(false)
   const [editingAdmin, setEditingAdmin] = useState<Admin | null>(null)
-  const [getLoading,setGetLoading] = useState(false)
+  const [getLoading, setGetLoading] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null)
   const [formData, setFormData] = useState<AdminFormData>({
     username: "",
@@ -56,44 +57,43 @@ export default function OtherAdminsPage() {
       user_management: [],
       document_verification: [],
       job_postings: [],
-
+      team: []
     },
   })
 
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      setGetLoading(true)
+      try {
+        const response = await getAllUsers()
+        const apiUsers: any[] = response.data;
+        console.log(apiUsers)
 
-  // Mock data initialization
-useEffect(() => {
-  const fetchAdmins = async () => {
-    setGetLoading(true)
-    try {
-      const response = await getAllUsers()
-      const apiUsers: any[] = response.data;
-      console.log(apiUsers)
+        const transformedAdmins: Admin[] = apiUsers
+          .filter(user => user.role === "sub_admin")
+          .map(user => ({
+            id: String(user.id),
+            username: user.username || "",
+            email: user.email || "",
+            visibility_level: user.visibility_level ?? 1,
+            ownership: {
+              user_management: user.ownership?.user_management ?? [],
+              document_verification: user.ownership?.document_verification ?? [],
+              job_postings: user.ownership?.job_postings ?? [],
+              team: user.ownership?.team ?? []
+            },
+          }));
 
-      const transformedAdmins: Admin[] = apiUsers
-        .filter(user => user.role === "sub_admin")
-        .map(user => ({
-          id: String(user.id),
-          username: user.username || "",
-          email: user.email || "",
-          visibility_level: user.visibility_level ?? 1,
-          ownership: {
-            user_management: user.ownership?.user_management ?? [],
-            document_verification: user.ownership?.document_verification ?? [],
-            job_postings: user.ownership?.job_postings ?? [],
-          },
-        }));
-
-      setAdmins(transformedAdmins);
-    } catch (error) {
-      console.error("Failed to fetch admins:", error);
-    }finally{
-      setGetLoading(false)
-    }
-  };
-  
-  fetchAdmins();
-}, []);
+        setAdmins(transformedAdmins);
+      } catch (error) {
+        console.error("Failed to fetch admins:", error);
+      } finally {
+        setGetLoading(false)
+      }
+    };
+    
+    fetchAdmins();
+  }, []);
 
   const resetForm = () => {
     setFormData({
@@ -105,7 +105,7 @@ useEffect(() => {
         user_management: [],
         document_verification: [],
         job_postings: [],
-
+        team: []
       },
     })
   }
@@ -142,15 +142,13 @@ useEffect(() => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Log the payload as requested
     console.log("Form submission payload:", formData)
     setLoading(true)
     if (editingAdmin) {
-      // Update existing admin
       try {
         const response = await updateSubAdmin(editingAdmin.id, { visibility_level: formData.visibility_level, ownership: formData.ownership })
         console.log(response)
-        showToast("Admin updated succesfully")
+        showToast("Admin updated successfully")
       } catch (err: any) {
         console.log(err.response.data.detail)
         showToast("Failed to update admin")
@@ -160,14 +158,13 @@ useEffect(() => {
 
       setAdmins(admins.map((admin) => (admin.id === editingAdmin.id ? { ...admin, ...formData } : admin)))
     } else {
-      // Add new admin
       try {
         const response = await registerSubAdmin(formData)
         console.log(response)
-        showToast("Admin added succesfully")
+        showToast("Admin added successfully")
       } catch (err: any) {
         console.log(err.response.data.detail)
-        showToast("failed to add admin")
+        showToast("Failed to add admin")
       } finally {
         setLoading(false)
       }
@@ -179,7 +176,6 @@ useEffect(() => {
         visibility_level: formData.visibility_level,
         ownership: formData.ownership,
       }
-
 
       setAdmins([...admins, newAdmin])
     }
@@ -205,7 +201,8 @@ useEffect(() => {
     const totalPermissions = Object.values(ownership).flat().length
     return `${totalPermissions} permissions`
   }
-    if (getLoading) {
+
+  if (getLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
@@ -215,7 +212,6 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Header */}
       <div className="bg-white shadow-sm border-b border-slate-200 px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center space-x-3">
@@ -239,9 +235,7 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* Add/Edit Form */}
         {showAddForm && (
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
             <div className="flex items-center justify-between mb-6">
@@ -255,7 +249,6 @@ useEffect(() => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Basic Info Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {!editingAdmin && (
                   <>
@@ -318,7 +311,6 @@ useEffect(() => {
                 </div>
               </div>
 
-              {/* Permissions Section */}
               <div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-4">Ownership Permissions</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -355,7 +347,6 @@ useEffect(() => {
                 </div>
               </div>
 
-              {/* Form Actions */}
               <div className="flex items-center justify-end space-x-4 pt-6 border-t border-slate-200">
                 <button
                   type="button"
@@ -365,7 +356,6 @@ useEffect(() => {
                   Cancel
                 </button>
                 <button
-
                   type="submit"
                   disabled={loading}
                   className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
@@ -377,10 +367,8 @@ useEffect(() => {
           </div>
         )}
 
-        {/* Admins List */}
         {!showAddForm && (
           <>
-            {/* Desktop Table */}
             <div className="hidden lg:block bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
               <table className="min-w-full divide-y divide-slate-200">
                 <thead className="bg-slate-50">
@@ -438,7 +426,6 @@ useEffect(() => {
               </table>
             </div>
 
-            {/* Mobile Cards */}
             <div className="lg:hidden space-y-4">
               {admins.map((admin) => (
                 <div key={admin.id} className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
@@ -475,7 +462,6 @@ useEffect(() => {
         )}
       </div>
 
-      {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
