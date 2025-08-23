@@ -7,6 +7,7 @@ import { useGlobalContext } from "@/context/ScreenProvider"
 import Image from "next/image"
 import { XCircle, CheckCircle } from "lucide-react"
 import * as Icons from "lucide-react"
+import Link from "next/link"
 
 type LandingPageData = {
     hero: {
@@ -517,9 +518,11 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                         </ul>
 
                         {/* Highlight */}
-                        <div className="mt-8 p-4 rounded-xl bg-[var(--primary-hover-color)] text-white text-center font-semibold">
-                            Start your journey today  no barriers, just growth.
+                        <Link href="/registration">
+                         <div className="mt-8 p-4 rounded-xl bg-[var(--primary-hover-color)] text-white text-center font-semibold cursor-pointer hover:opacity-90 transition">
+                             Start your journey today — no barriers, just growth.
                         </div>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -790,9 +793,11 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
 
                     {/* Call to Action */}
                     <div className="text-center mt-12">
-                        <button className="bg-[var(--secondary-color)] hover:bg-[var(--primary-color)] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                            Start Your Journey
-                        </button>
+                    <Link href="/registration">
+        <button className="bg-[var(--secondary-color)] hover:bg-[var(--primary-color)] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          Start Your Journey
+        </button>
+      </Link>
                     </div>
                 </div>
             </section>
@@ -944,12 +949,14 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         {landingPageData.finalCta.ctaButtons.map((button, index) => (
-                            <button
-                                key={index}
-                                className={`${is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"} bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
-                            >
-                                {button}
-                            </button>
+                           <Link
+                           key={index}
+                           href="/registration"
+                           className={`${is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"} bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block`}
+                         >
+                           {button}
+                         </Link>
+                         
                         ))}
                     </div>
                 </div>
