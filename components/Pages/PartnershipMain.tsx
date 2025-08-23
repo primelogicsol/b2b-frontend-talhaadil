@@ -1,6 +1,6 @@
 "use client";
 import * as Icons from "lucide-react"
-import { motion, AnimatePresence, easeInOut,Variants } from "framer-motion";
+import { motion, AnimatePresence, easeInOut, Variants } from "framer-motion";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
 import {
@@ -15,6 +15,7 @@ import {
 
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import EligibilityQuiz from "../Essentials/ElgibiltyProvider";
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -96,6 +97,7 @@ type pageData = {
     id: string | number;
     icon: string;
     name: string;
+    href: string;
     kpi: string;
     retention: string;
     bestFor: string;
@@ -192,17 +194,15 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             animate="animate"
           >
             <motion.h1
-              className={`font-bold text-white mb-6 ${
-                is4K ? "text-7xl" : "text-4xl sm:text-5xl lg:text-6xl"
-              }`}
+              className={`font-bold text-white mb-6 ${is4K ? "text-7xl" : "text-4xl sm:text-5xl lg:text-6xl"
+                }`}
               variants={fadeInUp}
             >
               {pageData.hero.headline}
             </motion.h1>
             <motion.p
-              className={`text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed ${
-                is4K ? "text-2xl" : "text-lg sm:text-xl"
-              }`}
+              className={`text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed ${is4K ? "text-2xl" : "text-lg sm:text-xl"
+                }`}
               variants={fadeInUp}
             >
               {pageData.hero.subtext}
@@ -214,11 +214,10 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               {pageData.hero.ctaButtons.map((button, index) => (
                 <motion.button
                   key={index}
-                  className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
-                    index === 0
-                      ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90 shadow-lg hover:shadow-xl"
-                      : "bg-white text-[var(--primary-color)] hover:bg-gray-100"
-                  } ${is4K ? "text-xl px-12 py-6" : "text-base"}`}
+                  className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${index === 0
+                    ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90 shadow-lg hover:shadow-xl"
+                    : "bg-white text-[var(--primary-color)] hover:bg-gray-100"
+                    } ${is4K ? "text-xl px-12 py-6" : "text-base"}`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -259,9 +258,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             viewport={{ once: true }}
           >
             <motion.h2
-              className={`font-bold text-[var(--primary-color)] text-left ${
-                is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-              }`}
+              className={`font-bold text-[var(--primary-color)] text-left ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+                }`}
               variants={fadeInUp}
             >
               {pageData.whyCoreTrade.heading}
@@ -270,9 +268,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             {/* Problems */}
             <div>
               <h3
-                className={`font-semibold text-[var(--secondary-color)] mb-4 flex items-center gap-2 ${
-                  is4K ? "text-2xl" : "text-xl"
-                }`}
+                className={`font-semibold text-[var(--secondary-color)] mb-4 flex items-center gap-2 ${is4K ? "text-2xl" : "text-xl"
+                  }`}
               >
                 <XCircle className="w-6 h-6" />
                 Current Problems:
@@ -286,9 +283,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   >
                     <XCircle className="w-5 h-5 text-[var(--secondary-color)] mt-1 flex-shrink-0" />
                     <p
-                      className={`text-gray-700 ${
-                        is4K ? "text-xl" : "text-base"
-                      }`}
+                      className={`text-gray-700 ${is4K ? "text-xl" : "text-base"
+                        }`}
                     >
                       {problem}
                     </p>
@@ -300,9 +296,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             {/* Solutions */}
             <div>
               <h3
-                className={`font-semibold text-[var(--primary-color)] mb-4 flex items-center gap-2 ${
-                  is4K ? "text-2xl" : "text-xl"
-                }`}
+                className={`font-semibold text-[var(--primary-color)] mb-4 flex items-center gap-2 ${is4K ? "text-2xl" : "text-xl"
+                  }`}
               >
                 <CheckCircle className="w-6 h-6" />
                 Core Trade Provides:
@@ -316,9 +311,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   >
                     <CheckCircle className="w-5 h-5 text-[var(--primary-color)] mt-1 flex-shrink-0" />
                     <p
-                      className={`text-gray-700 ${
-                        is4K ? "text-xl" : "text-base"
-                      }`}
+                      className={`text-gray-700 ${is4K ? "text-xl" : "text-base"
+                        }`}
                     >
                       {solution}
                     </p>
@@ -331,9 +325,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
       </motion.section>
 
       <motion.section
-        className={`${
-          is4K ? "py-40" : "py-24"
-        } px-4 bg-gradient-to-br from-[var(--secondary-light-color)]/30 via-gray-50 to-[var(--primary-color)]/5`}
+        className={`${is4K ? "py-40" : "py-24"
+          } px-4 bg-gradient-to-br from-[var(--secondary-light-color)]/30 via-gray-50 to-[var(--primary-color)]/5`}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -343,9 +336,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           className={`${is4K ? "max-w-[1800px]" : "max-w-[1200px]"} mx-auto`}
         >
           <motion.h2
-            className={`${
-              is4K ? "text-6xl mb-20" : "text-4xl md:text-5xl mb-16"
-            } font-bold text-center font-sans`}
+            className={`${is4K ? "text-6xl mb-20" : "text-4xl md:text-5xl mb-16"
+              } font-bold text-center font-sans`}
             variants={itemVariants}
           >
             <span className="gradient-text font-sans">
@@ -362,9 +354,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <h3
-                className={`${
-                  is4K ? "text-4xl" : "text-3xl"
-                } font-bold text-[var(--primary-color)] mb-8 font-sans relative z-10`}
+                className={`${is4K ? "text-4xl" : "text-3xl"
+                  } font-bold text-[var(--primary-color)] mb-8 font-sans relative z-10`}
               >
                 {pageData.eligibility.standard.title}
               </h3>
@@ -391,9 +382,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 </div>
                 <div className="p-6 bg-gradient-to-r from-[var(--secondary-light-color)]/50 to-orange-100/50 rounded-2xl border border-orange-200/50">
                   <p
-                    className={`${
-                      is4K ? "text-xl" : "text-lg"
-                    } text-[var(--primary-color)] font-semibold`}
+                    className={`${is4K ? "text-xl" : "text-lg"
+                      } text-[var(--primary-color)] font-semibold`}
                   >
                     👉 {pageData.eligibility.standard.note}
                   </p>
@@ -412,16 +402,14 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 ✨
               </div>
               <h3
-                className={`${
-                  is4K ? "text-4xl" : "text-3xl"
-                } font-bold mb-8 font-sans relative z-10`}
+                className={`${is4K ? "text-4xl" : "text-3xl"
+                  } font-bold mb-8 font-sans relative z-10`}
               >
                 ✨ {pageData.eligibility.lateral.title}
               </h3>
               <p
-                className={`${
-                  is4K ? "text-2xl" : "text-xl"
-                } mb-8 opacity-95 relative z-10`}
+                className={`${is4K ? "text-2xl" : "text-xl"
+                  } mb-8 opacity-95 relative z-10`}
               >
                 {pageData.eligibility.lateral.description}
               </p>
@@ -430,9 +418,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   (point, index) => (
                     <motion.li
                       key={index}
-                      className={`${
-                        is4K ? "text-lg" : "text-base"
-                      } opacity-90 flex items-start gap-3`}
+                      className={`${is4K ? "text-lg" : "text-base"
+                        } opacity-90 flex items-start gap-3`}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 0.9, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -444,6 +431,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 )}
               </ul>
               <motion.button
+             onClick={() => window.open('https://khcrf.org/', '_blank')}
+
                 className="bg-white text-[var(--primary-color)] px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 relative z-10"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -467,9 +456,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${
-            is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-          }`}
+          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+            }`}
           variants={fadeInUp}
         >
           Choose Your Partnership Path
@@ -483,7 +471,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           viewport={{ once: true }}
         >
           {pageData.tracks.map((track, index) => {
-              const IconComponent = (Icons as any)[track.icon] || Icons.HelpCircle
+            const IconComponent = (Icons as any)[track.icon] || Icons.HelpCircle
             return (
               <motion.div
                 key={track.id}
@@ -502,59 +490,56 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 <div className="text-center">
                   <div className="flex justify-center mb-4">
                     <IconComponent
-                      className={`text-[var(--primary-color)] ${
-                        is4K ? "w-16 h-16" : "w-12 h-12"
-                      }`}
+                      className={`text-[var(--primary-color)] ${is4K ? "w-16 h-16" : "w-12 h-12"
+                        }`}
                     />
                   </div>
                   <h3
-                    className={`font-bold text-[var(--primary-color)] mb-4 ${
-                      is4K ? "text-2xl" : "text-xl"
-                    }`}
+                    className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-2xl" : "text-xl"
+                      }`}
                   >
                     {track.name}
                   </h3>
                   <div className="space-y-3 mb-6">
                     <p
-                      className={`text-gray-600 ${
-                        is4K ? "text-lg" : "text-sm"
-                      }`}
+                      className={`text-gray-600 ${is4K ? "text-lg" : "text-sm"
+                        }`}
                     >
                       <span className="font-semibold">KPI:</span> {track.kpi}
                     </p>
                     <p
-                      className={`text-gray-600 ${
-                        is4K ? "text-lg" : "text-sm"
-                      }`}
+                      className={`text-gray-600 ${is4K ? "text-lg" : "text-sm"
+                        }`}
                     >
                       <span className="font-semibold">Retention:</span>{" "}
                       {track.retention}
                     </p>
                     <p
-                      className={`text-gray-700 ${
-                        is4K ? "text-lg" : "text-sm"
-                      }`}
+                      className={`text-gray-700 ${is4K ? "text-lg" : "text-sm"
+                        }`}
                     >
                       <span className="font-semibold">Best For:</span>{" "}
                       {track.bestFor}
                     </p>
                     <p
-                      className={`text-[var(--secondary-color)] font-medium ${
-                        is4K ? "text-lg" : "text-sm"
-                      }`}
+                      className={`text-[var(--secondary-color)] font-medium ${is4K ? "text-lg" : "text-sm"
+                        }`}
                     >
                       {track.benefit}
                     </p>
                   </div>
-                  <motion.button
-                    className={`w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300 ${
-                      is4K ? "text-lg py-4" : "text-sm"
-                    }`}
+                  <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {track.cta}
-                  </motion.button>
+                    <Link
+                      href={track.href}
+                      className={`w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300 px-2 ${is4K ? "text-lg py-4" : "text-sm"
+                        }`}
+                    >
+                      {track.cta}
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             );
@@ -562,7 +547,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         </motion.div>
       </motion.section>
 
-  <motion.section
+      <motion.section
         className={`${is4K ? "py-40" : "py-24"} px-4 bg-white`}
         initial="hidden"
         whileInView="visible"
@@ -580,21 +565,19 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           <div className="flex justify-center mb-12">
             <div className="bg-gray-100 p-2 rounded-2xl flex ">
               <button
-                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                  activeWorkflow === "standard"
-                    ? "bg-[var(--primary-color)] text-white shadow-lg"
-                    : "text-[var(--primary-color)] hover:bg-gray-200"
-                }`}
+                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${activeWorkflow === "standard"
+                  ? "bg-[var(--primary-color)] text-white shadow-lg"
+                  : "text-[var(--primary-color)] hover:bg-gray-200"
+                  }`}
                 onClick={() => setActiveWorkflow("standard")}
               >
                 Standard Path
               </button>
               <button
-                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                  activeWorkflow === "fasttrack"
-                    ? "bg-[var(--secondary-color)] text-white shadow-lg"
-                    : "text-[var(--secondary-color)] hover:bg-gray-200"
-                }`}
+                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${activeWorkflow === "fasttrack"
+                  ? "bg-[var(--secondary-color)] text-white shadow-lg"
+                  : "text-[var(--secondary-color)] hover:bg-gray-200"
+                  }`}
                 onClick={() => setActiveWorkflow("fasttrack")}
               >
                 Fast-Track Path
@@ -612,9 +595,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               className="bg-gradient-to-br from-gray-50 to-white p-10 rounded-3xl shadow-xl border border-gray-200/50"
             >
               <h3
-                className={`${is4K ? "text-4xl" : "text-3xl"} font-bold mb-8 text-center font-sans ${
-                  activeWorkflow === "standard" ? "text-[var(--primary-color)]" : "text-[var(--secondary-color)]"
-                }`}
+                className={`${is4K ? "text-4xl" : "text-3xl"} font-bold mb-8 text-center font-sans ${activeWorkflow === "standard" ? "text-[var(--primary-color)]" : "text-[var(--secondary-color)]"
+                  }`}
               >
                 {activeWorkflow === "standard"
                   ? pageData.workflow.standard.title
@@ -628,26 +610,24 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 ).map((step, index) => (
                   <motion.div
                     key={index}
-                    className={`flex items-center gap-4 ${
-                      index <
+                    className={`flex items-center gap-4 ${index <
                       (activeWorkflow === "standard"
                         ? pageData.workflow.standard.steps
                         : pageData.workflow.fastTrack.steps
                       ).length -
-                        1
-                        ? 'after:content-["→"] after:text-2xl after:text-gray-400'
-                        : ""
-                    }`}
+                      1
+                      ? 'after:content-["→"] after:text-2xl after:text-gray-400'
+                      : ""
+                      }`}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2 }}
                   >
                     <div
-                      className={`px-6 py-4 rounded-2xl font-semibold text-white shadow-lg ${
-                        activeWorkflow === "standard"
-                          ? "bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)]"
-                          : "bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-color)]/80"
-                      }`}
+                      className={`px-6 py-4 rounded-2xl font-semibold text-white shadow-lg ${activeWorkflow === "standard"
+                        ? "bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)]"
+                        : "bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-color)]/80"
+                        }`}
                     >
                       {step}
                     </div>
@@ -668,9 +648,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                     transition={{ delay: index * 0.1 }}
                   >
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
-                        activeWorkflow === "standard" ? "bg-[var(--primary-color)]" : "bg-[var(--secondary-color)]"
-                      }`}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${activeWorkflow === "standard" ? "bg-[var(--primary-color)]" : "bg-[var(--secondary-color)]"
+                        }`}
                     >
                       {index + 1}
                     </div>
@@ -693,9 +672,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${
-            is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-          }`}
+          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+            }`}
           variants={fadeInUp}
         >
           {pageData.journey.heading}
@@ -712,9 +690,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               viewport={{ once: true }}
             >
               <h3
-                className={`font-bold text-[var(--primary-color)] mb-4 flex items-center gap-3 ${
-                  is4K ? "text-2xl" : "text-xl"
-                }`}
+                className={`font-bold text-[var(--primary-color)] mb-4 flex items-center gap-3 ${is4K ? "text-2xl" : "text-xl"
+                  }`}
               >
                 <div className="w-8 h-8 bg-[var(--primary-color)] text-white rounded-full flex items-center justify-center font-bold">
                   {index + 1}
@@ -728,9 +705,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                     <div key={optionIndex} className="flex items-start gap-3">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                       <p
-                        className={`text-gray-700 ${
-                          is4K ? "text-lg" : "text-base"
-                        }`}
+                        className={`text-gray-700 ${is4K ? "text-lg" : "text-base"
+                          }`}
                       >
                         {option}
                       </p>
@@ -741,9 +717,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
 
               {step.description && (
                 <p
-                  className={`text-gray-700 mb-4 ${
-                    is4K ? "text-lg" : "text-base"
-                  }`}
+                  className={`text-gray-700 mb-4 ${is4K ? "text-lg" : "text-base"
+                    }`}
                 >
                   {step.description}
                 </p>
@@ -751,9 +726,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
 
               {step.note && (
                 <p
-                  className={`text-[var(--primary-color)] font-medium ${
-                    is4K ? "text-lg" : "text-base"
-                  }`}
+                  className={`text-[var(--primary-color)] font-medium ${is4K ? "text-lg" : "text-base"
+                    }`}
                 >
                   <ArrowRight className="w-4 h-4 inline mr-2" />
                   {step.note}
@@ -766,9 +740,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                     <div key={pathwayIndex} className="flex items-start gap-3">
                       <TrendingUp className="w-4 h-4 text-[var(--secondary-color)] mt-1 flex-shrink-0" />
                       <p
-                        className={`text-gray-700 ${
-                          is4K ? "text-lg" : "text-base"
-                        }`}
+                        className={`text-gray-700 ${is4K ? "text-lg" : "text-base"
+                          }`}
                       >
                         {pathway}
                       </p>
@@ -790,13 +763,12 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${
-            is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-          }`}
+          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+            }`}
           variants={fadeInUp}
         >
           Partnership
-           Fee Summary
+          Fee Summary
         </motion.h2>
 
         <div className="space-y-6">
@@ -813,9 +785,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 viewport={{ once: true }}
               >
                 <motion.button
-                  className={`w-full text-left p-6 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] text-white hover:from-[var(--primary-hover-color)] hover:to-[var(--primary-color)] transition-all duration-200 ${
-                    is4K ? "text-xl" : "text-lg"
-                  }`}
+                  className={`w-full text-left p-6 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] text-white hover:from-[var(--primary-hover-color)] hover:to-[var(--primary-color)] transition-all duration-200 ${is4K ? "text-xl" : "text-lg"
+                    }`}
                   onClick={() =>
                     setActiveFeeAccordion(
                       activeFeeAccordion === `fee-${index}`
@@ -857,25 +828,22 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   <div className="p-6">
                     <div className="mb-6">
                       <h4
-                        className={`font-semibold text-[var(--primary-color)] mb-2 ${
-                          is4K ? "text-xl" : "text-lg"
-                        }`}
+                        className={`font-semibold text-[var(--primary-color)] mb-2 ${is4K ? "text-xl" : "text-lg"
+                          }`}
                       >
                         Free / Onboarding:
                       </h4>
                       <p
-                        className={`text-gray-700 ${
-                          is4K ? "text-lg" : "text-base"
-                        }`}
+                        className={`text-gray-700 ${is4K ? "text-lg" : "text-base"
+                          }`}
                       >
                         {feePackage.onboarding}
                       </p>
                     </div>
 
                     <h4
-                      className={`font-semibold text-[var(--primary-color)] mb-4 ${
-                        is4K ? "text-xl" : "text-lg"
-                      }`}
+                      className={`font-semibold text-[var(--primary-color)] mb-4 ${is4K ? "text-xl" : "text-lg"
+                        }`}
                     >
                       Monthly Packages:
                     </h4>
@@ -887,9 +855,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                           className="bg-gray-50 rounded-lg p-4 border border-gray-200"
                         >
                           <h5
-                            className={`font-bold text-[var(--secondary-color)] mb-2 ${
-                              is4K ? "text-lg" : "text-base"
-                            }`}
+                            className={`font-bold text-[var(--secondary-color)] mb-2 ${is4K ? "text-lg" : "text-base"
+                              }`}
                           >
                             {pkg.name} ({pkg.price}/month)
                           </h5>
@@ -901,9 +868,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                               >
                                 <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
                                 <span
-                                  className={`text-gray-700 ${
-                                    is4K ? "text-base" : "text-sm"
-                                  }`}
+                                  className={`text-gray-700 ${is4K ? "text-base" : "text-sm"
+                                    }`}
                                 >
                                   {feature}
                                 </span>
@@ -930,9 +896,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${
-            is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-          }`}
+          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+            }`}
           variants={fadeInUp}
         >
           {pageData.comparison.heading}
@@ -948,9 +913,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             viewport={{ once: true }}
           >
             <h3
-              className={`font-bold text-[var(--primary-color)] mb-2 flex items-center gap-2 ${
-                is4K ? "text-3xl" : "text-2xl"
-              }`}
+              className={`font-bold text-[var(--primary-color)] mb-2 flex items-center gap-2 ${is4K ? "text-3xl" : "text-2xl"
+                }`}
             >
               <Shield className="w-8 h-8" />
               {pageData.comparison.standard.title}
@@ -966,9 +930,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
                     <p
-                      className={`text-gray-700 ${
-                        is4K ? "text-lg" : "text-sm"
-                      }`}
+                      className={`text-gray-700 ${is4K ? "text-lg" : "text-sm"
+                        }`}
                     >
                       {feature}
                     </p>
@@ -977,17 +940,17 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               )}
             </div>
             <p
-              className={`text-orange-600 mb-6 flex items-start gap-2 ${
-                is4K ? "text-lg" : "text-sm"
-              }`}
+              className={`text-orange-600 mb-6 flex items-start gap-2 ${is4K ? "text-lg" : "text-sm"
+                }`}
             >
               <TrendingUp className="w-4 h-4 mt-1 flex-shrink-0" />
               {pageData.comparison.standard.note}
             </p>
             <motion.button
-              className={`w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300 ${
-                is4K ? "text-lg py-4" : "text-base"
-              }`}
+             onClick={() => window.open('/registration', '_blank')}
+
+              className={`w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300 ${is4K ? "text-lg py-4" : "text-base"
+                }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -1004,9 +967,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             viewport={{ once: true }}
           >
             <h3
-              className={`font-bold text-[var(--secondary-color)] mb-2 flex items-center gap-2 ${
-                is4K ? "text-3xl" : "text-2xl"
-              }`}
+              className={`font-bold text-[var(--secondary-color)] mb-2 flex items-center gap-2 ${is4K ? "text-3xl" : "text-2xl"
+                }`}
             >
               <Zap className="w-8 h-8" />
               {pageData.comparison.lateral.title}
@@ -1022,9 +984,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
                     <p
-                      className={`text-gray-700 ${
-                        is4K ? "text-lg" : "text-sm"
-                      }`}
+                      className={`text-gray-700 ${is4K ? "text-lg" : "text-sm"
+                        }`}
                     >
                       {feature}
                     </p>
@@ -1033,17 +994,16 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               )}
             </div>
             <p
-              className={`text-[var(--secondary-color)] mb-6 font-medium flex items-start gap-2 ${
-                is4K ? "text-lg" : "text-sm"
-              }`}
+              className={`text-[var(--secondary-color)] mb-6 font-medium flex items-start gap-2 ${is4K ? "text-lg" : "text-sm"
+                }`}
             >
               <Star className="w-4 h-4 mt-1 flex-shrink-0" />
               {pageData.comparison.lateral.note}
             </p>
             <motion.button
-              className={`w-full bg-[var(--secondary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--secondary-color)]/90 transition-all duration-300 ${
-                is4K ? "text-lg py-4" : "text-base"
-              }`}
+              onClick={() => window.open('https://khcrf.org/', '_blank')}
+              className={`w-full bg-[var(--secondary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--secondary-color)]/90 transition-all duration-300 ${is4K ? "text-lg py-4" : "text-base"
+                }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -1062,9 +1022,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${
-            is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-          }`}
+          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+            }`}
           variants={fadeInUp}
         >
           Frequently Asked Questions
@@ -1081,9 +1040,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               viewport={{ once: true }}
             >
               <motion.button
-                className={`w-full text-left p-6 font-semibold text-[var(--primary-color)] hover:bg-gray-50 transition-colors duration-200 ${
-                  is4K ? "text-xl" : "text-lg"
-                }`}
+                className={`w-full text-left p-6 font-semibold text-[var(--primary-color)] hover:bg-gray-50 transition-colors duration-200 ${is4K ? "text-xl" : "text-lg"
+                  }`}
                 onClick={() =>
                   setActiveAccordion(
                     activeAccordion === `faq-${index}` ? null : `faq-${index}`
@@ -1112,9 +1070,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 className="overflow-hidden"
               >
                 <div
-                  className={`p-6 pt-0 text-gray-700 ${
-                    is4K ? "text-lg" : "text-base"
-                  }`}
+                  className={`p-6 pt-0 text-gray-700 ${is4K ? "text-lg" : "text-base"
+                    }`}
                 >
                   {item.answer}
                 </div>
@@ -1151,18 +1108,21 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
             variants={fadeInUp}
           >
             {pageData.hero.ctaButtons.map((button, index) => (
-              <motion.button
+              <motion.div
                 key={index}
-                className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
-                  index === 0
-                    ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90"
-                    : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-[var(--primary-color)]"
-                } ${is4K ? "text-xl px-12 py-6" : "text-base"}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {button}
-              </motion.button>
+                <Link
+                  href="/registration"
+                  className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${index === 0
+                      ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90"
+                      : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-[var(--primary-color)]"
+                    } ${is4K ? "text-xl px-12 py-6" : "text-base"}`}
+                >
+                  {button}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         </div>

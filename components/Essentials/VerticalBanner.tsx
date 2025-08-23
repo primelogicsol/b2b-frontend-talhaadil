@@ -101,7 +101,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides }) {
               <div className="absolute inset-0 bg-black/40" />
             </div>
 
-            <div className="relative z-10 flex flex-col items-start justify-center text-left text-white h-full px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="relative z-10 flex flex-col items-start justify-center text-left text-white h-full px-4 sm:px-6 lg:px-8 max-w-4xl ml-20">
               <motion.h1
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-7xl 2xl:text-9xl font-bold leading-tight"
                 initial={{ opacity: 0, y: 50 }}
@@ -127,7 +127,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides }) {
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4"
+                className="flex flex-col sm:flex-row gap-4 mb-10"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,

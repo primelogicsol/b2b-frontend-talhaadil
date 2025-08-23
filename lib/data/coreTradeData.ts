@@ -55,6 +55,7 @@
       name: "Dropshipping",
       icon: "Truck",
       kpi: "None",
+      href : "/core-trade/dropshipping-ecommerce",
       retention: "None",
       bestFor: "Online stores, new artisans, small-scale buyers.",
       benefit: "Zero risk, entry point into global trade.",
@@ -66,6 +67,7 @@
       name: "Consignment",
       icon: "ShoppingBag",
       kpi: "7+",
+      href : "/core-trade/consignment",
       retention: "18 months",
       bestFor: "Boutiques, retail stores, artisan groups.",
       benefit: "Pay after sales → low-risk retail.",
@@ -76,6 +78,7 @@
       id: "wholesale",
       name: "Wholesale",
       icon: "Package",
+      href : "/core-trade/wholesale&distribution",
       kpi: "7+",
       retention: "3 months",
       bestFor: "Distributors, chain stores, large buyers.",
@@ -87,6 +90,7 @@
       id: "export",
       name: "Certified Import/Export",
       icon: "Globe",
+      href : "/core-trade/import-export",
       kpi: "Buyer 7+ / Vendor 8+",
       retention: "6 months",
       bestFor: "Compliance-driven trade, larger distributors.",
@@ -361,6 +365,7 @@
       ],
       note: "Takes time: retention required before moving to advanced partnerships.",
       cta: "Apply with Standard Path",
+      href : "/registration",
     },
     lateral: {
       title: "Lateral Entry (KHCRF Fast-Track)",
@@ -374,6 +379,7 @@
       ],
       note: "Paid: Only after KHCRF evaluation confirms eligibility.",
       cta: "Apply for KHCRF Fast-Track",
+      href : "https://khcrf.org/"
   },
 },
   faq: [
