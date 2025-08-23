@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -101,7 +103,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides }) {
               <div className="absolute inset-0 bg-black/40" />
             </div>
 
-            <div className="relative z-10 flex flex-col items-start justify-center text-left text-white h-full px-4 sm:px-6 lg:px-8 max-w-4xl ml-20">
+            <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8 max-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[1800px] mx-auto">
               <motion.h1
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-7xl 2xl:text-9xl font-bold leading-tight"
                 initial={{ opacity: 0, y: 50 }}
@@ -127,7 +129,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides }) {
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 mb-10"
+                className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -154,7 +156,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides }) {
       </motion.div>
 
       {/* Indicators */}
-      <div className="absolute right-3 sm:right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-20">
+       <div className="absolute right-3 sm:right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-20">
         <div className="flex flex-col space-y-2 sm:space-y-3">
           {slides.map((_, index) => (
             <button
