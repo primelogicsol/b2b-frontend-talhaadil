@@ -16,6 +16,7 @@ interface ApiUser {
   kpi_score: number
   partnership_level: string
   retention_period: string
+  is_registered:string
 }
 
 interface User {
@@ -28,6 +29,8 @@ interface User {
   kpiScore: number
   partnershipLevel: string
   retentionPeriod: string
+  isRegistered:string
+
 }
 
 export default function UsersPage() {
@@ -60,6 +63,7 @@ export default function UsersPage() {
             kpiScore: user.kpi_score,
             partnershipLevel: user.partnership_level,
             retentionPeriod: user.retention_period,
+            isRegistered:user.is_registered,
           }));
 
         setUsers(transformedUsers)
@@ -224,6 +228,9 @@ export default function UsersPage() {
                   KPI Score
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                  Register
+                </th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   Status
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
@@ -274,6 +281,13 @@ export default function UsersPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span
+                        className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border `}
+                      >
+                        {user.isRegistered}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span
                         className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getStatusColor(user.status)}`}
                       >
                         {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
@@ -281,7 +295,7 @@ export default function UsersPage() {
                     </td>
                     <td className="px-6 py-4">
                       <Link
-                        href={`/admin/users/${user.id}`}
+                        href={`/admin/users/${user.id}-${user.isRegistered}`}
                         className="inline-flex items-center px-3 py-1 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
                       >
                         <Eye className="w-4 h-4 mr-1" />

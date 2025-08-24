@@ -16,32 +16,58 @@ import {
   AlertTriangle,
   CheckCircle,
   Store,
+  CreditCard,
+  Check,
 } from "lucide-react"
 import { getUserInfo } from "@/services/admin"
 
 interface RegistrationInfo {
   business_name: string
+  business_legal_structure: string
   business_type: string
   year_established: number
+  business_registration_number: string
+  brand_affiliations: string
   website: string
   annual_turnover: string
+  gst_number: string
+  tax_identification_number: string
+  import_export_code: string
+  street_address_1: string
+  street_address_2: string
   city: string
   state_region: string
+  postal_code: string
   country: string
   contact_person_name: string
   contact_email: string
   contact_phone: string
-  certifications: string[]
+  contact_whatsapp: string
+  contact_district: string
+  contact_pin_code: string
+  contact_state: string
+  contact_country: string
   material_standard: number
   quality_level: number
   sustainability_level: number
   service_level: number
   standards_level: number
   ethics_level: number
+  certifications: string[]
+  bank_name: string
+  account_name: string
+  account_type: string
+  account_number: string
+  ifsc_code: string
+  swift_bis_code: string
+  iban_code: string
   kyc_challenges: boolean
   gst_compliance_issues: boolean
   fema_payment_issues: boolean
+  digital_banking_issues: boolean
   fraud_cybersecurity_issues: boolean
+  payment_gateway_compliance_issues: boolean
+  account_activity_issues: boolean
   regulatory_actions: boolean
 }
 
@@ -50,16 +76,19 @@ export default function RegistrationInfoPage() {
   const [registrationInfo, setRegistrationInfo] = useState<RegistrationInfo | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [register, setRegister] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchRegistrationInfo = async () => {
       try {
         const userId = Array.isArray(params.id) ? params.id[0] : params.id
+        const userIdParts = userId.split('-')
+        const id = userIdParts[0]
+        setRegister(userIdParts[1])
         if (!userId || typeof userId !== "string") {
           throw new Error("Invalid user ID")
         }
-        const response = await getUserInfo(userId)
-        console.log(response)
+        const response = await getUserInfo(id)
         setRegistrationInfo(response.data)
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")
@@ -70,10 +99,23 @@ export default function RegistrationInfoPage() {
     }
 
     if (params.id) {
-       console.log('hello')
       fetchRegistrationInfo()
     }
   }, [params.id])
+
+  const handleApprove = async () => {
+    try {
+      const userId = Array.isArray(params.id) ? params.id[0] : params.id
+      const userIdParts = userId.split('-')
+      const id = userIdParts[0]
+      // Placeholder for approval API call
+      // await approveRegistration(id)
+      setRegister("approved")
+      alert("Registration approved successfully")
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to approve registration")
+    }
+  }
 
   if (loading) {
     return (
@@ -129,13 +171,29 @@ export default function RegistrationInfoPage() {
     "KYC Challenges": registrationInfo.kyc_challenges,
     "GST Compliance Issues": registrationInfo.gst_compliance_issues,
     "FEMA Payment Issues": registrationInfo.fema_payment_issues,
+    "Digital Banking Issues": registrationInfo.digital_banking_issues,
     "Fraud/Cybersecurity Issues": registrationInfo.fraud_cybersecurity_issues,
+    "Payment Gateway Compliance Issues": registrationInfo.payment_gateway_compliance_issues,
+    "Account Activity Issues": registrationInfo.account_activity_issues,
     "Regulatory Actions": registrationInfo.regulatory_actions,
   }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="space-y-8">
+        {/* Approve Button */}
+        {register === "pending" && (
+          <div className="flex justify-end">
+            <button
+              onClick={handleApprove}
+              className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <Check className="w-4 h-4 mr-2" />
+              Approve Registration
+            </button>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -194,6 +252,16 @@ export default function RegistrationInfoPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
+                  <label className="text-sm font-medium text-slate-600">Legal Structure</label>
+                  <p className="text-sm text-slate-900">{registrationInfo.business_legal_structure}</p>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-slate-600">Registration Number</label>
+                  <p className="text-sm text-slate-900">{registrationInfo.business_registration_number}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
                   <label className="text-sm font-medium text-slate-600">Year Established</label>
                   <p className="text-sm text-slate-900">{registrationInfo.year_established}</p>
                 </div>
@@ -202,13 +270,34 @@ export default function RegistrationInfoPage() {
                   <p className="text-sm text-slate-900">{registrationInfo.annual_turnover}</p>
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-slate-600">GST Number</label>
+                  <p className="text-sm text-slate-900">{registrationInfo.gst_number}</p>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-slate-600">Tax Identification Number</label>
+                  <p className="text-sm text-slate-900">{registrationInfo.tax_identification_number}</p>
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-600">Import/Export Code</label>
+                <p className="text-sm text-slate-900">{registrationInfo.import_export_code}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-600">Brand Affiliations</label>
+                <p className="text-sm text-slate-900">{registrationInfo.brand_affiliations}</p>
+              </div>
               <div className="pt-4 border-t border-slate-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <MapPin className="w-4 h-4 text-slate-500" />
                   <span className="text-sm font-medium text-slate-600">Location</span>
                 </div>
                 <p className="text-sm text-slate-900">
-                  {registrationInfo.city}, {registrationInfo.state_region}
+                  {registrationInfo.street_address_1}
+                  {registrationInfo.street_address_2 && `, ${registrationInfo.street_address_2}`}
+                  <br />
+                  {registrationInfo.city}, {registrationInfo.state_region}, {registrationInfo.postal_code}
                   <br />
                   {registrationInfo.country}
                 </p>
@@ -252,6 +341,73 @@ export default function RegistrationInfoPage() {
                   <p className="text-sm text-slate-900">{registrationInfo.contact_phone}</p>
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-slate-600">WhatsApp</label>
+                  <p className="text-sm text-slate-900">{registrationInfo.contact_whatsapp}</p>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-slate-600">District</label>
+                  <p className="text-sm text-slate-900">{registrationInfo.contact_district}</p>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-slate-200">
+                <div className="flex items-center space-x-2 mb-2">
+                  <MapPin className="w-4 h-4 text-slate-500" />
+                  <span className="text-sm font-medium text-slate-600">Contact Address</span>
+                </div>
+                <p className="text-sm text-slate-900">
+                  {registrationInfo.contact_pin_code}, {registrationInfo.contact_district}
+                  <br />
+                  {registrationInfo.contact_state}, {registrationInfo.contact_country}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Banking Information */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <CreditCard className="w-5 h-5 text-white" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-900">Banking Information</h2>
+          </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-slate-600">Bank Name</label>
+                <p className="text-sm text-slate-900">{registrationInfo.bank_name}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-600">Account Name</label>
+                <p className="text-sm text-slate-900">{registrationInfo.account_name}</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-slate-600">Account Type</label>
+                <p className="text-sm text-slate-900">{registrationInfo.account_type}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-600">Account Number</label>
+                <p className="text-sm text-slate-900">{registrationInfo.account_number}</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-slate-600">IFSC Code</label>
+                <p className="text-sm text-slate-900">{registrationInfo.ifsc_code}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-600">SWIFT/BIS Code</label>
+                <p className="text-sm text-slate-900">{registrationInfo.swift_bis_code}</p>
+              </div>
+            </div>
+            <div>
+              <label className="text-sm font-medium text-slate-600">IBAN Code</label>
+              <p className="text-sm text-slate-900">{registrationInfo.iban_code}</p>
             </div>
           </div>
         </div>
