@@ -7,48 +7,10 @@ import { Users, TrendingUp, Trophy, Target, UserCheck, UserX, Clock, DollarSign 
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState<User[]>([])
-    const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setLoading(true)
-        // Placeholder list of user IDs; replace with actual user IDs from another API or context
-        const userIds = ["1", "2", "3"]
-        const userPromises = userIds.map(id => getUserInfo(id))
-        const responses = await Promise.all(userPromises)
-
-        // Transform API response to match the User interface
-        const fetchedUsers: User[] = responses.map(response => ({
-          id: response.data.id || response.data.user_id, // Assuming id is part of the response or user_id
-          business_name: response.data.business_name || "Unknown",
-          status: response.data.status || "pending", // Default to pending if not provided
-          kpiScore: response.data.material_standard || 0, // Using material_standard as KPI score
-          department: response.data.business_type || "Unknown", // Using business_type as department
-          documents: response.data.certifications || []
-        }))
-
-        setUsers(fetchedUsers)
-        setError(null)
-      } catch (err) {
-        setError("Failed to fetch user data")
-        console.error(err)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchUsers()
+    setUsers(mockUsers)
   }, [])
-
-  if (loading) {
-    return <div className="text-center text-slate-600">Loading...</div>
-  }
-
-  if (error) {
-    return <div className="text-center text-red-600">{error}</div>
-  }
 
   const totalUsers = users.length
   const activeUsers = users.filter((u) => u.status === "active").length
