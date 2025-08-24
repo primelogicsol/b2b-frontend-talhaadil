@@ -854,10 +854,10 @@ This agreement is governed under U.S. law and is legally binding under federal a
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-end items-center">
           <button
-            onClick={handlePrev}
-            className={`px-6 py-3 md:px-8 md:py-4 ${
+            
+            className={`hidden px-6 py-3 md:px-8 md:py-4 ${
               is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""
             } text-[var(--primary-color)] rounded-xl border border-[var(--primary-color)] transition-all duration-200 font-medium text-sm md:text-base ${
               is4K ? "lg:text-lg xl:text-xl" : ""

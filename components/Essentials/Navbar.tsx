@@ -5,7 +5,7 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { FiLock } from "react-icons/fi"
-import { X, Mountain, ChevronRight, ChevronDown } from "lucide-react"
+import { X, Mountain, ChevronRight, ChevronDown,Lock } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { UserProfileDisplay } from "./UserProfileDisplay"
@@ -214,16 +214,14 @@ function DesktopDropdown({ title, items, isActive, isSignedIn }: DesktopDropdown
       <div className="relative group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button
           onClick={handleClick}
-          className={`flex items-center gap-2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${
-            isActive ? "text-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"
-          }`}
+          className={`flex items-center gap-2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${isActive ? "text-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"
+            }`}
         >
           {title}
           {isPartnership && !isSignedIn && <FiLock size={14} />}
           <span
-            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${
-              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-            }`}
+            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+              }`}
           />
         </button>
 
@@ -372,6 +370,7 @@ function MobileDropdown({ title, items, onLinkClick, isSignedIn }: MobileDropdow
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [isRegistered, setIsRegistered] = useState<boolean | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [showProcessTooltip, setShowProcessTooltip] = useState(false)
@@ -499,21 +498,23 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+  useEffect(() => {
+    const registeredStatus = Cookies.get("is_registered")
+    setIsRegistered(registeredStatus === "true")
+  }, [])
 
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${
-          isScrolled ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2" : "py-4"
-        }`}
+        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${isScrolled ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2" : "py-4"
+          }`}
       >
         <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
           <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
             <Mountain size={isScrolled ? 28 : 48} className="text-[var(--secondary-color)]" />
             <span
-              className={`text-white font-bold transition-all duration-500 ${
-                isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"
-              }`}
+              className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"
+                }`}
             >
               Dekoshur Crafts
             </span>
@@ -592,9 +593,7 @@ export function Navbar() {
               <UserProfileDisplay
                 userName="John Doe"
                 userAvatarSrc="/placeholder.svg?height=120&width=120"
-                onClick={() => {
-                  router.push("/profile")
-                }}
+
               />
             ) : (
               <>
@@ -767,13 +766,17 @@ export function Navbar() {
                   {isSignedIn ? (
                     <>
                       <button
-                        className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
+                        disabled={isRegistered === false}
+                        className="w-full flex items-center justify-center gap-2 text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"
                         onClick={() => {
-                          setIsMobileMenuOpen(false)
-                          router.push("/profile")
+                          if (isRegistered) {
+                            setIsMobileMenuOpen(false)
+                            router.push("/profile")
+                          }
                         }}
                       >
-                        <span>View Profile</span>
+                        {isRegistered === false && <Lock size={18} />}
+                        <span>Dashboard</span>
                       </button>
                       <button
                         className="w-full flex items-center justify-center text-white text-lg font-medium py-4 px-6 hover:bg-white/10 rounded-lg transition-all duration-300"

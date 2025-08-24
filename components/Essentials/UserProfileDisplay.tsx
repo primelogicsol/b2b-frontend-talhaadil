@@ -3,19 +3,23 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useAuthentication } from "@/context/AuthenticationWrapper"
-
-export function UserProfileDisplay({ userName, userAvatarSrc, onClick }: {
+import Cookies from "js-cookie"
+import { Lock } from "lucide-react"
+export function UserProfileDisplay({ userName, userAvatarSrc }: {
   userName: string,
-  userAvatarSrc: string,
-  onClick: () => void
+  userAvatarSrc: string
 }) {
   const [open, setOpen] = useState(false)
+  const [isRegistered, setIsRegistered] = useState<boolean | null>(null)
   const dropdownRef = useRef(null)
-  const router = useRouter();
-   const  { handleLogout } = useAuthentication()
+  const router = useRouter()
+  const { handleLogout } = useAuthentication()
 
-  
-  // Close dropdown if click happens outside
+  useEffect(() => {
+    const registeredStatus = Cookies.get("is_registered")
+    setIsRegistered(registeredStatus === "true")
+  }, [])
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !(dropdownRef.current as any).contains(event.target)) {
@@ -51,28 +55,29 @@ export function UserProfileDisplay({ userName, userAvatarSrc, onClick }: {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-50 overflow-hidden"
+            className="absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg z-50 overflow-hidden"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
             <button
+              disabled={isRegistered === false}
               onClick={() => {
+                if (isRegistered) {
+                  router.push("/user/dashboard")
+                }
                 setOpen(false)
-                console.log("Go to profile")
-                // Replace with router push or callback
               }}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
             >
-              Profile
+              Dashboard
+              {isRegistered === false && <Lock size={16} />}
             </button>
             <button
               onClick={() => {
                 setOpen(false)
                 handleLogout()
-                console.log("Logout")
-                // Replace with logout function
               }}
               className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
             >

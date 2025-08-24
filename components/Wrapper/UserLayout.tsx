@@ -9,7 +9,7 @@ import { BarChart3, FileText, User, Menu, X, Settings, LogOut, Bell, HelpCircle 
 
 const navigation = [
   { name: "Dashboard", href: "/user/dashboard", icon: BarChart3 },
-  { name: "Docs & Agreements", href: "/user/docs", icon: FileText },
+  // { name: "Docs & Agreements", href: "/user/docs", icon: FileText },
   { name: "Profile", href: "/user/profile", icon: User },
 ]
 

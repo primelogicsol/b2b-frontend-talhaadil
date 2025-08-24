@@ -391,10 +391,10 @@ export default function ComprehensiveProductSelection({
         <div className="flex items-center justify-center space-x-4 mb-4">
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "categories"
-                ? "bg-[var(--secondary-color)] text-white"
-                : selectedCategories.length > 0
-                  ? "bg-[var(--primary-color)] text-white"
-                  : "bg-gray-300 text-gray-600"
+              ? "bg-[var(--secondary-color)] text-white"
+              : selectedCategories.length > 0
+                ? "bg-[var(--primary-color)] text-white"
+                : "bg-gray-300 text-gray-600"
               }`}
           >
             1
@@ -404,10 +404,10 @@ export default function ComprehensiveProductSelection({
           ></div>
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "subcategories"
-                ? "bg-[var(--secondary-color)] text-white"
-                : selectedSubCategories.length > 0
-                  ? "bg-[var(--primary-color)] text-white"
-                  : "bg-gray-300 text-gray-600"
+              ? "bg-[var(--secondary-color)] text-white"
+              : selectedSubCategories.length > 0
+                ? "bg-[var(--primary-color)] text-white"
+                : "bg-gray-300 text-gray-600"
               }`}
           >
             2
@@ -417,10 +417,10 @@ export default function ComprehensiveProductSelection({
           ></div>
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "details"
-                ? "bg-[var(--secondary-color)] text-white"
-                : getTotalSelections() > 0
-                  ? "bg-[var(--primary-color)] text-white"
-                  : "bg-gray-300 text-gray-600"
+              ? "bg-[var(--secondary-color)] text-white"
+              : getTotalSelections() > 0
+                ? "bg-[var(--primary-color)] text-white"
+                : "bg-gray-300 text-gray-600"
               }`}
           >
             3
@@ -456,8 +456,8 @@ export default function ComprehensiveProductSelection({
                 key={category.id}
                 onClick={() => handleCategorySelect(category.id)}
                 className={`bg-white rounded-3xl shadow-lg p-6 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${selectedCategories.includes(category.id)
-                    ? "ring-3 ring-green-50 bg-gradient-to-br from-[#b7ec86] to-white"
-                    : "hover:shadow-2xl"
+                  ? "ring-3 ring-green-50 bg-gradient-to-br from-[#b7ec86] to-white"
+                  : "hover:shadow-2xl"
                   }`}
               >
                 <div className="flex justify-between items-start mb-4">
@@ -523,8 +523,8 @@ export default function ComprehensiveProductSelection({
                       <label
                         key={subCategory.id}
                         className={`flex items-center space-x-3 cursor-pointer p-4 rounded-2xl transition-all duration-200 ${selectedSubCategories.includes(subCategory.id)
-                            ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
-                            : "hover:bg-gray-50 border-2 border-transparent"
+                          ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
+                          : "hover:bg-gray-50 border-2 border-transparent"
                           }`}
                       >
                         <input
@@ -622,8 +622,8 @@ export default function ComprehensiveProductSelection({
                                     <label
                                       key={index}
                                       className={`flex items-start space-x-3 cursor-pointer py-3 rounded-xl transition-all duration-200 pl-4 ${isSelected
-                                          ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
-                                          : "hover:bg-white border-2 border-transparent"
+                                        ? "bg-[#b7ec86] border-2 border-[#b7ec86]"
+                                        : "hover:bg-white border-2 border-transparent"
                                         }`}
                                     >
                                       <input
@@ -676,15 +676,17 @@ export default function ComprehensiveProductSelection({
       )}
 
       {/* Navigation */}
-      <div className="flex justify-between items-center">
-        <button
-          onClick={handlePrev}
-          disabled={isSubmitting}
-          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <span className="inline">←</span>
-          <span className="hidden md:inline ml-2">Prev</span>
-        </button>
+      <div className={`flex items-center ${currentStep === "categories" ? "justify-end" : "justify-between"}`}>
+        {currentStep !== "categories" && (
+          <button
+            onClick={handlePrev}
+            disabled={isSubmitting}
+            className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span className="inline">←</span>
+            <span className="hidden md:inline ml-2">Prev</span>
+          </button>
+        )}
         <button
           onClick={handleNext}
           disabled={
@@ -695,15 +697,15 @@ export default function ComprehensiveProductSelection({
             (currentStep === "details" && !areAllSpecificationsSelected())
           }
           className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${!isSubmitting &&
-              (
-                (currentStep === "categories" && selectedCategories.length > 0) ||
-                (currentStep === "subcategories" &&
-                  selectedSubCategories.length > 0 &&
-                  validateSubcategorySelection()) ||
-                (currentStep === "details" && areAllSpecificationsSelected())
-              )
-              ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
-              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            (
+              (currentStep === "categories" && selectedCategories.length > 0) ||
+              (currentStep === "subcategories" &&
+                selectedSubCategories.length > 0 &&
+                validateSubcategorySelection()) ||
+              (currentStep === "details" && areAllSpecificationsSelected())
+            )
+            ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
         >
           {isSubmitting ? (

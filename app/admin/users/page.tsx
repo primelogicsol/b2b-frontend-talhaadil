@@ -16,7 +16,7 @@ interface ApiUser {
   kpi_score: number
   partnership_level: string
   retention_period: string
-  is_registered:string
+  is_registered: string
 }
 
 interface User {
@@ -29,8 +29,7 @@ interface User {
   kpiScore: number
   partnershipLevel: string
   retentionPeriod: string
-  isRegistered:string
-
+  isRegistered: string
 }
 
 export default function UsersPage() {
@@ -39,6 +38,7 @@ export default function UsersPage() {
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
+  const [registerFilter, setRegisterFilter] = useState("all")
   const [activeTab, setActiveTab] = useState<"all" | "buyers" | "vendors">("all")
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function UsersPage() {
         if (response.status < 200 || response.status >= 300) {
           throw new Error("Failed to fetch users")
         }
-        const apiUsers: ApiUser[] = response.data;
+        const apiUsers: ApiUser[] = response.data
 
         const transformedUsers: User[] = apiUsers
           .filter(user => user.role === "vendor" || user.role === "buyer")
@@ -63,8 +63,8 @@ export default function UsersPage() {
             kpiScore: user.kpi_score,
             partnershipLevel: user.partnership_level,
             retentionPeriod: user.retention_period,
-            isRegistered:user.is_registered,
-          }));
+            isRegistered: user.is_registered,
+          }))
 
         setUsers(transformedUsers)
       } catch (err) {
@@ -82,8 +82,9 @@ export default function UsersPage() {
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === "all" || user.status === statusFilter
+    const matchesRegister = registerFilter === "all" || user.isRegistered.toLowerCase() === registerFilter.toLowerCase()
     const matchesTab = activeTab === "all" || user.type === activeTab.slice(0, -1)
-    return matchesSearch && matchesStatus && matchesTab
+    return matchesSearch && matchesStatus && matchesRegister && matchesTab
   })
 
   const getStatusColor = (status: string) => {
@@ -92,6 +93,19 @@ export default function UsersPage() {
         return "bg-green-100 text-green-700 border-green-200"
       case "inactive":
         return "bg-red-100 text-red-700 border-red-200"
+      default:
+        return "bg-gray-100 text-gray-700 border-gray-200"
+    }
+  }
+
+  const getRegisterColor = (status: string) => {
+    switch (status.toUpperCase()) {
+      case "APPROVED":
+        return "bg-green-100 text-green-700 border-green-200"
+      case "REJECTED":
+        return "bg-red-100 text-red-700 border-red-200"
+      case "PENDING":
+        return "bg-yellow-100 text-yellow-700 border-yellow-200"
       default:
         return "bg-gray-100 text-gray-700 border-gray-200"
     }
@@ -161,6 +175,16 @@ export default function UsersPage() {
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
           </select>
+          <select
+            value={registerFilter}
+            onChange={(e) => setRegisterFilter(e.target.value)}
+            className="px-4 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="all">All Registration Status</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
         </div>
       </div>
 
@@ -220,7 +244,6 @@ export default function UsersPage() {
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   User Details
                 </th>
-
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   Role
                 </th>
@@ -263,7 +286,6 @@ export default function UsersPage() {
                         </div>
                       </div>
                     </td>
-
                     <td className="px-6 py-4">
                       <span
                         className={`inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border ${getTypeColor(user.type)}`}
@@ -281,7 +303,7 @@ export default function UsersPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span
-                        className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border `}
+                        className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getRegisterColor(user.isRegistered)}`}
                       >
                         {user.isRegistered}
                       </span>
@@ -295,7 +317,7 @@ export default function UsersPage() {
                     </td>
                     <td className="px-6 py-4">
                       <Link
-                        href={`/admin/users/${user.id}`}
+                        href={`/admin/users/${user.id}-${user.isRegistered}`}
                         className="inline-flex items-center px-3 py-1 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
                       >
                         <Eye className="w-4 h-4 mr-1" />

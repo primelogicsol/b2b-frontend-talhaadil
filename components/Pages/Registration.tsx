@@ -10,6 +10,7 @@ import BuyerAgreement from "@/components/Steps/BuyerAgreement";
 import ApplicationStatus from "@/components/Steps/ApplicationStatus";
 import FinalActivation from "@/components/Steps/FinalActivation";
 import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
+import Cookies from "js-cookie";
 
 export interface FormData {
   partnership?: {
@@ -50,7 +51,10 @@ export interface FormData {
 }
 
 export default function RegistrationProcess() {
-  const [currentStep, setCurrentStep] = useState(4);
+  const stepFromCookie = Cookies.get("registration_step")
+const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1
+
+const [currentStep, setCurrentStep] = useState(2)
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {

@@ -613,10 +613,10 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between items-center mb-12">
+      <div className="flex justify-end items-center mb-12">
         <button
-          onClick={onPrev}
-          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+
+          className="hidden px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
           <span className="inline">←</span>
           <span className="hidden md:inline ml-2">Prev</span>

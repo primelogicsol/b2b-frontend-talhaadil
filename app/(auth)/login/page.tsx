@@ -46,6 +46,8 @@ export default function LoginPage() {
       Cookies.set("user_id", data.user_id.toString());
       Cookies.set("visibility_level", data.visibility_level.toString());
       Cookies.set("ownership", JSON.stringify(data.ownership));
+      Cookies.set("is_registered", data.is_registered);
+      Cookies.set("registration_step", data.registration_step.toString());
 
       router.push("/");
     } catch (err: any) {

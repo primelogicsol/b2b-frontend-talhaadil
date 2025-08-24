@@ -195,27 +195,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
-        <div className="p-6 pb-2">
-          <h3 className="text-lg font-semibold text-gray-900">Weekly Activity Overview</h3>
-          <p className="text-sm text-gray-600">Document uploads, agreements, and profile updates</p>
-        </div>
-        <div className="p-6 pt-0">
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={weeklyActivity}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                <XAxis dataKey="day" stroke="#64748b" fontSize={12} />
-                <YAxis stroke="#64748b" fontSize={12} />
-                <Bar dataKey="documents" fill="#3b82f6" radius={[2, 2, 0, 0]} />
-                <Bar dataKey="agreements" fill="#06b6d4" radius={[2, 2, 0, 0]} />
-                <Bar dataKey="updates" fill="#8b5cf6" radius={[2, 2, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-
+    
       {/* Partnership Progress Tracker */}
       <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
         <div className="p-6 pb-2">
@@ -268,94 +248,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
-          <div className="p-6 pb-2">
-            <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
-          </div>
-          <div className="p-6 pt-0">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="text-sm text-gray-700">Partnership milestone reached</span>
-                <span className="text-xs text-gray-500 ml-auto">2 days ago</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-gray-700">KPI score improved</span>
-                <span className="text-xs text-gray-500 ml-auto">1 week ago</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="text-sm text-gray-700">New document uploaded</span>
-                <span className="text-xs text-gray-500 ml-auto">2 weeks ago</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span className="text-sm text-gray-700">Profile updated</span>
-                <span className="text-xs text-gray-500 ml-auto">3 weeks ago</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
-          <div className="p-6 pb-2">
-            <h3 className="text-lg font-semibold text-gray-900">Performance Insights</h3>
-          </div>
-          <div className="p-6 pt-0">
-            <div className="space-y-4">
-              <div className="p-3 bg-green-50 rounded-lg border border-green-200">
-                <div className="flex items-center gap-2 mb-1">
-                  <ArrowUpRight className="h-4 w-4 text-green-600" />
-                  <span className="text-sm font-medium text-green-800">Strong Growth</span>
-                </div>
-                <p className="text-xs text-green-700">Your KPI has improved consistently over the last 3 months</p>
-              </div>
-              <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="flex items-center gap-2 mb-1">
-                  <Calendar className="h-4 w-4 text-blue-600" />
-                  <span className="text-sm font-medium text-blue-800">Next Review</span>
-                </div>
-                <p className="text-xs text-blue-700">Partnership assessment scheduled for next week</p>
-              </div>
-              <div className="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <div className="flex items-center gap-2 mb-1">
-                  <Target className="h-4 w-4 text-yellow-600" />
-                  <span className="text-sm font-medium text-yellow-800">Action Required</span>
-                </div>
-                <p className="text-xs text-yellow-700">Update certifications to unlock next partnership level</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
-          <div className="p-6 pb-2">
-            <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
-          </div>
-          <div className="p-6 pt-0">
-            <div className="space-y-3">
-              <button className="w-full text-left p-3 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors">
-                <div className="font-medium text-gray-900">Upload New Document</div>
-                <div className="text-sm text-gray-600">Add certificates or agreements</div>
-              </button>
-              <button className="w-full text-left p-3 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors">
-                <div className="font-medium text-gray-900">Update Profile</div>
-                <div className="text-sm text-gray-600">Keep your information current</div>
-              </button>
-              <button className="w-full text-left p-3 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors">
-                <div className="font-medium text-gray-900">View Analytics</div>
-                <div className="text-sm text-gray-600">Detailed performance metrics</div>
-              </button>
-              <button className="w-full text-left p-3 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors">
-                <div className="font-medium text-gray-900">Schedule Review</div>
-                <div className="text-sm text-gray-600">Book partnership assessment</div>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        
     </div>
   )
 }

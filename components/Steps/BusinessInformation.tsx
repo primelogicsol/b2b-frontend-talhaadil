@@ -1698,10 +1698,10 @@ useEffect(() => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mt-8">
+      <div className="flex justify-end items-center mt-8">
         <button
-          onClick={onPrev}
-          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+       
+          className="hidden px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
         >
           <span className="inline">←</span>
           <span className="hidden md:inline ml-2">Prev</span>

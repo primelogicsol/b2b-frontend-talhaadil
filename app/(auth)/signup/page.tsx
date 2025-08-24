@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react"; // Import useEffect and use
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { FcGoogle } from "react-icons/fc";
 import { useToast } from "@/context/ToastProvider";
-import { registerSupplier, signup, verifyOtp , resendOTP ,googleRegister } from "@/services/auth";
+import { registerSupplier, signup, verifyOtp, resendOTP, googleRegister } from "@/services/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -62,7 +62,7 @@ export default function RegisterPage() {
 
   const handleGoogleRegister = async () => {
     try {
-     
+
       googleRegister();
     } catch (err: any) {
       console.log(err);
@@ -134,6 +134,8 @@ export default function RegisterPage() {
       Cookies.set("user_id", data.user_id.toString());
       Cookies.set("visibility_level", data.visibility_level.toString());
       Cookies.set("ownership", JSON.stringify(data.ownership));
+      Cookies.set("is_registered", data.is_registered);
+      Cookies.set("registration_step", data.registration_step.toString());
       router.push("/");
     } catch (err: any) {
       showToast(err.response?.data?.detail || "OTP verification failed");
@@ -142,11 +144,11 @@ export default function RegisterPage() {
     }
   };
 
-const handleResendOtp = async () => {
+  const handleResendOtp = async () => {
     if (resendTimer > 0 || loading) return; // Prevent resending if timer is active or loading
-   // Reset and start the timer for 30 second
-    
-    
+    // Reset and start the timer for 30 second
+
+
     try {
       const response = await resendOTP({ email });
       const data = response.data;
@@ -156,8 +158,8 @@ const handleResendOtp = async () => {
     } catch (err: any) {
       console.log(err);
       showToast(err.response?.data?.detail || "Resend otp failed failed");
-    } 
-    
+    }
+
   };
 
   return (
