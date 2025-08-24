@@ -295,7 +295,7 @@ export default function UsersPage() {
                     </td>
                     <td className="px-6 py-4">
                       <Link
-                        href={`/admin/users/${user.id}-${user.isRegistered}`}
+                        href={`/admin/users/${user.id}`}
                         className="inline-flex items-center px-3 py-1 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
                       >
                         <Eye className="w-4 h-4 mr-1" />
