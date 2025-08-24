@@ -4,8 +4,9 @@ import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import { mockJobs, type Job } from "@/lib/data"
-import { ArrowLeft, Save, X, Briefcase } from "lucide-react"
-
+import { ArrowLeft, Save, X } from "lucide-react"
+import { getJobDetails } from "@/services/job"
+import { updateJob } from "@/services/job"
 export default function EditJobPage() {
   const params = useParams()
   const router = useRouter()
@@ -14,73 +15,67 @@ export default function EditJobPage() {
   const [saving, setSaving] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
     location: "",
     type: "full-time",
-    department: "",
+    summary: "",
+    description: "",
+    requirements: "",
     salaryMin: "",
     salaryMax: "",
-    deadline: "",
-    experience: "",
-    education: "",
-    skills: "",
-    languages: "",
-    responsibilities: "",
-    benefits: "",
-    workingHours: "",
-    remote: false,
-    urgency: "medium",
-    contactName: "",
-    contactEmail: "",
-    contactPhone: "",
-    status: "active",
+    application_deadline: "",
   })
 
+
   useEffect(() => {
-    const jobId = Number.parseInt(params.id as string)
-    const foundJob = mockJobs.find((j) => j.id === jobId)
-    if (foundJob) {
-      setJob(foundJob)
-      setFormData({
-        title: foundJob.title,
-        description: foundJob.description,
-        location: foundJob.location,
-        type: foundJob.type,
-        department: foundJob.department,
-        salaryMin: foundJob.salary.min.toString(),
-        salaryMax: foundJob.salary.max.toString(),
-        deadline: foundJob.deadline,
-        experience: foundJob.requirements.experience.min.toString(),
-        education: foundJob.requirements.education,
-        skills: foundJob.requirements.skills.join(", "),
-        languages: foundJob.requirements.languages.join(", "),
-        responsibilities: foundJob.responsibilities.join("\n"),
-        benefits: foundJob.benefits.join("\n"),
-        workingHours: foundJob.workingHours,
-        remote: foundJob.remote,
-        urgency: foundJob.urgency,
-        contactName: foundJob.contactPerson.name,
-        contactEmail: foundJob.contactPerson.email,
-        contactPhone: foundJob.contactPerson.phone,
-        status: foundJob.status,
-      })
-    }
-    setLoading(false)
-  }, [params.id])
+    const jobId = Number.parseInt(params.id as string);
+    const fetchJob = async () => {
+      try {
+        const response = await getJobDetails(jobId);
+        const foundJob = response.data;
+        setJob(foundJob);
+        setFormData({
+          title: foundJob.title,
+          location: foundJob.location,
+          type: foundJob.type,
+          summary: foundJob.summary || "",
+          description: foundJob.description,
+          requirements: foundJob.requirements.education || "",
+          salaryMin: foundJob.salary?.min?.toString() || "",
+          salaryMax: foundJob.salary?.max?.toString() || "",
+          application_deadline: foundJob.deadline,
+        });
+      } catch (error) {
+        console.error("Error fetching job:", error);
+        setJob(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchJob();
+  }, [params.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSaving(true)
+    e.preventDefault();
+    setSaving(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      console.log("Updated job data:", formData)
-      router.push("/admin/jobs")
+      const jobData = {
+        title: formData.title,
+        location: formData.location,
+        type: formData.type,
+        summary: formData.summary,
+        description: formData.description,
+        requirements: formData.requirements,
+        salary_range: `${formData.salaryMin}-${formData.salaryMax}`,
+        application_deadline: formData.application_deadline,
+      };
+      await updateJob(Number.parseInt(params.id as string), jobData);
+      router.push("/admin/jobs");
     } catch (error) {
-      console.error("Error updating job:", error)
+      console.error("Error updating job:", error);
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
-  }
+  };
 
   const handleCancel = () => {
     router.push("/admin/jobs")
@@ -104,6 +99,14 @@ export default function EditJobPage() {
     )
   }
 
+  if(loading){
+    return(
+      <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        </div>
+    )
+  }
+
   return (
     <div className="space-y-6 max-w-7xl mx-auto p-6 bg-gray-50 rounded-xl shadow-sm">
       <div className="flex items-center justify-between">
@@ -116,10 +119,9 @@ export default function EditJobPage() {
           </Link>
           <div>
             <h1 className="text-4xl font-bold text-slate-900">Edit Job</h1>
-            <p className="text-slate-600 mt-2 text-lg">Update job posting details and requirements</p>
+            <p className="text-slate-600 mt-2 text-lg">Update job posting details</p>
           </div>
         </div>
-      
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6 p-6 border rounded-lg bg-white shadow-sm">
@@ -144,7 +146,7 @@ export default function EditJobPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-slate-700">Job Type</label>
             <select
@@ -159,47 +161,24 @@ export default function EditJobPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Department</label>
+            <label className="block text-sm font-medium text-slate-700">Application Deadline</label>
             <input
+              type="date"
               className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.department}
-              onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+              value={formData.application_deadline}
+              onChange={(e) => setFormData({ ...formData, application_deadline: e.target.value })}
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Status</label>
-            <select
-              className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.status}
-              onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-            >
-              <option value="active">Active</option>
-              <option value="closed">Closed</option>
-              <option value="draft">Draft</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Urgency</label>
-            <select
-              className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.urgency}
-              onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-            >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-slate-700">Minimum Salary</label>
             <input
               type="number"
               className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.salaryMin}
+              value={formData.salary_range}
               onChange={(e) => setFormData({ ...formData, salaryMin: e.target.value })}
               required
             />
@@ -209,21 +188,22 @@ export default function EditJobPage() {
             <input
               type="number"
               className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.salaryMax}
+              value={formData.salary_range}
               onChange={(e) => setFormData({ ...formData, salaryMax: e.target.value })}
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Application Deadline</label>
-            <input
-              type="date"
-              className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.deadline}
-              onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
-              required
-            />
-          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-slate-700">Summary</label>
+          <textarea
+            className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            rows={3}
+            value={formData.summary}
+            onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
+            required
+          />
         </div>
 
         <div>
@@ -233,125 +213,19 @@ export default function EditJobPage() {
             rows={5}
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            required
           />
         </div>
 
-        <div className="border-t pt-4 border-gray-200">
-          <h3 className="font-semibold text-lg text-slate-800 mb-2">Requirements</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Minimum Experience (Years)</label>
-              <input
-                type="number"
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.experience}
-                onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Working Hours</label>
-              <input
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.workingHours}
-                onChange={(e) => setFormData({ ...formData, workingHours: e.target.value })}
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Required Skills</label>
-              <input
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.skills}
-                onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Languages</label>
-              <input
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.languages}
-                onChange={(e) => setFormData({ ...formData, languages: e.target.value })}
-              />
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-slate-700">Education Requirements</label>
-            <textarea
-              className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              rows={2}
-              value={formData.education}
-              onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-            />
-          </div>
-        </div>
-
-        <div className="border-t pt-4 border-gray-200">
-          <h3 className="font-semibold text-lg text-slate-800 mb-2">Job Details</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Key Responsibilities</label>
-              <textarea
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                rows={6}
-                value={formData.responsibilities}
-                onChange={(e) => setFormData({ ...formData, responsibilities: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Benefits & Perks</label>
-              <textarea
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                rows={6}
-                value={formData.benefits}
-                onChange={(e) => setFormData({ ...formData, benefits: e.target.value })}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t pt-4 border-gray-200">
-          <h3 className="font-semibold text-lg text-slate-800 mb-2">Contact Person</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Contact Name</label>
-              <input
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.contactName}
-                onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Contact Email</label>
-              <input
-                type="email"
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.contactEmail}
-                onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Contact Phone</label>
-              <input
-                type="tel"
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.contactPhone}
-                onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t pt-4 border-gray-200 flex items-center space-x-2">
-          <input
-            type="checkbox"
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-            checked={formData.remote}
-            onChange={(e) => setFormData({ ...formData, remote: e.target.checked })}
+        <div>
+          <label className="block text-sm font-medium text-slate-700">Requirements</label>
+          <textarea
+            className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            rows={5}
+            value={formData.requirements}
+            onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
+            required
           />
-          <label className="text-sm font-medium text-slate-700">Remote work available</label>
         </div>
 
         <div className="border-t pt-4 border-gray-200 flex justify-end space-x-4">
@@ -378,29 +252,6 @@ export default function EditJobPage() {
           </button>
         </div>
       </form>
-
-      <div className="border rounded-lg p-6 bg-white shadow-sm">
-        <h3 className="font-semibold text-lg text-slate-800 mb-2">Current Job Status</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="text-center p-4 bg-blue-50 rounded-lg shadow-sm">
-            <p className="text-2xl font-bold text-blue-600">{job.applications}</p>
-            <p className="text-sm text-slate-600">Total Applications</p>
-          </div>
-          <div className="text-center p-4 bg-green-50 rounded-lg shadow-sm">
-            <p className="text-2xl font-bold text-green-600">
-              {Math.max(
-                0,
-                Math.ceil((new Date(job.deadline).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
-              )}
-            </p>
-            <p className="text-sm text-slate-600">Days Until Deadline</p>
-          </div>
-          <div className="text-center p-4 bg-purple-50 rounded-lg shadow-sm">
-            <p className="text-2xl font-bold text-purple-600">{new Date(job.postedDate).toLocaleDateString()}</p>
-            <p className="text-sm text-slate-600">Posted Date</p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
