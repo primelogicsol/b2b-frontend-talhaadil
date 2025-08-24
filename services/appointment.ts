@@ -49,3 +49,12 @@ export const getAllAppointments = () => {
     },
   });
 };
+
+
+export const getAllAppointmentByDate = (date: string) => {
+  return api.get(`/appointments?date=${date}`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};

@@ -1,6 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation"
 import type React from "react"
+import { useToast } from "@/context/ToastProvider"
 import { useState, useEffect } from "react"
 import {
   Calendar,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react"
 import { useGlobalContext } from "../../context/ScreenProvider"
 import { postAppointment } from "@/services/appointment"
+
 interface FormData {
   userType: "buyer" | "vendor" | "guest" | ""
   guestCountry?: "usa" | "india" | ""
@@ -80,6 +82,7 @@ const purposes = [
 ]
 
 export default function AppointmentScheduler() {
+  const { showToast } = useToast()
   const { is4K } = useGlobalContext()
   const [formData, setFormData] = useState<FormData>({
     userType: "",
@@ -331,13 +334,20 @@ export default function AppointmentScheduler() {
 
       console.log("Booking successful:", response.data);
       setIsBooked(true);
-    } catch (error) {
-      console.error("Booking failed:", error);
-      setIsBooked(false);
-    }finally{
-      setLoading(false);
-    }
+    } catch (error:any) {
+  console.error("Booking failed:", error);
+  setIsBooked(false);
+
+  if (error.response && error.response.data?.detail === "User already has an appointment at this date and time") {
+    showToast("This time slot is already booked");
+  } else {
+    showToast("Booking failed. Please try again.");
   }
+} finally {
+  setLoading(false);
+}
+}
+
   const isFormValid = () => {
     const baseValid =
       formData.userType &&

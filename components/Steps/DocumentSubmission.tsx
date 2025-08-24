@@ -270,56 +270,61 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
   }
 
   const handleSubmitAll = async () => {
-    const allRequired = documentTypes
-      .filter((d) => d.required)
-      .every((d) => {
-        const doc = documents[d.key]
-        if (d.multiple) {
-          return (doc as File[]).length > 0
+  const allRequired = documentTypes
+    .filter((d) => d.required)
+    .every((d) => {
+      const doc = documents[d.key]
+      if (d.multiple) {
+        return (doc as File[]).length > 0
+      }
+      return doc !== null
+    })
+
+  if (!allRequired) {
+    alert("Please upload all required documents before proceeding.")
+    return
+  }
+
+  setIsSubmitting(true)
+  try {
+    for (const docTypeConfig of documentTypes) {
+      const docKey = docTypeConfig.key
+      const docData = documents[docKey]
+      console.log(docKey)
+
+      if (docTypeConfig.multiple) {
+        const files = docData as File[]
+        if (files.length > 0) {
+          const response = await submitDocumentToAPI({
+            document_type: String(docKey),
+            files
+          })
+          console.log(response.data)
         }
-        return doc !== null
-      })
+      } else {
+        const file = docData as File | null
+        if (file) {
+          console.log("Uploading:", {
+  document_type: String(docKey),
+  files: docData
+});
 
-    if (!allRequired) {
-      alert("Please upload all required documents before proceeding.")
-      return
-    }
-
-    setIsSubmitting(true)
-    try {
-      for (const docTypeConfig of documentTypes) {
-        const docKey = docTypeConfig.key
-        const docData = documents[docKey]
-
-        if (docTypeConfig.multiple) {
-          const files = docData as File[]
-          if (files[0]) {
-            const response = await submitDocumentToAPI({
-              document_type: String(docKey),
-              file: files[0],
-            })
-            console.log(response.data)
-          }
-        } else {
-          const file = docData as File | null
-          if (file) {
-            const response = await submitDocumentToAPI({
-              document_type: String(docKey),
-              file,
-            })
-            console.log(response.data)
-          }
+          const response = await submitDocumentToAPI({
+            document_type: String(docKey),
+            files: [file] // wrap single file into array
+          })
+          console.log(response.data)
         }
       }
-
-      onNext()
-    } catch (error: any) {
-      console.log(error)
-      console.error("Error submitting first document:", error)
-    } finally {
-      setIsSubmitting(false)
     }
+
+    onNext()
+  } catch (error: any) {
+    console.error("Error submitting documents:", error)
+  } finally {
+    setIsSubmitting(false)
   }
+}
 
   const getUploadedCount = () => {
     let count = 0
@@ -368,13 +373,12 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
         </div>
         <div className="p-6">
           <div
-            className={`border-2 border-dashed rounded-2xl p-8 text-center transition-colors ${
-              isDrag
+            className={`border-2 border-dashed rounded-2xl p-8 text-center transition-colors ${isDrag
                 ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
                 : uploaded
                   ? "border-green-800 bg-green-50"
                   : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
-            }`}
+              }`}
             onDragOver={(e) => handleDragOver(e, documentType.key)}
             onDragLeave={handleDragLeave}
             onDrop={(e) => handleDrop(e, documentType.key)}
