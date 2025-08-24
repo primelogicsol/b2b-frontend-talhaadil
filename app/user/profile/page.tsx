@@ -1,6 +1,6 @@
 "use client"
-
-import { useState } from "react"
+import { getUserInfo } from "@/services/regitsration"
+import { useState,useEffect } from "react"
 import { User, Building, CreditCard, Shield, Edit3, Save, X, Check, AlertTriangle } from "lucide-react"
 
 export default function ProfilePage() {
@@ -9,48 +9,72 @@ export default function ProfilePage() {
 
   // Mock data based on API payload structure
   const [profileData, setProfileData] = useState({
-    business_name: "TechCorp Solutions",
-    business_legal_structure: "Private Limited Company",
-    business_type: "Technology Services",
-    year_established: 2018,
-    business_registration_number: "TC2018001234",
-    brand_affiliations: "Apple, Samsung, Microsoft",
-    website: "https://techcorp-solutions.com",
-    annual_turnover: "₹50,00,000",
-    gst_number: "29ABCDE1234F1Z5",
-    tax_identification_number: "ABCDE1234F",
-    import_export_code: "IEC1234567890",
-    street_address_1: "123 Tech Park",
-    street_address_2: "Sector 5",
-    city: "Bangalore",
-    state_region: "Karnataka",
-    postal_code: "560001",
-    country: "India",
-    contact_person_name: "John Doe",
-    contact_email: "john.doe@techcorp.com",
-    contact_phone: "+91-9876543210",
-    contact_whatsapp: "+91-9876543210",
-    contact_district: "Bangalore Urban",
-    contact_pin_code: "560001",
-    contact_state: "Karnataka",
-    contact_country: "India",
-    material_standard: "High",
-    quality_level: "Premium",
-    sustainability_level: "Excellent",
-    service_level: "Outstanding",
-    standards_level: "ISO Certified",
-    ethics_level: "Exemplary",
-    certifications: ["ISO 9001", "ISO 14001", "OHSAS 18001"],
-    bank_name: "State Bank of India",
-    account_name: "TechCorp Solutions Pvt Ltd",
-    account_type: "Current Account",
-    account_number: "1234567890123456",
-    ifsc_code: "SBIN0001234",
-    swift_bis_code: "SBININBB123",
-    iban_code: "IN12SBIN0001234567890123456",
+    business_name: "",
+    business_legal_structure: "",
+    business_type: "",
+    year_established: 0,
+    business_registration_number: "",
+    brand_affiliations: "",
+    website: "",
+    annual_turnover: "",
+    gst_number: "",
+    tax_identification_number: "",
+    import_export_code: "",
+    street_address_1: "",
+    street_address_2: "",
+    city: "",
+    state_region: "",
+    postal_code: "",
+    country: "",
+    contact_person_name: "",
+    contact_email: "",
+    contact_phone: "",
+    contact_whatsapp: "",
+    contact_district: "",
+    contact_pin_code: "",
+    contact_state: "",
+    contact_country: "",
+    material_standard: 0,
+    quality_level: 0,
+    sustainability_level: 0,
+    service_level: 0,
+    standards_level: 0,
+    ethics_level: 0,
+    certifications: [],
+    bank_name: "",
+    account_name: "",
+    account_type: "",
+    account_number: "",
+    ifsc_code: "",
+    swift_bis_code: "",
+    iban_code: "",
+    kyc_challenges: false,
+    gst_compliance_issues: false,
+    fema_payment_issues: false,
+    digital_banking_issues: false,
+    fraud_cybersecurity_issues: false,
+    payment_gateway_compliance_issues: false,
+    account_activity_issues: false,
+    regulatory_actions: false,
   })
-
   const [tempData, setTempData] = useState(profileData)
+  const [error, setError] = useState<string | null>(null)
+
+  // Fetch profile data when the component mounts
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await getUserInfo()
+        setProfileData(response.data)
+        setTempData(response.data)
+      } catch (err) {
+        setError("Failed to fetch profile data. Please try again later.")
+        console.error("Error fetching profile data:", err)
+      }
+    }
+
+    fetchProfileData()
+  }, [])
 
   const handleEdit = (section: string) => {
     setEditingSection(section)
