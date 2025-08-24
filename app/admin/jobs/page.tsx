@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { mockJobs, type Job } from "@/lib/data";
+import { mockJobs, type Job as OriginalJob } from "@/lib/data";
+
+// Extend Job type to include summary if not already present
+type Job = OriginalJob & { summary: string };
 import {
   Plus,
   Search,
@@ -26,6 +29,7 @@ export default function JobsPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [departmentFilter, setDepartmentFilter] = useState("all");
   const [loading,setLoading] =useState(false);
+  const [fetching,setFetching] = useState(true)
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -33,8 +37,7 @@ export default function JobsPage() {
     summary: "",
     description: "",
     requirements: "",
-    salaryMin: "",
-    salaryMax: "",
+    salary_range  : "",
     application_deadline: "",
   });
 
@@ -47,8 +50,11 @@ export default function JobsPage() {
       } catch (error) {
         console.error("Error fetching jobs:", error);
         setJobs([]); // Fallback to empty array on error
+      }finally{
+        setFetching(false)
       }
     };
+    
     fetchJobs();
   }, []);
   
@@ -73,7 +79,7 @@ export default function JobsPage() {
         summary: formData.summary,
         description: formData.description,
         requirements: formData.requirements,
-        salary_range: `${formData.salaryMin}-${formData.salaryMax}`,
+        salary_range: formData.salary_range,
         application_deadline: formData.application_deadline,
       };
       const response = await createJob(jobData);
@@ -86,8 +92,7 @@ export default function JobsPage() {
         summary: "",
         description: "",
         requirements: "",
-        salaryMin: "",
-        salaryMax: "",
+        salary_range :"",
         application_deadline: "",
       });
       setShowForm(false);
@@ -98,11 +103,14 @@ export default function JobsPage() {
     }
   };
   const handleDelete = async (id: number) => {
+    setFetching(true)
     try {
       await deleteJob(id);
       setJobs(jobs.filter((job) => job.id !== id));
     } catch (error) {
       console.error("Error deleting job:", error);
+    }finally{
+      setFetching(false)
     }
   };
 
@@ -112,6 +120,13 @@ export default function JobsPage() {
   };
 
   const departments = [...new Set(jobs.map((job) => job.department))];
+  if (fetching){
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        </div>
+    )
+  }
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-8 space-y-8">
@@ -181,28 +196,19 @@ export default function JobsPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
             <div>
-              <label className="block text-sm font-medium text-slate-700">Minimum Salary</label>
+              <label className="block text-sm font-medium text-slate-700">Salary Range</label>
               <input
-                type="number"
+                
                 className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.salaryMin}
-                onChange={(e) => setFormData({ ...formData, salaryMin: e.target.value })}
+                value={formData.salary_range}
+                onChange={(e) => setFormData({ ...formData,salary_range: e.target.value })}
                 required
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700">Maximum Salary</label>
-              <input
-                type="number"
-                className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                value={formData.salaryMax}
-                onChange={(e) => setFormData({ ...formData, salaryMax: e.target.value })}
-                required
-              />
-            </div>
-          </div>
+           
+          
 
           <div>
             <label className="block text-sm font-medium text-slate-700">Summary</label>
@@ -305,7 +311,7 @@ export default function JobsPage() {
                   </button>
                 </div>
               </div>
-
+              
               <p className="text-gray-700 mb-2">{job.summary}</p>
 
               <div className="flex flex-wrap gap-4 text-sm">

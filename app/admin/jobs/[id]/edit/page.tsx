@@ -20,8 +20,7 @@ export default function EditJobPage() {
     summary: "",
     description: "",
     requirements: "",
-    salaryMin: "",
-    salaryMax: "",
+    salary_range: "",
     application_deadline: "",
   })
 
@@ -39,9 +38,8 @@ export default function EditJobPage() {
           type: foundJob.type,
           summary: foundJob.summary || "",
           description: foundJob.description,
-          requirements: foundJob.requirements.education || "",
-          salaryMin: foundJob.salary?.min?.toString() || "",
-          salaryMax: foundJob.salary?.max?.toString() || "",
+          requirements: foundJob.requirements || "",
+          salary_range: foundJob.salary_range,
           application_deadline: foundJob.deadline,
         });
       } catch (error) {
@@ -65,7 +63,7 @@ export default function EditJobPage() {
         summary: formData.summary,
         description: formData.description,
         requirements: formData.requirements,
-        salary_range: `${formData.salaryMin}-${formData.salaryMax}`,
+        salary_range: formData.salary_range,
         application_deadline: formData.application_deadline,
       };
       await updateJob(Number.parseInt(params.id as string), jobData);
@@ -81,29 +79,12 @@ export default function EditJobPage() {
     router.push("/admin/jobs")
   }
 
-  if (!job) {
-    return (
-      <div className="text-center py-12">
-        <div className="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-          <X className="w-12 h-12 text-white" />
-        </div>
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">Job not found</h1>
-        <p className="text-slate-600 mb-6">The job you're looking for doesn't exist or has been removed.</p>
-        <Link href="/admin/jobs">
-          <button className="px-4 py-2 bg-gray-200 text-slate-700 rounded-lg hover:bg-gray-300 transition-colors flex items-center mx-auto">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Jobs
-          </button>
-        </Link>
-      </div>
-    )
-  }
 
-  if(loading){
-    return(
+  if (loading) {
+    return (
       <div className="flex items-center justify-center min-h-screen">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-        </div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      </div>
     )
   }
 
@@ -171,28 +152,15 @@ export default function EditJobPage() {
             />
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Minimum Salary</label>
-            <input
-              type="number"
-              className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.salary_range}
-              onChange={(e) => setFormData({ ...formData, salaryMin: e.target.value })}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Maximum Salary</label>
-            <input
-              type="number"
-              className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              value={formData.salary_range}
-              onChange={(e) => setFormData({ ...formData, salaryMax: e.target.value })}
-              required
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium text-slate-700">Salary Range</label>
+          <input
+            
+            className="mt-1 border border-gray-300 p-3 w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            value={formData.salary_range}
+            onChange={(e) => setFormData({ ...formData, salary_range: e.target.value })}
+            required
+          />
         </div>
 
         <div>

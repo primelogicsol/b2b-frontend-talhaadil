@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { Users, Plus, Edit, Trash2, X } from "lucide-react"
-import { registerSubAdmin, updateSubAdmin } from "@/services/auth"
+import { deleteSubAdmin, registerSubAdmin, updateSubAdmin } from "@/services/auth"
 import { useToast } from "@/context/ToastProvider"
 import { getAllUsers } from "@/services/admin"
 
@@ -91,7 +91,7 @@ export default function OtherAdminsPage() {
         setGetLoading(false)
       }
     };
-    
+
     fetchAdmins();
   }, []);
 
@@ -134,10 +134,23 @@ export default function OtherAdminsPage() {
     resetForm()
   }
 
-  const handleDelete = (adminId: string) => {
-    setAdmins(admins.filter((admin) => admin.id !== adminId))
+  const handleDelete = async (adminId: string) => {
+    setGetLoading(true)
+    try {
+      const response = await deleteSubAdmin(adminId)
+      console.log(response)
+
+      setAdmins(admins.filter((admin) => admin.id !== adminId))
+    } catch (err: any) {
+      console.log(err.response.data.detail)
+    } finally {
+      setGetLoading(false)
+    }
+
     setShowDeleteConfirm(null)
   }
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

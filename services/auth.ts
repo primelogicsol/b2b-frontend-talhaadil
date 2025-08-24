@@ -28,6 +28,13 @@ export const updateSubAdmin = (userId: string, data: any) =>
     },
   });
 
+export const deleteSubAdmin = (userId: string) =>
+  api.delete(`/admin/sub-admin/${userId}`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+
 
 export const verifyOtp = (data: any) => api.post("/auth/verify/otp?email=" + data.email + "&otp=" + data.otp);
 
