@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   Search,
   MapPin,
@@ -11,18 +11,23 @@ import {
   ChevronDown,
   ChevronUp,
   Briefcase,
-  GraduationCap,
   Mail,
 } from "lucide-react"
 import VerticalHeroSlider from "../Essentials/VerticalBanner"
-import { useGlobalContext } from "../../context/ScreenProvider"// Import useGlobalContext
+import { useGlobalContext } from "../../context/ScreenProvider"
+import { getAllJobs } from "@/services/job"
+import { getJobDetails } from "@/services/job"
 
 export default function CareersPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
-  const [expandedJob, setExpandedJob] = useState<string | null>(null)
+  const [expandedJob, setExpandedJob] = useState(null)
   const [openDropdown, setOpenDropdown] = useState(false)
-  const { is4K } = useGlobalContext() // Use the hook
+  const [jobs, setJobs] = useState([])
+  const [jobDetails, setJobDetails] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const { is4K } = useGlobalContext()
 
   const benefits = [
     {
@@ -58,108 +63,12 @@ export default function CareersPage() {
       description: "Join a mindful workplace that blends kind values and clear goals for steady shared success.",
     },
   ]
+
   const filters = [
     { value: "all", label: "All Departments" },
     { value: "operations", label: "Operations" },
     { value: "marketing", label: "Marketing" },
     { value: "support", label: "Support" },
-  ]
-  const jobOpenings = [
-    {
-      id: "ecommerce-manager",
-      title: "E-Commerce Manager",
-      location: "Washington",
-      type: "Full-time",
-      department: "Operations",
-      description:
-        "Oversee the day-to-day operations of our online marketplace, managing product listings, customer service, and logistics.",
-      responsibilities: [
-        "Oversee product listings, inventory management, and order fulfillment",
-        "Work closely with the marketing team to implement digital marketing campaigns",
-        "Ensure customer satisfaction through efficient and proactive support",
-      ],
-      qualifications: [
-        "3+ years of experience in e-commerce management",
-        "Strong communication and organizational skills",
-        "Knowledge of e-commerce platforms (Shopify, WooCommerce, etc.)",
-      ],
-      email: "ecommerce@dekoshurcrafts.com",
-    },
-    {
-      id: "artisan-liaison",
-      title: "Artisan Liaison Coordinator",
-      location: "Remote",
-      type: "Full-time",
-      department: "Operations",
-      description:
-        "Manage relationships with artisans, supporting them in business development and ensuring access to necessary resources.",
-      responsibilities: [
-        "Provide guidance to artisans on pricing, marketing, and product quality",
-        "Coordinate training and workshops for artisan development",
-        "Monitor artisan sales and ensure fair compensation",
-      ],
-      qualifications: [
-        "2+ years of experience working with artisans or in a fair-trade environment",
-        "Strong interpersonal and communication skills",
-        "A passion for craftsmanship and sustainable business practices",
-      ],
-      email: "artisan@dekoshurcrafts.com",
-    },
-    {
-      id: "digital-marketing",
-      title: "Digital Marketing Specialist",
-      location: "Washington",
-      type: "Full-time",
-      department: "Marketing",
-      description:
-        "Manage social media platforms, advertising campaigns, and content strategy to raise brand awareness.",
-      responsibilities: [
-        "Develop and execute digital marketing campaigns across social media, Google Ads, and email",
-        "Create engaging content to promote artisan stories and products",
-        "Analyze performance metrics and adjust strategies for optimal results",
-      ],
-      qualifications: [
-        "3+ years of experience in digital marketing, including social media management and SEO",
-        "Strong knowledge of Google Ads, Facebook Ads, and content marketing strategies",
-        "Excellent writing, editing, and communication skills",
-      ],
-      email: "marketing@dekoshurcrafts.com",
-    },
-    {
-      id: "customer-support",
-      title: "Customer Support Specialist",
-      location: "Remote",
-      type: "Full-time",
-      department: "Support",
-      description:
-        "Be the first point of contact for customers, handling inquiries and ensuring exceptional customer experience.",
-      responsibilities: [
-        "Answer customer inquiries via email, phone, and live chat",
-        "Assist with order tracking, returns, and product issues",
-        "Provide feedback to the team on common customer concerns",
-      ],
-      qualifications: [
-        "2+ years of experience in customer service or support",
-        "Strong communication and problem-solving skills",
-        "Ability to handle high volumes of inquiries while maintaining a positive attitude",
-      ],
-      email: "support@dekoshurcrafts.com",
-    },
-  ]
-
-  const internships = [
-    {
-      title: "Marketing Intern",
-      description: "Assist in digital marketing campaigns and content creation",
-    },
-    {
-      title: "E-Commerce Intern",
-      description: "Support day-to-day operations of our online platform",
-    },
-    {
-      title: "Operations Intern",
-      description: "Assist with inventory management and logistics",
-    },
   ]
 
   const coreValues = [
@@ -183,15 +92,46 @@ export default function CareersPage() {
     },
   ]
 
-  const filteredJobs = jobOpenings.filter((job) => {
+  // Fetch all jobs on component mount
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true)
+        const response = await getAllJobs()
+        setJobs(response.data) // Assuming response.data contains the array of jobs
+        setLoading(false)
+      } catch (err) {
+
+        setLoading(false)
+      }
+    }
+    fetchJobs()
+  }, [])
+
+  // Fetch job details when a job is expanded
+  useEffect(() => {
+    if (expandedJob) {
+      const fetchJobDetails = async () => {
+        try {
+          const response = await getJobDetails(expandedJob)
+          setJobDetails((prev) => ({ ...prev, [expandedJob]: response.data }))
+        } catch (err) {
+          
+        }
+      }
+      fetchJobDetails()
+    }
+  }, [expandedJob])
+
+  const filteredJobs = jobs.filter((job) => {
     const matchesSearch =
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesFilter = selectedFilter === "all" || job.department.toLowerCase() === selectedFilter
+      job.summary.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesFilter = selectedFilter === "all" || job.type.toLowerCase() === selectedFilter
     return matchesSearch && matchesFilter
   })
 
-  const toggleJobExpansion = (jobId: string) => {
+  const toggleJobExpansion = (jobId) => {
     setExpandedJob(expandedJob === jobId ? null : jobId)
   }
 
@@ -206,7 +146,6 @@ export default function CareersPage() {
 
         .section {
           padding: 80px 0;
-
         }
 
         .section-title {
@@ -409,7 +348,7 @@ export default function CareersPage() {
 
         .job-section li {
           padding: 0.3rem 0;
-          padding-left: 1.2rem;
+          padding-left: requirements1.2rem;
           position: relative;
         }
 
@@ -440,42 +379,6 @@ export default function CareersPage() {
         .apply-button:hover {
           background: var(--secondary-hover-color);
           transform: translateY(-2px);
-        }
-
-        .internships-section {
-          background: var(--primary-header-color);
-        }
-
-        .internships-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-          margin-top: 2rem;
-        }
-
-        .internship-card {
-          background: white;
-          padding: 2rem;
-          border-radius: 12px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-          text-align: center;
-          transition: transform 0.3s ease;
-        }
-
-        .internship-card:hover {
-          transform: translateY(-5px);
-        }
-
-        .internship-icon {
-          background: var(--secondary-hover-color);
-          color: white;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 1rem;
         }
 
         .values-grid {
@@ -522,8 +425,7 @@ export default function CareersPage() {
         }
 
         .cta-section {
-          background: var(--primary-color) 0%;
-
+          background: var(--primary-color);
           color: white;
           text-align: center;
           padding: 80px 20px;
@@ -594,6 +496,19 @@ export default function CareersPage() {
           color: white;
         }
 
+        .error-message {
+          text-align: center;
+          color: red;
+          font-size: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        .loading-message {
+          text-align: center;
+          font-size: 1rem;
+          color: var(--primary-color);
+        }
+
         @media (max-width: 768px) {
           .hero-title {
             font-size: 2.5rem;
@@ -653,25 +568,24 @@ export default function CareersPage() {
           .container {
             padding: 0 15px;
           }
+        }
 
-          @media (min-width: 2560px) {
-            .benefits-grid {
-              grid-template-columns: repeat(4, 1fr);
-              gap: 2.5rem;
-              max-width: 1800px;
-              margin-left: auto;
-              margin-right: auto;
-            }
-          
-            .benefit-card {
-              font-size: 1.2rem;
-            }
-          
-            .benefit-title {
-              font-size: 1.8rem;
-            }
+        @media (min-width: 2560px) {
+          .benefits-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
           }
-          
+
+          .benefit-card {
+            font-size: 1.2rem;
+          }
+
+          .benefit-title {
+            font-size: 1.8rem;
+          }
         }
       `}</style>
 
@@ -690,9 +604,8 @@ export default function CareersPage() {
             Why Work at De Koshur Crafts?
           </h2>
           <p
-          className="text-left lg:text-center px-3 lg:px-0"
+            className="text-left lg:text-center px-3 lg:px-0"
             style={{
-           
               fontSize: is4K ? "2rem" : "1.1rem",
               maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
@@ -725,183 +638,146 @@ export default function CareersPage() {
             Current Job Openings
           </h2>
 
-          <div className="search-filter-section px-4 py-4">
-            <div className="search-container flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between max-w-full">
-              {/* Search box */}
-              <div className="relative w-full sm:flex-1 sm:max-w-[400px] lg:max-w-[300px]">
-                <input
-                  type="text"
-                  placeholder="Search positions..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full border-2 border-[var(--primary-header-color)] rounded-lg py-3 pr-12 pl-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
-                  style={is4K ? { fontSize: "1.2rem", padding: "16px 20px" } : {}}
-                />
-                <button
-                  type="button"
-                  className="cursor-pointer absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[var(--primary-hover-color)]"
-                >
-                  <Search size={is4K ? 28 : 20} />
-                </button>
-              </div>
-
-              {/* Custom Dropdown */}
-              <div className="relative w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={() => setOpenDropdown(!openDropdown)}
-                  className="flex justify-between items-center w-full sm:w-[200px] border-2 border-[var(--primary-header-color)] rounded-lg py-3 px-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
-                  style={is4K ? { fontSize: "1.2rem", padding: "16px 20px", width: "250px" } : {}}
-                >
-                  {filters.find((f) => f.value === selectedFilter)?.label}
-                  <ChevronDown
-                    size={is4K ? 24 : 18}
-                    className={`transition-transform duration-200 ${openDropdown ? "rotate-180" : ""}`}
-                  />
-                </button>
-
-                {openDropdown && (
-                  <ul
-                    className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white"
-                    style={is4K ? { width: "250px" } : {}}
-                  >
-                    {filters.map((f) => (
-                      <li
-                        key={f.value}
-                        onClick={() => {
-                          setSelectedFilter(f.value)
-                          setOpenDropdown(false)
-                        }}
-                        className="px-4 py-2 cursor-pointer hover:bg-[var(--primary-color)] hover:text-white rounded-lg"
-                        style={is4K ? { fontSize: "1.2rem", padding: "10px 16px" } : {}}
-                      >
-                        {f.label}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="jobs-grid">
-            {filteredJobs.map((job) => (
-              <div key={job.id} className="job-card">
-                <div className="job-header" onClick={() => toggleJobExpansion(job.id)}>
-                  <div className="job-info">
-                    <h3 className="job-title" style={is4K ? { fontSize: "2rem" } : {}}>
-                      {job.title}
-                    </h3>
-                    <div className="job-meta" style={is4K ? { fontSize: "1.1rem" } : {}}>
-                      <div className="job-meta-item">
-                        <MapPin size={is4K ? 20 : 16} />
-                        {job.location}
-                      </div>
-                      <div className="job-meta-item">
-                        <Clock size={is4K ? 20 : 16} />
-                        {job.type}
-                      </div>
-                      <div className="job-meta-item">
-                        <Briefcase size={is4K ? 20 : 16} />
-                        {job.department}
-                      </div>
-                    </div>
-                    <p className="job-description" style={is4K ? { fontSize: "1.2rem" } : {}}>
-                      {job.description}
-                    </p>
-                  </div>
-                  <button className="expand-button" style={is4K ? { width: "40px", height: "40px" } : {}}>
-                    {expandedJob === job.id ? (
-                      <ChevronUp size={is4K ? 28 : 20} />
-                    ) : (
-                      <ChevronDown size={is4K ? 28 : 20} />
-                    )}
-                  </button>
-                </div>
-
-                {expandedJob === job.id && (
-                  <div className="job-details">
-                    <div className="job-section">
-                      <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Responsibilities:</h4>
-                      <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
-                        {job.responsibilities.map((resp, index) => (
-                          <li key={index}>{resp}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="job-section">
-                      <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Skills & Qualifications:</h4>
-                      <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
-                        {job.qualifications.map((qual, index) => (
-                          <li key={index}>{qual}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <a
-                      href={`mailto:${job.email}`}
-                      className="apply-button"
-                      style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
+          {error && <p className="error-message">{error}</p>}
+          {loading ? (
+            <p className="loading-message">Loading jobs...</p>
+          ) : (
+            <>
+              <div className="search-filter-section px-4 py-4">
+                <div className="search-container flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between max-w-full">
+                  <div className="relative w-full sm:flex-1 sm:max-w-[400px] lg:max-w-[300px]">
+                    <input
+                      type="text"
+                      placeholder="Search positions..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full border-2 border-[var(--primary-header-color)] rounded-lg py-3 pr-12 pl-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
+                      style={is4K ? { fontSize: "1.2rem", padding: "16px 20px" } : {}}
+                    />
+                    <button
+                      type="button"
+                      className="cursor-pointer absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[var(--primary-hover-color)]"
                     >
-                      <Mail size={is4K ? 20 : 16} />
-                      Apply Now
-                    </a>
+                      <Search size={is4K ? 28 : 20} />
+                    </button>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Internships Section */}
-      <section className="section internships-section">
-        <div
-          className="container"
-          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
-        >
-          <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
-            Internship Opportunities
-          </h2>
-          <p
-            className="text-left lg:text-center px-3 lg:px-0"
-            style={{
-             
-              fontSize: is4K ? "1.5rem" : "1.1rem",
-              maxWidth: is4K ? "1200px" : "800px",
-              margin: "0 auto 2rem",
-              color: "var(--primary-light-text-color)",
-            }}
-          >
-            We offer internship programs that provide hands-on experience in various aspects of the business, including
-            marketing, e-commerce, operations, and product development.
-          </p>
+                  <div className="relative w-full sm:w-auto">
+                    <button
+                      type="button"
+                      onClick={() => setOpenDropdown(!openDropdown)}
+                      className="flex justify-between items-center w-full sm:w-[200px] border-2 border-[var(--primary-header-color)] rounded-lg py-3 px-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
+                      style={is4K ? { fontSize: "1.2rem", padding: "16px 20px", width: "250px" } : {}}
+                    >
+                      {filters.find((f) => f.value === selectedFilter)?.label}
+                      <ChevronDown
+                        size={is4K ? 24 : 18}
+                        className={`transition-transform duration-200 ${openDropdown ? "rotate-180" : ""}`}
+                      />
+                    </button>
 
-          <div className="internships-grid">
-            {internships.map((internship, index) => (
-              <div key={index} className="internship-card">
-                <div className="internship-icon" style={is4K ? { width: "80px", height: "80px" } : {}}>
-                  <GraduationCap size={is4K ? 32 : 24} />
+                    {openDropdown && (
+                      <ul
+                        className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white"
+                        style={is4K ? { width: "250px" } : {}}
+                      >
+                        {filters.map((f) => (
+                          <li
+                            key={f.value}
+                            onClick={() => {
+                              setSelectedFilter(f.value)
+                              setOpenDropdown(false)
+                            }}
+                            className="px-4 py-2 cursor-pointer hover:bg-[var(--primary-color)] hover:text-white rounded-lg"
+                            style={is4K ? { fontSize: "1.2rem", padding: "10px 16px" } : {}}
+                          >
+                            {f.label}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-                <h3 className="value-title" style={is4K ? { fontSize: "1.8rem" } : {}}>
-                  {internship.title}
-                </h3>
-                <p style={is4K ? { fontSize: "1.2rem" } : {}}>{internship.description}</p>
               </div>
-            ))}
-          </div>
 
-          <div style={{ textAlign: "center", marginTop: "3rem" }}>
-            <a
-              href="mailto:internships@dekoshurcrafts.com"
-              className="apply-button"
-              style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
-            >
-              <Mail size={is4K ? 20 : 16} />
-              Apply for Internships
-            </a>
-          </div>
+              <div className="jobs-grid">
+                {filteredJobs.map((job) => (
+                  <div key={job.id} className="job-card">
+                    <div className="job-header" onClick={() => toggleJobExpansion(job.id)}>
+                      <div className="job-info">
+                        <h3 className="job-title" style={is4K ? { fontSize: "2rem" } : {}}>
+                          {job.title}
+                        </h3>
+                        <div className="job-meta" style={is4K ? { fontSize: "1.1rem" } : {}}>
+                          <div className="job-meta-item">
+                            <MapPin size={is4K ? 20 : 16} />
+                            {job.location}
+                          </div>
+                          <div className="job-meta-item">
+                            <Clock size={is4K ? 20 : 16} />
+                            {job.type}
+                          </div>
+                        </div>
+                        <p className="job-description" style={is4K ? { fontSize: "1.2rem" } : {}}>
+                          {job.summary}
+                        </p>
+                      </div>
+                      <button className="expand-button" style={is4K ? { width: "40px", height: "40px" } : {}}>
+                        {expandedJob === job.id ? (
+                          <ChevronUp size={is4K ? 28 : 20} />
+                        ) : (
+                          <ChevronDown size={is4K ? 28 : 20} />
+                        )}
+                      </button>
+                    </div>
+
+                    {expandedJob === job.id && jobDetails[job.id] && (
+                      <div className="job-details">
+                        <div className="job-section">
+                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Description:</h4>
+                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>
+                            {jobDetails[job.id].description}
+                          </p>
+                        </div>
+
+                        <div className="job-section">
+                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Requirements:</h4>
+                          <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
+                            {jobDetails[job.id].requirements.split("\n").map((req, index) => (
+                              <li key={index}>{req}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="job-section">
+                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Salary Range:</h4>
+                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>
+                            {jobDetails[job.id].salary_range}
+                          </p>
+                        </div>
+
+                        <div className="job-section">
+                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Application Deadline:</h4>
+                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>
+                            {new Date(jobDetails[job.id].application_deadline).toLocaleDateString()}
+                          </p>
+                        </div>
+
+                        <a
+                          href="mailto:careers@dekoshurcrafts.com"
+                          className="apply-button"
+                          style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
+                        >
+                          <Mail size={is4K ? 20 : 16} />
+                          Apply Now
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -917,7 +793,6 @@ export default function CareersPage() {
           <p
             className="text-left lg:text-center px-3 lg:px-0"
             style={{
-             
               fontSize: is4K ? "1.5rem" : "1.1rem",
               maxWidth: is4K ? "1200px" : "800px",
               margin: "0 auto 2rem",
@@ -937,9 +812,12 @@ export default function CareersPage() {
                 <h3 className="value-title" style={is4K ? { fontSize: "1.8rem" } : {}}>
                   {value.title}
                 </h3>
-                <p 
-                className="text-left lg:text-center px-1 lg:px-0"
-                style={is4K ? { fontSize: "1.2rem" } : {}}>{value.description}</p>
+                <p
+                  className="text-left lg:text-center px-1 lg:px-0"
+                  style={is4K ? { fontSize: "1.2rem" } : {}}
+                >
+                  {value.description}
+                </p>
               </div>
             ))}
           </div>
@@ -957,7 +835,7 @@ export default function CareersPage() {
           </h2>
           <div style={{ textAlign: "center", maxWidth: is4K ? "900px" : "600px", margin: "0 auto" }}>
             <p
-            className ="text-left lg:text-center px-3 lg:px-0"
+              className="text-left lg:text-center px-3 lg:px-0"
               style={{
                 fontSize: is4K ? "1.5rem" : "1.1rem",
                 marginBottom: "2rem",
@@ -968,7 +846,7 @@ export default function CareersPage() {
               might be the perfect place for you.
             </p>
             <p
-             className ="text-left lg:text-center px-3 lg:px-0"
+              className="text-left lg:text-center px-3 lg:px-0"
               style={{
                 fontSize: is4K ? "1.5rem" : "1.1rem",
                 marginBottom: "2rem",
@@ -978,7 +856,7 @@ export default function CareersPage() {
               To apply for any open positions, please send your resume and cover letter to careers@dekoshurcrafts.com.
             </p>
             <p
-             className ="text-left lg:text-center px-3 lg:px-0"
+              className="text-left lg:text-center px-3 lg:px-0"
               style={{
                 fontSize: is4K ? "1.8rem" : "1.2rem",
                 fontWeight: "600",
@@ -1000,17 +878,21 @@ export default function CareersPage() {
           <h2 className="cta-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
             Join Our Team and Make a Difference
           </h2>
-          <p 
-           className ="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}>
+          <p
+            className="text-left lg:text-center px-3 lg:px-0"
+            style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}
+          >
             Are you ready to be part of a mission-driven company that is making a global impact?
           </p>
-          <p className ="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}>
+          <p
+            className="text-left lg:text-center px-3 lg:px-0"
+            style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}
+          >
             We are always looking for passionate individuals to join our team. Browse our open positions or internships,
             apply today, and become part of De Koshur Crafts.
           </p>
 
           <div className="cta-buttons">
-           
             <a
               href="mailto:careers@dekoshurcrafts.com"
               className="cta-button"

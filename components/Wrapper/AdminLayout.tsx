@@ -53,8 +53,10 @@ export default function AdminLayout({
             </div>
             {!collapsed && (
               <div>
+                <Link href='/admin' >
                 <h1 className="text-xl font-bold text-slate-900">Admin Panel</h1>
-                <p className="text-xs text-slate-500">Management Dashboard</p>
+                <p className="text-xs text-slate-500">Management Dashboard</p></Link>
+                
               </div>
             )}
           </div>

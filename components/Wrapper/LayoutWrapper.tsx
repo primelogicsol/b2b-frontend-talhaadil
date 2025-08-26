@@ -22,7 +22,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   }
 
   // Auth pages
-  const isAuthPage = pathname === "/login" || pathname === "/signup" || pathname === "/forgot-password";
+  const isAuthPage = pathname === "/login" || pathname === "/signup" || pathname === "/forgot-password" || pathname==="/adLogin"; 
 
   // Normal layout
   return (
