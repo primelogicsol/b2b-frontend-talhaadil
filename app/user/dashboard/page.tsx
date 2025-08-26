@@ -1,19 +1,9 @@
 "use client"
 
-import { BarChart3, TrendingUp, Users, Target, Calendar, ArrowUpRight } from "lucide-react"
-import {
-  AreaChart,
-  Area,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts"
+import { BarChart3, TrendingUp, Users, Target, ArrowUpRight } from "lucide-react"
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell } from "recharts"
+import { useState, useEffect } from "react"
+import { getUserProfile } from "@/services/admin"
 
 const partnerships = [
   "drop_shipping",
@@ -49,31 +39,98 @@ const partnershipDistribution = [
   { name: "Pending", value: 8, color: "#e5e7eb" },
 ]
 
-const weeklyActivity = [
-  { day: "Mon", documents: 12, agreements: 2, updates: 5 },
-  { day: "Tue", documents: 8, agreements: 1, updates: 3 },
-  { day: "Wed", documents: 15, agreements: 3, updates: 7 },
-  { day: "Thu", documents: 10, agreements: 1, updates: 4 },
-  { day: "Fri", documents: 18, agreements: 4, updates: 9 },
-  { day: "Sat", documents: 6, agreements: 0, updates: 2 },
-  { day: "Sun", documents: 4, agreements: 0, updates: 1 },
-]
+
+interface UserProfile {
+  id: number
+  username: string
+  email: string
+  role: string
+  is_active: boolean
+  visibility_level: number
+  ownership: {
+    [key: string]: string[]
+  }
+  kpi_score: number
+  partnership_level: string
+  retention_period: string
+  is_registered: string
+  registration_step: number
+}
 
 export default function DashboardPage() {
-  // Mock data - replace with real data
-  const currentKPI = 85
-  const retention = 92
-  const currentPartnership = 6 // User has reached 6 partnerships
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await getUserProfile()
+        console.log(response.data)
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error("Failed to fetch user profile")
+        }
+        setUserProfile(response.data)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchUserProfile()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-2"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-white rounded-lg border border-blue-200 shadow-sm p-6">
+              <div className="animate-pulse">
+                <div className="h-4 bg-gray-200 rounded w-2/3 mb-4"></div>
+                <div className="h-8 bg-gray-200 rounded w-1/2"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !userProfile) {
+    return (
+      <div className="space-y-8">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <h3 className="text-red-800 font-medium">Error loading dashboard</h3>
+          <p className="text-red-600 text-sm mt-1">{error || "No user profile data available"}</p>
+        </div>
+      </div>
+    )
+  }
+
+  const currentKPI = userProfile.kpi_score
+  const currentPartnership = userProfile.registration_step
   const nextMilestone = partnerships[currentPartnership]
 
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
-        <p className="text-gray-600 mt-2">Welcome back! Here's your business performance summary.</p>
+        <p className="text-gray-600 mt-2">
+          Welcome back, {userProfile.username}! Here's your business performance summary.
+        </p>
+        {userProfile.is_registered === "PENDING" && (
+          <div className="mt-2 px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full inline-block">
+            Registration Status: {userProfile.is_registered}
+          </div>
+        )}
       </div>
 
-      {/* Enhanced KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
@@ -84,33 +141,31 @@ export default function DashboardPage() {
             <div className="text-2xl font-bold text-gray-900">{currentKPI}%</div>
             <div className="flex items-center text-xs mt-1">
               <ArrowUpRight className="h-3 w-3 text-green-600 mr-1" />
-              <span className="text-green-600">+2.5% from last month</span>
+              <span className="text-green-600">Current score from API</span>
             </div>
           </div>
         </div>
 
         <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
-            <h3 className="text-sm font-medium text-gray-600">Retention Rate</h3>
+            <h3 className="text-sm font-medium text-gray-600">Retention Period</h3>
             <TrendingUp className="h-4 w-4 text-blue-600" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-gray-900">{retention}%</div>
-            <div className="flex items-center text-xs mt-1">
-              <ArrowUpRight className="h-3 w-3 text-green-600 mr-1" />
-              <span className="text-green-600">+1.2% from last month</span>
-            </div>
+            <div className="text-2xl font-bold text-gray-900">{userProfile.retention_period}</div>
+            <p className="text-xs text-gray-600 mt-1">Current retention period</p>
           </div>
         </div>
 
         <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
-            <h3 className="text-sm font-medium text-gray-600">Active Partnerships</h3>
+            <h3 className="text-sm font-medium text-gray-600">Partnership Progress</h3>
             <Users className="h-4 w-4 text-blue-600" />
           </div>
           <div className="px-6 pb-6">
             <div className="text-2xl font-bold text-gray-900">{currentPartnership}</div>
             <p className="text-xs text-gray-600 mt-1">of 16 total partnerships</p>
+            <p className="text-xs text-blue-600 mt-1">Level: {userProfile.partnership_level}</p>
           </div>
         </div>
 
@@ -120,14 +175,15 @@ export default function DashboardPage() {
             <Target className="h-4 w-4 text-blue-600" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-lg font-bold text-gray-900 capitalize">{nextMilestone?.replace(/_/g, " ")}</div>
+            <div className="text-lg font-bold text-gray-900 capitalize">
+              {nextMilestone?.replace(/_/g, " ") || "All Complete"}
+            </div>
             <p className="text-xs text-blue-600 mt-1">Partnership #{currentPartnership + 1}</p>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* KPI Trend Chart */}
         <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
           <div className="p-6 pb-2">
             <h3 className="text-lg font-semibold text-gray-900">Performance Trends</h3>
@@ -155,7 +211,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Partnership Distribution */}
         <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
           <div className="p-6 pb-2">
             <h3 className="text-lg font-semibold text-gray-900">Partnership Distribution</h3>
@@ -195,8 +250,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-    
-      {/* Partnership Progress Tracker */}
       <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
         <div className="p-6 pb-2">
           <h3 className="text-xl font-semibold text-gray-900">Partnership Progress</h3>
@@ -247,8 +300,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-
-        
     </div>
   )
 }

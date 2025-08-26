@@ -24,7 +24,14 @@ export const approveRegistration = (id: string, data: { status: string; remarks:
   });
 };
 
+export const getUserProfile = () =>{
+    return api.get(`/user/profile`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
 
+}
 
 
 export const updateProfile = (profileData: any) => {

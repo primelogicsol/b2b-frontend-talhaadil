@@ -187,7 +187,7 @@ const partnerships: Partnership[] = [
       "End-to-end logistics partnership for seamless product delivery. Specialized handling for delicate Kashmir crafts.",
     retention: "9 months",
     kpiScore: "7+",
-    available: true,
+    available: false,
   },
   {
     id: "museum_institutional",
