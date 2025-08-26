@@ -34,11 +34,10 @@ const monthlyKPIData = [
 ]
 
 const partnershipDistribution = [
-  { name: "Active", value: 6, color: "#3b82f6" },
-  { name: "In Progress", value: 2, color: "#06b6d4" },
-  { name: "Pending", value: 8, color: "#e5e7eb" },
+  { name: "Active", value: 6, color: "var(--primary-color)" },
+  { name: "In Progress", value: 2, color: "var(--secondary-color)" },
+  { name: "Pending", value: 8, color: "var(--secondary-light-color)" },
 ]
-
 
 interface UserProfile {
   id: number
@@ -83,21 +82,8 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="space-y-8">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/3 mb-2"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-white rounded-lg border border-blue-200 shadow-sm p-6">
-              <div className="animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-2/3 mb-4"></div>
-                <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
       </div>
     )
   }
@@ -105,9 +91,9 @@ export default function DashboardPage() {
   if (error || !userProfile) {
     return (
       <div className="space-y-8">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <h3 className="text-red-800 font-medium">Error loading dashboard</h3>
-          <p className="text-red-600 text-sm mt-1">{error || "No user profile data available"}</p>
+        <div className="bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg p-4">
+          <h3 className="text-[var(--primary-color)] font-medium">Error loading dashboard</h3>
+          <p className="text-[var(--secondary-color)] text-sm mt-1">{error || "No user profile data available"}</p>
         </div>
       </div>
     )
@@ -120,89 +106,89 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-[var(--primary-color)]">Dashboard Overview</h1>
+        <p className="text-[var(--primary-hover-color)] mt-2">
           Welcome back, {userProfile.username}! Here's your business performance summary.
         </p>
         {userProfile.is_registered === "PENDING" && (
-          <div className="mt-2 px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full inline-block">
+          <div className="mt-2 px-3 py-1 bg-[var(--secondary-light-color)] text-[var(--secondary-color)] text-sm rounded-full inline-block">
             Registration Status: {userProfile.is_registered}
           </div>
         )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
-            <h3 className="text-sm font-medium text-gray-600">Current KPI Score</h3>
-            <BarChart3 className="h-4 w-4 text-blue-600" />
+            <h3 className="text-sm font-medium text-[var(--primary-hover-color)]">Current KPI Score</h3>
+            <BarChart3 className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-gray-900">{currentKPI}%</div>
+            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentKPI}%</div>
             <div className="flex items-center text-xs mt-1">
-              <ArrowUpRight className="h-3 w-3 text-green-600 mr-1" />
-              <span className="text-green-600">Current score from API</span>
+              <ArrowUpRight className="h-3 w-3 text-[var(--secondary-color)] mr-1" />
+              <span className="text-[var(--secondary-color)]">Current score from API</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
-            <h3 className="text-sm font-medium text-gray-600">Retention Period</h3>
-            <TrendingUp className="h-4 w-4 text-blue-600" />
+            <h3 className="text-sm font-medium text-[var(--primary-hover-color)]">Retention Period</h3>
+            <TrendingUp className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-gray-900">{userProfile.retention_period}</div>
-            <p className="text-xs text-gray-600 mt-1">Current retention period</p>
+            <div className="text-2xl font-bold text-[var(--primary-color)]">{userProfile.retention_period}</div>
+            <p className="text-xs text-[var(--primary-hover-color)] mt-1">Current retention period</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
-            <h3 className="text-sm font-medium text-gray-600">Partnership Progress</h3>
-            <Users className="h-4 w-4 text-blue-600" />
+            <h3 className="text-sm font-medium text-[var(--primary-hover-color)]">Partnership Progress</h3>
+            <Users className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-gray-900">{currentPartnership}</div>
-            <p className="text-xs text-gray-600 mt-1">of 16 total partnerships</p>
-            <p className="text-xs text-blue-600 mt-1">Level: {userProfile.partnership_level}</p>
+            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentPartnership}</div>
+            <p className="text-xs text-[var(--primary-hover-color)] mt-1">of 16 total partnerships</p>
+            <p className="text-xs text-[var(--primary-color)] mt-1">Level: {userProfile.partnership_level}</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
-            <h3 className="text-sm font-medium text-gray-600">Next Milestone</h3>
-            <Target className="h-4 w-4 text-blue-600" />
+            <h3 className="text-sm font-medium text-[var(--primary-hover-color)]">Next Milestone</h3>
+            <Target className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-lg font-bold text-gray-900 capitalize">
+            <div className="text-lg font-bold text-[var(--primary-color)] capitalize">
               {nextMilestone?.replace(/_/g, " ") || "All Complete"}
             </div>
-            <p className="text-xs text-blue-600 mt-1">Partnership #{currentPartnership + 1}</p>
+            <p className="text-xs text-[var(--primary-color)] mt-1">Partnership #{currentPartnership + 1}</p>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="p-6 pb-2">
-            <h3 className="text-lg font-semibold text-gray-900">Performance Trends</h3>
-            <p className="text-sm text-gray-600">6-month KPI and retention analysis</p>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)]">Performance Trends</h3>
+            <p className="text-sm text-[var(--primary-hover-color)]">6-month KPI and retention analysis</p>
           </div>
           <div className="p-6 pt-0">
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={monthlyKPIData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis dataKey="month" stroke="#64748b" fontSize={12} />
-                  <YAxis stroke="#64748b" fontSize={12} />
-                  <Area type="monotone" dataKey="kpi" stackId="1" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--secondary-light-color)" />
+                  <XAxis dataKey="month" stroke="var(--primary-hover-color)" fontSize={12} />
+                  <YAxis stroke="var(--primary-hover-color)" fontSize={12} />
+                  <Area type="monotone" dataKey="kpi" stackId="1" stroke="var(--primary-color)" fill="var(--primary-color)" fillOpacity={0.6} />
                   <Area
                     type="monotone"
                     dataKey="retention"
                     stackId="2"
-                    stroke="#06b6d4"
-                    fill="#06b6d4"
+                    stroke="var(--secondary-color)"
+                    fill="var(--secondary-color)"
                     fillOpacity={0.6}
                   />
                 </AreaChart>
@@ -211,10 +197,10 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="p-6 pb-2">
-            <h3 className="text-lg font-semibold text-gray-900">Partnership Distribution</h3>
-            <p className="text-sm text-gray-600">Current status breakdown</p>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)]">Partnership Distribution</h3>
+            <p className="text-sm text-[var(--primary-hover-color)]">Current status breakdown</p>
           </div>
           <div className="p-6 pt-0">
             <div className="h-[300px]">
@@ -240,7 +226,7 @@ export default function DashboardPage() {
               {partnershipDistribution.map((item) => (
                 <div key={item.name} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-[var(--primary-hover-color)]">
                     {item.name}: {item.value}
                   </span>
                 </div>
@@ -250,19 +236,19 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-blue-200 shadow-sm">
+      <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
         <div className="p-6 pb-2">
-          <h3 className="text-xl font-semibold text-gray-900">Partnership Progress</h3>
-          <p className="text-gray-600">Track your journey through all 16 partnership levels</p>
+          <h3 className="text-xl font-semibold text-[var(--primary-color)]">Partnership Progress</h3>
+          <p className="text-[var(--primary-hover-color)]">Track your journey through all 16 partnership levels</p>
         </div>
         <div className="p-6 pt-0 space-y-6">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700">Overall Progress</span>
-            <span className="text-sm text-gray-600">{currentPartnership}/16 partnerships</span>
+            <span className="text-sm font-medium text-[var(--primary-hover-color)]">Overall Progress</span>
+            <span className="text-sm text-[var(--primary-hover-color)]">{currentPartnership}/16 partnerships</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-3">
+          <div className="w-full bg-[var(--secondary-light-color)] rounded-full h-3">
             <div
-              className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+              className="bg-[var(--primary-color)] h-3 rounded-full transition-all duration-300"
               style={{ width: `${(currentPartnership / 16) * 100}%` }}
             ></div>
           </div>
@@ -273,26 +259,26 @@ export default function DashboardPage() {
                 key={partnership}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   index < currentPartnership
-                    ? "border-green-200 bg-green-50"
+                    ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
                     : index === currentPartnership
-                      ? "border-blue-200 bg-blue-50"
-                      : "border-gray-200 bg-gray-50"
+                      ? "border-[var(--primary-hover-color)] bg-[var(--primary-hover-color)]/10"
+                      : "border-[var(--secondary-light-color)] bg-[var(--secondary-light-color)]/50"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium text-gray-500">#{index + 1}</span>
+                  <span className="text-xs font-medium text-[var(--primary-hover-color)]">#{index + 1}</span>
                   <div
                     className={`w-3 h-3 rounded-full ${
                       index < currentPartnership
-                        ? "bg-green-500"
+                        ? "bg-[var(--secondary-color)]"
                         : index === currentPartnership
-                          ? "bg-blue-500"
-                          : "bg-gray-300"
+                          ? "bg-[var(--primary-color)]"
+                          : "bg-[var(--secondary-light-color)]"
                     }`}
                   />
                 </div>
-                <h4 className="text-sm font-medium text-gray-900 capitalize">{partnership.replace(/_/g, " ")}</h4>
-                <p className="text-xs text-gray-600 mt-1">
+                <h4 className="text-sm font-medium text-[var(--primary-color)] capitalize">{partnership.replace(/_/g, " ")}</h4>
+                <p className="text-xs text-[var(--primary-hover-color)] mt-1">
                   {index < currentPartnership ? "Completed" : index === currentPartnership ? "In Progress" : "Upcoming"}
                 </p>
               </div>

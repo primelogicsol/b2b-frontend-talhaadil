@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import { updateProfile } from "@/services/admin"
 import { User, Building, CreditCard, Shield, Edit3, Save, X, Check, AlertTriangle, Loader2 } from "lucide-react"
 
-
 export default function ProfilePage() {
   const [editingSection, setEditingSection] = useState<string | null>(null)
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
   // Mock data based on API payload structure
   const [profileData, setProfileData] = useState({
@@ -74,6 +74,8 @@ export default function ProfilePage() {
       } catch (err) {
         setError("Failed to fetch profile data. Please try again later.")
         console.error("Error fetching profile data:", err)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -132,15 +134,15 @@ export default function ProfilePage() {
     if (isEditing) {
       return (
         <div className="space-y-1">
-          <label htmlFor={field} className="text-xs sm:text-sm font-medium text-gray-700">
-            {label} {required && <span className="text-red-500">*</span>}
+          <label htmlFor={field} className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
+            {label} {required && <span className="text-[var(--secondary-color)]">*</span>}
           </label>
           <input
             id={field}
             type={type}
             value={value as string}
             onChange={(e) => handleInputChange(field, type === "number" ? Number(e.target.value) : e.target.value)}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 text-sm border border-[var(--secondary-light-color)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
             required={required}
           />
         </div>
@@ -149,8 +151,8 @@ export default function ProfilePage() {
 
     return (
       <div>
-        <label className="text-xs sm:text-sm font-medium text-gray-700">{label}</label>
-        <p className="text-gray-900 mt-1 text-sm truncate">{value as string}</p>
+        <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">{label}</label>
+        <p className="text-[var(--primary-color)] mt-1 text-sm truncate">{value as string}</p>
       </div>
     )
   }
@@ -227,7 +229,7 @@ export default function ProfilePage() {
           <button
             onClick={() => handleSave(section)}
             disabled={isLoading}
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 disabled:bg-green-400 rounded-md transition-colors"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-[var(--secondary-color)] hover:bg-[var(--secondary-color)]/90 disabled:bg-[var(--secondary-color)]/50 rounded-md transition-colors"
           >
             {isLoading ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <Save className="h-4 w-4 mr-1" />}
             {isLoading ? "Saving..." : "Save"}
@@ -235,7 +237,7 @@ export default function ProfilePage() {
           <button
             onClick={handleCancel}
             disabled={isLoading}
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 disabled:bg-gray-100 rounded-md transition-colors"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(--secondary-light-color)]/50 disabled:bg-[var(--secondary-light-color)]/20 rounded-md transition-colors"
           >
             <X className="h-4 w-4 mr-1" />
             Cancel
@@ -247,7 +249,7 @@ export default function ProfilePage() {
     return (
       <button
         onClick={() => handleEdit(section)}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors"
+        className="inline-flex items-center px-3 py-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(--secondary-light-color)]/50 rounded-md transition-colors"
       >
         <Edit3 className="h-4 w-4 mr-1" />
         Edit
@@ -255,41 +257,49 @@ export default function ProfilePage() {
     )
   }
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Profile Management</h1>
-          <p className="text-sm text-gray-600 mt-1 sm:mt-2">Manage your business information and settings.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)]">Profile Management</h1>
+          <p className="text-sm text-[var(--primary-hover-color)] mt-1 sm:mt-2">Manage your business information and settings.</p>
         </div>
         <div className="flex flex-col gap-2">
           {saveSuccess && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-lg">
-              <Check className="h-4 w-4 text-green-600" />
-              <span className="text-sm text-green-800">{saveSuccess}</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
+              <Check className="h-4 w-4 text-[var(--secondary-color)]" />
+              <span className="text-sm text-[var(--secondary-color)]">{saveSuccess}</span>
             </div>
           )}
           {error && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-red-50 border border-red-200 rounded-lg">
-              <AlertTriangle className="h-4 w-4 text-red-600" />
-              <span className="text-sm text-red-800">{error}</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
+              <AlertTriangle className="h-4 w-4 text-[var(--secondary-color)]" />
+              <span className="text-sm text-[var(--secondary-color)]">{error}</span>
             </div>
           )}
           {hasUnsavedChanges && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <AlertTriangle className="h-4 w-4 text-yellow-600" />
-              <span className="text-sm text-yellow-800">You have unsaved changes</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
+              <AlertTriangle className="h-4 w-4 text-[var(--secondary-color)]" />
+              <span className="text-sm text-[var(--secondary-color)]">You have unsaved changes</span>
             </div>
           )}
         </div>
       </div>
 
       {/* Business Information */}
-      <div className="bg-white border border-blue-200 rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <Building className="h-5 w-5 text-blue-600" />
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+              <Building className="h-5 w-5 text-[var(--primary-color)]" />
               Business Information
             </h2>
             {renderSectionActions("business")}
@@ -317,11 +327,11 @@ export default function ProfilePage() {
       </div>
 
       {/* Address Information */}
-      <div className="bg-white border border-blue-200 rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 flex items-center gap-3">
-              <Building className="h-5 w-5 text-blue-600" />
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-3">
+              <Building className="h-5 w-5 text-[var(--primary-color)]" />
               Business Address
             </h2>
             {renderSectionActions("address")}
@@ -344,11 +354,11 @@ export default function ProfilePage() {
       </div>
 
       {/* Contact Information */}
-      <div className="bg-white border border-blue-200 rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <User className="h-5 w-5 text-blue-600" />
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+              <User className="h-5 w-5 text-[var(--primary-color)]" />
               Contact Information
             </h2>
             {renderSectionActions("contact")}
@@ -373,11 +383,11 @@ export default function ProfilePage() {
       </div>
 
       {/* Credibility Assessment */}
-      <div className="bg-white border border-blue-200 rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <Shield className="h-5 w-5 text-blue-600" />
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+              <Shield className="h-5 w-5 text-[var(--primary-color)]" />
               Credibility Assessment
             </h2>
             {renderSectionActions("credibility")}
@@ -395,11 +405,11 @@ export default function ProfilePage() {
                 { field: "ethics_level", label: "Ethics Level" },
               ].map(({ field, label }) => (
                 <div key={field} className="space-y-2">
-                  <label className="text-xs sm:text-sm font-medium text-gray-700">{label}</label>
+                  <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">{label}</label>
                   <select
                     value={tempData[field as keyof typeof tempData] as string}
                     onChange={(e) => handleInputChange(field, e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 text-sm border border-[var(--secondary-light-color)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
                   >
                     <option value="Basic">Basic</option>
                     <option value="Good">Good</option>
@@ -416,17 +426,17 @@ export default function ProfilePage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {[
-                { field: "material_standard", label: "Material Standard", color: "green" },
-                { field: "quality_level", label: "Quality Level", color: "blue" },
-                { field: "sustainability_level", label: "Sustainability", color: "green" },
-                { field: "service_level", label: "Service Level", color: "blue" },
-                { field: "standards_level", label: "Standards", color: "purple" },
-                { field: "ethics_level", label: "Ethics Level", color: "green" },
-              ].map(({ field, label, color }) => (
+                { field: "material_standard", label: "Material Standard" },
+                { field: "quality_level", label: "Quality Level" },
+                { field: "sustainability_level", label: "Sustainability" },
+                { field: "service_level", label: "Service Level" },
+                { field: "standards_level", label: "Standards" },
+                { field: "ethics_level", label: "Ethics Level" },
+              ].map(({ field, label }) => (
                 <div key={field}>
-                  <label className="text-xs sm:text-sm font-medium text-gray-700">{label}</label>
+                  <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">{label}</label>
                   <span
-                    className={`inline-block mt-2 px-2 py-1 text-xs font-medium rounded-full bg-${color}-100 text-${color}-800`}
+                    className="inline-block mt-2 px-2 py-1 text-xs font-medium rounded-full bg-[var(--secondary-light-color)] text-[var(--secondary-color)]"
                   >
                     {profileData[field as keyof typeof profileData] as string}
                   </span>
@@ -436,19 +446,19 @@ export default function ProfilePage() {
           )}
 
           <div className="mt-4 sm:mt-6">
-            <label className="text-xs sm:text-sm font-medium text-gray-700">Certifications</label>
+            <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Certifications</label>
             <div className="flex flex-wrap gap-2 mt-2">
               {profileData.certifications.map((cert, index) => (
                 <span
                   key={index}
-                  className="inline-block px-2 py-1 text-xs font-medium border border-gray-300 rounded-full bg-white text-gray-700"
+                  className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
                 >
                   {cert}
                 </span>
               ))}
             </div>
             {editingSection === "credibility" && (
-              <button className="inline-flex items-center px-3 py-2 mt-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors">
+              <button className="inline-flex items-center px-3 py-2 mt-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(--secondary-light-color)]/50 rounded-md transition-colors">
                 <Edit3 className="h-4 w-4 mr-1" />
                 Manage Certifications
               </button>
@@ -458,11 +468,11 @@ export default function ProfilePage() {
       </div>
 
       {/* Banking Information */}
-      <div className="bg-white border border-blue-200 rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <CreditCard className="h-5 w-5 text-blue-600" />
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+              <CreditCard className="h-5 w-5 text-[var(--primary-color)]" />
               Banking Information
             </h2>
             {renderSectionActions("banking")}
@@ -475,16 +485,16 @@ export default function ProfilePage() {
               {renderEditableField("account_name", "Account Name", "text", true)}
               {renderEditableField("account_type", "Account Type")}
               <div>
-                <label className="text-xs sm:text-sm font-medium text-gray-700">Account Number</label>
+                <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Account Number</label>
                 {editingSection === "banking" ? (
                   <input
                     type="text"
                     value={tempData.account_number}
                     onChange={(e) => handleInputChange("account_number", e.target.value)}
-                    className="w-full mt-1 px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full mt-1 px-3 py-2 text-sm border border-[var(--secondary-light-color)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
                   />
                 ) : (
-                  <p className="text-gray-900 mt-1 text-sm truncate">****{profileData.account_number.slice(-4)}</p>
+                  <p className="text-[var(--primary-color)] mt-1 text-sm truncate">****{profileData.account_number.slice(-4)}</p>
                 )}
               </div>
             </div>
@@ -498,10 +508,10 @@ export default function ProfilePage() {
       </div>
 
       {/* Compliance Issues */}
-      <div className="bg-white border border-blue-200 rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Compliance Status</h2>
-          <p className="text-sm text-gray-600 mt-1">Recent compliance and regulatory information</p>
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
+          <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)]">Compliance Status</h2>
+          <p className="text-sm text-[var(--primary-hover-color)] mt-1">Recent compliance and regulatory information</p>
         </div>
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -515,11 +525,11 @@ export default function ProfilePage() {
               { key: "account_activity_issues", label: "Account Activity Issues" },
               { key: "regulatory_actions", label: "Regulatory Actions" },
             ].map(({ key, label }) => (
-              <div key={key} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                <span className="text-xs sm:text-sm text-gray-700 truncate">{label}</span>
+              <div key={key} className="flex items-center justify-between p-3 border border-[var(--secondary-light-color)] rounded-lg">
+                <span className="text-xs sm:text-sm text-[var(--primary-hover-color)] truncate">{label}</span>
                 <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-green-600" />
-                  <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                  <Check className="h-4 w-4 text-[var(--secondary-color)]" />
+                  <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-[var(--secondary-light-color)] text-[var(--secondary-color)]">
                     No Issues
                   </span>
                 </div>
