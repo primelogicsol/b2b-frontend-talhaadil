@@ -1,32 +1,36 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import {
-  Search,
-  MapPin,
-  Clock,
-  Target,
-  Leaf,
-  Shield,
-  ChevronDown,
-  ChevronUp,
-  Briefcase,
-  Mail,
-} from "lucide-react"
+import { Search, MapPin, Clock, Target, Leaf, Shield, ChevronDown, ChevronUp, Mail } from "lucide-react"
 import VerticalHeroSlider from "../Essentials/VerticalBanner"
 import { useGlobalContext } from "../../context/ScreenProvider"
 import { getAllJobs } from "@/services/job"
 import { getJobDetails } from "@/services/job"
 
+interface Job {
+  id: string | number
+  title: string
+  summary: string
+  type: string
+  location: string
+}
+
+interface JobDetails {
+  description: string
+  requirements: string
+  salary_range: string
+  application_deadline: string
+}
+
 export default function CareersPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
-  const [expandedJob, setExpandedJob] = useState(null)
+  const [expandedJob, setExpandedJob] = useState<string | number | null>(null)
   const [openDropdown, setOpenDropdown] = useState(false)
-  const [jobs, setJobs] = useState([])
-  const [jobDetails, setJobDetails] = useState({})
+  const [jobs, setJobs] = useState<Job[]>([])
+  const [jobDetails, setJobDetails] = useState<Record<string | number, JobDetails>>({})
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
   const { is4K } = useGlobalContext()
 
   const benefits = [
@@ -101,7 +105,7 @@ export default function CareersPage() {
         setJobs(response.data) // Assuming response.data contains the array of jobs
         setLoading(false)
       } catch (err) {
-
+        setError("Failed to load jobs. Please try again later.")
         setLoading(false)
       }
     }
@@ -113,10 +117,12 @@ export default function CareersPage() {
     if (expandedJob) {
       const fetchJobDetails = async () => {
         try {
+          // @ts-ignore
           const response = await getJobDetails(expandedJob)
+          
           setJobDetails((prev) => ({ ...prev, [expandedJob]: response.data }))
         } catch (err) {
-          
+          setError("Failed to load job details. Please try again.")
         }
       }
       fetchJobDetails()
@@ -131,7 +137,7 @@ export default function CareersPage() {
     return matchesSearch && matchesFilter
   })
 
-  const toggleJobExpansion = (jobId) => {
+  const toggleJobExpansion = (jobId: string | number) => {
     setExpandedJob(expandedJob === jobId ? null : jobId)
   }
 
@@ -348,7 +354,7 @@ export default function CareersPage() {
 
         .job-section li {
           padding: 0.3rem 0;
-          padding-left: requirements1.2rem;
+          padding-left: 1.2rem;
           position: relative;
         }
 
@@ -735,9 +741,7 @@ export default function CareersPage() {
                       <div className="job-details">
                         <div className="job-section">
                           <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Description:</h4>
-                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>
-                            {jobDetails[job.id].description}
-                          </p>
+                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>{jobDetails[job.id].description}</p>
                         </div>
 
                         <div className="job-section">
@@ -751,9 +755,7 @@ export default function CareersPage() {
 
                         <div className="job-section">
                           <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Salary Range:</h4>
-                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>
-                            {jobDetails[job.id].salary_range}
-                          </p>
+                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>{jobDetails[job.id].salary_range}</p>
                         </div>
 
                         <div className="job-section">
@@ -812,10 +814,7 @@ export default function CareersPage() {
                 <h3 className="value-title" style={is4K ? { fontSize: "1.8rem" } : {}}>
                   {value.title}
                 </h3>
-                <p
-                  className="text-left lg:text-center px-1 lg:px-0"
-                  style={is4K ? { fontSize: "1.2rem" } : {}}
-                >
+                <p className="text-left lg:text-center px-1 lg:px-0" style={is4K ? { fontSize: "1.2rem" } : {}}>
                   {value.description}
                 </p>
               </div>
