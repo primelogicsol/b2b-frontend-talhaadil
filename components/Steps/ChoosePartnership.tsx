@@ -295,6 +295,10 @@ export default function ChoosePartnership({
 
       data = (await response).data;
       console.log("Partnership selection submitted successfully:", data);
+      let step = parseInt(Cookies.get("registration_step") || "0", 10);
+      step += 1;
+      Cookies.set("registration_step", step.toString());
+      onNext()
     } catch (error: any) {
       const errorMsg = error?.response?.data?.detail;
 
@@ -330,7 +334,7 @@ export default function ChoosePartnership({
         };
 
         await submitPartnershipSelection(selectedData);
-        onNext();
+        
       } catch (error) {
         // Error already handled in submitPartnershipSelection
       }
@@ -339,8 +343,7 @@ export default function ChoosePartnership({
 
   const handleGoToPay = (p: Partnership) => {
     alert(
-      `Redirecting to payment for ${p.partnership_name} - ${
-        user_role === "buyer" ? p.buyer : p.vendor
+      `Redirecting to payment for ${p.partnership_name} - ${user_role === "buyer" ? p.buyer : p.vendor
       }…`
     );
   };
@@ -366,16 +369,14 @@ export default function ChoosePartnership({
           <FaHandshake className="text-white text-2xl" />
         </div>
         <h1
-          className={`font-bold text-[var(--primary-color)] mb-4 ${
-            is4K ? "text-6xl" : "text-4xl"
-          }`}
+          className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"
+            }`}
         >
           Choose Your Partnership
         </h1>
         <p
-          className={`text-[var(--primary-color)]/70 mx-auto ${
-            is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
-          }`}
+          className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
+            }`}
         >
           Select the partnership that best aligns with your business goals as a{" "}
           {user_role}
@@ -388,24 +389,21 @@ export default function ChoosePartnership({
       </div>
 
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${
-          is4K ? "gap-12" : ""
-        }`}
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""
+          }`}
       >
         {partnerships.map((p) => (
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
             className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
-              ${
-                p.available
-                  ? "cursor-pointer hover:-translate-y-2"
-                  : "opacity-60 grayscale"
+              ${p.available
+                ? "cursor-pointer hover:-translate-y-2"
+                : "opacity-60 grayscale"
               }
-              ${
-                selectedPartnership === p.id
-                  ? "ring-4 ring-[var(--secondary-color)] scale-105"
-                  : ""
+              ${selectedPartnership === p.id
+                ? "ring-4 ring-[var(--secondary-color)] scale-105"
+                : ""
               }
               ${is4K ? "text-lg" : "text-base"}
             `}
@@ -438,20 +436,18 @@ export default function ChoosePartnership({
 
             <div className="flex justify-start mb-6 mt-6">
               <span
-                className={`px-4 py-2 text-sm font-semibold rounded-full ${
-                  p.available
+                className={`px-4 py-2 text-sm font-semibold rounded-full ${p.available
                     ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
                     : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
-                }`}
+                  }`}
               >
                 {p.available ? "Available Now" : "Requirements Not Met"}
               </span>
             </div>
 
             <h3
-              className={`font-bold text-[var(--primary-color)] mb-2 ${
-                is4K ? "text-2xl" : "text-xl"
-              }`}
+              className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"
+                }`}
             >
               {p.partnership_name}
             </h3>
@@ -481,9 +477,8 @@ export default function ChoosePartnership({
             </div>
 
             <p
-              className={`leading-relaxed mb-6 ${
-                is4K ? "text-base" : "text-sm"
-              } text-[var(--primary-color)]/80`}
+              className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"
+                } text-[var(--primary-color)]/80`}
             >
               {getRoleBasedDescription(p)}
             </p>
@@ -516,9 +511,8 @@ export default function ChoosePartnership({
 
       {selectedPartnership && (
         <div
-          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${
-            is4K ? "text-lg" : ""
-          }`}
+          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${is4K ? "text-lg" : ""
+            }`}
         >
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
@@ -526,9 +520,8 @@ export default function ChoosePartnership({
             </div>
             <div>
               <h3
-                className={`font-bold text-[var(--primary-color)] ${
-                  is4K ? "text-2xl" : "text-xl"
-                }`}
+                className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"
+                  }`}
               >
                 Partnership Selected
               </h3>
@@ -553,9 +546,8 @@ export default function ChoosePartnership({
           disabled={isSubmitting}
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 text-gray-700 rounded-xl transition-all font-medium
             border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white
-            ${is4K ? "text-lg" : ""} ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+            ${is4K ? "text-lg" : ""} ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
         >
           <span className="inline">←</span>
           <span className="hidden md:inline ml-2">Prev</span>
@@ -567,10 +559,9 @@ export default function ChoosePartnership({
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-xl text-white shadow-lg transition-all font-medium
             bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)]
             ${is4K ? "text-lg" : ""} 
-            ${
-              !selectedPartnership || isSubmitting
-                ? "opacity-50 cursor-not-allowed"
-                : ""
+            ${!selectedPartnership || isSubmitting
+              ? "opacity-50 cursor-not-allowed"
+              : ""
             }`}
         >
           <span className="hidden md:inline mr-2">

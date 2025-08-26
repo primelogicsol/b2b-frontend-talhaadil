@@ -29,6 +29,7 @@ export default function LoginPage() {
     try {
       const user = await login(formData);
       const data = user.data;
+      console.log(data)
 
       showToast("Login successful!");
 

@@ -130,6 +130,9 @@ export default function ComprehensiveProductSelection({
 
       const response = await submitProductsToAPI(submissionData)
       console.log(response)
+      let step = parseInt(Cookies.get("registration_step") || "0", 10);
+      step += 1;
+      Cookies.set("registration_step", step.toString());
       onNext()
     } catch (error: any) {
       console.error("Error submitting product data:", error)

@@ -21,6 +21,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
 
   const { showToast } = useToast()
   const { is4K } = useGlobalContext()
+  const [loading, setLoading] = useState(false)
 
   const [userRole, setUserRole] = useState<"vendor" | "buyer">("buyer")
 
@@ -197,10 +198,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   }
 
   const validateIBANCode = (iban: string): string => {
-    if (iban && !/^[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}([A-Z0-9]?){0,16}$/.test(iban.toUpperCase())) {
-      return "Please enter a valid IBAN code"
+    const trimmed = iban.replace(/\s+/g, '').toUpperCase();
+    // Basic IBAN format: 2 letters + 2 digits + up to 30 alphanumerics
+    if (!/^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$/.test(trimmed)) {
+      return "Please enter a valid IBAN code";
     }
-    return ""
+    return "";
   }
 
   const validateAccountNumber = (accountNumber: string): string => {
@@ -599,7 +602,9 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         standards_level: formData.credibilityAssessment.standardsLevel,
         ethics_level: formData.credibilityAssessment.ethicsLevel,
         certifications: Object.entries(formData.certifications)
-          .filter(([_, value]) => value)
+          .filter(([key, value]) =>
+            value && key !== (userRole === "vendor" ? "none" : "notRequired")
+          )
           .map(([key]) => certificationMap[key as keyof typeof certificationMap]),
         bank_name: formData.bankingInfo.bankName,
         account_name: formData.bankingInfo.accountName,
@@ -623,14 +628,17 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         regulatory_actions:
           formData.complianceIssues["Have regulatory actions been taken against your account?"] || false,
       }
-
+      setLoading(true)
       localStorage.setItem("businessRegistrationData", JSON.stringify(apiPayload))
       console.log("API Payload:", apiPayload)
 
-      // Make API call
       const response = sendInfo(apiPayload)
       const data = (await response).data
-      console.log(data)
+      onNext()
+
+      let step = parseInt(Cookies.get("registration_step") || "0", 10);
+      step += 1;
+      Cookies.set("registration_step", step.toString());
     } catch (error: any) {
       const errorMsg = error?.response?.data?.detail
 
@@ -644,12 +652,15 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       }
 
       console.error("Network Error:", error)
+    } finally {
+      setLoading(false)
     }
   }
 
   // ✅ Modified validation and submission
   const handleNext = () => {
     validateAndSubmit()
+
   }
 
   // ✅ Fixed completion percentage - only count required fields
@@ -741,9 +752,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.businessInfo.businessName}
                 onChange={(e) => handleBusinessInfoChange("businessName", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.businessName"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessName"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter your business name"
               />
               <ErrorMessage error={errors["businessInfo.businessName"]} />
@@ -753,9 +763,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.businessInfo.businessLegalStructure}
                 onChange={(e) => handleBusinessInfoChange("businessLegalStructure", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.businessLegalStructure"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessLegalStructure"] ? "border-red-500" : "border-gray-200"
+                  }`}
               >
                 <option value="">Select legal structure</option>
                 <option value="sole-proprietorship">Sole Proprietorship</option>
@@ -772,9 +781,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.businessInfo.businessType}
                 onChange={(e) => handleBusinessInfoChange("businessType", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.businessType"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessType"] ? "border-red-500" : "border-gray-200"
+                  }`}
               >
                 <option value="">Select business type</option>
                 <option value="manufacturer">Manufacturer</option>
@@ -793,9 +801,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="number"
                 value={formData.businessInfo.businessEstablishedYear || ""}
                 onChange={(e) => handleYearChange(e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.businessEstablishedYear"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessEstablishedYear"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="YYYY"
                 min="1900"
                 max={new Date().getFullYear()}
@@ -808,9 +815,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.businessInfo.businessRegistrationNumber}
                 onChange={(e) => handleBusinessInfoChange("businessRegistrationNumber", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.businessRegistrationNumber"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessRegistrationNumber"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter registration number"
               />
               <ErrorMessage error={errors["businessInfo.businessRegistrationNumber"]} />
@@ -831,9 +837,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="url"
                 value={formData.businessInfo.website || ""}
                 onChange={(e) => handleBusinessInfoChange("website", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.website"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.website"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="https://www.example.com"
               />
               <ErrorMessage error={errors["businessInfo.website"]} />
@@ -870,9 +875,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.gstNumber}
                   onChange={(e) => handleBusinessInfoChange("gstNumber", e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessInfo.gstNumber"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.gstNumber"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder={`Enter ${fieldLabels.taxRegistration.field1.toLowerCase()}`}
                   maxLength={15}
                 />
@@ -886,9 +890,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.taxIdentificationNumber}
                   onChange={(e) => handleBusinessInfoChange("taxIdentificationNumber", e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessInfo.taxIdentificationNumber"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.taxIdentificationNumber"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder={`Enter ${fieldLabels.taxRegistration.field2.toLowerCase()}`}
                   maxLength={15}
                 />
@@ -926,9 +929,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.streetAddress1}
                   onChange={(e) => handleBusinessInfoChange("streetAddress1", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessInfo.streetAddress1"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.streetAddress1"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter street address"
                 />
                 <ErrorMessage error={errors["businessInfo.streetAddress1"]} />
@@ -951,9 +953,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.city}
                   onChange={(e) => handleBusinessInfoChange("city", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessInfo.city"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.city"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter city"
                 />
                 <ErrorMessage error={errors["businessInfo.city"]} />
@@ -964,9 +965,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.stateRegion}
                   onChange={(e) => handleBusinessInfoChange("stateRegion", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessInfo.stateRegion"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.stateRegion"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter state/region"
                 />
                 <ErrorMessage error={errors["businessInfo.stateRegion"]} />
@@ -977,9 +977,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.postalCode}
                   onChange={(e) => handleBusinessInfoChange("postalCode", e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessInfo.postalCode"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.postalCode"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter postal code"
                   maxLength={10}
                 />
@@ -991,9 +990,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.businessInfo.country}
                 onChange={(e) => handleBusinessInfoChange("country", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessInfo.country"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.country"] ? "border-red-500" : "border-gray-200"
+                  }`}
               >
                 <option value="">Select country</option>
                 <option value="IN">India</option>
@@ -1026,9 +1024,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.businessContact.name}
                 onChange={(e) => handleBusinessContactChange("name", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessContact.name"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.name"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter contact person name"
               />
               <ErrorMessage error={errors["businessContact.name"]} />
@@ -1039,9 +1036,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="email"
                 value={formData.businessContact.email}
                 onChange={(e) => handleBusinessContactChange("email", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessContact.email"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.email"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter email address"
               />
               <ErrorMessage error={errors["businessContact.email"]} />
@@ -1052,9 +1048,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="tel"
                 value={formData.businessContact.phone}
                 onChange={(e) => handleBusinessContactChange("phone", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessContact.phone"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.phone"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter phone number"
               />
               <ErrorMessage error={errors["businessContact.phone"]} />
@@ -1065,9 +1060,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="tel"
                 value={formData.businessContact.whatsapp || ""}
                 onChange={(e) => handleBusinessContactChange("whatsapp", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["businessContact.whatsapp"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.whatsapp"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter WhatsApp number"
               />
               <ErrorMessage error={errors["businessContact.whatsapp"]} />
@@ -1084,9 +1078,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessContact.district}
                   onChange={(e) => handleBusinessContactChange("district", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessContact.district"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.district"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter district"
                 />
                 <ErrorMessage error={errors["businessContact.district"]} />
@@ -1097,9 +1090,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessContact.pinCode}
                   onChange={(e) => handleBusinessContactChange("pinCode", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessContact.pinCode"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.pinCode"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter pin code"
                   maxLength={6}
                 />
@@ -1111,9 +1103,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessContact.state}
                   onChange={(e) => handleBusinessContactChange("state", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessContact.state"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.state"] ? "border-red-500" : "border-gray-200"
+                    }`}
                   placeholder="Enter state"
                 />
                 <ErrorMessage error={errors["businessContact.state"]} />
@@ -1125,9 +1116,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <select
                   value={formData.businessContact.country}
                   onChange={(e) => handleBusinessContactChange("country", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                    errors["businessContact.country"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.country"] ? "border-red-500" : "border-gray-200"
+                    }`}
                 >
                   <option value="">Select country</option>
                   <option value="IN">India</option>
@@ -1224,9 +1214,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.bankName}
                 onChange={(e) => handleBankingInfoChange("bankName", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.bankName"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.bankName"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter bank name"
               />
               <ErrorMessage error={errors["bankingInfo.bankName"]} />
@@ -1237,9 +1226,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.accountName}
                 onChange={(e) => handleBankingInfoChange("accountName", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.accountName"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.accountName"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter account holder name"
               />
               <ErrorMessage error={errors["bankingInfo.accountName"]} />
@@ -1249,9 +1237,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.bankingInfo.accountType}
                 onChange={(e) => handleBankingInfoChange("accountType", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.accountType"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.accountType"] ? "border-red-500" : "border-gray-200"
+                  }`}
               >
                 <option value="">Select account type</option>
                 <option value="savings">Savings Account</option>
@@ -1267,9 +1254,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.accountNumber}
                 onChange={(e) => handleBankingInfoChange("accountNumber", e.target.value.replace(/\D/g, ""))}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.accountNumber"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.accountNumber"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter account number"
                 maxLength={18}
               />
@@ -1282,9 +1268,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.ifscCode}
                 onChange={(e) => handleBankingInfoChange("ifscCode", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.ifscCode"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.ifscCode"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder={`Enter ${fieldLabels.banking.routingCode.toLowerCase()}`}
                 maxLength={11}
               />
@@ -1296,9 +1281,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.swiftBisCode || ""}
                 onChange={(e) => handleBankingInfoChange("swiftBisCode", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.swiftBisCode"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.swiftBisCode"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter SWIFT code (for international)"
                 maxLength={11}
               />
@@ -1310,9 +1294,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.ibanCode || ""}
                 onChange={(e) => handleBankingInfoChange("ibanCode", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${
-                  errors["bankingInfo.ibanCode"] ? "border-red-500" : "border-gray-200"
-                }`}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.ibanCode"] ? "border-red-500" : "border-gray-200"
+                  }`}
                 placeholder="Enter IBAN code (for international)"
                 maxLength={34}
               />
@@ -1355,11 +1338,20 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         </button>
         <button
           onClick={handleNext}
-          className="px-4 py-2  sm:px-8 sm:py-4  sm:font-bold bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-xl transition-all font-medium shadow-lg"
+          disabled={loading}
+          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-xl transition-all font-medium shadow-lg ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[var(--primary-hover-color)]"
+            }`}
         >
-          <span className="hidden md:inline mr-2">Next</span>
-          <span className="inline">→</span>
+          {loading ? (
+            <span>Submitting...</span>
+          ) : (
+            <>
+              <span className="hidden md:inline mr-2">Next</span>
+              <span className="inline">→</span>
+            </>
+          )}
         </button>
+
       </div>
     </div>
   )
