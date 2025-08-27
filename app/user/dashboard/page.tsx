@@ -272,8 +272,8 @@ export default function DashboardPage() {
                       index < currentPartnership
                         ? "bg-[var(--secondary-color)]"
                         : index === currentPartnership
-                          ? "bg-[var(--primary-color)]"
-                          : "bg-[var(--secondary-light-color)]"
+                          ? "bg-green-500"
+                          : "bg-red-500"
                     }`}
                   />
                 </div>
