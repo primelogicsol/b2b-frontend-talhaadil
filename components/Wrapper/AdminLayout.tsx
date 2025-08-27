@@ -54,8 +54,8 @@ export default function AdminLayout({
             {!collapsed && (
               <div>
                 <Link href='/admin' >
-                <h1 className="text-xl font-bold text-slate-900">Admin Panel</h1>
-                <p className="text-xs text-slate-500">Management Dashboard</p></Link>
+                <h1 className="text-lg font-bold text-slate-900">DKC B2B Connect</h1>
+                <p className="text-xs text-slate-500">Admin Dashboard</p></Link>
                 
               </div>
             )}

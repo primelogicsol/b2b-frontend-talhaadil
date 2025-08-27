@@ -77,7 +77,7 @@ export default function LoginPage() {
       {/* Login Card */}
       <div className="frosted-glass relative z-10 w-full max-w-sm rounded-3xl p-6 shadow-2xl backdrop-blur-lg sm:max-w-md sm:p-8 md:p-10">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-6xl 2xl:text-7xl">
+          <h1 className="mb-2 font-extrabold tracking-tight text-white text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
             Welcome Back
           </h1>
           <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg">
