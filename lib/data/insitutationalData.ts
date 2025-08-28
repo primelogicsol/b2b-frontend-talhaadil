@@ -1,4 +1,5 @@
 export const institutionalData = {
+  tier : 4,
   hero: {
     headline:
       "Institutional Partnerships — Building Trust, Heritage, and Global Alliances",

@@ -1,4 +1,5 @@
 export const brandGrowthData = {
+  tier :2,
   hero: {
     headline: "Brand Growth Partnerships — Scale Your Craft, Build Your Brand",
     subtext:

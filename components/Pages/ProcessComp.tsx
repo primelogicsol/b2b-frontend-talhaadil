@@ -568,18 +568,7 @@ export default function Process() {
         >
           Buyer Partnership Framework and Pathway
         </h2>
-        <p
-          className={
-            is4K
-              ? "text-xl text-[var(--primary-header-color)] text-center max-w-5xl mx-auto mb-8"
-              : "text-lg text-[var(--primary-header-color)] text-left px-1 md:text-center lg:text-center max-w-4xl mx-auto mb-6"
-          }
-        >
-          At De Koshur Crafts, we understand that every business is unique. That's why we offer flexible partnership
-          pathways tailored to your goals, strengths, and vision. Whether you're sourcing for a boutique or expanding
-          your retail business, our programs are designed to provide access to authentic Kashmiri products with ease
-          and confidence, while ensuring the highest standards of quality, ethics, and sustainability.
-        </p>
+        
         <AnimatePresence mode="wait">
           <motion.div
             key={currentLevelIndex}
@@ -589,8 +578,8 @@ export default function Process() {
             transition={{ duration: 0.3 }}
             className={
               is4K
-                ? "text-xl text-[var(--secondary-hover-color)] text-center max-w-5xl mx-auto mb-8"
-                : "text-lg text-[var(--secondary-hover-color)] text-left px-1 md:text-center lg:text-center max-w-4xl mx-auto mb-6"
+                ? "text-xl text-white text-center max-w-5xl mx-auto mb-8"
+                : "text-lg text-white text-left px-1 md:text-center lg:text-center max-w-4xl mx-auto mb-6"
             }
           >
             {partnershipLevels[currentLevelIndex].description}

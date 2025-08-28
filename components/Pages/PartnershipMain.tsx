@@ -68,6 +68,7 @@ const itemVariants = {
 
 
 type pageData = {
+  tier : number,
   hero: {
     headline: string;
     subtext: string;
@@ -456,11 +457,18 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`font-bold text-[var(--primary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+          className={`font-bold text-[var(--primary-color)] text-center mb-4 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
             }`}
           variants={fadeInUp}
         >
           Choose Your Partnership Path
+        </motion.h2>
+        <motion.h2
+          className={`font-bold text-[var(--secondary-color)] text-center mb-16 ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+            }`}
+          variants={fadeInUp}
+        >
+          Tier {pageData.tier}
         </motion.h2>
 
         <motion.div

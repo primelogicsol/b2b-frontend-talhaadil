@@ -1,4 +1,5 @@
 export const coreTradeData = {
+  tier: 1,
   hero: {
     headline: "Core Trade Partnerships — The Gateway to Global Craft Commerce",
     subtext:
@@ -29,9 +30,9 @@ export const coreTradeData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 7+, Retention 0–18 months (depending on track), certification required for Certified Export.",
+        "KPI 7+, Retention 0–27 months (depending on track), certification required for Certified Export.",
       buyers:
-        "KPI 7+, Retention 0–18 months, budget flexibility depending on chosen track.",
+        "KPI 7+, Retention 0–27 months, budget flexibility depending on chosen track.",
       note: "Partners progress naturally through KPI improvement + retention periods.",
     },
     lateral: {
@@ -65,7 +66,7 @@ export const coreTradeData = {
       href: "/core-trade/dropshipping-ecommerce",
       retention: "None",
       bestFor: "Online stores, new artisans, small-scale buyers.",
-      benefit: "Zero risk, entry point into global trade.",
+      benefit: "Zero risk, entry point",
       cta: "Start Dropshipping",
       fastTrackAvailable: false,
     },
@@ -77,7 +78,7 @@ export const coreTradeData = {
       href: "/core-trade/consignment",
       retention: "18 months",
       bestFor: "Boutiques, retail stores, artisan groups.",
-      benefit: "Pay after sales → low-risk retail.",
+      benefit: "Pay after sales low-risk retail.",
       cta: "Apply for Consignment",
       fastTrackAvailable: true,
     },
@@ -89,16 +90,16 @@ export const coreTradeData = {
       kpi: "7+",
       retention: "3 months",
       bestFor: "Distributors, chain stores, large buyers.",
-      benefit: "Scalable volume & competitive pricing.",
+      benefit: "Scalable & competitive pricing.",
       cta: "Apply for Wholesale",
       fastTrackAvailable: true,
     },
     {
       id: "export",
-      name: "Certified Import/Export",
+      name: "Import/Export",
       icon: "Globe",
       href: "/core-trade/import-export",
-      kpi: "Buyer 7+ / Vendor 8+",
+      kpi: "8+",
       retention: "6 months",
       bestFor: "Compliance-driven trade, larger distributors.",
       benefit: "GI-certified, fair-trade verified.",
@@ -377,9 +378,11 @@ export const coreTradeData = {
       features: [
         "Free — no upfront or lateral fee.",
         "Dropshipping requires no KPI, no retention (universal entry).",
-        "KPI 7+ and retention (18 - 27 months) apply only to Consignment, Wholesale, and Export.",
+        "KPI 7+ and retention (18 - 27 months) apply only to Consignment, Wholesale, and Export.",
         "Best for: Partners who want steady, sustainable growth.",
+        "Transparent process with clear terms at every stage.",
       ],
+
       note: "Takes time: retention required before moving to advanced partnerships.",
       cta: "Apply with Standard Path",
       href: "/registration",
@@ -388,7 +391,7 @@ export const coreTradeData = {
       title: "Lateral Entry (KHCRF Fast-Track)",
       subtitle: "(Optional accelerated route)",
       features: [
-        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
+        "Independent evaluation by Hamadan Craft Revival Foundation",
         "If evaluation is promising, pay a Lateral Fee.",
         "Skip prerequisites + retention → direct access to advanced partnerships (Brand Growth, Collaborative, Institutional).",
         "Recognition as KHCRF-reviewed partner.",

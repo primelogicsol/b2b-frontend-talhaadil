@@ -1,5 +1,7 @@
 export const collaborativeData = {
+  tier : 3,
   hero: {
+    
     headline: "Collaborative Partnerships — Where Innovation Meets Tradition",
     subtext:
       "Collaboration is the future of craft trade. Beyond commerce, Collaborative Partnerships empower buyers and vendors to co-create, share resources, and integrate cutting-edge tools like digital storytelling, shared warehousing, packaging solutions, and emerging technologies (AI, AR/VR, Blockchain).",
