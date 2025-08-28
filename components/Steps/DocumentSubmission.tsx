@@ -300,7 +300,7 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
               files
             })
             console.log(response.data)
-          }
+          } 
         } else {
           const file = docData as File | null
           if (file) {

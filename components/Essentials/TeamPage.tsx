@@ -10,7 +10,18 @@ import {
   Sprout,
   Target,
   Landmark,
+  Layers,
+  CupSoda,
+  Grid,
+  Pin,
+  ShoppingBasket,
+  Spool
+  ,Headset,
+  Package,
+  ShieldCheck,
+  BarChart3
 } from "lucide-react"
+
 import { useInView } from "framer-motion"
 import { useState, useEffect, useRef } from "react"
 import { useGlobalContext } from "@/context/ScreenProvider"
@@ -40,99 +51,102 @@ export default function TeamPage() {
     },
   ]
   const supportItems = [
-    {
-      icon: <MessageSquare className="w-8 h-8" />,
-      title: "Customer Support",
-      description:
-        "Dedicated to providing exceptional service to every buyer and artisan, ensuring positive experiences across our platform with 24/7 assistance.",
-    },
-    {
-      icon: <Megaphone className="w-8 h-8" />,
-      title: "Marketing & Outreach",
-      description:
-        "Building global awareness through compelling storytelling, strategic social media engagement, and meaningful collaborations worldwide.",
-    },
-    {
-      icon: <DollarSign className="w-8 h-8" />,
-      title: "Finance & Operations",
-      description:
-        "Ensuring fair and prompt payments to artisans while managing smooth workflows, robust inventory systems, and highly efficient logistics operations.",
-    },
-    {
-      icon: <MessageSquare className="w-8 h-8" />,
-      title: "Customer Support",
-      description:
-        "Dedicated to providing exceptional service to every buyer and artisan, ensuring positive experiences across our platform with 24/7 assistance.",
-    },
-    {
-      icon: <Megaphone className="w-8 h-8" />,
-      title: "Marketing & Outreach",
-      description:
-        "Building global awareness through compelling storytelling, strategic social media engagement, and meaningful collaborations worldwide.",
-    },
-    {
-      icon: <DollarSign className="w-8 h-8" />,
-      title: "Finance & Operations",
-      description:
-        "Ensuring fair and prompt payments to artisans while managing smooth workflows, robust inventory systems, and highly efficient logistics operations.",
-    },
-  ]
+  {
+    icon: <Headset className="w-8 h-8" />,
+    title: "Customer Support",
+    description:
+      "Providing 24/7 guidance for artisans and buyers, ensuring smooth onboarding, fast query resolution, and consistent platform satisfaction.",
+  },
+  {
+    icon: <Megaphone className="w-8 h-8" />,
+    title: "Marketing & Outreach",
+    description:
+      "Expanding global presence with campaigns, cultural storytelling, and partnerships that connect markets and boost authentic engagement.",
+  },
+  {
+    icon: <DollarSign className="w-8 h-8" />,
+    title: "Finance & Operations",
+    description:
+      "Managing transparent payments, timely settlements, and efficient workflows to ensure reliable trade for vendors and buyers alike.",
+  },
+  {
+    icon: <Package className="w-8 h-8" />,
+    title: "Logistics & Supply Chain",
+    description:
+      "Coordinating warehousing, packaging, and shipping solutions that ensure reliable, trackable, and cost-effective order fulfillment.",
+  },
+  {
+    icon: <ShieldCheck className="w-8 h-8" />,
+    title: "Compliance & Verification",
+    description:
+      "Maintaining trade integrity through quality checks, GI certification, and strict compliance with international trade regulations.",
+  },
+  {
+    icon: <BarChart3 className="w-8 h-8" />,
+    title: "Technology & Data Support",
+    description:
+      "Delivering AI-driven insights, blockchain verification, and analytics tools to empower artisans and optimize business decisions.",
+  },
+]
+
   const artisans = [
     {
       icon: <Scissors className="w-8 h-8" />,
       title: "Pashmina Weavers",
       description:
-        "Master artisans who have perfected the ancient art of Pashmina weaving, creating luxurious pieces that tell stories of generations past. Each thread carries the wisdom of centuries.",
+        "Masters of hand-spun Pashmina, crafting luxury shawls, scarves, and stoles that showcase the finest Kashmiri fibers.",
     },
     {
       icon: <Hammer className="w-8 h-8" />,
-      title: "Wood Carvers",
+      title: "Walnut Wood Carvers",
       description:
-        "Skilled craftsmen who transform raw wood into intricate works of art, preserving traditional techniques passed down through families for generations.",
+        "Skilled artisans shaping walnut wood into fine furniture, décor, and panels — known for elegance and durability.",
     },
     {
       icon: <Paintbrush className="w-8 h-8" />,
-      title: "Traditional Artists",
+      title: "Papier-Mâché Artists",
       description:
-        "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
+        "Creators of vibrant boxes, ornaments, and décor, hand-painted with traditional Kashmiri floral and geometric motifs.",
     },
     {
-      icon: <Scissors className="w-8 h-8" />,
-      title: "Pashmina Weavers",
+      icon: <Pin className="w-8 h-8" />,
+      title: "Sozni Embroiderers",
       description:
-        "Master artisans who have perfected the ancient art of Pashmina weaving, creating luxurious pieces that tell stories of generations past. Each thread carries the wisdom of centuries.",
+        "Experts in delicate needle embroidery on Pashmina and fine fabrics, creating intricate, globally prized motifs.",
     },
     {
-      icon: <Hammer className="w-8 h-8" />,
-      title: "Wood Carvers",
+      icon: <Layers className="w-8 h-8" />,
+      title: "Namda & Gabba Makers",
       description:
-        "Skilled craftsmen who transform raw wood into intricate works of art, preserving traditional techniques passed down through families for generations.",
+        "Artisans producing felt rugs and embroidered wool floor coverings that combine bold design with traditional comfort.",
     },
     {
-      icon: <Paintbrush className="w-8 h-8" />,
-      title: "Traditional Artists",
+      icon: <CupSoda className="w-8 h-8" />,
+      title: "Copperware & Brassware Artisans",
       description:
-        "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
+        "Craftsmen creating engraved utensils, samovars, and décor items that merge daily use with artistic heritage.",
     },
     {
-      icon: <Scissors className="w-8 h-8" />,
-      title: "Pashmina Weavers",
+      icon: <Grid className="w-8 h-8" />,
+      title: "Carpet & Rug Weavers",
       description:
-        "Master artisans who have perfected the ancient art of Pashmina weaving, creating luxurious pieces that tell stories of generations past. Each thread carries the wisdom of centuries.",
+        "Makers of hand-knotted silk and wool carpets that represent Kashmiri artistry and timeless luxury for interiors.",
     },
     {
-      icon: <Hammer className="w-8 h-8" />,
-      title: "Wood Carvers",
+      icon: <ShoppingBasket className="w-8 h-8" />,
+      title: "Willow Wicker Weavers",
       description:
-        "Skilled craftsmen who transform raw wood into intricate works of art, preserving traditional techniques passed down through families for generations.",
+        "Creators of eco-friendly baskets, trays, and storage items from willow cane — durable and highly exportable.",
     },
     {
-      icon: <Paintbrush className="w-8 h-8" />,
-      title: "Traditional Artists",
+      icon: <Spool className="w-8 h-8" />,
+      title: "Crewel & Chain-Stitch Artisans",
       description:
-        "Creative souls from diverse regions and backgrounds, united by their passion for preserving and sharing Kashmir's rich cultural heritage with the world.",
+        "Producers of embroidered drapes, cushion covers, and wall pieces that merge heritage with modern interiors.",
     },
   ]
+
+
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { amount: 0.3, once: true })
 
@@ -878,8 +892,8 @@ export default function TeamPage() {
                 <div className="section-badge">Our Artisans</div>
                 <h2 className="section-title">The Heart of Our Craft</h2>
                 <p className="section-subtitle">
-                  Our artisans, from remote villages to bustling urban centers, are the heart and soul of our platform.
-                  Every piece tells a story of skill, tradition, and passion.
+                  Our artisans, spread across Kashmir’s valleys and towns, form the backbone of a centuries-old industry. Each product reflects precision, sustainability, and craftsmanship trusted by global buyers.
+
                 </p>
               </div>
               <div className="artisan-grid">
@@ -907,8 +921,8 @@ export default function TeamPage() {
                 <div className="section-badge">Support Team</div>
                 <h2 className="section-title">The Backbone of Operations</h2>
                 <p className="section-subtitle text-left lg:text-center">
-                  Behind every successful business is a strong support system. Our diverse team brings expertise in
-                  customer service, business development, marketing, and operations.
+                 Behind every thriving marketplace is a strong support ecosystem. Our team ensures artisans and buyers experience seamless trade through expertise in service, finance, logistics, compliance, and global outreach.
+
                 </p>
               </div>
 

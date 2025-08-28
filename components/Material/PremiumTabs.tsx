@@ -439,14 +439,14 @@ export default function PremiumTabs() {
           transition={{ duration: 0.8 }}
         >
           <h1
-            className={`${is4K ? "text-6xl md:text-7xl" : "text-5xl md:text-6xl"} font-bold mb-6 text-[var(--secondary-color)] `}
+            className={`text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-6 text-[var(--secondary-color)] `}
           >
-            Business Insights
+            North American Handicraft Business Insights
           </h1>
           <p
             className={`${is4K ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} text-center px-2 md:text-center lg:text-center text-gray-700 ${is4K ? "max-w-4xl" : "max-w-3xl"} mx-auto leading-relaxed`}
           >
-            Actionable Data and Strategies to Guide Smarter Decisions
+            Actionable Data and Market Strategies to Guide Smarter Trade Decisions
           </p>
         </motion.div>
 

@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Users, HeartHandshake, GraduationCap, Stethoscope, Building2, Leaf, Factory, Globe2 } from "lucide-react"
+import { Users, HeartHandshake, GraduationCap, Stethoscope, Building2, Leaf, Factory, Globe2, Award } from "lucide-react"
 import { useGlobalContext } from "../../context/ScreenProvider"
 
 interface AccordionItem {
@@ -27,6 +27,7 @@ const iconMap: Record<string, React.ElementType> = {
   leaf: Leaf,
   factory: Factory,
   globe2: Globe2,
+  award : Award
 }
 
 export default function Accordion({ data }: ResponsiveAccordionProps) {

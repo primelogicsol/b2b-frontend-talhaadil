@@ -241,7 +241,7 @@ export default function OurValue() {
           subtitle="WELCOME TO B2B CONNECT USA"
           title="Empowering Kashmiri Artisans, Startups in Accessing American"
           highlight="Markets"
-          description="At De Koshur Crafts, our mission transcends the typical e-commerce experience.We believe that authentic Kashmiri craftsmanship deserves global respect, recognition, and reach.Our platform empowers artisans, preserves heritage crafts, and connects them to international markets through sustainable, fair trade practices and innovation."
+          description="At De Koshur Crafts B2B Connect, our mission transcends the typical e-commerce experience.We believe that authentic Kashmiri craftsmanship deserves global respect, recognition, and reach.Our platform empowers artisans, preserves heritage crafts, and connects them to international markets through sustainable, fair trade practices and innovation."
           steps={[
             "Honor It: Celebrate Kashmir’s craft legacy while scaling with next-gen trade tools like blockchain, digital ledgers, and carbon scorecards.",
             "Preserve It: Protect authentic crafts, Pashmina, Kani weaving, Papier Mâché, and woodwork, with full traceability and GI tagging.",

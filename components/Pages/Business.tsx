@@ -4,8 +4,7 @@ import Accordion from "@/components/Material/Accordion"
 import Counter from "@/components/Material/Counter"
 import PremiumTabs from "@/components/Material/PremiumTabs"
 import BusinessLocation from "@/components/Essentials/BusinessLocation"
-import { Shirt, Palette, Scissors, TreePine, Settings, Gem, Landmark, Leaf, Gift } from "lucide-react"
-import Location from "@/components/Essentials/Location"
+import { Shirt, Palette, Scissors, TreePine, Settings, Gem, Landmark, Leaf, Gift, Sun, Recycle, Trophy, Briefcase, Utensils, Square, Sofa } from "lucide-react"
 import { useGlobalContext } from "@/context/ScreenProvider"
 
 export default function BusinessNiche() {
@@ -40,97 +39,122 @@ export default function BusinessNiche() {
       id: "artisan-income",
       title: "Artisan Income",
       content:
-        "Over 2,000 artisans gained fair global exposure, achieving a 30% income rise and earning millions collectively through direct sales.",
+        "Boosted artisan earnings through direct-to-buyer sales, removing middlemen and ensuring fairer profits for their craft.",
       icon: "users",
     },
     {
-      id: "women-empowerment",
+      id: "women-growth",
       title: "Women Growth",
       content:
-        "Sixty percent are women artisans, with 35% higher earnings, building independence and supporting families across their communities.",
+        "Expanded women’s participation in craft trade, giving them fair wages, market visibility, and lasting financial independence.",
       icon: "heartHandshake",
     },
     {
-      id: "training-support",
+      id: "skill-training",
       title: "Skill Training",
       content:
-        "More than 100 sessions trained 1,500 artisans in marketing, sustainability, and quality control to expand their craft and business.",
+        "Equipped artisans with digital tools, design expertise, and export-ready skills to enhance craftsmanship and sales outreach.",
       icon: "graduationCap",
     },
     {
-      id: "education-health",
+      id: "family-care",
       title: "Family Care",
       content:
-        "Scholarships for 500+ children and health aid for 3,000 members ensure artisan families grow stronger and lead healthier lives.",
+        "Provided artisan families with health grants, educational support, and welfare initiatives to improve household well-being.",
       icon: "stethoscope",
     },
     {
-      id: "community-build",
+      id: "local-growth",
       title: "Local Growth",
       content:
-        "Fifteen infrastructure projects, 200 micro‑loans, and farming initiatives uplift villages and strengthen artisan communities deeply.",
+        "Stimulated village economies through jobs, micro-loans, and craft hubs to sustain traditional skills and rural livelihoods.",
       icon: "building2",
     },
     {
-      id: "eco-materials",
+      id: "green-craft",
       title: "Green Craft",
       content:
-        "Seventy‑five percent of products use eco‑friendly materials, organic dyes, and recycled fibers to protect nature while creating art.",
+        "Promoted eco-friendly materials, organic dyes, and responsible production methods to preserve heritage sustainably.",
       icon: "leaf",
     },
     {
-      id: "carbon-reduce",
-      title: "Low Carbon",
+      id: "fair-trade",
+      title: "Fair Trade Access",
       content:
-        "Fifty tons of offsets and recycled packaging ensure every shipment lowers waste and supports a more sustainable production path.",
-      icon: "factory",
+        "Ensured transparent pricing, certifications, and policies that empower artisans to earn rightful value for their creations.",
+      icon: "award",
     },
     {
-      id: "global-reach",
+      id: "world-sales",
       title: "World Sales",
       content:
-        "Kashmiri crafts reached 100 nations, 300 retail partners, and over 100,000 products sold to buyers worldwide celebrating heritage.",
+        "Kashmiri crafts reached 100+ nations, 300+ partners, and 100,000+ sales globally, sharing heritage with the world.",
       icon: "globe2",
     },
   ]
+
   const items = [
     {
       icon: <Shirt className="text-[color:var(--primary-color)] w-12 h-12" />,
-      title: "Pashmina Shawls",
-      description:
-        "Soft crafted shawls with old world touch and new charm woven with care to keep warmth alive and true art here.",
-    },
-    {
-      icon: <Shirt className="text-[color:var(--primary-color)] w-12 h-12" />,
-      title: "Pashmina Shawls",
-      description:
-        "Soft crafted shawls with old world touch and new charm woven with care to keep warmth alive and true art here.",
+      title: "Boutique",
+      description: "Elegant textiles like pashmina and silk, woven with care to blend tradition with modern style and warmth.",
     },
     {
       icon: <Palette className="text-[color:var(--secondary-color)] w-12 h-12" />,
-      title: "Papier Mache Art",
-      description:
-        "Fine painted crafts with bright bold tones that tell of past times with care and skill that still lives on now.",
+      title: "Interior Décor",
+      description: "Artful décor pieces, from papier-mache to tapestries, crafted to enrich spaces with timeless beauty.",
+    },
+    {
+      icon: <TreePine className="text-[color:var(--primary-color)] w-12 h-12" />,
+      title: "Ceiling Treatment",
+      description: "Intricate khatamband woodwork, handcrafted to transform ceilings with geometric and floral elegance.",
+    },
+    {
+      icon: <Sun className="text-[color:var(--secondary-color)] w-12 h-12" />,
+      title: "Window Treatment",
+      description: "Exquisite lattice and embroidered curtains, blending craftsmanship with functional, stylish designs.",
+    },
+    {
+      icon: <Recycle className="text-[color:var(--primary-color)] w-12 h-12" />,
+      title: "Recycled Craft",
+      description: "Eco-friendly papier-mache and gabba, crafted from recycled materials with vibrant, lasting designs.",
+    },
+    {
+      icon: <Trophy className="text-[color:var(--secondary-color)] w-12 h-12" />,
+      title: "Sports Craft",
+      description: "Handcrafted cricket bats and chess boards, blending tradition with precision for sport and leisure.",
+    },
+    {
+      icon: <Briefcase className="text-[color:var(--primary-color)] w-12 h-12" />,
+      title: "Hide Craft",
+      description: "Luxurious leather and fur products, crafted with skill to offer durability and timeless elegance.",
+    },
+    {
+      icon: <Utensils className="text-[color:var(--secondary-color)] w-12 h-12" />,
+      title: "Culinary Craft",
+      description: "Authentic Kashmiri wazwan and teas, prepared with care to deliver rich, traditional flavors.",
     },
     {
       icon: <Scissors className="text-[color:var(--primary-color)] w-12 h-12" />,
-      title: "Kani Weaving Now",
-      description:
-        "Old comb work weaves with small great moves to make strong cloth and clear shapes that last with fine warm love.",
+      title: "Embroidery",
+      description: "Fine needlework like sozni and zardozi, crafted with precision to create intricate, vibrant patterns.",
     },
     {
-      icon: <TreePine className="text-[color:var(--secondary-color)] w-12 h-12" />,
-      title: "Wood Carving Art",
-      description:
-        "Fine carved wood made with soft sharp tools and old skill to give forms and shapes that glow and live with charm.",
+      icon: <Utensils className="text-[color:var(--secondary-color)] w-12 h-12" />,
+      title: "Dining and Serving Ware",
+      description: "Elegant handcrafted tableware, blending traditional designs with functionality for dining elegance.",
     },
     {
-      icon: <Settings className="text-[color:var(--primary-color)] w-12 h-12" />,
-      title: "Custom Craft Made",
-      description:
-        "Your own fine work shaped with heart and hand with old skill to make warm true forms that stand with deep art.",
+      icon: <Square className="text-[color:var(--primary-color)] w-12 h-12" />,
+      title: "Rugs and Carpets",
+      description: "Handwoven rugs with intricate patterns, crafted to add warmth and artistry to any living space.",
     },
-  ]
+    {
+      icon: <Sofa className="text-[color:var(--secondary-color)] w-12 h-12" />,
+      title: "Furniture",
+      description: "Artisanal furniture, from crewel to wicker, designed with tradition and comfort in every detail.",
+    },
+  ];
   const cards = [
     {
       icon: <Gem className="w-8 h-8 text-white" />,
@@ -299,7 +323,7 @@ export default function BusinessNiche() {
       </section>
 
       {/* Global Impact Metrics Section */}
-      <section className={`px-4 md:px-8 lg:px-12 py-30 ${is4K ?  "mx-auto max-w-[2400px] 2xl:py-40" : ""}`}>
+      <section className={`px-4 md:px-8 lg:px-12 py-30 ${is4K ? "mx-auto max-w-[2400px] 2xl:py-40" : ""}`}>
         <h1
           className={`text-center font-extrabold mb-6 text-3xl sm:text-4xl md:text-5xl text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl 2xl:mb-8" : ""}`}
         >
@@ -392,7 +416,7 @@ export default function BusinessNiche() {
       </section>
       {/* <ScrollSection /> */}
       <BusinessLocation />
-      <Location />
+     
     </div>
   )
 }

@@ -2,6 +2,8 @@
 
 import { MapPin, Globe, Users, Building2, Truck, Phone, Heart } from "lucide-react"
 import { useGlobalContext } from "../../context/ScreenProvider"
+import Location from "@/components/Essentials/Location"
+
 
 export default function BusinessLocation() {
   const { is4K } = useGlobalContext()
@@ -194,6 +196,7 @@ export default function BusinessLocation() {
           </div>
         </div>
       </section>
+      <Location/>
 
       {/* Global Expansion Section */}
       <section className={`${is4K ? "py-20 md:py-24 lg:py-32" : "py-12 md:py-16 lg:py-20"} bg-gray-50`}>

@@ -34,7 +34,7 @@ export default function CareersPage() {
   const [error, setError] = useState<string | null>(null)
   const { is4K } = useGlobalContext()
 
- const benefits = [
+  const benefits = [
     {
       title: "Make a Difference",
       description: "Help shape a platform that values craft, supports fair trade, and builds lasting cultural growth.",
@@ -658,7 +658,9 @@ export default function CareersPage() {
 
           {error && <p className="error-message">{error}</p>}
           {loading ? (
-            <p className="loading-message">Loading jobs...</p>
+            <div className="job-details-loading">
+              <div className="spinner" />
+            </div>
           ) : (
             <>
               <div className="search-filter-section px-4 py-4">
@@ -839,6 +841,12 @@ export default function CareersPage() {
             <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.8rem" : "1.2rem", fontWeight: "600", color: "var(--primary-color)" }}>
               We look forward to hearing from you!
             </p>
+            <div className="cta-buttons">
+              <a href="mailto:careers@dekoshurcrafts.com" className="cta-button" style={is4K ? { fontSize: "1.5rem", padding: "20px 40px" } : {}}>
+                <Mail size={is4K ? 28 : 20} />
+                Apply Now
+              </a>
+            </div>
           </div>
         </div>
       </section>
