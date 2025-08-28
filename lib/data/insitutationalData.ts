@@ -1,9 +1,14 @@
 export const institutionalData = {
   hero: {
-    headline: "Institutional Partnerships — Building Trust, Heritage, and Global Alliances",
+    headline:
+      "Institutional Partnerships — Building Trust, Heritage, and Global Alliances",
     subtext:
       "Institutional Partnerships represent the highest level of the De Koshur Crafts ecosystem. They are designed for museums, NGOs, governments, technology firms, and large-scale organizations that seek long-term collaborations rooted in heritage, compliance, and innovation.",
-    ctaButtons: ["Start Institutional Partnership", "Apply as a Vendor", "Apply as a Buyer"],
+    ctaButtons: [
+      "Start Institutional Partnership",
+      "Apply as a Vendor",
+      "Apply as a Buyer",
+    ],
   },
   whyCoreTrade: {
     heading: "Fixing the Trust & Compliance Gap",
@@ -24,13 +29,16 @@ export const institutionalData = {
     heading: "Who Can Join Institutional?",
     standard: {
       title: "Standard Eligibility (Default Path)",
-      vendors: "KPI 9+, Retention 12–18 months, must have completed Collaborative track (Tech, Packaging, or Warehousing).",
-      buyers: "KPI 8+, Retention 12–18 months, must have engaged in Brand Growth or Collaborative.",
+      vendors:
+        "KPI 9+, Retention 12–18 months, must have completed Collaborative track (Tech, Packaging, or Warehousing).",
+      buyers:
+        "KPI 8+, Retention 12–18 months, must have engaged in Brand Growth or Collaborative.",
       note: "Partners progress through KPI improvement + retention periods after completing prerequisite tracks.",
     },
     lateral: {
       title: "Lateral Entry (Fast-Track Path)",
-      description: "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
+      description:
+        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
       points: [
         "KHCRF conducts evaluation.",
         "If promising → pay Lateral Fee → skip prerequisites & retention.",
@@ -42,62 +50,68 @@ export const institutionalData = {
   eligibilityTest: {
     heading: "Check Your Institutional Eligibility Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
-    vendorCriteria: "Previous institutional collaborations, GI/fair-trade certification, tech adoption (blockchain, AR/VR), retention history.",
-    buyerCriteria: "Type of institution (museum, NGO, retail chain, government, tech), compliance requirements, prior collaborations, retention history.",
+    vendorCriteria:
+      "Previous institutional collaborations, GI/fair-trade certification, tech adoption (blockchain, AR/VR), retention history.",
+    buyerCriteria:
+      "Type of institution (museum, NGO, retail chain, government, tech), compliance requirements, prior collaborations, retention history.",
     exampleOutput:
       "You qualify for Institutional → Museum Partnership. With 12 months retention or KHCRF fast-track, you can progress into Policy Alliance Partnerships.",
     cta: "Apply Now for This Track",
   },
   tracks: [
     {
+      id: "logistics",
+      name: "Logistics & Infrastructure",
+      icon: "Truck",
+      kpi: "8+",
+      href: "/institutional/logistics-infrastructure",
+      retention: "12 months",
+      bestFor: "Large buyers, vendor cooperatives, logistics partners.",
+      benefit: "Global supply chain integration, warehousing, reduced costs.",
+      cta: "Apply for Logistics",
+      fastTrackAvailable: true,
+    },
+    {
       id: "museum",
       name: "Museums",
       icon: "Landmark",
-      href : "/institutional/museum-institutional",
-      kpi: "9+",
-      retention: "12 months",
-      bestFor: "Vendors with heritage products & institutions preserving culture.",
+      href: "/institutional/museum-institutional",
+      kpi: "None",
+      retention: "None",
+      bestFor:
+        "Vendors with heritage products & institutions preserving culture.",
       benefit: "Museum showcases, heritage preservation, global visibility.",
-      cta: "Apply for Museum Partnership",
+      cta: "Apply for Museum",
       fastTrackAvailable: true,
     },
     {
       id: "ngo-government",
       name: "NGOs & Governments",
       icon: "Globe",
-      kpi: "8+",
-      href : "/institutional/ngo&government",
-      retention: "12 months",
+      kpi: "None",
+      href: "/institutional/ngo&government",
+      retention: "None",
       bestFor: "Social enterprises, NGOs, policymakers.",
-      benefit: "Fair-trade advocacy, social impact programs, craft policy support.",
-      cta: "Apply for NGO/Government Partnership",
-      fastTrackAvailable: true,
-    },
-    {
-      id: "logistics",
-      name: "Logistics & Infrastructure",
-      icon: "Truck",
-      kpi: "8+",
-      href : "/institutional/logistics-infrastructure",
-      retention: "12 months",
-      bestFor: "Large buyers, vendor cooperatives, logistics partners.",
-      benefit: "Global supply chain integration, warehousing, reduced costs.",
-      cta: "Apply for Logistics Partnership",
+      benefit:
+        "Fair-trade advocacy, social impact programs, craft policy support.",
+      cta: "Apply for NGO",
       fastTrackAvailable: true,
     },
     {
       id: "tech-alliance",
       name: "Technology Alliances",
       icon: "Cpu",
-      kpi: "9+",
-      href : "/institutional/technology-partnership",
-      retention: "18 months",
-      bestFor: "Vendors adopting blockchain, AI, AR/VR; buyers seeking traceability.",
+      kpi: "None",
+      href: "/institutional/technology-partnership",
+      retention: "None",
+      bestFor:
+        "Vendors adopting blockchain, AI, AR/VR; buyers seeking traceability.",
       benefit: "Blockchain traceability, AI insights, AR/VR exhibitions.",
       cta: "Apply for Tech Alliance",
       fastTrackAvailable: true,
     },
   ],
+
   workflow: {
     heading: "How Institutional Partnerships Work",
     standard: {
@@ -126,7 +140,8 @@ export const institutionalData = {
       {
         name: "Museums",
         icon: "Landmark",
-        bestFor: "Vendors with heritage products & institutions preserving culture",
+        bestFor:
+          "Vendors with heritage products & institutions preserving culture",
         kpi: "9+",
         retention: "12 months",
         benefit: "Museum showcases, heritage preservation, global visibility.",
@@ -138,7 +153,8 @@ export const institutionalData = {
         bestFor: "Social enterprises, NGOs, policymakers",
         kpi: "8+",
         retention: "12 months",
-        benefit: "Fair-trade advocacy, social impact programs, craft policy support.",
+        benefit:
+          "Fair-trade advocacy, social impact programs, craft policy support.",
         progression: "Progress to Policy Alliance Partnerships",
       },
       {
@@ -153,7 +169,8 @@ export const institutionalData = {
       {
         name: "Technology Alliances",
         icon: "Cpu",
-        bestFor: "Vendors adopting blockchain, AI, AR/VR; buyers seeking traceability",
+        bestFor:
+          "Vendors adopting blockchain, AI, AR/VR; buyers seeking traceability",
         kpi: "9+",
         retention: "18 months",
         benefit: "Blockchain traceability, AI insights, AR/VR exhibitions.",
@@ -179,11 +196,13 @@ export const institutionalData = {
       },
       {
         title: "KPI + Compliance Evaluation",
-        description: "Evaluation of KPI, compliance, and prerequisite track completions.",
+        description:
+          "Evaluation of KPI, compliance, and prerequisite track completions.",
       },
       {
         title: "Track Activation",
-        description: "Access to museum, NGO, logistics, or tech alliance services.",
+        description:
+          "Access to museum, NGO, logistics, or tech alliance services.",
       },
       {
         title: "Fast-Track Option (KHCRF)",
@@ -195,7 +214,8 @@ export const institutionalData = {
       },
       {
         title: "Policy Recognition & Global Alliances",
-        description: "Integration into global policy alliances and institutional networks.",
+        description:
+          "Integration into global policy alliances and institutional networks.",
         pathways: [
           "Policy Alliance Partnerships (Museums, NGOs, Governments, Tech)",
         ],
@@ -364,7 +384,7 @@ export const institutionalData = {
       subtitle: "(Default progression for all partners)",
       features: [
         "Free — no upfront or lateral fee.",
-        "Progress via KPI + retention (12–18 months).",
+        "Progress via KPI + retention (90 months).",
         "Best for: Institutions building steady, reliable partnerships.",
       ],
       note: "Takes time: requires previous track completions.",
@@ -385,12 +405,14 @@ export const institutionalData = {
   },
   faq: [
     {
-      question: "Do I need to complete Collaborative before joining Institutional?",
+      question:
+        "Do I need to complete Collaborative before joining Institutional?",
       answer: "Yes, unless you qualify via KHCRF Lateral Entry.",
     },
     {
       question: "Can NGOs and small institutions join directly?",
-      answer: "Yes, if they meet KPI 8+ and retention 12 months, or via fast-track.",
+      answer:
+        "Yes, if they meet KPI 8+ and retention 12 months, or via fast-track.",
     },
     {
       question: "Is technology adoption mandatory?",
@@ -398,13 +420,19 @@ export const institutionalData = {
     },
     {
       question: "Can museums join without GI-certified vendors?",
-      answer: "No, GI/fair-trade certification is mandatory for Museum Partnerships.",
+      answer:
+        "No, GI/fair-trade certification is mandatory for Museum Partnerships.",
     },
   ],
   footer: {
-    headline: "Join Institutional Partnerships — Build Global Heritage Alliances",
+    headline:
+      "Join Institutional Partnerships — Build Global Heritage Alliances",
     subtext:
       "Elevate your partnership to the highest level: museums, NGOs, governments, logistics, and tech alliances.",
-    ctaButtons: ["Apply as a Vendor", "Apply as a Buyer", "Apply for KHCRF Fast-Track"],
+    ctaButtons: [
+      "Apply as a Vendor",
+      "Apply as a Buyer",
+      "Apply for KHCRF Fast-Track",
+    ],
   },
-}
+};

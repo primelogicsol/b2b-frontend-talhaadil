@@ -1,9 +1,13 @@
- export const coreTradeData = {
-   hero: {
+export const coreTradeData = {
+  hero: {
     headline: "Core Trade Partnerships — The Gateway to Global Craft Commerce",
     subtext:
       "Begin your journey into structured, transparent, and fair trade. Core Trade connects Vendors and Buyers through four partnership models: Dropshipping, Consignment, Wholesale, and Certified Import/Export.",
-    ctaButtons: ["Start Core Trade Partnership", "Apply as a Vendor", "Apply as a Buyer"],
+    ctaButtons: [
+      "Start Core Trade Partnership",
+      "Apply as a Vendor",
+      "Apply as a Buyer",
+    ],
   },
   whyCoreTrade: {
     heading: "Fixing the Broken Craft Trade",
@@ -24,8 +28,10 @@
     heading: "Who Can Join Core Trade?",
     standard: {
       title: "Standard Eligibility (Default Path)",
-      vendors: "KPI 7+, Retention 0–18 months (depending on track), certification required for Certified Export.",
-      buyers: "KPI 7+, Retention 0–18 months, budget flexibility depending on chosen track.",
+      vendors:
+        "KPI 7+, Retention 0–18 months (depending on track), certification required for Certified Export.",
+      buyers:
+        "KPI 7+, Retention 0–18 months, budget flexibility depending on chosen track.",
       note: "Partners progress naturally through KPI improvement + retention periods.",
     },
     lateral: {
@@ -43,7 +49,8 @@
   eligibilityTest: {
     heading: "Check Your Core Trade Track Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
-    vendorCriteria: "certifications, production capacity, tech adoption, retention history",
+    vendorCriteria:
+      "certifications, production capacity, tech adoption, retention history",
     buyerCriteria: "sourcing model, business type, budget, retention history",
     exampleOutput:
       "You qualify for Core Trade – Consignment Partner. With 18 months retention or KHCRF fast-track, you can progress to Exhibition Partner (Brand Growth).",
@@ -55,7 +62,7 @@
       name: "Dropshipping",
       icon: "Truck",
       kpi: "None",
-      href : "/core-trade/dropshipping-ecommerce",
+      href: "/core-trade/dropshipping-ecommerce",
       retention: "None",
       bestFor: "Online stores, new artisans, small-scale buyers.",
       benefit: "Zero risk, entry point into global trade.",
@@ -67,7 +74,7 @@
       name: "Consignment",
       icon: "ShoppingBag",
       kpi: "7+",
-      href : "/core-trade/consignment",
+      href: "/core-trade/consignment",
       retention: "18 months",
       bestFor: "Boutiques, retail stores, artisan groups.",
       benefit: "Pay after sales → low-risk retail.",
@@ -78,7 +85,7 @@
       id: "wholesale",
       name: "Wholesale",
       icon: "Package",
-      href : "/core-trade/wholesale&distribution",
+      href: "/core-trade/wholesale&distribution",
       kpi: "7+",
       retention: "3 months",
       bestFor: "Distributors, chain stores, large buyers.",
@@ -90,7 +97,7 @@
       id: "export",
       name: "Certified Import/Export",
       icon: "Globe",
-      href : "/core-trade/import-export",
+      href: "/core-trade/import-export",
       kpi: "Buyer 7+ / Vendor 8+",
       retention: "6 months",
       bestFor: "Compliance-driven trade, larger distributors.",
@@ -103,7 +110,13 @@
     heading: "How Core Trade Works",
     standard: {
       title: "Standard Path",
-      steps: ["Apply", "Evaluation (KPI)", "Track Match", "Trade Activation", "Progression via KPI + Retention"],
+      steps: [
+        "Apply",
+        "Evaluation (KPI)",
+        "Track Match",
+        "Trade Activation",
+        "Progression via KPI + Retention",
+      ],
     },
     fastTrack: {
       title: "Fast-Track Path (KHCRF)",
@@ -121,40 +134,41 @@
       {
         name: "Dropshipping",
         icon: "Truck",
-        bestFor: "Small vendors & online buyers",
+        bestFor: "Online stores, new artisans, small-scale buyers",
         kpi: "None",
         retention: "None",
-        benefit: "No inventory risk. Vendor ships directly to customer.",
+        benefit: "Zero risk, entry point into global trade.",
         progression: "Progress to Consignment or Wholesale",
       },
       {
         name: "Consignment",
         icon: "ShoppingBag",
-        bestFor: "Boutiques, seasonal retailers",
+        bestFor: "Boutiques, retail stores, artisan groups",
         kpi: "7+",
         retention: "18 months",
-        benefit: "Buyers stock goods without upfront payment.",
-        progression: "Progress to Brand Growth (Exhibitions, White Label)",
+        benefit: "Pay after sales → low-risk retail expansion.",
+        progression: "Progress to Wholesale or Brand Growth",
       },
       {
         name: "Wholesale",
         icon: "Package",
-        bestFor: "Distributors, chain stores",
+        bestFor: "Distributors, chain stores, large buyers",
         kpi: "7+",
         retention: "3 months",
-        benefit: "Bulk supply at stable, competitive pricing.",
-        progression: "Progress to Export or Brand Growth",
+        benefit: "Scalable volume & competitive pricing.",
+        progression: "Progress to Certified Import/Export",
       },
       {
         name: "Certified Import/Export",
         icon: "Globe",
-        bestFor: "Compliance-driven partners",
-        kpi: "8+",
+        bestFor: "Compliance-driven trade, larger distributors",
+        kpi: "Buyer 7+ / Vendor 8+",
         retention: "6 months",
-        benefit: "GI-certified, trusted global trade.",
-        progression: "Progress to Collaborative or Institutional Partnerships",
+        benefit: "GI-certified, fair-trade verified.",
+        progression: "Progress to Institutional or Collaborative Partnerships",
       },
     ],
+
     fastTrackNote:
       "For all tracks: KHCRF evaluates Vendors/Buyers. If evaluation is promising, pay Lateral Fee. Skip retention → direct progression to advanced partnerships (Brand Growth, Collaborative, Institutional).",
     fastTrackCta: "Apply for KHCRF Fast-Track",
@@ -174,7 +188,8 @@
       },
       {
         title: "Standard Progression Path",
-        description: "Maintain KPI & meet retention (0 → 18 months). After stability → unlock next-level partnerships.",
+        description:
+          "Maintain KPI & meet retention (27 months). After stability → unlock next-level partnerships.",
       },
       {
         title: "Fast-Track Option (KHCRF)",
@@ -199,7 +214,8 @@
     {
       track: "Dropshipping",
       icon: "Truck",
-      onboarding: "Free only if enrolled within next 6 months (6-month free access). Afterward → Paid Packages.",
+      onboarding:
+        "Free only if enrolled within next 6 months (6-month free access). Afterward → Paid Packages.",
       packages: [
         {
           name: "Basic",
@@ -315,7 +331,8 @@
     {
       track: "Export",
       icon: "Globe",
-      onboarding: "$1,000 (one-time, covers GI/fair-trade verification & compliance)",
+      onboarding:
+        "$1,000 (one-time, covers GI/fair-trade verification & compliance)",
       packages: [
         {
           name: "Compliance",
@@ -360,12 +377,12 @@
       features: [
         "Free — no upfront or lateral fee.",
         "Dropshipping requires no KPI, no retention (universal entry).",
-        "KPI 7+ and retention (3–18 months) apply only to Consignment, Wholesale, and Export.",
+        "KPI 7+ and retention (18 - 27 months) apply only to Consignment, Wholesale, and Export.",
         "Best for: Partners who want steady, sustainable growth.",
       ],
       note: "Takes time: retention required before moving to advanced partnerships.",
       cta: "Apply with Standard Path",
-      href : "/registration",
+      href: "/registration",
     },
     lateral: {
       title: "Lateral Entry (KHCRF Fast-Track)",
@@ -379,21 +396,24 @@
       ],
       note: "Paid: Only after KHCRF evaluation confirms eligibility.",
       cta: "Apply for KHCRF Fast-Track",
-      href : "https://khcrf.org/"
-  },
-},
+      href: "https://khcrf.org/",
+    },
+  },
   faq: [
     {
       question: "What is Lateral Entry?",
-      answer: "A fast-track pathway that allows partners to skip retention periods if they pass KHCRF evaluation.",
+      answer:
+        "A fast-track pathway that allows partners to skip retention periods if they pass KHCRF evaluation.",
     },
     {
       question: "Do I pay before evaluation?",
-      answer: "No. The evaluation is done first. Only if the outcome is promising do you pay the Lateral Fee.",
+      answer:
+        "No. The evaluation is done first. Only if the outcome is promising do you pay the Lateral Fee.",
     },
     {
       question: "Can I still progress without paying the Lateral Fee?",
-      answer: "Yes. Standard KPI + retention rules automatically move you forward.",
+      answer:
+        "Yes. Standard KPI + retention rules automatically move you forward.",
     },
     {
       question: "Why should I choose Lateral Entry?",
@@ -402,7 +422,8 @@
     },
     {
       question: "Does KHCRF replace Core Trade evaluation?",
-      answer: "No. KHCRF adds a fast-track option. Standard KPI progression still applies to all partners.",
+      answer:
+        "No. KHCRF adds a fast-track option. Standard KPI progression still applies to all partners.",
     },
   ],
-}
+};

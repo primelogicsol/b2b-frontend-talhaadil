@@ -5,7 +5,7 @@ import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { BarChart3, User, Menu, X, LogOut, User2 } from "lucide-react"
+import { BarChart3, User, Menu, X, LogOut, User2, Calendar } from "lucide-react"
 import { getUserProfile } from "@/services/admin"
 import { useAuthentication } from "@/context/AuthenticationWrapper"
 import NotificationDropdown from "./NotificationDropdown"
@@ -14,6 +14,7 @@ const navigation = [
   { name: "Dashboard", href: "/user/dashboard", icon: BarChart3 },
   // { name: "Docs & Agreements", href: "/user/docs", icon: FileText },
   { name: "Profile", href: "/user/profile", icon: User },
+  { name: "Appointment", href: "/user/appointments", icon: Calendar },
 ]
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

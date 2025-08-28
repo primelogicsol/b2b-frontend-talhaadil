@@ -44,14 +44,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-[var(--primary-color)]">
+    <footer className="relative overflow-hidden">
       {/* Top CTA Section */}
       <motion.div
-        className="bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] py-6 px-4"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
+  className="bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] py-6 px-4 w-[80vw] mx-auto rounded-t-xl"
+  initial={{ y: -50, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+>
+
+
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <motion.div
             className="flex items-center gap-3"
@@ -85,7 +87,7 @@ export default function Footer() {
 
       {/* Main Footer */}
       <motion.div
-        className="max-w-7xl mx-auto px-4 py-16"
+        className="max-w-7xl mx-auto px-4 py-16 bg-[var(--primary-color)]"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -266,7 +268,7 @@ export default function Footer() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-               JOIN
+                JOIN
               </motion.button>
             </div>
           </div>

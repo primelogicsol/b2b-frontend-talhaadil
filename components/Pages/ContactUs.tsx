@@ -62,6 +62,9 @@ export default function ContactUs() {
       })
     }, 2000)
   }
+  
+
+
 
   const contactSections = [
     {
@@ -69,7 +72,7 @@ export default function ContactUs() {
       description:
         "Have a question about our products, platform, or services? Reach out to us and one of our dedicated team members will get back to you as soon as possible.",
       email: "contact@dekoshurcrafts.com",
-      phone: "+1 (XXX) XXX-XXXX",
+      phone: "+19166990091",
       hours: "Monday - Friday, 9:00 AM - 6:00 PM (EST)",
       icon: MessageSquare,
       color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
@@ -79,7 +82,7 @@ export default function ContactUs() {
       description:
         "Are you an artisan looking to showcase your authentic Kashmiri crafts to a global audience? We would love to collaborate with you.",
       email: "artisans@dekoshurcrafts.com",
-      phone: "+1 (XXX) XXX-XXXX",
+      phone: "+13048865807",
       hours: "Join our platform today",
       icon: Heart,
       color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
@@ -89,7 +92,7 @@ export default function ContactUs() {
       description:
         "Whether you're a retailer, designer, NGO, or potential partner, we would love to explore opportunities to work together.",
       email: "partners@dekoshurcrafts.com",
-      phone: "+1 (XXX) XXX-XXXX",
+      phone: "+919419070707",
       hours: "Collaboration opportunities",
       icon: Building,
       color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
@@ -99,7 +102,7 @@ export default function ContactUs() {
       description:
         "Need assistance with your order or have product-related questions? Our customer support team is ready to assist you 24/7.",
       email: "support@dekoshurcrafts.com",
-      phone: "+1 (XXX) XXX-XXXX",
+      phone: "+918899228242",
       hours: "Available 24/7",
       icon: Users,
       color: "from-[var(--primary-color)] to-[var(--primary-hover-color)]",
@@ -312,7 +315,7 @@ export default function ContactUs() {
               <div
                 className={
                   is4K
-                    ? "flex items-start gap-3 pt-6 text-base text-[#e4e6eb]"
+                    ? "flex items-start gap-3 pt-6 text-base text-[#2e3139]"
                     : "flex items-start gap-3 pt-4 text-sm text-[#e4e6eb]"
                 }
               >

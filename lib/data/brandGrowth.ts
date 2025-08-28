@@ -3,7 +3,11 @@ export const brandGrowthData = {
     headline: "Brand Growth Partnerships — Scale Your Craft, Build Your Brand",
     subtext:
       "Beyond trade lies recognition. Brand Growth Partnerships help Vendors and Buyers expand visibility, secure exclusive placements, and build lasting brand equity through Exhibitions, Auctions, White Label, and Brick & Mortar retail channels.",
-    ctaButtons: ["Start Brand Growth Partnership", "Apply as a Vendor", "Apply as a Buyer"],
+    ctaButtons: [
+      "Start Brand Growth Partnership",
+      "Apply as a Vendor",
+      "Apply as a Buyer",
+    ],
   },
   whyCoreTrade: {
     heading: "The Gap Between Trade and Recognition",
@@ -24,13 +28,16 @@ export const brandGrowthData = {
     heading: "Who Can Join Brand Growth?",
     standard: {
       title: "Standard Eligibility (Default Path)",
-      vendors: "KPI 7-8+, Retention 3-18 months (depending on track), prerequisite tracks from Core Trade.",
-      buyers: "KPI 7-8+, Retention 3-18 months, budget flexibility depending on chosen track.",
+      vendors:
+        "KPI 7-8+, Retention 3-18 months (depending on track), prerequisite tracks from Core Trade.",
+      buyers:
+        "KPI 7-8+, Retention 3-18 months, budget flexibility depending on chosen track.",
       note: "Partners move step by step through KPIs, retention, and previous-level eligibility.",
     },
     lateral: {
       title: "Lateral Entry (Fast-Track Path)",
-      description: "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
+      description:
+        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
       points: [
         "If evaluation is promising → pay Lateral Fee.",
         "Skip retention → direct entry into Auction, White Label, or Brick & Mortar.",
@@ -42,8 +49,10 @@ export const brandGrowthData = {
   eligibilityTest: {
     heading: "Check Your Brand Growth Track Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
-    vendorCriteria: "Previous track, certifications, production capacity, design readiness, branding level.",
-    buyerCriteria: "Business type, sourcing model, budget, exclusivity requirements.",
+    vendorCriteria:
+      "Previous track, certifications, production capacity, design readiness, branding level.",
+    buyerCriteria:
+      "Business type, sourcing model, budget, exclusivity requirements.",
     exampleOutput:
       "You qualify for Brand Growth — Exhibition Partner. With 3 months retention or KHCRF fast-track, you can progress into Auction Partnership.",
     cta: "Apply Now for This Track",
@@ -54,8 +63,8 @@ export const brandGrowthData = {
       name: "Exhibition",
       icon: "Frame",
       kpi: "7+",
-      href : "/brand-growth/exhibition",
-      retention: "3 months",
+      href: "/brand-growth/exhibition",
+      retention: "6 months",
       bestFor: "Vendors and buyers seeking showcases and catalogs.",
       benefit: "Showcase at verified exhibitions & catalogs.",
       cta: "Apply for Exhibition",
@@ -65,8 +74,8 @@ export const brandGrowthData = {
       id: "auction",
       name: "Auction",
       icon: "Gavel",
-      href : "/brand-growth/auction&bidding",
       kpi: "8+",
+      href: "/brand-growth/auction&bidding",
       retention: "6 months",
       bestFor: "Vendors and buyers dealing in rare/heritage crafts.",
       benefit: "Verified auctions for rare/heritage crafts.",
@@ -78,8 +87,8 @@ export const brandGrowthData = {
       name: "White Label",
       icon: "Tag",
       kpi: "8+",
-      href : "/brand-growth/white-label",
-      retention: "12 months",
+      href: "/brand-growth/white-label",
+      retention: "6 months",
       bestFor: "Vendors and buyers focused on private branding.",
       benefit: "Private branding with scalable production.",
       cta: "Apply for White Label",
@@ -90,19 +99,26 @@ export const brandGrowthData = {
       name: "Brick & Mortar",
       icon: "Building",
       kpi: "8+",
-      href : "/brand-growth/brick&mortar",
-      retention: "18 months",
+      href: "/brand-growth/brick&mortar",
+      retention: "6 months",
       bestFor: "Vendors and buyers aiming for retail expansion.",
       benefit: "Premium retail placement & flagship stores.",
       cta: "Apply for Brick & Mortar",
       fastTrackAvailable: true,
     },
   ],
+
   workflow: {
     heading: "How Brand Growth Works",
     standard: {
       title: "Standard Path",
-      steps: ["Apply", "KPI Evaluation", "Track Match", "Activation", "Progress via KPI + Retention"],
+      steps: [
+        "Apply",
+        "KPI Evaluation",
+        "Track Match",
+        "Activation",
+        "Progress via KPI + Retention",
+      ],
     },
     fastTrack: {
       title: "Fast-Track Path (KHCRF)",
@@ -122,7 +138,7 @@ export const brandGrowthData = {
         icon: "Frame",
         bestFor: "Vendors and buyers seeking showcases and catalogs",
         kpi: "7+",
-        retention: "3 months",
+        retention: "6 months",
         benefit: "Showcase at verified exhibitions & catalogs.",
         progression: "Progress to Auction or White Label",
       },
@@ -140,7 +156,7 @@ export const brandGrowthData = {
         icon: "Tag",
         bestFor: "Vendors and buyers focused on private branding",
         kpi: "8+",
-        retention: "12 months",
+        retention: "6 months",
         benefit: "Private branding with scalable production.",
         progression: "Progress to Brick & Mortar or Collaborative",
       },
@@ -149,7 +165,7 @@ export const brandGrowthData = {
         icon: "Building",
         bestFor: "Vendors and buyers aiming for retail expansion",
         kpi: "8+",
-        retention: "18 months",
+        retention: "6 months",
         benefit: "Premium retail placement & flagship stores.",
         progression: "Progress to Collaborative or Institutional Partnerships",
       },
@@ -164,16 +180,17 @@ export const brandGrowthData = {
       {
         title: "Choose Your Entry Track",
         options: [
-          "Exhibition → KPI 7+ | 3 months retention.",
+          "Exhibition → KPI 7+ | 6 months retention.",
           "Auction → KPI 8+ | 6 months retention.",
-          "White Label → KPI 8+ | 12 months retention.",
-          "Brick & Mortar → KPI 8+ | 18 months retention.",
+          "White Label → KPI 8+ | 6 months retention.",
+          "Brick & Mortar → KPI 8+ | 6 months retention.",
         ],
         note: "Start from Core Trade completion.",
       },
       {
         title: "Standard Progression Path",
-        description: "Maintain KPI & meet retention (3–18 months). After stability → unlock next-level partnerships.",
+        description:
+          "Maintain KPI & meet retention (51 months). After stability → unlock next-level partnerships.",
       },
       {
         title: "Fast-Track Option (KHCRF)",
@@ -357,7 +374,7 @@ export const brandGrowthData = {
       subtitle: "(Default progression for all partners)",
       features: [
         "Free — no upfront or lateral fee.",
-        "Requires KPI (7+ / 8+) and retention (3–18 months).",
+        "Requires KPI (7+ / 8+) and retention (27-51 months).",
         "Step-by-step progression through Exhibition → Auction → White Label → Retail.",
         "Best for: Partners who want steady, sustainable growth.",
       ],
@@ -381,7 +398,8 @@ export const brandGrowthData = {
   faq: [
     {
       question: "Can I skip Exhibition and directly join Auction?",
-      answer: "Yes, through KHCRF Lateral Entry (if evaluation is promising + fee paid).",
+      answer:
+        "Yes, through KHCRF Lateral Entry (if evaluation is promising + fee paid).",
     },
     {
       question: "Are KPIs different for Vendors and Buyers?",
@@ -390,11 +408,13 @@ export const brandGrowthData = {
     },
     {
       question: "Do fees apply immediately?",
-      answer: "Onboarding + monthly packages apply only after track activation.",
+      answer:
+        "Onboarding + monthly packages apply only after track activation.",
     },
     {
       question: "Can White Label vendors become Brick & Mortar vendors?",
-      answer: "Yes, but KPI 8+ and retention 12–18 months must be maintained, unless Fast-Tracked.",
+      answer:
+        "Yes, but KPI 8+ and retention 12–18 months must be maintained, unless Fast-Tracked.",
     },
   ],
-}
+};

@@ -389,7 +389,7 @@ export function Navbar() {
     if (token) {
       setIsSignedIn(true)
     } else {
-      setIsSignedIn(false)
+      setIsSignedIn(true)
     }
     console.log(isSignedIn)
   }, [])

@@ -64,7 +64,7 @@ const defaultSlides = [
   },
 ]
 
-export default function VerticalHeroSlider({ slides = defaultSlides }) {
+export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = false }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
@@ -129,7 +129,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides }) {
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4"
+                className={`flex flex-col sm:flex-row gap-4 ${isBanner ? "lg:mb-40" : ""}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
