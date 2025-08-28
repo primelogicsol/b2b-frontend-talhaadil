@@ -129,7 +129,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = f
               </motion.p>
 
               <motion.div
-                className={`flex flex-col sm:flex-row gap-4 ${isBanner ? "lg:mb-40" : ""}`}
+                className={`flex flex-col sm:flex-row gap-4 ${isBanner ? "lg:mb-55" : ""}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
