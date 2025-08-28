@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Search, Filter, Eye, Mail, ShoppingCart, Store } from "lucide-react"
-import { getAllUsers } from "@/services/admin"
+import { documentVerified, getAllUsers } from "@/services/admin"
 
 interface ApiUser {
   id: number
@@ -17,6 +17,7 @@ interface ApiUser {
   partnership_level: string
   retention_period: string
   is_registered: string
+  
 }
 
 interface User {
@@ -30,6 +31,7 @@ interface User {
   partnershipLevel: string
   retentionPeriod: string
   isRegistered: string
+  doc_verified : string
 }
 
 export default function UsersPage() {
@@ -49,23 +51,30 @@ export default function UsersPage() {
         if (response.status < 200 || response.status >= 300) {
           throw new Error("Failed to fetch users")
         }
-        const apiUsers: ApiUser[] = response.data
+        const apiUsers: ApiUser[] = response.data;
+        const documentVerificationResponse = await documentVerified();
 
         const transformedUsers: User[] = apiUsers
           .filter(user => user.role === "vendor" || user.role === "buyer")
-          .map(user => ({
-            id: user.id,
-            name: user.username,
-            email: user.email,
-            role: user.role,
-            type: user.role === "vendor" ? "vendor" : "buyer",
-            status: user.is_active ? "active" : "inactive",
-            kpiScore: user.kpi_score,
-            partnershipLevel: user.partnership_level,
-            retentionPeriod: user.retention_period,
-            isRegistered: user.is_registered,
-          }))
+          .map(user => {
+            const doc = documentVerificationResponse.data.find(
+              (d: any) => d.user_id === user.id
+            );
 
+            return {
+              id: user.id,
+              name: user.username,
+              email: user.email,
+              role: user.role,
+              type: user.role === "vendor" ? "vendor" : "buyer",
+              status: user.is_active ? "active" : "inactive",
+              kpiScore: user.kpi_score,
+              partnershipLevel: user.partnership_level,
+              retentionPeriod: user.retention_period,
+              isRegistered: user.is_registered,
+              doc_verified: doc ? doc.ai_verification_status : "NOT_SUBMIT"
+            };
+          });
         setUsers(transformedUsers)
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")
@@ -195,8 +204,8 @@ export default function UsersPage() {
             <button
               onClick={() => setActiveTab("all")}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === "all"
-                  ? "border-blue-600 text-blue-600"
-                  : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
+                ? "border-blue-600 text-blue-600"
+                : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
                 }`}
             >
               All Users ({users.length})
@@ -204,8 +213,8 @@ export default function UsersPage() {
             <button
               onClick={() => setActiveTab("buyers")}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors flex items-center space-x-2 ${activeTab === "buyers"
-                  ? "border-blue-600 text-blue-600"
-                  : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
+                ? "border-blue-600 text-blue-600"
+                : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
                 }`}
             >
               <ShoppingCart className="w-4 h-4" />
@@ -214,8 +223,8 @@ export default function UsersPage() {
             <button
               onClick={() => setActiveTab("vendors")}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors flex items-center space-x-2 ${activeTab === "vendors"
-                  ? "border-blue-600 text-blue-600"
-                  : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
+                ? "border-blue-600 text-blue-600"
+                : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
                 }`}
             >
               <Store className="w-4 h-4" />
@@ -255,6 +264,9 @@ export default function UsersPage() {
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   Status
+                </th>
+                <th>
+                  Doc Verified
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   Actions
@@ -316,8 +328,15 @@ export default function UsersPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
+                      <span
+                        className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getStatusColor(user.status)}`}
+                      >
+                        {user.doc_verified}
+                      </span>
+                    </td> 
+                    <td className="px-6 py-4">
                       <Link
-                        href={`/admin/users/${user.id}-${user.isRegistered}`}
+                        href={`/admin/users/${user.id}-${user.isRegistered}-${user.doc_verified}`}
                         className="inline-flex items-center px-3 py-1 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
                       >
                         <Eye className="w-4 h-4 mr-1" />

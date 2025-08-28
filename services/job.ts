@@ -1,4 +1,3 @@
-
 import api from "@/lib/axios";
 
 export const getAllJobs = () => {
@@ -10,7 +9,7 @@ export const getAllJobs = () => {
 };
 
 export const getJobDetails = (id: number) => {
-  return api.get(`/admin/jobs/${id}`, {
+  return api.get(`/jobs/${id}`, {
     headers: {
       requiresAuth: true,
     },
@@ -47,18 +46,14 @@ export const updateJob = (
     application_deadline: string;
   }
 ) => {
-  return api.post(
-    `/jobs/update`,
-    jobData,
-    {
-      headers: {
-        requiresAuth: true,
-      },
-      params: {
-        job_id: jobId,
-      },
-    }
-  );
+  return api.post(`/jobs/update`, jobData, {
+    headers: {
+      requiresAuth: true,
+    },
+    params: {
+      job_id: jobId,
+    },
+  });
 };
 
 export const deleteJob = (id: number) => {

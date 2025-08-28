@@ -20,7 +20,7 @@ import {
   Check,
   X,
 } from "lucide-react"
-import { getUserInfo,approveRegistration } from "@/services/admin"
+import { getUserInfo, approveRegistration } from "@/services/admin"
 
 interface RegistrationInfo {
   business_name: string
@@ -78,6 +78,7 @@ export default function RegistrationInfoPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [register, setRegister] = useState<string | null>(null)
+  const [docVerified, setDocVerified] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchRegistrationInfo = async () => {
@@ -88,8 +89,9 @@ export default function RegistrationInfoPage() {
           throw new Error("Invalid user ID")
         }
 
-        const [id, isRegistered] = userId.split("-")
+        const [id, isRegistered, docVerified] = userId.split("-")
         setRegister(isRegistered)
+        setDocVerified(docVerified)
 
         const response = await getUserInfo(id)
         setRegistrationInfo(response.data)
@@ -109,11 +111,11 @@ export default function RegistrationInfoPage() {
   const handleApprove = async () => {
     try {
       const userId = Array.isArray(params.id) ? params.id[0] : params.id
-        if (!userId || typeof userId !== "string") {
-          throw new Error("Invalid user ID")
-        }
-      const [id,isRegistered] = userId.split("-")
-      const response  = await approveRegistration(id
+      if (!userId || typeof userId !== "string") {
+        throw new Error("Invalid user ID")
+      }
+      const [id, isRegistered, docVerified] = userId.split("-")
+      const response = await approveRegistration(id
         , {
           status: "APPROVED",
           remarks: "Approved by admin",
@@ -128,13 +130,13 @@ export default function RegistrationInfoPage() {
     }
   }
 
-    const handleReject = async () => {
+  const handleReject = async () => {
     try {
       const userId = Array.isArray(params.id) ? params.id[0] : params.id
-        if (!userId || typeof userId !== "string") {
-          throw new Error("Invalid user ID")
-        }
-      const [id,isRegistered] = userId.split("-")
+      if (!userId || typeof userId !== "string") {
+        throw new Error("Invalid user ID")
+      }
+      const [id, isRegistered] = userId.split("-")
       await approveRegistration(id
         , {
           status: "REJECTED",
@@ -248,23 +250,37 @@ export default function RegistrationInfoPage() {
             </div>
           </div>
           {register?.toLowerCase() === "pending" && (
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={handleApprove}
-                className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-              >
-                <Check className="w-4 h-4 mr-2" />
-                Approve
-              </button>
-              <button
-                onClick={handleReject}
-                className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-              >
-                <X className="w-4 h-4 mr-2" />
-                Reject
-              </button>
+            <div className="flex flex-col space-y-2">
+              {docVerified?.toLowerCase() !== "pass" && (
+                <p className="text-sm text-red-500">User's documents are not verified</p>
+              )}
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={handleApprove}
+                  disabled={docVerified?.toLowerCase() !== "pass"}
+                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
+                    ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                    : "bg-green-600 text-white hover:bg-green-700"
+                    }`}
+                >
+                  <Check className="w-4 h-4 mr-2" />
+                  Approve
+                </button>
+                <button
+                  onClick={handleReject}
+                  disabled={docVerified?.toLowerCase() !== "pass"}
+                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
+                    ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                    : "bg-red-600 text-white hover:bg-red-700"
+                    }`}
+                >
+                  <X className="w-4 h-4 mr-2" />
+                  Reject
+                </button>
+              </div>
             </div>
           )}
+
         </div>
 
         {/* Business Information */}

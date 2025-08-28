@@ -86,3 +86,13 @@ export const updateProfile = (profileData: any) => {
     },
   });
 };
+
+
+
+export const documentVerified = () =>{
+  return api.get(`/admin/document-info`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+}

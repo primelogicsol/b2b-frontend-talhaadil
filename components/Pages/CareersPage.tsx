@@ -119,6 +119,7 @@ export default function CareersPage() {
         try {
           // @ts-ignore
           const response = await getJobDetails(expandedJob)
+          console.log(response)
           
           setJobDetails((prev) => ({ ...prev, [expandedJob]: response.data }))
         } catch (err) {

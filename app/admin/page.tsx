@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { PieChart, Pie, Cell, Tooltip as PieTooltip, Legend as PieLegend } from 'recharts';
-import { getAllUsers } from "@/services/admin";
+import { documentVerified, getAllUsers } from "@/services/admin";
 
 // Define User interface based on schema
 interface User {
@@ -59,6 +59,7 @@ export default function VendorBuyerDashboard() {
       try {
         setLoading(true);
         const response = await getAllUsers();
+       
         // Filter for only vendor and buyer roles
         const filteredUsers = (response.data || []).filter(
           (user: User) => user.role === "vendor" || user.role === "buyer"
