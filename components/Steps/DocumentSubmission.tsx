@@ -292,9 +292,6 @@ export default function DocumentSubmission({ data, onUpdate, onNext, onPrev }: D
         const docData = documents[docKey]
         console.log(docKey)
 
-        if (docKey === "adhaar_card") {
-          continue
-        }
         if (docTypeConfig.multiple) {
           const files = docData as File[]
           if (files.length > 0) {

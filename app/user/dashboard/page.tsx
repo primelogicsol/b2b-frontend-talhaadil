@@ -69,7 +69,15 @@ export default function DashboardPage() {
         if (response.status < 200 || response.status >= 300) {
           throw new Error("Failed to fetch user profile")
         }
-        setUserProfile(response.data)
+
+        const updatedData = {
+          ...response.data,
+          partnership_level: response.data.partnership_level === "Drop Shipping Vendor"
+            ? "drop_shipping"
+            : response.data.partnership_level
+        }
+
+        setUserProfile(updatedData)
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")
       } finally {
@@ -100,8 +108,8 @@ export default function DashboardPage() {
   }
 
   const currentKPI = userProfile.kpi_score
-  const currentPartnership = userProfile.registration_step
-  const nextMilestone = partnerships[currentPartnership]
+  const currentPartnership = partnerships.indexOf(userProfile.partnership_level)
+  const nextMilestone = partnerships[currentPartnership+1]
 
   return (
     <div className="space-y-8">
@@ -149,9 +157,9 @@ export default function DashboardPage() {
             <Users className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentPartnership}</div>
+            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentPartnership+1}</div>
             <p className="text-xs text-[var(--primary-hover-color)] mt-1">of 16 total partnerships</p>
-            <p className="text-xs text-[var(--primary-color)] mt-1">Level: {userProfile.partnership_level}</p>
+           
           </div>
         </div>
 
@@ -244,7 +252,7 @@ export default function DashboardPage() {
         <div className="p-6 pt-0 space-y-6">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-[var(--primary-hover-color)]">Overall Progress</span>
-            <span className="text-sm text-[var(--primary-hover-color)]">{currentPartnership}/16 partnerships</span>
+            <span className="text-sm text-[var(--primary-hover-color)]">{currentPartnership+1}/16 partnerships</span>
           </div>
           <div className="w-full bg-[var(--secondary-light-color)] rounded-full h-3">
             <div
@@ -257,24 +265,22 @@ export default function DashboardPage() {
             {partnerships.map((partnership, index) => (
               <div
                 key={partnership}
-                className={`p-4 rounded-lg border-2 transition-all ${
-                  index < currentPartnership
-                    ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
-                    : index === currentPartnership
-                      ? "border-[var(--primary-hover-color)] bg-[var(--primary-hover-color)]/10"
-                      : "border-[var(--secondary-light-color)] bg-[var(--secondary-light-color)]/50"
-                }`}
+                className={`p-4 rounded-lg border-2 transition-all ${index < currentPartnership
+                  ? "border-[var(--primary-hover-color)] bg-[var(--primary-hover-color)]/10"
+                  : index === currentPartnership
+                    ? "border-[var(--primary-hover-color)] bg-[var(--primary-hover-color)]/10"
+                    : "border-[var(--secondary-light-color)] bg-[var(--secondary-light-color)]/50"
+                  }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-medium text-[var(--primary-hover-color)]">#{index + 1}</span>
                   <div
-                    className={`w-3 h-3 rounded-full ${
-                      index < currentPartnership
-                        ? "bg-[var(--secondary-color)]"
-                        : index === currentPartnership
-                          ? "bg-green-500"
-                          : "bg-red-500"
-                    }`}
+                    className={`w-3 h-3 rounded-full ${index < currentPartnership
+                      ? "bg-green-500"
+                      : index === currentPartnership
+                        ? "bg-green-500"
+                        : "bg-red-500"
+                      }`}
                   />
                 </div>
                 <h4 className="text-sm font-medium text-[var(--primary-color)] capitalize">{partnership.replace(/_/g, " ")}</h4>

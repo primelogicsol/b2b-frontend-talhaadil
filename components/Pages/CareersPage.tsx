@@ -30,10 +30,11 @@ export default function CareersPage() {
   const [jobs, setJobs] = useState<Job[]>([])
   const [jobDetails, setJobDetails] = useState<Record<string | number, JobDetails>>({})
   const [loading, setLoading] = useState(true)
+  const [loadingDetails, setLoadingDetails] = useState<Record<string | number, boolean>>({})
   const [error, setError] = useState<string | null>(null)
   const { is4K } = useGlobalContext()
 
-  const benefits = [
+ const benefits = [
     {
       title: "Make a Difference",
       description: "Help shape a platform that values craft, supports fair trade, and builds lasting cultural growth.",
@@ -95,14 +96,13 @@ export default function CareersPage() {
         "We value transparency and ethical practices. Our commitment to fair wages, safe working conditions, and authenticity ensures responsible operations.",
     },
   ]
-
   // Fetch all jobs on component mount
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         setLoading(true)
         const response = await getAllJobs()
-        setJobs(response.data) // Assuming response.data contains the array of jobs
+        setJobs(response.data)
         setLoading(false)
       } catch (err) {
         setError("Failed to load jobs. Please try again later.")
@@ -117,13 +117,13 @@ export default function CareersPage() {
     if (expandedJob) {
       const fetchJobDetails = async () => {
         try {
-          // @ts-ignore
-          const response = await getJobDetails(expandedJob)
-          console.log(response)
-          
+          setLoadingDetails((prev) => ({ ...prev, [expandedJob]: true }))
+          const response = await getJobDetails(Number(expandedJob))
           setJobDetails((prev) => ({ ...prev, [expandedJob]: response.data }))
+          setLoadingDetails((prev) => ({ ...prev, [expandedJob]: false }))
         } catch (err) {
           setError("Failed to load job details. Please try again.")
+          setLoadingDetails((prev) => ({ ...prev, [expandedJob]: false }))
         }
       }
       fetchJobDetails()
@@ -145,7 +145,7 @@ export default function CareersPage() {
   return (
     <div className="careers-page overflow-x-hidden">
       <style jsx>{`
-        .container {
+      .container {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
@@ -594,6 +594,32 @@ export default function CareersPage() {
             font-size: 1.8rem;
           }
         }
+
+        .job-details-loading {
+          padding: 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100px;
+        }
+
+        .spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid var(--primary-header-color);
+          border-top: 4px solid var(--primary-color);
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
       `}</style>
 
       {/* Hero Section */}
@@ -603,24 +629,12 @@ export default function CareersPage() {
 
       {/* Why Work Section */}
       <section className="section why-work-section">
-        <div
-          className="container"
-          style={is4K ? { maxWidth: "2000px", paddingLeft: "290px", paddingRight: "340px" } : {}}
-        >
+        <div className="container" style={is4K ? { maxWidth: "2000px", paddingLeft: "290px", paddingRight: "340px" } : {}}>
           <h2 className="section-title" style={is4K ? { fontSize: "4.5rem" } : {}}>
             Why Work at De Koshur Crafts?
           </h2>
-          <p
-            className="text-left lg:text-center px-3 lg:px-0"
-            style={{
-              fontSize: is4K ? "2rem" : "1.1rem",
-              maxWidth: is4K ? "1200px" : "800px",
-              margin: "0 auto 2rem",
-              color: "var(--primary-light-text-color)",
-            }}
-          >
-            We believe in building a supportive, inclusive, and empowering work environment. We are a diverse team
-            committed to sustainability, innovation, and ethical business practices.
+          <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "2rem" : "1.1rem", maxWidth: is4K ? "1200px" : "800px", margin: "0 auto 2rem", color: "var(--primary-light-text-color)" }}>
+            We believe in building a supportive, inclusive, and empowering work environment. We are a diverse team committed to sustainability, innovation, and ethical business practices.
           </p>
           <div className="benefits-grid">
             {benefits.map((b, i) => (
@@ -637,10 +651,7 @@ export default function CareersPage() {
 
       {/* Job Openings Section */}
       <section className="section">
-        <div
-          className="container"
-          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
-        >
+        <div className="container" style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}>
           <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
             Current Job Openings
           </h2>
@@ -661,10 +672,7 @@ export default function CareersPage() {
                       className="w-full border-2 border-[var(--primary-header-color)] rounded-lg py-3 pr-12 pl-4 text-base transition-colors duration-300 focus:outline-none focus:border-[var(--primary-hover-color)]"
                       style={is4K ? { fontSize: "1.2rem", padding: "16px 20px" } : {}}
                     />
-                    <button
-                      type="button"
-                      className="cursor-pointer absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[var(--primary-hover-color)]"
-                    >
+                    <button type="button" className="cursor-pointer absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[var(--primary-hover-color)]">
                       <Search size={is4K ? 28 : 20} />
                     </button>
                   </div>
@@ -677,17 +685,11 @@ export default function CareersPage() {
                       style={is4K ? { fontSize: "1.2rem", padding: "16px 20px", width: "250px" } : {}}
                     >
                       {filters.find((f) => f.value === selectedFilter)?.label}
-                      <ChevronDown
-                        size={is4K ? 24 : 18}
-                        className={`transition-transform duration-200 ${openDropdown ? "rotate-180" : ""}`}
-                      />
+                      <ChevronDown size={is4K ? 24 : 18} className={`transition-transform duration-200 ${openDropdown ? "rotate-180" : ""}`} />
                     </button>
 
                     {openDropdown && (
-                      <ul
-                        className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white"
-                        style={is4K ? { width: "250px" } : {}}
-                      >
+                      <ul className="absolute z-10 mt-1 w-full sm:w-[200px] border rounded-lg shadow bg-white" style={is4K ? { width: "250px" } : {}}>
                         {filters.map((f) => (
                           <li
                             key={f.value}
@@ -730,50 +732,60 @@ export default function CareersPage() {
                         </p>
                       </div>
                       <button className="expand-button" style={is4K ? { width: "40px", height: "40px" } : {}}>
-                        {expandedJob === job.id ? (
-                          <ChevronUp size={is4K ? 28 : 20} />
-                        ) : (
-                          <ChevronDown size={is4K ? 28 : 20} />
-                        )}
+                        {expandedJob === job.id ? <ChevronUp size={is4K ? 28 : 20} /> : <ChevronDown size={is4K ? 28 : 20} />}
                       </button>
                     </div>
 
-                    {expandedJob === job.id && jobDetails[job.id] && (
+                    {expandedJob === job.id && (
                       <div className="job-details">
-                        <div className="job-section">
-                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Description:</h4>
-                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>{jobDetails[job.id].description}</p>
-                        </div>
+                        {loadingDetails[job.id] ? (
+                          <div className="job-details-loading">
+                            <div className="spinner" />
+                          </div>
+                        ) : jobDetails[job.id] ? (
+                          <>
+                            <div className="job-section">
+                              <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Description:</h4>
+                              <p style={is4K ? { fontSize: "1.2rem" } : {}}>{jobDetails[job.id].description}</p>
+                            </div>
 
-                        <div className="job-section">
-                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Requirements:</h4>
-                          <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
-                            {jobDetails[job.id].requirements.split("\n").map((req, index) => (
-                              <li key={index}>{req}</li>
-                            ))}
-                          </ul>
-                        </div>
+                            <div className="job-section">
+                              <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Requirements:</h4>
+                              <ul style={is4K ? { fontSize: "1.2rem" } : {}}>
+                                {jobDetails[job.id].requirements.split("\n").map((req, index) => (
+                                  <li key={index}>{req}</li>
+                                ))}
+                              </ul>
+                            </div>
 
-                        <div className="job-section">
-                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Salary Range:</h4>
-                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>{jobDetails[job.id].salary_range}</p>
-                        </div>
+                            <div className="job-section">
+                              <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Salary Range:</h4>
+                              <p style={is4K ? { fontSize: "1.2rem" } : {}}>{jobDetails[job.id].salary_range}</p>
+                            </div>
 
-                        <div className="job-section">
-                          <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Application Deadline:</h4>
-                          <p style={is4K ? { fontSize: "1.2rem" } : {}}>
-                            {new Date(jobDetails[job.id].application_deadline).toLocaleDateString()}
-                          </p>
-                        </div>
+                            <div className="job-section">
+                              <h4 style={is4K ? { fontSize: "1.5rem" } : {}}>Application Deadline:</h4>
+                              <p style={is4K ? { fontSize: "1.2rem" } : {}}>
+                                {new Date(jobDetails[job.id].application_deadline).toLocaleDateString()}
+                              </p>
+                            </div>
 
-                        <a
-                          href="mailto:careers@dekoshurcrafts.com"
-                          className="apply-button"
-                          style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
-                        >
-                          <Mail size={is4K ? 20 : 16} />
-                          Apply Now
-                        </a>
+                            <a
+                              href="mailto:careers@dekoshurcrafts.com"
+                              className="apply-button"
+                              style={is4K ? { fontSize: "1.2rem", padding: "16px 32px" } : {}}
+                            >
+                              <Mail size={is4K ? 20 : 16} />
+                              Apply Now
+                            </a>
+                          </>
+                        ) : (
+                          <div className="job-details-loading">
+                            <p style={is4K ? { fontSize: "1.2rem" } : {}}>
+                              {error || "Failed to load job details."}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -786,26 +798,13 @@ export default function CareersPage() {
 
       {/* Culture & Values Section */}
       <section className="section">
-        <div
-          className="container"
-          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
-        >
+        <div className="container" style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}>
           <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
             Culture & Values
           </h2>
-          <p
-            className="text-left lg:text-center px-3 lg:px-0"
-            style={{
-              fontSize: is4K ? "1.5rem" : "1.1rem",
-              maxWidth: is4K ? "1200px" : "800px",
-              margin: "0 auto 2rem",
-              color: "var(--primary-light-text-color)",
-            }}
-          >
-            We believe that a strong, cohesive company culture is the key to our success. Here are the core values that
-            drive everything we do at De Koshur Crafts.
+          <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.5rem" : "1.1rem", maxWidth: is4K ? "1200px" : "800px", margin: "0 auto 2rem", color: "var(--primary-light-text-color)" }}>
+            We believe that a strong, cohesive company culture is the key to our success. Here are the core values that drive everything we do at De Koshur Crafts.
           </p>
-
           <div className="values-grid">
             {coreValues.map((value, index) => (
               <div key={index} className="value-card">
@@ -826,43 +825,18 @@ export default function CareersPage() {
 
       {/* How to Apply Section */}
       <section className="section" style={{ background: "var(--primary-header-color)" }}>
-        <div
-          className="container"
-          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
-        >
+        <div className="container" style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}>
           <h2 className="section-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
             How to Apply
           </h2>
           <div style={{ textAlign: "center", maxWidth: is4K ? "900px" : "600px", margin: "0 auto" }}>
-            <p
-              className="text-left lg:text-center px-3 lg:px-0"
-              style={{
-                fontSize: is4K ? "1.5rem" : "1.1rem",
-                marginBottom: "2rem",
-                color: "var(--primary-light-text-color)",
-              }}
-            >
-              If you are passionate about sustainability, fair trade, and empowering Kashmiri artisans, De Koshur Crafts
-              might be the perfect place for you.
+            <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.5rem" : "1.1rem", marginBottom: "2rem", color: "var(--primary-light-text-color)" }}>
+              If you are passionate about sustainability, fair trade, and empowering Kashmiri artisans, De Koshur Crafts might be the perfect place for you.
             </p>
-            <p
-              className="text-left lg:text-center px-3 lg:px-0"
-              style={{
-                fontSize: is4K ? "1.5rem" : "1.1rem",
-                marginBottom: "2rem",
-                color: "var(--primary-light-text-color)",
-              }}
-            >
+            <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.5rem" : "1.1rem", marginBottom: "2rem", color: "var(--primary-light-text-color)" }}>
               To apply for any open positions, please send your resume and cover letter to careers@dekoshurcrafts.com.
             </p>
-            <p
-              className="text-left lg:text-center px-3 lg:px-0"
-              style={{
-                fontSize: is4K ? "1.8rem" : "1.2rem",
-                fontWeight: "600",
-                color: "var(--primary-color)",
-              }}
-            >
+            <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.8rem" : "1.2rem", fontWeight: "600", color: "var(--primary-color)" }}>
               We look forward to hearing from you!
             </p>
           </div>
@@ -871,33 +845,18 @@ export default function CareersPage() {
 
       {/* Call to Action Section */}
       <section className="cta-section">
-        <div
-          className="container"
-          style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}
-        >
+        <div className="container" style={is4K ? { maxWidth: "2000px", paddingLeft: "40px", paddingRight: "40px" } : {}}>
           <h2 className="cta-title" style={is4K ? { fontSize: "3.5rem" } : {}}>
             Join Our Team and Make a Difference
           </h2>
-          <p
-            className="text-left lg:text-center px-3 lg:px-0"
-            style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}
-          >
+          <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.5rem" : "1.2rem", marginBottom: "1rem", opacity: "0.9" }}>
             Are you ready to be part of a mission-driven company that is making a global impact?
           </p>
-          <p
-            className="text-left lg:text-center px-3 lg:px-0"
-            style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}
-          >
-            We are always looking for passionate individuals to join our team. Browse our open positions or internships,
-            apply today, and become part of De Koshur Crafts.
+          <p className="text-left lg:text-center px-3 lg:px-0" style={{ fontSize: is4K ? "1.4rem" : "1.1rem", opacity: "0.8" }}>
+            We are always looking for passionate individuals to join our team. Browse our open positions or internships, apply today, and become part of De Koshur Crafts.
           </p>
-
           <div className="cta-buttons">
-            <a
-              href="mailto:careers@dekoshurcrafts.com"
-              className="cta-button"
-              style={is4K ? { fontSize: "1.5rem", padding: "20px 40px" } : {}}
-            >
+            <a href="mailto:careers@dekoshurcrafts.com" className="cta-button" style={is4K ? { fontSize: "1.5rem", padding: "20px 40px" } : {}}>
               <Mail size={is4K ? 28 : 20} />
               Apply Now
             </a>

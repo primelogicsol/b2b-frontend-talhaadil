@@ -17,6 +17,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
   UserCog,
+  Bell
 } from "lucide-react"
 
 const navigation = [
@@ -26,6 +27,7 @@ const navigation = [
   { name: "Team", href: "/admin/team", icon: Building2 },
   { name: "Appointments", href: "/admin/appointments", icon: Calendar },
   { name: "Other Admins", href: "/admin/other-admins", icon: UserCog },
+  {name : "Notifications" , href:"/admin/notifications", icon: Bell}
 ]
 
 export default function AdminLayout({
