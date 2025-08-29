@@ -44,7 +44,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-[var(--primary-color)]">
+    <footer className="relative overflow-hidden bg-[var(--primary-color)] mt-40">
       {/* Top CTA Section */}
       <motion.div
         className="relative px-4"
@@ -52,8 +52,8 @@ export default function Footer() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 bg-white" /> {/* White background */}
-        <div className="relative w-3/4 mx-auto bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] rounded-lg">
+        <div className="absolute inset-0 bg-white" />
+         <div className="relative w-3/4 mx-auto bg-[var(--primary-color)] border-b-4 border-b-[var(--secondary-color)] rounded-t-lg">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 py-6 px-4">
             <motion.div
               className="flex items-center gap-3"
@@ -288,16 +288,10 @@ export default function Footer() {
               Powered and Maintained by Prime Logic Solutions USA
             </p>
             <div className="flex gap-4">
-              <motion.a
-                href="#"
-                className="text-white hover:text-white"
-              >
+              <motion.a href="#" className="text-white hover:text-white">
                 Terms
               </motion.a>
-              <motion.a
-                href="#"
-                className="text-white hover:text-white"
-              >
+              <motion.a href="#" className="text-white hover:text-white">
                 Privacy
               </motion.a>
             </div>
