@@ -31,9 +31,9 @@ export const institutionalData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 9+, Retention 12–18 months, must have completed Collaborative track (Tech, Packaging, or Warehousing).",
+        "KPI 9+, Retention 90 months, must have completed Collaborative track (Tech, Packaging, or Warehousing).",
       buyers:
-        "KPI 8+, Retention 12–18 months, must have engaged in Brand Growth or Collaborative.",
+        "KPI 8+, Retention 90 months, must have engaged in Brand Growth or Collaborative.",
       note: "Partners progress through KPI improvement + retention periods after completing prerequisite tracks.",
     },
     lateral: {
@@ -188,10 +188,10 @@ export const institutionalData = {
       {
         title: "Choose Institutional Track",
         options: [
-          "Museums → KPI 9+ | 12 months retention.",
-          "NGOs & Governments → KPI 8+ | 12 months retention.",
+          "Museums → KPI none | no retention.",
+          "NGOs & Governments → KPI none | no retention.",
           "Logistics & Infrastructure → KPI 8+ | 12 months retention.",
-          "Technology Alliances → KPI 9+ | 18 months retention.",
+          "Technology Alliances → KPI none | no retention.",
         ],
         note: "Requires completion of Collaborative or Brand Growth tracks.",
       },

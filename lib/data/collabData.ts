@@ -31,9 +31,9 @@ export const collaborativeData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 8+, Retention 6–18 months, prior experience in Core Trade or Brand Growth.",
+        "KPI 8+, Retention 51-78 months, prior experience in Core Trade or Brand Growth.",
       buyers:
-        "KPI 7+, Retention 3–12 months, proven sourcing budget & prior engagement.",
+        "KPI 8+, Retention 51-78 months, proven sourcing budget & prior engagement.",
       note: "Partners progress naturally through KPI improvement + retention periods.",
     },
     lateral: {

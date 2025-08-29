@@ -190,8 +190,8 @@ export default function Process() {
   {
     level: 1,
     type: "Drop Shipping / E-Commerce",
-    retention: "No requirement",
-    kpi: "No requirement",
+    retention: "None",
+    kpi: "None",
     next: "Consignment",
     icon: Package,
     description:
@@ -211,7 +211,7 @@ export default function Process() {
     level: 3,
     type: "Import Export",
     retention: "6 months",
-    kpi: "7+",
+    kpi: "8+",
     next: "Wholesale & Distribution",
     icon: Globe,
     description:
@@ -220,8 +220,8 @@ export default function Process() {
   {
     level: 4,
     type: "Wholesale & Distribution",
-    retention: "12 months",
-    kpi: "8+",
+    retention: "3 months",
+    kpi: "7+",
     next: "Exhibition",
     icon: TrendingUp,
     description:
@@ -240,7 +240,7 @@ export default function Process() {
   {
     level: 6,
     type: "Auction & Bidding",
-    retention: "24 months",
+    retention: "6 months",
     kpi: "8+",
     next: "White Label",
     icon: Crown,
@@ -250,7 +250,7 @@ export default function Process() {
   {
     level: 7,
     type: "White Label",
-    retention: "18 months",
+    retention: "6 months",
     kpi: "8+",
     next: "Brick & Mortar",
     icon: Package,
@@ -260,8 +260,8 @@ export default function Process() {
   {
     level: 8,
     type: "Brick & Mortar",
-    retention: "12 months",
-    kpi: "7+",
+    retention: "6 months",
+    kpi: "8+",
     next: "Design Collaboration",
     icon: Building,
     description:
@@ -270,8 +270,8 @@ export default function Process() {
   {
     level: 9,
     type: "Design Collaboration",
-    retention: "9 months",
-    kpi: "7+",
+    retention: "6 months",
+    kpi: "8+",
     next: "Storytelling & Media",
     icon: Crown,
     description:
@@ -280,8 +280,8 @@ export default function Process() {
   {
     level: 10,
     type: "Storytelling & Media",
-    retention: "6 months",
-    kpi: "6+",
+    retention: "3 months",
+    kpi: "7+",
     next: "Warehouse",
     icon: Package,
     description:
@@ -291,7 +291,7 @@ export default function Process() {
     level: 11,
     type: "Warehouse",
     retention: "12 months",
-    kpi: "7+",
+    kpi: "8+",
     next: "Packaging",
     icon: Store,
     description:
@@ -301,7 +301,7 @@ export default function Process() {
     level: 12,
     type: "Packaging",
     retention: "6 months",
-    kpi: "6+",
+    kpi: "8+",
     next: "Logistics",
     icon: Package,
     description:
@@ -310,8 +310,8 @@ export default function Process() {
   {
     level: 13,
     type: "Logistics",
-    retention: "9 months",
-    kpi: "7+",
+    retention: "12 months",
+    kpi: "8+",
     next: "Museum / Institutional",
     icon: Globe,
     description:
@@ -320,8 +320,8 @@ export default function Process() {
   {
     level: 14,
     type: "Museum / Institutional",
-    retention: "36 months",
-    kpi: "9+",
+    retention: "None",
+    kpi: "None",
     next: "NGO & Government",
     icon: Eye,
     description:
@@ -330,8 +330,8 @@ export default function Process() {
   {
     level: 15,
     type: "NGO & Government",
-    retention: "24 months",
-    kpi: "8+",
+    retention: "None",
+    kpi: "None",
     next: "Technology Partnership",
     icon: Store,
     description:
@@ -340,8 +340,8 @@ export default function Process() {
   {
     level: 16,
     type: "Technology Partnership",
-    retention: "18 months",
-    kpi: "8+",
+    retention: "None",
+    kpi: "None",
     next: null,
     icon: TrendingUp,
     description:

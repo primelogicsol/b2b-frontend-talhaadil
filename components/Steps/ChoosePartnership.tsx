@@ -38,8 +38,8 @@ const partnerships: Partnership[] = [
     buyer: "Reseller",
     description:
       "Perfect entry point for online business expansion. Low risk, high potential for market reach and customer acquisition.",
-    retention: "No requirement",
-    kpiScore: "No requirement",
+    retention: "None",
+    kpiScore: "None",
     available: true,
   },
   {
@@ -64,7 +64,7 @@ const partnerships: Partnership[] = [
     description:
       "International trade opportunities with global market access. Requires compliance with international trade regulations.",
     retention: "6 months",
-    kpiScore: "7+",
+    kpiScore: "8+",
     available: false,
     isAltPath: true,
   },
@@ -76,8 +76,8 @@ const partnerships: Partnership[] = [
     buyer: "Distributor",
     description:
       "Bulk trading partnership for large volume transactions. Ideal for established businesses with strong distribution networks.",
-    retention: "12 months",
-    kpiScore: "8+",
+    retention: "3 months",
+    kpiScore: "7+",
     available: false,
     isAltPath: true,
   },
@@ -101,7 +101,7 @@ const partnerships: Partnership[] = [
     buyer: "Bidder",
     description:
       "Premium auction platform for high-value Kashmir crafts. Competitive bidding environment with authenticated products.",
-    retention: "24 months",
+    retention: "6 months",
     kpiScore: "8+",
     available: false,
   },
@@ -113,7 +113,7 @@ const partnerships: Partnership[] = [
     buyer: "Brand Owner",
     description:
       "Private label manufacturing partnership. Create your own brand with our premium Kashmir craft expertise.",
-    retention: "18 months",
+    retention: "6 months",
     kpiScore: "8+",
     available: false,
   },
@@ -125,8 +125,8 @@ const partnerships: Partnership[] = [
     buyer: "Tenant",
     description:
       "Physical retail space partnership for premium Kashmir craft stores. Prime locations with established foot traffic.",
-    retention: "12 months",
-    kpiScore: "7+",
+    retention: "6 months",
+    kpiScore: "8+",
     available: false,
   },
   {
@@ -137,8 +137,8 @@ const partnerships: Partnership[] = [
     buyer: "Collaboration Partner",
     description:
       "Creative partnership for custom design development. Combine traditional craftsmanship with modern design aesthetics.",
-    retention: "9 months",
-    kpiScore: "7+",
+    retention: "6 months",
+    kpiScore: "8+",
     available: false,
   },
   {
@@ -149,8 +149,8 @@ const partnerships: Partnership[] = [
     buyer: "Media Rights Buyer",
     description:
       "Content creation and media rights partnership. Share the rich heritage and stories behind Kashmir crafts.",
-    retention: "6 months",
-    kpiScore: "6+",
+    retention: "3 months",
+    kpiScore: "7+",
     available: false,
   },
   {
@@ -162,7 +162,7 @@ const partnerships: Partnership[] = [
     description:
       "Strategic storage and fulfillment partnership. Optimized logistics for efficient inventory management.",
     retention: "12 months",
-    kpiScore: "7+",
+    kpiScore: "8+",
     available: false,
   },
   {
@@ -174,7 +174,7 @@ const partnerships: Partnership[] = [
     description:
       "Premium packaging solutions for Kashmir crafts. Sustainable and culturally appropriate packaging designs.",
     retention: "6 months",
-    kpiScore: "6+",
+    kpiScore: "8+",
     available: false,
   },
   {
@@ -185,8 +185,8 @@ const partnerships: Partnership[] = [
     buyer: "Logistics Client",
     description:
       "End-to-end logistics partnership for seamless product delivery. Specialized handling for delicate Kashmir crafts.",
-    retention: "9 months",
-    kpiScore: "7+",
+    retention: "12 months",
+    kpiScore: "8+",
     available: false,
   },
   {
@@ -197,8 +197,8 @@ const partnerships: Partnership[] = [
     buyer: "Museum Buyer",
     description:
       "Cultural preservation partnership with museums and institutions. Showcase authentic Kashmir heritage globally.",
-    retention: "36 months",
-    kpiScore: "9+",
+    retention: "None",
+    kpiScore: "None",
     available: false,
   },
   {
@@ -209,8 +209,8 @@ const partnerships: Partnership[] = [
     buyer: "NGO Buyer",
     description:
       "Social impact partnership supporting local artisans. Government and NGO collaboration for community development.",
-    retention: "24 months",
-    kpiScore: "8+",
+    retention: "None",
+    kpiScore: "None",
     available: false,
   },
   {
@@ -221,8 +221,8 @@ const partnerships: Partnership[] = [
     buyer: "Technology Client",
     description:
       "Innovation-driven partnership leveraging technology for craft promotion. Digital transformation of traditional business models.",
-    retention: "18 months",
-    kpiScore: "8+",
+    retention: "None",
+    kpiScore: "None",
     available: false,
   },
 ];
