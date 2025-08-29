@@ -61,6 +61,7 @@ export const coreTradeData = {
     {
       id: "dropshipping",
       name: "Dropshipping",
+      prev : "None",
       icon: "Truck",
       kpi: "None",
       href: "/core-trade/dropshipping-ecommerce",
@@ -73,6 +74,7 @@ export const coreTradeData = {
     {
       id: "consignment",
       name: "Consignment",
+      prev : "Dropshipping",
       icon: "ShoppingBag",
       kpi: "7+",
       href: "/core-trade/consignment",
@@ -85,6 +87,7 @@ export const coreTradeData = {
     {
       id: "wholesale",
       name: "Wholesale",
+      prev : "Consignment",
       icon: "Package",
       href: "/core-trade/wholesale&distribution",
       kpi: "7+",
@@ -97,6 +100,7 @@ export const coreTradeData = {
     {
       id: "export",
       name: "Import/Export",
+      prev : "Wholesale",
       icon: "Globe",
       href: "/core-trade/import-export",
       kpi: "8+",

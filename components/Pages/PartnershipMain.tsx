@@ -97,6 +97,7 @@ type pageData = {
   tracks: Array<{
     id: string | number;
     icon: string;
+    prev? : string;
     name: string;
     href: string;
     kpi: string;
@@ -521,6 +522,13 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                     >
                       <span className="font-semibold">Retention:</span>{" "}
                       {track.retention}
+                    </p>
+                    <p
+                      className={`text-gray-700 ${is4K ? "text-lg" : "text-sm"
+                        }`}
+                    >
+                      <span className="font-semibold">Previous Level:</span>{" "}
+                      {track.prev}
                     </p>
                     <p
                       className={`text-gray-700 ${is4K ? "text-lg" : "text-sm"
@@ -1091,7 +1099,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
 
       {/* Footer */}
       <motion.footer
-        className="bg-[var(--primary-color)] text-white py-12"
+        className="bg-[var(--primary-color)] text-white py-12 mb-20"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

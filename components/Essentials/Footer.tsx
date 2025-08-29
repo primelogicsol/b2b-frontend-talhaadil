@@ -44,50 +44,51 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-[var(--primary-color)]">
       {/* Top CTA Section */}
       <motion.div
-  className="bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] py-6 px-4 w-[80vw] mx-auto rounded-t-xl"
-  initial={{ y: -50, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
->
-
-
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <motion.div
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.02 }}
-          >
+        className="relative px-4"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="absolute inset-0 bg-white" /> {/* White background */}
+        <div className="relative w-3/4 mx-auto bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] rounded-lg">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 py-6 px-4">
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 20,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-              className="min-w-8 min-h-8 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.02 }}
             >
-              <Users className="w-4 h-4 text-[var(--secondary-light-color)]" />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 20,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
+                className="min-w-8 min-h-8 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
+              >
+                <Users className="w-4 h-4 text-[var(--secondary-light-color)]" />
+              </motion.div>
+              <h3 className="text-lg md:text-xl font-semibold text-[var(--primary-header-color)] text-center">
+                Stay Connected to Craftlore-Kashmir Craft Repository
+              </h3>
             </motion.div>
-            <h3 className="text-lg md:text-xl font-semibold text-[var(--primary-header-color)] text-center">
-              Stay Connected to Craftlore-Kashmir Craft Repository
-            </h3>
-          </motion.div>
-          <motion.button
-            className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-full font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            REGISTER
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </motion.button>
+            <motion.button
+              className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-full font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              REGISTER
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+          </div>
         </div>
       </motion.div>
 
       {/* Main Footer */}
       <motion.div
-        className="max-w-7xl mx-auto px-4 py-16 bg-[var(--primary-color)]"
+        className="max-w-7xl mx-auto px-4 py-16"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

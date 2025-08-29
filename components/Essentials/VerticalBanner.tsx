@@ -6,6 +6,20 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 const defaultSlides = [
+   {
+    id: 0,
+    image: "/placeholder.svg?height=800&width=1200",
+    title: "Craft Design Collaboration",
+    subtitle: "Vendors and buyers co-create heritage-inspired modern designs",
+    primaryButton: {
+      text: "Start Collaboration",
+      link: "#start",
+    },
+    secondaryButton: {
+      text: "Join As Buyer",
+      link: "#join",
+    },
+  },
   {
     id: 1,
     image: "/placeholder.svg?height=800&width=1200",
@@ -34,34 +48,8 @@ const defaultSlides = [
       link: "#cases",
     },
   },
-  {
-    id: 3,
-    image: "/placeholder.svg?height=800&width=1200",
-    title: "Innovation Meets Excellence",
-    subtitle: "Join thousands of satisfied customers worldwide",
-    primaryButton: {
-      text: "Join Now",
-      link: "#join",
-    },
-    secondaryButton: {
-      text: "See Reviews",
-      link: "#reviews",
-    },
-  },
-  {
-    id: 4,
-    image: "/placeholder.svg?height=800&width=1200",
-    title: "Your Success Story Starts Here",
-    subtitle: "Professional solutions tailored to your unique needs",
-    primaryButton: {
-      text: "Contact Us",
-      link: "#contact",
-    },
-    secondaryButton: {
-      text: "Free Consultation",
-      link: "#consultation",
-    },
-  },
+  
+ 
 ]
 
 export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = false }) {
