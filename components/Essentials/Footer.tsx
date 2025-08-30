@@ -53,8 +53,6 @@ export default function Footer() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="absolute inset-0 bg-white" />
-         <div className="relative w-3/4 mx-auto bg-[var(--primary-color)] border-b-4 border-b-[var(--secondary-color)] rounded-t-lg">
-        <div className="absolute inset-0 bg-white" /> {/* White background */}
         <div className="relative w-3/4 mx-auto bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] rounded-t-lg">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 py-6 px-4">
             <motion.div
