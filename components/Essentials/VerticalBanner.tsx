@@ -10,7 +10,7 @@ const defaultSlides = [
     id: 0,
     image: "/placeholder.svg?height=800&width=1200",
     title: "Craft Design Collaboration",
-    subtitle: "Vendors and buyers co-create heritage-inspired modern designs",
+    subtitle: "Built With Artisans",
     primaryButton: {
       text: "Start Collaboration",
       link: "#start",
@@ -38,7 +38,7 @@ const defaultSlides = [
     id: 2,
     image: "/placeholder.svg?height=800&width=1200",
     title: "Transform Your Business",
-    subtitle: "Take your company to the next level with cutting-edge technology",
+    subtitle: "Built With Artisans",
     primaryButton: {
       text: "Learn More",
       link: "#learn",
@@ -58,7 +58,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = f
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 4000)
+    }, 100000000)
     return () => clearInterval(timer)
   }, [slides.length])
 
@@ -93,7 +93,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = f
 
             <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8 max-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[1800px] mx-auto">
               <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-7xl 2xl:text-9xl font-bold leading-tight"
+                className="text-xl md:text-5xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -103,9 +103,21 @@ export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = f
               >
                 {slide.title}
               </motion.h1>
+              <motion.h1
+                className="hidden lg:flex text-xl md:text-5xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-tight text-[var(--secondary-color)]"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: currentSlide === index ? 1 : 0,
+                  y: currentSlide === index ? 0 : 50,
+                }}
+                transition={{ duration: 1.5, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                {slide.subtitle}
+              </motion.h1>
 
+              
               <motion.p
-                className="text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-light opacity-90 max-w-3xl leading-relaxed mb-6 lg:mb-8"
+                className="text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl lg:font-bold opacity-90 max-w-4xl leading-relaxed mb-6 lg:mb-8 mt-2"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 0.9 : 0,
@@ -113,11 +125,12 @@ export default function VerticalHeroSlider({ slides = defaultSlides,isBanner = f
                 }}
                 transition={{ duration: 1.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                {slide.subtitle}
+               Vendors and buyers co-create heritage-inspired modern designs.
+
               </motion.p>
 
               <motion.div
-                className={`flex flex-col sm:flex-row gap-4 ${isBanner ? "lg:mb-55" : ""}`}
+                className={`flex flex-col sm:flex-row gap-4 mt-6${isBanner ? "lg:mb-55" : ""}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,

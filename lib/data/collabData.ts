@@ -65,6 +65,7 @@ export const collaborativeData = {
       name: "Design Co-Creation",
       icon: "Paintbrush",
       kpi: "8+",
+      prev :"Brick & Mortar",
       href: "/collaborative/design-collaboration",
       retention: "6 months",
       bestFor:
@@ -77,6 +78,7 @@ export const collaborativeData = {
       id: "storytelling-media",
       name: "Storytelling & Media",
       icon: "BookOpen",
+      prev : "Design Co-Creation",
       kpi: "7+",
       href: "/collaborative/storytelling&media",
       retention: "3 months",
@@ -92,6 +94,7 @@ export const collaborativeData = {
       name: "Warehousing & Shared Services",
       icon: "Warehouse",
       kpi: "8+",
+      prev : "Storytelling & Media",
       href: "/collaborative/warehouse",
       retention: "12 months",
       bestFor:
@@ -105,6 +108,7 @@ export const collaborativeData = {
       name: "Packaging & Branding Solutions",
       icon: "Package",
       kpi: "8+",
+      prev : "Warehousing",
       retention: "6 months",
       href: "/collaborative/packaging",
       bestFor:
