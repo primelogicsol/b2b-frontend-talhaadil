@@ -39,15 +39,22 @@ export const collaborativeData = {
     lateral: {
       title: "Lateral Entry (Fast-Track Path)",
       description:
-        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
+        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org). Designed for exceptional vendors & buyers with proven track record.",
       points: [
-        "KHCRF conducts evaluation.",
+        "KHCRF conducts evaluation of performance, compliance, and product authenticity.",
         "If promising → pay Lateral Fee → skip retention requirements.",
-        "Immediate access to Collaborative Partnerships.",
+        "Immediate access to Collaborative Partnerships (Auction, White Label, Flagship, or Brick & Mortar).",
+
       ],
+      note: "Fast-track designed for high performers, certified artisans, and buyers with significant capacity. Requires ongoing compliance checks to remain active.",
+      vendors:
+        "Vendors must demonstrate established operations, consistent quality, and compliance with KHCRF standards. Prior export or award recognition preferred.",
+      buyers:
+        "Buyers must showcase proven capacity for scaling craft products (institutional, boutique retail, or large e-commerce platforms). Must meet minimum investment thresholds.",
       cta: "Apply for KHCRF Evaluation",
     },
-  },
+  }
+  ,
   eligibilityTest: {
     heading: "Check Your Collaborative Eligibility Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
@@ -60,46 +67,48 @@ export const collaborativeData = {
     cta: "Apply Now for This Track",
   },
   tracks: [
-     {
+    {
       id: "packaging",
       name: "Packaging & Branding Solutions",
       icon: "Package",
       kpi: "8+",
-      prev : "Warehousing",
+      prev: "Brick & Mortar",
       retention: "18 months",
       href: "/collaborative/packaging",
       bestFor:
-        "Vendors upgrading to premium buyers; buyers requiring branded packaging.",
-      benefit: "Branded kits, eco-friendly solutions, custom bundles.",
+        "Vendors upgrading to premium buyers and buyers needing branded product packaging.",
+      benefit:
+        "Includes branded kits, eco solutions, custom bundles, and packaging services.",
       cta: "Apply for Packaging",
       fastTrackAvailable: true,
     },
     {
       id: "design-co-creation",
-      name: "Design Co-Creation",
+      name: " Design & Product Innovation",
       icon: "Paintbrush",
       kpi: "8+",
-      prev :"Brick & Mortar",
-      href: "/collaborative/design-collaboration",
+      prev: "Packaging",
       retention: "4 months",
+      href: "/collaborative/design-collaboration",
       bestFor:
-        "Buyers who want unique product lines & vendors open to design innovation.",
-      benefit: "Exclusive designs, shared IP, branding.",
+        "Buyers wanting unique product lines and vendors open to creative innovation.",
+      benefit:
+        "Provides exclusive designs, shared IP, branding, and collaborative product creation.",
       cta: "Apply for Co-Creation",
       fastTrackAvailable: true,
     },
     {
       id: "storytelling-media",
-      name: "Storytelling & Media",
+      name: "Storytelling, Media & Brand Engagement",
       icon: "BookOpen",
-      prev : "Design Co-Creation",
       kpi: "8.5+",
-      href: "/collaborative/storytelling&media",
+      prev: "Design Co-Creation",
       retention: "4 months",
+      href: "/collaborative/storytelling&media",
       bestFor:
-        "Brands, retailers, and vendors needing narrative-driven differentiation.",
+        "Brands and retailers plus vendors needing narrative-driven market differentiation.",
       benefit:
-        "Shared campaigns, digital content, AR/VR-enabled product stories.",
+        "Delivers campaigns, digital media, AR stories, VR content, and promotions.",
       cta: "Apply for Storytelling",
       fastTrackAvailable: true,
     },
@@ -108,17 +117,18 @@ export const collaborativeData = {
       name: "Warehousing & Shared Services",
       icon: "Warehouse",
       kpi: "8.5+",
-      prev : "Storytelling & Media",
-      href: "/collaborative/warehouse",
+      prev: "Storytelling & Media",
       retention: "4 months",
-      bestFor:
-        "Buyers seeking scalable distribution & vendors needing storage support.",
-      benefit: "Shared warehouses, pooled logistics, reduced costs.",
+      href: "/collaborative/warehouse",
+      bestFor: "Buyers needing distribution and vendors requiring storage support.",
+      benefit: "Offers shared warehouses, logistics pooling, and reduced costs.",
+      
+    
       cta: "Apply for Warehousing",
       fastTrackAvailable: true,
     },
-   
-  ],
+  ]
+  ,
   workflow: {
     heading: "How Collaborative Partnerships Work",
     standard: {
@@ -396,6 +406,8 @@ export const collaborativeData = {
         "Free — no upfront or lateral fee.",
         "Progress via KPI + retention (43-73 months).",
         "Best for: Steady, sustainable growth.",
+        "Guided mentorship during initial partnership stages.",
+        "Lower risk: gradual scaling ensures stronger market alignment.",
       ],
       note: "Takes time: retention required.",
       cta: "Apply with Standard Path",
@@ -408,11 +420,14 @@ export const collaborativeData = {
         "Skip retention → direct access to Collaborative tracks.",
         "Recognition as KHCRF-reviewed partner.",
         "Best for: Vendors and buyers ready to scale fast.",
+        "Quicker visibility: jump directly into premium collaborative programs.",
+       
       ],
       note: "Paid only after successful evaluation.",
       cta: "Apply for KHCRF Fast-Track",
     },
-  },
+  }
+  ,
   faq: [
     {
       question: "Do I need tech adoption to join Collaborative?",

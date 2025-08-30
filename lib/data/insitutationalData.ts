@@ -39,15 +39,19 @@ export const institutionalData = {
     lateral: {
       title: "Lateral Entry (Fast-Track Path)",
       description:
-        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
+        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org). Designed for high-performing partners who meet benchmarks early.",
       points: [
-        "KHCRF conducts evaluation.",
+        "KHCRF conducts evaluation of vendor or buyer readiness.",
         "If promising → pay Lateral Fee → skip prerequisites & retention.",
-        "Immediate access to Institutional Partnerships.",
+        "Immediate access to Institutional Partnerships and advanced tracks.",
+        "Best suited for partners with proven capacity to scale rapidly.",
+        "Recognition as KHCRF-approved, granting higher trust and visibility.",
       ],
+      note: "Accelerated path, but requires strong performance history and readiness for growth.",
       cta: "Apply for KHCRF Evaluation",
     },
-  },
+  }
+  ,
   eligibilityTest: {
     heading: "Check Your Institutional Eligibility Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
@@ -65,25 +69,27 @@ export const institutionalData = {
       name: "Logistics & Infrastructure",
       icon: "Truck",
       kpi: "Negotiable",
-      prev: "Packaging & Branding Solutions",
+      prev: "Warehouse",
       href: "/institutional/logistics-infrastructure",
       retention: "12 months",
-      bestFor: "Large buyers, vendor cooperatives, logistics partners.",
-      benefit: "Global supply chain integration, warehousing, reduced costs.",
+      bestFor: "Large buyers, cooperatives, and logistics partners.",
+
+      benefit: "Supply integration, warehousing, savings.",
+      
       cta: "Apply for Logistics",
       fastTrackAvailable: true,
     },
     {
       id: "museum",
-      name: "Museums",
+      name: "Art & Culture Museums",
       icon: "Landmark",
       prev: "Logistics & Infrastructure",
       href: "/institutional/museum-institutional",
       kpi: "None",
       retention: "None",
-      bestFor:
-        "Vendors with heritage products & institutions preserving culture.",
-      benefit: "Museum showcases, heritage preservation, global visibility.",
+      bestFor: "Heritage vendors and cultural institutions.",
+benefit: "Museum showcases, preservation, global reach.",
+
       cta: "Apply for Museum",
       fastTrackAvailable: true,
     },
@@ -109,9 +115,10 @@ export const institutionalData = {
       prev: "NGOs & Governments",
       href: "/institutional/technology-partnership",
       retention: "None",
-      bestFor:
-        "Vendors adopting blockchain, AI, AR/VR; buyers seeking traceability.",
-      benefit: "Blockchain traceability, AI insights, AR/VR exhibitions.",
+      bestFor: "Tech-driven vendors, trust-focused buyers.",
+benefit: "Traceability, insights, immersion.",
+
+      
       cta: "Apply for Tech Alliance",
       fastTrackAvailable: true,
     },
@@ -261,7 +268,6 @@ export const institutionalData = {
             "Premium packaging",
             "AR/VR museum catalogs",
             "Logistics waiver: 15%",
-            "Dedicated museum liaison",
           ],
         },
       ],

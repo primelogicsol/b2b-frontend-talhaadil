@@ -34,19 +34,30 @@ export const brandGrowthData = {
       buyers:
         "KPI 7-8+, Retention 27-43 months, budget flexibility depending on chosen track.",
       note: "Partners move step by step through KPIs, retention, and previous-level eligibility.",
+      description:
+        "Progressive pathway designed for steady and structured growth through Core Trade → Brand Growth.",
+      cta: "Apply for Standard Path",
     },
     lateral: {
       title: "Lateral Entry (Fast-Track Path)",
       description:
-        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org).",
+        "Independent evaluation by Hamadan Craft Revival Foundation (KHCRF.org). Designed for partners with proven records, certifications, or external recognition who can demonstrate capacity to scale quickly.",
       points: [
         "If evaluation is promising → pay Lateral Fee.",
         "Skip retention → direct entry into Auction, White Label, or Brick & Mortar.",
         "KPI thresholds still apply.",
+        "Performance is monitored closely during the first 6-12 months of entry.",
       ],
+      note: "Fast-track designed for proven performers, certified vendors, or buyers with external validation and investment capacity. Higher accountability applies compared to standard entrants.",
+      vendors:
+        "Special vendors evaluated independently; must meet compliance, authenticity, and quality benchmarks, with flexibility for those already supplying premium markets.",
+      buyers:
+        "Buyers with demonstrated capacity to scale or invest at advanced stages are eligible. This includes institutional buyers, retail chains, or investors seeking rapid integration into premium trade levels.",
       cta: "Apply for KHCRF Fast-Track",
     },
-  },
+  }
+  
+,
   eligibilityTest: {
     heading: "Check Your Brand Growth Track Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
@@ -230,6 +241,7 @@ tracks: [
             "Basic catalog placement",
             "Logistics waiver: 5% discount",
             "Standard vendor–buyer matching",
+            "Email support (business hours)",
           ],
         },
         {
@@ -240,6 +252,7 @@ tracks: [
             "Branded catalog features",
             "Logistics waiver: 10% discount",
             "Priority buyer matching + analytics",
+            "Performance insights dashboard",
           ],
         },
         {
@@ -249,7 +262,8 @@ tracks: [
             "Premium exhibition showcases",
             "Customized catalog placement",
             "Logistics waiver: 15% discount",
-            "Top priority, dedicated support, early Auction eligibility",
+            "Top priority, dedicated support",
+            "Early Auction eligibility",
           ],
         },
       ],
@@ -268,6 +282,7 @@ tracks: [
             "Basic listing templates",
             "Logistics waiver: 5%",
             "Standard auction monitoring",
+            "Email support (business hours)",
           ],
         },
         {
@@ -278,6 +293,7 @@ tracks: [
             "Branded listing kit",
             "Logistics waiver: 10%",
             "Priority bidder allocation",
+            "Analytics dashboard",
           ],
         },
         {
@@ -307,6 +323,7 @@ tracks: [
             "Basic branding templates",
             "Logistics waiver: 5%",
             "KPI monitoring dashboard",
+            "Email support (business hours)",
           ],
         },
         {
@@ -317,6 +334,7 @@ tracks: [
             "Branded kit access",
             "Logistics waiver: 10%",
             "Priority partner allocation",
+            "Performance dashboard",
           ],
         },
         {
@@ -346,6 +364,7 @@ tracks: [
             "Basic store templates",
             "Logistics waiver: 5%",
             "Trade advisory (basic)",
+            "Email support (business hours)",
           ],
         },
         {
@@ -356,6 +375,7 @@ tracks: [
             "Branded retail kit",
             "Logistics waiver: 10%",
             "Priority market matching",
+            "Analytics dashboard",
           ],
         },
         {
@@ -381,7 +401,7 @@ tracks: [
       features: [
         "Free — no upfront or lateral fee.",
         "Requires KPI (7-8+) and retention (27-43 months).",
-        "Step-by-step progression through Exhibition → Auction → White Label → Retail.",
+        "Stepbystep progression Exhibition → Auction → White Label → Retail.",
         "Best for: Partners who want steady, sustainable growth.",
         "Dedicated support for onboarding and long-term partnership success.",
       ],

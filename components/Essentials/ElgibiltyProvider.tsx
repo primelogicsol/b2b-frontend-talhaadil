@@ -374,27 +374,28 @@ export default function EligibilityQuiz() {
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-3 gap-6 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <div className="bg-white/10 rounded-lg p-4">
-              <Award className="w-8 h-8 mx-auto mb-2" />
-              <h3 className={`font-semibold mb-2 ${is4K ? "text-lg" : "text-base"}`}>Smart Matching</h3>
-              <p className={`text-sm opacity-80 ${is4K ? "text-base" : "text-xs"}`}>AI-powered track recommendations</p>
-            </div>
-            <div className="bg-white/10 rounded-lg p-4">
-              <TrendingUp className="w-8 h-8 mx-auto mb-2" />
-              <h3 className={`font-semibold mb-2 ${is4K ? "text-lg" : "text-base"}`}>Personalized Results</h3>
-              <p className={`text-sm opacity-80 ${is4K ? "text-base" : "text-xs"}`}>Tailored action plans</p>
-            </div>
-            <div className="bg-white/10 rounded-lg p-4">
-              <Zap className="w-8 h-8 mx-auto mb-2" />
-              <h3 className={`font-semibold mb-2 ${is4K ? "text-lg" : "text-base"}`}>Fast-Track Detection</h3>
-              <p className={`text-sm opacity-80 ${is4K ? "text-base" : "text-xs"}`}>Identify premium opportunities</p>
-            </div>
-          </motion.div>
+  className="grid md:grid-cols-3 gap-6 mb-8"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4 }}
+>
+  <div className="bg-white/10 rounded-lg p-4">
+    <Award className="w-8 h-8 mx-auto mb-2" />
+    <h3 className={`font-semibold mb-2 ${is4K ? "text-lg" : "text-base"}`}>Smart Match</h3>
+    <p className={`text-sm opacity-80 ${is4K ? "text-base" : "text-xs"}`}>AI Track Guide</p>
+  </div>
+  <div className="bg-white/10 rounded-lg p-4">
+    <TrendingUp className="w-8 h-8 mx-auto mb-2" />
+    <h3 className={`font-semibold mb-2 ${is4K ? "text-lg" : "text-base"}`}>Custom Results</h3>
+    <p className={`text-sm opacity-80 ${is4K ? "text-base" : "text-xs"}`}>Tailored Action Plan</p>
+  </div>
+  <div className="bg-white/10 rounded-lg p-4">
+    <Zap className="w-8 h-8 mx-auto mb-2" />
+    <h3 className={`font-semibold mb-2 ${is4K ? "text-lg" : "text-base"}`}>Quick Detect</h3>
+    <p className={`text-sm opacity-80 ${is4K ? "text-base" : "text-xs"}`}>Premium Spot Finder</p>
+  </div>
+</motion.div>
+
 
           <motion.button
             className={`bg-white text-[var(--primary-color)] px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all duration-300 ${
