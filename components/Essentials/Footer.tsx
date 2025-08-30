@@ -284,18 +284,28 @@ export default function Footer() {
             © 2025 Craftlore. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <p className="text-white">
-              Powered and Maintained by Prime Logic Solutions USA
-            </p>
-            <div className="flex gap-4">
-              <motion.a href="#" className="text-white hover:text-white">
-                Terms
-              </motion.a>
-              <motion.a href="#" className="text-white hover:text-white">
-                Privacy
-              </motion.a>
-            </div>
-          </div>
+          <div className="flex gap-4">
+  <motion.a href="/terms&condition/privacyPolicy" className="text-white hover:text-white">
+    Privacy Policy
+  </motion.a>
+  <motion.a href="/terms&condition/refund&cancellationPolicy" className="text-white hover:text-white">
+    Refund Policy
+  </motion.a>
+  <motion.a href="/terms&condition/disputeResolution" className="text-white hover:text-white">
+    Dispute Policy
+  </motion.a>
+  <motion.a href="/terms&condition/kyc-onboardingPolicy" className="text-white hover:text-white">
+    KYC Policy
+  </motion.a>
+  <motion.a href="/terms&condition/contact" className="text-white hover:text-white">
+    Contact Support
+  </motion.a>
+</div>
+
+
+
+</div>
+
         </motion.div>
       </motion.div>
     </footer>
