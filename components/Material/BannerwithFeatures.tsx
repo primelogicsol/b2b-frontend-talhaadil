@@ -9,7 +9,7 @@ function BannerWithFeatures() {
       <VerticalHeroSlider isBanner/>
       <div
         className="mt-6 flex justify-center mx-4 lg:mx-0
-             lg:mt-0 lg:absolute lg:inset-x-0 lg:-bottom-40"
+             lg:mt-0 lg:absolute lg:inset-x-0 lg:-bottom-50"
       >
         <Features />
       </div>

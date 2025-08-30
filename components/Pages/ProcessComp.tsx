@@ -186,7 +186,7 @@ export default function Process() {
       icon: Cpu,
     },
   ]
-    const partnershipLevels = [
+   const partnershipLevels = [
   {
     level: 1,
     type: "Drop Shipping / E-Commerce",
@@ -200,37 +200,37 @@ export default function Process() {
   {
     level: 2,
     type: "Consignment",
-    retention: "18 months",
-    kpi: "7+",
-    next: "Import Export",
+    retention: "12 months",
+    kpi: "6+",
+    next: "Wholesale & Distribution",
     icon: Store,
     description:
       "Consignors provide goods to consignees for sale, retaining ownership until purchase. This model reduces risk while enabling access to premium retail channels. Revenue is shared per sale, ensuring sustainable operations. Vendors strengthen market credibility, refine offerings, and gain valuable insights for long-term business planning.",
   },
   {
     level: 3,
-    type: "Import Export",
-    retention: "6 months",
-    kpi: "8+",
-    next: "Wholesale & Distribution",
-    icon: Globe,
-    description:
-      "Exporters and importers engage in structured international trade partnerships. This level grants global market access, requiring adherence to trade regulations and quality standards. Vendors expand beyond domestic markets, establishing international credibility, diversifying revenue streams, and building resilient supply chains with trusted overseas partners.",
-  },
-  {
-    level: 4,
     type: "Wholesale & Distribution",
-    retention: "3 months",
-    kpi: "7+",
-    next: "Exhibition",
+    retention: "4 months",
+    kpi: "6.5+",
+    next: "Import Export",
     icon: TrendingUp,
     description:
       "Wholesalers and distributors form bulk-trade partnerships for high-volume sales. Designed for established businesses, this model emphasizes strong networks and consistent demand. Vendors benefit from economies of scale, predictable revenue cycles, and brand recognition in both domestic and global wholesale marketplaces, enabling sustainable long-term growth.",
   },
   {
+    level: 4,
+    type: "Import Export",
+    retention: "4 months",
+    kpi: "7+",
+    next: "Exhibition",
+    icon: Globe,
+    description:
+      "Exporters and importers engage in structured international trade partnerships. This level grants global market access, requiring adherence to trade regulations and quality standards. Vendors expand beyond domestic markets, establishing international credibility, diversifying revenue streams, and building resilient supply chains with trusted overseas partners.",
+  },
+  {
     level: 5,
     type: "Exhibition",
-    retention: "6 months",
+    retention: "4 months",
     kpi: "7+",
     next: "Auction & Bidding",
     icon: Eye,
@@ -240,8 +240,8 @@ export default function Process() {
   {
     level: 6,
     type: "Auction & Bidding",
-    retention: "6 months",
-    kpi: "8+",
+    retention: "4 months",
+    kpi: "7.5+",
     next: "White Label",
     icon: Crown,
     description:
@@ -250,7 +250,7 @@ export default function Process() {
   {
     level: 7,
     type: "White Label",
-    retention: "6 months",
+    retention: "4 months",
     kpi: "8+",
     next: "Brick & Mortar",
     icon: Package,
@@ -260,17 +260,27 @@ export default function Process() {
   {
     level: 8,
     type: "Brick & Mortar",
-    retention: "6 months",
+    retention: "4 months",
     kpi: "8+",
-    next: "Design Collaboration",
+    next: "Packaging",
     icon: Building,
     description:
       "Space providers and tenants collaborate on premium retail stores in prime locations. Vendors benefit from established foot traffic and an immersive customer experience. This stage strengthens offline presence, supports experiential marketing, and allows deeper engagement with customers through personalized, in-store product presentations.",
   },
-  {
+    {
     level: 9,
+    type: "Packaging",
+    retention: "18 months",
+    kpi: "8+",
+    next: "Design Collaboration",
+    icon: Package,
+    description:
+      "Packaging suppliers provide sustainable, culturally aligned designs for premium crafts. This partnership elevates brand presentation, enhances customer experience, and supports eco-friendly practices. Vendors and buyers collaborate to create packaging that protects products while reflecting the artistry and cultural heritage of their origins.",
+  },
+  {
+    level: 10,
     type: "Design Collaboration",
-    retention: "6 months",
+    retention: "4 months",
     kpi: "8+",
     next: "Storytelling & Media",
     icon: Crown,
@@ -278,40 +288,31 @@ export default function Process() {
       "Collaboration suppliers and partners co-create unique designs merging tradition and modern aesthetics. This partnership focuses on innovation and brand differentiation, appealing to niche markets. Vendors gain creative freedom while accessing collaborative networks, ensuring both artistic expression and market competitiveness for long-term growth.",
   },
   {
-    level: 10,
+    level: 11,
     type: "Storytelling & Media",
-    retention: "3 months",
-    kpi: "7+",
+    retention: "4 months",
+    kpi: "8.5+",
     next: "Warehouse",
     icon: Package,
     description:
       "Content suppliers work with media buyers to share cultural narratives and heritage. This model enhances brand identity by showcasing authentic stories, building emotional connections with audiences. Vendors leverage media reach to elevate brand value, attract loyal customers, and create meaningful cultural impact.",
   },
   {
-    level: 11,
+    level: 12,
     type: "Warehouse",
-    retention: "12 months",
-    kpi: "8+",
-    next: "Packaging",
+    retention: "4 months",
+    kpi: "8.5+",
+    next: "Logistics",
     icon: Store,
     description:
       "Warehouse providers and clients partner to streamline storage and distribution processes. This stage focuses on efficient inventory management, ensuring timely deliveries and reduced logistical costs. Vendors gain operational stability and scalability, while buyers enjoy reliable fulfillment services tailored to specialized product needs.",
   },
-  {
-    level: 12,
-    type: "Packaging",
-    retention: "6 months",
-    kpi: "8+",
-    next: "Logistics",
-    icon: Package,
-    description:
-      "Packaging suppliers provide sustainable, culturally aligned designs for premium crafts. This partnership elevates brand presentation, enhances customer experience, and supports eco-friendly practices. Vendors and buyers collaborate to create packaging that protects products while reflecting the artistry and cultural heritage of their origins.",
-  },
+
   {
     level: 13,
     type: "Logistics",
     retention: "12 months",
-    kpi: "8+",
+    kpi: "Negotiable",
     next: "Museum / Institutional",
     icon: Globe,
     description:
@@ -348,6 +349,7 @@ export default function Process() {
       "Technology providers and clients partner to digitize and promote crafts. This stage integrates innovation into traditional models, enhancing market reach, operational efficiency, and customer engagement. Vendors gain tools for scaling, while buyers leverage technology to modernize the craft industry and drive growth.",
   },
 ];
+
 
 
   const [currentLevelIndex, setCurrentLevelIndex] = useState(0)

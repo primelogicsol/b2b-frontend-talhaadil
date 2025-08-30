@@ -398,6 +398,8 @@ export function Navbar() {
     { label: "Our Values", href: "/our-values" },
     { label: "Our Story", href: "/our-story" },
     { label: "Our Team", href: "/our-team" },
+    { label: "Brand Story", href: "/brand-story" },
+    { label: "Brand Credentials", href: "/brand-credentials" },
     { label: "Business Niche", href: "/business-niche" },
     { label: "Careers", href: "/careers" },
     { label: "Contact Us", href: "/contact" },
@@ -412,18 +414,19 @@ export function Navbar() {
         href: "/core-trade",
         subItems: [
           { label: "Drop Shipping", href: "/core-trade/dropshipping-ecommerce" },
-          { label: "Export", href: "/core-trade/import-export" },
-          { label: "Distribution", href: "/core-trade/wholesale&distribution" },
           { label: "Consignment", href: "/core-trade/consignment" },
+          { label: "Distribution", href: "/core-trade/wholesale&distribution" },
+          
+          { label: "Export", href: "/core-trade/import-export" },
         ],
       },
       {
         label: "Brand Expansion",
         href: "/brand-growth",
         subItems: [
+          { label: "Exhibition", href: "/brand-growth/exhibition" },
           { label: "Auction", href: "/brand-growth/auction&bidding" },
           { label: "White-Label", href: "/brand-growth/white-label" },
-          { label: "Exhibition", href: "/brand-growth/exhibition" },
           { label: "Brick & Mortar", href: "/brand-growth/brick&mortar" },
         ],
       },
@@ -441,8 +444,8 @@ export function Navbar() {
         label: "Institutional",
         href: "/institutional",
         subItems: [
-          { label: "Institutional", href: "/institutional/museum-institutional" },
           { label: "Logistics", href: "/institutional/logistics" },
+          { label: "Museum", href: "/institutional/museum-institutional" },
           { label: "NGO Supplier", href: "/institutional/ngo&government" },
           { label: "Technology Partnership", href: "/institutional/technology-partnership" },
         ],
@@ -455,18 +458,18 @@ export function Navbar() {
         href: "/core-trade",
         subItems: [
           { label: "E-Commerce", href: "/core-trade/dropshipping-ecommerce" },
-          { label: "Import", href: "/core-trade/import-export" },
-          { label: "Wholesale", href: "/core-trade/wholesale&distribution" },
           { label: "Consignment", href: "/core-trade/consignment" },
+          { label: "Wholesale", href: "/core-trade/wholesale&distribution" },
+          { label: "Import", href: "/core-trade/import-export" },
         ],
       },
       {
         label: "Brand Expansion",
         href: "/brand-growth",
         subItems: [
+          { label: "Exhibition", href: "/brand-growth/exhibition" },
           { label: "Bidding", href: "/brand-growth/auction&bidding" },
           { label: "White-Label", href: "/brand-growth/white-label" },
-          { label: "Exhibition", href: "/brand-growth/exhibition" },
           { label: "Brick & Mortar", href: "/brand-growth/brick&mortar" },
         ],
       },
@@ -484,8 +487,8 @@ export function Navbar() {
         label: "Institutional",
         href: "/institutional",
         subItems: [
-          { label: "Museum", href: "/institutional/museum-institutional" },
           { label: "Logistics", href: "/institutional/logistics" },
+          { label: "Museum", href: "/institutional/museum-institutional" },
           { label: "NGO Buyer", href: "/institutional/ngo&government" },
           { label: "Technology Partnership", href: "/institutional/technology-partnership" },
         ],
