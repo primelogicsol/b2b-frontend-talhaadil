@@ -3,20 +3,22 @@ import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-        <VerticalHeroSlider/>
+      <VerticalHeroSlider />
       {/* First Section - Video on Right */}
-      <section className="py-16 px-10 max-w-7xl mx-auto mt-20">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div className="mb-2 lg:mb-4 mt-20 text-center">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4">
+          Certified for Success
+        </h1>
+        <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+          Building Trust, Unlocking Markets, Empowering Growth Globally
+        </p>
+      </div>
+      <section className="py-16 px-10 max-w-7xl mx-auto">
+
+        <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12">
           {/* Content Area */}
           <div className="flex-1">
-            <div className="mb-8 lg:mb-12">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4">
-                Certified for Success
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-                Building Trust, Unlocking Markets, Empowering Growth Globally
-              </p>
-            </div>
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 h-fit">
               <div className="bg-[var(--secondary-light-color)] p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)]">
@@ -68,7 +70,7 @@ export default function Home() {
           </div>
 
           <div className="flex-1">
-            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[600px]">
+            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[500px]">
               <video className="w-full h-full object-cover" controls poster="/business-certification-success.png">
                 <source src="/placeholder-video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -79,10 +81,18 @@ export default function Home() {
       </section>
 
       {/* Second Section - Video on Left */}
+      <div className="mb-2 lg:mb-4 text-center mt-10">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4">
+          Empowering Global Growth
+        </h2>
+        <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+          Unlock markets, build trust, and elevate success
+        </p>
+      </div>
       <section className="py-16 px-10 max-w-7xl mx-auto bg-gray-50">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12">
           <div className="flex-1 order-2 lg:order-1">
-            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[600px]">
+            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[500px]">
               <video className="w-full h-full object-cover" controls poster="/global-business-growth-empowerment.png">
                 <source src="/placeholder-video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -92,14 +102,6 @@ export default function Home() {
 
           {/* Content Area */}
           <div className="flex-1 order-1 lg:order-2">
-            <div className="mb-8 lg:mb-12">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4">
-                Empowering Global Growth
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-                Unlock markets, build trust, and elevate success
-              </p>
-            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 h-fit">
               <div className="bg-white p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)] shadow-sm">
