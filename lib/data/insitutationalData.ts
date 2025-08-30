@@ -1,5 +1,5 @@
 export const institutionalData = {
-  tier : 4,
+  tier: 4,
   hero: {
     headline:
       "Institutional Partnerships — Building Trust, Heritage, and Global Alliances",
@@ -31,9 +31,9 @@ export const institutionalData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 9+, Retention 90 months, must have completed Collaborative track (Tech, Packaging, or Warehousing).",
+        "KPI 8+, Retention 85 months, must have completed Collaborative track (Tech, Packaging, or Warehousing).",
       buyers:
-        "KPI 8+, Retention 90 months, must have engaged in Brand Growth or Collaborative.",
+        "KPI 8+, Retention 85 months, must have engaged in Brand Growth or Collaborative.",
       note: "Partners progress through KPI improvement + retention periods after completing prerequisite tracks.",
     },
     lateral: {
@@ -64,8 +64,8 @@ export const institutionalData = {
       id: "logistics",
       name: "Logistics & Infrastructure",
       icon: "Truck",
-      kpi: "8+",
-      prev : "Packaging & Branding Solutions",
+      kpi: "Negotiable",
+      prev: "Packaging & Branding Solutions",
       href: "/institutional/logistics-infrastructure",
       retention: "12 months",
       bestFor: "Large buyers, vendor cooperatives, logistics partners.",
@@ -77,7 +77,7 @@ export const institutionalData = {
       id: "museum",
       name: "Museums",
       icon: "Landmark",
-      prev :"Logistics & Infrastructure",
+      prev: "Logistics & Infrastructure",
       href: "/institutional/museum-institutional",
       kpi: "None",
       retention: "None",
@@ -92,7 +92,7 @@ export const institutionalData = {
       name: "NGOs & Governments",
       icon: "Globe",
       kpi: "None",
-      prev : "Museum",
+      prev: "Museum",
       href: "/institutional/ngo&government",
       retention: "None",
       bestFor: "Social enterprises, NGOs, policymakers.",
@@ -192,9 +192,9 @@ export const institutionalData = {
       {
         title: "Choose Institutional Track",
         options: [
+          "Logistics & Infrastructure → KPI 8+ | 12 months retention.",
           "Museums → KPI none | no retention.",
           "NGOs & Governments → KPI none | no retention.",
-          "Logistics & Infrastructure → KPI 8+ | 12 months retention.",
           "Technology Alliances → KPI none | no retention.",
         ],
         note: "Requires completion of Collaborative or Brand Growth tracks.",
@@ -389,7 +389,7 @@ export const institutionalData = {
       subtitle: "(Default progression for all partners)",
       features: [
         "Free — no upfront or lateral fee.",
-        "Progress via KPI + retention (90 months).",
+        "Progress via KPI + retention (85 months).",
         "Best for: Institutions building steady, reliable partnerships.",
       ],
       note: "Takes time: requires previous track completions.",

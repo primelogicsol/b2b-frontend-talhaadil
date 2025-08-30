@@ -50,8 +50,8 @@ const partnerships: Partnership[] = [
     buyer: "Consignee",
     description:
       "Risk-free inventory management model. Products are sold on behalf of the consignor with shared revenue structure.",
-    retention: "18 months",
-    kpiScore: "7+",
+    retention: "12 months",
+    kpiScore: "6+",
     available: false,
     isAltPath: true,
   },
@@ -63,8 +63,8 @@ const partnerships: Partnership[] = [
     buyer: "Importer",
     description:
       "International trade opportunities with global market access. Requires compliance with international trade regulations.",
-    retention: "6 months",
-    kpiScore: "8+",
+    retention: "4 months",
+    kpiScore: "6.5+",
     available: false,
     isAltPath: true,
   },
@@ -76,7 +76,7 @@ const partnerships: Partnership[] = [
     buyer: "Distributor",
     description:
       "Bulk trading partnership for large volume transactions. Ideal for established businesses with strong distribution networks.",
-    retention: "3 months",
+    retention: "4 months",
     kpiScore: "7+",
     available: false,
     isAltPath: true,
@@ -89,7 +89,7 @@ const partnerships: Partnership[] = [
     buyer: "Participant / Event Organizer",
     description:
       "Showcase products at premium exhibitions and trade shows. Direct access to targeted audience and networking opportunities.",
-    retention: "6 months",
+    retention: "4 months",
     kpiScore: "7+",
     available: false,
   },
@@ -101,8 +101,8 @@ const partnerships: Partnership[] = [
     buyer: "Bidder",
     description:
       "Premium auction platform for high-value Kashmir crafts. Competitive bidding environment with authenticated products.",
-    retention: "6 months",
-    kpiScore: "8+",
+    retention: "4 months",
+    kpiScore: "7.5+",
     available: false,
   },
   {
@@ -113,7 +113,7 @@ const partnerships: Partnership[] = [
     buyer: "Brand Owner",
     description:
       "Private label manufacturing partnership. Create your own brand with our premium Kashmir craft expertise.",
-    retention: "6 months",
+    retention: "4 months",
     kpiScore: "8+",
     available: false,
   },
@@ -125,7 +125,19 @@ const partnerships: Partnership[] = [
     buyer: "Tenant",
     description:
       "Physical retail space partnership for premium Kashmir craft stores. Prime locations with established foot traffic.",
-    retention: "6 months",
+    retention: "4 months",
+    kpiScore: "8+",
+    available: false,
+  },
+    {
+    id: "packaging",
+    level: 12,
+    partnership_name: "Packaging",
+    vendor: "Packaging Supplier",
+    buyer: "Packaging Client",
+    description:
+      "Premium packaging solutions for Kashmir crafts. Sustainable and culturally appropriate packaging designs.",
+    retention: "18 months",
     kpiScore: "8+",
     available: false,
   },
@@ -137,7 +149,7 @@ const partnerships: Partnership[] = [
     buyer: "Collaboration Partner",
     description:
       "Creative partnership for custom design development. Combine traditional craftsmanship with modern design aesthetics.",
-    retention: "6 months",
+    retention: "4 months",
     kpiScore: "8+",
     available: false,
   },
@@ -149,11 +161,13 @@ const partnerships: Partnership[] = [
     buyer: "Media Rights Buyer",
     description:
       "Content creation and media rights partnership. Share the rich heritage and stories behind Kashmir crafts.",
-    retention: "3 months",
-    kpiScore: "7+",
+    retention: "4 months",
+    kpiScore: "8.5+",
     available: false,
   },
-  {
+
+
+    {
     id: "warehouse",
     level: 11,
     partnership_name: "Warehouse",
@@ -161,20 +175,8 @@ const partnerships: Partnership[] = [
     buyer: "Warehouse Client",
     description:
       "Strategic storage and fulfillment partnership. Optimized logistics for efficient inventory management.",
-    retention: "12 months",
-    kpiScore: "8+",
-    available: false,
-  },
-  {
-    id: "packaging",
-    level: 12,
-    partnership_name: "Packaging",
-    vendor: "Packaging Supplier",
-    buyer: "Packaging Client",
-    description:
-      "Premium packaging solutions for Kashmir crafts. Sustainable and culturally appropriate packaging designs.",
-    retention: "6 months",
-    kpiScore: "8+",
+    retention: "4 months",
+    kpiScore: "8.5+",
     available: false,
   },
   {
@@ -186,7 +188,7 @@ const partnerships: Partnership[] = [
     description:
       "End-to-end logistics partnership for seamless product delivery. Specialized handling for delicate Kashmir crafts.",
     retention: "12 months",
-    kpiScore: "8+",
+    kpiScore: "Negotiable",
     available: false,
   },
   {

@@ -30,9 +30,9 @@ export const coreTradeData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 7+, Retention 0–27 months (depending on track), certification required for Certified Export.",
+        "KPI 6+, Retention 0–20 months (depending on track), certification required for Certified Export.",
       buyers:
-        "KPI 7+, Retention 0–27 months, budget flexibility depending on chosen track.",
+        "KPI 6+, Retention 0–20 months, budget flexibility depending on chosen track.",
       note: "Partners progress naturally through KPI improvement + retention periods.",
     },
     lateral: {
@@ -76,9 +76,9 @@ export const coreTradeData = {
       name: "Consignment",
       prev : "Dropshipping",
       icon: "ShoppingBag",
-      kpi: "7+",
+      kpi: "6.0+",
       href: "/core-trade/consignment",
-      retention: "18 months",
+      retention: "12 months",
       bestFor: "Boutiques, retail stores, artisan groups.",
       benefit: "Pay after sales low-risk retail.",
       cta: "Apply for Consignment",
@@ -90,8 +90,8 @@ export const coreTradeData = {
       prev : "Consignment",
       icon: "Package",
       href: "/core-trade/wholesale&distribution",
-      kpi: "7+",
-      retention: "3 months",
+      kpi: "6.5+",
+      retention: "4 months",
       bestFor: "Distributors, chain stores, large buyers.",
       benefit: "Scalable & competitive pricing.",
       cta: "Apply for Wholesale",
@@ -103,8 +103,8 @@ export const coreTradeData = {
       prev : "Wholesale",
       icon: "Globe",
       href: "/core-trade/import-export",
-      kpi: "8+",
-      retention: "6 months",
+      kpi: "7+",
+      retention: "4 months",
       bestFor: "Compliance-driven trade, larger distributors.",
       benefit: "GI-certified, fair-trade verified.",
       cta: "Apply for Certified Export",
@@ -189,12 +189,12 @@ export const coreTradeData = {
           "Wholesale → Scale with bulk orders.",
           "Certified Import/Export → Global compliance & credibility.",
         ],
-        note: "All tracks require KPI 7+ (Export = KPI 8+).",
+        note: "All tracks require KPI(6.0-7.0)",
       },
       {
         title: "Standard Progression Path",
         description:
-          "Maintain KPI & meet retention (27 months). After stability → unlock next-level partnerships.",
+          "Maintain KPI & meet retention (20 months). After stability → unlock next-level partnerships.",
       },
       {
         title: "Fast-Track Option (KHCRF)",
@@ -382,7 +382,7 @@ export const coreTradeData = {
       features: [
         "Free — no upfront or lateral fee.",
         "Dropshipping requires no KPI, no retention (universal entry).",
-        "KPI 7+ and retention (18 - 27 months) apply only to Consignment, Wholesale, and Export.",
+        "KPI 6+ and retention (12-20 months) apply only to Consignment, Wholesale, and Export.",
         "Best for: Partners who want steady, sustainable growth.",
         "Transparent process with clear terms at every stage.",
       ],

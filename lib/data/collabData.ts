@@ -31,9 +31,9 @@ export const collaborativeData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 8+, Retention 51-78 months, prior experience in Core Trade or Brand Growth.",
+        "KPI 8+, Retention 43-73 months, prior experience in Core Trade or Brand Growth.",
       buyers:
-        "KPI 8+, Retention 51-78 months, proven sourcing budget & prior engagement.",
+        "KPI 8+, Retention 43-73 months, proven sourcing budget & prior engagement.",
       note: "Partners progress naturally through KPI improvement + retention periods.",
     },
     lateral: {
@@ -60,6 +60,20 @@ export const collaborativeData = {
     cta: "Apply Now for This Track",
   },
   tracks: [
+     {
+      id: "packaging",
+      name: "Packaging & Branding Solutions",
+      icon: "Package",
+      kpi: "8+",
+      prev : "Warehousing",
+      retention: "18 months",
+      href: "/collaborative/packaging",
+      bestFor:
+        "Vendors upgrading to premium buyers; buyers requiring branded packaging.",
+      benefit: "Branded kits, eco-friendly solutions, custom bundles.",
+      cta: "Apply for Packaging",
+      fastTrackAvailable: true,
+    },
     {
       id: "design-co-creation",
       name: "Design Co-Creation",
@@ -67,7 +81,7 @@ export const collaborativeData = {
       kpi: "8+",
       prev :"Brick & Mortar",
       href: "/collaborative/design-collaboration",
-      retention: "6 months",
+      retention: "4 months",
       bestFor:
         "Buyers who want unique product lines & vendors open to design innovation.",
       benefit: "Exclusive designs, shared IP, branding.",
@@ -79,9 +93,9 @@ export const collaborativeData = {
       name: "Storytelling & Media",
       icon: "BookOpen",
       prev : "Design Co-Creation",
-      kpi: "7+",
+      kpi: "8.5+",
       href: "/collaborative/storytelling&media",
-      retention: "3 months",
+      retention: "4 months",
       bestFor:
         "Brands, retailers, and vendors needing narrative-driven differentiation.",
       benefit:
@@ -93,30 +107,17 @@ export const collaborativeData = {
       id: "warehousing",
       name: "Warehousing & Shared Services",
       icon: "Warehouse",
-      kpi: "8+",
+      kpi: "8.5+",
       prev : "Storytelling & Media",
       href: "/collaborative/warehouse",
-      retention: "12 months",
+      retention: "4 months",
       bestFor:
         "Buyers seeking scalable distribution & vendors needing storage support.",
       benefit: "Shared warehouses, pooled logistics, reduced costs.",
       cta: "Apply for Warehousing",
       fastTrackAvailable: true,
     },
-    {
-      id: "packaging",
-      name: "Packaging & Branding Solutions",
-      icon: "Package",
-      kpi: "8+",
-      prev : "Warehousing",
-      retention: "6 months",
-      href: "/collaborative/packaging",
-      bestFor:
-        "Vendors upgrading to premium buyers; buyers requiring branded packaging.",
-      benefit: "Branded kits, eco-friendly solutions, custom bundles.",
-      cta: "Apply for Packaging",
-      fastTrackAvailable: true,
-    },
+   
   ],
   workflow: {
     heading: "How Collaborative Partnerships Work",
@@ -196,10 +197,11 @@ export const collaborativeData = {
       {
         title: "Choose Collaborative Track",
         options: [
-          "Design Co-Creation → KPI 8+ | 6 months retention.",
-          "Storytelling & Media → KPI 7+ | 3 months retention.",
-          "Warehousing & Shared Services → KPI 8+ | 12 months retention.",
-          "Packaging & Branding Solutions → KPI 8+ | 6 months retention.",
+           "Packaging & Branding Solutions → KPI 8+ | 18 months retention.",
+          "Design Co-Creation → KPI 8+ | 4 months retention.",
+          "Storytelling & Media → KPI 8.5+ | 4 months retention.",
+          "Warehousing & Shared Services → KPI 8.5+ | 4 months retention.",
+         
         ],
         note: "Requires completion of Core Trade or Brand Growth tracks.",
       },
@@ -392,7 +394,7 @@ export const collaborativeData = {
       subtitle: "(Default progression for all partners)",
       features: [
         "Free — no upfront or lateral fee.",
-        "Progress via KPI + retention (51-78 months).",
+        "Progress via KPI + retention (43-73 months).",
         "Best for: Steady, sustainable growth.",
       ],
       note: "Takes time: retention required.",
@@ -419,7 +421,7 @@ export const collaborativeData = {
     },
     {
       question: "Can small vendors access Packaging or Storytelling tracks?",
-      answer: "Yes, if KPI 7+ and minimum 3–6 months retention.",
+      answer: "Yes, if KPI 8+ and minimum 43 months retention.",
     },
     {
       question: "Is Lateral Entry possible for Warehousing?",

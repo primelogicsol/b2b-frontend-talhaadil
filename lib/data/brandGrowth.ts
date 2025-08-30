@@ -30,9 +30,9 @@ export const brandGrowthData = {
     standard: {
       title: "Standard Eligibility (Default Path)",
       vendors:
-        "KPI 7-8+, Retention 27-51 months (depending on track), prerequisite tracks from Core Trade.",
+        "KPI 7-8+, Retention 27-43 months (depending on track), prerequisite tracks from Core Trade.",
       buyers:
-        "KPI 7-8+, Retention 27-51 months, budget flexibility depending on chosen track.",
+        "KPI 7-8+, Retention 27-43 months, budget flexibility depending on chosen track.",
       note: "Partners move step by step through KPIs, retention, and previous-level eligibility.",
     },
     lateral: {
@@ -66,7 +66,7 @@ tracks: [
     kpi: "7+",
     prev : "Import Export",
     href: "/brand-growth/exhibition",
-    retention: "6 months",
+    retention: "4 months",
     bestFor: "Showcases and catalogs seekers",
     benefit: "Verified exhibitions & catalogs",
     cta: "Apply for Exhibition",
@@ -76,10 +76,10 @@ tracks: [
     id: "auction",
     name: "Auction",
     icon: "Gavel",
-    kpi: "8+",
+    kpi: "7.5+",
     prev : "Exhibition",
     href: "/brand-growth/auction&bidding",
-    retention: "6 months",
+    retention: "4 months",
     bestFor: "Rare craft buyers & vendors",
     benefit: "Heritage crafts verified auctions",
     cta: "Apply for Auction",
@@ -92,7 +92,7 @@ tracks: [
     kpi: "8+",
     prev : "Auction", 
     href: "/brand-growth/white-label",
-    retention: "6 months",
+    retention: "4 months",
     bestFor: "Private branding buyers/vendors",
     benefit: "Scalable private branding",
     cta: "Apply for White Label",
@@ -105,7 +105,7 @@ tracks: [
     kpi: "8+",
     prev : "White Label",
     href: "/brand-growth/brick&mortar",
-    retention: "6 months",
+    retention: "4 months",
     bestFor: "Retail expansion buyers/vendors",
     benefit: "Premium retail flagship stores",
     cta: "Apply for Brick & Mortar",
@@ -186,17 +186,17 @@ tracks: [
       {
         title: "Choose Your Entry Track",
         options: [
-          "Exhibition → KPI 7+ | 6 months retention.",
-          "Auction → KPI 8+ | 6 months retention.",
-          "White Label → KPI 8+ | 6 months retention.",
-          "Brick & Mortar → KPI 8+ | 6 months retention.",
+          "Exhibition → KPI 7+ | 4 months retention.",
+          "Auction → KPI 7.5+ | 4 months retention.",
+          "White Label → KPI 8+ | 4 months retention.",
+          "Brick & Mortar → KPI 8+ | 4 months retention.",
         ],
         note: "Start from Core Trade completion.",
       },
       {
         title: "Standard Progression Path",
         description:
-          "Maintain KPI & meet retention (51 months). After stability → unlock next-level partnerships.",
+          "Maintain KPI & meet retention (43 months). After stability → unlock next-level partnerships.",
       },
       {
         title: "Fast-Track Option (KHCRF)",
@@ -380,7 +380,7 @@ tracks: [
       subtitle: "(Default progression for all partners)",
       features: [
         "Free — no upfront or lateral fee.",
-        "Requires KPI (7+ / 8+) and retention (27-51 months).",
+        "Requires KPI (7-8+) and retention (27-43 months).",
         "Step-by-step progression through Exhibition → Auction → White Label → Retail.",
         "Best for: Partners who want steady, sustainable growth.",
         "Dedicated support for onboarding and long-term partnership success.",
@@ -422,7 +422,7 @@ tracks: [
     {
       question: "Can White Label vendors become Brick & Mortar vendors?",
       answer:
-        "Yes, but KPI 8+ and retention 12–18 months must be maintained, unless Fast-Tracked.",
+        "Yes, but KPI 8+ and retention 4 months must be maintained, unless Fast-Tracked.",
     },
   ],
 };
