@@ -181,32 +181,43 @@ export const warehousData = {
       "Protects both buyers and vendors with end-to-end transparency and robust security measures.",
   },
   platformAdvantage: {
-    heading: "Stronger Value for Both Sides",
+    heading: "Our Platform Advantage",
     description:
-      "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced warehousing capabilities.",
+      "Warehouse integration for Kashmiri handicrafts, enabling faster US-based distribution, reducing shipping delays, and creating a dependable fulfillment system for global retail partnerships.",
     sections: [
       {
-        title: "For Buyers",
+        title: "Benefits for Vendors (Kashmir/India)",
         items: [
-          "Same-Day / Next-Day Delivery Push from U.S. warehouses.",
-          "Reliable product availability for just-in-time ordering.",
-          "Lower risk of delays with U.S.-based storage.",
-          "Simplified compliance & customs handling.",
-          "Confidence in sourcing high-value heritage crafts.",
+          "Access US-based storage for faster product distribution.",
+          "Reduce shipping delays with local inventory availability.",
+          "Attract more buyers through ready-stock accessibility.",
+          "Secure repeat orders via reliable fulfillment channels.",
+          "Strengthen vendor trust with consistent supply performance.",
         ],
       },
       {
-        title: "For Vendors",
+        title: "Benefits for Buyers (US-Based)",
         items: [
-          "Eliminates reverse logistics — no need to re-export unsold stock.",
-          "Increased buyer trust leading to higher sales conversions.",
-          "Access to bulk buyers & retail chains that require warehoused goods.",
-          "Lower storage costs vs independent warehouses.",
-          "Pathway to scale into Institutional Partnerships (NGO, Museums, Govt).",
+          "Enjoy faster delivery from US warehouse stock.",
+          "Lower shipping costs by purchasing consolidated imports.",
+          "Rely on stable craft supply for retail cycles.",
+          "Plan promotions using readily available inventory.",
+          "Reduce customs and import-related delays significantly.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Establishes Kashmir crafts in US distribution infrastructure.",
+          "Expands market reach with dependable supply chain hubs.",
+          "Builds trust for long-term retail partnerships globally.",
+          "Reduces rejection risks through pre-cleared warehoused products.",
+          "Supports sector stability with consistent global demand.",
         ],
       },
     ],
   },
+
   workflow: {
     heading: "Warehousing Partnership Pathway",
     steps: ["Apply", "Eligibility Check", "Setup", "Activation", "Growth"],

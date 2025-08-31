@@ -256,68 +256,43 @@ export const consignmentPageData = {
       "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
   },
   platformAdvantage: {
-    description:
-      "De Koshur Crafts' platform isn't just another marketplace  it is a Tier-8 Band-4, U.S.-operated e-commerce system specifically built for the Kashmir handicraft sector, aligned with U.S. market standards and global trade preferences.",
     heading: "Our Platform Advantage",
+    description:
+      "Enabling Kashmiri handicrafts to enter U.S. retail stores via a consignment-based model that preserves artisan ownership while increasing visibility and sales opportunities.",
     sections: [
       {
-        title: "MACH Architecture & Cloud-Based AI Tech",
+        title: "Benefits for Vendors (Kashmir/India)",
         items: [
-          "Microservices for modular scalability.",
-          "API-first approach for seamless integrations.",
-          "Cloud-native hosting with auto-scaling.",
-          "Headless commerce with PWA support.",
+          "Products showcased in US stores without ownership transfer.",
+          "Maintain product ownership until sales are finalized.",
+          "Test demand through real-time retail performance data.",
+          "Build artisan credibility via physical retail visibility.",
+          "Prepare operations for wholesale and larger orders.",
         ],
       },
       {
-        title: "Advanced API Integrations",
+        title: "Benefits for Buyers (US-Based)",
         items: [
-          "Fraud prevention and real-time monitoring.",
-          "Shipping, order tracking, and settlement APIs.",
-          "Voice commerce and faceted search options.",
-          "AI chatbots with multilingual handoff.",
+          "Pay vendors only after consigned items are sold.",
+          "Assurance of authenticity through KHCRF product verification.",
+          "Rotate seasonal collections with minimal commitment risk.",
+          "Access local US-based retail inventory for faster availability.",
+          "Experiment with multiple craft categories at once.",
         ],
       },
       {
-        title: "Powerful CMS",
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
         items: [
-          "Content authoring and workflow management.",
-          "Centralized repository across all channels.",
-          "Personalized delivery with A/B testing.",
-          "SEO-friendly metadata and content tagging.",
+          "Expands Kashmiri crafts into structured physical retail spaces.",
+          "Protects artisans by retaining ownership until successful sale.",
+          "Promotes Kashmir’s cultural identity in international consumer markets.",
+          "Builds sustainable bridge toward wholesale trade expansion.",
+          "Enhances credibility of Kashmiri crafts in global retail.",
         ],
       },
-      {
-        title: "Security & Data Integrity",
-        items: [
-          "PCI DSS-compliant payment processing.",
-          "Intrusion detection and threat monitoring.",
-          "Multi-factor authentication and IAM control.",
-          "End-to-end encryption with regular audits.",
-        ],
-      },
-      {
-        title: "Marketing Automation",
-        items: [
-          "AI-powered personalization and segmentation.",
-          "Cross-channel automation for email and social.",
-          "Smart content campaigns with chatbots.",
-          "ROI-driven campaign insights and targeting.",
-        ],
-      },
-      {
-        title: "Customer Engagement",
-        items: [
-          "Digital catalogs and interactive lookbooks.",
-          "Immersive AR try-ons and 3D configurators.",
-          "Engaging product demos and tutorials.",
-          "Omnichannel experiences across retail + online.",
-        ],
-      },
-     
-      
     ],
   },
+
   workflow: {
     heading: "Consignment Pathway",
     steps: [
@@ -355,7 +330,8 @@ export const consignmentPageData = {
   ],
   apiIntegration: {
     heading: "API Integration for Retail Systems",
-    description: "Seamlessly connect with leading retail platforms through ready-made connectors. Custom APIs power inventory sync, settlements, and detailed sales analytics. Prime Logic Solutions provides free integration support for retailers.",
+    description:
+      "Seamlessly connect with leading retail platforms through ready-made connectors. Custom APIs power inventory sync, settlements, and detailed sales analytics. Prime Logic Solutions provides free integration support for retailers.",
     features: [
       {
         icon: "PlugZap",

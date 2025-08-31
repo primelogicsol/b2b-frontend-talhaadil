@@ -426,7 +426,33 @@ export const collaborativeData = {
       note: "Paid only after successful evaluation.",
       cta: "Apply for KHCRF Fast-Track",
     },
-  }
+  },
+  platformAdvantage: {
+  heading: "Our Platform Advantage",
+  description:
+    "Value-added and branding initiatives for Kashmiri handicrafts, enabling US buyers to access eco-friendly packaging, co-created designs, authentic storytelling, and faster warehouse delivery, while vendors enhance branding, co-design, digital visibility, and fulfillment efficiency.",
+  sections: [
+    {
+      title: "US Buyers’ Benefits",
+      items: [
+        "Packaging (L9): Eco-friendly, export-compliant packaging, retail-ready presentation.",
+        "Design Collaboration (L10): Trend-aligned co-creations, exclusive craft innovations.",
+        "Storytelling & Media (L11): Cultural narratives, authentic heritage marketing tools.",
+        "Warehouse (L12): Faster delivery, reduced lead times, lower logistics costs.",
+      ],
+    },
+    {
+      title: "Kashmir / India Vendors’ Benefits",
+      items: [
+        "Packaging (L9): Branding upgrade, reduced shipment rejection, higher retail value.",
+        "Design Collaboration (L10): Co-design with global buyers, product innovation.",
+        "Storytelling & Media (L11): Digital visibility, artisan recognition, stronger buyer trust.",
+        "Warehouse (L12): US-based inventory hubs, faster B2B fulfillment, reduced shipping risk.",
+      ],
+    },
+  ],
+}
+
   ,
   faq: [
     {

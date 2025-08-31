@@ -11,6 +11,32 @@ export const institutionalData = {
       "Apply as a Buyer",
     ],
   },
+  platformAdvantage: {
+    heading: "Our Platform Advantage",
+    description:
+      "Institutional and global alliance initiatives for Kashmiri handicrafts, enabling US buyers to access streamlined logistics, cultural collections, ethical sourcing, and tech-enabled innovation, while vendors gain trade facilitation, institutional recognition, fair partnerships, and digital adoption.",
+    sections: [
+      {
+        title: "US Buyers’ Benefits",
+        items: [
+          "Logistics (L13): Streamlined freight (air/ocean), customs brokerage, reliable supply.",
+          "Museum (L14): Authentic cultural collections, heritage preservation access.",
+          "NGO Buyer (L15): Verified fair-trade sourcing, sustainability partnerships.",
+          "Technology Partnership (L16): AI design insights, blockchain traceability, AR/VR product testing.",
+        ],
+      },
+      {
+        title: "Kashmir / India Vendors’ Benefits",
+        items: [
+          "Logistics (L13): Reduced trade barriers, multi-modal freight, customs clearance support.",
+          "Museum (L14): Institutional recognition, heritage positioning, archival collaborations.",
+          "NGO Buyer (L15): Ethical buyer networks, fair pricing, long-term contracts.",
+          "Technology Partnership (L16): Digital innovation adoption, product traceability, entry into global tech-craft ecosystems.",
+        ],
+      },
+    ],
+  },
+
   whyCoreTrade: {
     heading: "Fixing the Trust & Compliance Gap",
     problems: [
@@ -50,8 +76,7 @@ export const institutionalData = {
       note: "Accelerated path, but requires strong performance history and readiness for growth.",
       cta: "Apply for KHCRF Evaluation",
     },
-  }
-  ,
+  },
   eligibilityTest: {
     heading: "Check Your Institutional Eligibility Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
@@ -75,7 +100,7 @@ export const institutionalData = {
       bestFor: "Large buyers, cooperatives, and logistics partners.",
 
       benefit: "Supply integration, warehousing, savings.",
-      
+
       cta: "Apply for Logistics",
       fastTrackAvailable: true,
     },
@@ -88,7 +113,7 @@ export const institutionalData = {
       kpi: "None",
       retention: "None",
       bestFor: "Heritage vendors and cultural institutions.",
-benefit: "Museum showcases, preservation, global reach.",
+      benefit: "Museum showcases, preservation, global reach.",
 
       cta: "Apply for Museum",
       fastTrackAvailable: true,
@@ -116,9 +141,8 @@ benefit: "Museum showcases, preservation, global reach.",
       href: "/institutional/technology-partnership",
       retention: "None",
       bestFor: "Tech-driven vendors, trust-focused buyers.",
-benefit: "Traceability, insights, immersion.",
+      benefit: "Traceability, insights, immersion.",
 
-      
       cta: "Apply for Tech Alliance",
       fastTrackAvailable: true,
     },

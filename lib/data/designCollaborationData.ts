@@ -224,26 +224,38 @@ export const designCollaborationData = {
       "This ensures design safety and business security across global markets.",
   },
   platformAdvantage: {
-    heading: "Direct Value for Both Sides of the Partnership",
+    heading: "Our Platform Advantage",
     description:
-      " De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced packaging solutions",
+      "Design collaboration initiatives for Kashmiri handicrafts, enabling co-creation with global designers, fostering innovation while preserving heritage identity, and unlocking premium pricing opportunities.",
     sections: [
       {
-        title: "For Buyers",
+        title: "Benefits for Vendors (Kashmir/India)",
         items: [
-          "Access to exclusive, co-created designs not available in mainstream markets.",
-          "Protection against counterfeits with blockchain-backed authentication.",
-          "Flexibility to expand product range without warehouse/storage commitments.",
-          "Stronger branding through cultural storytelling + certified artisan identity.",
+          "Co-create products aligned with global fashion and décor.",
+          "Access premium pricing for exclusive collaborative designs.",
+          "Learn new skills from international design partnerships.",
+          "Strengthen artisan reputation through innovative product offerings.",
+          "Build loyal relationships with long-term design collaborators.",
         ],
       },
       {
-        title: "For Vendors",
+        title: "Benefits for Buyers (US-Based)",
         items: [
-          "Increased sales opportunities through collaborative product development.",
-          "Protection of original craft designs with copyright and DRM safeguards.",
-          "Access to new markets without bearing distribution or marketing risks.",
-          "Recognition as co-creators, strengthening long-term buyer relationships.",
+          "Develop exclusive product lines unavailable to competitors.",
+          "Adapt crafts to suit local market design trends.",
+          "Gain competitive advantage through cultural co-branded products.",
+          "Enhance brand storytelling with artisan collaboration narratives.",
+          "Flexibly innovate designs with artisan input and expertise.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Promotes innovation without losing traditional Kashmiri craft identity.",
+          "Expands product diversity for global market adaptability.",
+          "Encourages artisans to adopt modern creative practices.",
+          "Builds cross-cultural design linkages with international industries.",
+          "Positions Kashmir as a hub for craft innovation.",
         ],
       },
     ],

@@ -182,30 +182,43 @@ export const storytellingMediaData = {
       "This ensures stories remain authentic, artisan-owned, and protected across global markets.",
   },
   platformAdvantage: {
-    heading: "Mutual Value Through Storytelling",
+    heading: "Our Platform Advantage",
     description:
-      "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced storytelling capabilities.",
+      "Storytelling and media integration for Kashmiri handicrafts, enhancing global visibility, building trust through authentic heritage narratives, and creating premium market positioning through multimedia campaigns.",
     sections: [
       {
-        title: "For Buyers",
+        title: "Benefits for Vendors (Kashmir/India)",
         items: [
-          "Build consumer trust with verified heritage-backed narratives.",
-          "Stronger branding with exclusive artisan media kits.",
-          "Improve marketing ROI with ready-to-use storytelling assets (videos, photography, catalogs).",
-          "Differentiate from competitors by highlighting cultural authenticity.",
+          "Gain visibility through global multimedia craft storytelling campaigns.",
+          "Build trust by sharing authentic artisan heritage stories.",
+          "Strengthen branding with digital media exposure worldwide.",
+          "Attract premium buyers through cultural storytelling marketing.",
+          "Establish long-term recognition beyond direct sales transactions.",
         ],
       },
       {
-        title: "For Vendors (Artisans)",
+        title: "Benefits for Buyers (US-Based)",
         items: [
-          "Share their personal and craft heritage stories globally.",
-          "Gain brand identity beyond just sales transactions.",
-          "Access global marketing channels they couldn’t reach alone.",
-          "Get their stories protected under DRM & blockchain, ensuring authenticity remains theirs.",
+          "Use cultural stories for stronger product marketing campaigns.",
+          "Educate customers on heritage, boosting purchase confidence.",
+          "Differentiate brand with unique artisan media assets.",
+          "Build loyalty through authentic storytelling-driven engagement.",
+          "Enhance CSR profile by highlighting artisan livelihoods.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Protects heritage narratives from misrepresentation or misuse globally.",
+          "Enhances Kashmir’s cultural branding through authentic storytelling.",
+          "Promotes crafts as heritage experiences, not commodities.",
+          "Builds global respect for Kashmiri artisan communities.",
+          "Strengthens transparency and consumer trust across markets.",
         ],
       },
     ],
   },
+
   workflow: {
     heading: "Storytelling & Media Partnership Pathway",
     steps: [

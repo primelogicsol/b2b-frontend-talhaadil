@@ -273,98 +273,43 @@ export const dropshippingData = {
     support:
       "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
   },
-  platformAdvantage: {
-    heading: "Our Platform Advantage",
-    description:
-      "De Koshur Crafts' platform isn't just another marketplace  it is a Tier-8 Band-4, U.S.-operated e-commerce system specifically built for the Kashmir handicraft sector, aligned with U.S. market standards and global trade preferences.",
-    sections: [
-      {
-        title: "MACH Architecture & Cloud-Based AI Tech",
-        items: [
-          "Microservices for modular scaling.",
-          "API-First approach for seamless integrations.",
-          "Cloud-Native hosting on Azure.",
-          "Headless Commerce with PWA.",
-          "Database Intelligence for decision-making.",
-          "Geofencing for advanced customer targeting.",
-        ],
-      },
-      {
-        title: "Advanced API Integrations",
-        items: [
-          "Storefront & customer experience personalization.",
-          "Fraud prevention via Stripe Radar API.",
-          "Faceted search + voice commerce.",
-          "Real-time shipping & packaging APIs.",
-          "Order management & fulfillment APIs.",
-          "AI Chatbots with multilingual QnA + human handoff.",
-        ],
-      },
-      {
-        title: "Powerful CMS (Content Management System)",
-        items: [
-          "Advanced content authoring & workflow control.",
-          "Centralized content repository across channels.",
-          "Personalized content delivery & A/B testing.",
-          "Metadata modeling, content tagging & SEO support.",
-        ],
-      },
-      {
-        title: "Security & Data Integrity",
-        items: [
-          "PCI DSS compliance.",
-          "Intrusion detection & threat monitoring.",
-          "Multi-factor authentication (IAM).",
-          "End-to-end encryption & access management.",
-          "Continuous penetration testing & monitoring.",
-        ],
-      },
-      {
-        title: "Built-in Marketing Automation",
-        items: [
-          "AI-powered personalization & segmentation.",
-          "Multi-channel automation (email, social, mobile).",
-          "Smart content marketing & chatbots.",
-          "Geo + Demographic targeting.",
-          "ROI-based campaign tracking.",
-        ],
-      },
-      {
-        title: "Customer Engagement Tools",
-        items: [
-          "Digital catalogs, lookbooks, and AR try-ons.",
-          "Product videos, mailing catalogs, & 3D configurators.",
-        ],
-      },
-      {
-        title: "Loyalty & Rewards Programs",
-        items: [
-          "Points-based rewards & tiered loyalty.",
-          "Paid memberships & exclusive benefits.",
-          "Referral incentives & gamified loyalty.",
-          "Cross-partner redemption programs.",
-        ],
-      },
-      {
-        title: "Customer Financing Solutions",
-        items: [
-          "Store-branded credit cards.",
-          "Installment payments & Buy Now, Pay Later.",
-          "Lease-to-own & layaway plans.",
-          "Deferred interest financing.",
-        ],
-      },
-      {
-        title: "Product Protection Plans",
-        items: [
-          "Extended warranties & accidental damage coverage.",
-          "Product replacement & service plans.",
-          "Price protection refunds.",
-          "Customized coverage for high-ticket items.",
-        ],
-      },
-    ],
-  },
+platformAdvantage: {
+  heading: "Our Platform Advantage",
+  description:
+    "Facilitating Kashmiri handicrafts' entry into the U.S. market through a zero-inventory, low-risk, globally connected dropshipping model that benefits vendors, buyers, and the overall Kashmir handicraft ecosystem.",
+  sections: [
+    {
+      title: "Benefits for Vendors (Kashmir/India)",
+      items: [
+        "Enter US market easily without upfront export investment.",
+        "No inventory burden; products shipped only after sales.",
+        "Gain global exposure through digital storefronts abroad.",
+        "Earn revenue quickly with minimal infrastructure needs.",
+        "Track product trends using real-time buyer demand insights.",
+      ],
+    },
+    {
+      title: "Benefits for Buyers (US-Based)",
+      items: [
+        "Source Kashmiri crafts with minimal financial commitment.",
+        "Access unique, authentic heritage products unavailable elsewhere.",
+        "No warehouse or storage costs for inventory.",
+        "Easily test new products with low risk.",
+        "Differentiate retail offerings with niche Kashmiri crafts.",
+      ],
+    },
+    {
+      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+      items: [
+        "Opens gateway for Kashmiri artisans into global trade.",
+        "Enables micro-artisans and startups to access international buyers.",
+        "Reduces dependency on middlemen and exploitative traders.",
+        "Expands cultural reach of Kashmiri heritage globally.",
+        "Prepares sector for scaling into advanced partnerships later.",
+      ],
+    },
+  ],
+},
   workflow: {
     heading: "Dropshipping Pathway",
     steps: [

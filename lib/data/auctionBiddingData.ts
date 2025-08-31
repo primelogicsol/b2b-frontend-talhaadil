@@ -169,54 +169,43 @@ export const auctionBiddingData = {
     range: "Range: $100–$500/year",
   },
   platformAdvantage: {
-    heading: "Transparent Cost Structure for Auctions",
-    description:
-      "Our auction model ensures clarity for buyers and vendors with fair, predictable fees across digital, private, and physical auctions.",
-    sections: [
-      {
-        title: "Buyer Bidding Costs – Digital Auctions",
-        items: [
-          "No upfront bidding cost.",
-          "Buyers only pay the winning bid amount.",
-          "Platform transaction fee: 2–5%.",
-        ],
-      },
-      {
-        title: "Buyer Bidding Costs – Private/Invite-Only Auctions",
-        items: [
-          "Annual subscription covers entry.",
-          "Additional service fee of $50–$200 per premium event.",
-          "Fee varies depending on event level.",
-        ],
-      },
-      {
-        title: "Vendor Costs – Digital Auctions",
-        items: [
-          "Subscription fee covers basic listing.",
-          "Digital listing fee: $5–$25 per item.",
-          "Fees vary by category and appraisal.",
-        ],
-      },
-      {
-        title: "Vendor Costs – Physical Auctions",
-        items: [
-          "Costs vary by level: Local, National, International.",
-          "Location-based pricing (U.S., EU, Middle East, Asia).",
-          "Seasonal demand (holidays, trade fairs).",
-          "Typical range: $500–$5,000 per event.",
-          "Includes booth, catalog, and logistics handling.",
-        ],
-      },
-      {
-        title: "Transparency & Retained Value",
-        items: [
-          "All costs disclosed in advance.",
-          "Vendors keep 100% of winning bid price.",
-          "Minus transaction and listing fees only.",
-        ],
-      },
-    ],
-  },
+  heading: "Our Platform Advantage",
+  description:
+    "Introducing Kashmiri handicrafts to global auction platforms, driving premium pricing, competitive bidding, and expanding access to collectors and high-net-worth buyers.",
+  sections: [
+    {
+      title: "Benefits for Vendors (Kashmir/India)",
+      items: [
+        "Achieve premium pricing through competitive global bidding.",
+        "Gain real-time market validation for craft demand.",
+        "Position products as luxury, high-value artisan items.",
+        "Build artisan reputation through prestigious auction platforms.",
+        "Expand reach to collectors and high-net-worth buyers.",
+      ],
+    },
+    {
+      title: "Benefits for Buyers (US-Based)",
+      items: [
+        "Access rare, unique Kashmiri crafts through transparent bidding.",
+        "Ensure fair value pricing via open competition.",
+        "Acquire collectible heritage items with cultural prestige.",
+        "Participate in exclusive artisan-driven global events.",
+        "Differentiate retail offerings with premium artisan products.",
+      ],
+    },
+    {
+      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+      items: [
+        "Elevates crafts into global luxury and investment markets.",
+        "Increases overall valuation of Kashmiri artisan products.",
+        "Strengthens transparency and fairness in craft pricing.",
+        "Builds international prestige for Kashmiri heritage items.",
+        "Encourages premium craftsmanship among artisans locally.",
+      ],
+    },
+  ],
+},
+
 
   workflow: {
     heading: "Auction Bidding Pathway",

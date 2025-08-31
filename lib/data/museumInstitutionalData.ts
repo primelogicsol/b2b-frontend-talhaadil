@@ -129,30 +129,43 @@ export const museumInstitutionalsData = {
       "All museum fees are tailored as per trade requirements. Vendors & institutions receive a full cost breakdown before partnership confirmation.",
   },
   platformAdvantage: {
-    heading: "Partnership Benefits for Vendors & Museums",
-    description:
-      "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced partnership opportunities with cultural institutions.",
-    sections: [
-      {
-        title: "For Vendors",
-        items: [
-          "Global recognition through museum showcases.",
-          "Permanent or temporary display of crafts in prestigious institutions.",
-          "Increased valuation and authenticity proof.",
-          "No reverse logistics if acquired permanently.",
-        ],
-      },
-      {
-        title: "For Museums",
-        items: [
-          "Direct access to authentic artisan crafts.",
-          "Blockchain verification of provenance.",
-          "Sustainability data for reporting.",
-          "Heritage preservation aligned with cultural mandates.",
-        ],
-      },
-    ],
-  },
+  heading: "Our Platform Advantage",
+  description:
+    "Museum and institutional collaborations for Kashmiri handicrafts, promoting cultural preservation, global visibility, and heritage recognition in prestigious international collections.",
+  sections: [
+    {
+      title: "Benefits for Collaborators (US-Based Museums & Institutions)",
+      items: [
+        "Acquire authentic Kashmiri crafts for cultural preservation.",
+        "Enhance prestige through rare heritage exhibitions.",
+        "Attract new visitors with unique artisan showcases.",
+        "Support cross-cultural understanding via curated exhibitions.",
+        "Expand educational programs with authentic heritage materials.",
+      ],
+    },
+    {
+      title: "Benefits for Collaborators (Kashmiri Craftsmen & Institutions)",
+      items: [
+        "Gain global visibility in prestigious museum collections.",
+        "Preserve artisan legacies in international archives.",
+        "Strengthen credibility through institutional partnerships abroad.",
+        "Access recognition beyond commercial craft markets.",
+        "Inspire younger artisans through global exposure opportunities.",
+      ],
+    },
+    {
+      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+      items: [
+        "Elevates crafts from commodity status to heritage treasures.",
+        "Protects authenticity against imitation and counterfeit risks.",
+        "Positions Kashmir within global cultural diplomacy networks.",
+        "Increases demand for museum-certified artisan products.",
+        "Builds international respect for Kashmiri cultural identity.",
+      ],
+    },
+  ],
+},
+
   workflow: {
     heading: "Museum Partnership Pathway",
     steps: ["Apply", "Evaluation", "Matching", "Agreement", "Showcase"],

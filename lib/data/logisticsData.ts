@@ -124,26 +124,38 @@ export const logisticsData = {
     range: "$120–$6,000/year",
   },
   platformAdvantage: {
-    heading: "Why Join Logistics Partnerships?",
+    heading: "Our Platform Advantage",
     description:
-      "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced logistics capabilities.",
+      "Logistics support for Kashmiri handicrafts, enabling streamlined exports, customs compliance, and efficient freight forwarding to ensure reliable international supply flows.",
     sections: [
       {
-        title: "For Vendors",
+        title: "Benefits for Vendors (Kashmir/India)",
         items: [
-          "Reduced logistics burden.",
-          "Secure warehousing for exports.",
-          "Fraud protection via blockchain.",
-          "Reverse logistics eliminates return stress.",
+          "Simplify exports with professional freight forwarding services.",
+          "Reduce risks through customs clearance and compliance support.",
+          "Access global markets with efficient shipping channels.",
+          "Minimize costs via consolidated cargo solutions.",
+          "Strengthen vendor reputation as export-ready suppliers.",
         ],
       },
       {
-        title: "For Buyers",
+        title: "Benefits for Buyers (US-Based)",
         items: [
-          "Reliable shipping with insurance coverage.",
-          "Transparent carbon footprint & compliance records.",
-          "Priority access to certified vendors.",
-          "Faster order processing through dedicated channels.",
+          "Ensure timely deliveries with streamlined logistics management.",
+          "Benefit from transparent customs and compliance processes.",
+          "Reduce shipping costs through consolidated freight solutions.",
+          "Access reverse logistics for easier product returns.",
+          "Gain reliability with stable international supply flows.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Builds global logistics backbone for craft sector expansion.",
+          "Strengthens export competitiveness through reliable infrastructure.",
+          "Reduces bottlenecks that hinder artisan global market access.",
+          "Enhances transparency with documented trade logistics practices.",
+          "Positions Kashmir crafts for sustainable international growth.",
         ],
       },
     ],

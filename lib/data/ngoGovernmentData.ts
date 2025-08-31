@@ -128,30 +128,43 @@ export const ngoGovernmentData = {
     range: "Range: $120–$6,000/year",
   },
   platformAdvantage: {
-    heading: "Partnership Benefits for Vendors, NGOs & Governments",
-    description:
-      "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and fostering impactful partnerships with NGOs and governments.",
-    sections: [
-      {
-        title: "For Vendors",
-        items: [
-          "Access to global development-linked projects.",
-          "Recognition under policy-driven fair-trade initiatives.",
-          "Grants, funding, and subsidy opportunities.",
-          "Guaranteed purchase contracts in select programs.",
-        ],
-      },
-      {
-        title: "For NGOs & Governments",
-        items: [
-          "Direct artisan access, verified through blockchain & GI.",
-          "Transparent sustainability metrics (carbon, cultural, social).",
-          "Policy alignment with authentic heritage preservation.",
-          "Trusted partner network for program execution.",
-        ],
-      },
-    ],
-  },
+  heading: "Our Platform Advantage",
+  description:
+    "NGO and government collaborations for Kashmiri handicrafts, integrating fair-trade, sustainability, and global development initiatives to support artisans and enhance sector credibility.",
+  sections: [
+    {
+      title: "Benefits for Collaborators (Global NGOs & Governments)",
+      items: [
+        "Align procurement with fair-trade and sustainability goals.",
+        "Showcase impact through artisan livelihood development programs.",
+        "Strengthen credibility in global humanitarian and CSR initiatives.",
+        "Foster cross-cultural diplomacy through heritage-based collaborations.",
+        "Support UN SDGs with measurable, craft-centered interventions.",
+      ],
+    },
+    {
+      title: "Benefits for Kashmiri Craftsmen & Institutions",
+      items: [
+        "Secure stable contracts through NGO and government partnerships.",
+        "Receive fair wages and stronger labor protections.",
+        "Access training, funding, and policy-driven support programs.",
+        "Reduce exploitation with transparent procurement channels.",
+        "Build institutional recognition beyond commercial craft markets.",
+      ],
+    },
+    {
+      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+      items: [
+        "Embeds handicrafts into global development and policy frameworks.",
+        "Promotes inclusive growth for women and marginalized artisans.",
+        "Enhances sustainability credentials in international markets.",
+        "Strengthens heritage preservation through institutional support.",
+        "Expands diplomatic and trade networks for crafts worldwide.",
+      ],
+    },
+  ],
+},
+
   workflow: {
     heading: "NGO/Government Partnership Pathway",
     steps: ["Apply", "Evaluation", "Matching", "Agreement", "Execution"],

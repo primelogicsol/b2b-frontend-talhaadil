@@ -1,9 +1,14 @@
 export const wholesaleData = {
   hero: {
-    headline: "Wholesale Partnerships — Scale Craft Trade with Volume & Reliability",
+    headline:
+      "Wholesale Partnerships — Scale Craft Trade with Volume & Reliability",
     subtext:
       "De Koshur Crafts Wholesale Partnerships enable distributors, chain stores, and large buyers to source authentic handmade crafts in bulk at competitive pricing — with full compliance, packaging, and supply-chain transparency.",
-    ctaButtons: ["Start Wholesale Partnership", "Apply as a Vendor", "Apply as a Buyer"],
+    ctaButtons: [
+      "Start Wholesale Partnership",
+      "Apply as a Vendor",
+      "Apply as a Buyer",
+    ],
   },
   whyDropshipping: {
     heading: "Fixing Bulk Trade in the Craft Industry",
@@ -26,22 +31,26 @@ export const wholesaleData = {
       {
         icon: "Target",
         title: "Exclusively Handmade",
-        description: "Products sourced directly from artisans with authentic craftsmanship.",
+        description:
+          "Products sourced directly from artisans with authentic craftsmanship.",
       },
       {
         icon: "DollarSign",
         title: "Bulk Pricing Optimization",
-        description: "Competitive volume-based pricing for large-scale distribution.",
+        description:
+          "Competitive volume-based pricing for large-scale distribution.",
       },
       {
         icon: "BarChart3",
         title: "AI Demand Forecasting",
-        description: "Helps vendors plan production and buyers optimize inventory.",
+        description:
+          "Helps vendors plan production and buyers optimize inventory.",
       },
       {
         icon: "Shield",
         title: "Blockchain Traceability",
-        description: "Ensures compliance and authenticity at every step of bulk trade.",
+        description:
+          "Ensures compliance and authenticity at every step of bulk trade.",
       },
       {
         icon: "Truck",
@@ -51,40 +60,48 @@ export const wholesaleData = {
       {
         icon: "Package",
         title: "Retail-Ready Packaging",
-        description: "Professional packaging solutions designed for wholesale distribution.",
+        description:
+          "Professional packaging solutions designed for wholesale distribution.",
       },
       {
         icon: "Globe2",
         title: "Carbon Tracking",
-        description: "Sustainability tracking and carbon footprint monitoring for bulk orders.",
+        description:
+          "Sustainability tracking and carbon footprint monitoring for bulk orders.",
       },
       {
         icon: "ScrollText",
         title: "GI Integration",
-        description: "Geographical Indication compliance for authentic craft verification.",
+        description:
+          "Geographical Indication compliance for authentic craft verification.",
       },
       {
         icon: "Folder",
         title: "Trade Registry Access",
-        description: "Complete craft repository and trade documentation system.",
+        description:
+          "Complete craft repository and trade documentation system.",
       },
       {
         icon: "TrendingUp",
         title: "Scalable Pathway",
-        description: "Most transparent route for large-volume Kashmiri handmade craft trade.",
+        description:
+          "Most transparent route for large-volume Kashmiri handmade craft trade.",
       },
       {
         icon: "Users",
         title: "Distributor Network",
-        description: "Access to verified chain stores and distribution partners globally.",
+        description:
+          "Access to verified chain stores and distribution partners globally.",
       },
       {
         icon: "Handshake",
         title: "Smart Contracts",
-        description: "Automated bulk trade settlements with compliance verification.",
+        description:
+          "Automated bulk trade settlements with compliance verification.",
       },
     ],
-    exclusivity: "The most scalable and transparent pathway for large-volume trade of Kashmiri handmade crafts.",
+    exclusivity:
+      "The most scalable and transparent pathway for large-volume trade of Kashmiri handmade crafts.",
   },
   capabilities: {
     heading: "Everything You Need for Bulk Trade Success",
@@ -171,7 +188,12 @@ export const wholesaleData = {
       {
         name: "Standard",
         price: "$125/month",
-        features: ["Bulk order contracts", "basic packaging", "5% logistics waiver", "KPI monitoring dashboard"],
+        features: [
+          "Bulk order contracts",
+          "basic packaging",
+          "5% logistics waiver",
+          "KPI monitoring dashboard",
+        ],
       },
       {
         name: "Growth",
@@ -205,22 +227,26 @@ export const wholesaleData = {
       {
         icon: "Cog",
         title: "Frameworks",
-        description: "React.js, Next.js, Node.js for high-performance wholesale operations.",
+        description:
+          "React.js, Next.js, Node.js for high-performance wholesale operations.",
       },
       {
         icon: "Cloud",
         title: "Cloud Infrastructure",
-        description: "AWS cloud + serverless architecture for scalable bulk processing.",
+        description:
+          "AWS cloud + serverless architecture for scalable bulk processing.",
       },
       {
         icon: "Link",
         title: "Blockchain Tools",
-        description: "Smart contracts for wholesale trade verification and compliance.",
+        description:
+          "Smart contracts for wholesale trade verification and compliance.",
       },
       {
         icon: "BarChart3",
         title: "AI & Data",
-        description: "Demand forecasting, order analytics, and KPI performance tracking.",
+        description:
+          "Demand forecasting, order analytics, and KPI performance tracking.",
       },
       {
         icon: "Globe",
@@ -230,7 +256,8 @@ export const wholesaleData = {
       {
         icon: "Shield",
         title: "Security",
-        description: "Enterprise-grade security with vendor verification and fraud prevention.",
+        description:
+          "Enterprise-grade security with vendor verification and fraud prevention.",
       },
       {
         icon: "Package",
@@ -240,7 +267,8 @@ export const wholesaleData = {
       {
         icon: "Smartphone",
         title: "Mobile Experience",
-        description: "Mobile-optimized wholesale management and ordering platform.",
+        description:
+          "Mobile-optimized wholesale management and ordering platform.",
       },
     ],
     support:
@@ -249,61 +277,41 @@ export const wholesaleData = {
   platformAdvantage: {
     heading: "Our Platform Advantage",
     description:
-      "De Koshur Crafts wholesale platform leverages MACH architecture and enterprise-grade infrastructure specifically designed for bulk craft trade operations, ensuring scalability, reliability, and compliance for large-volume transactions.",
+      "Facilitating wholesale partnerships between Kashmiri artisans and U.S. buyers, enabling bulk orders, predictable revenue streams, and scalable production for international trade.",
     sections: [
       {
-        title: "MACH Architecture & Cloud-Based AI Tech",
+        title: "Benefits for Vendors (Kashmir/India)",
         items: [
-          "Microservices for bulk order processing.",
-          "API-First approach for wholesale integrations.",
-          "Cloud-Native hosting for scalable operations.",
-          "Headless Commerce for flexible wholesale interfaces.",
-          "Database Intelligence for demand forecasting.",
-          "Geofencing for distributor territory management.",
+          "Secure large bulk orders for steady income streams.",
+          "Gain predictable revenue through long-term wholesale contracts.",
+          "Expand production capacity to meet higher demand.",
+          "Build credibility as reliable bulk craft suppliers.",
+          "Strengthen export readiness with wholesale operations experience.",
         ],
       },
       {
-        title: "Advanced API Integrations",
+        title: "Benefits for Buyers (US-Based)",
         items: [
-          "ERP system integrations for wholesale operations.",
-          "Fraud prevention via enterprise security protocols.",
-          "Bulk order search and catalog management.",
-          "Real-time inventory sync and tracking APIs.",
-          "Wholesale order management and fulfillment.",
-          "AI-powered demand forecasting and analytics.",
+          "Access lower per-unit costs through bulk purchasing.",
+          "Ensure consistent supply of Kashmiri handicraft products.",
+          "Customize orders tailored for specific market preferences.",
+          "Increase retail margins with wholesale pricing advantages.",
+          "Partner with vetted, dependable Kashmiri craft vendors.",
         ],
       },
       {
-        title: "Powerful CMS (Content Management System)",
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
         items: [
-          "Wholesale catalog management and workflow control.",
-          "Centralized product repository for bulk operations.",
-          "Personalized wholesale portal delivery.",
-          "Bulk product metadata and compliance documentation.",
-        ],
-      },
-      {
-        title: "Security & Data Integrity",
-        items: [
-          "Enterprise-grade compliance standards.",
-          "Advanced threat monitoring for bulk transactions.",
-          "Multi-factor authentication for wholesale accounts.",
-          "End-to-end encryption for sensitive trade data.",
-          "Continuous security auditing and monitoring.",
-        ],
-      },
-      {
-        title: "Built-in Marketing Automation",
-        items: [
-          "AI-powered wholesale partner matching.",
-          "Multi-channel distributor communication.",
-          "Smart wholesale campaign management.",
-          "Geographic and demographic targeting for bulk buyers.",
-          "ROI-based wholesale performance tracking.",
+          "Expands crafts into structured wholesale global markets.",
+          "Creates new employment opportunities for artisans locally.",
+          "Encourages efficiency through improved production techniques.",
+          "Builds strong foundations for international export scaling.",
+          "Strengthens reputation of Kashmir in B2B markets.",
         ],
       },
     ],
   },
+
   workflow: {
     heading: "Wholesale Pathway",
     steps: [
@@ -317,11 +325,13 @@ export const wholesaleData = {
   faq: [
     {
       question: "What is the KPI requirement?",
-      answer: "Minimum KPI 7+ with 3 months retention before progression to higher tiers.",
+      answer:
+        "Minimum KPI 7+ with 3 months retention before progression to higher tiers.",
     },
     {
       question: "Can I move into Export?",
-      answer: "Yes, with 6 months retention or via KHCRF fast-track evaluation.",
+      answer:
+        "Yes, with 6 months retention or via KHCRF fast-track evaluation.",
     },
     {
       question: "Do vendors need certifications?",
@@ -330,11 +340,13 @@ export const wholesaleData = {
     },
     {
       question: "How does Wholesale differ from Consignment?",
-      answer: "Wholesale involves upfront bulk supply at negotiated pricing, whereas Consignment is pay-after-sale.",
+      answer:
+        "Wholesale involves upfront bulk supply at negotiated pricing, whereas Consignment is pay-after-sale.",
     },
     {
       question: "Can buyers request private-label bulk packaging?",
-      answer: "Yes, available under Growth & Premium tiers with custom branding options.",
+      answer:
+        "Yes, available under Growth & Premium tiers with custom branding options.",
     },
   ],
   apiIntegration: {
@@ -345,7 +357,8 @@ export const wholesaleData = {
       {
         icon: "PlugZap",
         title: "ERP Connectors",
-        description: "Pre-built integrations for SAP, Oracle NetSuite, and major ERP systems.",
+        description:
+          "Pre-built integrations for SAP, Oracle NetSuite, and major ERP systems.",
       },
       {
         icon: "Wrench",
@@ -361,17 +374,20 @@ export const wholesaleData = {
       {
         icon: "ShieldCheck",
         title: "Secure API Gateways",
-        description: "Enterprise-grade encryption and authentication protocols.",
+        description:
+          "Enterprise-grade encryption and authentication protocols.",
       },
       {
         icon: "BarChart3",
         title: "Analytics API",
-        description: "Pull demand forecasting and KPI dashboards into your system.",
+        description:
+          "Pull demand forecasting and KPI dashboards into your system.",
       },
       {
         icon: "Puzzle",
         title: "Custom Extensions",
-        description: "Private-label, bulk packaging, and distributor management modules.",
+        description:
+          "Private-label, bulk packaging, and distributor management modules.",
       },
     ],
     support: {
@@ -385,6 +401,10 @@ export const wholesaleData = {
     heading: "Start Wholesale With De Koshur Crafts Today",
     subtext:
       "Expand your reach with verified vendors, blockchain-secured trade, and scalable wholesale contracts — the gateway to Export and Brand Growth.",
-    ctaButtons: ["Start Wholesale Partnership", "Apply as a Vendor", "Apply as a Buyer"],
+    ctaButtons: [
+      "Start Wholesale Partnership",
+      "Apply as a Vendor",
+      "Apply as a Buyer",
+    ],
   },
-}
+};

@@ -126,84 +126,94 @@ export const packagingData = {
     range: "Range: $150–$500/year",
   },
   technology: {
-  heading: "Packaging Protection Framework",
-  description: "Every packaged craft is safeguarded by our Protection System.",
-  features: [
-    {
-      title: "Blockchain-Linked Receipts",
-      description: "Blockchain-linked packaging receipts for secure tracking.",
-      icon: "Blockchain",
-    },
-    {
-      title: "GI-Certified Tags",
-      description: "GI-certified tags embedded into packaging for authenticity.",
-      icon: "Tag",
-    },
-    {
-      title: "Secure Seals",
-      description: "Secure seals & tamper-proof designs to ensure integrity.",
-      icon: "Lock",
-    },
-    {
-      title: "Insurance Coverage",
-      description: "Insurance coverage for packaging-related damages.",
-      icon: "Shield",
-    },
-    {
-      title: "Export Compliance",
-      description: "Documentation compliance for export to meet global standards.",
-      icon: "Document",
-    },
-    {
-      title: "Carbon Footprint Certification",
-      description: "Carbon footprint certification attached to shipments.",
-      icon: "Leaf",
-    },
-    {
-      title: "Export Compliance",
-      description: "Documentation compliance for export to meet global standards.",
-      icon: "Document",
-    },
-    {
-      title: "Carbon Footprint Certification",
-      description: "Carbon footprint certification attached to shipments.",
-      icon: "Leaf",
-    },
-  ],
-  support: "This ensures craft safety and compliance across global markets.",
-},
+    heading: "Packaging Protection Framework",
+    description:
+      "Every packaged craft is safeguarded by our Protection System.",
+    features: [
+      {
+        title: "Blockchain-Linked Receipts",
+        description:
+          "Blockchain-linked packaging receipts for secure tracking.",
+        icon: "Blockchain",
+      },
+      {
+        title: "GI-Certified Tags",
+        description:
+          "GI-certified tags embedded into packaging for authenticity.",
+        icon: "Tag",
+      },
+      {
+        title: "Secure Seals",
+        description: "Secure seals & tamper-proof designs to ensure integrity.",
+        icon: "Lock",
+      },
+      {
+        title: "Insurance Coverage",
+        description: "Insurance coverage for packaging-related damages.",
+        icon: "Shield",
+      },
+      {
+        title: "Export Compliance",
+        description:
+          "Documentation compliance for export to meet global standards.",
+        icon: "Document",
+      },
+      {
+        title: "Carbon Footprint Certification",
+        description: "Carbon footprint certification attached to shipments.",
+        icon: "Leaf",
+      },
+      {
+        title: "Export Compliance",
+        description:
+          "Documentation compliance for export to meet global standards.",
+        icon: "Document",
+      },
+      {
+        title: "Carbon Footprint Certification",
+        description: "Carbon footprint certification attached to shipments.",
+        icon: "Leaf",
+      },
+    ],
+    support: "This ensures craft safety and compliance across global markets.",
+  },
   platformAdvantage: {
-  heading: "Value Beyond the Box",
-  description: "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced packaging solutions.",
-  sections: [
-    {
-      title: "For Buyers",
-      items: [
-        "Receive eco-friendly, premium-quality packaging aligned with global compliance.",
-        "Greater trust & authenticity with GI tags, blockchain seals, and certifications.",
-        "Products arrive retail-ready, reducing display & stocking costs.",
-        "Enhanced customer satisfaction leading to higher repeat purchases.",
-      ],
-    },
-    {
-      title: "For Vendors (Artisans)",
-      items: [
-        "Build brand recognition in global markets through unique packaging identity.",
-        "Protection against damage in transit, lowering loss & return rates.",
-        "Access to affordable premium packaging that would otherwise be costly.",
-        "Faster distribution cycles due to standardized, compliant packaging.",
-      ],
-    },
-    {
-      title: "Shared Benefits",
-      items: [
-        "Promotes sustainability and eco-friendly branding, attractive to U.S./EU buyers.",
-        "Improves market margins by upgrading perception of handmade crafts.",
-        "Strengthens trust in vendor–buyer relationships through consistent presentation.",
-      ],
-    },
-  ],
-},
+    heading: "Our Platform Advantage",
+    description:
+      "Packaging enhancement for Kashmiri handicrafts, ensuring international compliance, eco-friendly solutions, and premium retail-ready presentation for global markets.",
+    sections: [
+      {
+        title: "Benefits for Vendors (Kashmir/India)",
+        items: [
+          "Meet international packaging and labeling compliance requirements.",
+          "Increase product value through professional eco-packaging.",
+          "Reduce damages and losses during global shipments.",
+          "Strengthen artisan brand visibility with premium packaging.",
+          "Gain acceptance in mainstream US retail stores.",
+        ],
+      },
+      {
+        title: "Benefits for Buyers (US-Based)",
+        items: [
+          "Receive crafts ready for direct retail shelf placement.",
+          "Reduce return rates due to proper packaging standards.",
+          "Appeal to eco-conscious consumers with sustainable packaging.",
+          "Access consistent labeling for simplified retail operations.",
+          "Enhance customer experience with premium product presentation.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Elevates Kashmir crafts to global retail presentation standards.",
+          "Encourages adoption of eco-friendly, sustainable packaging solutions.",
+          "Reduces trade rejections due to poor compliance.",
+          "Builds sector-wide credibility in global B2B networks.",
+          "Strengthens heritage branding through professional retail packaging.",
+        ],
+      },
+    ],
+  },
   workflow: {
     heading: "Packaging Partnership Pathway",
     steps: ["Apply", "Eligibility Check", "Setup", "Activation", "Growth"],

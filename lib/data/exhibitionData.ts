@@ -122,37 +122,43 @@ export const exhibitionData = {
     range: "Range: $100–$500/year",
   },
   
-  platformAdvantage: {
-    heading: "Exhibition Participation & Visa Support",
-    description:
-      "We provide complete transparency on exhibition participation costs and simplify international travel with structured visa support services.",
-    sections: [
-      {
-        title: "Physical Exhibition Costs",
-        items: [
-          "Costs depend on participation level (shared booth / dedicated booth).",
-          "Pricing varies by location (city, country).",
-          "Seasonal factors like holidays, cultural fairs, and trade shows affect cost.",
-          "Exact costs are shared in advance for every exhibition.",
-          "Vendors can choose based on budget and strategy.",
-        ],
-      },
-      {
-        title: "Visa Support for Exhibition Participation",
-        items: [
-          "Invitation letters from exhibition organizers.",
-          "Guidance on required documentation.",
-          "Visa support desk via Prime Logic Solutions.",
-          "Assistance with embassy coordination.",
-          "Administrative Support Fee: $100 (non-refundable).",
-          "Embassy/Consular Fees: $160–$250 (based on host country).",
-          "Optional Fast-Track Filing: $200 (where available).",
-          "Final decision rests with the embassy approvals are not guaranteed.",
-          "De Koshur Crafts provides all required supporting documents aligned with U.S. standards to maximize approval success.",
-        ],
-      },
-    ],
-  },
+platformAdvantage: {
+  heading: "Our Platform Advantage",
+  description:
+    "Promoting Kashmiri handicrafts through prestigious international cultural exhibitions, creating high-value networking, brand visibility, and advance order opportunities for artisans.",
+  sections: [
+    {
+      title: "Benefits for Vendors (Kashmir/India)",
+      items: [
+        "Showcase products in high-profile US cultural exhibitions.",
+        "Generate leads from global B2B craft buyers.",
+        "Build artisan brand presence through curated showcases.",
+        "Lock advance orders during and after events.",
+        "Gain access to museums and institutional collaborations.",
+      ],
+    },
+    {
+      title: "Benefits for Buyers (US-Based)",
+      items: [
+        "Directly access curated Kashmiri craft collections at events.",
+        "Acquire limited edition or one-of-a-kind craft pieces.",
+        "Network with artisans for long-term sourcing relationships.",
+        "Enhance marketing campaigns with cultural storytelling assets.",
+        "Place bulk pre-orders during exhibitions for seasonal demand.",
+      ],
+    },
+    {
+      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+      items: [
+        "Elevates Kashmiri crafts in international cultural showcases.",
+        "Attracts tourism and cultural diplomacy through exhibitions abroad.",
+        "Strengthens sector branding as a global heritage craft hub.",
+        "Encourages younger artisans to participate in cultural trade.",
+        "Expands opportunities for collaborations with museums and NGOs.",
+      ],
+    },
+  ],
+},
 
   workflow: {
     heading: "Exhibition Partnership Pathway",

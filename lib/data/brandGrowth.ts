@@ -55,9 +55,8 @@ export const brandGrowthData = {
         "Buyers with demonstrated capacity to scale or invest at advanced stages are eligible. This includes institutional buyers, retail chains, or investors seeking rapid integration into premium trade levels.",
       cta: "Apply for KHCRF Fast-Track",
     },
-  }
-  
-,
+  },
+
   eligibilityTest: {
     heading: "Check Your Brand Growth Track Instantly",
     description: "Quick quiz for vendors and buyers to determine eligibility",
@@ -69,62 +68,60 @@ export const brandGrowthData = {
       "You qualify for Brand Growth — Exhibition Partner. With 3 months retention or KHCRF fast-track, you can progress into Auction Partnership.",
     cta: "Apply Now for This Track",
   },
-tracks: [
-  {
-    id: "exhibition",
-    name: "Exhibition",
-    icon: "Frame",
-    kpi: "7+",
-    prev : "Import Export",
-    href: "/brand-growth/exhibition",
-    retention: "4 months",
-    bestFor: "Showcases and catalogs seekers",
-    benefit: "Verified exhibitions & catalogs",
-    cta: "Apply for Exhibition",
-    fastTrackAvailable: false,
-  },
-  {
-    id: "auction",
-    name: "Auction",
-    icon: "Gavel",
-    kpi: "7.5+",
-    prev : "Exhibition",
-    href: "/brand-growth/auction&bidding",
-    retention: "4 months",
-    bestFor: "Rare craft buyers & vendors",
-    benefit: "Heritage crafts verified auctions",
-    cta: "Apply for Auction",
-    fastTrackAvailable: true,
-  },
-  {
-    id: "white-label",
-    name: "White Label",
-    icon: "Tag",
-    kpi: "8+",
-    prev : "Auction", 
-    href: "/brand-growth/white-label",
-    retention: "4 months",
-    bestFor: "Private branding buyers/vendors",
-    benefit: "Scalable private branding",
-    cta: "Apply for White Label",
-    fastTrackAvailable: true,
-  },
-  {
-    id: "brick-mortar",
-    name: "Brick & Mortar",
-    icon: "Building",
-    kpi: "8+",
-    prev : "White Label",
-    href: "/brand-growth/brick&mortar",
-    retention: "4 months",
-    bestFor: "Retail expansion buyers/vendors",
-    benefit: "Premium retail flagship stores",
-    cta: "Apply for Brick & Mortar",
-    fastTrackAvailable: true,
-  },
-]
-,
-
+  tracks: [
+    {
+      id: "exhibition",
+      name: "Exhibition",
+      icon: "Frame",
+      kpi: "7+",
+      prev: "Import Export",
+      href: "/brand-growth/exhibition",
+      retention: "4 months",
+      bestFor: "Showcases and catalogs seekers",
+      benefit: "Verified exhibitions & catalogs",
+      cta: "Apply for Exhibition",
+      fastTrackAvailable: false,
+    },
+    {
+      id: "auction",
+      name: "Auction",
+      icon: "Gavel",
+      kpi: "7.5+",
+      prev: "Exhibition",
+      href: "/brand-growth/auction&bidding",
+      retention: "4 months",
+      bestFor: "Rare craft buyers & vendors",
+      benefit: "Heritage crafts verified auctions",
+      cta: "Apply for Auction",
+      fastTrackAvailable: true,
+    },
+    {
+      id: "white-label",
+      name: "White Label",
+      icon: "Tag",
+      kpi: "8+",
+      prev: "Auction",
+      href: "/brand-growth/white-label",
+      retention: "4 months",
+      bestFor: "Private branding buyers/vendors",
+      benefit: "Scalable private branding",
+      cta: "Apply for White Label",
+      fastTrackAvailable: true,
+    },
+    {
+      id: "brick-mortar",
+      name: "Brick & Mortar",
+      icon: "Building",
+      kpi: "8+",
+      prev: "White Label",
+      href: "/brand-growth/brick&mortar",
+      retention: "4 months",
+      bestFor: "Retail expansion buyers/vendors",
+      benefit: "Premium retail flagship stores",
+      cta: "Apply for Brick & Mortar",
+      fastTrackAvailable: true,
+    },
+  ],
   workflow: {
     heading: "How Brand Growth Works",
     standard: {
@@ -189,8 +186,35 @@ tracks: [
     ],
     fastTrackNote:
       "For all tracks: KHCRF evaluates Vendors/Buyers. If evaluation is promising, pay Lateral Fee. Skip retention → direct progression to advanced partnerships (Auction, White Label, Brick & Mortar).",
+
     fastTrackCta: "Apply for KHCRF Fast-Track",
   },
+  platformAdvantage: {
+    heading: "Our Platform Advantage",
+    description:
+      "Brand growth initiatives for Kashmiri handicrafts, helping US buyers access curated showcases, rare collections, and exclusive product lines, while vendors build visibility, premium valuation, and long-term retail partnerships.",
+    sections: [
+      {
+        title: "US Buyers’ Benefits",
+        items: [
+          "Exhibition (L5): Direct access to curated craft showcases, cultural storytelling.",
+          "Auction (L6): Exclusive, competitive pricing, rare collections.",
+          "White Label (L7): Custom branding, product exclusivity, differentiation in US retail.",
+          "Brick & Mortar (L8): Permanent access to physical stores, consistent inventory assurance.",
+        ],
+      },
+      {
+        title: "Kashmir / India Vendors’ Benefits",
+        items: [
+          "Exhibition (L5): Showcase platform, artisan exposure, direct B2B leads.",
+          "Auction (L6): Premium product valuation, transparent demand discovery.",
+          "White Label (L7): Branding partnerships, long-term retail contracts.",
+          "Brick & Mortar (L8): Store presence in the US, increased trust & steady sales.",
+        ],
+      },
+    ],
+  },
+
   journey: {
     heading: "Your Brand Growth Journey",
     steps: [

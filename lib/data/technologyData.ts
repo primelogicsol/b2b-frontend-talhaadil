@@ -126,24 +126,39 @@ export const technologyData = {
     range: "Range: $120–$800/year",
   },
   platformAdvantage: {
-    heading: "Benefits for Buyers & Vendors",
+    heading: "Our Platform Advantage",
     description:
-      "De Koshur Crafts operates a Tier-8 Band-4, U.S.-based e-commerce system tailored for Kashmiri handicrafts, ensuring global trade compliance and advanced digital capabilities.",
+      "Technology partnerships for Kashmiri handicrafts, integrating innovation, blockchain, AR/VR, and AI to enhance authenticity, efficiency, and global competitiveness.",
     sections: [
       {
-        title: "For Buyers",
+        title:
+          "Benefits for Collaborators (Global Tech Companies & Institutions)",
         items: [
-          "Transparency in sourcing with blockchain-verified crafts.",
-          "Immersive AR/VR pre-purchase experiences.",
-          "24/7 support and global compliance confidence.",
+          "Lead innovation by integrating technology with cultural heritage crafts.",
+          "Access unique artisan supply-chain data for global research.",
+          "Enhance ESG reputation through blockchain-driven transparency.",
+          "Expand into heritage-tech markets with cultural relevance.",
+          "Build long-term leadership in ethical innovation partnerships.",
         ],
       },
       {
-        title: "For Vendors",
+        title: "Benefits for Kashmiri Craftsmen & Institutions",
         items: [
-          "Advanced digital storefronts with Tier 8 scalability.",
-          "Programmatic ads + geo-fenced marketing.",
-          "Global recognition backed by repository and trust metrics.",
+          "Prove authenticity with blockchain-enabled certification systems.",
+          "Use AR/VR for immersive craft marketing and design.",
+          "Improve production efficiency with AI and predictive analytics.",
+          "Access digital platforms for broader buyer collaborations.",
+          "Strengthen global competitiveness with tech-enabled craft branding.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Transforms sector into globally recognized craft-tech innovation hub.",
+          "Builds consumer trust with tamper-proof supply chain traceability.",
+          "Encourages artisan–technology co-creation for modern markets.",
+          "Reduces inefficiencies in export and logistics operations.",
+          "Positions Kashmir as pioneer in heritage-driven digital economy.",
         ],
       },
     ],

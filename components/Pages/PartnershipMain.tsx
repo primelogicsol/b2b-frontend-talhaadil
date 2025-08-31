@@ -68,7 +68,7 @@ const itemVariants = {
 
 
 type pageData = {
-  tier : number,
+  tier: number,
   hero: {
     headline: string;
     subtext: string;
@@ -87,6 +87,7 @@ type pageData = {
       buyers: string;
       note: string;
     };
+
     lateral: {
       title: string;
       description: string;
@@ -94,10 +95,15 @@ type pageData = {
       cta: string;
     };
   };
+  platformAdvantage?: {
+    heading: string
+    description: string
+    sections: { title: string; items: string[] }[]
+  }
   tracks: Array<{
     id: string | number;
     icon: string;
-    prev? : string;
+    prev?: string;
     name: string;
     href: string;
     kpi: string;
@@ -175,6 +181,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
   const containerClass = is4K
     ? "max-w-[1800px] text-xl"
     : "max-w-[1200px] text-base";
+  const subHeadingClass = is4K ? "text-4xl" : "text-2xl"
 
   return (
     <div className="min-h-screen bg-white">
@@ -433,7 +440,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 )}
               </ul>
               <motion.button
-             onClick={() => window.open('https://khcrf.org/', '_blank')}
+                onClick={() => window.open('https://khcrf.org/', '_blank')}
 
                 className="bg-white text-[var(--primary-color)] px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 relative z-10"
                 whileHover={{ scale: 1.05 }}
@@ -902,6 +909,63 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           })}
         </div>
       </motion.section>
+      {pageData.platformAdvantage && (
+        <motion.section
+          className={`${containerClass} mx-auto px-6 py-32 relative overflow-hidden`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+
+          <div className="relative z-10">
+            <motion.h2
+              className={`${subHeadingClass} font-black text-center mb-12 bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)] bg-clip-text text-transparent drop-shadow-sm text-2xl md:text-3xl lg:text-4xl`}
+              variants={fadeInUp}
+            >
+              {pageData.platformAdvantage.heading}
+            </motion.h2>
+
+            <motion.p
+              className={`${is4K ? "text-xl" : "text-lg"} text-center mb-20 text-[var(--primary-color)]/80 leading-relaxed max-w-5xl mx-auto font-medium`}
+              variants={fadeInUp}
+            >
+              {pageData.platformAdvantage.description}
+            </motion.p>
+
+            <div className="space-y-8">
+              {pageData.platformAdvantage.sections.map((section, index) => (
+                <motion.div
+                  key={index}
+                  className="group bg-white/80 backdrop-blur-sm p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-[var(--primary-hover-color)]/50 hover:-translate-y-2"
+                  variants={fadeInUp}
+                >
+                  <div className="w-20 h-1.5 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] rounded-full mb-8 group-hover:w-32 transition-all duration-500"></div>
+
+                  <h3
+                    className={`${is4K ? "text-3xl" : "text-2xl"} font-bold mb-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent`}
+                  >
+                    {section.title}
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    {section.items.map((item, itemIndex) => (
+                      <div
+                        key={itemIndex}
+                        className={`${is4K ? "text-lg" : "text-base"} text-[var(--primary-color)]/90 leading-relaxed flex items-start gap-3 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300`}
+                      >
+                        <div className="w-2 h-2 bg-[var(--secondary-color)] rounded-full mt-2.5 flex-shrink-0"></div>
+                        <span className="font-medium">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+      )}
+
 
       {/* Comparison Section */}
       <motion.section
@@ -963,7 +1027,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               {pageData.comparison.standard.note}
             </p>
             <motion.button
-             onClick={() => window.open('/registration', '_blank')}
+              onClick={() => window.open('/registration', '_blank')}
 
               className={`w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300 ${is4K ? "text-lg py-4" : "text-base"
                 }`}
@@ -1132,8 +1196,8 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                 <Link
                   href="/registration"
                   className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${index === 0
-                      ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90"
-                      : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-[var(--primary-color)]"
+                    ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90"
+                    : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-[var(--primary-color)]"
                     } ${is4K ? "text-xl px-12 py-6" : "text-base"}`}
                 >
                   {button}

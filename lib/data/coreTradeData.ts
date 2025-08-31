@@ -61,7 +61,7 @@ export const coreTradeData = {
     {
       id: "dropshipping",
       name: "Dropshipping",
-      prev : "None",
+      prev: "None",
       icon: "Truck",
       kpi: "None",
       href: "/core-trade/dropshipping-ecommerce",
@@ -74,7 +74,7 @@ export const coreTradeData = {
     {
       id: "consignment",
       name: "Consignment",
-      prev : "Dropshipping",
+      prev: "Dropshipping",
       icon: "ShoppingBag",
       kpi: "6.0+",
       href: "/core-trade/consignment",
@@ -87,7 +87,7 @@ export const coreTradeData = {
     {
       id: "wholesale",
       name: "Wholesale",
-      prev : "Consignment",
+      prev: "Consignment",
       icon: "Package",
       href: "/core-trade/wholesale&distribution",
       kpi: "6.5+",
@@ -100,7 +100,7 @@ export const coreTradeData = {
     {
       id: "export",
       name: "Import/Export",
-      prev : "Wholesale",
+      prev: "Wholesale",
       icon: "Globe",
       href: "/core-trade/import-export",
       kpi: "7+",
@@ -371,8 +371,32 @@ export const coreTradeData = {
       range: "$150–$750",
     },
   ],
-  
-  
+  platformAdvantage: {
+    heading: "Our Platform Advantage",
+    description:
+      "Entry and trade initiatives for Kashmiri handicrafts, enabling US buyers and Kashmiri vendors to access low-risk sourcing, global exposure, and structured trade opportunities across dropshipping, consignment, wholesale, and import/export models.",
+    sections: [
+      {
+        title: "US Buyers’ Benefits",
+        items: [
+          "Dropshipping (L1): Low-risk sourcing, wide variety, quick entry to Kashmiri crafts.",
+          "Consignment (L2): Retail-ready products, no upfront inventory cost, guaranteed authenticity.",
+          "Wholesale (L3): Bulk discounts, reliable supply chain, consistent craft quality.",
+          "Import & Export (L4): Access to GI-certified products, customs compliance support, transparent pricing.",
+        ],
+      },
+      {
+        title: "Kashmir / India Vendors’ Benefits",
+        items: [
+          "Dropshipping (L1): Easy onboarding, global exposure, no stock burden.",
+          "Consignment (L2): Inventory visibility, brand placement in US retail, faster sales cycles.",
+          "Wholesale (L3): Bulk buyer access, scaling opportunities, guaranteed purchase orders.",
+          "Import & Export (L4): Export readiness, trade compliance, US market credibility.",
+        ],
+      },
+    ],
+  },
+
   comparison: {
     heading: "Choose Your Entry Path",
     standard: {
