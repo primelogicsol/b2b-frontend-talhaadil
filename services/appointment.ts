@@ -1,13 +1,13 @@
-
-
 import api from "@/lib/axios";
+
+import Cookies from "js-cookie";
 
 export const postAppointment = (
   body: {
     user_type: "buyer" | "vendor" | "guest";
     appointment_type: "virtual" | "offline";
-    appointment_date: string; // YYYY-MM-DD
-    appointment_time: string; // HH:MM
+    appointment_date: string;
+    appointment_time: string;
     time_zone: string;
     purpose: string;
     first_name: string;
@@ -33,14 +33,16 @@ export const postAppointment = (
     formData.append("file", file);
   }
 
+  const userId = Cookies.get("user_id");
+  const requiresAuth = !!userId;
+
   return api.post(`/appointments/`, formData, {
     headers: {
-      "Content-Type": "multipart/form-data"
-    }
+      requiresAuth: requiresAuth,
+      "Content-Type": "multipart/form-data",
+    },
   });
 };
-
-
 
 export const getAllAppointments = () => {
   return api.get(`/appointments/`, {
@@ -49,7 +51,6 @@ export const getAllAppointments = () => {
     },
   });
 };
-
 
 export const getAllAppointmentByDate = (date: string) => {
   return api.get(`/appointments?date=${date}`, {

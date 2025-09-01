@@ -453,7 +453,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         </div>
       </motion.section>
       {/* Eligibility Test Section - Replaced with comprehensive quiz component */}
-      <EligibilityQuiz />
+      <EligibilityQuiz partnershipName="dropshipping" role="vendor"/>
 
 
       {/* Core Trade Tracks - Kept only the cards, removed the table */}
