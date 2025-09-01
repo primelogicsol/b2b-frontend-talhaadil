@@ -14,9 +14,10 @@ import {
   ChevronDown,
 
 } from "lucide-react";
+import { EligibilityQuiz } from "../Essentials/ElgibiltyProvider";
 import Image from "next/image";
 import Link from "next/link";
-import EligibilityQuiz from "../Essentials/ElgibiltyProvider";
+
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -453,7 +454,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
         </div>
       </motion.section>
       {/* Eligibility Test Section - Replaced with comprehensive quiz component */}
-      <EligibilityQuiz partnershipName="consignment" role="vendor"/>
+      <EligibilityQuiz partnershipName="brick-mortar"/>
 
       {/* Core Trade Tracks - Kept only the cards, removed the table */}
       <motion.section
