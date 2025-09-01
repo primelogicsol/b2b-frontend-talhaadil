@@ -1,11 +1,10 @@
 "use client"
 
 import type React from "react"
-
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { FiLock } from "react-icons/fi"
-import { X, Mountain, ChevronRight, ChevronDown,Lock } from "lucide-react"
+import { X, Mountain, ChevronRight, ChevronDown, Lock } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { UserProfileDisplay } from "./UserProfileDisplay"
@@ -44,7 +43,6 @@ function LockTooltip({
                 Click here to login
               </button>
             </div>
-            {/* Arrow pointing up */}
             <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-[var(--primary-color)]"></div>
           </motion.div>
         )}
@@ -110,7 +108,6 @@ function MobileLockTooltip({
                 Click here to login
               </button>
             </div>
-            {/* Arrow pointing up */}
             <div className="absolute bottom-full left-6 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-[var(--primary-color)]"></div>
           </motion.div>
         )}
@@ -214,14 +211,12 @@ function DesktopDropdown({ title, items, isActive, isSignedIn }: DesktopDropdown
       <div className="relative group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button
           onClick={handleClick}
-          className={`flex items-center gap-2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${isActive ? "text-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"
-            }`}
+          className={`flex items-center gap-洗涤 2 py-2 cursor-pointer text-white text-md font-medium relative transition-colors duration-300 ease-in-out ${isActive ? "text-[var(--secondary-color)]" : "hover:text-[var(--secondary-hover-color)]"}`}
         >
           {title}
           {isPartnership && !isSignedIn && <FiLock size={14} />}
           <span
-            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-              }`}
+            className={`absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transition-all duration-300 ease-in-out origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
           />
         </button>
 
@@ -370,7 +365,7 @@ function MobileDropdown({ title, items, onLinkClick, isSignedIn }: MobileDropdow
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const [isRegistered, setIsRegistered] = useState<boolean | null>(null)
+  const [isRegistered, setIsRegistered] = useState<boolean | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [showProcessTooltip, setShowProcessTooltip] = useState(false)
@@ -385,7 +380,6 @@ export function Navbar() {
 
   useEffect(() => {
     const token = Cookies.get("access_token")
-
     if (token) {
       setIsSignedIn(true)
     } else {
@@ -394,13 +388,27 @@ export function Navbar() {
     console.log(isSignedIn)
   }, [])
 
-  const blogDropdownItems: DropdownItem[] = [
+  const blogDropdownItems: NestedDropdownItem[] = [
+    {
+      label: "Our Brand",
+      href: "#",
+      subItems: [
+        { label: "Story", href: "/our-brand/brand-story" },
+        { label: "Credentials", href: "/our-brand/brand-credentials" },
+      ],
+    },
+    {
+      label: "Our Niche",
+      href: "#",
+      subItems: [
+        { label: "Location", href: "/our-niche/location" },
+        { label: "Business", href: "/our-niche/business" },
+        { label: "Network", href: "/our-niche/network" },
+        { label: "Product", href: "/our-niche/product" },
+      ],
+    },
     { label: "Our Values", href: "/our-values" },
-    { label: "Our Story", href: "/our-story" },
     { label: "Our Team", href: "/our-team" },
-    { label: "Brand Story", href: "/brand-story" },
-    { label: "Brand Credentials", href: "/brand-credentials" },
-    { label: "Business Niche", href: "/business-niche" },
     { label: "Careers", href: "/careers" },
     { label: "Contact Us", href: "/contact" },
   ]
@@ -416,7 +424,6 @@ export function Navbar() {
           { label: "Drop Shipping", href: "/core-trade/dropshipping-ecommerce" },
           { label: "Consignment", href: "/core-trade/consignment" },
           { label: "Distribution", href: "/core-trade/wholesale&distribution" },
-          
           { label: "Export", href: "/core-trade/import-export" },
         ],
       },
@@ -501,6 +508,7 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
   useEffect(() => {
     const registeredStatus = Cookies.get("is_registered")
     setIsRegistered(registeredStatus === "true")
@@ -509,21 +517,18 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${isScrolled ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2" : "py-4"
-          }`}
+        className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${isScrolled ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2" : "py-4"}`}
       >
         <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
           <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
             <Mountain size={isScrolled ? 28 : 48} className="text-[var(--secondary-color)]" />
             <span
-              className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"
-                }`}
+              className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"}`}
             >
               Dekoshur Crafts
             </span>
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8 transition-all duration-500">
             <Link
               href="/"
@@ -590,13 +595,11 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Buttons / User Profile */}
           <div className="hidden lg:flex items-center space-x-4">
             {isSignedIn ? (
               <UserProfileDisplay
                 userName="John Doe"
                 userAvatarSrc="/placeholder.svg?height=120&width=120"
-
               />
             ) : (
               <>
@@ -620,7 +623,6 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-white focus:outline-none z-60 relative"
@@ -647,11 +649,9 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 bg-black/50 z-40 lg:hidden"
               initial={{ opacity: 0 }}
@@ -661,7 +661,6 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Mobile Menu */}
             <motion.div
               className="fixed top-0 right-0 w-full h-full bg-[var(--primary-color)] z-50 lg:hidden overflow-y-auto"
               initial={{ x: "100%" }}
@@ -670,7 +669,6 @@ export function Navbar() {
               transition={{ type: "tween", duration: 0.4, ease: "easeInOut" }}
             >
               <div className="flex flex-col h-full">
-                {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center space-x-2">
                     <Mountain size={32} className="text-[var(--secondary-color)]" />
@@ -684,7 +682,6 @@ export function Navbar() {
                   </button>
                 </div>
 
-                {/* Menu Items */}
                 <div className="flex-1 py-6">
                   <div className="space-y-1">
                     <Link
@@ -764,7 +761,6 @@ export function Navbar() {
                   </div>
                 </div>
 
-                {/* Bottom Actions */}
                 <div className="p-6 border-t border-white/10 space-y-3">
                   {isSignedIn ? (
                     <>
