@@ -28,54 +28,67 @@ export const museumInstitutionalsData = {
     heading: "Why Museums Choose De Koshur Crafts",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Handmade",
+        title: "Platform Access",
         description:
-          "Authentic, heritage crafts only, preserving Kashmir's cultural legacy.",
+          "Connects museums with certified Kashmiri artisans for curated exhibitions.",
       },
       {
-        icon: "ScrollText",
-        title: "Geographical Indication Integration",
+        title: "Heritage Preservation",
         description:
-          "Certify and protect heritage crafts through GI compliance.",
+          "Marketplace safeguards cultural crafts with digital and physical documentation.",
       },
       {
-        icon: "Shield",
-        title: "Blockchain Provenance",
+        title: "Exhibition Partnerships",
         description:
-          "Securely verify every artifact's origin using blockchain technology.",
+          "Crafts featured in rotating museum shows, catalogues, and archives.",
       },
       {
-        icon: "Folder",
-        title: "Digital Craft Repository",
+        title: "Compliance Standards",
         description:
-          "Maintain digital profiles, certifications, and trade records online.",
+          "Aligned with cultural heritage laws and international museum protocols.",
       },
       {
-        icon: "ShieldCheck",
-        title: "Protection System",
+        title: "Museum Access",
         description:
-          "Comprehensive insurance and secure handling for all artifacts.",
+          "Curators source authentic crafts directly from Kashmiri artisan vendors.",
       },
       {
-        icon: "Globe2",
-        title: "Carbon Footprint Reports",
+        title: "Museum Trust",
         description:
-          "Track and document sustainability metrics for each craft.",
+          "GI tags and blockchain traceability validate every displayed artifact.",
       },
       {
-        icon: "Tag",
-        title: "Craft Appraisal",
+        title: "Museum Engagement",
         description:
-          "AI-assisted valuations with expert reviews for accurate pricing.",
+          "Crafts contextualized through storytelling, history, and cultural interpretation.",
       },
       {
-        icon: "Tag",
-        title: "Craft Appraisal",
+        title: "Museum Growth",
         description:
-          "AI-assisted valuations with expert reviews for accurate pricing.",
+          "Global partnerships expand collections and attract heritage-focused audiences.",
+      },
+      {
+        title: "Vendor Access",
+        description:
+          "Crafts displayed in prestigious museums, elevating artisan recognition globally.",
+      },
+      {
+        title: "Vendor Security",
+        description:
+          "Partnerships ensure crafts are insured and preserved professionally.",
+      },
+      {
+        title: "Vendor Legacy",
+        description:
+          "Museum showcases strengthen artisan heritage for future generations worldwide.",
+      },
+      {
+        title: "Vendor Scaling",
+        description:
+          "Museum recognition opens pathways to exhibitions, auctions, and cultural exports.",
       },
     ],
+    
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },

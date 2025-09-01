@@ -29,52 +29,67 @@ export const ngoGovernmentData = {
     heading: "Why NGOs & Governments Choose De Koshur Crafts",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Handmade",
+        title: "Policy Access",
         description:
-          "Artisan-first ecosystem focused on authentic Kashmiri crafts.",
+          "Supports SDG 8 (Decent Work) through fair-trade partnerships globally.",
       },
       {
-        icon: "Folder",
-        title: "Craft Repository",
+        title: "Advocacy Support",
         description:
-          "Digital repository for artisan profiles and trade records.",
+          "Drives SDG 10 (Reduced Inequalities) via artisan rights campaigning.",
       },
       {
-        icon: "ScrollText",
-        title: "GI Certification",
+        title: "Compliance Oversight",
         description:
-          "Crafts certified with Geographical Indication and blockchain verification.",
+          "Ensures SDG 12 (Responsible Consumption) with ethical supply chains.",
       },
       {
-        icon: "Shield",
-        title: "Insurance System",
-        description: "Comprehensive insurance for secure transactions.",
-      },
-      {
-        icon: "Globe2",
-        title: "Carbon Footprint Reports",
-        description: "Detailed sustainability metrics for each product line.",
-      },
-      {
-        icon: "Tag",
-        title: "Craft Appraisal",
+        title: "Funding Channels",
         description:
-          "Transparent valuation reports using AI and expert reviews.",
+          "Links vendors to SDG 17 (Partnerships for Goals) financing.",
       },
       {
-        icon: "Package",
-        title: "Logistics Support",
+        title: "Institutional Access",
         description:
-          "Program-level logistics and packaging for seamless delivery.",
+          "Advances SDG 9 (Industry & Innovation) through craft development projects.",
       },
       {
-        icon: "Package",
-        title: "Logistics Support",
+        title: "Policy Alignment",
         description:
-          "Program-level logistics and packaging for seamless delivery.",
+          "Delivers SDG 16 (Strong Institutions) with transparent governance frameworks.",
+      },
+      {
+        title: "Global Advocacy",
+        description:
+          "Strengthens SDG 11 (Sustainable Cities) by showcasing crafts in diplomacy.",
+      },
+      {
+        title: "Community Growth",
+        description:
+          "Fulfills SDG 1 (No Poverty) through artisan livelihood programs.",
+      },
+      {
+        title: "Vendor Access",
+        description:
+          "Empowers SDG 5 (Gender Equality) by supporting women artisans globally.",
+      },
+      {
+        title: "Vendor Security",
+        description:
+          "Ensures SDG 3 (Good Health) with safe work environments.",
+      },
+      {
+        title: "Buyer Advantage",
+        description:
+          "Promotes SDG 13 (Climate Action) with eco-conscious sourcing.",
+      },
+      {
+        title: "Market Scaling",
+        description:
+          "Builds SDG 17 (Global Partnerships) for sustainable export and wholesale growth.",
       },
     ],
+    
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },

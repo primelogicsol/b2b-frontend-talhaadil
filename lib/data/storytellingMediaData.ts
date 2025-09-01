@@ -28,50 +28,65 @@ export const storytellingMediaData = {
     heading: "Storytelling That Protects & Promotes",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Handmade",
-        description:
-          "Kashmir-only crafts, ensuring authenticity and heritage focus.",
-      },
-      {
-        icon: "Video",
-        title: "Storytelling Tools",
-        description:
-          "Documentaries, photo campaigns, and digital catalogs for global reach.",
-      },
-      {
-        icon: "Package",
-        title: "Smart Packaging",
-        description:
-          "Cultural storytelling inserts in sustainable, branded packaging.",
-      },
-      {
-        icon: "Globe2",
-        title: "Carbon Tracker",
-        description: "Sustainability stories embedded in marketing materials.",
-      },
-      {
-        icon: "Shield",
-        title: "Blockchain Traceability",
-        description: "Ensures story authenticity tied to craft provenance.",
-      },
-      {
-        icon: "Folder",
-        title: "Craft Repository",
-        description:
-          "Digital archive for storytelling materials and trade records.",
-      },
-      {
         icon: "Globe",
-        title: "AR/VR Showrooms",
-        description: "Immersive exhibitions with narrative-driven craft tours.",
+        title: "Platform Access",
+        description: "Connects vendors with global media, photo, and branding partners."
       },
       {
-        icon: "CheckCircle",
-        title: "Verified Narratives",
-        description:
-          "Fact-checked and certified by Kashmiri heritage institutions.",
+        icon: "Camera",
+        title: "Media Studio",
+        description: "Provides professional photo and video shoots for artisan products."
       },
+      {
+        icon: "Book",
+        title: "Cultural Archives",
+        description: "Builds digital heritage records preserving Kashmiri storytelling worldwide."
+      },
+      {
+        icon: "Megaphone",
+        title: "Global Campaigns",
+        description: "Marketplace drives cross-border promotion through curated media partnerships."
+      },
+      {
+        icon: "Users",
+        title: "Partner Access",
+        description: "Creates compelling narratives around artisan heritage and product identity."
+      },
+      {
+        icon: "Share2",
+        title: "Partner Engagement",
+        description: "Delivers branding campaigns across online, retail, and social media."
+      },
+      {
+        icon: "Star",
+        title: "Partner Advantage",
+        description: "Amplifies vendor visibility and builds trust with global buyers."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Partner Growth",
+        description: "Expands influence through cultural storytelling and market-driven brand content."
+      },
+      {
+        icon: "Store",
+        title: "Vendor Access",
+        description: "Artisans gain media visibility without upfront investment in studios."
+      },
+      {
+        icon: "Award",
+        title: "Vendor Recognition",
+        description: "Products promoted through photo studios, cultural storytelling, and branding."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Advantage",
+        description: "Professional content boosts sales across e-commerce and retail channels."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Media partnerships prepare vendors for exhibitions, wholesale, and export."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",

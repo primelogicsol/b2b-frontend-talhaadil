@@ -29,50 +29,67 @@ export const technologyData = {
     heading: "DKC B2B Initiative — Technology That Stands Apart",
     features: [
       {
-        icon: "Cog",
-        title: "Headless E-Commerce",
-        description: "Tier 8 scalable, API-driven, multi-currency platforms.",
-      },
-      {
-        icon: "Mic",
-        title: "Voice Search Optimization",
+        title: "Platform Access",
         description:
-          "Compatibility with Alexa, Google, and Siri for global reach.",
+          "Marketplace connects vendors with global software houses and technology partners.",
       },
       {
-        icon: "BarChart3",
-        title: "Programmatic Advertising",
+        title: "API Integration",
         description:
-          "Real-time, data-driven marketing with dynamic creative optimization.",
+          "Seamless connections for e-commerce sync, payments, and live inventory.",
       },
       {
-        icon: "Globe",
-        title: "AR/VR Showrooms",
+        title: "Blockchain Verification",
         description:
-          "Immersive craft experiences for interactive buyer engagement.",
+          "Authenticity protected through blockchain-backed product and GI certification systems.",
       },
       {
-        icon: "Truck",
-        title: "Predictive Logistics",
-        description: "AI-optimized supply chains with carbon-neutral delivery.",
-      },
-      {
-        icon: "Hand",
-        title: "Haptic Feedback",
+        title: "AI Insights",
         description:
-          "Simulate tactile experiences for textiles and crafts online.",
+          "Predictive analytics optimize demand forecasting, pricing, and buyer targeting.",
       },
       {
-        icon: "MapPin",
-        title: "Geo-Fencing Marketing",
-        description: "Hyper-local targeting for retail and tourism buyers.",
+        title: "Partner Access",
+        description:
+          "Software houses provide vendors with digital solutions and automation.",
       },
       {
-        icon: "Headphones",
-        title: "AI-Powered Support",
-        description: "24/7 multi-channel support across global time zones.",
+        title: "Partner Security",
+        description:
+          "Cybersecurity layers safeguard transactions, data, and trade operations.",
+      },
+      {
+        title: "Partner Innovation",
+        description:
+          "Develops AR/VR experiences for immersive craft storytelling and engagement.",
+      },
+      {
+        title: "Partner Growth",
+        description:
+          "Builds scalable SaaS systems for global buyers and vendors.",
+      },
+      {
+        title: "Vendor Access",
+        description:
+          "Vendors integrate e-commerce tools, logistics apps, and digital payment gateways.",
+      },
+      {
+        title: "Vendor Security",
+        description:
+          "Technology ensures safe transactions and fraud-free trade environments globally.",
+      },
+      {
+        title: "Vendor Liquidity",
+        description:
+          "Automation accelerates payouts, reducing delays and improving financial stability.",
+      },
+      {
+        title: "Vendor Scaling",
+        description:
+          "Software-backed systems prepare vendors for wholesale, export, and franchise.",
       },
     ],
+    
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },

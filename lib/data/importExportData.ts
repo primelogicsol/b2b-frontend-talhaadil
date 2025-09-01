@@ -29,46 +29,65 @@ export const importExportData = {
     heading: "How Certified Export Stands Apart",
     features: [
       {
-        icon: "Target",
-        title: "Handmade Products",
-        description: "GI-protected, exclusively Kashmiri artisan crafts.",
+        icon: "Globe",
+        title: "Platform Access",
+        description: "Global hub connects importers and exporters with certified Kashmiri crafts."
       },
       {
-        icon: "ScrollText",
-        title: "Certification Hub",
-        description:
-          "GI, fair-trade, sustainability, and customs-ready documentation.",
+        icon: "FileText",
+        title: "Customs Integration",
+        description: "Automated documentation ensures smooth clearance across borders and markets."
       },
       {
         icon: "Shield",
-        title: "Blockchain Registry",
-        description: "Fraud-free contracts and transparent settlements.",
+        title: "Global Compliance",
+        description: "Aligned with WTO, US, EU, and international trade regulations."
+      },
+      {
+        icon: "CreditCard",
+        title: "Secure Settlements",
+        description: "Multi-currency, fraud-protected, escrow-enabled international transaction systems."
       },
       {
         icon: "Package",
-        title: "Institutional Packaging",
-        description: "Export-compliant, eco-friendly, branded packaging kits.",
+        title: "Importer Reach",
+        description: "Access GI-certified Kashmiri crafts for regulated international markets."
       },
       {
-        icon: "Globe2",
-        title: "Carbon Tracking",
-        description: "Sustainability data for global compliance.",
+        icon: "CheckCircle",
+        title: "Importer Confidence",
+        description: "Blockchain-backed traceability ensures authenticity of every imported product."
       },
       {
-        icon: "BarChart3",
-        title: "AI Compliance Dashboard",
-        description: "Predictive trade checks for vendors and buyers.",
+        icon: "Truck",
+        title: "Importer Efficiency",
+        description: "Predictive logistics optimize delivery speed and reduce shipping costs."
       },
       {
-        icon: "Briefcase",
-        title: "Legal Concierge",
-        description: "Global documentation and policy support.",
+        icon: "TrendingUp",
+        title: "Importer Growth",
+        description: "Expand sourcing to new countries with trusted, transparent vendor base."
       },
       {
-        icon: "Building",
-        title: "Institutional Partnerships",
-        description: "Direct connections with NGOs, museums, and governments.",
+        icon: "Store",
+        title: "Exporter Access",
+        description: "Vendors reach international buyers through structured export marketplaces."
       },
+      {
+        icon: "Lock",
+        title: "Exporter Security",
+        description: "Insurance and compliance systems safeguard products during global transit."
+      },
+      {
+        icon: "DollarSign",
+        title: "Exporter Liquidity",
+        description: "Payments supported by export financing and trade settlement guarantees."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Exporter Scaling",
+        description: "Export prepares vendors for subsidiaries, franchises, and global retail partnerships."
+      }
     ],
     exclusivity:
       "The only platform where heritage, compliance, and technology converge for international trade.",
@@ -77,60 +96,67 @@ export const importExportData = {
     heading: "Comprehensive Export & Compliance Support",
     sections: [
       {
-        title: "Payment & Transaction Features",
-        icon: "CreditCard",
+        title: "Core Infrastructure",
+        icon: "Database",
         items: [
-          "Multi-currency settlements for global trade.",
-          "Automated customs duty and tax handling.",
-          "Escrow-secured transactions for high-value orders.",
+          "Export Access: Platform connects artisans with verified international buyers.",
+          "Documentation Systems: Automated tools prepare customs and trade paperwork.",
+          "Compliance Standards: GI, WTO, and KHCRF rules guide all exports.",
+          "Trade Contracts: Smart agreements define pricing, logistics, and legal obligations.",
         ],
       },
       {
-        title: "Security Features",
-        icon: "ShieldCheck",
+        title: "Logistics & Compliance",
+        icon: "Truck",
         items: [
-          "GI and fair-trade certification validation.",
-          "Blockchain-logged contracts for transparency.",
-          "Document encryption and KYC for institutional partners.",
+          "Freight Forwarding: Organizers manage consolidated shipping with global carriers.",
+          "Customs Clearance: Automated filings simplify cross-border approvals and inspections.",
+          "Insurance Coverage: Goods protected against damage, theft, or international disputes.",
+          "Return Handling: Reverse logistics enable rejected shipments to return efficiently.",
         ],
       },
       {
-        title: "Marketing Features",
+        title: "Growth & Analytics",
         icon: "BarChart3",
         items: [
-          "Global institutional buyer directory.",
-          "Showcase at verified international exhibitions.",
-          "Retail-ready bundles for large brands.",
+          "Market Insights: Data reveals demand by country, category, and season.",
+          "Performance Reports: Vendors receive analytics on pricing, buyers, and margins.",
+          "Trade Forecasts: AI predicts high-demand craft products for upcoming cycles.",
+          "Channel Expansion: Exports open doors into wholesale, retail, and consignment.",
         ],
       },
       {
-        title: "Export Partnership Features",
-        icon: "Package",
+        title: "Importer/Exporter Advantages",
+        icon: "Globe",
         items: [
-          "Compliance packaging with export insurance.",
-          "Vendor verification for seamless customs clearance.",
-          "Support for institutional buyers like NGOs and museums.",
+          "Exporter Access: Vendors enter premium global trade networks seamlessly.",
+          "Exporter Recognition: Builds credibility through certified GI and KHCRF compliance.",
+          "Exporter Growth: Expands reach into multi-continent wholesale and retail.",
+          "Exporter Security: Smart contracts guarantee payments on successful trade completion.",
         ],
       },
       {
-        title: "Private Label Export Features",
-        icon: "Tag",
+        title: "Buyer/Importer Advantages",
+        icon: "ShoppingCart",
         items: [
-          "Co-branded collections for international buyers.",
-          "White-label export-ready product lines.",
-          "Institutional packaging customization.",
+          "Importer Access: Buyers source authentic Kashmiri crafts directly from origin.",
+          "Importer Recognition: Access to certified supply chains improves retail trust.",
+          "Importer Savings: Direct sourcing reduces costs and ensures fair pricing.",
+          "Importer Scaling: Builds consistent supply pipelines for retail and distribution.",
         ],
       },
       {
-        title: "Additional Customer Engagement",
-        icon: "MessageSquare",
+        title: "Shared Success",
+        icon: "Handshake",
         items: [
-          "Policy workshops for vendors.",
-          "Trade advisory sessions for buyers.",
-          "Joint compliance webinars and training.",
+          "Cultural Promotion: Exports amplify Kashmiri crafts across global markets.",
+          "Fair Trade: Compliance ensures artisans are paid transparently and fairly.",
+          "Trust Building: Verified supply chains strengthen importer–exporter collaborations worldwide.",
+          "Sustainable Growth: Eco-friendly shipping supports green global handicraft trade.",
         ],
       },
-    ],
+    ]
+    ,
   },
   eligibility: {
     heading: "Certified Export Entry Rules",

@@ -29,46 +29,64 @@ export const warehousData = {
     features: [
       {
         icon: "Warehouse",
-        title: "Certified Storage",
-        description: "Climate-controlled, insured, and audited facilities.",
+        title: "Warehouse Access",
+        description: "Vendors place inventory in certified global hubs for distribution."
       },
       {
         icon: "Package",
-        title: "Smart Packaging",
-        description:
-          "Ensures cultural integrity and durability during storage.",
-      },
-      {
-        icon: "Globe2",
-        title: "Carbon Tracker",
-        description: "Sustainability reporting tied to logistics and storage.",
-      },
-      {
-        icon: "Shield",
-        title: "Blockchain Documentation",
-        description: "Product identity protected from entry to dispatch.",
-      },
-      {
-        icon: "ScrollText",
-        title: "GI Integration",
-        description:
-          "Kashmiri crafts verified with heritage origin certification.",
+        title: "Shared Operations",
+        description: "Marketplace provides labeling, packaging, staffing, and point-of-sale services."
       },
       {
         icon: "BarChart3",
-        title: "Inventory Tools",
-        description: "API-enabled dashboards for real-time inventory tracking.",
+        title: "Inventory Monitoring",
+        description: "AI dashboards track product movement, shrinkage, and replenishment timelines."
       },
       {
-        icon: "Truck",
-        title: "Reverse Logistics",
-        description: "Minimized costs with direct reselling from warehouses.",
+        icon: "ArrowLeftRight",
+        title: "Return Handling",
+        description: "Centralized system manages returns, exchanges, and reverse logistics efficiently."
       },
       {
-        icon: "Truck",
-        title: "Reverse Logistics",
-        description: "Minimized costs with direct reselling from warehouses.",
+        icon: "ShoppingCart",
+        title: "Buyer Efficiency",
+        description: "Orders consolidated through warehouses, reducing shipping and operational expenses."
       },
+      {
+        icon: "Shield",
+        title: "Buyer Assurance",
+        description: "Goods stored under compliance-driven standards ensure quality upon arrival."
+      },
+      {
+        icon: "Layers",
+        title: "Buyer Flexibility",
+        description: "Shared warehouse pools enable sourcing from multiple vendors simultaneously."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Buyer Growth",
+        description: "Scales sourcing capacity with faster fulfillment and reduced logistical burdens."
+      },
+      {
+        icon: "Lock",
+        title: "Vendor Security",
+        description: "Products insured, digitally tracked, and protected against theft or loss."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Liquidity",
+        description: "Steady sales supported by timely order fulfillment and automated payouts."
+      },
+      {
+        icon: "Briefcase",
+        title: "Vendor Services",
+        description: "Access value-added support like packaging, labeling, and compliance readiness."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Warehouse networks prepare vendors for wholesale, export, and franchise expansion."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",

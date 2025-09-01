@@ -25,49 +25,60 @@ export const brickMortarData = {
     heading: "How Our Shared Store Model Stands Apart",
     features: [
       {
-        icon: "Target",
-        title: "Handmade Kashmir",
-        description:
-          "Exclusively artisan-made, preserving Kashmir’s cultural heritage.",
+        icon: "DollarSign",
+        title: "Owner Revenue",
+        description: "Earns commission per sale, boosting retail profitability with heritage goods."
       },
       {
-        icon: "Globe",
-        title: "Omni-Channel Integration",
-        description: "Seamless POS and online marketplace synchronization.",
-      },
-      {
-        icon: "BarChart3",
-        title: "Real-Time Dashboards",
-        description: "Monitor sales, stock, and customer engagement live.",
+        icon: "Package",
+        title: "Owner Diversity",
+        description: "Offers customers curated artisan collections unavailable in generic markets."
       },
       {
         icon: "Shield",
-        title: "Fair Vendor Policy",
-        description: "Fixed rent with no commission stacking.",
+        title: "Owner Compliance",
+        description: "Assures products meet US retail, safety, and consumer regulations."
       },
       {
-        icon: "Users",
-        title: "Community-Centric Curation",
-        description: "No internal competition through curated store setups.",
+        icon: "Tag",
+        title: "Owner Branding",
+        description: "Strengthens store identity through authentic Kashmiri cultural storytelling displays."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Owner Growth",
+        description: "Expands product lines without inventory risks or upfront procurement."
+      },
+      {
+        icon: "Store",
+        title: "Vendor Access",
+        description: "Showcases crafts in US stores, avoiding direct retail overheads."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Revenue",
+        description: "Earns fair profits through transparent post-sale settlement systems."
+      },
+      {
+        icon: "Lock",
+        title: "Vendor Security",
+        description: "Inventory tracked, insured, and protected under marketplace management."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Expands to multiple US cities through shared retail partnerships."
+      },
+      {
+        icon: "Award",
+        title: "Vendor Recognition",
+        description: "Products gain credibility in American markets via GI certification."
       },
       {
         icon: "MapPin",
-        title: "Strategic Placement",
-        description:
-          "Stores in community hubs, malls, urban centers, and heritage zones.",
-      },
-      {
-        icon: "MapPin",
-        title: "Strategic Placement",
-        description:
-          "Stores in community hubs, malls, urban centers, and heritage zones.",
-      },
-      {
-        icon: "MapPin",
-        title: "Strategic Placement",
-        description:
-          "Stores in community hubs, malls, urban centers, and heritage zones.",
-      },
+        title: "Vendor Pathway",
+        description: "Brick & Mortar success accelerates entry into wholesale and franchise."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",

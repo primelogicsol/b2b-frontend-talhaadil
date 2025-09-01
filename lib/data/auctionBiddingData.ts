@@ -29,48 +29,65 @@ export const auctionBiddingData = {
     heading: "How Our Auction Model Stands Apart",
     features: [
       {
-        icon: "Target",
-        title: "Handmade Kashmir",
-        description: "Every auction piece is artisan-crafted and GI-tagged.",
+        icon: "Gavel",
+        title: "Organizer Platform",
+        description: "Runs online auction systems with live bidding and digital catalogs."
+      },
+      {
+        icon: "Globe",
+        title: "Organizer Access",
+        description: "Connects collectors, buyers, and vendors globally in real time."
       },
       {
         icon: "Shield",
-        title: "Blockchain Traceability",
-        description:
-          "Every auctioned product is verifiable from origin to buyer.",
+        title: "Organizer Standards",
+        description: "Verifies authenticity through GI tags, blockchain, and KHCRF checks."
       },
       {
-        icon: "BarChart3",
-        title: "AI-Powered Pricing",
-        description:
-          "Fair valuations through AI and expert appraisal before bidding.",
+        icon: "FileText",
+        title: "Organizer Transparency",
+        description: "Publishes live bid logs ensuring fairness, integrity, and trust."
       },
       {
-        icon: "Video",
-        title: "Hybrid Auctions",
-        description:
-          "Physical and digital formats with AR/VR showrooms for buyers.",
+        icon: "Megaphone",
+        title: "Organizer Promotion",
+        description: "Markets events via online campaigns, newsletters, and collector networks."
       },
       {
-        icon: "Truck",
-        title: "Integrated Logistics",
-        description: "Post-auction shipping and storage in select U.S. hubs.",
+        icon: "TrendingUp",
+        title: "Organizer Growth",
+        description: "Scales platform through seasonal, themed, and global auction events."
       },
       {
-        icon: "Globe2",
-        title: "Carbon Tracker",
-        description: "Sustainability data included for each auctioned item.",
+        icon: "Store",
+        title: "Exhibitor Access",
+        description: "Showcases rare crafts digitally to buyers worldwide instantly."
       },
       {
-        icon: "Folder",
-        title: "Auction Cataloging",
-        description: "Every item recorded in the digital Craft Repository.",
+        icon: "Award",
+        title: "Exhibitor Recognition",
+        description: "Gains prestige from verified online auction listings and successful sales."
       },
       {
-        icon: "Folder",
-        title: "Auction Cataloging",
-        description: "Every item recorded in the digital Craft Repository.",
+        icon: "DollarSign",
+        title: "Exhibitor Revenue",
+        description: "Achieves premium margins through competitive online global bidding."
       },
+      {
+        icon: "CheckCircle",
+        title: "Exhibitor Compliance",
+        description: "Adheres to online platform rules for provenance, authenticity, sustainability."
+      },
+      {
+        icon: "Lock",
+        title: "Exhibitor Security",
+        description: "Crafts digitally documented, insured, and securely managed post-sale."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Exhibitor Pathway",
+        description: "Online auctions accelerate entry into luxury retail and export."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
@@ -79,46 +96,67 @@ export const auctionBiddingData = {
     heading: "All-in-One Auction Ecosystem",
     sections: [
       {
-        title: "Payment & Settlement Features",
-        icon: "CreditCard",
+        title: "Core Infrastructure",
+        icon: "Server",
         items: [
-          "Escrow-based transactions with funds released post-delivery.",
-          "Multi-currency support (USD, EUR, INR).",
-          "Automated compliance and tax handling.",
-          "Vendor settlement within 7–15 days.",
+          "Auction Access: Platform connects sellers with collectors and institutional buyers.",
+          "Bidding Systems: Real-time digital platforms enable transparent competitive bidding.",
+          "Catalog Listings: Crafts documented and published in online auction directories.",
+          "Promotion Campaigns: Auctions marketed globally across media and collector networks.",
         ],
       },
       {
-        title: "Security Features",
-        icon: "ShieldCheck",
+        title: "Logistics & Compliance",
+        icon: "Truck",
         items: [
-          "Vendor and buyer KYC verification.",
-          "Blockchain-backed auction contracts.",
-          "Anti-fraud monitoring and encrypted communication.",
-          "GDPR and PCI-DSS compliant infrastructure.",
+          "Auction Logistics: Organizers provide handling, shipping, and insured storage.",
+          "Compliance Standards: GI, KHCRF, and provenance rules guide participation.",
+          "Insurance Coverage: Sellers’ crafts protected against loss, theft, or damage.",
+          "Settlement Handling: Payouts released after cleared, verified auction transactions globally.",
         ],
       },
       {
-        title: "Marketing Features",
+        title: "Growth & Analytics",
         icon: "BarChart3",
         items: [
-          "Pre-auction digital catalog promotions.",
-          "Featured placement for premium crafts.",
-          "Targeted outreach to global buyers.",
-          "AI-driven buyer recommendations.",
+          "Market Insights: Organizers analyze bidding patterns and buyer preferences.",
+          "Performance Reports: Sellers receive reports on sales, reach, and recognition.",
+          "Demand Forecasts: Predictive tools highlight craft categories in high demand.",
+          "Channel Expansion: Auctions open doors into museums, exports, and franchises.",
         ],
       },
       {
-        title: "Auction Partnership Features",
-        icon: "Package",
+        title: "Organizer Advantages",
+        icon: "Gavel",
         items: [
-          "Global exposure via hybrid digital and physical events.",
-          "Transparent bidding dashboard with live updates.",
-          "Integration with existing e-commerce platforms.",
-          "Post-auction logistics and storage support.",
+          "Organizer Reach: Hosts auctions connecting artisans with premium buyers worldwide.",
+          "Organizer Standards: Ensures fairness through transparent and certified bidding systems.",
+          "Organizer Growth: Expands auctions into seasonal, cultural, and thematic formats.",
+          "Organizer Recognition: Gains credibility as trusted marketplace for heritage crafts.",
         ],
       },
-    ],
+      {
+        title: "Seller/Exhibitor Advantages",
+        icon: "Users",
+        items: [
+          "Seller Access: Vendors showcase rare crafts directly to global collectors.",
+          "Seller Recognition: Prestige increases through sales in competitive auctions.",
+          "Seller Revenue: Competitive bidding maximizes artisan earnings and profitability.",
+          "Seller Pathway: Auctions accelerate entry into museums and luxury retail.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Cultural Promotion: Auctions highlight Kashmiri heritage on international platforms.",
+          "Fair Trade: Oversight ensures artisans receive equitable payment always.",
+          "Trust Building: Transparent bidding strengthens organizer-seller-buyer relationships globally.",
+          "Sustainable Growth: Eco-friendly practices support ethical auction marketplace expansion.",
+        ],
+      },
+    ]
+    ,
   },
   eligibility: {
     heading: "Auction Bidding Entry Rules",

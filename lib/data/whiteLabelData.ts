@@ -29,46 +29,65 @@ export const whiteLabelData = {
     heading: "The White Label Edge with De Koshur Crafts",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Kashmiri",
-        description: "Handmade, heritage-first products, no mass production.",
+        icon: "Globe",
+        title: "Platform Access",
+        description: "Connects buyers seeking private-label products with certified Kashmiri vendors."
       },
       {
         icon: "Tag",
-        title: "Private Branding",
-        description: "Create retail-ready product lines with custom branding.",
-      },
-      {
-        icon: "Package",
-        title: "Branded Packaging",
-        description: "Customizable packaging kits for brand alignment.",
-      },
-      {
-        icon: "PlugZap",
-        title: "API Connectors",
-        description:
-          "Seamless integration with Shopify, WooCommerce, Magento, BigCommerce.",
-      },
-      {
-        icon: "BarChart3",
-        title: "KPI Dashboard",
-        description: "Track reliability and growth with retention analytics.",
+        title: "Custom Branding",
+        description: "Marketplace enables tailored packaging, labeling, and brand identity creation."
       },
       {
         icon: "Shield",
-        title: "Blockchain Authentication",
-        description: "End-to-end tracking for every white label product.",
+        title: "Compliance Oversight",
+        description: "Ensures white-label products meet US/EU retail and trade standards."
       },
       {
-        icon: "Globe2",
-        title: "Carbon Footprint Reporting",
-        description: "Sustainability data provided per collection.",
+        icon: "Truck",
+        title: "Supply Chain",
+        description: "Centralized logistics support smooth production, branding, and distribution processes."
       },
       {
-        icon: "Folder",
-        title: "Craft Repository Access",
-        description: "Select artisans and designs for custom product lines.",
+        icon: "ShoppingCart",
+        title: "Buyer Flexibility",
+        description: "Create unique branded product lines without managing full production."
       },
+      {
+        icon: "CheckCircle",
+        title: "Buyer Confidence",
+        description: "Source GI-certified crafts with authenticity protected under private branding."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Buyer Growth",
+        description: "Expand white-label offerings into premium retail and international markets."
+      },
+      {
+        icon: "DollarSign",
+        title: "Buyer Advantage",
+        description: "Lower development costs compared to manufacturing proprietary product lines."
+      },
+      {
+        icon: "Store",
+        title: "Vendor Access",
+        description: "Supply products under buyer labels, reaching premium retail networks."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "White-label partnerships expand vendor volumes across multiple product categories."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Revenue",
+        description: "Earn higher, predictable margins through recurring white-label agreements."
+      },
+      {
+        icon: "Award",
+        title: "Vendor Recognition",
+        description: "Although unlabeled, vendors gain stability, scaling capacity, and global market access."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",

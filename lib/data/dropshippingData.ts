@@ -29,77 +29,65 @@ export const dropshippingData = {
     heading: "How Our Dropshipping Model Stands Apart",
     features: [
       {
+        icon: "Globe",
+        title: "Platform Access",
+        description: "Marketplace connects vendors and buyers globally with seamless onboarding."
+      },
+      {
         icon: "Target",
-        title: "Handmade Kashmir",
-        description:
-          "Each craft is artisan-made, preserving Kashmir's rich cultural heritage.",
-      },
-      {
-        icon: "Link",
-        title: "AI Matching",
-        description:
-          "Our AI intelligently connects vendors with the right buyers globally.",
-      },
-      {
-        icon: "Package",
-        title: "Smart Packaging",
-        description:
-          "Eco-friendly packaging with AR previews ensures safe and stylish delivery.",
-      },
-      {
-        icon: "Truck",
-        title: "Logistics Tech",
-        description:
-          "Real-time tracking and multi-carrier optimization improve shipping efficiency.",
-      },
-      {
-        icon: "BarChart3",
-        title: "Growth Dashboard",
-        description:
-          "Comprehensive KPI analytics help track retention and business growth easily.",
+        title: "Custom Integration",
+        description: "Exclusively designed for Kashmiri crafts, unlike generic e-commerce platforms."
       },
       {
         icon: "Shield",
-        title: "Blockchain",
-        description:
-          "Securely verify every product's origin from artisan to buyer contract.",
+        title: "Digital Traceability",
+        description: "Blockchain verifies product origin, ensuring authenticity across transactions."
       },
       {
-        icon: "Globe2",
-        title: "Carbon Tracker",
-        description:
-          "Measure and reduce each product's carbon footprint using smart metrics.",
+        icon: "CreditCard",
+        title: "Secure Payments",
+        description: "Multi-currency, fraud-protected systems guarantee safe, timely settlements."
       },
       {
-        icon: "Tag",
-        title: "Craft Valuation",
-        description:
-          "AI-assisted valuations combined with expert reviews ensure accurate pricing.",
+        icon: "ShoppingCart",
+        title: "Buyer Flexibility",
+        description: "Purchase without stockholding, reducing upfront risks significantly."
       },
       {
-        icon: "ScrollText",
-        title: "GI Integration",
-        description:
-          "Protect and certify heritage crafts through Geographical Indication compliance.",
+        icon: "Package",
+        title: "Buyer Diversity",
+        description: "Access wide range of GI-certified Kashmiri artisan products."
       },
       {
-        icon: "Folder",
-        title: "Trade Registry",
-        description:
-          "Maintain artisan profiles, certifications, and digital contracts securely online.",
+        icon: "BarChart3",
+        title: "Buyer Transparency",
+        description: "Track sourcing, delivery, and pricing through real-time dashboards."
       },
       {
-        icon: "Globe",
-        title: "AR Showrooms",
-        description:
-          "Immersive AR/VR previews let buyers explore products realistically online.",
+        icon: "TrendingUp",
+        title: "Buyer Growth",
+        description: "Expand e-commerce stores quickly by testing new product categories."
       },
       {
-        icon: "Handshake",
-        title: "Smart Contracts",
-        description:
-          "Automated settlements ensure secure transactions and fraud protection effectively.",
+        icon: "Store",
+        title: "Vendor Access",
+        description: "List products instantly, reaching buyers worldwide with zero inventory."
       },
+      {
+        icon: "Lock",
+        title: "Vendor Security",
+        description: "GI certifications protect products against counterfeiting and market misuse."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Liquidity",
+        description: "Payments triggered on sales ensure cashflow without warehousing costs."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Dropshipping builds readiness for wholesale, consignment, or export tiers."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no middlemen.",
@@ -108,66 +96,67 @@ export const dropshippingData = {
     heading: "Everything You Need to Start, Scale & Succeed",
     sections: [
       {
-        title: "Payment Features",
-        icon: "CreditCard",
+        title: "Core Infrastructure",
+        icon: "Cpu",
         items: [
-          "Multi-currency payment support (USD, EUR, INR, etc.)",
-          "Secure escrow-based settlements (buyer → platform → vendor).",
-          "Automated tax & compliance handling.",
-          "Settlement cycles optimized (15–30 days).",
+          "Payment Features: Secure multi-currency gateways simplify smooth transactions globally.",
+          "Security Features: Blockchain verification protects authenticity, payments, and sensitive data.",
+          "Platform Stability: Cloud architecture ensures uptime, scalability, and consistent performance.",
+          "User Access: Simple onboarding makes global marketplace participation fast.",
         ],
       },
       {
-        title: "Security Features",
-        icon: "ShieldCheck",
+        title: "Logistics & Compliance",
+        icon: "Truck",
         items: [
-          "End-to-end encryption for transactions.",
-          "Two-factor authentication for vendors & buyers.",
-          "AI-based fraud detection system.",
-          "GDPR & PCI-DSS compliant infrastructure.",
+          "Logistics Support: Integrated warehousing, shipping, and delivery streamline supply chains.",
+          "Customs Integration: Automated clearance reduces border delays, costs, and risks.",
+          "Compliance Standards: US and EU packaging regulations ensure global safety.",
+          "Return Handling: Centralized logistics builds customer trust and vendor reliability.",
         ],
       },
       {
-        title: "Marketing Features",
+        title: "Growth & Analytics",
         icon: "BarChart3",
         items: [
-          "Affiliate & referral program integration.",
-          "Discount coupons & flash sales engine.",
-          "Abandoned cart recovery automation.",
-          "AI-driven product recommendations.",
+          "Marketing Features: AI-powered campaigns amplify artisan storytelling across platforms.",
+          "Analytics Dashboard: Real-time metrics forecast demand and optimize sales.",
+          "Sales Insights: Predictive analytics highlight seasonal craft trends globally.",
+          "Performance Metrics: KPIs track vendor success and buyer satisfaction.",
         ],
       },
       {
-        title: "Dropshipping Features",
+        title: "Dropshipping Model",
         icon: "Package",
         items: [
-          "One-click product import from supplier catalog.",
-          "Automated inventory & stock sync.",
-          "Global supplier integrations (AliExpress, CJ Dropshipping, etc.).",
-          "Auto-generated tracking numbers for customers.",
+          "Dropshipping Features: Zero-inventory model enables scalable product sales worldwide.",
+          "Market Testing: Launch new categories before committing major resources.",
+          "Zero Risk: No upfront inventory minimizes vendor financial exposure.",
+          "Global Reach: Dropshipping connects Kashmiri vendors with global buyers.",
         ],
       },
       {
-        title: "Private Label Features",
+        title: "Branding & Engagement",
         icon: "Tag",
         items: [
-          "Custom packaging & branding options.",
-          "MOQ (Minimum Order Quantity) negotiation tools.",
-          "Factory-direct manufacturing partnerships.",
-          "End-to-end logistics (factory → warehouse → customer).",
+          "Private Label: Custom branding helps vendors create exclusive product collections.",
+          "Customer Engagement: Reviews, loyalty rewards, and storytelling increase trust.",
+          "Multimedia Assets: Photo studios, video catalogs boost product appeal.",
+          "Cultural Storytelling: Craft narratives preserve heritage and enhance branding.",
         ],
       },
       {
-        title: "Additional Customer Engagement",
-        icon: "MessageSquare",
+        title: "Vendor Success",
+        icon: "Handshake",
         items: [
-          "Built-in live chat & chatbot system.",
-          "Loyalty & rewards points program.",
-          "Multi-language & multi-currency storefront.",
-          "Mobile app for iOS & Android (white-labeled).",
+          "Vendor Support: Training and KHCRF guidance improve vendor readiness.",
+          "Scalable Growth: Vendors advance into wholesale, export, and franchise.",
+          "Financial Access: Microfinance and BNPL expand artisan trade capabilities.",
+          "Partnership Advantage: Collaborations strengthen long-term trade and sustainability.",
         ],
       },
     ],
+    
   },
   eligibility: {
     heading: "Dropshipping Entry Rules",

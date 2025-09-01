@@ -27,69 +27,65 @@ export const designCollaborationData = {
     heading: "Design Collaboration With Full Protection",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Handmade",
-        description:
-          "Artisan-first, Kashmir-only crafts with no mass production.",
+        icon: "Globe",
+        title: "Platform Access",
+        description: "Connects vendors with global design experts and innovation partners."
       },
       {
-        icon: "Link",
-        title: "Collaboration Hub",
-        description: "Structured platform for buyer-vendor design co-creation.",
+        icon: "Brush",
+        title: "Design Integration",
+        description: "Combines artisan skills with modern design for global relevance."
       },
       {
-        icon: "Package",
-        title: "Smart Packaging",
-        description:
-          "Branded, sustainable, and fair-trade certified packaging.",
+        icon: "Lightbulb",
+        title: "Innovation Labs",
+        description: "Marketplace fosters co-creation workshops for product development."
       },
       {
         icon: "BarChart3",
-        title: "KPI Dashboard",
-        description: "Track performance and collaboration metrics seamlessly.",
+        title: "Market Insights",
+        description: "Data-driven design aligns with consumer trends and retail demand."
       },
       {
-        icon: "Shield",
-        title: "Blockchain Traceability",
-        description:
-          "Proof of design ownership and artisan rights via blockchain.",
+        icon: "Users",
+        title: "Partner Access",
+        description: "Works with artisans to design globally competitive Kashmiri crafts."
       },
       {
-        icon: "Globe2",
-        title: "Carbon Tracker",
-        description: "Sustainability metrics linked to each co-created design.",
+        icon: "Sparkles",
+        title: "Partner Innovation",
+        description: "Introduces new patterns, finishes, and styles to traditional crafts."
       },
       {
-        icon: "Tag",
-        title: "Craft Appraisal",
-        description: "Expert-driven valuation for custom designs.",
+        icon: "TrendingUp",
+        title: "Partner Growth",
+        description: "Expands retail offerings with exclusive, co-created design collections."
       },
       {
-        icon: "ScrollText",
-        title: "GI Certification",
-        description:
-          "Protect craft heritage with Geographical Indication compliance.",
+        icon: "Award",
+        title: "Partner Advantage",
+        description: "Differentiates product lines through storytelling and innovation-driven branding."
       },
       {
-        icon: "Folder",
-        title: "Trade Registry",
-        description: "Transparent contracts and collaboration history storage.",
+        icon: "Store",
+        title: "Vendor Access",
+        description: "Artisans gain exposure to modern design methods and markets."
       },
       {
-        icon: "Folder",
-        title: "Trade Registry",
-        description: "Transparent contracts and collaboration history storage.",
+        icon: "Lock",
+        title: "Vendor Security",
+        description: "Craft originality protected through KHCRF compliance and IP frameworks."
       },
       {
-        icon: "Folder",
-        title: "Trade Registry",
-        description: "Transparent contracts and collaboration history storage.",
+        icon: "DollarSign",
+        title: "Vendor Advantage",
+        description: "Improved design elevates sales and builds stronger retail presence."
       },
       {
-        icon: "Folder",
-        title: "Trade Registry",
-        description: "Transparent contracts and collaboration history storage.",
-      },
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Design innovation prepares vendors for premium export and franchise."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",

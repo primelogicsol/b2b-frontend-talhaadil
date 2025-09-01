@@ -28,49 +28,134 @@ export const exhibitionData = {
     heading: "Exhibition with Built-In Support",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Kashmiri",
-        description: "Handmade, GI-verified crafts ensuring authenticity.",
+        icon: "Globe",
+        title: "Organizer Access",
+        description: "Hosts curated exhibitions connecting global buyers with Kashmiri vendors."
       },
       {
-        icon: "ScrollText",
-        title: "GI Verification",
-        description: "All crafts certified for heritage authenticity.",
-      },
-      {
-        icon: "Package",
-        title: "Storage Support",
-        description: "U.S.-based storage to reduce reverse logistics costs.",
-      },
-      {
-        icon: "Users",
-        title: "Networking Events",
-        description: "Buyer-seller meetups for partnership building.",
+        icon: "BookOpen",
+        title: "Organizer Platform",
+        description: "Provides digital catalogs, exhibitor listings, and promotional visibility globally."
       },
       {
         icon: "Shield",
-        title: "Blockchain Validation",
-        description:
-          "Product authenticity tracked via blockchain and trade registry.",
+        title: "Organizer Standards",
+        description: "Ensures compliance, GI certification, and KHCRF-driven authenticity checks."
       },
       {
-        icon: "BarChart3",
-        title: "Post-Event Analytics",
-        description: "Lead-generation reports and performance metrics.",
+        icon: "MapPin",
+        title: "Organizer Reach",
+        description: "Expands exhibitor access to trade fairs, museums, and international expos."
       },
       {
-        icon: "BarChart3",
-        title: "Post-Event Analytics",
-        description: "Lead-generation reports and performance metrics.",
+        icon: "Briefcase",
+        title: "Organizer Support",
+        description: "Offers logistics, branding, and marketing resources to participating exhibitors."
       },
       {
-        icon: "BarChart3",
-        title: "Post-Event Analytics",
-        description: "Lead-generation reports and performance metrics.",
+        icon: "TrendingUp",
+        title: "Organizer Growth",
+        description: "Builds long-term partnerships by hosting seasonal and thematic exhibitions."
       },
+      {
+        icon: "Store",
+        title: "Exhibitor Access",
+        description: "Showcases products in premium curated exhibitions and catalog environments."
+      },
+      {
+        icon: "Award",
+        title: "Exhibitor Recognition",
+        description: "Elevates artisan credibility with verified GI and cultural branding."
+      },
+      {
+        icon: "Users",
+        title: "Exhibitor Leads",
+        description: "Generates wholesale orders, retail inquiries, and collector interest globally."
+      },
+      {
+        icon: "CheckCircle",
+        title: "Exhibitor Compliance",
+        description: "Meets marketplace standards for sustainability, authenticity, and transparent pricing."
+      },
+      {
+        icon: "DollarSign",
+        title: "Exhibitor Revenue",
+        description: "Drives sales through direct exhibition exposure and catalog placements."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Exhibitor Pathway",
+        description: "Exhibition participation accelerates entry into wholesale, export, or franchise."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
+  },
+  capabilities: {
+    heading: "All-in-One Auction Ecosystem",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Server",
+        items: [
+          "Platform Access: Marketplace connects exhibitors with global buyers and curators.",
+          "Exhibition Contracts: Standard agreements protect both organizers and participating exhibitors.",
+          "Digital Catalogs: Crafts featured in online exhibitions and promotional directories.",
+          "Event Promotion: Global campaigns attract collectors, retailers, and cultural institutions.",
+        ],
+      },
+      {
+        title: "Logistics & Compliance",
+        icon: "Truck",
+        items: [
+          "Exhibition Logistics: Organizers provide venues, booths, and digital showcases.",
+          "Compliance Standards: Exhibitions follow KHCRF, GI, and fair-trade policies.",
+          "Insurance Coverage: Exhibitors’ crafts insured for loss, damage, or theft.",
+          "Return Handling: Unpurchased goods returned securely after each exhibition.",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Market Insights: Organizers share visitor data, leads, and category trends.",
+          "Performance Metrics: Exhibitors receive reports on exposure and conversions.",
+          "Lead Generation: Exhibitions generate wholesale, retail, and collector connections.",
+          "Channel Expansion: Opens pathways into wholesale, auctions, and export trade.",
+        ],
+      },
+      {
+        title: "Organizer Advantages",
+        icon: "Briefcase",
+        items: [
+          "Organizer Access: Hosts exhibitions, boosting cultural and commercial significance.",
+          "Organizer Reach: Expands global participation across museums, expos, and fairs.",
+          "Organizer Standards: Provides curated environments with certified product showcases.",
+          "Organizer Growth: Builds recurring partnerships with vendors and buyers worldwide.",
+        ],
+      },
+      {
+        title: "Exhibitor Advantages",
+        icon: "Users",
+        items: [
+          "Exhibitor Access: Artisans showcase crafts in premium curated environments.",
+          "Exhibitor Recognition: Presence boosts artisan credibility and cultural visibility globally.",
+          "Exhibitor Revenue: Direct sales and wholesale inquiries improve financial returns.",
+          "Exhibitor Pathway: Exhibitions prepare vendors for auctions and global exports.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Cultural Promotion: Exhibitions preserve Kashmiri heritage on global platforms.",
+          "Fair Trade: Oversight ensures artisans receive fair wages consistently.",
+          "Trust Building: Transparency strengthens exhibitor-organizer-buyer relationships globally.",
+          "Sustainable Growth: Exhibitions create eco-friendly cultural and commercial opportunities worldwide.",
+        ],
+      },
+    ]
+    ,
   },
   
   eligibility: {

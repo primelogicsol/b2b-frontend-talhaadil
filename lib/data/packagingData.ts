@@ -29,48 +29,65 @@ export const packagingData = {
     heading: "Packaging That Preserves Heritage & Builds Brands",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Kashmiri",
-        description: "Heritage-first products, no mass production.",
-      },
-      {
-        icon: "Leaf",
-        title: "Sustainable Materials",
-        description:
-          "Biodegradable, recyclable, and carbon-neutral packaging options.",
+        icon: "Globe",
+        title: "Platform Access",
+        description: "Marketplace connects vendors to certified packaging and branding providers."
       },
       {
         icon: "Package",
-        title: "Craft-Specific Standards",
-        description:
-          "Tailored solutions for shawls, carpets, papier-mâché, and walnut wood.",
-      },
-      {
-        icon: "Globe2",
-        title: "Carbon Tracker",
-        description: "Environmental data provided per packaging unit.",
+        title: "Custom Solutions",
+        description: "Offers tailored packaging aligned with cultural heritage and market trends."
       },
       {
         icon: "Shield",
-        title: "Blockchain Protection",
-        description: "Product identity linked with packaging via blockchain.",
+        title: "Global Compliance",
+        description: "Ensures packaging meets US, EU, and international retail standards."
       },
       {
-        icon: "ScrollText",
-        title: "GI Tags",
-        description: "Embedded in packaging for authenticity verification.",
+        icon: "Globe2",
+        title: "Eco Materials",
+        description: "Promotes sustainable packaging reducing carbon footprint and environmental impact."
       },
       {
         icon: "Tag",
-        title: "Premium Branding",
-        description:
-          "Logos, custom labels, and co-branding support for vendors and buyers.",
+        title: "Brand Identity",
+        description: "Develops product visuals highlighting Kashmiri authenticity and heritage story."
       },
       {
-        icon: "Globe",
-        title: "AR Previews",
-        description: "Virtual packaging previews for buyers before shipment.",
+        icon: "Store",
+        title: "Retail Standards",
+        description: "Prepares packaging ready for shelf placement in premium US outlets."
       },
+      {
+        icon: "Camera",
+        title: "Marketing Assets",
+        description: "Delivers photo shoots, labels, and promotional materials for campaigns."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Brand Growth",
+        description: "Elevates vendor products into globally recognized cultural retail brands."
+      },
+      {
+        icon: "Users",
+        title: "Vendor Access",
+        description: "Artisans access branding solutions without heavy upfront investments."
+      },
+      {
+        icon: "Lock",
+        title: "Vendor Security",
+        description: "GI certification protected through standardized packaging and labeling systems."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Advantage",
+        description: "Professional branding increases sales appeal across global buyer networks."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Packaging readiness enables vendors to enter wholesale and export."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",

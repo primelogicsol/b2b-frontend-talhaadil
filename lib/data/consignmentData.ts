@@ -29,68 +29,65 @@ export const consignmentPageData = {
     heading: "How Our Consignment Model Stands Apart",
     features: [
       {
-        icon: "Target",
-        title: "Exclusively Handmade Kashmir",
-        description:
-          "Only artisan-first crafts from verified Kashmiri artisans.",
+        icon: "Globe",
+        title: "Platform Access",
+        description: "Unified hub connecting consignors and consignees across global markets."
       },
       {
-        icon: "ShoppingBag",
-        title: "Pay-After-Sale Structure",
-        description: "Buyers settle payments only when products are sold.",
-      },
-      {
-        icon: "Package",
-        title: "Smart Packaging Integration",
-        description: "Retail-ready packaging, branding options, AR previews.",
+        icon: "Handshake",
+        title: "Secure Contracts",
+        description: "Standardized agreements ensure trust, fairness, and risk sharing."
       },
       {
         icon: "BarChart3",
-        title: "Performance Analytics",
-        description:
-          "Track sell-through rates, buyer demand, and shelf performance.",
+        title: "Digital Tracking",
+        description: "AI-driven dashboards monitor inventory, sales, and payouts transparently."
       },
       {
-        icon: "Truck",
-        title: "Logistics Waivers",
-        description: "5-15% shipping subsidies built into the partnership.",
+        icon: "CreditCard",
+        title: "Payment Assurance",
+        description: "Automated systems release payments to consignors only post-sales."
+      },
+      {
+        icon: "ShoppingCart",
+        title: "Consignee Flexibility",
+        description: "Acquire products without upfront cost, reducing cash flow strain."
+      },
+      {
+        icon: "Package",
+        title: "Consignee Diversity",
+        description: "Access curated Kashmiri crafts tailored for boutique and niche markets."
+      },
+      {
+        icon: "FileText",
+        title: "Consignee Transparency",
+        description: "Receive detailed reports on turnover, sales, and consumer demand."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Consignee Growth",
+        description: "Expand retail offerings confidently with low-risk inventory commitments."
+      },
+      {
+        icon: "Store",
+        title: "Consignor Access",
+        description: "Place crafts in premium stores, exhibitions, and curated marketplaces."
       },
       {
         icon: "Shield",
-        title: "Blockchain-Verified Contracts",
-        description:
-          "Secure consignment agreements with smart contract technology.",
+        title: "Consignor Security",
+        description: "Inventory protected with insurance, tracking, and compliance-backed systems."
       },
       {
-        icon: "Globe2",
-        title: "Carbon Footprint Tracking",
-        description: "Every product linked to sustainability metrics.",
+        icon: "DollarSign",
+        title: "Consignor Liquidity",
+        description: "Payments flow after sales, ensuring financial sustainability and stability."
       },
       {
-        icon: "Folder",
-        title: "Craft Repository Integration",
-        description: "Artisan credentials, GI tags, compliance records.",
-      },
-      {
-        icon: "Globe",
-        title: "Omnichannel Visibility",
-        description: "Placement in retail + online AR showrooms.",
-      },
-      {
-        icon: "Globe",
-        title: "Omnichannel Visibility",
-        description: "Placement in retail + online AR showrooms.",
-      },
-      {
-        icon: "Globe",
-        title: "Omnichannel Visibility",
-        description: "Placement in retail + online AR showrooms.",
-      },
-      {
-        icon: "Globe",
-        title: "Omnichannel Visibility",
-        description: "Placement in retail + online AR showrooms.",
-      },
+        icon: "ArrowUpRight",
+        title: "Consignor Pathway",
+        description: "Consignment strengthens readiness for wholesale, export, or franchise scaling."
+      }
     ],
     exclusivity:
       "Exclusively designed for low-risk retail trade of Kashmiri handmade crafts.",
@@ -99,61 +96,67 @@ export const consignmentPageData = {
     heading: "Everything You Need to Succeed in Retail Consignment",
     sections: [
       {
-        title: "Payment & Settlement Features",
-        icon: "CreditCard",
+        title: "Core Infrastructure",
+        icon: "Server",
         items: [
-          "Pay-after-sale settlement cycles (20-30 days for Pro, 7-10 days for Enterprise).",
-          "Escrow-backed settlement security.",
-          "Automated tax, compliance & invoice generation.",
+          "Consignment Access: Platform connects consignee retailers with consignor vendors globally.",
+          "Shared Contracts: Standardized agreements ensure fairness, compliance, and transparent accountability.",
+          "Inventory Tracking: AI dashboards monitor consignor stock across retail locations.",
+          "Payment Assurance: Automated settlements trigger payouts after confirmed product sales.",
         ],
       },
       {
-        title: "Security Features",
-        icon: "ShieldCheck",
+        title: "Logistics & Compliance",
+        icon: "Truck",
         items: [
-          "Blockchain-secured consignment contracts.",
-          "Verified buyers & vendors (KYC + GI certification).",
-          "Fraud prevention and compliance monitoring.",
+          "Consignee Logistics: Buyers source inventory without upfront capital commitments required.",
+          "Consignor Security: Goods stored safely under insured, compliance-driven warehouse systems.",
+          "Compliance Standards: Trade aligned with US, EU, and global consignment rules.",
+          "Return Handling: Reverse logistics simplify customer returns and vendor reconciliation.",
         ],
       },
       {
-        title: "Retail Marketing Features",
+        title: "Growth & Analytics",
         icon: "BarChart3",
         items: [
-          "Placement in boutique & seasonal stores.",
-          "Featured seasonal campaigns + global catalog placement.",
-          "Buyer engagement through AR packaging & retail showcase tools.",
+          "Sales Insights: Predictive analytics highlight retail trends and inventory movement.",
+          "Consignee Reports: Buyers receive SKU-level transparency on craft performance.",
+          "Consignor Metrics: Vendors monitor sell-through rates and category-wise profitability.",
+          "Market Testing: Consignment enables pilot launches before wholesale expansion.",
         ],
       },
       {
-        title: "Consignment Partnership Features",
-        icon: "Package",
+        title: "Consignee Advantages",
+        icon: "ShoppingCart",
         items: [
-          "Zero upfront buyer payment.",
-          "Vendors retain ownership until sold.",
-          "Integrated logistics & packaging solutions.",
-          "Inventory & sales tracking dashboards.",
+          "Consignee Capital: Acquire crafts without paying consignors until sales.",
+          "Consignee Flexibility: Rotate stock quickly, reducing overstocking and retail waste.",
+          "Consignee Diversity: Access wide artisan product lines under one roof.",
+          "Consignee Confidence: Transparency builds trust in pricing, supply, and partnerships.",
         ],
       },
       {
-        title: "Private Label Retail Features",
-        icon: "Tag",
+        title: "Consignor Advantages",
+        icon: "Users",
         items: [
-          "White-label retail-ready packaging (Pro & Enterprise tiers).",
-          "Seasonal brand collaborations.",
-          "Custom merchandising & co-branded promotions.",
+          "Consignor Access: Showcase crafts in curated boutiques and premium outlets.",
+          "Consignor Liquidity: Earn revenue progressively with steady cash flow cycles.",
+          "Consignor Recognition: Retail presence boosts artisan credibility and brand reputation.",
+          "Consignor Growth: Consignment prepares vendors for wholesale, export, and franchises.",
         ],
       },
       {
-        title: "Additional Customer Engagement",
-        icon: "MessageSquare",
+        title: "Vendor & Buyer Success",
+        icon: "Handshake",
         items: [
-          "Buyer/vendor retail negotiation platform.",
-          "Post-sale customer support tools.",
-          "Integrated loyalty programs for retail buyers.",
+          "Shared Benefits: Both parties gain through risk-sharing retail partnerships.",
+          "Fair Trade: KHCRF oversight ensures wages, safety, and transparency.",
+          "Market Scaling: Progression pathways open wholesale and international opportunities quickly.",
+          "Sustainable Growth: Ethical practices strengthen long-term global market reputation.",
         ],
       },
-    ],
+    ]
+    ,
   },
   eligibility: {
     heading: "Consignment Entry Rules",

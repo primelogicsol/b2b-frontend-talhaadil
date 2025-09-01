@@ -29,45 +29,65 @@ export const logisticsData = {
     heading: "De Koshur Crafts’ Logistics Advantage",
     features: [
       {
-        icon: "Shield",
-        title: "Exclusively Handmade Sector",
-        description: "Logistics optimized for fragile, artisan-made goods.",
-      },
-      {
-        icon: "Link",
-        title: "Blockchain-Backed Trade Registry",
-        description: "Transparent shipment verification.",
-      },
-      {
-        icon: "Globe2",
-        title: "Smart Carbon Footprint Tracker",
-        description: "Sustainability metrics embedded in logistics.",
-      },
-      {
-        icon: "Package",
-        title: "Craft Repository Integration",
-        description: "Direct linkage of shipments to artisan origin.",
+        icon: "Globe",
+        title: "Global Access",
+        description: "Marketplace connects vendors to certified logistics and shipping providers worldwide."
       },
       {
         icon: "Truck",
-        title: "Reverse Logistics Support",
-        description: "Unsold goods handled seamlessly.",
+        title: "Freight Forwarding",
+        description: "Consolidated cargo solutions streamline international transport and customs clearance."
       },
       {
-        icon: "Warehouse",
-        title: "Institutional-Grade Warehousing",
-        description: "In strategic hubs across the U.S. and EU.",
+        icon: "FileText",
+        title: "Customs Integration",
+        description: "Automated documentation ensures faster clearance across borders and markets."
       },
       {
-        icon: "ScrollText",
-        title: "Geographical Indication Protection",
-        description: "Ensuring authentic crafts only.",
+        icon: "Map",
+        title: "Predictive Logistics",
+        description: "AI-driven route optimization reduces costs and delivery times significantly."
       },
       {
-        icon: "ScrollText",
-        title: "Geographical Indication Protection",
-        description: "Ensuring authentic crafts only.",
+        icon: "ShoppingCart",
+        title: "Buyer Efficiency",
+        description: "Receive consolidated shipments faster with real-time tracking updates."
       },
+      {
+        icon: "Shield",
+        title: "Buyer Assurance",
+        description: "Compliance-driven shipping guarantees product quality on final delivery."
+      },
+      {
+        icon: "Layers",
+        title: "Buyer Flexibility",
+        description: "Select shipping modes — air, sea, or ground — as needed."
+      },
+      {
+        icon: "TrendingUp",
+        title: "Buyer Growth",
+        description: "Scale sourcing networks with global coverage and transparent shipping costs."
+      },
+      {
+        icon: "Store",
+        title: "Vendor Access",
+        description: "Export crafts with streamlined logistics managed by trusted global partners."
+      },
+      {
+        icon: "Lock",
+        title: "Vendor Security",
+        description: "Shipments insured and digitally tracked from origin to destination securely."
+      },
+      {
+        icon: "DollarSign",
+        title: "Vendor Liquidity",
+        description: "Faster deliveries support quicker payment cycles and financial stability."
+      },
+      {
+        icon: "ArrowUpRight",
+        title: "Vendor Scaling",
+        description: "Efficient logistics prepare vendors for wholesale, export, and franchise expansion."
+      }
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — optimized for artisan-focused logistics.",
