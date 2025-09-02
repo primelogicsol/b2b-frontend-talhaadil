@@ -93,7 +93,8 @@ export const consignmentPageData = {
       "Exclusively designed for low-risk retail trade of Kashmiri handmade crafts.",
   },
   capabilities: {
-    heading: "Everything You Need to Succeed in Retail Consignment",
+    heading: "Consignment Settlement Made Simple",
+    subheading:"Supply inventory now; receive payments only after sales.",
     sections: [
       {
         title: "Core Infrastructure",

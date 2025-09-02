@@ -93,6 +93,73 @@ export const logisticsData = {
       "Exclusively for Kashmiri handmade crafts — optimized for artisan-focused logistics.",
   },
 
+  capabilities: {
+    heading: "Logistics and Shipping Solutions",
+    subheading:"Consolidated freight, customs, last-mile delivery with tracking reliability. ",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Server",
+        items: [
+          "Warehouse Access: Connects vendors with certified global warehousing service providers.",
+          "Shared Contracts: Agreements define responsibilities for storage and handling.",
+          "Digital Systems: Inventory tracked with AI-driven dashboards and IoT sensors.",
+          "Compliance Standards: Facilities aligned with international trade and safety laws.",
+        ],
+      },
+      {
+        title: "Logistics & Support",
+        icon: "Truck",
+        items: [
+          "Storage Services: Vendors lease scalable warehouse space for inventory.",
+          "Fulfillment Support: Packing, labeling, and dispatch handled centrally by operators.",
+          "Return Handling: Centralized hubs manage exchanges, repairs, and customer returns.",
+          "After-Sales Support: Reverse logistics ensure post-purchase satisfaction and transparency.",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Inventory Insights: Reports highlight demand, stock rotation, and replenishment cycles.",
+          "Market Forecasts: Predictive tools guide vendors on distribution planning.",
+          "Performance Metrics: Vendors track warehousing ROI and cost optimization.",
+          "Channel Expansion: Warehousing supports wholesale, retail, and export distribution.",
+        ],
+      },
+      {
+        title: "Warehouse Partner  Advantages",
+        icon: "Package",
+        items: [
+          "Partner Access: Operators offer storage solutions to artisan vendors globally.",
+          "Partner Growth: Expands services across retail chains and export markets.",
+          "Partner Recognition: Builds credibility as trusted cultural warehousing collaborator.",
+          "Partner Advantage: Shared services strengthen long-term vendor partnerships efficiently.",
+        ],
+      },
+      {
+        title: "Vendor  Advantages",
+        icon: "Users",
+        items: [
+          "Vendor Access: Vendors store inventory securely without heavy infrastructure costs.",
+          "Vendor Security: Goods insured against theft, loss, or damage globally.",
+          "Vendor Liquidity: Faster order fulfillment improves vendor cash flow cycles.",
+          "Vendor Scaling: Warehousing prepares vendors for bulk wholesale and exports.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Fair Trade: Transparent handling ensures equitable cost-sharing and accountability.",
+          "Trust Building: Open systems strengthen vendor–warehouse collaborations globally.",
+          "Operational Efficiency: Shared warehouses reduce overheads and speed delivery.",
+          "Sustainable Growth: Eco-friendly storage practices boost global competitiveness.",
+        ],
+      },
+    ] ,
+  },
+
   eligibility: {
     heading: "Who Can Join Logistics Partnerships?",
     requirements: [

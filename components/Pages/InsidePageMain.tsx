@@ -27,6 +27,7 @@ type LandingPageData = {
     }
     capabilities?: {
         heading: string
+        subheading: string
         sections: { icon: string; title: string; items: string[] }[]
     }
     eligibility: {
@@ -357,6 +358,10 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                         {/* Heading */}
                         <h2 className={`text-center text-[var(--primary-color)] font-bold mb-12 ${is4K ? "text-5xl" : "text-2xl md:text-3xl lg:text-4xl"}`}>
                             {landingPageData.capabilities.heading}
+                        </h2>
+                        {/*sub Heading */}
+                        <h2 className={`text-center text-[var(--primary-color)] mb-7 ${is4K ? "text-5xl" : "text-1xl md:text-2xl lg:text-4xl"}`}>
+                            {landingPageData.capabilities.subheading}
                         </h2>
 
                         {/* Desktop Horizontal Accordion */}

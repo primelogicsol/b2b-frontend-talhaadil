@@ -93,7 +93,8 @@ export const dropshippingData = {
       "Exclusively for Kashmiri handmade crafts — no mass production, no middlemen.",
   },
   capabilities: {
-    heading: "Everything You Need to Start, Scale & Succeed",
+    heading: "Direct Vendor Market Access",
+    subheading:"Connect buyers directly; launch globally without inventory risks.",
     sections: [
       {
         title: "Core Infrastructure",

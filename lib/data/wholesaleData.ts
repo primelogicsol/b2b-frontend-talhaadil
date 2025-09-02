@@ -93,7 +93,8 @@ export const wholesaleData = {
       "The most scalable and transparent pathway for large-volume trade of Kashmiri handmade crafts.",
   },
   capabilities: {
-    heading: "Everything You Need for Bulk Trade Success",
+    heading: "Wholesale Supplier Trade Channels",
+    subheading:"Verified bulk sourcing for scalable retailer distribution worldwide.",
     sections: [
       {
         title: "Core Infrastructure",

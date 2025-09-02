@@ -91,6 +91,74 @@ export const storytellingMediaData = {
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
+  capabilities: {
+    heading: "Storytelling Media Engagement Hub",
+    subheading:"Photography and media amplify brand stories and conversions.",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Server",
+        items: [
+          "Platform Access: Connects vendors with certified media and branding professionals.",
+          "Media Contracts: Agreements define creative rights, usage, and payment terms.",
+          "Photo Studios: Professional shoots highlight artisan crafts for retail promotion.",
+          "Content Archives: Marketplace stores cultural media for global campaigns securely.",
+        ],
+      },
+      {
+        title: "Logistics & Support",
+        icon: "Camera",
+        items: [
+          "Media Support: Centralized teams provide photography, videography, and editing.",
+          "Eco Campaigns: Brand storytelling aligns with sustainability-driven messaging globally.",
+          "Distribution Ready: Content optimized for retail, e-commerce, and exhibitions.",
+          "After-Sales Support: Campaign teams adjust branding post-launch if required.",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Engagement Metrics: Reports track customer interaction with storytelling campaigns.",
+          "Market Insights: Analytics reveal demand driven by brand media.",
+          "Performance Reports: Vendors measure ROI from campaigns and content shoots.",
+          "Channel Scaling: Storytelling expands exposure across retail, digital, and exports.",
+        ],
+      },
+      {
+        title: "Media Partner Advantages",
+        icon: "Film",
+        items: [
+          "Partner Access: Media teams showcase creativity for artisan vendors globally.",
+          "Partner Growth: Expands networks through long-term cultural branding collaborations.",
+          "Partner Recognition: Credibility grows by promoting sustainable Kashmiri heritage campaigns.",
+          "Partner Advantage: Global exposure strengthens positioning in cultural storytelling markets.",
+        ],
+      },
+      {
+        title: "Vendor Advantages",
+        icon: "Users",
+        items: [
+          "Vendor Access: Artisans gain professional branding without upfront media costs.",
+          "Vendor Security: Contracts ensure fair credit and copyright over content.",
+          "Vendor Recognition: Brand stories increase artisan visibility and global trust.",
+          "Vendor Scaling: Media support prepares vendors for exhibitions and retail.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Cultural Promotion: Media campaigns preserve and promote Kashmiri heritage worldwide.",
+          "Fair Trade: Oversight ensures artisans share campaign benefits fairly.",
+          "Trust Building: Transparent collaborations foster long-term artisan-media partnerships globally.",
+          "Sustainable Growth: Storytelling and branding support eco-conscious global competitiveness.",
+        ],
+      },
+    ]
+    
+    ,
+  },
 
   eligibility: {
     heading: "Who Can Join Storytelling & Media Partnerships?",

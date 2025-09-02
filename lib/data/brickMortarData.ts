@@ -83,6 +83,76 @@ export const brickMortarData = {
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
+   
+  capabilities: {
+    heading: "Retail Storefront Shared Entry",
+    subheading:"Secure in-store presence through collaborative U.S. retail partnerships. ",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Server",
+        items: [
+          "Store Access: Marketplace connects US stores with Kashmiri craft vendors.",
+          "Space Allocation: Vendors lease curated spaces within retail store layouts.",
+          "Retail Contracts: Agreements govern commissions, inventory placement, and returns.",
+          "Compliance Standards: Stores follow US consumer safety and retail laws.",
+        ],
+      },
+      {
+        title: "Logistics & Support",
+        icon: "Truck",
+        items: [
+          "Operational Support: Shared POS, staffing, and utilities reduce vendor costs.",
+          "Store Branding: Curated Kashmiri themes enhance customer shopping experience.",
+          "Inventory Tracking: Digital systems monitor vendor products across shared spaces.",
+          "Return Handling: Centralized return desk manages customer exchanges fairly.",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Sales Insights: Vendors receive performance data across retail categories.",
+          "Footfall Reports: Store owners analyze visitor patterns and buyer trends.",
+          "Market Testing: Vendors pilot new crafts before scaling into wholesale.",
+          "Channel Expansion: Brick & Mortar prepares progression into franchise models.",
+        ],
+      },
+      {
+        title: "Store Owner Advantages",
+        icon: "Building",
+        items: [
+          "Owner Access: Hosts authentic Kashmiri crafts in premium retail environments.",
+          "Owner Revenue: Earns commission per sale from vendor product lines.",
+          "Owner Branding: Heritage-driven storytelling strengthens retail store reputation globally.",
+          "Owner Growth: Expands cultural product offerings without inventory risks.",
+        ],
+      },
+      {
+        title: "Vendor Advantages",
+        icon: "Users",
+        items: [
+          "Vendor Access: Showcase products in high-traffic US retail locations.",
+          "Vendor Recognition: Builds artisan credibility through verified retail partnerships.",
+          "Vendor Revenue: Sales improve with exposure to walk-in buyers.",
+          "Vendor Scaling: Retail placements accelerate entry into wholesale and export.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Fair Trade: KHCRF oversight ensures artisans receive fair wages.",
+          "Trust Building: Transparent models strengthen vendor–store collaborations globally.",
+          "Cultural Promotion: Stores highlight Kashmiri heritage through immersive displays.",
+          "Sustainable Growth: Shared spaces reduce costs and boost eco practices.",
+        ],
+      },
+    ]
+    
+    ,
+  },
+
   eligibility: {
     heading: "Shared Brick & Mortar Entry Rules",
     requirements: [

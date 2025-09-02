@@ -92,6 +92,76 @@ export const museumInstitutionalsData = {
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
+
+
+
+  capabilities: {
+    heading: "Cultural Heritage Museum Partnerships",
+    subheading:"Museums preserve crafts, elevate visibility, and provenance globally.",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Landmark",
+        items: [
+          "Platform Access: Connects artisans with museums for cultural collaborations globally.",
+          "Curatorial Contracts: Agreements define exhibition rights, credits, and responsibilities clearly.",
+          "Digital Archives: Crafts documented and preserved within global museum databases.",
+          "Compliance Standards: Museums adhere to KHCRF, GI, and heritage laws.",
+        ],
+      },
+      {
+        title: "Logistics & Support",
+        icon: "Truck",
+        items: [
+          "Exhibition Support: Museums provide display spaces, preservation, and technical assistance.",
+          "Curation Services: Experts ensure crafts are interpreted with cultural authenticity.",
+          "Insurance Coverage: Artifacts insured against theft, loss, or damage worldwide.",
+          "Return Handling: Items returned safely after exhibitions or cultural showcases.",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Visitor Insights: Reports highlight footfall, demographics, and audience engagement.",
+          "Cultural Reports: Museums share research on heritage, history, and preservation.",
+          "Global Exposure: Exhibits amplify Kashmiri crafts to international audiences worldwide.",
+          "Channel Expansion: Opens opportunities into auctions, exports, and retail galleries.",
+        ],
+      },
+      {
+        title: "Museum Partner Advantages",
+        icon: "Building",
+        items: [
+          "Partner Access: Museums enrich collections with authentic Kashmiri handicrafts.",
+          "Partner Growth: Expands collaborations into research, exhibitions, and heritage projects.",
+          "Partner Recognition: Builds credibility as cultural preservation and heritage promoter.",
+          "Partner Advantage: Strengthens institutional leadership through global artisan partnerships.",
+        ],
+      },
+      {
+        title: "Vendor  Advantages",
+        icon: "Users",
+        items: [
+          "Vendor Access: Artisans gain cultural legitimacy through museum collaborations globally.",
+          "Vendor Recognition: Museum showcases elevate artisan reputation and credibility worldwide.",
+          "Vendor Revenue: Partnerships generate income through museum-linked exhibitions and sales.",
+          "Vendor Scaling: Exposure positions artisans for exports and luxury markets.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Cultural Promotion: Museums preserve and promote Kashmiri heritage internationally.",
+          "Fair Trade: Museums ensure artisans are compensated fairly always.",
+          "Trust Building: Transparency strengthens artisan–museum long-term collaborations globally.",
+          "Sustainable Growth: Cultural partnerships promote ethical, eco-conscious heritage preservation.",
+        ],
+      },
+    ],
+  },
+
   eligibility: {
     heading: "Who Can Join?",
     requirements: [

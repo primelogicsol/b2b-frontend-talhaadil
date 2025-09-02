@@ -93,7 +93,8 @@ export const importExportData = {
       "The only platform where heritage, compliance, and technology converge for international trade.",
   },
   capabilities: {
-    heading: "Comprehensive Export & Compliance Support",
+    heading: "Global Export Compliance Bridge",
+    subheading:"Automated customs, payments, documentation streamline international handicraft trade.",
     sections: [
       {
         title: "Core Infrastructure",

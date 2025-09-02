@@ -92,7 +92,8 @@ export const exhibitionData = {
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
   capabilities: {
-    heading: "All-in-One Auction Ecosystem",
+    heading: "Exhibition Spotlight for Artisans",
+    subheading:"Curated showcases deliver international visibility and qualified buyers.",
     sections: [
       {
         title: "Core Infrastructure",

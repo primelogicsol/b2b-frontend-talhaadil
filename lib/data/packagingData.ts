@@ -93,6 +93,74 @@ export const packagingData = {
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
 
+  capabilities: {
+    heading: "Packaging and Branding Excellence",
+    subheading:"Professional packaging elevates authenticity, compliance, and shelf appeal. ",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Server",
+        items: [
+          "Platform Access: Connects vendors with certified packaging and branding providers.",
+          "Brand Contracts: Agreements define packaging, labeling, and compliance responsibilities.",
+          "Design Integration: Combines artisan identity with modern retail packaging standards.",
+          "Compliance Standards: Packaging aligned with US, EU, and global regulations.",
+        ],
+      },
+      {
+        title: "Logistics & Support",
+        icon: "Truck",
+        items: [
+          "Packaging Services: Centralized design, printing, and material supply systems.",
+          "Eco Materials: Promotes sustainable packaging using recyclable, eco-certified solutions.",
+          "Distribution Ready: Ensures packaging supports warehousing and global shipping requirements.",
+          "After-Sales Support: Providers manage defects, redesigns, and quality checks.",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Market Insights: Analytics reveal packaging trends across categories and regions.",
+          "Performance Reports: Vendors receive branding impact metrics on sales.",
+          "Category Expansion: Packaging adapts for multiple product types easily.",
+          "Channel Scaling: Branding readiness opens wholesale, retail, and export markets.",
+        ],
+      },
+      {
+        title: "Service Provider Advantages",
+        icon: "Briefcase",
+        items: [
+          "Provider Access: Designers showcase solutions to artisan vendors globally.",
+          "Provider Growth: Partnerships expand networks across retail and export.",
+          "Provider Recognition: Builds reputation as global packaging compliance expert.",
+          "Provider Advantage: Offers cost-effective solutions compared to vendor self-branding.",
+        ],
+      },
+      {
+        title: "Vendor Advantages",
+        icon: "Users",
+        items: [
+          "Vendor Access: Vendors adopt packaging without upfront heavy investments.",
+          "Vendor Security: GI protection reinforced through standardized labeling systems.",
+          "Vendor Recognition: Professional branding boosts retail credibility and customer trust.",
+          "Vendor Scaling: Packaging solutions prepare vendors for premium exports.",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Fair Trade: Oversight ensures pricing is ethical and transparent.",
+          "Trust Building: Collaboration strengthens long-term vendor–provider partnerships globally.",
+          "Cultural Promotion: Packaging highlights Kashmiri heritage through design storytelling.",
+          "Sustainable Growth: Eco-friendly packaging enhances global competitiveness consistently.",
+        ],
+      },
+    ],
+  },
+
+
   eligibility: {
     heading: "Who Can Join Packaging Partnerships?",
     requirements: [

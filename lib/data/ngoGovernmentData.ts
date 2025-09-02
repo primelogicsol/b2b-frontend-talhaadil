@@ -94,6 +94,73 @@ export const ngoGovernmentData = {
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
 
+  capabilities: {
+    heading: "Policy Advocacy Government Alliances",
+    subheading:"Align programs, funding, compliance for equitable artisan growth.",
+    sections: [
+      {
+        title: "Core Infrastructure",
+        icon: "Landmark",
+        items: [
+          "Platform Access: Connects NGOs, governments, artisans through verified systems. (SDG 9)",
+          "Policy Contracts: Agreements define compliance and advocacy project responsibilities. (SDG 16)",
+          "Funding Channels: Grants, subsidies structured for artisan vendor support. (SDG 8)",
+          "Compliance Standards: Policies align with trade and preservation laws. (SDG 12)",
+        ],
+      },
+      {
+        title: "Logistics & Support",
+        icon: "Truck",
+        items: [
+          "Advocacy Support: NGOs assist vendors in global fair-trade campaigns. (SDG 10)",
+          "Program Management: Governments run training, certification, and funding initiatives. (SDG 4)",
+          "Resource Sharing: NGOs provide legal, financial, operational assistance worldwide. (SDG 17)",
+          "Community Outreach: Programs promote artisan inclusion, social equity globally. (SDG 5)",
+        ],
+      },
+      {
+        title: "Growth & Analytics",
+        icon: "BarChart3",
+        items: [
+          "Impact Reports: NGOs publish transparency on fairness and trade. (SDG 16)",
+          "Policy Insights: Governments share data to strengthen industries. (SDG 9)",
+          "Funding Metrics: Reports track grants’ effectiveness for scaling. (SDG 8)",
+          "Market Expansion: Collaborations open global cultural trade opportunities. (SDG 17)",
+        ],
+      },
+      {
+        title: "NGO / Government  Advantages",
+        icon: "Building",
+        items: [
+          "Partner Access: NGOs connect with artisans for global campaigns. (SDG 17)",
+          "Policy Leadership: Governments promote crafts at international trade forums. (SDG 16)",
+          "Funding Growth: Institutions expand artisan programs with community outcomes. (SDG 1)",
+          "Cultural Advocacy: NGOs strengthen heritage through active policy work. (SDG 11)",
+        ],
+      },
+      {
+        title: "Vendor / Buyer  Advantages",
+        icon: "Users",
+        items: [
+          "Vendor Access: Artisans gain policy support for scaling globally. (SDG 8)",
+          "Vendor Security: Subsidies reduce financial risks significantly worldwide. (SDG 1)",
+          "Buyer Advantage: Buyers gain NGO-backed ethical sourcing guarantees. (SDG 12)",
+          "Vendor Scaling: Government support accelerates exports and tourism markets. (SDG 8)",
+        ],
+      },
+      {
+        title: "Shared Success",
+        icon: "Handshake",
+        items: [
+          "Fair Trade: NGOs ensure artisans receive transparent, fair compensation. (SDG 10)",
+          "Trust Building: Certification builds long-term buyer confidence globally. (SDG 16)",
+          "SDG Alignment: Partnerships reinforce UN sustainable development goals globally. (SDG 17)",
+          "Sustainable Growth: Collaboration drives eco-conscious handicraft expansion worldwide. (SDG 17)",
+        ],
+      },
+    ],
+  },
+  
   eligibility: {
     heading: "Who Can Join?",
     requirements: [
