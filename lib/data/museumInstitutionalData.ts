@@ -1,4 +1,5 @@
 export const museumInstitutionalsData = {
+  name : "museum_collaboration",
   hero: {
     headline: "Museum Partnerships — Preserving Craft Heritage Globally",
     subtext:
@@ -88,16 +89,15 @@ export const museumInstitutionalsData = {
           "Museum recognition opens pathways to exhibitions, auctions, and cultural exports.",
       },
     ],
-    
+
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
 
-
-
   capabilities: {
     heading: "Cultural Heritage Museum Partnerships",
-    subheading:"Museums preserve crafts, elevate visibility, and provenance globally.",
+    subheading:
+      "Museums preserve crafts, elevate visibility, and provenance globally.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -212,42 +212,42 @@ export const museumInstitutionalsData = {
       "All museum fees are tailored as per trade requirements. Vendors & institutions receive a full cost breakdown before partnership confirmation.",
   },
   platformAdvantage: {
-  heading: "Our Platform Advantage",
-  description:
-    "Museum and institutional collaborations for Kashmiri handicrafts, promoting cultural preservation, global visibility, and heritage recognition in prestigious international collections.",
-  sections: [
-    {
-      title: "Benefits for Collaborators (US-Based Museums & Institutions)",
-      items: [
-        "Acquire authentic Kashmiri crafts for cultural preservation.",
-        "Enhance prestige through rare heritage exhibitions.",
-        "Attract new visitors with unique artisan showcases.",
-        "Support cross-cultural understanding via curated exhibitions.",
-        "Expand educational programs with authentic heritage materials.",
-      ],
-    },
-    {
-      title: "Benefits for Collaborators (Kashmiri Craftsmen & Institutions)",
-      items: [
-        "Gain global visibility in prestigious museum collections.",
-        "Preserve artisan legacies in international archives.",
-        "Strengthen credibility through institutional partnerships abroad.",
-        "Access recognition beyond commercial craft markets.",
-        "Inspire younger artisans through global exposure opportunities.",
-      ],
-    },
-    {
-      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
-      items: [
-        "Elevates crafts from commodity status to heritage treasures.",
-        "Protects authenticity against imitation and counterfeit risks.",
-        "Positions Kashmir within global cultural diplomacy networks.",
-        "Increases demand for museum-certified artisan products.",
-        "Builds international respect for Kashmiri cultural identity.",
-      ],
-    },
-  ],
-},
+    heading: "Our Platform Advantage",
+    description:
+      "Museum and institutional collaborations for Kashmiri handicrafts, promoting cultural preservation, global visibility, and heritage recognition in prestigious international collections.",
+    sections: [
+      {
+        title: "Benefits for Collaborators (US-Based Museums & Institutions)",
+        items: [
+          "Acquire authentic Kashmiri crafts for cultural preservation.",
+          "Enhance prestige through rare heritage exhibitions.",
+          "Attract new visitors with unique artisan showcases.",
+          "Support cross-cultural understanding via curated exhibitions.",
+          "Expand educational programs with authentic heritage materials.",
+        ],
+      },
+      {
+        title: "Benefits for Collaborators (Kashmiri Craftsmen & Institutions)",
+        items: [
+          "Gain global visibility in prestigious museum collections.",
+          "Preserve artisan legacies in international archives.",
+          "Strengthen credibility through institutional partnerships abroad.",
+          "Access recognition beyond commercial craft markets.",
+          "Inspire younger artisans through global exposure opportunities.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Elevates crafts from commodity status to heritage treasures.",
+          "Protects authenticity against imitation and counterfeit risks.",
+          "Positions Kashmir within global cultural diplomacy networks.",
+          "Increases demand for museum-certified artisan products.",
+          "Builds international respect for Kashmiri cultural identity.",
+        ],
+      },
+    ],
+  },
 
   workflow: {
     heading: "Museum Partnership Pathway",
@@ -280,14 +280,91 @@ export const museumInstitutionalsData = {
         "Yes. Visa documents, museum invitations, and insurance proof are provided, though visa approval depends on embassy decisions.",
     },
   ],
-  apiIntegration: {
-    support: {
-      title: "Travel Support for Museum Engagements",
+apiIntegration : {
+  heading: "Already Partnering with Museums? Accelerate With Us",
+  description:
+    "Accelerate museum operations with ethical curation, digitization, audience engagement, and responsible monetization. Prime Logic Solutions USA ensures seamless integration.",
+  features: [
+    {
+      icon: "UserCheck",
+      title: "Ethical Onboarding",
       description:
-        "De Koshur Crafts provides comprehensive visa and documentation support for artisans engaging with partnering museums, backed by Prime Logic Solutions for seamless submission guidance.",
-      note: "We provide all supporting documents as per U.S. standards. However, visa approval is not guaranteed — it depends on your individual interview performance with embassy/consulate officials.",
+        "Digital applications, KYC, GI/KHCRF verification, policy acknowledgements."
     },
-  },
+    {
+      icon: "FileSearch",
+      title: "Provenance Checks",
+      description:
+        "Source checks, due diligence, claims workflows, audit trails preserved."
+    },
+    {
+      icon: "Image",
+      title: "Digital Catalog",
+      description:
+        "High-res imaging, metadata standards, IIIF viewers, long-term preservation."
+    },
+    {
+      icon: "Package",
+      title: "Loan Exhibits",
+      description:
+        "Loan agreements, packing, couriers, condition reports, schedules, compliance."
+    },
+    {
+      icon: "Shield",
+      title: "Exhibit Insurance",
+      description:
+        "Inbound/outbound handling, storage, all-risk coverage, claims workflows."
+    },
+    {
+      icon: "BookOpen",
+      title: "Education Programs",
+      description:
+        "Workshops, residencies, school toolkits, guided tours, impact tracking."
+    },
+    {
+      icon: "ShoppingBag",
+      title: "Museum Shop",
+      description:
+        "Consignment terms, GI labeling, transparent payouts, supplier compliance."
+    },
+    {
+      icon: "Copyright",
+      title: "Rights Licensing",
+      description:
+        "Copyright clearance, image licensing, press kits, usage governance."
+    },
+    {
+      icon: "Accessibility",
+      title: "Inclusive Access",
+      description:
+        "WCAG content, alt text, captions, multilingual guides, wayfinding."
+    },
+    {
+      icon: "Leaf",
+      title: "Green Design",
+      description:
+        "Reusables, low-energy lighting, carbon tracking, green vendor standards."
+    },
+    {
+      icon: "BarChart2",
+      title: "Visitor Metrics",
+      description:
+        "Footfall, dwell, membership, donations, engagement dashboards integrated."
+    },
+    {
+      icon: "Globe",
+      title: "Cultural Exchange",
+      description:
+        "International partnerships, traveling exhibits, co-curation, knowledge sharing."
+    }
+  ],
+  support: {
+    title: "Prime Support",
+    description:
+      "Prime Logic Solutions USA provides free integration support for TMS/eMuseum, CollectionSpace, ArchivesSpace, IIIF, DAM/CMS, ticketing/CRM, and consignment/payment mappings.",
+    note: "Sandbox, SDKs, and SLAs available for partners."
+  }
+},
   finalCta: {
     heading: "Preserve Heritage, Empower Artisans, Partner With Museums",
     subtext:

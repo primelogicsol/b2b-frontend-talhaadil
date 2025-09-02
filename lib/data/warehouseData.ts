@@ -1,4 +1,5 @@
 export const warehousData = {
+  name : "warehouse",
   hero: {
     headline: "Seamless Warehousing Partnerships for Kashmiri Crafts",
     subtext:
@@ -334,6 +335,87 @@ export const warehousData = {
       answer: "Yes, through API-integrated dashboards for real-time tracking.",
     },
   ],
+  apiIntegration : {
+  heading: "Already Running Warehousing? Accelerate With Us.",
+  description: "Unify WMS/OMS, enhance visibility, standardize SLAs, and scale globally with integrated warehousing tools. Prime Logic Solutions USA ensures seamless operations.",
+  features: [
+    {
+      icon: "UserCheck",
+      title: "Onboarding SLAs",
+      description: "Digital contracts, KYC, SOPs, safety, and service tiers standardized."
+    },
+    {
+      icon: "Plug",
+      title: "WMS Connectors",
+      description: "Manhattan, Blue Yonder, ShipBob, 3PL Central, Oracle, Shopify."
+    },
+    {
+      icon: "Eye",
+      title: "Inventory Visibility",
+      description: "Real-time stock, lot/batch, FIFO/FEFO, cycle counts, RFID/IoT."
+    },
+    {
+      icon: "Package",
+      title: "Inbound QC",
+      description: "ASNs, appointments, putaway, inspections, nonconformance, vendor scorecards."
+    },
+    {
+      icon: "Truck",
+      title: "Pick Pack",
+      description: "Wave/pick methods, packing rules, carrier labels, manifests automated."
+    },
+    {
+      icon: "Box",
+      title: "Value-Added Services",
+      description: "Kitting, relabeling, gift packs, inserts, repairs, personalization."
+    },
+    {
+      icon: "ArrowLeft",
+      title: "Returns Hub",
+      description: "RMAs, grading, refurbishment, reboxing, dispositions, warranty workflows."
+    },
+    {
+      icon: "ShieldCheck",
+      title: "Compliance Custody",
+      description: "GI/KHCRF provenance, labeling, hazmat/fragile handling, audit trails."
+    },
+    {
+      icon: "Grid",
+      title: "Storage Optimization",
+      description: "ABC velocity, bin sizing, vertical utilization, congestion heatmaps."
+    },
+    {
+      icon: "Lock",
+      title: "Security Insurance",
+      description: "CCTV, access control, seals, all-risk coverage, claims handling."
+    },
+    {
+      icon: "DollarSign",
+      title: "3PL Billing",
+      description: "Activities-based billing, surcharges, audits, chargeback prevention, recoveries."
+    },
+    {
+      icon: "TrendingUp",
+      title: "Capacity Planning",
+      description: "Demand signals, labor planning, dock calendars, overflow strategies."
+    },
+    {
+      icon: "Globe",
+      title: "Multi-Warehouse Network",
+      description: "Geo-routing, cross-dock, consolidation, transfer orders, inventory balancing."
+    },
+    {
+      icon: "Leaf",
+      title: "Sustainability Controls",
+      description: "Carbon data, recyclable materials, energy reporting, green packaging options."
+    }
+  ],
+  support: {
+    title: "Prime Logic Support",
+    description: "Prime Logic Solutions USA provides free integration support for WMS/OMS/ERP onboarding, EDI 940/945/943/944/846, GS1/UCC labels, 856 ASNs, RFID/IoT feeds.",
+    note: "Sandbox, SDKs, and SLAs available for partners."
+  }
+},
 
   finalCta: {
     heading: "Secure, Store & Scale With De Koshur Crafts Warehousing",

@@ -10,11 +10,11 @@ import * as Icons from "lucide-react"
 import Link from "next/link"
 import { EligibilityQuiz } from "../Essentials/ElgibiltyProvider"
 
-import type { DropshippingEligibilityQuizProps} from "../Essentials/ElgibiltyProvider"
+import type { DropshippingEligibilityQuizProps } from "../Essentials/ElgibiltyProvider"
 
 
 type LandingPageData = {
-    name? : DropshippingEligibilityQuizProps["partnershipName"]
+    name?: DropshippingEligibilityQuizProps["partnershipName"]
     hero: {
         headline: string
         subtext: string
@@ -201,6 +201,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                 </motion.div>
             </motion.section>
 
+
             {/* Why Dropshipping Section */}
             <motion.section
                 className={`mx-auto px-6 py-20 ${containerClass}`}
@@ -296,6 +297,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                 </div>
             </motion.section>
 
+
             <motion.section
                 className="bg-gradient-to-r from-slate-50 to-blue-50 py-20"
                 initial="hidden"
@@ -356,6 +358,9 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                     </motion.div>
                 </div>
             </motion.section>
+            {landingPageData?.name && (
+                <EligibilityQuiz partnershipName={landingPageData.name} />
+            )}
 
             {landingPageData.capabilities && <section className={`px-4 md:px-8 lg:px-12 py-12 ${is4K ? "mx-auto max-w-[2400px] 2xl:py-20" : ""}`}>
                 <div className={`w-full ${is4K ? " md:px-24" : "px-2 md:px-8"} flex items-center justify-center`}>
@@ -529,9 +534,9 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
 
                         {/* Highlight */}
                         <Link href="/registration">
-                         <div className="mt-8 p-4 rounded-xl bg-[var(--primary-hover-color)] text-white text-center font-semibold cursor-pointer hover:opacity-90 transition">
-                             Start your journey today — no barriers, just growth.
-                        </div>
+                            <div className="mt-8 p-4 rounded-xl bg-[var(--primary-hover-color)] text-white text-center font-semibold cursor-pointer hover:opacity-90 transition">
+                                Start your journey today — no barriers, just growth.
+                            </div>
                         </Link>
                     </div>
                 </div>
@@ -803,11 +808,11 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
 
                     {/* Call to Action */}
                     <div className="text-center mt-12">
-                    <Link href="/registration">
-        <button className="bg-[var(--secondary-color)] hover:bg-[var(--primary-color)] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-          Start Your Journey
-        </button>
-      </Link>
+                        <Link href="/registration">
+                            <button className="bg-[var(--secondary-color)] hover:bg-[var(--primary-color)] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                Start Your Journey
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -856,11 +861,9 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                     </div>
                 </div>
             </motion.section>
-                    
 
-            {landingPageData?.name && (
-                <EligibilityQuiz partnershipName={landingPageData.name} />
-            )}
+
+
 
             {/* API Integration Section */}
             {landingPageData.apiIntegration && (<motion.section
@@ -871,60 +874,60 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                 variants={staggerContainer}
             >
                 {/* Heading */}
-                {landingPageData.apiIntegration.heading &&(
-                      <motion.h2
-                    className={`${subHeadingClass} font-extrabold text-center mb-8  text-2xl md:text-3xl lg:text-4xl text-[var(--primary-color)]`}
-                    variants={fadeInUp}
-                >
-                    {landingPageData.apiIntegration.heading}
-                </motion.h2>
-                ) }
-              
+                {landingPageData.apiIntegration.heading && (
+                    <motion.h2
+                        className={`${subHeadingClass} font-extrabold text-center mb-8  text-2xl md:text-3xl lg:text-4xl text-[var(--primary-color)]`}
+                        variants={fadeInUp}
+                    >
+                        {landingPageData.apiIntegration.heading}
+                    </motion.h2>
+                )}
+
 
                 {/* Description */}
                 {landingPageData.apiIntegration.description && (
-                    
-                      <motion.p
-                    className={`${is4K ? "text-lg" : "text-base"} text-center mb-16 text-gray-700 leading-relaxed max-w-3xl mx-auto`}
-                    variants={fadeInUp}
-                >
-                    {landingPageData.apiIntegration.description}
-                </motion.p>
+
+                    <motion.p
+                        className={`${is4K ? "text-lg" : "text-base"} text-center mb-16 text-gray-700 leading-relaxed max-w-3xl mx-auto`}
+                        variants={fadeInUp}
+                    >
+                        {landingPageData.apiIntegration.description}
+                    </motion.p>
 
                 )}
-              
+
                 {/* Features Grid */}
                 {landingPageData.apiIntegration.features && (
-                     <motion.div
-                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-                    variants={staggerContainer}
-                >
-                    {landingPageData.apiIntegration.features.map((feature, index) => {
-                        const Icon = (Icons as any)[feature.icon] || Icons.HelpCircle
-                        return (
-                            <motion.div
-                                key={index}
-                                className="relative bg-white/70 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                                variants={cardHover}
-                                initial="rest"
-                                whileHover="hover"
-                            >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Icon className="w-10 h-10 text-[var(--primary-color)]" />
-                                    <h3 className={`${is4K ? "text-xl" : "text-lg"} font-semibold text-[var(--primary-color)]`}>
-                                        {feature.title}
-                                    </h3>
-                                </div>
-                                <p className={`${is4K ? "text-base" : "text-sm"} text-gray-600 leading-relaxed`}>
-                                    {feature.description}
-                                </p>
-                            </motion.div>
-                        )
-                    })}
-                </motion.div>
+                    <motion.div
+                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+                        variants={staggerContainer}
+                    >
+                        {landingPageData.apiIntegration.features.map((feature, index) => {
+                            const Icon = (Icons as any)[feature.icon] || Icons.HelpCircle
+                            return (
+                                <motion.div
+                                    key={index}
+                                    className="relative bg-white/70 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                                    variants={cardHover}
+                                    initial="rest"
+                                    whileHover="hover"
+                                >
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <Icon className="w-10 h-10 text-[var(--primary-color)]" />
+                                        <h3 className={`${is4K ? "text-xl" : "text-lg"} font-semibold text-[var(--primary-color)]`}>
+                                            {feature.title}
+                                        </h3>
+                                    </div>
+                                    <p className={`${is4K ? "text-base" : "text-sm"} text-gray-600 leading-relaxed`}>
+                                        {feature.description}
+                                    </p>
+                                </motion.div>
+                            )
+                        })}
+                    </motion.div>
 
                 )}
-               
+
                 {/* Support Section */}
 
                 <motion.div
@@ -963,14 +966,14 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         {landingPageData.finalCta.ctaButtons.map((button, index) => (
-                           <Link
-                           key={index}
-                           href="/registration"
-                           className={`${is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"} bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block`}
-                         >
-                           {button}
-                         </Link>
-                         
+                            <Link
+                                key={index}
+                                href="/registration"
+                                className={`${is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"} bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block`}
+                            >
+                                {button}
+                            </Link>
+
                         ))}
                     </div>
                 </div>

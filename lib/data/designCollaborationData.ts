@@ -1,4 +1,5 @@
 export const designCollaborationData = {
+  name: "design-collaboration",
   hero: {
     headline: "Co-Create Unique Products With Design Collaboration",
     subtext:
@@ -29,70 +30,83 @@ export const designCollaborationData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Connects vendors with global design experts and innovation partners."
+        description:
+          "Connects vendors with global design experts and innovation partners.",
       },
       {
         icon: "Brush",
         title: "Design Integration",
-        description: "Combines artisan skills with modern design for global relevance."
+        description:
+          "Combines artisan skills with modern design for global relevance.",
       },
       {
         icon: "Lightbulb",
         title: "Innovation Labs",
-        description: "Marketplace fosters co-creation workshops for product development."
+        description:
+          "Marketplace fosters co-creation workshops for product development.",
       },
       {
         icon: "BarChart3",
         title: "Market Insights",
-        description: "Data-driven design aligns with consumer trends and retail demand."
+        description:
+          "Data-driven design aligns with consumer trends and retail demand.",
       },
       {
         icon: "Users",
         title: "Partner Access",
-        description: "Works with artisans to design globally competitive Kashmiri crafts."
+        description:
+          "Works with artisans to design globally competitive Kashmiri crafts.",
       },
       {
         icon: "Sparkles",
         title: "Partner Innovation",
-        description: "Introduces new patterns, finishes, and styles to traditional crafts."
+        description:
+          "Introduces new patterns, finishes, and styles to traditional crafts.",
       },
       {
         icon: "TrendingUp",
         title: "Partner Growth",
-        description: "Expands retail offerings with exclusive, co-created design collections."
+        description:
+          "Expands retail offerings with exclusive, co-created design collections.",
       },
       {
         icon: "Award",
         title: "Partner Advantage",
-        description: "Differentiates product lines through storytelling and innovation-driven branding."
+        description:
+          "Differentiates product lines through storytelling and innovation-driven branding.",
       },
       {
         icon: "Store",
         title: "Vendor Access",
-        description: "Artisans gain exposure to modern design methods and markets."
+        description:
+          "Artisans gain exposure to modern design methods and markets.",
       },
       {
         icon: "Lock",
         title: "Vendor Security",
-        description: "Craft originality protected through KHCRF compliance and IP frameworks."
+        description:
+          "Craft originality protected through KHCRF compliance and IP frameworks.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Advantage",
-        description: "Improved design elevates sales and builds stronger retail presence."
+        description:
+          "Improved design elevates sales and builds stronger retail presence.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Design innovation prepares vendors for premium export and franchise."
-      }
+        description:
+          "Design innovation prepares vendors for premium export and franchise.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
   capabilities: {
     heading: "Design Innovation Product Studio",
-    subheading:"Blend traditional craftsmanship with secure technology-driven design workflows.",
+    subheading:
+      "Blend traditional craftsmanship with secure technology-driven design workflows.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -154,8 +168,7 @@ export const designCollaborationData = {
           "Sustainable Growth: Tech-driven innovation ensures eco-conscious, competitive global expansion.",
         ],
       },
-    ]
-    ,
+    ],
   },
   eligibility: {
     heading: "Who Can Join Design Collaboration?",
@@ -294,7 +307,91 @@ export const designCollaborationData = {
       },
     ],
   },
-
+  apiIntegration: {
+    heading: "Already Designing New Products? Accelerate With Us.",
+    description:
+      "Accelerate product design with secure collaboration, IP protection, and global launch tools. Prime Logic Solutions USA ensures seamless integration for innovation.",
+    features: [
+      {
+        icon: "Shield",
+        title: "Secure Collaboration",
+        description:
+          "NDAs, MSAs, royalties, licensing, and contributor attribution standardized.",
+      },
+      {
+        icon: "FileText",
+        title: "Design Briefs",
+        description:
+          "Requirements, specs, constraints, acceptance criteria, and timelines aligned.",
+      },
+      {
+        icon: "Cube",
+        title: "CAD Pipelines",
+        description:
+          "Modeling, parametrics, toolpaths; export-safe presets for manufacturers.",
+      },
+      {
+        icon: "Glasses",
+        title: "AR Showrooms",
+        description:
+          "Immersive previews for buyers; instant feedback loops to designers.",
+      },
+      {
+        icon: "Database",
+        title: "Materials Library",
+        description:
+          "Approved materials, finishes, tolerances; versioned BOM with alternates.",
+      },
+      {
+        icon: "Tool",
+        title: "Prototyping Management",
+        description:
+          "Requests, iterations, approvals, courier tracking, cost/time analytics.",
+      },
+     
+      {
+        icon: "CheckSquare",
+        title: "Compliance Design",
+        description:
+          "GI alignment, CPSIA/REACH, labeling, safety tests planned early.",
+      },
+      {
+        icon: "Award",
+        title: "Quality Design",
+        description:
+          "Test plans, AQL targets, failure modes, corrective actions integrated.",
+      },
+      {
+        icon: "DollarSign",
+        title: "Costing Simulators",
+        description:
+          "Landed cost, duty, packaging, logistics; contribution margin scenarios.",
+      },
+      {
+        icon: "Leaf",
+        title: "Sustainability Design",
+        description:
+          "Material scoring, LCA snapshots, eco-packaging recommendations embedded.",
+      },
+      {
+        icon: "Link",
+        title: "PIM Integrations",
+        description: "Sync assets, specs, versions to PLM, DAM, PIM, ERP.",
+      },
+      {
+        icon: "Rocket",
+        title: "Market Readiness",
+        description:
+          "Packaging handoff, photography briefs, copy kits, launch checklists.",
+      },
+    ],
+    support: {
+      title: "Prime Logic Support",
+      description:
+        "Prime Logic Solutions USA provides free integration support for PLM/CAD/DAM onboarding, blockchain IP registry, watermarking SDKs, AR/VR APIs.",
+      note: "Sandbox, SDKs, and SLAs available for partners.",
+    },
+  },
   workflow: {
     heading: "Design Collaboration Pathway",
     steps: [

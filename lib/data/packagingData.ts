@@ -1,4 +1,5 @@
 export const packagingData = {
+  name: "packaging",
   hero: {
     headline:
       "Packaging Partnerships — Elevating Craft Presentation & Protection",
@@ -31,63 +32,75 @@ export const packagingData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Marketplace connects vendors to certified packaging and branding providers."
+        description:
+          "Marketplace connects vendors to certified packaging and branding providers.",
       },
       {
         icon: "Package",
         title: "Custom Solutions",
-        description: "Offers tailored packaging aligned with cultural heritage and market trends."
+        description:
+          "Offers tailored packaging aligned with cultural heritage and market trends.",
       },
       {
         icon: "Shield",
         title: "Global Compliance",
-        description: "Ensures packaging meets US, EU, and international retail standards."
+        description:
+          "Ensures packaging meets US, EU, and international retail standards.",
       },
       {
         icon: "Globe2",
         title: "Eco Materials",
-        description: "Promotes sustainable packaging reducing carbon footprint and environmental impact."
+        description:
+          "Promotes sustainable packaging reducing carbon footprint and environmental impact.",
       },
       {
         icon: "Tag",
         title: "Brand Identity",
-        description: "Develops product visuals highlighting Kashmiri authenticity and heritage story."
+        description:
+          "Develops product visuals highlighting Kashmiri authenticity and heritage story.",
       },
       {
         icon: "Store",
         title: "Retail Standards",
-        description: "Prepares packaging ready for shelf placement in premium US outlets."
+        description:
+          "Prepares packaging ready for shelf placement in premium US outlets.",
       },
       {
         icon: "Camera",
         title: "Marketing Assets",
-        description: "Delivers photo shoots, labels, and promotional materials for campaigns."
+        description:
+          "Delivers photo shoots, labels, and promotional materials for campaigns.",
       },
       {
         icon: "TrendingUp",
         title: "Brand Growth",
-        description: "Elevates vendor products into globally recognized cultural retail brands."
+        description:
+          "Elevates vendor products into globally recognized cultural retail brands.",
       },
       {
         icon: "Users",
         title: "Vendor Access",
-        description: "Artisans access branding solutions without heavy upfront investments."
+        description:
+          "Artisans access branding solutions without heavy upfront investments.",
       },
       {
         icon: "Lock",
         title: "Vendor Security",
-        description: "GI certification protected through standardized packaging and labeling systems."
+        description:
+          "GI certification protected through standardized packaging and labeling systems.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Advantage",
-        description: "Professional branding increases sales appeal across global buyer networks."
+        description:
+          "Professional branding increases sales appeal across global buyer networks.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Packaging readiness enables vendors to enter wholesale and export."
-      }
+        description:
+          "Packaging readiness enables vendors to enter wholesale and export.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
@@ -95,7 +108,8 @@ export const packagingData = {
 
   capabilities: {
     heading: "Packaging and Branding Excellence",
-    subheading:"Professional packaging elevates authenticity, compliance, and shelf appeal. ",
+    subheading:
+      "Professional packaging elevates authenticity, compliance, and shelf appeal. ",
     sections: [
       {
         title: "Core Infrastructure",
@@ -159,7 +173,6 @@ export const packagingData = {
       },
     ],
   },
-
 
   eligibility: {
     heading: "Who Can Join Packaging Partnerships?",
@@ -330,6 +343,92 @@ export const packagingData = {
         "No, it reduces costs by ensuring durability and reducing damages.",
     },
   ],
+  apiIntegration: {
+    heading: "Already Packaging for Retail? Accelerate With Us",
+    description:
+      "Simplify packaging workflows with integrated tools for retail. From design to compliance, our system standardizes global operations. Prime Logic Solutions USA enables smooth onboarding with DAM, PIM, and ERP systems.",
+    features: [
+      {
+        icon: "Package",
+        title: "Brand Compliance",
+        description:
+          "Manage NDAs, co-brand terms, territories, pricing, and sustainability records.",
+      },
+      {
+        icon: "LayoutTemplate",
+        title: "Design Dielines",
+        description:
+          "Access templates, dielines, specs, finishes, and accessibility guidelines.",
+      },
+      {
+        icon: "Workflow",
+        title: "Artwork Workflow",
+        description:
+          "Handle versioning, approvals, annotations, rights, exports, and audits.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Label Compliance",
+        description:
+          "Ensure GI/KHCRF, CPSIA/REACH, EPR, warnings, and multilingual labels.",
+      },
+      {
+        icon: "Barcode",
+        title: "Barcode System",
+        description:
+          "Generate UPC/EAN, ITF-14, SSCC, and QR/NFC for traceability and engagement.",
+      },
+      {
+        icon: "Leaf",
+        title: "Eco Materials",
+        description:
+          "Use FSC/recycled stocks, inks, adhesives with carbon data certifications.",
+      },
+      {
+        icon: "Printer",
+        title: "Color Proofing",
+        description:
+          "Support soft/hard proofs, Pantone targets, profiles, and print curves.",
+      },
+      {
+        icon: "ShoppingCart",
+        title: "Vendor Bidding",
+        description:
+          "Manage RFQs, vendor scoring, price breaks, SLAs, and reservations.",
+      },
+      {
+        icon: "CheckCircle",
+        title: "Quality Checks",
+        description:
+          "Run checks, audits, carton tests, and track defect analytics efficiently.",
+      },
+      {
+        icon: "Truck",
+        title: "Ready Logistics",
+        description:
+          "Optimize for ISTA, DIM weight, pallet layouts, and fragile handling.",
+      },
+      {
+        icon: "Database",
+        title: "Catalog Sync",
+        description:
+          "Publish SKUs, attributes, certifications, and media to retailer portals.",
+      },
+      {
+        icon: "TrendingUp",
+        title: "Cost Analytics",
+        description:
+          "Track costs, reclaim rates, shelf impact, returns, and KPI metrics.",
+      },
+    ],
+    support: {
+      title: "Support",
+      description:
+        "Prime Logic Solutions USA provides free support for DAM/PIM onboarding, versioning, GS1/EPR, and printer/ERP mappings.",
+      note: "Sandbox, SDKs, and SLAs included for partners.",
+    },
+  },
+
   finalCta: {
     heading: "Elevate Your Crafts With Premium Packaging",
     subtext:
@@ -338,6 +437,7 @@ export const packagingData = {
       "Start Packaging Partnership",
       "Apply as a Vendor",
       "Apply as a Buyer",
+      ,
     ],
   },
 };

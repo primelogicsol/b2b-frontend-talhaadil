@@ -1,4 +1,5 @@
 export const logisticsData = {
+  name : "logistics",
   hero: {
     headline: "Logistics Partnerships — Powering Global Craft Movement",
     subtext:
@@ -277,14 +278,110 @@ export const logisticsData = {
         "Yes. Premium members get institutional-level customs concierge services.",
     },
   ],
-  apiIntegration: {
-    support: {
-      title: "Protection Assurance",
+  apiIntegration : {
+  heading: "Already Shipping Globally? Accelerate With Us.",
+  description:
+    "Accelerate global logistics with unified freight, customs, last-mile, and returns orchestration. Prime Logic Solutions USA ensures seamless operations with full visibility.",
+  features: [
+    {
+      icon: "UserCheck",
+      title: "Onboarding SLAs",
       description:
-        "All shipments are backed by De Koshur Crafts’ Blockchain Traceability + Insurance Coverage, ensuring every step from warehouse to delivery is transparent, authentic, and secure.",
-      note: "Blockchain traceability and insurance coverage available for all logistics partners.",
+        "Digital contracts, carrier NDAs, service tiers, transit KPIs, penalties."
     },
-  },
+    {
+      icon: "Plug",
+      title: "System Connectors",
+      description:
+        "Project44, FourKites, Shippo, EasyPost, UPS/FedEx/DHL, freight forwarders."
+    },
+    {
+      icon: "DollarSign",
+      title: "Rate Contracts",
+      description:
+        "Spot/contract rates, DIM rules, fuel surcharges, accessorials, auto-selection."
+    },
+    {
+      icon: "Package",
+      title: "Label Docs",
+      description:
+        "Carrier labels, packing slips, commercial invoices, eAWB/eB/L, certificates."
+    },
+    {
+      icon: "ShieldCheck",
+      title: "Trade Compliance",
+      description:
+        "HTS/HS codes, denied-party screening, embargo checks, dual-use controls."
+    },
+    {
+      icon: "Globe",
+      title: "Duty Taxes",
+      description:
+        "Duties, VAT/GST, de minimis; instant landed-cost quotes at checkout."
+    },
+    {
+      icon: "Grid",
+      title: "Shipment Planning",
+      description:
+        "Multi-stop consolidation, cross-dock, zone-skip, palletization, load building."
+    },
+    {
+      icon: "TrendingUp",
+      title: "Carrier Routing",
+      description:
+        "Mode/route optimization across air, ocean, ground with SLA targets."
+    },
+    {
+      icon: "Eye",
+      title: "Event Tracking",
+      description:
+        "Milestones, EDI/API events, geofencing, ETA predictions, customer notifications."
+    },
+    {
+      icon: "AlertTriangle",
+      title: "Claim Handling",
+      description:
+        "Delays, damages, shortages; workflows for root-cause, credits, recoveries."
+    },
+    {
+      icon: "ArrowLeft",
+      title: "Returns Flow",
+      description:
+        "RMA creation, labels, pickup/drop-off, grading, refurbishment, dispositions."
+    },
+    {
+      icon: "Truck",
+      title: "Last-Mile",
+      description:
+        "BOPIS/BORIS, lockers, couriers, crowdsourced delivery, signature and ID checks."
+    },
+    {
+      icon: "Box",
+      title: "Goods Packing",
+      description:
+        "DG validations, hazmat docs, ISTA testing, right-sized cartons, void-fill rules."
+    },
+    {
+      icon: "Shield",
+      title: "Risk Cover",
+      description:
+        "All-risk coverage, premium modeling, evidence capture, digital settlements."
+    },
+    {
+      icon: "BarChart2",
+      title: "Cost Control",
+      description:
+        "Spend, OTIF, on-time, damage rate, cost-to-serve, lane performance."
+    },
+    
+  ],
+  support: {
+    title: "Prime Support",
+    description:
+      "Prime Logic Solutions USA provides free integration support for EDI 204/214/210, 850/855/856/940/945, ACE/AES, eAWB/eB/L, carrier/forwarder APIs.",
+    note: "Sandbox, SDKs, and SLAs available for partners."
+  }
+},
   finalCta: {
     heading: "Join De Koshur Crafts’ Logistics Partnership Today",
     subtext:

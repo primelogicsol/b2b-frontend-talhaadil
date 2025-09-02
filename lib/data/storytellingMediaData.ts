@@ -1,4 +1,5 @@
 export const storytellingMediaData = {
+  name: "storytelling_media",
   hero: {
     headline:
       "Bring Kashmiri Craft Stories to Life Through Media & Storytelling",
@@ -30,70 +31,82 @@ export const storytellingMediaData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Connects vendors with global media, photo, and branding partners."
+        description:
+          "Connects vendors with global media, photo, and branding partners.",
       },
       {
         icon: "Camera",
         title: "Media Studio",
-        description: "Provides professional photo and video shoots for artisan products."
+        description:
+          "Provides professional photo and video shoots for artisan products.",
       },
       {
         icon: "Book",
         title: "Cultural Archives",
-        description: "Builds digital heritage records preserving Kashmiri storytelling worldwide."
+        description:
+          "Builds digital heritage records preserving Kashmiri storytelling worldwide.",
       },
       {
         icon: "Megaphone",
         title: "Global Campaigns",
-        description: "Marketplace drives cross-border promotion through curated media partnerships."
+        description:
+          "Marketplace drives cross-border promotion through curated media partnerships.",
       },
       {
         icon: "Users",
         title: "Partner Access",
-        description: "Creates compelling narratives around artisan heritage and product identity."
+        description:
+          "Creates compelling narratives around artisan heritage and product identity.",
       },
       {
         icon: "Share2",
         title: "Partner Engagement",
-        description: "Delivers branding campaigns across online, retail, and social media."
+        description:
+          "Delivers branding campaigns across online, retail, and social media.",
       },
       {
         icon: "Star",
         title: "Partner Advantage",
-        description: "Amplifies vendor visibility and builds trust with global buyers."
+        description:
+          "Amplifies vendor visibility and builds trust with global buyers.",
       },
       {
         icon: "TrendingUp",
         title: "Partner Growth",
-        description: "Expands influence through cultural storytelling and market-driven brand content."
+        description:
+          "Expands influence through cultural storytelling and market-driven brand content.",
       },
       {
         icon: "Store",
         title: "Vendor Access",
-        description: "Artisans gain media visibility without upfront investment in studios."
+        description:
+          "Artisans gain media visibility without upfront investment in studios.",
       },
       {
         icon: "Award",
         title: "Vendor Recognition",
-        description: "Products promoted through photo studios, cultural storytelling, and branding."
+        description:
+          "Products promoted through photo studios, cultural storytelling, and branding.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Advantage",
-        description: "Professional content boosts sales across e-commerce and retail channels."
+        description:
+          "Professional content boosts sales across e-commerce and retail channels.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Media partnerships prepare vendors for exhibitions, wholesale, and export."
-      }
+        description:
+          "Media partnerships prepare vendors for exhibitions, wholesale, and export.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
   capabilities: {
     heading: "Storytelling Media Engagement Hub",
-    subheading:"Photography and media amplify brand stories and conversions.",
+    subheading: "Photography and media amplify brand stories and conversions.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -155,9 +168,7 @@ export const storytellingMediaData = {
           "Sustainable Growth: Storytelling and branding support eco-conscious global competitiveness.",
         ],
       },
-    ]
-    
-    ,
+    ],
   },
 
   eligibility: {
@@ -337,6 +348,92 @@ export const storytellingMediaData = {
         "Yes, they are structured as licensed, rights-protected marketing assets.",
     },
   ],
+  apiIntegration: {
+    heading: "Already Producing Brand Media? Accelerate With Us.",
+    description:
+      "Accelerate brand media production with studio-grade assets, rights protection, and syndication tools. Prime Logic Solutions USA ensures seamless media operations.",
+    features: [
+      {
+        icon: "UserCheck",
+        title: "Rights Management",
+        description:
+          "Releases, NDAs, licenses, usage windows, model/property rights centralized.",
+      },
+      {
+        icon: "BookOpen",
+        title: "Creative Strategy",
+        description:
+          "Narratives aligned to heritage, audiences, channels, and campaign objectives.",
+      },
+      {
+        icon: "Camera",
+        title: "Photo Studio",
+        description:
+          "Color-accurate multi-angle, 360/turntable, macro, calibrated lighting profiles.",
+      },
+      {
+        icon: "Video",
+        title: "Video Production",
+        description:
+          "Reels, explainers, BTS; subtitles, captions, multi-language localization packages.",
+      },
+
+      {
+        icon: "Palette",
+        title: "Brand Guidelines",
+        description:
+          "Typography, color, packaging lockups, social templates, usage governance.",
+      },
+      {
+        icon: "Globe",
+        title: "AR Assets",
+        description:
+          "GLB/USDZ models, try-ons, room placement viewers, embeddable SDKs.",
+      },
+      {
+        icon: "ShoppingBag",
+        title: "Marketplace Syndication",
+        description:
+          "Push images/videos/specs to Shopify, Amazon, retail portals.",
+      },
+      {
+        icon: "Search",
+        title: "SEO Accessibility",
+        description:
+          "Schema.org, alt text, WCAG captions, localized language variants.",
+      },
+      {
+        icon: "Users",
+        title: "UGC Community",
+        description:
+          "Rights-request flows, curation, whitelisting, moderation, incentive compliance.",
+      },
+      {
+        icon: "Calendar",
+        title: "Campaign Orchestration",
+        description:
+          "Calendars, approvals, influencer whitelisting, link tracking, UTMs.",
+      },
+      {
+        icon: "BarChart",
+        title: "Performance Analytics",
+        description:
+          "View-through, click-through, assisted revenue, cohorts, retention insights.",
+      },
+      {
+        icon: "Newspaper",
+        title: "Press Partnerships",
+        description:
+          "Media kits, embargoes, curator/press outreach, coverage tracking dashboards.",
+      },
+    ],
+    support: {
+      title: "Prime Logic Support",
+      description:
+        "Prime Logic Solutions USA provides free integration support for DAM/PIM/CMS onboarding, CDN optimization, watermarking APIs, schema automation, marketplace connectors.",
+      note: "Sandbox, SDKs, and SLAs available for partners.",
+    },
+  },
 
   finalCta: {
     heading: "Share Authentic Kashmiri Craft Stories With the World",
