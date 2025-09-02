@@ -38,7 +38,7 @@ interface QuizResult {
 // Define Questions for Each Partnership Type
 const quizData: Record<
   string,
-  {
+  {name? : string,
     questions: QuizQuestion[];
     maxScore: number;
     thresholds: any;
@@ -46,6 +46,7 @@ const quizData: Record<
   }
 > = {
   dropshipping: {
+    name : "Dropshipping",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -238,6 +239,7 @@ const quizData: Record<
     },
   },
   consignment: {
+    name : "consignment",
     questions: [
       // General Self-Evaluation Questions
       {
@@ -466,6 +468,7 @@ const quizData: Record<
     },
   },
   wholesale: {
+    name : "Wholesale",
     questions: [
       // General Self-Evaluation Questions
       {
@@ -670,6 +673,7 @@ const quizData: Record<
     },
   },
   importexport: {
+    name : "Import Export",
     questions: [
       // General Self-Evaluation Questions
       {
@@ -883,6 +887,7 @@ const quizData: Record<
     },
   },
   exhibition: {
+    name : "Exhibition",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -1103,6 +1108,7 @@ const quizData: Record<
     },
   },
   auction: {
+    name : "Auction",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -1325,6 +1331,7 @@ const quizData: Record<
     },
   },
   "white-label": {
+    name : "White Label",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -1550,6 +1557,7 @@ const quizData: Record<
     },
   },
   "brick-mortar": {
+    name : "Brick & Mortar",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -1768,6 +1776,7 @@ const quizData: Record<
     },
   },
   packaging: {
+    name : "Packaging",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -1987,6 +1996,7 @@ const quizData: Record<
     },
   },
   "design-collaboration": {
+    name : "Design Collaboration",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -2202,6 +2212,7 @@ const quizData: Record<
     },
   },
   storytelling_media: {
+    name : "Story Telling Media",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -2416,6 +2427,7 @@ const quizData: Record<
     },
   },
   warehouse: {
+    name : "Warehouse",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -2626,6 +2638,7 @@ const quizData: Record<
     },
   },
   logistics: {
+    name  : "Logistics",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -2837,6 +2850,7 @@ const quizData: Record<
     },
   },
   museum_collaboration: {
+    name  :"Museum Collaboration",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -2998,6 +3012,7 @@ const quizData: Record<
     },
   },
   ngo_government: {
+    name  : "NGO & Government",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -3160,6 +3175,7 @@ const quizData: Record<
     },
   },
   technology_partnership: {
+    name : "Technology Partnership",
     questions: [
       // General Self-Evaluation Questions (All Roles)
       {
@@ -3373,6 +3389,7 @@ export function EligibilityQuiz({
     ? "max-w-[1000px] text-xl"
     : "max-w-[800px] text-base";
   const data = quizData[partnershipName];
+  const name = data.name
 
   useEffect(() => {
     const roleFromStorage = Cookies.get("user_role");
@@ -4350,15 +4367,12 @@ export function EligibilityQuiz({
                 is4K ? "text-4xl" : "text-2xl sm:text-3xl"
               }`}
             >
-              {partnershipName.charAt(0).toUpperCase() +
-                partnershipName.slice(1)}{" "}
+             
               Eligibility Assessment
             </h2>
             <p className={`opacity-90 mb-6 ${is4K ? "text-xl" : "text-lg"}`}>
               Discover your eligibility for our{" "}
-              {partnershipName.charAt(0).toUpperCase() +
-                partnershipName.slice(1)}{" "}
-              program. Get personalized recommendations tailored to your role as
+              {name} program. Get personalized recommendations tailored to your role as
               a {role}.
             </p>
           </motion.div>
@@ -4433,8 +4447,7 @@ export function EligibilityQuiz({
               }`}
             >
               Your{" "}
-              {partnershipName.charAt(0).toUpperCase() +
-                partnershipName.slice(1)}{" "}
+              {name}
               Eligibility Results
             </h2>
             <div

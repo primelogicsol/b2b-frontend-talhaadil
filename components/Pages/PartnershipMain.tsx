@@ -453,8 +453,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           </div>
         </div>
       </motion.section>
-      {/* Eligibility Test Section - Replaced with comprehensive quiz component */}
-      <EligibilityQuiz partnershipName="brick-mortar"/>
+      
 
       {/* Core Trade Tracks - Kept only the cards, removed the table */}
       <motion.section
