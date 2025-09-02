@@ -1,4 +1,5 @@
 export const brickMortarData = {
+  name:"brick-mortar",
   hero: {
     headline:
       "Shared Brick & Mortar Partnerships — Physical Stores, Omni-Channel Visibility",
@@ -307,6 +308,95 @@ export const brickMortarData = {
         "Yes, visa support documents are provided, but approval depends on your embassy interview.",
     },
   ],
+
+  apiIntegration: {
+    heading: "Already In-Store (USA)? Go Omnichannel With Us.",
+    description:
+      "Share retail space, unify inventory, fulfill anywhere, grow faster.",
+    features: [
+      {
+        icon: "FileSignature",
+        title: "Onboarding & Space Contracts",
+        description:
+          "Digital leases, SLAs, compliance, insurance—standardized for shared storefronts.",
+      },
+      {
+        icon: "ServerCog",
+        title: "POS / OMS Connectors",
+        description:
+          "Shopify POS, Square, Lightspeed, NCR, Oracle—rapid integrations.",
+      },
+      {
+        icon: "Boxes",
+        title: "Inventory & Planograms",
+        description:
+          "Real-time stock, planogram compliance, RFID counts, replenishment alerts.",
+      },
+      {
+        icon: "Truck",
+        title: "Ship-from-Store & BOPIS",
+        description:
+          "Pick/pack, curbside, lockers, SLA timers, carrier labels automated.",
+      },
+      {
+        icon: "TabletSmartphone",
+        title: "Endless Aisle & Kiosks",
+        description:
+          "In-store ordering, assisted selling, QR catalogs, clienteling apps.",
+      },
+      {
+        icon: "Undo2",
+        title: "Returns & BORIS Hub",
+        description:
+          "Cross-channel RMAs, exchanges, refurbishment flows, audit-ready trails.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Payments & Settlements",
+        description:
+          "Split tenders, commissions, taxes, fees—automated payouts by store.",
+      },
+      {
+        icon: "LayoutDashboard",
+        title: "Visual Merchandising Control",
+        description:
+          "Templates, signage, brand zones, compliance photos, approval workflows.",
+      },
+      {
+        icon: "Users",
+        title: "Staff Operations Suite",
+        description:
+          "Tasks, scheduling, training, performance dashboards, role-based access.",
+      },
+      {
+        icon: "MessageSquare",
+        title: "Customer Engagement Tools",
+        description:
+          "Loyalty, events, localized offers, SMS/email pushes, reviews.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Compliance & Safety",
+        description:
+          "OSHA/ADA, labeling, age-checks, incident logs, store audits.",
+      },
+      {
+        icon: "BarChart3",
+        title: "Performance Analytics",
+        description:
+          "Footfall, conversion, dwell, sales mix, heatmaps, allocation optimization.",
+      },
+    ],
+    support: {
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
+      description:
+        "Omnichannel Integration Assurance: POS/OMS/ERP onboarding, tax engines, planograms, RFID, BOPIS/BORIS, payments—sandbox, SDKs, SLAs.",
+      note: "Unified commerce layer bridging physical and digital retail.",
+    },
+  },
+  
+  
   finalCta: {
     heading: "Own a Storefront Without Operational Hassles",
     subtext:

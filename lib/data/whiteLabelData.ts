@@ -1,4 +1,5 @@
 export const whiteLabelData = {
+  name:"white-label",
   hero: {
     headline:
       "White Label Partnerships — Build Your Brand with Authentic Craft",
@@ -283,6 +284,77 @@ export const whiteLabelData = {
         "No, only Core Trade progression with KPI and retention unlocks White Label.",
     },
   ],
+  apiIntegration: {
+    heading: "Already Doing White Label? Accelerate With Us.",
+    description:
+      "Launch briefs, approve artwork, enforce compliance, scale production globally.",
+    features: [
+      {
+        icon: "FileSignature",
+        title: "Onboarding & Contracts",
+        description:
+          "Digital NDAs, MSAs, SLAs, co-brand terms, pricing, territories.",
+      },
+      {
+        icon: "Palette",
+        title: "Design Briefs & Artwork",
+        description:
+          "Structured briefs, dielines, approvals; versioned assets in DAM.",
+      },
+      {
+        icon: "Calculator",
+        title: "Specs, BOM & Costing",
+        description:
+          "Materials, finishes, tolerances; landed-cost and margin calculators.",
+      },
+      {
+        icon: "Factory",
+        title: "Supplier Sourcing & Qualification",
+        description:
+          "Audited factories, capacity checks, sample runs, pilot validations.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "QA/QC & Compliance",
+        description:
+          "AQL plans, test reports, GI/KHCRF, CPSIA/REACH, sustainability.",
+      },
+      {
+        icon: "Package",
+        title: "Packaging & Labeling",
+        description:
+          "GS1 barcodes, eco marks, warnings, multilingual regulatory panels.",
+      },
+      {
+        icon: "Layers",
+        title: "PIM & Catalog Syndication",
+        description:
+          "Publish SKUs, attributes, media to retailer portals seamlessly.",
+      },
+      {
+        icon: "CalendarClock",
+        title: "Order & Production Scheduling",
+        description:
+          "POs, milestones, capacity planning, critical-path dashboards, alerts.",
+      },
+      {
+        icon: "Copyright",
+        title: "IP Protection & Licensing",
+        description:
+          "Ownership clauses, royalties, watermarking, blockchain proofs of originality.",
+      },
+      
+    ],
+    support: {
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
+      description:
+        "White Label Integration Assurance: PIM/DAM, artwork versioning, GS1/UPC, EPR labeling, ERP/PLM/MES mappings—sandbox, SDKs, SLAs.",
+      note: "End-to-end integration for retailers, licensors, and brand owners.",
+    },
+  },
+  
+
   finalCta: {
     heading: "Launch Your Own Brand with De Koshur Crafts White Label",
     subtext:

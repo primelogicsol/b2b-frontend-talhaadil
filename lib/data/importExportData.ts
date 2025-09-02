@@ -1,4 +1,5 @@
 export const importExportData = {
+  name:"importexport",
   hero: {
     headline:
       "Certified Import/Export Partnerships — Globally Compliant Craft Trade",
@@ -336,50 +337,56 @@ export const importExportData = {
     },
   ],
   apiIntegration: {
-    heading: "Integrate Certified Export with Your Platform",
+    heading: "Already Trading Cross-Border? Accelerate With Us.",
     description:
-      "Seamlessly connect our export tools with your systems for customs clearance, compliance reporting, and trade analytics.",
+      "Automate documentation, compliance, duties, logistics, and payments—globally, at scale.",
     features: [
       {
-        icon: "PlugZap",
-        title: "E-Commerce Connectors",
+        icon: "FileText",
+        title: "Trade Documentation Automation",
         description:
-          "Pre-built integrations for Shopify, WooCommerce, Magento, and BigCommerce.",
-      },
-      {
-        icon: "Wrench",
-        title: "ERP Integrations",
-        description: "APIs for SAP, Oracle NetSuite, and custom systems.",
-      },
-      {
-        icon: "Package",
-        title: "Automated Fulfillment",
-        description: "Real-time order routing and logistics for export orders.",
+          "Generate commercial invoices, packing lists, certificates of origin, eAWB/eB/L.",
       },
       {
         icon: "ShieldCheck",
-        title: "Secure API Gateways",
-        description: "Encrypted communication with token-based authentication.",
-      },
-      {
-        icon: "BarChart3",
-        title: "Analytics API",
-        description: "Access compliance and trade performance metrics.",
-      },
-      {
-        icon: "Puzzle",
-        title: "Export Modules",
+        title: "Compliance & Screening",
         description:
-          "APIs for customs clearance, GI verification, and compliance reporting.",
+          "HTS/HS classification, denied-party screening, embargo checks, dual-use controls.",
+      },
+      {
+        icon: "Calculator",
+        title: "Duty & Tax Engine",
+        description:
+          "Instant landed-cost quotes: duties, VAT/GST, de minimis thresholds.",
+      },
+      {
+        icon: "Truck",
+        title: "Freight Orchestration",
+        description:
+          "Ocean, air, ground—Incoterms setup, carrier selection, milestone tracking.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Payments & Financing",
+        description:
+          "Escrow, letters of credit, net terms, multi-currency settlement, reconciliation.",
+      },
+      {
+        icon: "Shield",
+        title: "Insurance & Claims",
+        description:
+          "All-risk cargo coverage with digital evidence capture and settlements.",
       },
     ],
     support: {
-      title: "Prime Logic Solutions Support Guarantee",
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
       description:
-        "Our technology partner provides integration, setup, and support services at no additional cost.",
+        "Import/Export Integration Assurance: ACE/AES filings, HTS mapping, DPS, Incoterms, broker/carrier APIs—sandbox, SDKs, SLAs.",
       note: "API documentation and sandbox available for partners.",
     },
   },
+  
   finalCta: {
     heading: "Join Certified Import/Export With De Koshur Crafts",
     subtext:

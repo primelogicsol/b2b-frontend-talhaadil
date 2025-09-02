@@ -1,4 +1,5 @@
 export const auctionBiddingData = {
+  name:"auction",
   hero: {
     headline:
       "Auction Bidding Partnerships — Connecting Crafts to Global Bidders",
@@ -284,6 +285,57 @@ export const auctionBiddingData = {
     },
   ],
 
+  apiIntegration: {
+    heading: "Already Running Auctions? Accelerate With Us.",
+    description:
+      "Launch verified lots, drive competitive bids, automate payouts—globally, at scale.",
+    features: [
+      {
+        icon: "UserCheck",
+        title: "Onboarding & Compliance",
+        description:
+          "Seller KYC/AML, provenance checks, GI/KHCRF validation, consents, contracts.",
+      },
+      {
+        icon: "Image",
+        title: "Cataloging & Media",
+        description:
+          "Lot intake, condition reports, multi-image/video, metadata, reserve settings.",
+      },
+      {
+        icon: "Gavel",
+        title: "Bidding Engine",
+        description:
+          "Timed/live auctions, proxy bids, anti-sniping, bid-increment rules.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Payments & Escrow",
+        description:
+          "Card, ACH, wire; escrow release on verified settlement events.",
+      },
+      {
+        icon: "Receipt",
+        title: "Fees & Settlements",
+        description:
+          "Buyer premiums, seller commissions, taxes; automated statements and payouts.",
+      },
+      {
+        icon: "Truck",
+        title: "Logistics & Insurance",
+        description:
+          "Pickup/packing, carrier booking, tracking; all-risk coverage, claims workflow.",
+      },
+    ],
+    support: {
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
+      description:
+        "Auction Integration Assurance: KYC/AML, escrow gateways, bidding APIs, anti-sniping, reserve logic, DAM/CRM/ERP mappings—sandbox, SDKs, SLAs.",
+      note: "API documentation and sandbox available for partners.",
+    },
+  },
+  
   finalCta: {
     heading: "Join Auction Bidding — Unlock Global Craft Value",
     subtext:

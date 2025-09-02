@@ -1,4 +1,5 @@
 export const technologyData = {
+  name:"technology_partnership",
   hero: {
     headline:
       "Technology Partnerships — Competing Globally While Preserving Handmade Integrity",
@@ -284,6 +285,113 @@ export const technologyData = {
         "Vendors need a minimum KPI of 9 and 18 months in Collaborative Partnerships, with prior progression through Core and Growth stages.",
     },
   ],
+
+  apiIntegration: {
+    heading: "Already Building Handicraft Tech? Partner With Us.",
+    description:
+      "Unify APIs, provenance, compliance, and data—purpose-built for crafts.",
+    features: [
+      {
+        icon: "ScrollText",
+        title: "CraftLore Provenance & Registry",
+        description:
+          "Immutable blockchain for origin, ownership, GI validation, and blacklists.",
+      },
+      {
+        icon: "Stamp",
+        title: "GI Verification Services",
+        description:
+          "Programmatic GI checks, certificates, seals, and dispute workflows.",
+      },
+      {
+        icon: "Scale",
+        title: "Price Valuation & Fair Pricing",
+        description:
+          "Reference indices, anti-counterfeit pricing, category benchmarks, anomaly alerts.",
+      },
+      {
+        icon: "IdCard",
+        title: "Trade & Vendor Registries",
+        description:
+          "Verified vendor IDs, ratings, sanctions screens, and performance histories.",
+      },
+      {
+        icon: "Leaf",
+        title: "Carbon & Sustainability APIs",
+        description:
+          "Craft Carbon footprints, material scoring, eco labels, offset integrations.",
+      },
+      {
+        icon: "BookImage",
+        title: "PIM/DAM & Catalog SDKs",
+        description:
+          "Models, media, attributes, translations; publish to marketplaces and retailers.",
+      },
+      {
+        icon: "ShoppingCart",
+        title: "E-Commerce & POS Connectors",
+        description:
+          "Shopify, WooCommerce, Magento, BigCommerce, Square, Lightspeed adapters.",
+      },
+      {
+        icon: "Truck",
+        title: "Logistics & Customs Integrations",
+        description:
+          "HTS/HS, landed cost, eAWB/eB/L, broker/forwarder APIs, tracking.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Payments & Escrow Gateways",
+        description:
+          "Multi-currency, LC, net terms, split payouts, reconciliation webhooks.",
+      },
+      {
+        icon: "Shield",
+        title: "Design/IP Protection Toolkit",
+        description:
+          "Blockchain timestamps, watermarking, license rules, automated royalty settlements.",
+      },
+      {
+        icon: "Cube",
+        title: "AR/VR Commerce Assets",
+        description:
+          "3D/try-on viewers, room placement, embeddable players, asset pipelines.",
+      },
+      {
+        icon: "BarChart3",
+        title: "Analytics & BI Connectors",
+        description:
+          "Sales, KPI, retention, provenance dashboards; exports to Snowflake/BigQuery.",
+      },
+      {
+        icon: "Lock",
+        title: "Security & Compliance Stack",
+        description:
+          "OAuth/SSO, RBAC, encryption, audit logs; GDPR/CCPA, SOC-aligned controls.",
+      },
+      {
+        icon: "Cog",
+        title: "DevOps & Observability",
+        description:
+          "Sandbox, SDKs, CI/CD templates, metrics, tracing, alerting, runbooks.",
+      },
+      {
+        icon: "Database",
+        title: "Data Pipelines & Lakes",
+        description:
+          "ETL/ELT jobs, event bus, schema registry, deduping, quality checks.",
+      },
+    
+    ],
+    support: {
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
+      description:
+        "Technology Alliance Integration Assurance: API design reviews, partner SDKs, SSO/OAuth, webhook catalog, sandbox tenancy, solution engineering, and SLAs.",
+      note: "Future-proof infrastructure designed for global handicraft ecosystems.",
+    },
+  },
+  
 
   finalCta: {
     heading: "Empower Handicrafts with Global Technology",

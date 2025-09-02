@@ -1,4 +1,5 @@
 export const consignmentPageData = {
+  name:"consignment",
   hero: {
     headline:
       "Consignment Partnerships — Low-Risk Retail Expansion for Kashmiri Crafts",
@@ -333,34 +334,57 @@ export const consignmentPageData = {
     },
   ],
   apiIntegration: {
-    heading: "API Integration for Retail Systems",
+    heading: "Already Selling Wholesale? Accelerate With Us.",
     description:
-      "Seamlessly connect with leading retail platforms through ready-made connectors. Custom APIs power inventory sync, settlements, and detailed sales analytics. Prime Logic Solutions provides free integration support for retailers.",
+      "Automate POs, pricing, compliance, logistics, analytics—globally, at scale.",
     features: [
       {
         icon: "PlugZap",
-        title: "Retail Connectors",
+        title: "EDI & ERP Connectors",
         description:
-          "Connectors for Shopify POS, Magento Retail, WooCommerce, BigCommerce.",
+          "POs, ASNs, invoices, acknowledgments—rapid distributor and retailer onboarding.",
       },
       {
-        icon: "Wrench",
-        title: "Custom APIs",
+        icon: "Tag",
+        title: "Pricing & Trade Terms",
         description:
-          "Custom APIs for retail inventory sync & settlement dashboards.",
+          "Volume tiers, MOQs, rebates, and contract compliance automatically enforced.",
+      },
+      {
+        icon: "Layers",
+        title: "Catalog & PIM Syndication",
+        description:
+          "Publish SKUs, attributes, media, certifications to retailer portals seamlessly.",
+      },
+      {
+        icon: "Package",
+        title: "Order Orchestration",
+        description:
+          "Consolidation, allocations, backorders, multi-warehouse routing with live visibility.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Compliance & Chargebacks",
+        description:
+          "GS1/UCC labels, routing guides, OTIF tracking—prevent costly penalties.",
       },
       {
         icon: "BarChart3",
-        title: "Analytics API",
-        description: "Analytics API for sell-through reporting.",
+        title: "Performance Analytics",
+        description:
+          "Fill rate, lead times, margins, SKU productivity—actionable executive dashboards.",
       },
     ],
     support: {
-      title: "Prime Logic Solutions Support",
-      description: "Prime Logic Solutions provides free integration support.",
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
+      description:
+        "Wholesale Integration Assurance: EDI onboarding, PIM setup, GS1/UCC labeling—sandbox, SDKs, SLAs.",
       note: "API documentation and sandbox available for partners.",
     },
   },
+  
+  
   finalCta: {
     heading: "Start Consignment with De Koshur Crafts Today",
     subtext:

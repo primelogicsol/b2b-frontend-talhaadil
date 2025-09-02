@@ -1,4 +1,5 @@
 export const wholesaleData = {
+  name:"wholesale",
   hero: {
     headline:
       "Wholesale Partnerships — Scale Craft Trade with Volume & Reliability",

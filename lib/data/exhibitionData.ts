@@ -1,4 +1,5 @@
 export const exhibitionData = {
+  name:"exhibition",
   hero: {
     headline:
       "Exhibition Partnerships — Showcase Kashmiri Crafts on the Global Stage",
@@ -284,6 +285,58 @@ platformAdvantage: {
         "Yes, successful vendors can move into White Label or Retail Store partnerships.",
     },
   ],
+ apiIntegration: {
+    heading: "Already Exhibiting or Organizing? Accelerate With Us.",
+    description:
+      "Run shows flawlessly, onboard exhibitors, capture leads, monetize globally.",
+    features: [
+      {
+        icon: "ClipboardCheck",
+        title: "Onboarding & Compliance",
+        description:
+          "Digital applications, KYC, GI/KHCRF verification, contracts, fee collection.",
+      },
+      {
+        icon: "Calendar",
+        title: "Booths & Scheduling",
+        description:
+          "Floorplans, slotting, demo calendars, staff assignments, change management.",
+      },
+      {
+        icon: "BookOpen",
+        title: "Digital Catalogs & Media",
+        description:
+          "Rich product pages, pricing, QR/AR assets, press kits.",
+      },
+      {
+        icon: "ScanLine",
+        title: "Lead Capture & CRM",
+        description:
+          "Badge/QR scans routed instantly to Salesforce, HubSpot, ERP.",
+      },
+      {
+        icon: "FileInvoice",
+        title: "Settlements & Invoicing",
+        description:
+          "Ticketing, sponsorships, exhibitor invoices, payouts, reconciliations automated.",
+      },
+      {
+        icon: "PackageCheck",
+        title: "Logistics, Insurance & Returns",
+        description:
+          "Inbound/outbound handling, storage, coverage, post-show return workflows.",
+      },
+    ],
+    support: {
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
+      description:
+        "Exhibition Integration Assurance: Registration, ticketing, badge scanning, CRM/PIM/DAM mappings—sandbox, SDKs, SLAs.",
+      note: "API documentation and sandbox available for partners.",
+    },
+  },
+  
+  
 
   finalCta: {
     heading: "Showcase Your Crafts to the World",

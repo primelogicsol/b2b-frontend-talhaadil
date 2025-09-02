@@ -1,4 +1,5 @@
 export const dropshippingData = {
+  name: "dropshipping",
   hero: {
     headline:
       "Dropshipping Partnerships  Zero-Risk Entry Into Global Craft Trade",
@@ -338,51 +339,56 @@ platformAdvantage: {
     },
   ],
   apiIntegration: {
-    heading: "Already Have an Online Store? Plug & Play with Our APIs",
+    heading: "Already Selling Online? Plug In. Scale Everywhere.",
     description:
-      "Our Dropshipping platform allows direct integration with your existing e-commerce setup  whether you run a custom-built store or operate on leading platforms like Shopify, WooCommerce, Magento, or BigCommerce.",
+      "Connect custom builds or Shopify, WooCommerce, Magento, BigCommerce instantly with De Koshur Crafts USA.",
     features: [
       {
         icon: "PlugZap",
         title: "E-Commerce Connectors",
         description:
-          "Pre-built integrations for Shopify, WooCommerce, Magento, BigCommerce.",
+          "Prebuilt connectors for Shopify, WooCommerce, Magento, BigCommerce; deployed globally fast today worldwide.",
       },
       {
         icon: "Wrench",
         title: "Custom Store Support",
         description:
-          "REST & GraphQL APIs for syncing products, inventory, and orders with any customized e-commerce solution.",
+          "REST and GraphQL APIs sync products, inventory, orders across platforms seamlessly.",
       },
       {
         icon: "Package",
         title: "Automated Fulfillment",
-        description: "Real-time order routing directly to verified vendors.",
+        description:
+          "Real-time routing, tracking, notifications to verified vendors; labels, manifests automated globally.",
       },
       {
         icon: "ShieldCheck",
         title: "Secure API Gateways",
-        description: "Encrypted communication, token-based authentication.",
+        description:
+          "Encrypted communication, token authentication, rate limiting, audit logging; zero-trust controls enforced universally.",
       },
       {
         icon: "BarChart3",
         title: "Analytics API",
-        description: "Pull KPI dashboards and retention stats into your store.",
+        description:
+          "Pull KPIs, retention metrics, sales dashboards directly into your existing analytics stack.",
       },
       {
         icon: "Puzzle",
         title: "Custom Extensions",
         description:
-          "Private-label, smart packaging, and catalog placement modules.",
+          "Private label, smart packaging, catalog placement modules tailored for enterprise workflows globally.",
       },
     ],
     support: {
-      title: "Prime Logic Solutions Support Guarantee",
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
       description:
-        "In case of technical difficulty or if you don't want to invest resources in API integration, our dedicated technology partner  Prime Logic Solutions (USA)  will provide integration, setup, and support services at no additional cost.",
+        "Enterprise Integration Assurance: Implementation, testing, and support with sandbox environments, SDKs, documented SLAs guaranteed always.",
       note: "API documentation and sandbox available for partners.",
     },
   },
+  
   finalCta: {
     heading: "Start Dropshipping With De Koshur Crafts Today",
     subtext:

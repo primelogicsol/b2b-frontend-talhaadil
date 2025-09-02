@@ -1,4 +1,5 @@
 export const ngoGovernmentData = {
+  name:"ngo_government",
   hero: {
     headline:
       "NGO & Government Partnerships — Empowering Sustainable Craft Trade",
@@ -279,13 +280,93 @@ export const ngoGovernmentData = {
     },
   ],
   apiIntegration: {
+    heading: "Already Advancing SDGs? Accelerate With Us.",
+    description:
+      "Align policy, funding, procurement, and transparent impact reporting—at scale.",
+    features: [
+      {
+        icon: "ScrollText",
+        title: "Policy & Framework Mapping",
+        description:
+          "Map programs to SDGs, targets, indicators, and theory-of-change.",
+      },
+      {
+        icon: "HandCoins",
+        title: "Grants & Funding Orchestration",
+        description:
+          "RFPs, applications, scoring, disbursements, milestone compliance workflows.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Vendor & Beneficiary Verification",
+        description:
+          "KYC/KYB, sanctions checks, GI/KHCRF adherence, safeguarding screens.",
+      },
+      {
+        icon: "ShoppingBasket",
+        title: "Ethical Procurement & Fair Trade",
+        description:
+          "Templates, scoring criteria, GI labeling, living-wage contract clauses.",
+      },
+      {
+        icon: "BarChart3",
+        title: "MEL & Impact Evidence",
+        description:
+          "Baselines, counterfactuals, surveys, randomized audits, secure data pipelines.",
+      },
+      {
+        icon: "Database",
+        title: "SDG Reporting & Open Data",
+        description:
+          "IATI/SDMX exports, dashboards, public transparency and accountability portals.",
+      },
+      {
+        icon: "Users",
+        title: "Community Inclusion & Gender",
+        description:
+          "Participation metrics, grievance redressal, accessibility and DEI compliance.",
+      },
+      {
+        icon: "BookOpenCheck",
+        title: "Education & Capacity Building",
+        description:
+          "Curriculum kits, LMS, certifications, train-the-trainer program modules.",
+      },
+      {
+        icon: "Leaf",
+        title: "Climate & Sustainability Controls",
+        description:
+          "Carbon accounting, circularity, waste reduction, eco-packaging standards.",
+      },
+      {
+        icon: "ShieldAlert",
+        title: "Risk, Safeguards & Anti-Corruption",
+        description:
+          "Conflict-of-interest registers, whistleblowing, investigations, audit trails.",
+      },
+      {
+        icon: "Handshake",
+        title: "Partnerships & Inter-Agency MoUs",
+        description:
+          "Roles, milestones, joint governance, shared outcomes and data rights.",
+      },
+      {
+        icon: "Truck",
+        title: "Field Logistics & Distributions",
+        description:
+          "Warehousing, last-mile delivery, beneficiary targeting, proof-of-delivery evidence.",
+      },
+     
+    ],
     support: {
-      title: "Travel & Compliance Support for NGO/Government Programs",
+      title:
+        "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
       description:
-        "De Koshur Crafts provides comprehensive visa and documentation support for artisans participating in NGO or government programs, backed by Prime Logic Solutions for seamless application and setup guidance.",
-      note: "Visa approval is not guaranteed. We provide all supporting documents under U.S. and international standards, but embassy decision is final.",
+        "SDG Integration Assurance: IATI/SDMX schemas, e-procurement, grants/MEL, grievance portals, open-data pipelines—sandbox, SDKs, SLAs.",
+      note: "Purpose-built for governments, NGOs, and global development programs.",
     },
   },
+  
   finalCta: {
     heading: "Partner With NGOs & Governments to Scale Impact",
     subtext:
