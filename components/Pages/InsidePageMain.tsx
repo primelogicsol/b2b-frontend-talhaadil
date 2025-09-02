@@ -8,8 +8,13 @@ import Image from "next/image"
 import { XCircle, CheckCircle } from "lucide-react"
 import * as Icons from "lucide-react"
 import Link from "next/link"
+import { EligibilityQuiz } from "../Essentials/ElgibiltyProvider"
+
+import type { DropshippingEligibilityQuizProps} from "../Essentials/ElgibiltyProvider"
+
 
 type LandingPageData = {
+    name? : DropshippingEligibilityQuizProps["partnershipName"]
     hero: {
         headline: string
         subtext: string
@@ -851,7 +856,11 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                     </div>
                 </div>
             </motion.section>
+                    
 
+            {landingPageData?.name && (
+                <EligibilityQuiz partnershipName={landingPageData.name} />
+            )}
 
             {/* API Integration Section */}
             {landingPageData.apiIntegration && (<motion.section

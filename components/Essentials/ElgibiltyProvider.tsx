@@ -3354,7 +3354,7 @@ const fadeInUp = {
   transition: { duration: 0.4, ease: "easeOut" },
 };
 
-interface DropshippingEligibilityQuizProps {
+export interface DropshippingEligibilityQuizProps {
   partnershipName:
     | "dropshipping"
     | "consignment"
