@@ -53,7 +53,7 @@ export default function Footer() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="absolute inset-0 bg-white" />
-        <div className="relative w-[85vw] lg:w-[75vw] mx-auto bg-[var(--primary-color)] border-b-2 border-b-[var(--secondary-color)] rounded-t-lg">
+        <div className="relative w-[85vw] lg:w-[75vw] mx-auto bg-[var(--primary-color)] border-b-8 border-b-[var(--secondary-color)] rounded-t-lg">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 py-6 px-4">
             <motion.div
               className="flex items-center gap-3"
@@ -68,14 +68,14 @@ export default function Footer() {
                 }}
                 className="hidden lg:flex min-w-8 min-h-8 w-8 h-8 bg-white/20 rounded-full  items-center justify-center"
               >
-                <Users className="w-4 h-4 text-[var(--secondary-light-color)]" />
+                <Users className="w-4 h-4 text-white" />
               </motion.div>
               <h3 className="text-lg md:text-xl font-semibold text-[var(--primary-header-color)] text-center">
-                Stay Connected to DKC B2B Connect
+                Stay Connected to DKC's B2B Connect
               </h3>
             </motion.div>
             <motion.button
-              className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-full font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
+              className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-[5px] font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

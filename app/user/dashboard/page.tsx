@@ -108,7 +108,7 @@ export default function DashboardPage() {
   }
 
   const currentKPI = userProfile.kpi_score
-  const currentPartnership = partnerships.indexOf(userProfile.partnership_level)
+  const currentPartnership = 9
   const nextMilestone = partnerships[currentPartnership+1]
 
   return (

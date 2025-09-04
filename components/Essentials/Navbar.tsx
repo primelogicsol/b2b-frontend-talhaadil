@@ -522,12 +522,21 @@ export function Navbar() {
       >
         <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
           <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
+
             <Image src="/B2B-logo.png" alt="Dekoshur Crafts" width={isScrolled ? 32 : 48} height={isScrolled ? 28 : 48} />
+            <div className="flex flex-col">
             <span
               className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"}`}
             >
-              Dekoshur Crafts
+              B2B Connect
             </span>
+            <span
+              className={`text-[var(--secondary-color)] font-bold transition-all duration-500 ${isScrolled ? "text-xs md:text-sm" : "text-xs md:text-sm"}`}
+            >
+              De Koshur Crafts
+              <span className="text-xs"> - USA</span>
+            </span>
+            </div>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-8 transition-all duration-500">
