@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
-import { getAllAppointments } from "@/services/appointment";
+import { getAllAppointments, getAppointmentByUser } from "@/services/appointment";
 
 // Define the API appointment type based on the provided data
 interface ApiAppointment {
@@ -47,17 +47,18 @@ export default function AppointmentsPage() {
         const fetchAppointments = async () => {
             try {
                 setLoading(true);
-                const response = await getAllAppointments();
+                const response = await getAppointmentByUser();
 
                 if (response.status !== 200) {
                     throw new Error("Failed to fetch appointments");
                 }
 
                 const data: ApiAppointment[] = response.data;
+                console.log(data)
 
                 // Map API data to UI-compatible Appointment type
                 const mappedAppointments: Appointment[] = data
-                    .filter((apt) => apt.email === "talhaadil48@icloud.com")
+                  
                     .map((apt) => ({
                         id: apt.id,
                         userName: `${apt.first_name} ${apt.last_name}`,

@@ -873,27 +873,7 @@ export default function AppointmentScheduler() {
                 ))}
               </select>
 
-              <div style={{ marginTop: is4K ? "32px" : "24px" }}>
-                <label
-                  className={`font-medium text-gray-700 mb-2 flex items-center ${is4K ? "text-lg" : "text-sm"}`}
-                  style={{ marginBottom: is4K ? "12px" : "8px" }}
-                >
-                  <Upload className="mr-2" size={is4K ? 20 : 16} style={{ marginRight: is4K ? "12px" : "8px" }} />
-                  Upload File (optional)
-                </label>
-                <input
-                  type="file"
-                  accept=".pdf,.docx,.png,.jpg,.jpeg"
-                  onChange={handleFileUpload}
-                  className={`w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent ${is4K ? "text-lg p-4" : "text-base p-3"}`}
-                />
-                <p
-                  className={`text-gray-500 mt-1 ${is4K ? "text-sm" : "text-xs"}`}
-                  style={{ marginTop: is4K ? "8px" : "4px" }}
-                >
-                  Supported formats: PDF, DOCX, PNG, JPG
-                </p>
-              </div>
+              
             </div>
           </div>
         )}

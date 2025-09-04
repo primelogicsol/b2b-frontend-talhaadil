@@ -33,15 +33,17 @@ export const postAppointment = (
     formData.append("file", file);
   }
 
-  const userId = Cookies.get("user_id");
-  const requiresAuth = !!userId;
+ const userId = Cookies.get("user_id");
+ console.log("DEBUG")
+ console.log(userId)
 
-  return api.post(`/appointments/`, formData, {
-    headers: {
-      requiresAuth: requiresAuth,
-      "Content-Type": "multipart/form-data",
-    },
-  });
+return api.post(`/appointments/`, formData, {
+  headers: {
+    requiresAuth: true,
+    isNull: !userId ? true : false,
+    "Content-Type": "multipart/form-data",
+  },
+});
 };
 
 export const getAllAppointments = () => {
@@ -54,6 +56,14 @@ export const getAllAppointments = () => {
 
 export const getAllAppointmentByDate = (date: string) => {
   return api.get(`/appointments?date=${date}`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+
+export const getAppointmentByUser = () => {
+  return api.get(`/appointments/user-appointement`, {
     headers: {
       requiresAuth: true,
     },

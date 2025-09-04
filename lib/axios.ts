@@ -25,8 +25,14 @@ api.interceptors.request.use(
     const user = getUser()
     const accessToken = user?.access_token
 
-    if (config.headers?.requiresAuth && accessToken) {
+    if (config.headers?.requiresAuth) {
       config.headers.Authorization = `Bearer ${accessToken}`
+      console.log("|HOWELLo")
+      
+    }
+    if (config.headers?.isNull) {
+      config.headers.Authorization = null
+      console.log("|HOWELLodasddasdasd")
     }
 
     return config
