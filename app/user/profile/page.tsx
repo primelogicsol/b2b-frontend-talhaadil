@@ -1,15 +1,18 @@
 "use client"
 import { getUserInfo } from "@/services/regitsration"
+import { get_product_by_user_id } from "@/services/user"// Added import for the new API
 import { useState, useEffect } from "react"
 import { updateProfile } from "@/services/admin"
-import { User, Building, CreditCard, Shield, Edit3, Save, X, Check, AlertTriangle, Loader2 } from "lucide-react"
+import { User, Building, CreditCard, Shield, Edit3, Save, X, Check, AlertTriangle, Loader2, Package } from "lucide-react"
 
-export default function ProfilePage() {
+export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // Assuming user_id is passed as a prop
   const [editingSection, setEditingSection] = useState<string | null>(null)
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [productData, setProductData] = useState<any>(null) // State for product data
+  const [productError, setProductError] = useState<string | null>(null) // Error state for product fetch
 
   // Mock data based on API payload structure
   const [profileData, setProfileData] = useState({
@@ -79,8 +82,20 @@ export default function ProfilePage() {
       }
     }
 
+    const fetchProductData = async () => {
+      try {
+        const response = await get_product_by_user_id(user_id)
+        setProductData(response.data.product_data)
+        console.log(response.data)
+      } catch (err) {
+        setProductError("Failed to fetch product data. Please try again later.")
+        console.error("Error fetching product data:", err)
+      }
+    }
+
     fetchProfileData()
-  }, [])
+    fetchProductData()
+  }, [user_id])
 
   const handleEdit = (section: string) => {
     setEditingSection(section)
@@ -129,7 +144,7 @@ export default function ProfilePage() {
     required = false,
   ) => {
     const isEditing = editingSection === getSectionForField(field)
-    const value = isEditing ? tempData[field as keyof typeof tempData] : profileData[field as keyof typeof profileData]
+    const value = isEditing ? tempData[field as keyof typeof tempData] : profileData[field as keyof typeof tempData]
 
     if (isEditing) {
       return (
@@ -536,6 +551,66 @@ export default function ProfilePage() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Product Information */}
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+              <Package className="h-5 w-5 text-[var(--primary-color)]" />
+              Product Information
+            </h2>
+          </div>
+        </div>
+        <div className="p-4 sm:p-6">
+          {productError && (
+            <div className="flex items-center gap-2 px-3 py-2 mb-4 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
+              <AlertTriangle className="h-4 w-4 text-[var(--secondary-color)]" />
+              <span className="text-sm text-[var(--secondary-color)]">{productError}</span>
+            </div>
+          )}
+          {!productData ? (
+            <div className="flex items-center justify-center">
+              <Loader2 className="h-8 w-8 animate-spin text-[var(--primary-color)]" />
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Category</label>
+                  <p className="text-[var(--primary-color)] mt-1 text-sm">{productData.categoryName} ({productData.categoryId})</p>
+                </div>
+                <div>
+                  <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Subcategory</label>
+                  <p className="text-[var(--primary-color)] mt-1 text-sm">{productData.subcategoryName} ({productData.subcategoryId})</p>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Specifications</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                  {Object.entries(productData.specifications).map(([key, values]: [string, string[]]) => (
+                    <div key={key} className="space-y-2">
+                      <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
+                        {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {(values as string[]).map((value, index) => (
+                          <span
+                            key={index}
+                            className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
+                          >
+                            {value}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
