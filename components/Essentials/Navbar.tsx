@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 import { UserProfileDisplay } from "./UserProfileDisplay"
 import Cookies from "js-cookie"
 import { useAuthentication } from "@/context/AuthenticationWrapper"
+import Image from "next/image"
 
 function LockTooltip({
   children,
@@ -521,7 +522,7 @@ export function Navbar() {
       >
         <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
           <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
-            <Mountain size={isScrolled ? 28 : 48} className="text-[var(--secondary-color)]" />
+            <Image src="/B2B-logo.png" alt="Dekoshur Crafts" width={isScrolled ? 32 : 48} height={isScrolled ? 28 : 48} />
             <span
               className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"}`}
             >

@@ -6,6 +6,7 @@ import { sendLevel } from "@/services/regitsration";
 import Cookies from "js-cookie";
 import { useToast } from "@/context/ToastProvider";
 import { TruckElectricIcon } from "lucide-react";
+
 interface Partnership {
   id: string;
   level: number;
@@ -33,7 +34,7 @@ const partnerships: Partnership[] = [
   {
     id: "drop_shipping",
     level: 1,
-    partnership_name: "Drop Shipping / E-Commerce",
+    partnership_name: "Drop Shipping",
     vendor: "Fulfillment Partner",
     buyer: "Reseller",
     description:
@@ -71,7 +72,7 @@ const partnerships: Partnership[] = [
   {
     id: "wholesale",
     level: 4,
-    partnership_name: "Wholesale & Distribution",
+    partnership_name: "Wholesale",
     vendor: "Wholesaler",
     buyer: "Distributor",
     description:
@@ -86,7 +87,7 @@ const partnerships: Partnership[] = [
     level: 5,
     partnership_name: "Exhibition",
     vendor: "Exhibitor",
-    buyer: "Participant / Event Organizer",
+    buyer: "Participant",
     description:
       "Showcase products at premium exhibitions and trade shows. Direct access to targeted audience and networking opportunities.",
     retention: "4 months",
@@ -148,11 +149,12 @@ const partnerships: Partnership[] = [
     vendor: "Collaboration Supplier",
     buyer: "Collaboration Partner",
     description:
-      "Creative partnership for custom design development. Combine traditional craftsmanship with modern design aesthetics.",
+      "Creative partnership for custom design. Combine traditional craftsmanship with modern aesthetics.",
     retention: "4 months",
     kpiScore: "8+",
     available: false,
-  },
+}
+,
   {
     id: "storytelling",
     level: 10,
@@ -210,7 +212,7 @@ const partnerships: Partnership[] = [
     vendor: "NGO Supplier",
     buyer: "NGO Buyer",
     description:
-      "Social impact partnership supporting local artisans. Government and NGO collaboration for community development.",
+      "Social impact partnership supporting artisans. Government & NGO collaboration for community development.",
     retention: "None",
     kpiScore: "None",
     available: false,
@@ -218,7 +220,7 @@ const partnerships: Partnership[] = [
   {
     id: "technology_partnership",
     level: 16,
-    partnership_name: "Technology Partnership",
+    partnership_name: "Tech Partner",
     vendor: "Technology Provider",
     buyer: "Technology Client",
     description:
@@ -235,6 +237,7 @@ export default function ChoosePartnership({
   onNext,
   onPrev,
 }: ChoosePartnershipProps) {
+  
   const { is4K } = useGlobalContext();
   const [selectedPartnership, setSelectedPartnership] = useState(
     data?.selected || ""
@@ -242,6 +245,8 @@ export default function ChoosePartnership({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [user_role, setUserRole] = useState<"buyer" | "vendor">("buyer");
   const { showToast } = useToast();
+  
+  
   useEffect(() => {
     const roleFromCookie = Cookies.get("user_role") as
       | "vendor"
@@ -401,7 +406,7 @@ export default function ChoosePartnership({
             className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
               ${p.available
                 ? "cursor-pointer hover:-translate-y-2"
-                : "opacity-60 grayscale"
+                : "opacity-60"
               }
               ${selectedPartnership === p.id
                 ? "ring-4 ring-[var(--secondary-color)] scale-105"
@@ -416,7 +421,11 @@ export default function ChoosePartnership({
               </div>
             )}
 
-            <div className="absolute top-2 right-2 bg-[var(--primary-color)] text-white text-xs font-bold px-2 py-1 rounded-full">
+            <div
+              className={`absolute top-2 right-4 text-white text-xs font-bold px-2 py-1 rounded-full ${
+                p.available ? "bg-[var(--primary-color)]" : "bg-red-600"
+              }`}
+            >
               Level {p.level}
             </div>
 
@@ -430,7 +439,7 @@ export default function ChoosePartnership({
                   <FaCheck className="text-white text-sm" />
                 </div>
               ) : (
-                <div className="w-8 h-8 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
                   <FaLock className="text-white text-sm" />
                 </div>
               )}
@@ -486,8 +495,12 @@ export default function ChoosePartnership({
             </p>
 
             {!p.available && (
+              
               <div className="mt-auto space-y-2">
                 <button
+                onClick={()=>{
+                  window.location.href = '/process'
+                }}
                   className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
                   text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}
                 >

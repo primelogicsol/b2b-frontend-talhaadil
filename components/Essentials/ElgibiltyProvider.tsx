@@ -4446,9 +4446,7 @@ export function EligibilityQuiz({
                 is4K ? "text-3xl" : "text-2xl"
               }`}
             >
-              Your{" "}
-              {name}
-              Eligibility Results
+              Your{" "}{name}{" "}Eligibility Results
             </h2>
             <div
               className={`text-6xl font-bold mb-2 ${
