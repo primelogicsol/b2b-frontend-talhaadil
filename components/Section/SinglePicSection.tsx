@@ -27,14 +27,14 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
   const { is4K } = useGlobalContext()
 
   const defaults: SectionContent = {
-    imageSrc: "/your-image.jpg",
+    imageSrc: "/hero2.png",
     sidebarText: "Your Link to Kashmir Craft Markets",
     header: "WELCOME TO B2B CONNECT - USA",
     mainHeading: (
       <>
         Empowering USA-Based Buyers in <br className="hidden md:block" />
-        Accessing Kashmiri Craft{" "}
-        <span style={{ color: "var(--secondary-color)" }}>Markets</span>
+        Accessing Kashmir Craft Vendor{" "}
+        <span style={{ color: "var(--secondary-color)" }}>Market</span>
       </>
     ),
     description:
@@ -121,7 +121,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
                 {data.header}
               </span>
             </div>
-            <h1 className={`${is4K ? "text-7xl mb-12" : "text-2xl md:text-3xl lg:text-4xl mb-8"} font-bold leading-tight`} style={{ color: "var(--primary-color)" }}>
+            <h1 className={`${is4K ? "text-6xl mb-12" : "text-2xl md:text-3xl lg:text-4xl mb-8"} font-bold leading-tight`} style={{ color: "var(--primary-color)" }}>
               {data.mainHeading}
             </h1>
             <p className={`${is4K ? "text-2xl mb-16 leading-relaxed" : "text-base md:text-lg lg:text-[16px] mb-10 leading-relaxed"}`} style={{ color: "var(--primary-light-text-color)" }}>

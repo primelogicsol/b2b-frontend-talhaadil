@@ -81,44 +81,38 @@ export default function HeroSection() {
 
   return (
     <section
-      className={`relative w-full overflow-hidden flex items-center justify-center ${
+      className={`relative w-full overflow-hidden flex items-center justify-center mt-10 mb-10${
         is4K ? "h-[60vh]" : "h-[90vh]"
       }`}
     >
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/flags/bg-pic.webp"
-          alt="Distressed US Flag Background"
-          fill
-          priority
-          className="object-fit"
-          style={{ objectPosition: "left center" }}
-        />
-      </div>
 
       {/* Content */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4">
         {/* Top Right Text */}
-        <div className="absolute top-8 right-4 2xl:right-[15%] text-center text-white text-sm md:text-lg 2xl:text-2xl max-w-[90%]">
-          <p className="font-semibold drop-shadow-md">
-            DKC: Elevating Kashmir&apos;s Craft to Global Excellence
+        <div className="absolute text-center top-2 text-black text-sm md:text-lg 2xl:text-2xl max-w-[90%]">
+          <p className="max-w-5xl">
+            <span className="font-bold">De Koshur Crafts Bazaar USA - The Global Command Center of Kashmiri
+            Craftsmanship </span>
+            uniting six powerhouse sister companies under one
+            banner.
           </p>
-          <p className="text-xs md:text-base drop-shadow-md">
+     
+          <p className="text-xs text-[var(--secondary-color)] md:text-base drop-shadow-md">
             Luxury, Heritage, and Timeless Craft.
           </p>
         </div>
 
         {/* Main Logo & Small Logos */}
-        <div className="relative w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[700px] lg:h-[700px] 2xl:w-[900px] 2xl:h-[900px] flex items-center justify-center p-2 lg:p-10">
+        <div className="relative w-[350px] h-[350px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] 2xl:w-[700px] 2xl:h-[700px] flex items-center justify-center p-2 lg:p-10 mt-20">
           {/* Main Logo */}
-          <div className="relative w-full h-full">
+          <div className="relative w-full h-full ">
             <Image
               src={selectedLogo.src}
               alt="Main Display Logo"
               fill
               priority
-              className="object-contain rounded-full shadow-lg"
+              className="object-contain rounded-full shadow-lg bg-gray-300"
             />
           </div>
 
@@ -133,22 +127,25 @@ export default function HeroSection() {
                   subtitle: logo.subtitle,
                 })
               }
-              className={`absolute w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 2xl:w-48 2xl:h-48 rounded-full overflow-hidden transition-transform duration-200 hover:scale-110 ${getLogoPositionClasses(
+              className={`absolute cursor-pointer w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 2xl:w-48 2xl:h-48 rounded-full overflow-hidden transition-transform duration-200 hover:scale-110 ${getLogoPositionClasses(
                 logo.position
               )}`}
               aria-label={`Select ${logo.alt}`}
             >
-              <Image src={logo.src} alt={logo.alt} fill className="object-cover" />
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                fill
+                className="object-cover"
+              />
             </button>
           ))}
         </div>
 
         {/* Bottom Center Text (Dynamic) */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-xs md:text-lg 2xl:text-2xl text-center">
-          <p className="font-semibold drop-shadow-md">{selectedLogo.title}</p>
-          <p className="text-xs md:text-base drop-shadow-md">
-            {selectedLogo.subtitle}
-          </p>
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-black text-xs md:text-lg 2xl:text-2xl text-center mb-4">
+          <p className="font-semibold drop-shadow-md">{selectedLogo.title} - {selectedLogo.subtitle}</p>
+          
         </div>
       </div>
     </section>

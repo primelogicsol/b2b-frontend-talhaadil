@@ -52,14 +52,14 @@ export default function RecSquareSection({
       {/* Left Section */}
       <div className="relative w-full lg:w-1/2 flex justify-center items-center p-4 lg:p-0">
         <div className="relative w-full max-w-sm md:max-w-md lg:max-w-[400px] h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl">
-          <div className="absolute inset-0 border-4 border-[#FF6A13] rounded-2xl transform translate-x-4 translate-y-4 z-0"></div>
+          <div className="absolute inset-0 border-4 border-[#FF6A13] rounded-2xl transform z-20 -mt-4"></div>
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group z-10">
             <Image
-              src={mainImage || "/placeholder.svg"}
+              src="/main2.png"
               alt="Main Partnership Image"
-              width={400}
-              height={600}
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+              width={390}
+              height={590}
+              className="absolute inset-0 w-full h-full object-fit transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
             />
             <div className="absolute inset-0 opacity-60 mix-blend-multiply"></div>
           </div>
@@ -67,7 +67,7 @@ export default function RecSquareSection({
 
         <div className="absolute -bottom-8 right-0 md:top-1/2 md:right-0 md:-translate-y-1/2 lg:top-1/2 lg:left-[calc(100%-120px)] lg:-translate-y-1/2 p-2 bg-white rounded-2xl shadow-2xl z-20 w-[200px] h-[150px] md:w-[250px] md:h-[200px] border border-white group">
           <Image
-            src={smallImage || "/placeholder.svg"}
+            src="/main.webp"
             alt="Small Partnership Image"
             width={250}
             height={200}

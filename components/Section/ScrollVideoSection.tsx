@@ -113,7 +113,7 @@ export default function ScrollVideoSection({
                 {introLabel}
               </p>
             </div>
-            <h1 className="text-base md:text-lg lg:text-xl 2xl:text-2xl leading-relaxed">
+            <h1 className="text-base text-md md:text-lg leading-relaxed">
               {heading}
             </h1>
           </div>

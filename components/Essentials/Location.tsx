@@ -18,7 +18,7 @@ const locations = [
   {
     icon: Package,
     title: "Regional USA",
-    location: "USA, CA – Ridgecrest",
+    location: "USA, CA – San Francisco",
   },
   {
     icon: Phone,
@@ -28,7 +28,7 @@ const locations = [
   {
     icon: Warehouse,
     title: "USA Warehouse",
-    location: "Virginia – Front Royal",
+    location: "Allentown, PA",
   },
   {
     icon: Warehouse, // Using Warehouse for India Warehouse too
@@ -48,7 +48,7 @@ const locations = [
   {
     icon: Palette,
     title: "Design Studio",
-    location: "J & K – Srinagar",
+    location: "New York City",
   },
   {
     icon: Camera,
@@ -68,7 +68,7 @@ const achievements = [
 export default function Location() {
   const { is4K } = useGlobalContext()
   return (
-    <section className={`${is4K ? "py-24" : "py-16"} bg-white`}>
+    <section className={`${is4K ? "py-24" : "py-16"} bg-white mt-20`}>
       <div className={`container ${is4K ? "max-w-8xl" : "max-w-6xl"} mx-auto px-4 md:px-6`}>
         <h1
           className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-extrabold text-[#1b4f68] text-center mb-12 leading-tight`}

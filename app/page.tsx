@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import Image from "next/image";
 import Link from "next/link";
-import { UserPlus, CalendarCheck } from "lucide-react"
+import { UserPlus, CalendarCheck } from "lucide-react";
 import {
   DollarSign,
   Globe,
@@ -96,23 +96,30 @@ const partnershipCategories = [
     label: "Core Trade",
     href: "/core-trade",
     summary:
-      "Trade-centric partnerships including dropshipping and distribution.",
+      "Trade-centric partnerships including dropshipping, consignment, distribution and import / export.",
     subItems: [
-      { label: "Drop Shipping & E-Commerce", href: "/core-trade/dropshipping-ecommerce" },
-      { label: "Import & Export", href: "/core-trade/import-export" },
-      { label: "Wholesale & Distribution", href: "/core-trade/wholesale&distribution" },
+      {
+        label: "Drop Shipping & E-Commerce",
+        href: "/core-trade/dropshipping-ecommerce",
+      },
+
       { label: "Consignment", href: "/core-trade/consignment" },
+      {
+        label: "Wholesale & Distribution",
+        href: "/core-trade/wholesale&distribution",
+      },
+      { label: "Import & Export", href: "/core-trade/import-export" },
     ],
   },
   {
     label: "Brand Expansion",
     href: "/brand-growth",
     summary:
-      "Expand reach via exhibitions, white-label, and physical space-sharing.",
+      "Expand reach via exhibitions, auction & bidding , white-label, and US B=based physical brick & mortar.",
     subItems: [
+      { label: "Exhibition", href: "/brand-growth/exhibition" },
       { label: "Auction & Bidding", href: "/brand-growth/auction&bidding" },
       { label: "White-Label", href: "/brand-growth/white-label" },
-      { label: "Exhibition", href: "/brand-growth/exhibition" },
       { label: "Brick & Mortar ", href: "/brand-growth/brick&mortar" },
     ],
   },
@@ -120,11 +127,17 @@ const partnershipCategories = [
     label: "Collaborative",
     href: "/collaborative",
     summary:
-      "Collaboration through design, media, mentorship, and craft innovation.",
+      "Collaboration through packaging, desgin, media and US based warehouse.",
     subItems: [
       { label: "Packaging", href: "/collaborative/packaging" },
-      { label: "Design Collaboration", href: "/collaborative/design-collaboration" },
-      { label: "Storytelling & Media", href: "/collaborative/storytelling&media" },
+      {
+        label: "Design Collaboration",
+        href: "/collaborative/design-collaboration",
+      },
+      {
+        label: "Storytelling & Media",
+        href: "/collaborative/storytelling&media",
+      },
       { label: "Warehouse", href: "/collaborative/warehouse" },
     ],
   },
@@ -132,16 +145,21 @@ const partnershipCategories = [
     label: "Institutional",
     href: "/institutional",
     summary:
-      "Institutional alliances with NGOs, museums, and strategic investors.",
+      "Institutional alliances with logistics, museums, SGD-NGOs / governments and technology innovation.",
     subItems: [
-      { label: "Museum / Institutional", href: "/institutional/museum-institutional" },
-      { label: "Technology Partnership", href: "/institutional/technology-partnership" },
-      { label: "NGO & Government", href: "/institutional/ngo&government" },
       { label: "Logistics", href: "/institutional/logistics" },
+      {
+        label: "Museum / Institutional",
+        href: "/institutional/museum-institutional",
+      },
+      { label: "NGO & Government", href: "/institutional/ngo&government" },
+      {
+        label: "Technology Partnership",
+        href: "/institutional/technology-partnership",
+      },
     ],
   },
 ];
-
 
 const whatSetsUsApartCards = [
   {
@@ -175,7 +193,6 @@ const whatSetsUsApartCards = [
       "A dedicated group of skilled professionals working together to deliver excellence and innovation every day.",
     buttonText: "READ MORE",
     link: "/our-team",
-
   },
 ];
 
@@ -186,7 +203,6 @@ export default function LandingPage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
-
 
   const scrollFeatures = [
     {
@@ -318,7 +334,9 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
       <BannerWithFeatures />
-      <Homepage />
+      <div className="-mt-50">
+        <Homepage />
+      </div>
 
       {/* About Us Sections */}
       <section
@@ -331,130 +349,129 @@ export default function LandingPage() {
       <ScrollSection features={scrollFeatures} />
       {/* Partnerships Section */}
 
- {/* Partnerships Section */}
-<section
-  className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
-    is4K ? "py-28 px-20" : "py-16 px-4"
-  }`}
->
-  <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
-    {/* Header */}
-    <motion.div
-      className="text-center mb-16 flex flex-col items-center gap-6"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-      viewport={{ once: true }}
-    >
-      <img
-        src="/images/main-page-image.png"
-        alt="De Koshur Crafts Logo"
-        className={`${is4K ? "w-[300px]" : "w-40"} h-auto`}
-      />
-      <h2
-        className={`${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl"
-        } font-bold text-white`}
+      {/* Partnerships Section */}
+      <section
+        className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
+          is4K ? "py-28 px-20" : "py-16 px-4"
+        }`}
       >
-        Tailored for Your Success
-      </h2>
-      <h3
-        className={`${
-          is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
-        } text-white font-semibold`}
-      >
-        Buyer Progressive Partnership Framework and Pathway
-      </h3>
-    </motion.div>
-
-    {/* Grid */}
-    <div className={`grid md:grid-cols-2 ${is4K ? "gap-14" : "gap-8"}`}>
-      {partnershipCategories.map((category, index) => {
-        const ref = useRef(null);
-        const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-        return (
+        <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
+          {/* Header */}
           <motion.div
-            key={index}
-            ref={ref}
-            className={`bg-gray-800 ${
-              is4K ? "p-14" : "p-8"
-            } rounded-lg border border-gray-700 hover:border-[var(--secondary-color)] transition-all duration-300`}
+            className="text-center mb-16 flex flex-col items-center gap-6"
             initial={{ opacity: 0, y: 50 }}
-            animate={
-              isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-            }
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            whileHover={{ scale: 1.02 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            viewport={{ once: true }}
           >
-            {/* Category Title */}
+            <img
+              src="/images/main-page-image.png"
+              alt="De Koshur Crafts Logo"
+              className={`${is4K ? "w-[300px]" : "w-120"} h-auto`}
+            />
+            <h2
+              className={`${
+                is4K ? "text-6xl" : "text-3xl md:text-4xl"
+              } font-bold text-white`}
+            >
+              Tailored for Your Success
+            </h2>
             <h3
               className={`${
-                is4K ? "text-4xl" : "text-2xl"
-              } font-bold text-white mb-4`}
+                is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
+              } text-white font-semibold -mt-2`}
             >
-              {category.label}
+              Buyer / Vendor Progressive Partnership Framework and Pathway
             </h3>
-
-            {/* Summary */}
-            <p
-              className={`${
-                is4K ? "text-xl" : "text-lg"
-              } text-gray-300 mb-6`}
-            >
-              {category.summary}
-            </p>
-
-            {/* Subitems */}
-            <ul className="space-y-3 mb-8">
-              {category.subItems.map((item, itemIndex) => (
-                <motion.li
-                  key={itemIndex}
-                  className="flex items-center gap-3 text-gray-400"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={
-                    isInView
-                      ? { opacity: 1, x: 0 }
-                      : { opacity: 0, x: -20 }
-                  }
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1 + itemIndex * 0.05,
-                  }}
-                >
-                  <CheckCircle
-                    size={is4K ? 28 : 20}
-                    className="text-[var(--secondary-color)] flex-shrink-0"
-                  />
-                  <Link
-                    href={item.href}
-                    className={`${
-                      is4K ? "text-lg" : "text-base"
-                    } hover:text-white transition-colors duration-200`}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-
-            {/* Read More Button */}
-            <Link
-              href={category.href}
-              className={`inline-flex items-center gap-2 ${
-                is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
-              } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--secondary-hover-color)] transition-colors duration-300`}
-            >
-              Read More
-              <ArrowRight size={is4K ? 28 : 20} />
-            </Link>
           </motion.div>
-        );
-      })}
-    </div>
-  </div>
-</section>
 
+          {/* Grid */}
+          <div className={`grid md:grid-cols-2 ${is4K ? "gap-14" : "gap-8"}`}>
+            {partnershipCategories.map((category, index) => {
+              const ref = useRef(null);
+              const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+              return (
+                <motion.div
+                  key={index}
+                  ref={ref}
+                  className={`bg-gray-800 ${
+                    is4K ? "p-14" : "p-8"
+                  } rounded-lg border border-gray-700 hover:border-[var(--secondary-color)] transition-all duration-300`}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                  }
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* Category Title */}
+                  <h3
+                    className={`${
+                      is4K ? "text-4xl" : "text-2xl"
+                    } font-bold text-white mb-4`}
+                  >
+                    {category.label}
+                  </h3>
+
+                  {/* Summary */}
+                  <p
+                    className={`${
+                      is4K ? "text-xl" : "text-lg"
+                    } text-gray-300 mb-6`}
+                  >
+                    {category.summary}
+                  </p>
+
+                  {/* Subitems */}
+                  <ul className="space-y-3 mb-8">
+                    {category.subItems.map((item, itemIndex) => (
+                      <motion.li
+                        key={itemIndex}
+                        className="flex items-center gap-3 text-gray-400"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: -20 }
+                        }
+                        transition={{
+                          duration: 0.4,
+                          delay: index * 0.1 + itemIndex * 0.05,
+                        }}
+                      >
+                        <CheckCircle
+                          size={is4K ? 28 : 20}
+                          className="text-[var(--secondary-color)] flex-shrink-0"
+                        />
+                        <Link
+                          href={item.href}
+                          className={`${
+                            is4K ? "text-lg" : "text-base"
+                          } hover:text-white transition-colors duration-200`}
+                        >
+                          {item.label}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  {/* Read More Button */}
+                  <Link
+                    href={category.href}
+                    className={`inline-flex items-center gap-2 ${
+                      is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
+                    } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--secondary-hover-color)] transition-colors duration-300`}
+                  >
+                    Read More
+                    <ArrowRight size={is4K ? 28 : 20} />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Process Section */}
       <RecSquareSection />
@@ -530,67 +547,68 @@ export default function LandingPage() {
       <FlagSection />
       <Location />
 
-            {/* New Banner Section */}
-            <section
-      className="w-full py-16 md:py-24 lg:py-18 text-white"
-      style={{
-        background: "var(--primary-hover-color)",
-      }}
-    >
-      <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center gap-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-          Unlock Your Potential: Join Our Community!
-        </h2>
-        <p className="max-w-3xl text-lg md:text-xl lg:text-2xl opacity-90">
-          Discover a world of opportunities. Whether you're looking to connect with like-minded individuals or seeking
-          expert guidance, we're here to help you thrive.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-          {/* Registration Card/Block */}
-          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
-            <UserPlus className="h-12 w-12 text-white mb-4" />
-            <h3 className="text-2xl font-bold mb-2">Become a Member</h3>
-            <p className="text-base opacity-80 mb-6">
-              Access exclusive content, connect with experts, and grow your skills within our vibrant community.
-            </p>
-            <Link href="/registration" className="w-full">
-              <button
-                className="w-full bg-white rounded-lg font-semibold transition-colors duration-300 px-8 py-4 text-lg shadow-md hover:shadow-xl"
-                style={{
-                  color: "var(--primary-color)",
-                  backgroundColor: "white",
-                 // For focus ring if needed
-                }}
-              >
-                Register Now
-              </button>
-            </Link>
-          </div>
+      {/* New Banner Section */}
+      <section
+        className="w-full py-16 md:py-24 lg:py-18 text-white"
+        style={{
+          background: "var(--primary-hover-color)",
+        }}
+      >
+        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center gap-8">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            Unlock Your Potential: Join Our Community!
+          </h2>
+          <p className="max-w-3xl text-lg md:text-xl lg:text-2xl opacity-90">
+            Discover a world of opportunities. Whether you're looking to connect
+            with like-minded individuals or seeking expert guidance, we're here
+            to help you thrive.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+            {/* Registration Card/Block */}
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
+              <UserPlus className="h-12 w-12 text-white mb-4" />
+              <h3 className="text-2xl font-bold mb-2">Become a Member</h3>
+              <p className="text-base opacity-80 mb-6">
+                Access exclusive content, connect with experts, and grow your
+                skills within our vibrant community.
+              </p>
+              <Link href="/registration" className="w-full">
+                <button
+                  className="w-full bg-white rounded-lg font-semibold transition-colors duration-300 px-8 py-4 text-lg shadow-md hover:shadow-xl"
+                  style={{
+                    color: "var(--primary-color)",
+                    backgroundColor: "white",
+                    // For focus ring if needed
+                  }}
+                >
+                  Register Now
+                </button>
+              </Link>
+            </div>
 
-          {/* Book Appointment Card/Block */}
-          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
-            <CalendarCheck className="h-12 w-12 text-white mb-4" />
-            <h3 className="text-2xl font-bold mb-2">Book an Appointment</h3>
-            <p className="text-base opacity-80 mb-6">
-              Schedule a personalized session with our specialists to get tailored advice and support for your needs.
-            </p>
-            <Link href="/appointment" className="w-full">
-              <button
-                className="w-full bg-white rounded-lg font-semibold transition-colors duration-300 px-8 py-4 text-lg shadow-md hover:shadow-xl"
-                style={{
-                  color: "var(--primary-color)",
-                  backgroundColor: "white",
-                
-                }}
-              >
-                Schedule a Call
-              </button>
-            </Link>
+            {/* Book Appointment Card/Block */}
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
+              <CalendarCheck className="h-12 w-12 text-white mb-4" />
+              <h3 className="text-2xl font-bold mb-2">Book an Appointment</h3>
+              <p className="text-base opacity-80 mb-6">
+                Schedule a personalized session with our specialists to get
+                tailored advice and support for your needs.
+              </p>
+              <Link href="/appointment" className="w-full">
+                <button
+                  className="w-full bg-white rounded-lg font-semibold transition-colors duration-300 px-8 py-4 text-lg shadow-md hover:shadow-xl"
+                  style={{
+                    color: "var(--primary-color)",
+                    backgroundColor: "white",
+                  }}
+                >
+                  Schedule a Call
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
+      </section>
     </div>
   );
 }
