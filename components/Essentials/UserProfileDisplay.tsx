@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation"
 import { useAuthentication } from "@/context/AuthenticationWrapper"
 import Cookies from "js-cookie"
 import { Lock } from "lucide-react"
-export function UserProfileDisplay({ userName, userAvatarSrc }: {
+import { User2 } from "lucide-react"
+export function UserProfileDisplay({ userName, userAvatarSrc,role }: {
   userName: string,
   userAvatarSrc: string
+role: string
 }) {
   const [open, setOpen] = useState(false)
   const [isRegistered, setIsRegistered] = useState<boolean | null>(null)
@@ -38,18 +40,17 @@ export function UserProfileDisplay({ userName, userAvatarSrc }: {
         whileTap={{ scale: 0.95 }}
         aria-label={`View profile for ${userName}`}
       >
-        <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[var(--secondary-hover-color)] transition-colors duration-300">
-          <Image
-            src={userAvatarSrc || "/images/testpic.avif"}
-            alt={`${userName}'s profile picture`}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
-          />
+        <div className="h-8 w-8 rounded-full bg-[var(--secondary-color)] flex items-center justify-center shadow-sm">
+          <User2 className="text-white text-sm"></User2>
         </div>
+        <div className="flex flex-col items-start">
         <span className="text-white text-md font-medium group-hover:text-[var(--secondary-hover-color)] transition-colors duration-300 hidden md:inline">
           {userName}
         </span>
+        <span className="text-white text-xs font-medium group-hover:text-[var(--secondary-hover-color)] transition-colors duration-300 hidden md:inline">
+          {role}
+        </span>
+        </div>
       </motion.button>
 
       <AnimatePresence>

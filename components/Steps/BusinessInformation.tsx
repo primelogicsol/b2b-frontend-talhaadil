@@ -844,23 +844,45 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <ErrorMessage error={errors["businessInfo.website"]} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Annual Turnover</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Annual Turnover
+              </label>
               <select
                 value={formData.businessInfo.annualTurnover}
-                onChange={(e) => handleBusinessInfoChange("annualTurnover", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange("annualTurnover", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
               >
                 <option value="">Select annual turnover</option>
-                <option value="below-1-lakh">Below ₹1 Lakh</option>
-                <option value="1-5-lakh">₹1 - 5 Lakh</option>
-                <option value="5-10-lakh">₹5 - 10 Lakh</option>
-                <option value="10-25-lakh">₹10 - 25 Lakh</option>
-                <option value="25-50-lakh">₹25 - 50 Lakh</option>
-                <option value="50-1-crore">₹50 Lakh - 1 Crore</option>
-                <option value="1-5-crore">₹1 - 5 Crore</option>
-                <option value="above-5-crore">Above ₹5 Crore</option>
+
+                {userRole === "buyer" ? (
+                  <>
+                    <option value="below-20k">Below $20k</option>
+                    <option value="20k-100k">$20k - $100k</option>
+                    <option value="100k-200k">$100k - $200k</option>
+                    <option value="200k-500k">$200k - $500k</option>
+                    <option value="500k-1m">$500k - $1M</option>
+                    <option value="1m-5m">$1M - $5M</option>
+                    <option value="above-5m">Above $5M</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="below-1-lakh">Below ₹1 Lakh</option>
+                    <option value="1-5-lakh">₹1 - 5 Lakh</option>
+                    <option value="5-10-lakh">₹5 - 10 Lakh</option>
+                    <option value="10-25-lakh">₹10 - 25 Lakh</option>
+                    <option value="25-50-lakh">₹25 - 50 Lakh</option>
+                    <option value="50-1-crore">₹50 Lakh - 1 Crore</option>
+                    <option value="1-5-crore">₹1 - 5 Crore</option>
+                    <option value="above-5-crore">Above ₹5 Crore</option>
+                  </>
+                )}
               </select>
             </div>
+
+
+
           </div>
 
           {/* Tax & Registration Information */}

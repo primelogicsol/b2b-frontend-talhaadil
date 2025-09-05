@@ -11,6 +11,7 @@ import { UserProfileDisplay } from "./UserProfileDisplay"
 import Cookies from "js-cookie"
 import { useAuthentication } from "@/context/AuthenticationWrapper"
 import Image from "next/image"
+import { getUserProfile } from "@/services/admin"
 
 function LockTooltip({
   children,
@@ -373,6 +374,7 @@ export function Navbar() {
   const [showRegistrationTooltip, setShowRegistrationTooltip] = useState(false)
   const [showMobileProcessTooltip, setShowMobileProcessTooltip] = useState(false)
   const [showMobileRegistrationTooltip, setShowMobileRegistrationTooltip] = useState(false)
+  const [userName, setUserName] = useState("John Doe")
 
   const { handleLogout } = useAuthentication()
   const router = useRouter()
@@ -380,14 +382,30 @@ export function Navbar() {
   console.log(user_role)
 
   useEffect(() => {
-    const token = Cookies.get("access_token")
-    if (token) {
-      setIsSignedIn(true)
-    } else {
-      setIsSignedIn(true)
-    }
-    console.log(isSignedIn)
-  }, [])
+    const fetchUser = async () => {
+      try {
+        const token = Cookies.get("access_token");
+        let userName = "John Doe";
+
+        const userProfile = await getUserProfile();
+        if (userProfile?.data?.username) {
+          userName = userProfile.data.username;
+        }
+
+
+        setUserName(userName);
+        setIsSignedIn(!!token);
+
+        console.log("isSignedIn:", !!token);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+        setUserName("John Doe");
+        setIsSignedIn(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const blogDropdownItems: NestedDropdownItem[] = [
     {
@@ -525,17 +543,17 @@ export function Navbar() {
 
             <Image src="/B2B-logo.png" alt="Dekoshur Crafts" width={isScrolled ? 32 : 48} height={isScrolled ? 28 : 48} />
             <div className="flex flex-col">
-            <span
-              className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"}`}
-            >
-              B2B Connect
-            </span>
-            <span
-              className={`text-[var(--secondary-color)] font-bold transition-all duration-500 ${isScrolled ? "text-xs md:text-sm" : "text-xs md:text-sm"}`}
-            >
-              De Koshur Crafts
-              <span className="text-xs"> - USA</span>
-            </span>
+              <span
+                className={`text-white font-bold transition-all duration-500 ${isScrolled ? "text-md md:text-2xl" : "text-xl md:text-3xl"}`}
+              >
+                B2B Connect
+              </span>
+              <span
+                className={`text-[var(--secondary-color)] font-bold transition-all duration-500 ${isScrolled ? "text-xs md:text-sm" : "text-xs md:text-sm"}`}
+              >
+                De Koshur Crafts
+                <span className="text-xs"> - USA</span>
+              </span>
             </div>
           </Link>
 
@@ -608,7 +626,8 @@ export function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             {isSignedIn ? (
               <UserProfileDisplay
-                userName="John Doe"
+                role={user_role ?? ""}
+                userName={userName}
                 userAvatarSrc="/placeholder.svg?height=120&width=120"
               />
             ) : (

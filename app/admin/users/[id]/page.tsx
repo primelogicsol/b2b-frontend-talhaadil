@@ -1,9 +1,8 @@
+"use client";
 
-"use client"
-
-import { useState, useEffect } from "react"
-import { useParams } from "next/navigation"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import {
   ArrowLeft,
   Mail,
@@ -21,178 +20,247 @@ import {
   Check,
   X,
   Package,
-} from "lucide-react"
-import { getUserInfo, approveRegistration } from "@/services/admin"
-import { get_product_by_user_id } from "@/services/admin"
+} from "lucide-react";
+import { getUserInfo, approveRegistration } from "@/services/admin";
+import { get_product_by_user_id } from "@/services/admin";
 
+// Interface definitions remain the same
 interface RegistrationInfo {
-  business_name: string
-  business_legal_structure: string
-  business_type: string
-  year_established: number
-  business_registration_number: string
-  brand_affiliations: string
-  website: string
-  annual_turnover: string
-  gst_number: string
-  tax_identification_number: string
-  import_export_code: string
-  street_address_1: string
-  street_address_2: string
-  city: string
-  state_region: string
-  postal_code: string
-  country: string
-  contact_person_name: string
-  contact_email: string
-  contact_phone: string
-  contact_whatsapp: string
-  contact_district: string
-  contact_pin_code: string
-  contact_state: string
-  contact_country: string
-  material_standard: number
-  quality_level: number
-  sustainability_level: number
-  service_level: number
-  standards_level: number
-  ethics_level: number
-  certifications: string[]
-  bank_name: string
-  account_name: string
-  account_type: string
-  account_number: string
-  ifsc_code: string
-  swift_bis_code: string
-  iban_code: string
-  kyc_challenges: boolean
-  gst_compliance_issues: boolean
-  fema_payment_issues: boolean
-  digital_banking_issues: boolean
-  fraud_cybersecurity_issues: boolean
-  payment_gateway_compliance_issues: boolean
-  account_activity_issues: boolean
-  regulatory_actions: boolean
+  business_name: string;
+  business_legal_structure: string;
+  business_type: string;
+  year_established: number;
+  business_registration_number: string;
+  brand_affiliations: string;
+  website: string;
+  annual_turnover: string;
+  gst_number: string;
+  tax_identification_number: string;
+  import_export_code: string;
+  street_address_1: string;
+  street_address_2: string;
+  city: string;
+  state_region: string;
+  postal_code: string;
+  country: string;
+  contact_person_name: string;
+  contact_email: string;
+  contact_phone: string;
+  contact_whatsapp: string;
+  contact_district: string;
+  contact_pin_code: string;
+  contact_state: string;
+  contact_country: string;
+  material_standard: number;
+  quality_level: number;
+  sustainability_level: number;
+  service_level: number;
+  standards_level: number;
+  ethics_level: number;
+  certifications: string[];
+  bank_name: string;
+  account_name: string;
+  account_type: string;
+  account_number: string;
+  ifsc_code: string;
+  swift_bis_code: string;
+  iban_code: string;
+  kyc_challenges: boolean;
+  gst_compliance_issues: boolean;
+  fema_payment_issues: boolean;
+  digital_banking_issues: boolean;
+  fraud_cybersecurity_issues: boolean;
+  payment_gateway_compliance_issues: boolean;
+  account_activity_issues: boolean;
+  regulatory_actions: boolean;
 }
 
 interface ProductData {
-  categoryId: string
-  categoryName: string
-  subcategoryId: string
-  subcategoryName: string
+  categoryId: string;
+  categoryName: string;
+  subcategoryId: string;
+  subcategoryName: string;
   specifications: {
-    quality: string[]
-    Dye_Types: string[]
-    logistics: string[]
-    packaging: string[]
-    Color_Shades: string[]
-    material_type: string[]
-    Embellishments: string[]
-    Product_Line_Size: string[]
-    Production_Process: string[]
-    Design_Pattern_Types: string[]
-    Product_Certifications: string[]
-    vendor_able_to_handle_product_labeling: string[]
-    vendor_able_to_handle_following_services_on_DKC_platform: string[]
-    do_vendor_have_real_time_inventory_management_api_and_integration: string[]
-  }
+    quality: string[];
+    Dye_Types: string[];
+    logistics: string[];
+    packaging: string[];
+    Color_Shades: string[];
+    material_type: string[];
+    Embellishments: string[];
+    Product_Line_Size: string[];
+    Production_Process: string[];
+    Design_Pattern_Types: string[];
+    Product_Certifications: string[];
+    vendor_able_to_handle_product_labeling: string[];
+    vendor_able_to_handle_following_services_on_DKC_platform: string[];
+    do_vendor_have_real_time_inventory_management_api_and_integration: string[];
+  };
 }
 
+// Role-based label mappings
+const roleLabelMappings: {
+  [key: string]: { vendor: string; buyer: string };
+} = {
+  gst_number: {
+    vendor: "GST Number",
+    buyer: "State Sales Tax Permit Number",
+  },
+  tax_identification_number: {
+    vendor: "Tax Identification Number",
+    buyer: "EIN (Employee Identification Number)",
+  },
+  import_export_code: {
+    vendor: "Import Export Code",
+    buyer: "US Import Exporter",
+  },
+  bank_name: { vendor: "Bank Name", buyer: "Bank Name" },
+  account_name: { vendor: "Account Name", buyer: "Account Name" },
+  account_type: { vendor: "Account Type", buyer: "Account Type" },
+  account_number: { vendor: "Account Number", buyer: "Account Number" },
+  ifsc_code: { vendor: "IFSC Code", buyer: "ABA Routing Number" },
+  swift_bis_code: { vendor: "SWIFT Code", buyer: "SWIFT Code" },
+  iban_code: { vendor: "IBAN Code", buyer: "IBAN Code" },
+  kyc_challenges: {
+    vendor: "Have you faced challenges with KYC regulations recently?",
+    buyer: "Customer Identification Program (CIP)",
+  },
+  gst_compliance_issues: {
+    vendor: "Any issues with GST compliance in transactions?",
+    buyer: "Sales Tax Compliance",
+  },
+  fema_payment_issues: {
+    vendor: "Difficulties with FEMA for international payments recently?",
+    buyer: "OFAC & FinCEN Cross-Border Payment Rules",
+  },
+  digital_banking_issues: {
+    vendor: "Have digital banking regulations impacted your operations?",
+    buyer: "Federal Reserve, OCC, FDIC, CFPB Banking Regulations",
+  },
+  payment_gateway_compliance_issues: {
+    vendor: "Challenges with payment gateway compliance or security regulations?",
+    buyer: "PCI-DSS Compliance",
+  },
+  fraud_cybersecurity_issues: {
+    vendor: "Encountered any fraud or cybersecurity issues recently?",
+    buyer: "Fraud / Cybersecurity Issues",
+  },
+  account_activity_issues: {
+    vendor: "Any account activity issues or fraudulent claims made?",
+    buyer: "Any account activity issues or fraudulent claims made?",
+  },
+  regulatory_actions: {
+    vendor: "Have regulatory actions been taken against your account?",
+    buyer: "Regulatory Actions",
+  },
+};
 
+// Utility function to format field names for fallback
+const formatFieldName = (field: string): string => {
+  return field
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
 
 export default function RegistrationInfoPage() {
-  const params = useParams()
-  const [registrationInfo, setRegistrationInfo] = useState<RegistrationInfo | null>(null)
-  const [productData, setProductData] = useState<ProductData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [register, setRegister] = useState<string | null>(null)
-  const [docVerified, setDocVerified] = useState<string | null>(null)
+  const params = useParams();
+  const [registrationInfo, setRegistrationInfo] = useState<RegistrationInfo | null>(null);
+  const [productData, setProductData] = useState<ProductData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [register, setRegister] = useState<string | null>(null);
+  const [docVerified, setDocVerified] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor"); 
+  
+  // Assuming default as vendor
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = Array.isArray(params.id) ? params.id[0] : params.id
+        const userId = Array.isArray(params.id) ? params.id[0] : params.id;
 
         if (!userId || typeof userId !== "string") {
-          throw new Error("Invalid user ID")
+          throw new Error("Invalid user ID");
         }
 
-        const [id, isRegistered, docVerified] = userId.split("-")
-        setRegister(isRegistered)
-        setDocVerified(docVerified)
+        const [id, isRegistered, docVerified, role] = userId.split("-");
+        setRegister(isRegistered);
+        setDocVerified(docVerified);
+        if (role === "vendor" || role === "buyer") {
+          setUserRole(role);
+        }
 
         const [userResponse, productResponse] = await Promise.all([
           getUserInfo(id),
-          get_product_by_user_id(parseInt(id))
-        ])
-        setRegistrationInfo(userResponse.data)
-        setProductData(productResponse.data.product_data)
-        console.log(productResponse.data)
-        console.log(userResponse.data)
-      
+          get_product_by_user_id(parseInt(id)),
+        ]);
+        setRegistrationInfo(userResponse.data);
+        setProductData(productResponse.data.product_data);
+        console.log(productResponse.data);
+        console.log(userResponse.data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred")
-        console.log(err)
+        setError(err instanceof Error ? err.message : "An error occurred");
+        console.log(err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
     if (params.id) {
-      fetchData()
+      fetchData();
     }
-  }, [params.id])
+  }, [params.id]);
 
   const handleApprove = async () => {
     try {
-      const userId = Array.isArray(params.id) ? params.id[0] : params.id
+      const userId = Array.isArray(params.id) ? params.id[0] : params.id;
       if (!userId || typeof userId !== "string") {
-        throw new Error("Invalid user ID")
+        throw new Error("Invalid user ID");
       }
-      const [id] = userId.split("-")
+      const [id] = userId.split("-");
       const response = await approveRegistration(id, {
         status: "APPROVED",
         remarks: "Approved by admin",
-      })
-      setRegister("APPROVED")
-      console.log(response.data)
-      window.location.href = "/admin/users"
+      });
+      setRegister("APPROVED");
+      console.log(response.data);
+      window.location.href = "/admin/users";
     } catch (err) {
-      console.log(err)
-      setError(err instanceof Error ? err.message : "Failed to approve user")
+      console.log(err);
+      setError(err instanceof Error ? err.message : "Failed to approve user");
     }
-  }
+  };
 
   const handleReject = async () => {
     try {
-      const userId = Array.isArray(params.id) ? params.id[0] : params.id
+      const userId = Array.isArray(params.id) ? params.id[0] : params.id;
       if (!userId || typeof userId !== "string") {
-        throw new Error("Invalid user ID")
+        throw new Error("Invalid user ID");
       }
-      const [id] = userId.split("-")
+      const [id] = userId.split("-");
       await approveRegistration(id, {
         status: "REJECTED",
         remarks: "Rejected by admin",
-      })
-      window.location.href = "/admin/users"
-      setRegister("REJECTED")
+      });
+      window.location.href = "/admin/users";
+      setRegister("REJECTED");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to reject user")
+      setError(err instanceof Error ? err.message : "Failed to reject user");
     }
-  }
+  };
 
   const getScoreColor = (score: number) => {
-    if (score >= 4) return "text-green-600"
-    if (score >= 3) return "text-yellow-600"
-    return "text-red-600"
-  }
+    if (score >= 4) return "text-green-600";
+    if (score >= 3) return "text-yellow-600";
+    return "text-red-600";
+  };
 
   const getScoreBarColor = (score: number) => {
-    if (score >= 4) return "bg-green-600"
-    if (score >= 3) return "bg-yellow-600"
-    return "bg-red-600"
-  }
+    if (score >= 4) return "bg-green-600";
+    if (score >= 3) return "bg-yellow-600";
+    return "bg-red-600";
+  };
 
   const credibilityScores = {
     "Material Standard": registrationInfo?.material_standard ?? 0,
@@ -201,25 +269,30 @@ export default function RegistrationInfoPage() {
     "Service Level": registrationInfo?.service_level ?? 0,
     "Standards Level": registrationInfo?.standards_level ?? 0,
     "Ethics Level": registrationInfo?.ethics_level ?? 0,
-  }
+  };
 
   const complianceIssues = {
-    "KYC Challenges": registrationInfo?.kyc_challenges ?? false,
-    "GST Compliance Issues": registrationInfo?.gst_compliance_issues ?? false,
-    "FEMA Payment Issues": registrationInfo?.fema_payment_issues ?? false,
-    "Digital Banking Issues": registrationInfo?.digital_banking_issues ?? false,
-    "Fraud/Cybersecurity Issues": registrationInfo?.fraud_cybersecurity_issues ?? false,
-    "Payment Gateway Compliance Issues": registrationInfo?.payment_gateway_compliance_issues ?? false,
-    "Account Activity Issues": registrationInfo?.account_activity_issues ?? false,
-    "Regulatory Actions": registrationInfo?.regulatory_actions ?? false,
-  }
+    kyc_challenges: registrationInfo?.kyc_challenges ?? false,
+    gst_compliance_issues: registrationInfo?.gst_compliance_issues ?? false,
+    fema_payment_issues: registrationInfo?.fema_payment_issues ?? false,
+    digital_banking_issues: registrationInfo?.digital_banking_issues ?? false,
+    fraud_cybersecurity_issues: registrationInfo?.fraud_cybersecurity_issues ?? false,
+    payment_gateway_compliance_issues: registrationInfo?.payment_gateway_compliance_issues ?? false,
+    account_activity_issues: registrationInfo?.account_activity_issues ?? false,
+    regulatory_actions: registrationInfo?.regulatory_actions ?? false,
+  };
+
+  // Function to get label based on role
+  const getLabel = (field: string): string => {
+    return roleLabelMappings[field]?.[userRole] || formatFieldName(field);
+  };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
       </div>
-    )
+    );
   }
 
   if (error || !registrationInfo) {
@@ -240,13 +313,13 @@ export default function RegistrationInfoPage() {
           Back to Users
         </Link>
       </div>
-    )
+    );
   }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="space-y-8">
-        {/* Header */}
+        {/* Header (unchanged) */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link
@@ -327,50 +400,50 @@ export default function RegistrationInfoPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Business Name</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("business_name")}</label>
                   <p className="text-sm text-slate-900 font-medium">{registrationInfo.business_name}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Business Type</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("business_type")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.business_type}</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Legal Structure</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("business_legal_structure")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.business_legal_structure}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Registration Number</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("business_registration_number")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.business_registration_number}</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Year Established</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("year_established")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.year_established}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Annual Turnover</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("annual_turnover")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.annual_turnover}</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-slate-600">GST Number</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("gst_number")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.gst_number}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-slate-600">Tax Identification Number</label>
+                  <label className="text-sm font-medium text-slate-600">{getLabel("tax_identification_number")}</label>
                   <p className="text-sm text-slate-900">{registrationInfo.tax_identification_number}</p>
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">Import/Export Code</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("import_export_code")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.import_export_code}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">Brand Affiliations</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("brand_affiliations")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.brand_affiliations}</p>
               </div>
               <div className="pt-4 border-t border-slate-200">
@@ -403,7 +476,7 @@ export default function RegistrationInfoPage() {
             </div>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact Information (unchanged) */}
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
@@ -462,42 +535,42 @@ export default function RegistrationInfoPage() {
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-slate-600">Bank Name</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("bank_name")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.bank_name}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">Account Name</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("account_name")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.account_name}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-slate-600">Account Type</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("account_type")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.account_type}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">Account Number</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("account_number")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.account_number}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-slate-600">IFSC Code</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("ifsc_code")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.ifsc_code}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">SWIFT/BIS Code</label>
+                <label className="text-sm font-medium text-slate-600">{getLabel("swift_bis_code")}</label>
                 <p className="text-sm text-slate-900">{registrationInfo.swift_bis_code}</p>
               </div>
             </div>
             <div>
-              <label className="text-sm font-medium text-slate-600">IBAN Code</label>
+              <label className="text-sm font-medium text-slate-600">{getLabel("iban_code")}</label>
               <p className="text-sm text-slate-900">{registrationInfo.iban_code}</p>
             </div>
           </div>
         </div>
 
-        {/* Credibility Assessment */}
+        {/* Credibility Assessment (unchanged) */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
           <div className="flex items-center space-x-3 mb-6">
             <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
@@ -550,7 +623,7 @@ export default function RegistrationInfoPage() {
             <div className="space-y-3">
               {Object.entries(complianceIssues).map(([key, value]) => (
                 <div key={key} className="flex items-center justify-between">
-                  <span className="text-sm text-slate-700">{key}</span>
+                  <span className="text-sm text-slate-700">{getLabel(key)}</span>
                   {value ? (
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                   ) : (
@@ -562,7 +635,7 @@ export default function RegistrationInfoPage() {
           </div>
         </div>
 
-        {/* Product Information */}
+        {/* Product Information (unchanged) */}
         {productData && (
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
@@ -575,11 +648,11 @@ export default function RegistrationInfoPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium text-slate-600">Category</label>
-                  <p className="text-sm text-slate-900">{productData.categoryName} </p>
+                  <p className="text-sm text-slate-900">{productData.categoryName}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-slate-600">Subcategory</label>
-                  <p className="text-sm text-slate-900">{productData.subcategoryName} </p>
+                  <p className="text-sm text-slate-900">{productData.subcategoryName}</p>
                 </div>
               </div>
               <div className="pt-4 border-t border-slate-200">
@@ -604,5 +677,5 @@ export default function RegistrationInfoPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

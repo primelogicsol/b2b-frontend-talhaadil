@@ -1,20 +1,97 @@
-"use client"
-import { getUserInfo } from "@/services/regitsration"
-import { get_product_by_user_id } from "@/services/user"// Added import for the new API
-import { useState, useEffect } from "react"
-import { updateProfile } from "@/services/admin"
-import { User, Building, CreditCard, Shield, Edit3, Save, X, Check, AlertTriangle, Loader2, Package } from "lucide-react"
+"use client";
 
-export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // Assuming user_id is passed as a prop
-  const [editingSection, setEditingSection] = useState<string | null>(null)
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [saveSuccess, setSaveSuccess] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [productData, setProductData] = useState<any>(null) // State for product data
-  const [productError, setProductError] = useState<string | null>(null) // Error state for product fetch
+import { getUserInfo } from "@/services/regitsration";
+import { get_product_by_user_id } from "@/services/user";
+import { useState, useEffect } from "react";
+import { updateProfile } from "@/services/admin";
+import Cookies from "js-cookie";
+import {
+  User,
+  Building,
+  CreditCard,
+  Shield,
+  Edit3,
+  Save,
+  X,
+  Check,
+  AlertTriangle,
+  Loader2,
+  Package,
+} from "lucide-react";
 
-  // Mock data based on API payload structure
+// Role-based label mappings
+const roleLabelMappings = {
+  gst_number: {
+    vendor: "GST Number",
+    buyer: "State Sales Tax Permit Number",
+  },
+  tax_identification_number: {
+    vendor: "Tax Identification Number",
+    buyer: "EIN (Employee Identification Number)",
+  },
+  import_export_code: {
+    vendor: "Import Export Code",
+    buyer: "US Import Exporter",
+  },
+  bank_name: { vendor: "Bank Name", buyer: "Bank Name" },
+  account_name: { vendor: "Account Name", buyer: "Account Name" },
+  account_type: { vendor: "Account Type", buyer: "Account Type" },
+  account_number: { vendor: "Account Number", buyer: "Account Number" },
+  ifsc_code: { vendor: "IFSC Code", buyer: "ABA Routing Number" },
+  swift_bis_code: { vendor: "SWIFT Code", buyer: "SWIFT Code" },
+  iban_code: { vendor: "IBAN Code", buyer: "IBAN Code" },
+  kyc_challenges: {
+    vendor: "Have you faced challenges with KYC regulations recently?",
+    buyer: "Customer Identification Program (CIP)",
+  },
+  gst_compliance_issues: {
+    vendor: "Any issues with GST compliance in transactions?",
+    buyer: "Sales Tax Compliance",
+  },
+  fema_payment_issues: {
+    vendor: "Difficulties with FEMA for international payments recently?",
+    buyer: "OFAC & FinCEN Cross-Border Payment Rules",
+  },
+  digital_banking_issues: {
+    vendor: "Have digital banking regulations impacted your operations?",
+    buyer: "Federal Reserve, OCC, FDIC, CFPB Banking Regulations",
+  },
+  payment_gateway_compliance_issues: {
+    vendor: "Challenges with payment gateway compliance or security regulations?",
+    buyer: "PCI-DSS Compliance",
+  },
+  fraud_cybersecurity_issues: {
+    vendor: "Encountered any fraud or cybersecurity issues recently?",
+    buyer: "Fraud / Cybersecurity Issues",
+  },
+  account_activity_issues: {
+    vendor: "Any account activity issues or fraudulent claims made?",
+    buyer: "Any account activity issues or fraudulent claims made?",
+  },
+  regulatory_actions: {
+    vendor: "Have regulatory actions been taken against your account?",
+    buyer: "Regulatory Actions",
+  },
+};
+
+// Utility function to format field names for fallback
+const formatFieldName = (field: string): string => {
+  return field
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
+export default function ProfilePage({ user_id = 1 }: { user_id?: number }) {
+  const [editingSection, setEditingSection] = useState<string | null>(null);
+  const [role, setRole] = useState<"vendor" | "buyer">("vendor");
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [productData, setProductData] = useState<any>(null);
+  const [productError, setProductError] = useState<string | null>(null);
+
   const [profileData, setProfileData] = useState({
     business_name: "",
     business_legal_structure: "",
@@ -63,96 +140,107 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
     payment_gateway_compliance_issues: false,
     account_activity_issues: false,
     regulatory_actions: false,
-  })
-  const [tempData, setTempData] = useState(profileData)
-  const [error, setError] = useState<string | null>(null)
+  });
+  const [tempData, setTempData] = useState(profileData);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch profile data when the component mounts
+  // Function to get label based on role
+  const getLabel = (field: string): string => {
+    if (field in roleLabelMappings) {
+      // Type assertion is safe here because of the check above
+      return (roleLabelMappings as Record<string, { vendor: string; buyer: string }>)[field][role];
+    }
+    return formatFieldName(field);
+  };
+
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await getUserInfo()
-        setProfileData(response.data)
-        setTempData(response.data)
+        const response = await getUserInfo();
+        setProfileData(response.data);
+        setTempData(response.data);
+        const userRole = Cookies.get('user_role');
+        if (userRole) {
+          setRole(userRole as "vendor" | "buyer");
+        }
       } catch (err) {
-        setError("Failed to fetch profile data. Please try again later.")
-        console.error("Error fetching profile data:", err)
+        setError("Failed to fetch profile data. Please try again later.");
+        console.error("Error fetching profile data:", err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
     const fetchProductData = async () => {
       try {
-        const response = await get_product_by_user_id(user_id)
-        console.log(response)
-        setProductData(response.data.product_data)
-        console.log(response.data)
+        const response = await get_product_by_user_id(user_id);
+        console.log(response);
+        setProductData(response.data.product_data);
+        console.log(response.data);
       } catch (err) {
-        console.log(err)
-        setProductError("Failed to fetch product data. Please try again later.")
-        console.error("Error fetching product data:", err)
+        console.log(err);
+        setProductError("Failed to fetch product data. Please try again later.");
+        console.error("Error fetching product data:", err);
       }
-    }
+    };
 
-    fetchProfileData()
-    fetchProductData()
-  }, [user_id])
+    fetchProfileData();
+    fetchProductData();
+  }, [user_id]);
 
   const handleEdit = (section: string) => {
-    setEditingSection(section)
-    setTempData(profileData)
-    setSaveSuccess(null)
-  }
+    setEditingSection(section);
+    setTempData(profileData);
+    setSaveSuccess(null);
+  };
 
   const handleSave = async (section: string) => {
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
     try {
-      const response = await updateProfile(tempData)
-      console.log(response.data)
-      setProfileData(tempData)
-      setEditingSection(null)
-      setHasUnsavedChanges(false)
-      setSaveSuccess(`${section.charAt(0).toUpperCase() + section.slice(1)} information updated successfully!`)
+      const response = await updateProfile(tempData);
+      console.log(response.data);
+      setProfileData(tempData);
+      setEditingSection(null);
+      setHasUnsavedChanges(false);
+      setSaveSuccess(`${section.charAt(0).toUpperCase() + section.slice(1)} information updated successfully!`);
 
-      // Clear success message after 3 seconds
-      setTimeout(() => setSaveSuccess(null), 3000)
+      setTimeout(() => setSaveSuccess(null), 3000);
     } catch (err) {
-      setError(`Failed to update ${section} information. Please try again.`)
-      console.error("Error updating profile:", err)
+      setError(`Failed to update ${section} information. Please try again.`);
+      console.error("Error updating profile:", err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleCancel = () => {
-    setTempData(profileData)
-    setEditingSection(null)
-    setHasUnsavedChanges(false)
-    setError(null)
-  }
+    setTempData(profileData);
+    setEditingSection(null);
+    setHasUnsavedChanges(false);
+    setError(null);
+  };
 
   const handleInputChange = (field: string, value: string | number) => {
-    setTempData((prev) => ({ ...prev, [field]: value }))
-    setHasUnsavedChanges(true)
-  }
+    setTempData((prev) => ({ ...prev, [field]: value }));
+    setHasUnsavedChanges(true);
+  };
 
   const renderEditableField = (
     field: string,
     label: string,
     type: "text" | "email" | "tel" | "number" | "url" = "text",
-    required = false,
+    required = false
   ) => {
-    const isEditing = editingSection === getSectionForField(field)
-    const value = isEditing ? tempData[field as keyof typeof tempData] : profileData[field as keyof typeof tempData]
+    const isEditing = editingSection === getSectionForField(field);
+    const value = isEditing ? tempData[field as keyof typeof tempData] : profileData[field as keyof typeof tempData];
 
     if (isEditing) {
       return (
         <div className="space-y-1">
           <label htmlFor={field} className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
-            {label} {required && <span className="text-[var(--secondary-color)]">*</span>}
+            {getLabel(field)} {required && <span className="text-[var(--secondary-color)]">*</span>}
           </label>
           <input
             id={field}
@@ -163,16 +251,16 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
             required={required}
           />
         </div>
-      )
+      );
     }
 
     return (
       <div>
-        <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">{label}</label>
+        <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">{getLabel(field)}</label>
         <p className="text-[var(--primary-color)] mt-1 text-sm truncate">{value as string}</p>
       </div>
-    )
-  }
+    );
+  };
 
   const getSectionForField = (field: string): string => {
     if (
@@ -190,10 +278,10 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         "import_export_code",
       ].includes(field)
     ) {
-      return "business"
+      return "business";
     }
     if (["street_address_1", "street_address_2", "city", "state_region", "postal_code", "country"].includes(field)) {
-      return "address"
+      return "address";
     }
     if (
       [
@@ -207,7 +295,7 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         "contact_country",
       ].includes(field)
     ) {
-      return "contact"
+      return "contact";
     }
     if (
       [
@@ -219,7 +307,7 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         "ethics_level",
       ].includes(field)
     ) {
-      return "credibility"
+      return "credibility";
     }
     if (
       [
@@ -232,13 +320,13 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         "iban_code",
       ].includes(field)
     ) {
-      return "banking"
+      return "banking";
     }
-    return ""
-  }
+    return "";
+  };
 
   const renderSectionActions = (section: string) => {
-    const isEditing = editingSection === section
+    const isEditing = editingSection === section;
 
     if (isEditing) {
       return (
@@ -254,32 +342,32 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
           <button
             onClick={handleCancel}
             disabled={isLoading}
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(--secondary-light-color)]/50 disabled:bg-[var(--secondary-light-color)]/20 rounded-md transition-colors"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(---secondary-light-color)]/50 disabled:bg-[var(--secondary-light-color)]/20 rounded-md transition-colors"
           >
             <X className="h-4 w-4 mr-1" />
             Cancel
           </button>
         </div>
-      )
+      );
     }
 
     return (
       <button
         onClick={() => handleEdit(section)}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(--secondary-light-color)]/50 rounded-md transition-colors"
+        className="inline-flex items-center px-3 py-2 text-sm font-medium text-[var(--primary-color)] bg-white border border-[var(--secondary-light-color)] hover:bg-[var(---secondary-light-color)]/50 rounded-md transition-colors"
       >
         <Edit3 className="h-4 w-4 mr-1" />
         Edit
       </button>
-    )
-  }
+    );
+  };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
       </div>
-    )
+    );
   }
 
   return (
@@ -287,7 +375,9 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)]">Profile Management</h1>
-          <p className="text-sm text-[var(--primary-hover-color)] mt-1 sm:mt-2">Manage your business information and settings.</p>
+          <p className="text-sm text-[var(--primary-hover-color)] mt-1 sm:mt-2">
+            Manage your business information and settings.
+          </p>
         </div>
         <div className="flex flex-col gap-2">
           {saveSuccess && (
@@ -325,19 +415,19 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-3">
-              {renderEditableField("business_name", "Business Name", "text", true)}
-              {renderEditableField("business_legal_structure", "Legal Structure")}
-              {renderEditableField("business_type", "Business Type")}
-              {renderEditableField("year_established", "Year Established", "number")}
-              {renderEditableField("business_registration_number", "Registration Number")}
-              {renderEditableField("brand_affiliations", "Brand Affiliations")}
+              {renderEditableField("business_name", "business_name", "text", true)}
+              {renderEditableField("business_legal_structure", "business_legal_structure")}
+              {renderEditableField("business_type", "business_type")}
+              {renderEditableField("year_established", "year_established", "number")}
+              {renderEditableField("business_registration_number", "business_registration_number")}
+              {renderEditableField("brand_affiliations", "brand_affiliations")}
             </div>
             <div className="space-y-3">
-              {renderEditableField("website", "Website", "url")}
-              {renderEditableField("annual_turnover", "Annual Turnover")}
-              {renderEditableField("gst_number", "GST Number")}
-              {renderEditableField("tax_identification_number", "Tax ID")}
-              {renderEditableField("import_export_code", "Import/Export Code")}
+              {renderEditableField("website", "website", "url")}
+              {renderEditableField("annual_turnover", "annual_turnover")}
+              {renderEditableField("gst_number", "gst_number")}
+              {renderEditableField("tax_identification_number", "tax_identification_number")}
+              {renderEditableField("import_export_code", "import_export_code")}
             </div>
           </div>
         </div>
@@ -357,14 +447,14 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-3">
-              {renderEditableField("street_address_1", "Street Address 1", "text", true)}
-              {renderEditableField("street_address_2", "Street Address 2")}
-              {renderEditableField("city", "City", "text", true)}
+              {renderEditableField("street_address_1", "street_address_1", "text", true)}
+              {renderEditableField("street_address_2", "street_address_2")}
+              {renderEditableField("city", "city", "text", true)}
             </div>
             <div className="space-y-3">
-              {renderEditableField("state_region", "State/Region", "text", true)}
-              {renderEditableField("postal_code", "Postal Code", "text", true)}
-              {renderEditableField("country", "Country", "text", true)}
+              {renderEditableField("state_region", "state_region", "text", true)}
+              {renderEditableField("postal_code", "postal_code", "text", true)}
+              {renderEditableField("country", "country", "text", true)}
             </div>
           </div>
         </div>
@@ -384,16 +474,16 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-3">
-              {renderEditableField("contact_person_name", "Contact Person", "text", true)}
-              {renderEditableField("contact_email", "Email", "email", true)}
-              {renderEditableField("contact_phone", "Phone", "tel", true)}
-              {renderEditableField("contact_whatsapp", "WhatsApp", "tel")}
+              {renderEditableField("contact_person_name", "contact_person_name", "text", true)}
+              {renderEditableField("contact_email", "contact_email", "email", true)}
+              {renderEditableField("contact_phone", "contact_phone", "tel", true)}
+              {renderEditableField("contact_whatsapp", "contact_whatsapp", "tel")}
             </div>
             <div className="space-y-3">
-              {renderEditableField("contact_district", "District")}
-              {renderEditableField("contact_pin_code", "PIN Code")}
-              {renderEditableField("contact_state", "State")}
-              {renderEditableField("contact_country", "Country")}
+              {renderEditableField("contact_district", "contact_district")}
+              {renderEditableField("contact_pin_code", "contact_pin_code")}
+              {renderEditableField("contact_state", "contact_state")}
+              {renderEditableField("contact_country", "contact_country")}
             </div>
           </div>
         </div>
@@ -452,9 +542,7 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
               ].map(({ field, label }) => (
                 <div key={field}>
                   <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">{label}</label>
-                  <span
-                    className="inline-block mt-2 px-2 py-1 text-xs font-medium rounded-full bg-[var(--secondary-light-color)] text-[var(--secondary-color)]"
-                  >
+                  <span className="inline-block mt-2 px-2 py-1 text-xs font-medium rounded-full bg-[var(--secondary-light-color)] text-[var(--secondary-color)]">
                     {profileData[field as keyof typeof profileData] as string}
                   </span>
                 </div>
@@ -498,11 +586,13 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-3">
-              {renderEditableField("bank_name", "Bank Name", "text", true)}
-              {renderEditableField("account_name", "Account Name", "text", true)}
-              {renderEditableField("account_type", "Account Type")}
+              {renderEditableField("bank_name", "bank_name", "text", true)}
+              {renderEditableField("account_name", "account_name", "text", true)}
+              {renderEditableField("account_type", "account_type")}
               <div>
-                <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Account Number</label>
+                <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
+                  {getLabel("account_number")}
+                </label>
                 {editingSection === "banking" ? (
                   <input
                     type="text"
@@ -511,14 +601,16 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
                     className="w-full mt-1 px-3 py-2 text-sm border border-[var(--secondary-light-color)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
                   />
                 ) : (
-                  <p className="text-[var(--primary-color)] mt-1 text-sm truncate">****{profileData.account_number.slice(-4)}</p>
+                  <p className="text-[var(--primary-color)] mt-1 text-sm truncate">
+                    ****{profileData.account_number.slice(-4)}
+                  </p>
                 )}
               </div>
             </div>
             <div className="space-y-3">
-              {renderEditableField("ifsc_code", "IFSC Code")}
-              {renderEditableField("swift_bis_code", "SWIFT/BIS Code")}
-              {renderEditableField("iban_code", "IBAN Code")}
+              {renderEditableField("ifsc_code", "ifsc_code")}
+              {renderEditableField("swift_bis_code", "swift_bis_code")}
+              {renderEditableField("iban_code", "iban_code")}
             </div>
           </div>
         </div>
@@ -533,17 +625,20 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { key: "kyc_challenges", label: "KYC Challenges" },
-              { key: "gst_compliance_issues", label: "GST Compliance Issues" },
-              { key: "fema_payment_issues", label: "FEMA Payment Issues" },
-              { key: "digital_banking_issues", label: "Digital Banking Issues" },
-              { key: "fraud_cybersecurity_issues", label: "Fraud/Cybersecurity Issues" },
-              { key: "payment_gateway_compliance_issues", label: "Payment Gateway Compliance" },
-              { key: "account_activity_issues", label: "Account Activity Issues" },
-              { key: "regulatory_actions", label: "Regulatory Actions" },
-            ].map(({ key, label }) => (
-              <div key={key} className="flex items-center justify-between p-3 border border-[var(--secondary-light-color)] rounded-lg">
-                <span className="text-xs sm:text-sm text-[var(--primary-hover-color)] truncate">{label}</span>
+              "kyc_challenges",
+              "gst_compliance_issues",
+              "fema_payment_issues",
+              "digital_banking_issues",
+              "fraud_cybersecurity_issues",
+              "payment_gateway_compliance_issues",
+              "account_activity_issues",
+              "regulatory_actions",
+            ].map((key) => (
+              <div
+                key={key}
+                className="flex items-center justify-between p-3 border border-[var(--secondary-light-color)] rounded-lg"
+              >
+                <span className="text-xs sm:text-sm text-[var(--primary-hover-color)] truncate">{getLabel(key)}</span>
                 <div className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-[var(--secondary-color)]" />
                   <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-[var(--secondary-light-color)] text-[var(--secondary-color)]">
@@ -582,11 +677,15 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Category</label>
-                  <p className="text-[var(--primary-color)] mt-1 text-sm">{productData.categoryName} ({productData.categoryId})</p>
+                  <p className="text-[var(--primary-color)] mt-1 text-sm">
+                    {productData.categoryName} ({productData.categoryId})
+                  </p>
                 </div>
                 <div>
                   <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Subcategory</label>
-                  <p className="text-[var(--primary-color)] mt-1 text-sm">{productData.subcategoryName} ({productData.subcategoryId})</p>
+                  <p className="text-[var(--primary-color)] mt-1 text-sm">
+                    {productData.subcategoryName} ({productData.subcategoryId})
+                  </p>
                 </div>
               </div>
               <div>
@@ -595,17 +694,19 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
                   {Object.entries(productData.specifications).map(([key, values]) => (
                     <div key={key} className="space-y-2">
                       <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
-                        {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                        {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                       </label>
                       <div className="flex flex-wrap gap-2">
-                        {Array.isArray(values) ? (values as string[]).map((value, index) => (
-                          <span
-                            key={index}
-                            className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
-                          >
-                            {value}
-                          </span>
-                        )) : null}
+                        {Array.isArray(values) ? (
+                          (values as string[]).map((value, index) => (
+                            <span
+                              key={index}
+                              className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
+                            >
+                              {value}
+                            </span>
+                          ))
+                        ) : null}
                       </div>
                     </div>
                   ))}
@@ -616,5 +717,5 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
         </div>
       </div>
     </div>
-  )
+  );
 }

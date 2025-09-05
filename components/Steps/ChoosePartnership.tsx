@@ -286,7 +286,7 @@ export default function ChoosePartnership({
       const allLevelsUpToSelected = partnerships
         .filter((p) => p.level <= selectedLevel)
         .sort((a, b) => a.level - b.level)
-        .map((p) => p.id);
+        .map((p) =>  p.id.toUpperCase());
 
       const lastElement =
         allLevelsUpToSelected[allLevelsUpToSelected.length - 1];

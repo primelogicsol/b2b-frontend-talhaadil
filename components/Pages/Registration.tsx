@@ -52,9 +52,10 @@ export interface FormData {
 
 export default function RegistrationProcess() {
   const stepFromCookie = Cookies.get("registration_step");
-  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1;
+  console.log("STEP",stepFromCookie)
+  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) : 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(5)
+  const [currentStep, setCurrentStep] = useState<number>(initialStep)
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {

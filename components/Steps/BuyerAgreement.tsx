@@ -398,8 +398,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
     doc.text("De Koshur Crafts Bazaar LLC - Confidential Document", margin, pageHeight - 15)
 
     const pdfBlob = doc.output("blob")
-    const blobUrl = URL.createObjectURL(pdfBlob)
-    window.open(blobUrl, "_blank")
+   
     return pdfBlob
   }
 
@@ -417,6 +416,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
     })
 
     const data = await res.json()
+    console.log(data)
     if (res.ok) {
       console.log("Upload successful:", data)
       const response = await sendAgreement({
@@ -429,6 +429,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
       console.log(response)
       return data.url
     } else {
+      console.log(data.error)
       console.error("Upload failed:", data.error)
     }
   }
@@ -438,7 +439,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
       setCurrentStep(currentStep + 1)
     } else if (currentStep === 4 && canProceedToNext()) {
       handleGenerateAndUpload()
-      onNext()
+
     }
   }
 
@@ -857,7 +858,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
               }`}
           >
             <span className="hidden md:inline mr-2">{currentStep === 4 ? "SUBMIT" : "NEXT"}</span>
-            <span className="inline">{currentStep === 4 ? "" : "→"}</span>
+            <span className="inline">→</span>
           </button>
         </div>
       </div>
