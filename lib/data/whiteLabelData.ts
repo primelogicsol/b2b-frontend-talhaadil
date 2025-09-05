@@ -1,5 +1,5 @@
 export const whiteLabelData = {
-  name:"white-label",
+  name: "white-label",
   hero: {
     headline:
       "White Label Partnerships — Build Your Brand with Authentic Craft",
@@ -32,70 +32,83 @@ export const whiteLabelData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Connects buyers seeking private-label products with certified Kashmiri vendors."
+        description:
+          "Connects buyers seeking private-label products with certified Kashmiri vendors.",
       },
       {
         icon: "Tag",
         title: "Custom Branding",
-        description: "Marketplace enables tailored packaging, labeling, and brand identity creation."
+        description:
+          "Marketplace enables tailored packaging, labeling, and brand identity creation.",
       },
       {
         icon: "Shield",
         title: "Compliance Oversight",
-        description: "Ensures white-label products meet US/EU retail and trade standards."
+        description:
+          "Ensures white-label products meet US/EU retail and trade standards.",
       },
       {
         icon: "Truck",
         title: "Supply Chain",
-        description: "Centralized logistics support smooth production, branding, and distribution processes."
+        description:
+          "Centralized logistics support smooth production, branding, and distribution processes.",
       },
       {
         icon: "ShoppingCart",
         title: "Buyer Flexibility",
-        description: "Create unique branded product lines without managing full production."
+        description:
+          "Create unique branded product lines without managing full production.",
       },
       {
         icon: "CheckCircle",
         title: "Buyer Confidence",
-        description: "Source GI-certified crafts with authenticity protected under private branding."
+        description:
+          "Source GI-certified crafts with authenticity protected under private branding.",
       },
       {
         icon: "TrendingUp",
         title: "Buyer Growth",
-        description: "Expand white-label offerings into premium retail and international markets."
+        description:
+          "Expand white-label offerings into premium retail and international markets.",
       },
       {
         icon: "DollarSign",
         title: "Buyer Advantage",
-        description: "Lower development costs compared to manufacturing proprietary product lines."
+        description:
+          "Lower development costs compared to manufacturing proprietary product lines.",
       },
       {
         icon: "Store",
         title: "Vendor Access",
-        description: "Supply products under buyer labels, reaching premium retail networks."
+        description:
+          "Supply products under buyer labels, reaching premium retail networks.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "White-label partnerships expand vendor volumes across multiple product categories."
+        description:
+          "White-label partnerships expand vendor volumes across multiple product categories.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Revenue",
-        description: "Earn higher, predictable margins through recurring white-label agreements."
+        description:
+          "Earn higher, predictable margins through recurring white-label agreements.",
       },
       {
         icon: "Award",
         title: "Vendor Recognition",
-        description: "Although unlabeled, vendors gain stability, scaling capacity, and global market access."
-      }
+        description:
+          "Although unlabeled, vendors gain stability, scaling capacity, and global market access.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
   capabilities: {
     heading: "Private Label Growth Pathways",
-    subheading:"Custom-branded products scale efficiently across retail networks globally.",
+    subheading:
+      "Custom-branded products scale efficiently across retail networks globally.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -284,6 +297,63 @@ export const whiteLabelData = {
         "No, only Core Trade progression with KPI and retention unlocks White Label.",
     },
   ],
+  technology: {
+    heading: "Technology That Powers Our White Label Platform",
+    description:
+      "De Koshur Crafts enables brands with custom product lines, compliance tools, and efficient white-label operations.",
+    features: [
+      {
+        icon: "Sliders",
+        title: "Product Customization",
+        description:
+          "Offer dynamic labeling, design personalization, and scalable packaging.",
+      },
+      {
+        icon: "Folder",
+        title: "Asset Management",
+        description:
+          "Store logos, brand guidelines, and all creative assets centrally.",
+      },
+      {
+        icon: "Users",
+        title: "Supplier Collaboration",
+        description:
+          "Enable secure vendor communication with artwork approval workflows.",
+      },
+      {
+        icon: "Shield",
+        title: "Compliance Systems",
+        description:
+          "Automate FDA, ISO, textile, and regional certification checks.",
+      },
+      {
+        icon: "Activity",
+        title: "Demand Forecasting",
+        description:
+          "Predict order volumes for custom-branded product lines using AI.",
+      },
+      {
+        icon: "Layers",
+        title: "Chain Transparency",
+        description:
+          "Trace materials via blockchain from sourcing to final packaging.",
+      },
+      {
+        icon: "Link",
+        title: "Distribution APIs",
+        description:
+          "Sync products across e-commerce, retail, and distributor channels.",
+      },
+      {
+        icon: "ClipboardCheck",
+        title: "Quality Dashboards",
+        description:
+          "Track QC logs, defects, and certify production batches efficiently.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, ensuring reliable white-label production, compliance, and scalability.",
+  },
   apiIntegration: {
     heading: "Already Doing White Label? Accelerate With Us.",
     description:
@@ -343,7 +413,6 @@ export const whiteLabelData = {
         description:
           "Ownership clauses, royalties, watermarking, blockchain proofs of originality.",
       },
-      
     ],
     support: {
       title:
@@ -353,7 +422,6 @@ export const whiteLabelData = {
       note: "End-to-end integration for retailers, licensors, and brand owners.",
     },
   },
-  
 
   finalCta: {
     heading: "Launch Your Own Brand with De Koshur Crafts White Label",

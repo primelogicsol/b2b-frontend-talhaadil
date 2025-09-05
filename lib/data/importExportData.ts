@@ -1,5 +1,5 @@
 export const importExportData = {
-  name:"importexport",
+  name: "importexport",
   hero: {
     headline:
       "Certified Import/Export Partnerships — Globally Compliant Craft Trade",
@@ -32,70 +32,83 @@ export const importExportData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Global hub connects importers and exporters with certified Kashmiri crafts."
+        description:
+          "Global hub connects importers and exporters with certified Kashmiri crafts.",
       },
       {
         icon: "FileText",
         title: "Customs Integration",
-        description: "Automated documentation ensures smooth clearance across borders and markets."
+        description:
+          "Automated documentation ensures smooth clearance across borders and markets.",
       },
       {
         icon: "Shield",
         title: "Global Compliance",
-        description: "Aligned with WTO, US, EU, and international trade regulations."
+        description:
+          "Aligned with WTO, US, EU, and international trade regulations.",
       },
       {
         icon: "CreditCard",
         title: "Secure Settlements",
-        description: "Multi-currency, fraud-protected, escrow-enabled international transaction systems."
+        description:
+          "Multi-currency, fraud-protected, escrow-enabled international transaction systems.",
       },
       {
         icon: "Package",
         title: "Importer Reach",
-        description: "Access GI-certified Kashmiri crafts for regulated international markets."
+        description:
+          "Access GI-certified Kashmiri crafts for regulated international markets.",
       },
       {
         icon: "CheckCircle",
         title: "Importer Confidence",
-        description: "Blockchain-backed traceability ensures authenticity of every imported product."
+        description:
+          "Blockchain-backed traceability ensures authenticity of every imported product.",
       },
       {
         icon: "Truck",
         title: "Importer Efficiency",
-        description: "Predictive logistics optimize delivery speed and reduce shipping costs."
+        description:
+          "Predictive logistics optimize delivery speed and reduce shipping costs.",
       },
       {
         icon: "TrendingUp",
         title: "Importer Growth",
-        description: "Expand sourcing to new countries with trusted, transparent vendor base."
+        description:
+          "Expand sourcing to new countries with trusted, transparent vendor base.",
       },
       {
         icon: "Store",
         title: "Exporter Access",
-        description: "Vendors reach international buyers through structured export marketplaces."
+        description:
+          "Vendors reach international buyers through structured export marketplaces.",
       },
       {
         icon: "Lock",
         title: "Exporter Security",
-        description: "Insurance and compliance systems safeguard products during global transit."
+        description:
+          "Insurance and compliance systems safeguard products during global transit.",
       },
       {
         icon: "DollarSign",
         title: "Exporter Liquidity",
-        description: "Payments supported by export financing and trade settlement guarantees."
+        description:
+          "Payments supported by export financing and trade settlement guarantees.",
       },
       {
         icon: "ArrowUpRight",
         title: "Exporter Scaling",
-        description: "Export prepares vendors for subsidiaries, franchises, and global retail partnerships."
-      }
+        description:
+          "Export prepares vendors for subsidiaries, franchises, and global retail partnerships.",
+      },
     ],
     exclusivity:
       "The only platform where heritage, compliance, and technology converge for international trade.",
   },
   capabilities: {
     heading: "Global Export Compliance Bridge",
-    subheading:"Automated customs, payments, documentation streamline international handicraft trade.",
+    subheading:
+      "Automated customs, payments, documentation streamline international handicraft trade.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -157,8 +170,7 @@ export const importExportData = {
           "Sustainable Growth: Eco-friendly shipping supports green global handicraft trade.",
         ],
       },
-    ]
-    ,
+    ],
   },
   eligibility: {
     heading: "Certified Export Entry Rules",
@@ -211,57 +223,61 @@ export const importExportData = {
     range: "Range: $150–$750/month",
   },
   technology: {
-    heading: "Technology That Powers Our Platform",
+    heading: "Technology That Powers Our Import / Export Platform",
     description:
-      "De Koshur Crafts is built with modern, scalable, and secure digital infrastructure, developed and maintained by Prime Logic Solutions, our dedicated software, web development, and digital marketing partner.",
+      "De Koshur Crafts supports global trade with automated customs, compliant documentation, and optimized cross-border operations.",
     features: [
       {
-        icon: "Cog",
-        title: "Frameworks",
+        icon: "FileText",
+        title: "Customs Automation",
         description:
-          "React.js, Next.js, Node.js for high-performance user experience.",
-      },
-      {
-        icon: "Cloud",
-        title: "Cloud Infrastructure",
-        description: "AWS and Azure for scalable documentation workflows.",
-      },
-      {
-        icon: "Link",
-        title: "Blockchain Tools",
-        description:
-          "Ethereum smart contracts for compliance and fraud prevention.",
-      },
-      {
-        icon: "BarChart3",
-        title: "AI & Data",
-        description:
-          "AI compliance scoring, KPI dashboards, and predictive analytics.",
-      },
-      {
-        icon: "Globe",
-        title: "AR/VR Tech",
-        description: "Virtual trade showcases for institutional buyers.",
+          "AI-generated invoices, declarations, HS codes, and export-ready compliance forms.",
       },
       {
         icon: "Shield",
-        title: "Security",
+        title: "Trade Compliance",
         description:
-          "SSL encryption, KYC verification, and secure API integrations.",
+          "Ensure regulations, embargo checks, and duty/tax alignment for global trade.",
+      },
+      {
+        icon: "Layers",
+        title: "Blockchain Traceability",
+        description:
+          "Verify product origin, enable GI certification, and prevent counterfeit goods.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Payment Gateways",
+        description:
+          "Support multi-currency, forex, escrow, and secure cross-border remittances.",
+      },
+      {
+        icon: "Activity",
+        title: "Logistics Analytics",
+        description:
+          "AI-powered route planning, demand forecasts, and port congestion alerts.",
+      },
+      {
+        icon: "Truck",
+        title: "Shipping APIs",
+        description:
+          "Integrate carriers, track containers, and automate customs brokerage tasks.",
       },
       {
         icon: "Package",
-        title: "Automation",
-        description: "End-to-end logistics and compliance workflow automation.",
+        title: "Export Packaging",
+        description:
+          "Eco-friendly labels, adaptive packing, and shipment condition monitoring.",
       },
       {
-        icon: "Smartphone",
-        title: "Mobile Experience",
-        description: "Seamless, responsive, and PWA-enabled mobile platform.",
+        icon: "BarChart2",
+        title: "Trade Intelligence",
+        description:
+          "Market trends, tariff tracking, and buyer demand forecasting worldwide.",
       },
     ],
     support:
-      "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
+      "Backed by Prime Logic Solutions, ensuring seamless integrations, global compliance, and reliable export workflows.",
   },
   platformAdvantage: {
     heading: "Our Platform Advantage",
@@ -386,7 +402,7 @@ export const importExportData = {
       note: "API documentation and sandbox available for partners.",
     },
   },
-  
+
   finalCta: {
     heading: "Join Certified Import/Export With De Koshur Crafts",
     subtext:

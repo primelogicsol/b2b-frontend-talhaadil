@@ -1,5 +1,5 @@
 export const museumInstitutionalsData = {
-  name : "museum_collaboration",
+  name: "museum_collaboration",
   hero: {
     headline: "Museum Partnerships — Preserving Craft Heritage Globally",
     subtext:
@@ -161,6 +161,64 @@ export const museumInstitutionalsData = {
       },
     ],
   },
+  technology: {
+    heading:
+      "Technology That Powers Our Museums Platform",
+    description:
+      "Supports cultural institutions with digital archiving, visitor engagement, and advanced exhibit technologies.",
+    features: [
+      {
+        icon: "Archive",
+        title: "Collection Systems",
+        description:
+          "Digitize catalogs, track provenance, and maintain conservation records.",
+      },
+      {
+        icon: "Shield",
+        title: "Provenance Engines",
+        description:
+          "Ensure authenticity, secure ownership, and prevent counterfeiting.",
+      },
+      {
+        icon: "Database",
+        title: "Digital Archives",
+        description:
+          "Preserve heritage with high-resolution imaging and secure metadata.",
+      },
+      {
+        icon: "Layout",
+        title: "Exhibit Design",
+        description:
+          "Deploy smart displays, lighting, and environmental sensors.",
+      },
+      {
+        icon: "Users",
+        title: "Visitor Systems",
+        description:
+          "Provide AR tours, audio guides, and multilingual storytelling.",
+      },
+      {
+        icon: "GraduationCap",
+        title: "Education Portals",
+        description:
+          "Connect museums with schools, universities, and institutions.",
+      },
+      {
+        icon: "Ticket",
+        title: "Access APIs",
+        description:
+          "Enable QR-based ticketing, memberships, and crowd flow control.",
+      },
+      {
+        icon: "BarChart",
+        title: "Impact Dashboards",
+        description:
+          "Analyze demographics, engagement, and cultural impact data.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, empowering museums with smart cultural infrastructure.",
+  },
 
   eligibility: {
     heading: "Who Can Join?",
@@ -280,91 +338,91 @@ export const museumInstitutionalsData = {
         "Yes. Visa documents, museum invitations, and insurance proof are provided, though visa approval depends on embassy decisions.",
     },
   ],
-apiIntegration : {
-  heading: "Already Partnering with Museums? Accelerate With Us",
-  description:
-    "Accelerate museum operations with ethical curation, digitization, audience engagement, and responsible monetization. Prime Logic Solutions USA ensures seamless integration.",
-  features: [
-    {
-      icon: "UserCheck",
-      title: "Ethical Onboarding",
-      description:
-        "Digital applications, KYC, GI/KHCRF verification, policy acknowledgements."
-    },
-    {
-      icon: "FileSearch",
-      title: "Provenance Checks",
-      description:
-        "Source checks, due diligence, claims workflows, audit trails preserved."
-    },
-    {
-      icon: "Image",
-      title: "Digital Catalog",
-      description:
-        "High-res imaging, metadata standards, IIIF viewers, long-term preservation."
-    },
-    {
-      icon: "Package",
-      title: "Loan Exhibits",
-      description:
-        "Loan agreements, packing, couriers, condition reports, schedules, compliance."
-    },
-    {
-      icon: "Shield",
-      title: "Exhibit Insurance",
-      description:
-        "Inbound/outbound handling, storage, all-risk coverage, claims workflows."
-    },
-    {
-      icon: "BookOpen",
-      title: "Education Programs",
-      description:
-        "Workshops, residencies, school toolkits, guided tours, impact tracking."
-    },
-    {
-      icon: "ShoppingBag",
-      title: "Museum Shop",
-      description:
-        "Consignment terms, GI labeling, transparent payouts, supplier compliance."
-    },
-    {
-      icon: "Copyright",
-      title: "Rights Licensing",
-      description:
-        "Copyright clearance, image licensing, press kits, usage governance."
-    },
-    {
-      icon: "Accessibility",
-      title: "Inclusive Access",
-      description:
-        "WCAG content, alt text, captions, multilingual guides, wayfinding."
-    },
-    {
-      icon: "Leaf",
-      title: "Green Design",
-      description:
-        "Reusables, low-energy lighting, carbon tracking, green vendor standards."
-    },
-    {
-      icon: "BarChart2",
-      title: "Visitor Metrics",
-      description:
-        "Footfall, dwell, membership, donations, engagement dashboards integrated."
-    },
-    {
-      icon: "Globe",
-      title: "Cultural Exchange",
-      description:
-        "International partnerships, traveling exhibits, co-curation, knowledge sharing."
-    }
-  ],
-  support: {
-    title: "Prime Support",
+  apiIntegration: {
+    heading: "Already Partnering with Museums? Accelerate With Us",
     description:
-      "Prime Logic Solutions USA provides free integration support for TMS/eMuseum, CollectionSpace, ArchivesSpace, IIIF, DAM/CMS, ticketing/CRM, and consignment/payment mappings.",
-    note: "Sandbox, SDKs, and SLAs available for partners."
-  }
-},
+      "Accelerate museum operations with ethical curation, digitization, audience engagement, and responsible monetization. Prime Logic Solutions USA ensures seamless integration.",
+    features: [
+      {
+        icon: "UserCheck",
+        title: "Ethical Onboarding",
+        description:
+          "Digital applications, KYC, GI/KHCRF verification, policy acknowledgements.",
+      },
+      {
+        icon: "FileSearch",
+        title: "Provenance Checks",
+        description:
+          "Source checks, due diligence, claims workflows, audit trails preserved.",
+      },
+      {
+        icon: "Image",
+        title: "Digital Catalog",
+        description:
+          "High-res imaging, metadata standards, IIIF viewers, long-term preservation.",
+      },
+      {
+        icon: "Package",
+        title: "Loan Exhibits",
+        description:
+          "Loan agreements, packing, couriers, condition reports, schedules, compliance.",
+      },
+      {
+        icon: "Shield",
+        title: "Exhibit Insurance",
+        description:
+          "Inbound/outbound handling, storage, all-risk coverage, claims workflows.",
+      },
+      {
+        icon: "BookOpen",
+        title: "Education Programs",
+        description:
+          "Workshops, residencies, school toolkits, guided tours, impact tracking.",
+      },
+      {
+        icon: "ShoppingBag",
+        title: "Museum Shop",
+        description:
+          "Consignment terms, GI labeling, transparent payouts, supplier compliance.",
+      },
+      {
+        icon: "Copyright",
+        title: "Rights Licensing",
+        description:
+          "Copyright clearance, image licensing, press kits, usage governance.",
+      },
+      {
+        icon: "Accessibility",
+        title: "Inclusive Access",
+        description:
+          "WCAG content, alt text, captions, multilingual guides, wayfinding.",
+      },
+      {
+        icon: "Leaf",
+        title: "Green Design",
+        description:
+          "Reusables, low-energy lighting, carbon tracking, green vendor standards.",
+      },
+      {
+        icon: "BarChart2",
+        title: "Visitor Metrics",
+        description:
+          "Footfall, dwell, membership, donations, engagement dashboards integrated.",
+      },
+      {
+        icon: "Globe",
+        title: "Cultural Exchange",
+        description:
+          "International partnerships, traveling exhibits, co-curation, knowledge sharing.",
+      },
+    ],
+    support: {
+      title: "Prime Support",
+      description:
+        "Prime Logic Solutions USA provides free integration support for TMS/eMuseum, CollectionSpace, ArchivesSpace, IIIF, DAM/CMS, ticketing/CRM, and consignment/payment mappings.",
+      note: "Sandbox, SDKs, and SLAs available for partners.",
+    },
+  },
   finalCta: {
     heading: "Preserve Heritage, Empower Artisans, Partner With Museums",
     subtext:

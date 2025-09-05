@@ -1,5 +1,5 @@
 export const auctionBiddingData = {
-  name:"auction",
+  name: "auction",
   hero: {
     headline:
       "Auction Bidding Partnerships — Connecting Crafts to Global Bidders",
@@ -10,6 +10,63 @@ export const auctionBiddingData = {
       "Apply as a Vendor",
       "Apply as a Buyer",
     ],
+  },
+  technology: {
+    heading: "Technology That Powers Our Bidding / Auction Platform",
+    description:
+      "De Koshur Crafts powers auctions with real-time bidding, secure transactions, and transparent pricing insights.",
+    features: [
+      {
+        icon: "Activity",
+        title: "Bidding Engines",
+        description:
+          "Run live auctions with high-speed algorithms and zero processing delays.",
+      },
+      {
+        icon: "Settings",
+        title: "Auction Management",
+        description:
+          "Support timed, live, or sealed-bid formats with flexible tools.",
+      },
+      {
+        icon: "BookOpen",
+        title: "Catalog Publishing",
+        description:
+          "Automate auction catalogs with images, specs, and reserve pricing.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Blockchain Tracking",
+        description:
+          "Verify authenticity, ownership, and prevent counterfeiting via blockchain.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Payment Security",
+        description:
+          "Enable escrow, multi-currency settlement, and fraud-resistant payments.",
+      },
+      {
+        icon: "UserCheck",
+        title: "Bidder Verification",
+        description:
+          "Ensure KYC/AML compliance and assess bidder credibility securely.",
+      },
+      {
+        icon: "TrendingUp",
+        title: "Price Transparency",
+        description:
+          "Provide bid history, price analytics, and live auction insights.",
+      },
+      {
+        icon: "FileCheck",
+        title: "Auction Settlement",
+        description:
+          "Automate invoicing, tax compliance, and ownership transfer tasks.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, ensuring fast bidding, verified participants, and secure auction settlements.",
   },
   whyDropshipping: {
     heading: "Fixing the Auction Gap in Global Craft Trade",
@@ -32,70 +89,83 @@ export const auctionBiddingData = {
       {
         icon: "Gavel",
         title: "Organizer Platform",
-        description: "Runs online auction systems with live bidding and digital catalogs."
+        description:
+          "Runs online auction systems with live bidding and digital catalogs.",
       },
       {
         icon: "Globe",
         title: "Organizer Access",
-        description: "Connects collectors, buyers, and vendors globally in real time."
+        description:
+          "Connects collectors, buyers, and vendors globally in real time.",
       },
       {
         icon: "Shield",
         title: "Organizer Standards",
-        description: "Verifies authenticity through GI tags, blockchain, and KHCRF checks."
+        description:
+          "Verifies authenticity through GI tags, blockchain, and KHCRF checks.",
       },
       {
         icon: "FileText",
         title: "Organizer Transparency",
-        description: "Publishes live bid logs ensuring fairness, integrity, and trust."
+        description:
+          "Publishes live bid logs ensuring fairness, integrity, and trust.",
       },
       {
         icon: "Megaphone",
         title: "Organizer Promotion",
-        description: "Markets events via online campaigns, newsletters, and collector networks."
+        description:
+          "Markets events via online campaigns, newsletters, and collector networks.",
       },
       {
         icon: "TrendingUp",
         title: "Organizer Growth",
-        description: "Scales platform through seasonal, themed, and global auction events."
+        description:
+          "Scales platform through seasonal, themed, and global auction events.",
       },
       {
         icon: "Store",
         title: "Exhibitor Access",
-        description: "Showcases rare crafts digitally to buyers worldwide instantly."
+        description:
+          "Showcases rare crafts digitally to buyers worldwide instantly.",
       },
       {
         icon: "Award",
         title: "Exhibitor Recognition",
-        description: "Gains prestige from verified online auction listings and successful sales."
+        description:
+          "Gains prestige from verified online auction listings and successful sales.",
       },
       {
         icon: "DollarSign",
         title: "Exhibitor Revenue",
-        description: "Achieves premium margins through competitive online global bidding."
+        description:
+          "Achieves premium margins through competitive online global bidding.",
       },
       {
         icon: "CheckCircle",
         title: "Exhibitor Compliance",
-        description: "Adheres to online platform rules for provenance, authenticity, sustainability."
+        description:
+          "Adheres to online platform rules for provenance, authenticity, sustainability.",
       },
       {
         icon: "Lock",
         title: "Exhibitor Security",
-        description: "Crafts digitally documented, insured, and securely managed post-sale."
+        description:
+          "Crafts digitally documented, insured, and securely managed post-sale.",
       },
       {
         icon: "ArrowUpRight",
         title: "Exhibitor Pathway",
-        description: "Online auctions accelerate entry into luxury retail and export."
-      }
+        description:
+          "Online auctions accelerate entry into luxury retail and export.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
   capabilities: {
     heading: "Premium Heritage Auction Gateway",
-    subheading:"Competitive bidding monetizes rare crafts for global collectors.",
+    subheading:
+      "Competitive bidding monetizes rare crafts for global collectors.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -157,8 +227,7 @@ export const auctionBiddingData = {
           "Sustainable Growth: Eco-friendly practices support ethical auction marketplace expansion.",
         ],
       },
-    ]
-    ,
+    ],
   },
   eligibility: {
     heading: "Auction Bidding Entry Rules",
@@ -209,43 +278,42 @@ export const auctionBiddingData = {
     range: "Range: $100–$500/year",
   },
   platformAdvantage: {
-  heading: "Our Platform Advantage",
-  description:
-    "Introducing Kashmiri handicrafts to global auction platforms, driving premium pricing, competitive bidding, and expanding access to collectors and high-net-worth buyers.",
-  sections: [
-    {
-      title: "Benefits for Vendors (Kashmir/India)",
-      items: [
-        "Achieve premium pricing through competitive global bidding.",
-        "Gain real-time market validation for craft demand.",
-        "Position products as luxury, high-value artisan items.",
-        "Build artisan reputation through prestigious auction platforms.",
-        "Expand reach to collectors and high-net-worth buyers.",
-      ],
-    },
-    {
-      title: "Benefits for Buyers (US-Based)",
-      items: [
-        "Access rare, unique Kashmiri crafts through transparent bidding.",
-        "Ensure fair value pricing via open competition.",
-        "Acquire collectible heritage items with cultural prestige.",
-        "Participate in exclusive artisan-driven global events.",
-        "Differentiate retail offerings with premium artisan products.",
-      ],
-    },
-    {
-      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
-      items: [
-        "Elevates crafts into global luxury and investment markets.",
-        "Increases overall valuation of Kashmiri artisan products.",
-        "Strengthens transparency and fairness in craft pricing.",
-        "Builds international prestige for Kashmiri heritage items.",
-        "Encourages premium craftsmanship among artisans locally.",
-      ],
-    },
-  ],
-},
-
+    heading: "Our Platform Advantage",
+    description:
+      "Introducing Kashmiri handicrafts to global auction platforms, driving premium pricing, competitive bidding, and expanding access to collectors and high-net-worth buyers.",
+    sections: [
+      {
+        title: "Benefits for Vendors (Kashmir/India)",
+        items: [
+          "Achieve premium pricing through competitive global bidding.",
+          "Gain real-time market validation for craft demand.",
+          "Position products as luxury, high-value artisan items.",
+          "Build artisan reputation through prestigious auction platforms.",
+          "Expand reach to collectors and high-net-worth buyers.",
+        ],
+      },
+      {
+        title: "Benefits for Buyers (US-Based)",
+        items: [
+          "Access rare, unique Kashmiri crafts through transparent bidding.",
+          "Ensure fair value pricing via open competition.",
+          "Acquire collectible heritage items with cultural prestige.",
+          "Participate in exclusive artisan-driven global events.",
+          "Differentiate retail offerings with premium artisan products.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Elevates crafts into global luxury and investment markets.",
+          "Increases overall valuation of Kashmiri artisan products.",
+          "Strengthens transparency and fairness in craft pricing.",
+          "Builds international prestige for Kashmiri heritage items.",
+          "Encourages premium craftsmanship among artisans locally.",
+        ],
+      },
+    ],
+  },
 
   workflow: {
     heading: "Auction Bidding Pathway",
@@ -335,7 +403,7 @@ export const auctionBiddingData = {
       note: "API documentation and sandbox available for partners.",
     },
   },
-  
+
   finalCta: {
     heading: "Join Auction Bidding — Unlock Global Craft Value",
     subtext:

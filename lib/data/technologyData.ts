@@ -258,6 +258,64 @@ export const technologyData = {
       "Sustain & Scale",
     ],
   },
+  technology: {
+  heading: "Technology That Powers Our Technology Houses",
+  description:
+    "Equips craft industries with digital platforms, marketing tools, and traceability solutions.",
+  features: [
+    {
+      icon: "Code",
+      title: "Software Platforms",
+      description:
+        "Build ERP, CRM, and management systems for craft ecosystems.",
+    },
+    {
+      icon: "Globe",
+      title: "Web Studios",
+      description:
+        "Develop responsive sites and online craft marketplaces.",
+    },
+    {
+      icon: "Megaphone",
+      title: "Marketing Suites",
+      description:
+        "Run SEO, campaigns, and influencer-driven brand growth.",
+    },
+    {
+      icon: "FileText",
+      title: "Content Systems",
+      description:
+        "Host multilingual craft histories and artisan stories.",
+    },
+    {
+      icon: "Link",
+      title: "Traceability Software",
+      description:
+        "Verify authenticity with GI and blockchain solutions.",
+    },
+    {
+      icon: "BarChart",
+      title: "Analytics Dashboards",
+      description:
+        "Monitor buyer demographics and market performance.",
+    },
+    {
+      icon: "BookOpen",
+      title: "Training Portals",
+      description:
+        "Teach artisans marketing, literacy, and compliance.",
+    },
+    {
+      icon: "Users",
+      title: "Outreach Tools",
+      description:
+        "Enable catalogs, matchmaking, and trade fair access.",
+    },
+  ],
+  support:
+    "Backed by Prime Logic Solutions, empowering handicraft industries with modern technology infrastructure.",
+}
+,
   faq: [
     {
       question: "What makes this different from standard e-commerce platforms?",

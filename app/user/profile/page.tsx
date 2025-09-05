@@ -85,9 +85,11 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
     const fetchProductData = async () => {
       try {
         const response = await get_product_by_user_id(user_id)
+        console.log(response)
         setProductData(response.data.product_data)
         console.log(response.data)
       } catch (err) {
+        console.log(err)
         setProductError("Failed to fetch product data. Please try again later.")
         console.error("Error fetching product data:", err)
       }
@@ -590,20 +592,20 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) { // 
               <div>
                 <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Specifications</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                  {Object.entries(productData.specifications).map(([key, values]: [string, string[]]) => (
+                  {Object.entries(productData.specifications).map(([key, values]) => (
                     <div key={key} className="space-y-2">
                       <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
                         {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
                       </label>
                       <div className="flex flex-wrap gap-2">
-                        {(values as string[]).map((value, index) => (
+                        {Array.isArray(values) ? (values as string[]).map((value, index) => (
                           <span
                             key={index}
                             className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
                           >
                             {value}
                           </span>
-                        ))}
+                        )) : null}
                       </div>
                     </div>
                   ))}

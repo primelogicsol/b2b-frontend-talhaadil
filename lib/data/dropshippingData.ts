@@ -211,59 +211,63 @@ export const dropshippingData = {
     range: "Range: $12.50–$75",
   },
   technology: {
-    heading: "Technology That Powers Our Platform",
-    description:
-      "De Koshur Crafts is built with modern, scalable, and secure digital infrastructure, developed and maintained by Prime Logic Solutions, our dedicated software, web development, and digital marketing partner.",
-    features: [
-      {
-        icon: "Cog",
-        title: "Frameworks",
-        description:
-          "React.js, Next.js, Node.js for high-performance user experience.",
-      },
-      {
-        icon: "Cloud",
-        title: "Cloud Infrastructure",
-        description:
-          "AWS + serverless architecture for scalability & reliability.",
-      },
-      {
-        icon: "Link",
-        title: "Blockchain Tools",
-        description:
-          "Ethereum smart contracts for traceability & fraud prevention.",
-      },
-      {
-        icon: "BarChart3",
-        title: "AI & Data",
-        description:
-          "KPI analytics, predictive demand modeling, AI-driven matchmaking.",
-      },
-      {
-        icon: "Globe",
-        title: "AR/VR Tech",
-        description: "Virtual showrooms for buyers.",
-      },
-      {
-        icon: "Shield",
-        title: "Security",
-        description:
-          "SSL encryption, KYC vendor/buyer verification, secure API integrations.",
-      },
-      {
-        icon: "Package",
-        title: "Automation",
-        description: "End-to-end logistics and order workflow automation.",
-      },
-      {
-        icon: "Smartphone",
-        title: "Mobile Experience",
-        description: "Seamless, responsive, and PWA-enabled mobile platform.",
-      },
-    ],
-    support:
-      "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
-  },
+  heading: "Technology That Powers Our Platform",
+  description:
+    "De Koshur Crafts is built with modern, scalable, and secure digital infrastructure, developed and maintained by Prime Logic Solutions, our dedicated software, web development, and digital marketing partner.",
+  features: [
+    {
+      icon: "Layers",
+      title: "MACH Architecture",
+      description:
+        "Microservices, API-first, Azure cloud-native, headless PWA, database intelligence, geofencing.",
+    },
+    {
+      icon: "Link",
+      title: "API Integrations",
+      description:
+        "Storefront, payments, shipping, fulfillment, chatbots, voice search, fraud detection APIs.",
+    },
+    {
+      icon: "FileText",
+      title: "Content Management",
+      description:
+        "WYSIWYG editing, asset management, metadata modeling, personalization, SEO, A/B testing.",
+    },
+    {
+      icon: "Shield",
+      title: "Security & Compliance",
+      description:
+        "PCI compliance, encryption, intrusion detection, MFA/SSO, SIEM monitoring, vulnerability scanning.",
+    },
+    {
+      icon: "BarChart",
+      title: "Marketing Automation",
+      description:
+        "AI personalization, omnichannel campaigns, segmentation, predictive targeting, chatbots, ROI analytics.",
+    },
+    {
+      icon: "Cube",
+      title: "Immersive Tech",
+      description:
+        "Digital catalogs, AR try-ons, lookbooks, 3D configurators, videos, mailing catalogs.",
+    },
+    {
+      icon: "PieChart",
+      title: "Data & Analytics",
+      description:
+        "Predictive modeling, segmentation, customer insights, dashboards, KPI tracking, optimization.",
+    },
+    {
+      icon: "Cloud",
+      title: "Cloud Infrastructure",
+      description:
+        "Azure serverless hosting with high availability, scalability, reliability, integration.",
+    },
+  ],
+  support:
+    "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
+}
+,
 platformAdvantage: {
   heading: "Our Platform Advantage",
   description:

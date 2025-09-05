@@ -1,5 +1,5 @@
 export const brickMortarData = {
-  name:"brick-mortar",
+  name: "brick-mortar",
   hero: {
     headline:
       "Shared Brick & Mortar Partnerships — Physical Stores, Omni-Channel Visibility",
@@ -28,66 +28,78 @@ export const brickMortarData = {
       {
         icon: "DollarSign",
         title: "Owner Revenue",
-        description: "Earns commission per sale, boosting retail profitability with heritage goods."
+        description:
+          "Earns commission per sale, boosting retail profitability with heritage goods.",
       },
       {
         icon: "Package",
         title: "Owner Diversity",
-        description: "Offers customers curated artisan collections unavailable in generic markets."
+        description:
+          "Offers customers curated artisan collections unavailable in generic markets.",
       },
       {
         icon: "Shield",
         title: "Owner Compliance",
-        description: "Assures products meet US retail, safety, and consumer regulations."
+        description:
+          "Assures products meet US retail, safety, and consumer regulations.",
       },
       {
         icon: "Tag",
         title: "Owner Branding",
-        description: "Strengthens store identity through authentic Kashmiri cultural storytelling displays."
+        description:
+          "Strengthens store identity through authentic Kashmiri cultural storytelling displays.",
       },
       {
         icon: "TrendingUp",
         title: "Owner Growth",
-        description: "Expands product lines without inventory risks or upfront procurement."
+        description:
+          "Expands product lines without inventory risks or upfront procurement.",
       },
       {
         icon: "Store",
         title: "Vendor Access",
-        description: "Showcases crafts in US stores, avoiding direct retail overheads."
+        description:
+          "Showcases crafts in US stores, avoiding direct retail overheads.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Revenue",
-        description: "Earns fair profits through transparent post-sale settlement systems."
+        description:
+          "Earns fair profits through transparent post-sale settlement systems.",
       },
       {
         icon: "Lock",
         title: "Vendor Security",
-        description: "Inventory tracked, insured, and protected under marketplace management."
+        description:
+          "Inventory tracked, insured, and protected under marketplace management.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Expands to multiple US cities through shared retail partnerships."
+        description:
+          "Expands to multiple US cities through shared retail partnerships.",
       },
       {
         icon: "Award",
         title: "Vendor Recognition",
-        description: "Products gain credibility in American markets via GI certification."
+        description:
+          "Products gain credibility in American markets via GI certification.",
       },
       {
         icon: "MapPin",
         title: "Vendor Pathway",
-        description: "Brick & Mortar success accelerates entry into wholesale and franchise."
-      }
+        description:
+          "Brick & Mortar success accelerates entry into wholesale and franchise.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
-   
+
   capabilities: {
     heading: "Retail Storefront Shared Entry",
-    subheading:"Secure in-store presence through collaborative U.S. retail partnerships. ",
+    subheading:
+      "Secure in-store presence through collaborative U.S. retail partnerships. ",
     sections: [
       {
         title: "Core Infrastructure",
@@ -149,11 +161,65 @@ export const brickMortarData = {
           "Sustainable Growth: Shared spaces reduce costs and boost eco practices.",
         ],
       },
-    ]
-    
-    ,
+    ],
   },
-
+  technology: {
+    heading: "Technology That Powers Our Shared Brick & Mortar Platform",
+    description:
+      "De Koshur Crafts integrates physical and digital retail with smart spaces, inventory sync, and omnichannel experiences.",
+    features: [
+      {
+        icon: "Layout",
+        title: "Space Allocation",
+        description:
+          "Assign vendor slots, map floors, and manage shared retail spaces.",
+      },
+      {
+        icon: "TabletSmartphone",
+        title: "Phygital POS",
+        description:
+          "Link offline purchases with loyalty, e-commerce, and mobile wallets.",
+      },
+      {
+        icon: "Monitor",
+        title: "Digital Signage",
+        description:
+          "Display smart shelves, QR-enabled info, and dynamic pricing.",
+      },
+      {
+        icon: "RefreshCcw",
+        title: "Inventory Sync",
+        description:
+          "Track stock across physical stores, warehouses, and online sales.",
+      },
+      {
+        icon: "Radio",
+        title: "Engagement Beacons",
+        description:
+          "Use RFID, NFC, and Bluetooth for in-store promotions and guidance.",
+      },
+      {
+        icon: "Link",
+        title: "Omnichannel APIs",
+        description:
+          "Connect retail stores with online dashboards and vendor systems.",
+      },
+      {
+        icon: "BarChart2",
+        title: "Store Analytics",
+        description:
+          "Track heat maps, dwell times, and vendor-level sales insights.",
+      },
+      {
+        icon: "PieChart",
+        title: "Experience Dashboards",
+        description:
+          "Monitor offline and online KPIs, campaigns, and customer flow.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, ensuring unified retail experiences and seamless vendor integration.",
+  },
   eligibility: {
     heading: "Shared Brick & Mortar Entry Rules",
     requirements: [
@@ -395,8 +461,7 @@ export const brickMortarData = {
       note: "Unified commerce layer bridging physical and digital retail.",
     },
   },
-  
-  
+
   finalCta: {
     heading: "Own a Storefront Without Operational Hassles",
     subtext:

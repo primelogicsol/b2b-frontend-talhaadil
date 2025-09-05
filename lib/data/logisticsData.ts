@@ -1,5 +1,5 @@
 export const logisticsData = {
-  name : "logistics",
+  name: "logistics",
   hero: {
     headline: "Logistics Partnerships — Powering Global Craft Movement",
     subtext:
@@ -32,63 +32,74 @@ export const logisticsData = {
       {
         icon: "Globe",
         title: "Global Access",
-        description: "Marketplace connects vendors to certified logistics and shipping providers worldwide."
+        description:
+          "Marketplace connects vendors to certified logistics and shipping providers worldwide.",
       },
       {
         icon: "Truck",
         title: "Freight Forwarding",
-        description: "Consolidated cargo solutions streamline international transport and customs clearance."
+        description:
+          "Consolidated cargo solutions streamline international transport and customs clearance.",
       },
       {
         icon: "FileText",
         title: "Customs Integration",
-        description: "Automated documentation ensures faster clearance across borders and markets."
+        description:
+          "Automated documentation ensures faster clearance across borders and markets.",
       },
       {
         icon: "Map",
         title: "Predictive Logistics",
-        description: "AI-driven route optimization reduces costs and delivery times significantly."
+        description:
+          "AI-driven route optimization reduces costs and delivery times significantly.",
       },
       {
         icon: "ShoppingCart",
         title: "Buyer Efficiency",
-        description: "Receive consolidated shipments faster with real-time tracking updates."
+        description:
+          "Receive consolidated shipments faster with real-time tracking updates.",
       },
       {
         icon: "Shield",
         title: "Buyer Assurance",
-        description: "Compliance-driven shipping guarantees product quality on final delivery."
+        description:
+          "Compliance-driven shipping guarantees product quality on final delivery.",
       },
       {
         icon: "Layers",
         title: "Buyer Flexibility",
-        description: "Select shipping modes — air, sea, or ground — as needed."
+        description: "Select shipping modes — air, sea, or ground — as needed.",
       },
       {
         icon: "TrendingUp",
         title: "Buyer Growth",
-        description: "Scale sourcing networks with global coverage and transparent shipping costs."
+        description:
+          "Scale sourcing networks with global coverage and transparent shipping costs.",
       },
       {
         icon: "Store",
         title: "Vendor Access",
-        description: "Export crafts with streamlined logistics managed by trusted global partners."
+        description:
+          "Export crafts with streamlined logistics managed by trusted global partners.",
       },
       {
         icon: "Lock",
         title: "Vendor Security",
-        description: "Shipments insured and digitally tracked from origin to destination securely."
+        description:
+          "Shipments insured and digitally tracked from origin to destination securely.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Liquidity",
-        description: "Faster deliveries support quicker payment cycles and financial stability."
+        description:
+          "Faster deliveries support quicker payment cycles and financial stability.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Efficient logistics prepare vendors for wholesale, export, and franchise expansion."
-      }
+        description:
+          "Efficient logistics prepare vendors for wholesale, export, and franchise expansion.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — optimized for artisan-focused logistics.",
@@ -96,7 +107,8 @@ export const logisticsData = {
 
   capabilities: {
     heading: "Logistics and Shipping Solutions",
-    subheading:"Consolidated freight, customs, last-mile delivery with tracking reliability. ",
+    subheading:
+      "Consolidated freight, customs, last-mile delivery with tracking reliability. ",
     sections: [
       {
         title: "Core Infrastructure",
@@ -158,7 +170,65 @@ export const logisticsData = {
           "Sustainable Growth: Eco-friendly storage practices boost global competitiveness.",
         ],
       },
-    ] ,
+    ],
+  },
+  technology: {
+    heading:
+      "Technology That Powers Our  Logistics Platform",
+    description:
+      "Enables large-scale freight, customs, and transport operations with seamless integration and compliance tools.",
+    features: [
+      {
+        icon: "Truck",
+        title: "Freight Corridors",
+        description:
+          "Integrate rail, road, and port freight routing with unified visibility.",
+      },
+      {
+        icon: "FileSearch",
+        title: "Customs Gateways",
+        description:
+          "Automate clearance, bonded warehouse integration, and trade compliance.",
+      },
+      {
+        icon: "Container",
+        title: "Port Systems",
+        description:
+          "Track containers, manage yards, and schedule vessels globally.",
+      },
+      {
+        icon: "Map",
+        title: "Transport Hubs",
+        description:
+          "Coordinate rail, sea, air, and trucking for seamless logistics flow.",
+      },
+      {
+        icon: "Monitor",
+        title: "Monitoring Dashboards",
+        description:
+          "Get real-time visibility over highways, warehouses, and trade zones.",
+      },
+      {
+        icon: "ShoppingCart",
+        title: "Procurement Portals",
+        description:
+          "Centralize NGO and government supply chain purchasing processes.",
+      },
+      {
+        icon: "ShieldAlert",
+        title: "Security Systems",
+        description:
+          "Provide cargo scanning, tamper detection, and risk notifications.",
+      },
+      {
+        icon: "ClipboardCheck",
+        title: "Compliance Engines",
+        description:
+          "Enable carbon reporting, ESG audits, and global trade alignment.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, ensuring secure and compliant institutional logistics operations.",
   },
 
   eligibility: {
@@ -278,110 +348,109 @@ export const logisticsData = {
         "Yes. Premium members get institutional-level customs concierge services.",
     },
   ],
-  apiIntegration : {
-  heading: "Already Shipping Globally? Accelerate With Us.",
-  description:
-    "Accelerate global logistics with unified freight, customs, last-mile, and returns orchestration. Prime Logic Solutions USA ensures seamless operations with full visibility.",
-  features: [
-    {
-      icon: "UserCheck",
-      title: "Onboarding SLAs",
-      description:
-        "Digital contracts, carrier NDAs, service tiers, transit KPIs, penalties."
-    },
-    {
-      icon: "Plug",
-      title: "System Connectors",
-      description:
-        "Project44, FourKites, Shippo, EasyPost, UPS/FedEx/DHL, freight forwarders."
-    },
-    {
-      icon: "DollarSign",
-      title: "Rate Contracts",
-      description:
-        "Spot/contract rates, DIM rules, fuel surcharges, accessorials, auto-selection."
-    },
-    {
-      icon: "Package",
-      title: "Label Docs",
-      description:
-        "Carrier labels, packing slips, commercial invoices, eAWB/eB/L, certificates."
-    },
-    {
-      icon: "ShieldCheck",
-      title: "Trade Compliance",
-      description:
-        "HTS/HS codes, denied-party screening, embargo checks, dual-use controls."
-    },
-    {
-      icon: "Globe",
-      title: "Duty Taxes",
-      description:
-        "Duties, VAT/GST, de minimis; instant landed-cost quotes at checkout."
-    },
-    {
-      icon: "Grid",
-      title: "Shipment Planning",
-      description:
-        "Multi-stop consolidation, cross-dock, zone-skip, palletization, load building."
-    },
-    {
-      icon: "TrendingUp",
-      title: "Carrier Routing",
-      description:
-        "Mode/route optimization across air, ocean, ground with SLA targets."
-    },
-    {
-      icon: "Eye",
-      title: "Event Tracking",
-      description:
-        "Milestones, EDI/API events, geofencing, ETA predictions, customer notifications."
-    },
-    {
-      icon: "AlertTriangle",
-      title: "Claim Handling",
-      description:
-        "Delays, damages, shortages; workflows for root-cause, credits, recoveries."
-    },
-    {
-      icon: "ArrowLeft",
-      title: "Returns Flow",
-      description:
-        "RMA creation, labels, pickup/drop-off, grading, refurbishment, dispositions."
-    },
-    {
-      icon: "Truck",
-      title: "Last-Mile",
-      description:
-        "BOPIS/BORIS, lockers, couriers, crowdsourced delivery, signature and ID checks."
-    },
-    {
-      icon: "Box",
-      title: "Goods Packing",
-      description:
-        "DG validations, hazmat docs, ISTA testing, right-sized cartons, void-fill rules."
-    },
-    {
-      icon: "Shield",
-      title: "Risk Cover",
-      description:
-        "All-risk coverage, premium modeling, evidence capture, digital settlements."
-    },
-    {
-      icon: "BarChart2",
-      title: "Cost Control",
-      description:
-        "Spend, OTIF, on-time, damage rate, cost-to-serve, lane performance."
-    },
-    
-  ],
-  support: {
-    title: "Prime Support",
+  apiIntegration: {
+    heading: "Already Shipping Globally? Accelerate With Us.",
     description:
-      "Prime Logic Solutions USA provides free integration support for EDI 204/214/210, 850/855/856/940/945, ACE/AES, eAWB/eB/L, carrier/forwarder APIs.",
-    note: "Sandbox, SDKs, and SLAs available for partners."
-  }
-},
+      "Accelerate global logistics with unified freight, customs, last-mile, and returns orchestration. Prime Logic Solutions USA ensures seamless operations with full visibility.",
+    features: [
+      {
+        icon: "UserCheck",
+        title: "Onboarding SLAs",
+        description:
+          "Digital contracts, carrier NDAs, service tiers, transit KPIs, penalties.",
+      },
+      {
+        icon: "Plug",
+        title: "System Connectors",
+        description:
+          "Project44, FourKites, Shippo, EasyPost, UPS/FedEx/DHL, freight forwarders.",
+      },
+      {
+        icon: "DollarSign",
+        title: "Rate Contracts",
+        description:
+          "Spot/contract rates, DIM rules, fuel surcharges, accessorials, auto-selection.",
+      },
+      {
+        icon: "Package",
+        title: "Label Docs",
+        description:
+          "Carrier labels, packing slips, commercial invoices, eAWB/eB/L, certificates.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Trade Compliance",
+        description:
+          "HTS/HS codes, denied-party screening, embargo checks, dual-use controls.",
+      },
+      {
+        icon: "Globe",
+        title: "Duty Taxes",
+        description:
+          "Duties, VAT/GST, de minimis; instant landed-cost quotes at checkout.",
+      },
+      {
+        icon: "Grid",
+        title: "Shipment Planning",
+        description:
+          "Multi-stop consolidation, cross-dock, zone-skip, palletization, load building.",
+      },
+      {
+        icon: "TrendingUp",
+        title: "Carrier Routing",
+        description:
+          "Mode/route optimization across air, ocean, ground with SLA targets.",
+      },
+      {
+        icon: "Eye",
+        title: "Event Tracking",
+        description:
+          "Milestones, EDI/API events, geofencing, ETA predictions, customer notifications.",
+      },
+      {
+        icon: "AlertTriangle",
+        title: "Claim Handling",
+        description:
+          "Delays, damages, shortages; workflows for root-cause, credits, recoveries.",
+      },
+      {
+        icon: "ArrowLeft",
+        title: "Returns Flow",
+        description:
+          "RMA creation, labels, pickup/drop-off, grading, refurbishment, dispositions.",
+      },
+      {
+        icon: "Truck",
+        title: "Last-Mile",
+        description:
+          "BOPIS/BORIS, lockers, couriers, crowdsourced delivery, signature and ID checks.",
+      },
+      {
+        icon: "Box",
+        title: "Goods Packing",
+        description:
+          "DG validations, hazmat docs, ISTA testing, right-sized cartons, void-fill rules.",
+      },
+      {
+        icon: "Shield",
+        title: "Risk Cover",
+        description:
+          "All-risk coverage, premium modeling, evidence capture, digital settlements.",
+      },
+      {
+        icon: "BarChart2",
+        title: "Cost Control",
+        description:
+          "Spend, OTIF, on-time, damage rate, cost-to-serve, lane performance.",
+      },
+    ],
+    support: {
+      title: "Prime Support",
+      description:
+        "Prime Logic Solutions USA provides free integration support for EDI 204/214/210, 850/855/856/940/945, ACE/AES, eAWB/eB/L, carrier/forwarder APIs.",
+      note: "Sandbox, SDKs, and SLAs available for partners.",
+    },
+  },
   finalCta: {
     heading: "Join De Koshur Crafts’ Logistics Partnership Today",
     subtext:

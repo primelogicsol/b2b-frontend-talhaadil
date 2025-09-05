@@ -1,5 +1,5 @@
 export const consignmentPageData = {
-  name:"consignment",
+  name: "consignment",
   hero: {
     headline:
       "Consignment Partnerships — Low-Risk Retail Expansion for Kashmiri Crafts",
@@ -32,70 +32,82 @@ export const consignmentPageData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Unified hub connecting consignors and consignees across global markets."
+        description:
+          "Unified hub connecting consignors and consignees across global markets.",
       },
       {
         icon: "Handshake",
         title: "Secure Contracts",
-        description: "Standardized agreements ensure trust, fairness, and risk sharing."
+        description:
+          "Standardized agreements ensure trust, fairness, and risk sharing.",
       },
       {
         icon: "BarChart3",
         title: "Digital Tracking",
-        description: "AI-driven dashboards monitor inventory, sales, and payouts transparently."
+        description:
+          "AI-driven dashboards monitor inventory, sales, and payouts transparently.",
       },
       {
         icon: "CreditCard",
         title: "Payment Assurance",
-        description: "Automated systems release payments to consignors only post-sales."
+        description:
+          "Automated systems release payments to consignors only post-sales.",
       },
       {
         icon: "ShoppingCart",
         title: "Consignee Flexibility",
-        description: "Acquire products without upfront cost, reducing cash flow strain."
+        description:
+          "Acquire products without upfront cost, reducing cash flow strain.",
       },
       {
         icon: "Package",
         title: "Consignee Diversity",
-        description: "Access curated Kashmiri crafts tailored for boutique and niche markets."
+        description:
+          "Access curated Kashmiri crafts tailored for boutique and niche markets.",
       },
       {
         icon: "FileText",
         title: "Consignee Transparency",
-        description: "Receive detailed reports on turnover, sales, and consumer demand."
+        description:
+          "Receive detailed reports on turnover, sales, and consumer demand.",
       },
       {
         icon: "TrendingUp",
         title: "Consignee Growth",
-        description: "Expand retail offerings confidently with low-risk inventory commitments."
+        description:
+          "Expand retail offerings confidently with low-risk inventory commitments.",
       },
       {
         icon: "Store",
         title: "Consignor Access",
-        description: "Place crafts in premium stores, exhibitions, and curated marketplaces."
+        description:
+          "Place crafts in premium stores, exhibitions, and curated marketplaces.",
       },
       {
         icon: "Shield",
         title: "Consignor Security",
-        description: "Inventory protected with insurance, tracking, and compliance-backed systems."
+        description:
+          "Inventory protected with insurance, tracking, and compliance-backed systems.",
       },
       {
         icon: "DollarSign",
         title: "Consignor Liquidity",
-        description: "Payments flow after sales, ensuring financial sustainability and stability."
+        description:
+          "Payments flow after sales, ensuring financial sustainability and stability.",
       },
       {
         icon: "ArrowUpRight",
         title: "Consignor Pathway",
-        description: "Consignment strengthens readiness for wholesale, export, or franchise scaling."
-      }
+        description:
+          "Consignment strengthens readiness for wholesale, export, or franchise scaling.",
+      },
     ],
     exclusivity:
       "Exclusively designed for low-risk retail trade of Kashmiri handmade crafts.",
   },
   capabilities: {
     heading: "Consignment Settlement Made Simple",
-    subheading:"Supply inventory now; receive payments only after sales.",
+    subheading: "Supply inventory now; receive payments only after sales.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -157,8 +169,7 @@ export const consignmentPageData = {
           "Sustainable Growth: Ethical practices strengthen long-term global market reputation.",
         ],
       },
-    ]
-    ,
+    ],
   },
   eligibility: {
     heading: "Consignment Entry Rules",
@@ -212,55 +223,64 @@ export const consignmentPageData = {
     ],
     range: "Range: $50–$250",
   },
-  technology: {
-    heading: "Web Development Technology",
-    description: "Backed by Prime Logic Solutions",
-    features: [
-      {
-        icon: "Cog",
-        title: "Frameworks",
-        description: "React.js, Next.js, Node.js",
-      },
-      {
-        icon: "Cloud",
-        title: "Cloud Infrastructure",
-        description: "AWS + serverless",
-      },
-      {
-        icon: "Link",
-        title: "Blockchain",
-        description: "Ethereum smart contracts for consignment contracts",
-      },
-      {
-        icon: "BarChart3",
-        title: "AI Tools",
-        description: "Demand prediction, sell-through analytics",
-      },
-      {
-        icon: "Globe",
-        title: "AR/VR",
-        description: "Virtual retail shelves & showrooms",
-      },
-      {
-        icon: "Shield",
-        title: "Security",
-        description: "PCI DSS, encrypted APIs, secure KYC",
-      },
-      {
-        icon: "Shield",
-        title: "Security",
-        description: "PCI DSS, encrypted APIs, secure KYC",
-      },
-      {
-        icon: "Shield",
-        title: "Security",
-        description: "PCI DSS, encrypted APIs, secure KYC",
-      },
-    ],
-    support:
-      "Backed by Prime Logic Solutions, ensuring continuous upgrades, 24/7 support, and seamless digital marketing integration for global reach.",
-  },
-  platformAdvantage: {
+technology: {
+  heading: "Consignment & Inventory Systems",
+  description:
+    "De Koshur Crafts offers advanced systems for seamless vendor relations, automated workflows, and intelligent stock management.",
+  features: [
+    {
+      icon: "ListChecks",
+      title: "Inventory Reconciliation",
+      description:
+        "Track SKUs in real time, automate sales matching, and provide clear vendor reporting tools.",
+    },
+    {
+      icon: "DollarSign",
+      title: "Revenue Sharing",
+      description:
+        "Split payments instantly, manage commission payouts, and track platform-vendor earnings.",
+    },
+    {
+      icon: "FileSignature",
+      title: "Contract Management",
+      description:
+        "Digitize agreements, automate renewals, and monitor compliance with consignor policies.",
+    },
+    {
+      icon: "Lock",
+      title: "Ownership Tracking",
+      description:
+        "Use blockchain to verify item ownership and ensure transfer only after confirmed sales.",
+    },
+    {
+      icon: "Activity",
+      title: "Stock Forecasting",
+      description:
+        "Predict demand with AI, flag unsold inventory, and optimize future restocking cycles.",
+    },
+    {
+      icon: "MapPin",
+      title: "Location Sync",
+      description:
+        "Unify POS data and maintain centralized stock visibility across all retail points.",
+    },
+    {
+      icon: "Repeat",
+      title: "Reverse Logistics",
+      description:
+        "Automate returns, reclaim inventory, and streamline redistribution of unsold items.",
+    },
+    {
+      icon: "BarChart2",
+      title: "Performance Analytics",
+      description:
+        "Track sales KPIs, analyze SKU-level profits, and evaluate vendor performance trends.",
+    },
+  ],
+  support:
+    "Backed by Prime Logic Solutions, ensuring constant upgrades, reliable support, and effortless integration.",
+}
+,  platformAdvantage: {
     heading: "Our Platform Advantage",
     description:
       "Enabling Kashmiri handicrafts to enter U.S. retail stores via a consignment-based model that preserves artisan ownership while increasing visibility and sales opportunities.",
@@ -383,8 +403,7 @@ export const consignmentPageData = {
       note: "API documentation and sandbox available for partners.",
     },
   },
-  
-  
+
   finalCta: {
     heading: "Start Consignment with De Koshur Crafts Today",
     subtext:

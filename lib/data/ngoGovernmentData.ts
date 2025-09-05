@@ -1,5 +1,5 @@
 export const ngoGovernmentData = {
-  name:"ngo_government",
+  name: "ngo_government",
   hero: {
     headline:
       "NGO & Government Partnerships — Empowering Sustainable Craft Trade",
@@ -76,8 +76,7 @@ export const ngoGovernmentData = {
       },
       {
         title: "Vendor Security",
-        description:
-          "Ensures SDG 3 (Good Health) with safe work environments.",
+        description: "Ensures SDG 3 (Good Health) with safe work environments.",
       },
       {
         title: "Buyer Advantage",
@@ -90,14 +89,15 @@ export const ngoGovernmentData = {
           "Builds SDG 17 (Global Partnerships) for sustainable export and wholesale growth.",
       },
     ],
-    
+
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
 
   capabilities: {
     heading: "Policy Advocacy Government Alliances",
-    subheading:"Align programs, funding, compliance for equitable artisan growth.",
+    subheading:
+      "Align programs, funding, compliance for equitable artisan growth.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -161,7 +161,63 @@ export const ngoGovernmentData = {
       },
     ],
   },
-  
+  technology: {
+    heading:
+      "Technology That Powers Our NGOs & Governments Platform",
+    description:
+      "Drives sustainable handicraft ecosystems with policy governance, compliance, and artisan support tools.",
+    features: [
+      {
+        icon: "FileText",
+        title: "Policy Systems",
+        description:
+          "Protect artisan rights with GI enforcement and fair trade rules.",
+      },
+      {
+        icon: "HandHeart",
+        title: "Support Portals",
+        description:
+          "Provide grants, skill development, and cooperative funding.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Compliance Engines",
+        description: "Ensure fair wages, safe workplaces, and no child labor.",
+      },
+      {
+        icon: "Users",
+        title: "Stakeholder Hubs",
+        description:
+          "Unite NGOs, governments, and craft councils for SDG action.",
+      },
+      {
+        icon: "IdCard",
+        title: "Identity Registries",
+        description:
+          "Register artisans for benefits, recognition, and inclusion.",
+      },
+      {
+        icon: "Globe",
+        title: "Heritage Portals",
+        description:
+          "Showcase clusters, heritage crafts, and open SDG progress.",
+      },
+      {
+        icon: "AlertTriangle",
+        title: "Crisis Systems",
+        description:
+          "Provide support during disasters, pandemics, or disruptions.",
+      },
+      {
+        icon: "BarChart2",
+        title: "SDG Dashboards",
+        description: "Track carbon use, eco-materials, and SDG compliance.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, supporting artisans and governments with transparent SDG infrastructure.",
+  },
+
   eligibility: {
     heading: "Who Can Join?",
     requirements: [
@@ -211,42 +267,42 @@ export const ngoGovernmentData = {
     range: "Range: $120–$6,000/year",
   },
   platformAdvantage: {
-  heading: "Our Platform Advantage",
-  description:
-    "NGO and government collaborations for Kashmiri handicrafts, integrating fair-trade, sustainability, and global development initiatives to support artisans and enhance sector credibility.",
-  sections: [
-    {
-      title: "Benefits for Collaborators (Global NGOs & Governments)",
-      items: [
-        "Align procurement with fair-trade and sustainability goals.",
-        "Showcase impact through artisan livelihood development programs.",
-        "Strengthen credibility in global humanitarian and CSR initiatives.",
-        "Foster cross-cultural diplomacy through heritage-based collaborations.",
-        "Support UN SDGs with measurable, craft-centered interventions.",
-      ],
-    },
-    {
-      title: "Benefits for Kashmiri Craftsmen & Institutions",
-      items: [
-        "Secure stable contracts through NGO and government partnerships.",
-        "Receive fair wages and stronger labor protections.",
-        "Access training, funding, and policy-driven support programs.",
-        "Reduce exploitation with transparent procurement channels.",
-        "Build institutional recognition beyond commercial craft markets.",
-      ],
-    },
-    {
-      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
-      items: [
-        "Embeds handicrafts into global development and policy frameworks.",
-        "Promotes inclusive growth for women and marginalized artisans.",
-        "Enhances sustainability credentials in international markets.",
-        "Strengthens heritage preservation through institutional support.",
-        "Expands diplomatic and trade networks for crafts worldwide.",
-      ],
-    },
-  ],
-},
+    heading: "Our Platform Advantage",
+    description:
+      "NGO and government collaborations for Kashmiri handicrafts, integrating fair-trade, sustainability, and global development initiatives to support artisans and enhance sector credibility.",
+    sections: [
+      {
+        title: "Benefits for Collaborators (Global NGOs & Governments)",
+        items: [
+          "Align procurement with fair-trade and sustainability goals.",
+          "Showcase impact through artisan livelihood development programs.",
+          "Strengthen credibility in global humanitarian and CSR initiatives.",
+          "Foster cross-cultural diplomacy through heritage-based collaborations.",
+          "Support UN SDGs with measurable, craft-centered interventions.",
+        ],
+      },
+      {
+        title: "Benefits for Kashmiri Craftsmen & Institutions",
+        items: [
+          "Secure stable contracts through NGO and government partnerships.",
+          "Receive fair wages and stronger labor protections.",
+          "Access training, funding, and policy-driven support programs.",
+          "Reduce exploitation with transparent procurement channels.",
+          "Build institutional recognition beyond commercial craft markets.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Embeds handicrafts into global development and policy frameworks.",
+          "Promotes inclusive growth for women and marginalized artisans.",
+          "Enhances sustainability credentials in international markets.",
+          "Strengthens heritage preservation through institutional support.",
+          "Expands diplomatic and trade networks for crafts worldwide.",
+        ],
+      },
+    ],
+  },
 
   workflow: {
     heading: "NGO/Government Partnership Pathway",
@@ -356,7 +412,6 @@ export const ngoGovernmentData = {
         description:
           "Warehousing, last-mile delivery, beneficiary targeting, proof-of-delivery evidence.",
       },
-     
     ],
     support: {
       title:
@@ -366,7 +421,7 @@ export const ngoGovernmentData = {
       note: "Purpose-built for governments, NGOs, and global development programs.",
     },
   },
-  
+
   finalCta: {
     heading: "Partner With NGOs & Governments to Scale Impact",
     subtext:

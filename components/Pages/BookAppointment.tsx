@@ -55,7 +55,7 @@ const offices = [
     schedule: "Mon–Fri, 10 AM–5 PM EST",
     timezone: "EST",
     flag: "🇺🇸",
-    phone: "+1 (757) 555-0123",
+    phone: "+1 (916) 699-0091",
     country: "usa",
   },
   {
@@ -65,7 +65,7 @@ const offices = [
     schedule: "Mon–Sat, 11 AM–4 PM IST",
     timezone: "IST",
     flag: "🇮🇳",
-    phone: "+91 194 555-0456",
+    phone: "+91 94190 70707",
     country: "india",
   },
 ]

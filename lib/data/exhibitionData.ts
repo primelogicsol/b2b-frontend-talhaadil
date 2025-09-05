@@ -1,5 +1,5 @@
 export const exhibitionData = {
-  name:"exhibition",
+  name: "exhibition",
   hero: {
     headline:
       "Exhibition Partnerships — Showcase Kashmiri Crafts on the Global Stage",
@@ -11,6 +11,64 @@ export const exhibitionData = {
       "Join as a Buyer",
     ],
   },
+  technology: {
+    heading: "Technology That Powers Our Exhibition Trading Platform",
+    description:
+      "De Koshur Crafts enhances trade exhibitions with digital booth allocation, visitor tools, and real-time analytics.",
+    features: [
+      {
+        icon: "Map",
+        title: "Booth Allocation",
+        description:
+          "Manage floor mapping, assign booths, and optimize vendor space digitally.",
+      },
+      {
+        icon: "Scan",
+        title: "Visitor Check-In",
+        description:
+          "Enable QR scanning, badge printing, ticketing, and smooth visitor entry.",
+      },
+      {
+        icon: "Tablet",
+        title: "Lead Capture",
+        description:
+          "Use handheld scanners and NFC tools to collect buyer interactions.",
+      },
+      {
+        icon: "ClipboardList",
+        title: "Event Logistics",
+        description:
+          "Track booth setup, dismantling, and exhibitor coordination efficiently.",
+      },
+      {
+        icon: "Monitor",
+        title: "Product Display",
+        description:
+          "Utilize smart shelves, kiosks, and RFID sample tracking systems.",
+      },
+      {
+        icon: "CreditCard",
+        title: "Order Systems",
+        description:
+          "Integrate POS terminals, manage instant booking, and link inventory.",
+      },
+      {
+        icon: "BarChart",
+        title: "Visitor Analytics",
+        description:
+          "Track footfall, dwell times, and visitor engagement across events.",
+      },
+      {
+        icon: "FileBarChart",
+        title: "Event Reporting",
+        description:
+          "Generate lead data, sales insights, and ROI reports for exhibitors.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, ensuring smooth event operations, lead management, and data-driven exhibition growth.",
+  },
+
   whyDropshipping: {
     heading: "Global Visibility, Local Roots",
     problems: [
@@ -31,70 +89,83 @@ export const exhibitionData = {
       {
         icon: "Globe",
         title: "Organizer Access",
-        description: "Hosts curated exhibitions connecting global buyers with Kashmiri vendors."
+        description:
+          "Hosts curated exhibitions connecting global buyers with Kashmiri vendors.",
       },
       {
         icon: "BookOpen",
         title: "Organizer Platform",
-        description: "Provides digital catalogs, exhibitor listings, and promotional visibility globally."
+        description:
+          "Provides digital catalogs, exhibitor listings, and promotional visibility globally.",
       },
       {
         icon: "Shield",
         title: "Organizer Standards",
-        description: "Ensures compliance, GI certification, and KHCRF-driven authenticity checks."
+        description:
+          "Ensures compliance, GI certification, and KHCRF-driven authenticity checks.",
       },
       {
         icon: "MapPin",
         title: "Organizer Reach",
-        description: "Expands exhibitor access to trade fairs, museums, and international expos."
+        description:
+          "Expands exhibitor access to trade fairs, museums, and international expos.",
       },
       {
         icon: "Briefcase",
         title: "Organizer Support",
-        description: "Offers logistics, branding, and marketing resources to participating exhibitors."
+        description:
+          "Offers logistics, branding, and marketing resources to participating exhibitors.",
       },
       {
         icon: "TrendingUp",
         title: "Organizer Growth",
-        description: "Builds long-term partnerships by hosting seasonal and thematic exhibitions."
+        description:
+          "Builds long-term partnerships by hosting seasonal and thematic exhibitions.",
       },
       {
         icon: "Store",
         title: "Exhibitor Access",
-        description: "Showcases products in premium curated exhibitions and catalog environments."
+        description:
+          "Showcases products in premium curated exhibitions and catalog environments.",
       },
       {
         icon: "Award",
         title: "Exhibitor Recognition",
-        description: "Elevates artisan credibility with verified GI and cultural branding."
+        description:
+          "Elevates artisan credibility with verified GI and cultural branding.",
       },
       {
         icon: "Users",
         title: "Exhibitor Leads",
-        description: "Generates wholesale orders, retail inquiries, and collector interest globally."
+        description:
+          "Generates wholesale orders, retail inquiries, and collector interest globally.",
       },
       {
         icon: "CheckCircle",
         title: "Exhibitor Compliance",
-        description: "Meets marketplace standards for sustainability, authenticity, and transparent pricing."
+        description:
+          "Meets marketplace standards for sustainability, authenticity, and transparent pricing.",
       },
       {
         icon: "DollarSign",
         title: "Exhibitor Revenue",
-        description: "Drives sales through direct exhibition exposure and catalog placements."
+        description:
+          "Drives sales through direct exhibition exposure and catalog placements.",
       },
       {
         icon: "ArrowUpRight",
         title: "Exhibitor Pathway",
-        description: "Exhibition participation accelerates entry into wholesale, export, or franchise."
-      }
+        description:
+          "Exhibition participation accelerates entry into wholesale, export, or franchise.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
   },
   capabilities: {
     heading: "Exhibition Spotlight for Artisans",
-    subheading:"Curated showcases deliver international visibility and qualified buyers.",
+    subheading:
+      "Curated showcases deliver international visibility and qualified buyers.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -156,10 +227,9 @@ export const exhibitionData = {
           "Sustainable Growth: Exhibitions create eco-friendly cultural and commercial opportunities worldwide.",
         ],
       },
-    ]
-    ,
+    ],
   },
-  
+
   eligibility: {
     heading: "Who Can Join Exhibition Partnerships?",
     requirements: [
@@ -208,44 +278,44 @@ export const exhibitionData = {
     ],
     range: "Range: $100–$500/year",
   },
-  
-platformAdvantage: {
-  heading: "Our Platform Advantage",
-  description:
-    "Promoting Kashmiri handicrafts through prestigious international cultural exhibitions, creating high-value networking, brand visibility, and advance order opportunities for artisans.",
-  sections: [
-    {
-      title: "Benefits for Vendors (Kashmir/India)",
-      items: [
-        "Showcase products in high-profile US cultural exhibitions.",
-        "Generate leads from global B2B craft buyers.",
-        "Build artisan brand presence through curated showcases.",
-        "Lock advance orders during and after events.",
-        "Gain access to museums and institutional collaborations.",
-      ],
-    },
-    {
-      title: "Benefits for Buyers (US-Based)",
-      items: [
-        "Directly access curated Kashmiri craft collections at events.",
-        "Acquire limited edition or one-of-a-kind craft pieces.",
-        "Network with artisans for long-term sourcing relationships.",
-        "Enhance marketing campaigns with cultural storytelling assets.",
-        "Place bulk pre-orders during exhibitions for seasonal demand.",
-      ],
-    },
-    {
-      title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
-      items: [
-        "Elevates Kashmiri crafts in international cultural showcases.",
-        "Attracts tourism and cultural diplomacy through exhibitions abroad.",
-        "Strengthens sector branding as a global heritage craft hub.",
-        "Encourages younger artisans to participate in cultural trade.",
-        "Expands opportunities for collaborations with museums and NGOs.",
-      ],
-    },
-  ],
-},
+
+  platformAdvantage: {
+    heading: "Our Platform Advantage",
+    description:
+      "Promoting Kashmiri handicrafts through prestigious international cultural exhibitions, creating high-value networking, brand visibility, and advance order opportunities for artisans.",
+    sections: [
+      {
+        title: "Benefits for Vendors (Kashmir/India)",
+        items: [
+          "Showcase products in high-profile US cultural exhibitions.",
+          "Generate leads from global B2B craft buyers.",
+          "Build artisan brand presence through curated showcases.",
+          "Lock advance orders during and after events.",
+          "Gain access to museums and institutional collaborations.",
+        ],
+      },
+      {
+        title: "Benefits for Buyers (US-Based)",
+        items: [
+          "Directly access curated Kashmiri craft collections at events.",
+          "Acquire limited edition or one-of-a-kind craft pieces.",
+          "Network with artisans for long-term sourcing relationships.",
+          "Enhance marketing campaigns with cultural storytelling assets.",
+          "Place bulk pre-orders during exhibitions for seasonal demand.",
+        ],
+      },
+      {
+        title: "Benefits for the Handicraft Sector (Kashmir Ecosystem)",
+        items: [
+          "Elevates Kashmiri crafts in international cultural showcases.",
+          "Attracts tourism and cultural diplomacy through exhibitions abroad.",
+          "Strengthens sector branding as a global heritage craft hub.",
+          "Encourages younger artisans to participate in cultural trade.",
+          "Expands opportunities for collaborations with museums and NGOs.",
+        ],
+      },
+    ],
+  },
 
   workflow: {
     heading: "Exhibition Partnership Pathway",
@@ -285,7 +355,7 @@ platformAdvantage: {
         "Yes, successful vendors can move into White Label or Retail Store partnerships.",
     },
   ],
- apiIntegration: {
+  apiIntegration: {
     heading: "Already Exhibiting or Organizing? Accelerate With Us.",
     description:
       "Run shows flawlessly, onboard exhibitors, capture leads, monetize globally.",
@@ -305,8 +375,7 @@ platformAdvantage: {
       {
         icon: "BookOpen",
         title: "Digital Catalogs & Media",
-        description:
-          "Rich product pages, pricing, QR/AR assets, press kits.",
+        description: "Rich product pages, pricing, QR/AR assets, press kits.",
       },
       {
         icon: "ScanLine",
@@ -335,8 +404,6 @@ platformAdvantage: {
       note: "API documentation and sandbox available for partners.",
     },
   },
-  
-  
 
   finalCta: {
     heading: "Showcase Your Crafts to the World",

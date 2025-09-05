@@ -1,5 +1,5 @@
 export const wholesaleData = {
-  name:"wholesale",
+  name: "wholesale",
   hero: {
     headline:
       "Wholesale Partnerships — Scale Craft Trade with Volume & Reliability",
@@ -32,70 +32,83 @@ export const wholesaleData = {
       {
         icon: "Globe",
         title: "Platform Access",
-        description: "Central hub connects wholesale buyers and certified Kashmiri vendors seamlessly."
+        description:
+          "Central hub connects wholesale buyers and certified Kashmiri vendors seamlessly.",
       },
       {
         icon: "Box",
         title: "Bulk Integration",
-        description: "Systems optimized for high-volume orders and automated distribution processes."
+        description:
+          "Systems optimized for high-volume orders and automated distribution processes.",
       },
       {
         icon: "BarChart3",
         title: "Sales Transparency",
-        description: "Dashboards provide SKU-level reports, turnover, and real-time data."
+        description:
+          "Dashboards provide SKU-level reports, turnover, and real-time data.",
       },
       {
         icon: "Shield",
         title: "Compliance Security",
-        description: "Wholesale contracts aligned with US/EU trade and safety standards."
+        description:
+          "Wholesale contracts aligned with US/EU trade and safety standards.",
       },
       {
         icon: "ShoppingCart",
         title: "Buyer Efficiency",
-        description: "Acquire large volumes at competitive rates through verified suppliers."
+        description:
+          "Acquire large volumes at competitive rates through verified suppliers.",
       },
       {
         icon: "Package",
         title: "Buyer Reach",
-        description: "Access GI-certified crafts for chain stores and national markets."
+        description:
+          "Access GI-certified crafts for chain stores and national markets.",
       },
       {
         icon: "CheckCircle",
         title: "Buyer Confidence",
-        description: "Fair pricing and traceability reduce procurement risks significantly."
+        description:
+          "Fair pricing and traceability reduce procurement risks significantly.",
       },
       {
         icon: "TrendingUp",
         title: "Buyer Growth",
-        description: "Expand sourcing networks across multi-regional and multi-country distribution hubs."
+        description:
+          "Expand sourcing networks across multi-regional and multi-country distribution hubs.",
       },
       {
         icon: "Store",
         title: "Vendor Access",
-        description: "Distribute products to bulk buyers, wholesalers, and national retailers."
+        description:
+          "Distribute products to bulk buyers, wholesalers, and national retailers.",
       },
       {
         icon: "Lock",
         title: "Vendor Security",
-        description: "Inventory protected by contracts, logistics partners, and insurance systems."
+        description:
+          "Inventory protected by contracts, logistics partners, and insurance systems.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Liquidity",
-        description: "Stable cashflow supported through predictable wholesale purchase agreements."
+        description:
+          "Stable cashflow supported through predictable wholesale purchase agreements.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Wholesale prepares progression into export, subsidiary, and franchise partnerships."
-      }
+        description:
+          "Wholesale prepares progression into export, subsidiary, and franchise partnerships.",
+      },
     ],
     exclusivity:
       "The most scalable and transparent pathway for large-volume trade of Kashmiri handmade crafts.",
   },
   capabilities: {
     heading: "Wholesale Supplier Trade Channels",
-    subheading:"Verified bulk sourcing for scalable retailer distribution worldwide.",
+    subheading:
+      "Verified bulk sourcing for scalable retailer distribution worldwide.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -157,8 +170,7 @@ export const wholesaleData = {
           "Sustainable Growth: Ethical sourcing supports eco-friendly global distribution practices.",
         ],
       },
-    ]
-    ,
+    ],
   },
   eligibility: {
     heading: "Wholesale Entry Rules",
@@ -212,59 +224,61 @@ export const wholesaleData = {
     range: "Range: $125–$500",
   },
   technology: {
-    heading: "Technology That Powers Our Platform",
+    heading: "Technology That Powers Our Wholesale / Distribution Platform",
     description:
-      "De Koshur Crafts wholesale platform is built with enterprise-grade technology infrastructure, developed and maintained by Prime Logic Solutions, ensuring scalable bulk trade operations and seamless integration capabilities.",
+      "De Koshur Crafts provides a robust wholesale and distribution ecosystem with automated operations, integrated suppliers, and optimized logistics.",
     features: [
       {
-        icon: "Cog",
-        title: "Frameworks",
+        icon: "Package",
+        title: "Order Management",
         description:
-          "React.js, Next.js, Node.js for high-performance wholesale operations.",
-      },
-      {
-        icon: "Cloud",
-        title: "Cloud Infrastructure",
-        description:
-          "AWS cloud + serverless architecture for scalable bulk processing.",
+          "Automate bulk B2B orders with tiered pricing, approvals, and fast processing.",
       },
       {
         icon: "Link",
-        title: "Blockchain Tools",
+        title: "Supplier Integration",
         description:
-          "Smart contracts for wholesale trade verification and compliance.",
+          "Sync supplier catalogs in real time, automate purchase orders, and track inventory.",
       },
       {
-        icon: "BarChart3",
-        title: "AI & Data",
+        icon: "TrendingUp",
+        title: "Dynamic Pricing",
         description:
-          "Demand forecasting, order analytics, and KPI performance tracking.",
+          "Offer volume discounts, manage contract pricing, and optimize prices using AI tools.",
       },
       {
-        icon: "Globe",
-        title: "AR/VR Tech",
-        description: "Virtual wholesale catalogs and product showcases.",
-      },
-      {
-        icon: "Shield",
-        title: "Security",
+        icon: "Boxes",
+        title: "Warehouse Systems",
         description:
-          "Enterprise-grade security with vendor verification and fraud prevention.",
+          "Track multiple warehouses, manage batches, scan barcodes, and automate fulfillment.",
       },
       {
-        icon: "Package",
-        title: "Automation",
-        description: "Bulk order processing and automated fulfillment systems.",
-      },
-      {
-        icon: "Smartphone",
-        title: "Mobile Experience",
+        icon: "Activity",
+        title: "Supply Forecasting",
         description:
-          "Mobile-optimized wholesale management and ordering platform.",
+          "Analyze demand, optimize stock levels, and reduce risks in distribution cycles.",
+      },
+      {
+        icon: "UserSquare",
+        title: "Customer Portals",
+        description:
+          "Provide custom dashboards, manage contracts, and enable account-based ordering.",
+      },
+      {
+        icon: "FileText",
+        title: "Trade Compliance",
+        description:
+          "Automate invoices, generate customs forms, and ensure cross-border compliance.",
+      },
+      {
+        icon: "Truck",
+        title: "Logistics APIs",
+        description:
+          "Integrate freight forwarding, optimize routes, and track shipments in real time.",
       },
     ],
     support:
-      "Backed by Prime Logic Solutions, ensuring continuous upgrades, enterprise support, and seamless integration for wholesale operations.",
+      "Backed by Prime Logic Solutions, ensuring seamless integrations, continuous upgrades, and reliable wholesale operations.",
   },
   platformAdvantage: {
     heading: "Our Platform Advantage",
