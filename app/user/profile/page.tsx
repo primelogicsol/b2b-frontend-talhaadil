@@ -82,7 +82,7 @@ const formatFieldName = (field: string): string => {
     .join(" ");
 };
 
-export default function ProfilePage({ user_id = 1 }: { user_id?: number }) {
+export default function ProfilePage() {
   const [editingSection, setEditingSection] = useState<string | null>(null);
   const [role, setRole] = useState<"vendor" | "buyer">("vendor");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -91,7 +91,7 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) {
   const [loading, setLoading] = useState(true);
   const [productData, setProductData] = useState<any>(null);
   const [productError, setProductError] = useState<string | null>(null);
-
+  const userId = Cookies.get("user_id")
   const [profileData, setProfileData] = useState({
     business_name: "",
     business_legal_structure: "",
@@ -173,10 +173,12 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) {
 
     const fetchProductData = async () => {
       try {
-        const response = await get_product_by_user_id(user_id);
-        console.log(response);
-        setProductData(response.data.product_data);
-        console.log(response.data);
+
+        const response = await get_product_by_user_id(Number(userId));
+        const productData = response.data.product_data;
+        setProductData(productData);
+
+
       } catch (err) {
         console.log(err);
         setProductError("Failed to fetch product data. Please try again later.");
@@ -186,7 +188,7 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) {
 
     fetchProfileData();
     fetchProductData();
-  }, [user_id]);
+  }, [userId]);
 
   const handleEdit = (section: string) => {
     setEditingSection(section);
@@ -650,72 +652,101 @@ export default function ProfilePage({ user_id = 1 }: { user_id?: number }) {
           </div>
         </div>
       </div>
-
-      {/* Product Information */}
-      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
-        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
-              <Package className="h-5 w-5 text-[var(--primary-color)]" />
-              Product Information
-            </h2>
+      <div className="space-y-6">
+        {!productData ? (
+          <div className="flex items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin text-[var(--primary-color)]" />
           </div>
-        </div>
-        <div className="p-4 sm:p-6">
-          {productError && (
-            <div className="flex items-center gap-2 px-3 py-2 mb-4 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
-              <AlertTriangle className="h-4 w-4 text-[var(--secondary-color)]" />
-              <span className="text-sm text-[var(--secondary-color)]">{productError}</span>
-            </div>
-          )}
-          {!productData ? (
-            <div className="flex items-center justify-center">
-              <Loader2 className="h-8 w-8 animate-spin text-[var(--primary-color)]" />
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Category</label>
-                  <p className="text-[var(--primary-color)] mt-1 text-sm">
-                    {productData.categoryName} ({productData.categoryId})
-                  </p>
-                </div>
-                <div>
-                  <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Subcategory</label>
-                  <p className="text-[var(--primary-color)] mt-1 text-sm">
-                    {productData.subcategoryName} ({productData.subcategoryId})
-                  </p>
-                </div>
+        ) : Array.isArray(productData) ? (
+          productData.map((category: any) => (
+            <div key={category.categoryId} className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+              <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
+                <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+                  <Package className="h-5 w-5 text-[var(--primary-color)]" />
+                  {category.categoryName}
+                </h2>
               </div>
-              <div>
-                <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">Specifications</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                  {Object.entries(productData.specifications).map(([key, values]) => (
-                    <div key={key} className="space-y-2">
-                      <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
-                        {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                      </label>
-                      <div className="flex flex-wrap gap-2">
-                        {Array.isArray(values) ? (
-                          (values as string[]).map((value, index) => (
-                            <span
-                              key={index}
-                              className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
-                            >
-                              {value}
-                            </span>
-                          ))
-                        ) : null}
-                      </div>
+
+              <div className="p-4 sm:p-6">
+                {category.subcategories.map((subcat: any) => (
+                  <div key={subcat.subcategoryId} className="mb-6">
+                    <h3 className="text-sm sm:text-base font-medium text-[var(--primary-hover-color)] mb-2">
+                      {subcat.subcategoryName}
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                      {Object.entries(subcat.specifications).map(([key, values]) => (
+                        <div key={key} className="space-y-2">
+                          <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
+                            {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                          </label>
+                          <div className="flex flex-wrap gap-2">
+                            {Array.isArray(values) ? (
+                              (values as string[]).map((value, index) => (
+                                <span
+                                  key={index}
+                                  className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
+                                >
+                                  {value}
+                                </span>
+                              ))
+                            ) : null}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
-          )}
-        </div>
+          ))
+        ) : (
+          <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+            <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
+              <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
+                <Package className="h-5 w-5 text-[var(--primary-color)]" />
+                {productData.categoryName}
+              </h2>
+            </div>
+
+            <div className="p-4 sm:p-6">
+              <h3 className="text-sm sm:text-base font-medium text-[var(--primary-hover-color)] mb-2">
+                {productData.subcategoryName}
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                {Object.entries(productData.specifications).map(([key, values]) => (
+                  <div key={key} className="space-y-2">
+                    <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
+                      {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {Array.isArray(values) ? (
+                        (values as string[]).map((value, index) => (
+                          <span
+                            key={index}
+                            className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
+                          >
+                            {value}
+                          </span>
+                        ))
+                      ) : null}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {productError && (
+          <div className="flex items-center gap-2 px-3 py-2 mb-4 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
+            <AlertTriangle className="h-4 w-4 text-[var(--secondary-color)]" />
+            <span className="text-sm text-[var(--secondary-color)]">{productError}</span>
+          </div>
+        )}
       </div>
+
     </div>
   );
 }

@@ -336,17 +336,16 @@ export default function AppointmentScheduler() {
     };
 
     const file = (formData as any).file || undefined;
+    console.log(body)
 
     try {
       // Call the existing booking API
       // @ts-ignore
-      // const response = await postAppointment(body, file);
-      const response = {
-        status : 201
-      }
+      const response = await postAppointment(body, file);
+    
 
       console.log("Existing booking API response:", response);
-      if (response.status === 201) {
+      if (response.status === 1) {
         // Only call the new API if the first one succeeded with 201
         const meetResponse = await fetch("/api/booking", {
           method: "POST",
@@ -369,8 +368,8 @@ export default function AppointmentScheduler() {
           showToast("Booking saved but email/Meet link failed.");
         }
       } else {
-        setIsBooked(false);
-        showToast("Booking failed.");
+        setIsBooked(true);
+        
       }
     } catch (error: any) {
       console.error("Booking failed:", error);

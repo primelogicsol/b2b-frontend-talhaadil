@@ -171,8 +171,8 @@ export default function RegistrationInfoPage() {
   const [error, setError] = useState<string | null>(null);
   const [register, setRegister] = useState<string | null>(null);
   const [docVerified, setDocVerified] = useState<string | null>(null);
-  const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor"); 
-  
+  const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor");
+
   // Assuming default as vendor
 
   useEffect(() => {
@@ -362,11 +362,10 @@ export default function RegistrationInfoPage() {
                 <button
                   onClick={handleApprove}
                   disabled={docVerified?.toLowerCase() !== "pass"}
-                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
-                    docVerified?.toLowerCase() !== "pass"
+                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
                       ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                       : "bg-green-600 text-white hover:bg-green-700"
-                  }`}
+                    }`}
                 >
                   <Check className="w-4 h-4 mr-2" />
                   Approve
@@ -374,11 +373,10 @@ export default function RegistrationInfoPage() {
                 <button
                   onClick={handleReject}
                   disabled={docVerified?.toLowerCase() !== "pass"}
-                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
-                    docVerified?.toLowerCase() !== "pass"
+                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
                       ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                       : "bg-red-600 text-white hover:bg-red-700"
-                  }`}
+                    }`}
                 >
                   <X className="w-4 h-4 mr-2" />
                   Reject
@@ -635,46 +633,93 @@ export default function RegistrationInfoPage() {
           </div>
         </div>
 
-        {/* Product Information (unchanged) */}
+        {/* Product Information */}
         {productData && (
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
-                <Package className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">Product Information</h2>
-            </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">Category</label>
-                  <p className="text-sm text-slate-900">{productData.categoryName}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">Subcategory</label>
-                  <p className="text-sm text-slate-900">{productData.subcategoryName}</p>
-                </div>
-              </div>
-              <div className="pt-4 border-t border-slate-200">
-                <h3 className="text-sm font-medium text-slate-600 mb-3">Specifications</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {Object.entries(productData.specifications).map(([key, values]) => (
-                    <div key={key}>
-                      <label className="text-sm font-medium text-slate-600">
-                        {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-                      </label>
-                      <ul className="text-sm text-slate-900 list-disc list-inside">
-                        {values.map((value, index) => (
-                          <li key={index}>{value}</li>
-                        ))}
-                      </ul>
+          <>
+            {Array.isArray(productData)
+              ? productData.map((category: any) => (
+                <div key={category.categoryId} className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
+                      <Package className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-900">{category.categoryName}</h2>
+                  </div>
+
+                  {category.subcategories.map((subcat: any) => (
+                    <div key={subcat.subcategoryId} className="space-y-4 mb-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-slate-600">Category</label>
+                          <p className="text-sm text-slate-900">{category.categoryName}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-slate-600">Subcategory</label>
+                          <p className="text-sm text-slate-900">{subcat.subcategoryName}</p>
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-200">
+                        <h3 className="text-sm font-medium text-slate-600 mb-3">Specifications</h3>
+                        <div className="grid grid-cols-2 gap-4">
+                          {Object.entries(subcat.specifications).map(([key, values]) => (
+                            <div key={key}>
+                              <label className="text-sm font-medium text-slate-600">
+                                {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                              </label>
+                              <ul className="text-sm text-slate-900 list-disc list-inside">
+                                {Array.isArray(values) && values.map((value, index) => <li key={index}>{value}</li>)}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
+              ))
+              : (
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
+                      <Package className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-900">{productData.categoryName}</h2>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-slate-600">Category</label>
+                        <p className="text-sm text-slate-900">{productData.categoryName}</p>
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-slate-600">Subcategory</label>
+                        <p className="text-sm text-slate-900">{productData.subcategoryName}</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-200">
+                      <h3 className="text-sm font-medium text-slate-600 mb-3">Specifications</h3>
+                      <div className="grid grid-cols-2 gap-4">
+                        {Object.entries(productData.specifications).map(([key, values]) => (
+                          <div key={key}>
+                            <label className="text-sm font-medium text-slate-600">
+                              {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                            </label>
+                            <ul className="text-sm text-slate-900 list-disc list-inside">
+                              {Array.isArray(values) && values.map((value, index) => <li key={index}>{value}</li>)}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+          </>
         )}
+
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import DocumentSubmission from "@/components/Steps/DocumentSubmission";
 import BuyerAgreement from "@/components/Steps/BuyerAgreement";
 import ApplicationStatus from "@/components/Steps/ApplicationStatus";
 import FinalActivation from "@/components/Steps/FinalActivation";
-import VerticalHeroSlider from "@/components/Essentials/VerticalBanner";
+import PartnershipDisplay from "../Steps/AlreadyRegistered";
 import Cookies from "js-cookie";
 
 export interface FormData {
@@ -37,13 +37,13 @@ export interface FormData {
     detailedSelections: Record<string, any>;
   };
   documents?: {
-    business_registration: File | null
-    business_license: File | null
-    adhaar_card: File | null
-    artisan_id_card: File | null
-    bank_statement: File | null
-    product_catalog: File[] // Changed from File | null to File[]
-    certifications: File[]
+    business_registration: File | null;
+    business_license: File | null;
+    adhaar_card: File | null;
+    artisan_id_card: File | null;
+    bank_statement: File | null;
+    product_catalog: File[];
+    certifications: File[];
   };
   agreement?: {
     accepted: boolean;
@@ -51,11 +51,11 @@ export interface FormData {
 }
 
 export default function RegistrationProcess() {
+  const registrationStatus = Cookies.get("is_registered");
   const stepFromCookie = Cookies.get("registration_step");
-  console.log("STEP",stepFromCookie)
-  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) : 1;
+  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(5)
+  const [currentStep, setCurrentStep] = useState<number>(initialStep);
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {
@@ -130,12 +130,18 @@ export default function RegistrationProcess() {
     }
   };
 
+  if (registrationStatus === "APPROVED") {
+    return (
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100">
+        <PartnershipDisplay />
+        
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100">
-      <VerticalHeroSlider />
-
       <ProgressIndicator currentStep={currentStep} totalSteps={7} />
-
       <div className="pt-34 pb-12">{renderStep()}</div>
     </div>
   );
