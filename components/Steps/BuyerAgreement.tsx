@@ -398,7 +398,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
     doc.text("De Koshur Crafts Bazaar LLC - Confidential Document", margin, pageHeight - 15)
 
     const pdfBlob = doc.output("blob")
-   
+
     return pdfBlob
   }
 
@@ -416,6 +416,8 @@ This agreement is governed under U.S. law and is legally binding under federal a
     })
 
     const data = await res.json()
+
+    // Open PDF in a new tab
     console.log(data)
     if (res.ok) {
       console.log("Upload successful:", data)
@@ -423,6 +425,9 @@ This agreement is governed under U.S. law and is legally binding under federal a
         agreement_signed: true,
         agreement_url: data.url,
       })
+      // Create object URL
+
+      // Open PDF in a new tab
       let step = parseInt(Cookies.get("registration_step") || "0", 10)
       step += 1
       Cookies.set("registration_step", step.toString())

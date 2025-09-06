@@ -55,7 +55,7 @@ export default function RegistrationProcess() {
   console.log("STEP",stepFromCookie)
   const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) : 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(initialStep)
+  const [currentStep, setCurrentStep] = useState<number>(5)
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {
