@@ -20,6 +20,7 @@ import {
   Bell,
   DollarSign
 } from "lucide-react"
+import Cookies from "js-cookie"
 
 const navigation = [
   // { name: "Dashboard", href: "/admin", icon: BarChart3 },
@@ -28,8 +29,8 @@ const navigation = [
   { name: "Team", href: "/admin/team", icon: Building2 },
   { name: "Appointments", href: "/admin/appointments", icon: Calendar },
   { name: "Other Admins", href: "/admin/other-admins", icon: UserCog },
-  {name : "Notifications" , href:"/admin/notifications", icon: Bell},
-  {name : "Pricing" , href:"/admin/pricing", icon:DollarSign}
+  { name: "Notifications", href: "/admin/notifications", icon: Bell },
+  { name: "Pricing", href: "/admin/pricing", icon: DollarSign }
 ]
 
 export default function AdminLayout({
@@ -40,6 +41,49 @@ export default function AdminLayout({
   const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
+
+  const ownership = Cookies.get("ownership")
+  const role = Cookies.get("user_role")
+
+  // Convert ownership string (from cookies) into object
+  let parsedOwnership: Record<string, string[]> = {}
+  try {
+    parsedOwnership = ownership ? JSON.parse(ownership) : {}
+  } catch (e) {
+    parsedOwnership = {}
+  }
+ console.log("userrole",role)
+  // role-based navigation filter
+  const filteredNavigation =
+    role === "super_admin"
+      ? navigation
+      : navigation.filter((item) => {
+          if (item.name === "Users") {
+            return parsedOwnership.user_management?.includes("view")
+          }
+          if (item.name === "Jobs") {
+            return parsedOwnership.job_postings?.includes("view")
+          }
+          if (item.name === "Team") {
+            return parsedOwnership.team_management?.includes("view")
+          }
+          if (item.name === "Appointments") {
+            return parsedOwnership.appointments?.includes("view")
+          }
+          if (item.name === "Notifications") {
+            return parsedOwnership.notifications?.includes("view")
+          }
+          if (item.name === "Pricing") {
+            return parsedOwnership.pricing?.includes("view")
+          }
+          if (item.name === "Other Admins") {
+            return false // sub_admin should not see this
+          }
+          return false
+        })
+
+  console.log("Ownership:", parsedOwnership)
+  console.log("Role:", role)
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
@@ -57,10 +101,10 @@ export default function AdminLayout({
             </div>
             {!collapsed && (
               <div>
-                <Link href='/admin' >
-                <h1 className="text-lg font-bold text-slate-900">DKC B2B Connect</h1>
-                <p className="text-xs text-slate-500">Admin Dashboard</p></Link>
-                
+                <Link href="/admin">
+                  <h1 className="text-lg font-bold text-slate-900">DKC B2B Connect</h1>
+                  <p className="text-xs text-slate-500">Admin Dashboard</p>
+                </Link>
               </div>
             )}
           </div>
@@ -74,7 +118,7 @@ export default function AdminLayout({
         </div>
 
         <nav className="flex-1 px-2 py-6 space-y-2 overflow-y-auto">
-          {navigation.map((item) => {
+          {filteredNavigation.map((item) => {
             const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href))
             const Icon = item.icon
             return (

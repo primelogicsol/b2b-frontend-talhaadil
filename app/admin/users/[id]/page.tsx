@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import { getUserInfo, approveRegistration } from "@/services/admin";
 import { get_product_by_user_id } from "@/services/admin";
-
+import Cookies from "js-cookie";
 // Interface definitions remain the same
 interface RegistrationInfo {
   business_name: string;
@@ -172,8 +172,24 @@ export default function RegistrationInfoPage() {
   const [register, setRegister] = useState<string | null>(null);
   const [docVerified, setDocVerified] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor");
+  const role=Cookies.get("user_role")
+  const ownership=Cookies.get("ownership")
 
   // Assuming default as vendor
+
+  let parsedOwnership: any = {};
+try {
+  parsedOwnership = ownershipCookie ? JSON.parse(ownershipCookie) : {};
+} catch (err) {
+  parsedOwnership = {};
+}
+
+// condition to check if Approve/Reject buttons should be shown
+const canApproveOrReject =
+  role === "super_admin" ||
+  (role === "sub_admin" &&
+    parsedOwnership?.user_management?.includes("approve"));
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -353,37 +369,44 @@ export default function RegistrationInfoPage() {
               </div>
             </div>
           </div>
-          {register?.toLowerCase() === "pending" && (
-            <div className="flex flex-col space-y-2">
-              {docVerified?.toLowerCase() !== "pass" && (
-                <p className="text-sm text-red-500">User's documents are not verified</p>
-              )}
-              <div className="flex items-center space-x-4">
-                <button
-                  onClick={handleApprove}
-                  disabled={docVerified?.toLowerCase() !== "pass"}
-                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
-                      ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-                      : "bg-green-600 text-white hover:bg-green-700"
-                    }`}
-                >
-                  <Check className="w-4 h-4 mr-2" />
-                  Approve
-                </button>
-                <button
-                  onClick={handleReject}
-                  disabled={docVerified?.toLowerCase() !== "pass"}
-                  className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
-                      ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-                      : "bg-red-600 text-white hover:bg-red-700"
-                    }`}
-                >
-                  <X className="w-4 h-4 mr-2" />
-                  Reject
-                </button>
-              </div>
-            </div>
-          )}
+          {
+  register?.toLowerCase() === "pending" && canApproveOrReject && (
+    <div className="flex flex-col space-y-2">
+      {docVerified?.toLowerCase() !== "pass" && (
+        <p className="text-sm text-red-500">
+          User&apos;s documents are not verified
+        </p>
+      )}
+      <div className="flex items-center space-x-4">
+        <button
+          onClick={handleApprove}
+          disabled={docVerified?.toLowerCase() !== "pass"}
+          className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
+            docVerified?.toLowerCase() !== "pass"
+              ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+              : "bg-green-600 text-white hover:bg-green-700"
+          }`}
+        >
+          <Check className="w-4 h-4 mr-2" />
+          Approve
+        </button>
+        <button
+          onClick={handleReject}
+          disabled={docVerified?.toLowerCase() !== "pass"}
+          className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
+            docVerified?.toLowerCase() !== "pass"
+              ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+              : "bg-red-600 text-white hover:bg-red-700"
+          }`}
+        >
+          <X className="w-4 h-4 mr-2" />
+          Reject
+        </button>
+      </div>
+    </div>
+  )
+}
+
         </div>
 
         {/* Business Information */}
