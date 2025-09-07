@@ -9,11 +9,12 @@ import { XCircle, CheckCircle } from "lucide-react"
 import * as Icons from "lucide-react"
 import Link from "next/link"
 import { EligibilityQuiz } from "../Essentials/ElgibiltyProvider"
-
 import type { DropshippingEligibilityQuizProps } from "../Essentials/ElgibiltyProvider"
+import { getPartnershipLevels } from "@/services/admin"
 
 
 type LandingPageData = {
+    pricingName: string,
     name?: DropshippingEligibilityQuizProps["partnershipName"]
     hero: {
         headline: string
@@ -79,6 +80,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
     const { is4K } = useGlobalContext()
     const [slideUpVisible, setSlideUpVisible] = useState(false)
     const [activeItem, setActiveItem] = useState<number | null>(null)
+    const [pricingPlan, setPricingPlan] = useState({ 0: "", 1: "", 2: "" });
     const cardVariants: Variants = {
         hidden: { opacity: 0, y: 50, scale: 0.95 },
         visible: {
@@ -148,6 +150,46 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
     const containerClass = is4K ? "max-w-[1800px] text-xl" : "max-w-[1200px] text-base"
     const headingClass = is4K ? "text-6xl" : "text-4xl"
     const subHeadingClass = is4K ? "text-4xl" : "text-2xl"
+
+
+    useEffect(() => {
+        async function getPartnershipPrices() {
+            const res = await getPartnershipLevels();
+            const data = res.data;
+
+            type PartnershipLevel = {
+                partnership_name: string;
+                prices: {
+                    "1st": string;
+                    "2nd": string;
+                    "3rd": string;
+                };
+            };
+
+            const matchedItem = data.find(
+                (item: PartnershipLevel) =>
+                    item.partnership_name === landingPageData.pricingName.toUpperCase()
+            );
+
+            const fallbackPricing = {
+                0: "0",
+                1: "0",
+                2: "0"
+            };
+
+            const convertKeysToNumbers = (prices: Record<string, string>) => {
+                return {
+                    0: prices["1st"] ?? "0",
+                    1: prices["2nd"] ?? "0",
+                    2: prices["3rd"] ?? "0",
+                };
+            };
+
+            const pricing = matchedItem ? convertKeysToNumbers(matchedItem.prices) : fallbackPricing;
+            setPricingPlan(pricing)
+        }
+        getPartnershipPrices();
+    }, [])
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -599,7 +641,8 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                                     <div
                                         className={`${is4K ? "text-5xl" : "text-4xl"} font-bold text-[var(--secondary-color)] mb-2 group-hover:scale-105 transition-transform duration-300`}
                                     >
-                                        {pkg.price}
+                                        ${pricingPlan[index as 0 | 1 | 2]}/month
+
                                     </div>
                                 </div>
 
@@ -634,7 +677,7 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                     <p
                         className={`${is4K ? "text-2xl" : "text-xl"} font-bold text-[var(--secondary-color)] bg-[var(--secondary-light-color)]/30 px-8 py-4 rounded-2xl inline-block`}
                     >
-                        {landingPageData.pricing.range}
+                        Range : {pricingPlan[0]}$ - {pricingPlan[2]}$
                     </p>
                 </motion.div>
             </motion.section>

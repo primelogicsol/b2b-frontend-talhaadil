@@ -1,4 +1,5 @@
 export const technologyData = {
+pricingName : "technology_partnership",
   name:"technology_partnership",
   hero: {
     headline:

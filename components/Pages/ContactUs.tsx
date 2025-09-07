@@ -50,20 +50,41 @@ export default function ContactUs() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitMessage("Thank you for your message! We'll get back to you within 48 hours.")
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-        inquiryType: "general",
+    try {
+      const response = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          inquiryType: formData.inquiryType,
+        }),
       })
-    }, 2000)
+
+      if (response.ok) {
+        setSubmitMessage("Thank you for your message! We'll get back to you within 48 hours.")
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          inquiryType: "general",
+        })
+      } else {
+        setSubmitMessage("Something went wrong. Please try again later.")
+      }
+    } catch (error) {
+      setSubmitMessage("Error sending message. Please check your network.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
-  
+
+
 
 
 

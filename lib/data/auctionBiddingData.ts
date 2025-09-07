@@ -1,4 +1,5 @@
 export const auctionBiddingData = {
+  pricingName : "auction",
   name: "auction",
   hero: {
     headline:

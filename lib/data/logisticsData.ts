@@ -1,4 +1,5 @@
 export const logisticsData = {
+  pricingName : "logistics",
   name: "logistics",
   hero: {
     headline: "Logistics Partnerships — Powering Global Craft Movement",

@@ -1,4 +1,5 @@
 export const consignmentPageData = {
+  pricingName : "consignment",
   name: "consignment",
   hero: {
     headline:

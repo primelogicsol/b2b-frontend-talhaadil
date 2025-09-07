@@ -1,4 +1,5 @@
 export const brickMortarData = {
+  pricingName : "brick_mortar",
   name: "brick-mortar",
   hero: {
     headline:

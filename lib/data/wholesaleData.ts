@@ -1,4 +1,5 @@
 export const wholesaleData = {
+  pricingName : "wholesale",
   name: "wholesale",
   hero: {
     headline:

@@ -1,4 +1,5 @@
 export const exhibitionData = {
+  pricingName : "exhibition",
   name: "exhibition",
   hero: {
     headline:

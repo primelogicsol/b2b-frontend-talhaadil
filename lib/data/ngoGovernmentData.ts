@@ -1,4 +1,5 @@
 export const ngoGovernmentData = {
+  pricingName : "ngo_government",
   name: "ngo_government",
   hero: {
     headline:

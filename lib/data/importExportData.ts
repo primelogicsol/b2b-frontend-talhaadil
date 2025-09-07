@@ -1,4 +1,5 @@
 export const importExportData = {
+  pricingName : "import_export",
   name: "importexport",
   hero: {
     headline:

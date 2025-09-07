@@ -1,4 +1,5 @@
 export const whiteLabelData = {
+  pricingName : "white_label",
   name: "white-label",
   hero: {
     headline:

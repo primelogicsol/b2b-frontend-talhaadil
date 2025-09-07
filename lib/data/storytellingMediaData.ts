@@ -1,4 +1,5 @@
 export const storytellingMediaData = {
+pricingName : "storytelling",
   name: "storytelling_media",
   hero: {
     headline:

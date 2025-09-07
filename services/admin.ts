@@ -104,3 +104,32 @@ export const get_product_by_user_id = (user_id:number) => {
     },
   }); 
 };
+
+
+
+
+
+export const getPartnershipLevels = () => {
+  return api.get(`/partnership-levels/`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+
+export const createPartnershipLevel = (data: any) => {
+  return api.post(`/partnership-levels/`, data, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+
+export const updatePartnershipLevel = (id: number, data: any) => {
+  return api.put(`/partnership-levels/${id}/`, data, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+

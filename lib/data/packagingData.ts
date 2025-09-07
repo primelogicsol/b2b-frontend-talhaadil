@@ -1,4 +1,5 @@
 export const packagingData = {
+  pricingName : "packaging",
   name: "packaging",
   hero: {
     headline:

@@ -1,4 +1,5 @@
 export const warehousData = {
+  pricingName : "warehouse",
   name : "warehouse",
   hero: {
     headline: "Seamless Warehousing Partnerships for Kashmiri Crafts",

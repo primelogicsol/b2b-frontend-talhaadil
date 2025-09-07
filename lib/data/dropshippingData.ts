@@ -1,4 +1,5 @@
 export const dropshippingData = {
+  pricingName : "drop_shipping",
   name: "dropshipping",
   hero: {
     headline:

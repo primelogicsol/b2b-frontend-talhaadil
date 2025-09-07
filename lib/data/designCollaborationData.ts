@@ -1,4 +1,5 @@
 export const designCollaborationData = {
+pricingName : "design_collaboration",
   name: "design-collaboration",
   hero: {
     headline: "Co-Create Unique Products With Design Collaboration",

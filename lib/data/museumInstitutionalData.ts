@@ -1,4 +1,5 @@
 export const museumInstitutionalsData = {
+  pricingName : "museum_institutional",
   name: "museum_collaboration",
   hero: {
     headline: "Museum Partnerships — Preserving Craft Heritage Globally",

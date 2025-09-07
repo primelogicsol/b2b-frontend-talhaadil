@@ -14,9 +14,11 @@ interface Admin {
   visibility_level: number
   ownership: {
     user_management: string[]
-    document_verification: string[]
     job_postings: string[]
-    team: string[]
+    team_management: string[]
+    appointments: string[]
+    notifications: string[]
+    pricing: string[]
   }
 }
 
@@ -27,17 +29,21 @@ interface AdminFormData {
   visibility_level: number
   ownership: {
     user_management: string[]
-    document_verification: string[]
     job_postings: string[]
-    team: string[]
+    team_management: string[]
+    appointments: string[]
+    notifications: string[]
+    pricing: string[]
   }
 }
 
 const permissionOptions = {
-  user_management: ["create", "update", "delete"],
-  document_verification: ["review", "approve"],
-  job_postings: ["create", "edit"],
-  team: ["edit", "view"]
+  user_management: ["view", "approve"],
+  job_postings: ["create", "update", "delete", "view"],
+  team_management: ["view", "update"],
+  appointments: ["view"],
+  notifications: ["view"],
+  pricing: ["view", "create"],
 }
 
 export default function OtherAdminsPage() {
@@ -55,9 +61,11 @@ export default function OtherAdminsPage() {
     visibility_level: 1,
     ownership: {
       user_management: [],
-      document_verification: [],
       job_postings: [],
-      team: []
+      team_management: [],
+      appointments: [],
+      notifications: [],
+      pricing: [],
     },
   })
 
@@ -66,34 +74,37 @@ export default function OtherAdminsPage() {
       setGetLoading(true)
       try {
         const response = await getAllUsers()
-        const apiUsers: any[] = response.data;
+        const apiUsers: any[] = response.data
         console.log(apiUsers)
 
         const transformedAdmins: Admin[] = apiUsers
-          .filter(user => user.role === "sub_admin")
-          .map(user => ({
+          .filter((user) => user.role === "sub_admin")
+          .map((user) => ({
             id: String(user.id),
             username: user.username || "",
             email: user.email || "",
             visibility_level: user.visibility_level ?? 1,
             ownership: {
               user_management: user.ownership?.user_management ?? [],
-              document_verification: user.ownership?.document_verification ?? [],
               job_postings: user.ownership?.job_postings ?? [],
-              team: user.ownership?.team ?? []
+              team_management: user.ownership?.team_management ?? [],
+              appointments: user.ownership?.appointments ?? [],
+              notifications: user.ownership?.notifications ?? [],
+              pricing: user.ownership?.pricing ?? [],
             },
-          }));
+          }))
+          console.log(transformedAdmins)
 
-        setAdmins(transformedAdmins);
+        setAdmins(transformedAdmins)
       } catch (error) {
-        console.error("Failed to fetch admins:", error);
+        console.error("Failed to fetch admins:", error)
       } finally {
         setGetLoading(false)
       }
-    };
+    }
 
-    fetchAdmins();
-  }, []);
+    fetchAdmins()
+  }, [])
 
   const resetForm = () => {
     setFormData({
@@ -103,9 +114,11 @@ export default function OtherAdminsPage() {
       visibility_level: 1,
       ownership: {
         user_management: [],
-        document_verification: [],
         job_postings: [],
-        team: []
+        team_management: [],
+        appointments: [],
+        notifications: [],
+        pricing: [],
       },
     })
   }
@@ -150,8 +163,6 @@ export default function OtherAdminsPage() {
     setShowDeleteConfirm(null)
   }
 
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -159,7 +170,11 @@ export default function OtherAdminsPage() {
     setLoading(true)
     if (editingAdmin) {
       try {
-        const response = await updateSubAdmin(editingAdmin.id, { visibility_level: formData.visibility_level, ownership: formData.ownership })
+        console.log(editingAdmin)
+        const response = await updateSubAdmin(editingAdmin.id, {
+          visibility_level: formData.visibility_level,
+          ownership: formData.ownership,
+        })
         console.log(response)
         showToast("Admin updated successfully")
       } catch (err: any) {
@@ -271,9 +286,7 @@ export default function OtherAdminsPage() {
                         type="text"
                         required
                         value={formData.username}
-                        onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, username: e.target.value }))
-                        }
+                        onChange={(e) => setFormData((prev) => ({ ...prev, username: e.target.value }))}
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                         placeholder="Enter username"
                       />
@@ -284,9 +297,7 @@ export default function OtherAdminsPage() {
                         type="email"
                         required
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, email: e.target.value }))
-                        }
+                        onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                         placeholder="Enter email address"
                       />
@@ -297,9 +308,7 @@ export default function OtherAdminsPage() {
                         type="password"
                         required
                         value={formData.password}
-                        onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, password: e.target.value }))
-                        }
+                        onChange={(e) => setFormData((prev) => ({ ...prev, password: e.target.value }))}
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                         placeholder="Enter password"
                       />
@@ -326,7 +335,7 @@ export default function OtherAdminsPage() {
 
               <div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-4">Ownership Permissions</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {Object.entries(permissionOptions).map(([category, permissions]) => (
                     <div key={category} className="bg-slate-50 border border-slate-200 rounded-lg p-4">
                       <h4 className="text-sm font-semibold text-slate-700 mb-3 capitalize">
@@ -373,7 +382,7 @@ export default function OtherAdminsPage() {
                   disabled={loading}
                   className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  {loading ? (editingAdmin ? "Updating..." : "Adding...") : (editingAdmin ? "Update Admin" : "Add Admin")}
+                  {loading ? (editingAdmin ? "Updating..." : "Adding...") : editingAdmin ? "Update Admin" : "Add Admin"}
                 </button>
               </div>
             </form>
