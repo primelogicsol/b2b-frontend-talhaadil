@@ -1,12 +1,55 @@
 "use client"
 
-import { useState } from "react"
-import { Key, BarChart, Truck, Briefcase, Check } from "lucide-react" // Import specific icons
+import { useState, useEffect } from "react"
+import { Key, BarChart, Truck, Briefcase, Check } from "lucide-react"
 import { useGlobalContext } from "../../context/ScreenProvider"
 import Image from "next/image"
+import { getUserRegistrationSelected } from "@/services/user"
+
+// Partnership type mapping
+const partnershipTypeMapping: { [key: string]: string } = {
+  drop_shipping: "Drop Shipping Buyer Partnership",
+  consignment: "Consignment Buyer Partnership",
+  import_export: "Import Export Buyer Partnership",
+  wholesale: "Wholesale Partnership",
+  exhibition: "Exhibition Buyer Partnership",
+  auction: "Auction Partnership",
+  white_label: "White Label Partnership",
+  brick_mortar: "Brick & Mortar Buyer Partnership",
+  design_collaboration: "Design Collaboration Partnership",
+  storytelling: "Storytelling Partnership",
+  warehouse: "Warehouse Partnership",
+  packaging: "Packaging Partnership",
+  logistics: "Logistics Partnership",
+  museum_institutional: "Museum Institutional Partnership",
+  ngo_government: "NGO Government Partnership",
+  technology_partnership: "Technology Partnership",
+}
+
 export default function FinalActivation() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
-const { is4K } = useGlobalContext()
+  const [partnershipName, setPartnershipName] = useState<string>("Drop Shipping Buyer Partnership") // Default
+  const { is4K } = useGlobalContext()
+
+  // Fetch partnership type on component mount
+  useEffect(() => {
+    const fetchPartnershipType = async () => {
+      try {
+        const response = await getUserRegistrationSelected()
+        const partnershipType = response.data.registration_selected[
+          response.data.registration_selected.length - 1
+        ]?.toLowerCase() || "drop_shipping"
+        const mappedName = partnershipTypeMapping[partnershipType] || "Drop Shipping Buyer Partnership"
+        setPartnershipName(mappedName)
+      } catch (error) {
+        console.error("Error fetching partnership type:", error)
+        setPartnershipName("Drop Shipping Buyer Partnership") // Fallback
+      }
+    }
+
+    fetchPartnershipType()
+  }, [])
+
   return (
     <div className="bg-gradient-to-br from-[var(--primary-header-color)] to-white">
       {/* Header */}
@@ -31,10 +74,9 @@ const { is4K } = useGlobalContext()
           <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]"></div>
 
-            {/* Success Icon */}
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[var(--secondary-light-color)] rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-slow">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
-                <Check className="w-6 h-6 sm:w-8 sm:h-8 text-white" /> {/* Using Lucide Check icon */}
+                <Check className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
             </div>
 
@@ -80,7 +122,7 @@ const { is4K } = useGlobalContext()
                 <br />
                 Director De Koshur Crafts / B2B Connect USA
               </p>
-              <Image src="/images/signature.png" alt="Partnership Activation" width={350} height={350} className="-mt-8"/>
+              <Image src="/images/signature.png" alt="Partnership Activation" width={350} height={350} className="-mt-8" />
             </div>
           </div>
         </section>
@@ -88,14 +130,13 @@ const { is4K } = useGlobalContext()
         {/* Partnership Level Badge */}
         <section className="mb-12 sm:mb-16 animate-fade-in-up delay-150">
           <div className="bg-gradient-to-r from-[var(--secondary-light-color)] to-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10 border border-[var(--secondary-color)]/20 relative overflow-hidden">
-            {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--secondary-color)]/10 rounded-full -translate-y-16 translate-x-16"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-[var(--primary-color)]/10 rounded-full translate-y-12 -translate-x-12"></div>
 
             <div className="relative z-10">
               <div className="text-center mb-6 sm:mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-[var(--secondary-color)] rounded-full mb-4 sm:mb-6 animate-pulse-slow">
-                  <Check className="w-8 h-8 sm:w-10 sm:h-10 text-white" /> {/* Using Lucide Check icon */}
+                  <Check className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-[var(--primary-color)] mb-2 sm:mb-3">
                   Your Partnership Level
@@ -105,14 +146,14 @@ const { is4K } = useGlobalContext()
               <div className="text-center">
                 <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-4 sm:mb-6 border-2 border-[var(--secondary-color)]/30 hover:border-[var(--secondary-color)] transition-all duration-300 hover:shadow-xl">
                   <h4 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--secondary-color)] mb-3 sm:mb-4 leading-tight">
-                    DKC Drop Shipping Partner
+                    DKC {partnershipName}
                   </h4>
                   <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                     <span className="text-sm sm:text-base font-semibold text-[var(--primary-color)]">
                       Partnership ID:
                     </span>
                     <span className="text-sm sm:text-base font-mono bg-[var(--primary-header-color)] text-[var(--primary-color)] px-3 py-1 rounded-lg">
-                      DKC-DS-2024-001
+                      DKC-{partnershipTypeMapping[partnershipName.toLowerCase().replace(/ /g, "_")] || "DS"}-2024-001
                     </span>
                   </div>
                 </div>

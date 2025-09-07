@@ -25,3 +25,19 @@ export const getAvaliableLevels = () =>{
     });
 }
 
+
+
+export const markUserAsLateral = (isLateral: boolean) => {
+  return api.post(`/user/user-lateral?is_lateral=${isLateral}`, null, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+export const getUserRegistrationSelected = () => {
+  return api.get(`/user/registration-selected`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};

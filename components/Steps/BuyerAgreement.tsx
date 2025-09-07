@@ -7,6 +7,7 @@ import jsPDF from "jspdf"
 import { sendAgreement, getUserInfo } from "@/services/regitsration"
 import { partnershipAgreements } from "@/lib/partnership-agreement"
 import Cookies from "js-cookie"
+import { getUserRegistrationSelected } from "@/services/user"
 
 export interface FormData {
   businessName: string
@@ -76,9 +77,11 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
   })
 
   useEffect(() => {
-    const loadPartnershipData = () => {
+    
+    const loadPartnershipData = async () => {
       try {
-        const partnershipType = localStorage.getItem("partnershipType") || "drop_shipping"
+        const response = await getUserRegistrationSelected();
+        const partnershipType = response.data.registration_selected[response.data.registration_selected.length - 1].toLowerCase() || "drop_shipping"
         let selectedPartnership = partnershipAgreements.find((agreement) => {
           const mappedName = partnershipTypeMapping[partnershipType]
           return agreement.name === mappedName || agreement.agreement === mappedName
