@@ -41,3 +41,42 @@ export const getUserRegistrationSelected = () => {
     },
   });
 };
+
+
+export const getRegistrationAgreement = () => {
+  return api.get(`/registration/agreement`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+
+export const updateRegistrationAgreementUrl = (data: any) => {
+  return api.put(
+    `/registration/agreement-url`,
+    {}, // empty body since you're sending query params
+    {
+      headers: {
+        requiresAuth: true,
+      },
+      params: {
+        agreement_url: data.agreement_url,
+      },
+    }
+  );
+};
+
+export const updatePartnership = (partnership_level: string) => {
+  return api.post(
+    `/verification/update-partnership`,
+    {}, // empty body
+    {
+      headers: {
+        requiresAuth: true,
+      },
+      params: {
+        partnership_level,
+      },
+    }
+  );
+};

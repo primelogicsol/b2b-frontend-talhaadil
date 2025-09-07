@@ -1,7 +1,7 @@
 "use client";
 
 import { getUserInfo } from "@/services/regitsration";
-import { get_product_by_user_id } from "@/services/user";
+import { get_product_by_user_id, getRegistrationAgreement } from "@/services/user";
 import { useState, useEffect } from "react";
 import { updateProfile } from "@/services/admin";
 import Cookies from "js-cookie";
@@ -92,6 +92,7 @@ export default function ProfilePage() {
   const [productData, setProductData] = useState<any>(null);
   const [productError, setProductError] = useState<string | null>(null);
   const userId = Cookies.get("user_id")
+  const [url, setUrl] = useState("")
   const [profileData, setProfileData] = useState({
     business_name: "",
     business_legal_structure: "",
@@ -186,8 +187,14 @@ export default function ProfilePage() {
       }
     };
 
+    const fetchAgreementURL = async () => {
+      const response = await getRegistrationAgreement();
+      setUrl(response.data);
+    }
+
     fetchProfileData();
     fetchProductData();
+    fetchAgreementURL()
   }, [userId]);
 
   const handleEdit = (section: string) => {
@@ -652,6 +659,28 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
+      {/* Agreement PDF Section */}
+      <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm mt-4">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
+          <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)]">Agreement PDF</h2>
+          <p className="text-sm text-[var(--primary-hover-color)] mt-1">View the latest agreement document</p>
+        </div>
+        <div className="p-4 sm:p-6">
+          {url ? (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-3 py-2 text-sm font-medium rounded-lg bg-[var(--secondary-light-color)] text-[var(--secondary-color)] hover:underline"
+            >
+              View Agreement PDF
+            </a>
+          ) : (
+            <span className="text-sm text-[var(--primary-hover-color)]">No agreement available</span>
+          )}
+        </div>
+      </div>
+
       <div className="space-y-6">
         {!productData ? (
           <div className="flex items-center justify-center">

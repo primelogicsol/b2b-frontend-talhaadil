@@ -69,6 +69,7 @@ export default function DashboardPage() {
         if (response.status < 200 || response.status >= 300) {
           throw new Error("Failed to fetch user profile")
         }
+        console.log(response.data)
 
         const updatedData = {
           ...response.data,
@@ -76,6 +77,7 @@ export default function DashboardPage() {
             ? "drop_shipping"
             : response.data.partnership_level
         }
+        
 
         setUserProfile(updatedData)
       } catch (err) {
@@ -108,7 +110,7 @@ export default function DashboardPage() {
   }
 
   const currentKPI = userProfile.kpi_score
-  const currentPartnership = partnerships.indexOf(userProfile.partnership_level)
+  const currentPartnership = partnerships.indexOf(userProfile.partnership_level.toLowerCase())
   const nextMilestone = partnerships[currentPartnership+1]
 
   return (
@@ -124,7 +126,7 @@ export default function DashboardPage() {
           </div>
         )}
       </div>
-
+        
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
@@ -132,7 +134,7 @@ export default function DashboardPage() {
             <BarChart3 className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentKPI}%</div>
+            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentKPI}</div>
             <div className="flex items-center text-xs mt-1">
               <ArrowUpRight className="h-3 w-3 text-[var(--secondary-color)] mr-1" />
               <span className="text-[var(--secondary-color)]">Current score from API</span>

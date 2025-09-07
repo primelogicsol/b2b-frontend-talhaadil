@@ -55,7 +55,7 @@ export default function RegistrationProcess() {
   const stepFromCookie = Cookies.get("registration_step");
   const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(7);
+  const [currentStep, setCurrentStep] = useState<number>(initialStep);
   const [formData, setFormData] = useState<FormData>({});
 
   const updateFormData = (stepData: Partial<FormData>) => {
@@ -130,14 +130,14 @@ export default function RegistrationProcess() {
     }
   };
 
-  // if (registrationStatus === "APPROVED") {
-  //   return (
-  //     <div className="bg-gradient-to-br from-gray-50 to-gray-100">
-  //       <PartnershipDisplay />
+  if (registrationStatus === "APPROVED") {
+    return (
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100">
+        <PartnershipDisplay />
         
-  //     </div>
-  //   );
-  // }
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100">

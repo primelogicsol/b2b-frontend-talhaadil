@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { FaHandshake, FaCheck, FaLock } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useGlobalContext } from "@/context/ScreenProvider";
-import { getCurrentLevel, getAvaliableLevels } from "@/services/user"; // Assuming APIs are in a services file
+import { getCurrentLevel, getAvaliableLevels } from "@/services/user";
+import RegisterAgreement from "./RegisteredAgreement"; // Import the BuyerAgreement component
 
 interface Partnership {
     id: string;
@@ -240,6 +241,7 @@ export default function PartnershipDisplay() {
     const [displayPartnerships, setDisplayPartnerships] = useState<Partnership[]>(partnerships);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [selectedPartnershipId, setSelectedPartnershipId] = useState<string | null>(null); // State to track selected partnership
 
     useEffect(() => {
         const roleFromCookie = Cookies.get("user_role") as "vendor" | "buyer" | undefined;
@@ -256,7 +258,6 @@ export default function PartnershipDisplay() {
         const fetchPartnershipData = async () => {
             try {
                 setLoading(true);
-                // Call both APIs concurrently
                 const [currentLevelResponse, availableLevelsResponse] = await Promise.all([
                     getCurrentLevel(),
                     getAvaliableLevels(),
@@ -275,7 +276,6 @@ export default function PartnershipDisplay() {
 
                 setCurrentPartnership(currentData);
                 setPartnershipData(availableData);
-
             } catch (err) {
                 setError("Failed to fetch partnership data. Please try again later.");
                 console.error("API Error:", err);
@@ -286,23 +286,27 @@ export default function PartnershipDisplay() {
 
         fetchPartnershipData();
     }, []);
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
 
     useEffect(() => {
-        if (partnershipData) {
-            // Normalize available partnerships to match partnership IDs
+        if (partnershipData && currentPartnership) {
             const normalizedAvailable = partnershipData.available_partnerships.map((p) =>
-                p.toLowerCase().replace("_", "_")
+                p.toLowerCase()
             );
 
-            // Find the highest level among available partnerships
-            const maxLevel = Math.max(
-                ...partnerships
-                    .filter((p) => normalizedAvailable.includes(p.id))
-                    .map((p) => p.level),
-                0
-            );
+            const availableLevels = partnerships
+                .filter((p) => normalizedAvailable.includes(p.id))
+                .map((p) => p.level);
 
-            // Update partnerships to make all levels up to maxLevel available
+            const currentPart = partnerships.find(
+                (p) => p.id.toUpperCase() === currentPartnership.partnership_level
+            );
+            const currentLevel = currentPart ? currentPart.level : 0;
+
+            const maxLevel = Math.max(currentLevel, ...availableLevels, 0);
+
             const updatedPartnerships = partnerships.map((p) => ({
                 ...p,
                 available: p.level <= maxLevel || normalizedAvailable.includes(p.id),
@@ -310,7 +314,7 @@ export default function PartnershipDisplay() {
 
             setDisplayPartnerships(updatedPartnerships);
         }
-    }, [partnershipData]);
+    }, [partnershipData, currentPartnership]);
 
     const getRoleBasedTitle = (p: Partnership) => {
         return userRole === "buyer" ? p.buyer : p.vendor;
@@ -325,6 +329,10 @@ export default function PartnershipDisplay() {
         return `${baseDescription} ${roleContext}`;
     };
 
+    const handleSubmitPartnership = (partnershipId: string) => {
+        setSelectedPartnershipId(partnershipId); // Set the selected partnership ID to show BuyerAgreement
+    };
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -332,7 +340,6 @@ export default function PartnershipDisplay() {
             </div>
         );
     }
-
 
     if (error) {
         return (
@@ -352,169 +359,183 @@ export default function PartnershipDisplay() {
 
     return (
         <div className={`mx-auto px-6 pt-20 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
-            <div className="text-center mb-12">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
-                    <FaHandshake className="text-white text-2xl" />
-                </div>
-                <h1
-                    className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}
-                >
-                    Partnership Levels
-                </h1>
-                <p
-                    className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"}`}
-                >
-                    Explore the partnership levels available to you as a {userRole}
-                </p>
-                <div className="mt-4 inline-flex items-center px-4 py-2 bg-[var(--secondary-light-color)] rounded-full">
-                    <span className="text-sm font-semibold text-[var(--primary-color)]">
-                        Role: {userRole.charAt(0).toUpperCase() + userRole.slice(1)}
-                    </span>
-                </div>
-            </div>
-
-            <div
-                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""}`}
-            >
-                {displayPartnerships.map((p) => (
-                    <div
-                        key={p.id}
-                        className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
-              ${p.id.toUpperCase() === currentPartnership.partnership_level
-                                ? "ring-4 ring-green-500 bg-green-50"
-                                : p.available
-                                    ? "cursor-pointer hover:-translate-y-2"
-                                    : "opacity-60"
-                            }
-              ${is4K ? "text-lg" : "text-base"}
-            `}
-                    >
-                        {p.isAltPath && (
-                            <div className="absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl">
-                                Lateral
-                            </div>
-                        )}
-
-                        <div
-                            className={`absolute top-2 right-4 text-white text-xs font-bold px-2 py-1 rounded-full ${p.available ? "bg-[var(--primary-color)]" : "bg-red-600"
-                                }`}
+            {selectedPartnershipId ? (
+                <RegisterAgreement partnershipId={selectedPartnershipId} />
+            ) : (
+                <>
+                    <div className="text-center mb-12">
+                        <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
+                            <FaHandshake className="text-white text-2xl" />
+                        </div>
+                        <h1
+                            className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}
                         >
-                            Level {p.level}
-                        </div>
-
-                        <div className="absolute -top-3 -right-3">
-                            {p.id.toUpperCase() === currentPartnership.partnership_level ? (
-                                <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                                    <FaCheck className="text-white text-lg" />
-                                </div>
-                            ) : p.available ? (
-                                <div className="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center">
-                                    <FaCheck className="text-white text-sm" />
-                                </div>
-                            ) : (
-                                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                                    <FaLock className="text-white text-sm" />
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="flex justify-start mb-6 mt-6">
-                            <span
-                                className={`px-4 py-2 text-sm font-semibold rounded-full ${p.id.toUpperCase() === currentPartnership.partnership_level
-                                    ? "bg-green-100 text-green-700 border border-green-500"
-                                    : p.available
-                                        ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
-                                        : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
-                                    }`}
-                            >
-                                {p.id.toUpperCase() === currentPartnership?.partnership_level
-                                    ? "Current Partnership"
-                                    : (() => {
-                                        const current = partnerships.find(
-                                            part => part.id.toUpperCase() === currentPartnership?.partnership_level
-                                        );
-                                        return current && p.level < current.level
-                                            ? "Past Partnership"
-                                            : p.available
-                                                ? "Available Now"
-                                                : "Requirements Not Met";
-                                    })()}
+                            Partnership Levels
+                        </h1>
+                        <p
+                            className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"}`}
+                        >
+                            Explore the partnership levels available to you as a {userRole}
+                        </p>
+                        <div className="mt-4 inline-flex items-center px-4 py-2 bg-[var(--secondary-light-color)] rounded-full">
+                            <span className="text-sm font-semibold text-[var(--primary-color)]">
+                                Role: {userRole.charAt(0).toUpperCase() + userRole.slice(1)}
                             </span>
                         </div>
+                    </div>
 
-                        <h3
-                            className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"}`}
-                        >
-                            {p.partnership_name}
-                        </h3>
+                    <div
+                        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""}`}
+                    >
+                        {displayPartnerships.map((p) => (
+                            <div
+                                key={p.id}
+                                className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
+                    ${p.id.toUpperCase() === currentPartnership.partnership_level
+                                        ? "ring-4 ring-green-500 bg-green-50"
+                                        : p.available
+                                            ? "cursor-pointer hover:-translate-y-2"
+                                            : "opacity-60"
+                                    }
+                    ${is4K ? "text-lg" : "text-base"}
+                `}
+                            >
+                                {p.isAltPath && (
+                                    <div className="absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl">
+                                        Lateral
+                                    </div>
+                                )}
 
-                        <p className="text-sm font-semibold text-[var(--secondary-color)] mb-4">
-                            Role: {getRoleBasedTitle(p)}
-                        </p>
+                                <div
+                                    className={`absolute top-2 right-4 text-white text-xs font-bold px-2 py-1 rounded-full ${p.available ? "bg-[var(--primary-color)]" : "bg-red-600"}`}
+                                >
+                                    Level {p.level}
+                                </div>
 
-                        <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
-                            <div className="text-center">
-                                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
-                                    Retention
+                                <div className="absolute -top-3 -right-3">
+                                    {p.id.toUpperCase() === currentPartnership.partnership_level ? (
+                                        <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                            <FaCheck className="text-white text-lg" />
+                                        </div>
+                                    ) : p.available ? (
+                                        <div className="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center">
+                                            <FaCheck className="text-white text-sm" />
+                                        </div>
+                                    ) : (
+                                        <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+                                            <FaLock className="text-white text-sm" />
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="flex justify-start mb-6 mt-6">
+                                    <span
+                                        className={`px-4 py-2 text-sm font-semibold rounded-full ${p.id.toUpperCase() === currentPartnership.partnership_level
+                                            ? "bg-green-100 text-green-700 border border-green-500"
+                                            : p.available
+                                                ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
+                                                : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
+                                            }`}
+                                    >
+                                        {p.id.toUpperCase() === currentPartnership?.partnership_level
+                                            ? "Current Partnership"
+                                            : (() => {
+                                                const current = partnerships.find(
+                                                    part => part.id.toUpperCase() === currentPartnership?.partnership_level
+                                                );
+                                                return current && p.level < current.level
+                                                    ? "Past Partnership"
+                                                    : p.available
+                                                        ? "Available Now"
+                                                        : "Requirements Not Met";
+                                            })()}
+                                    </span>
+                                </div>
+
+                                <h3
+                                    className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"}`}
+                                >
+                                    {p.partnership_name}
+                                </h3>
+
+                                <p className="text-sm font-semibold text-[var(--secondary-color)] mb-4">
+                                    Role: {getRoleBasedTitle(p)}
                                 </p>
-                                <p className="text-sm font-semibold text-[var(--primary-color)]">
-                                    {p.retention}
+
+                                <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
+                                    <div className="text-center">
+                                        <p className="text-xs text-[var(--primary-color)]/70 mb-1">
+                                            Retention
+                                        </p>
+                                        <p className="text-sm font-semibold text-[var(--primary-color)]">
+                                            {p.retention}
+                                        </p>
+                                    </div>
+                                    <div className="w-px bg-[var(--primary-color)]/20"></div>
+                                    <div className="text-center">
+                                        <p className="text-xs text-[var(--primary-color)]/70 mb-1">
+                                            KPI Score
+                                        </p>
+                                        <p className="text-sm font-semibold text-[var(--primary-color)]">
+                                            {p.kpiScore}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p
+                                    className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}
+                                >
+                                    {getRoleBasedDescription(p)}
                                 </p>
+
+                                {p.available && p.id.toUpperCase() !== currentPartnership.partnership_level && (
+                                    <button
+                                        onClick={() => handleSubmitPartnership(p.id)}
+                                        className={`w-full py-2 text-sm font-semibold text-white bg-[var(--primary-color)] rounded-full hover:bg-[var(--primary-hover-color)] transition-colors ${is4K ? "text-base" : ""}`}
+                                    >
+                                        Submit Partnership
+                                    </button>
+                                )}
                             </div>
-                            <div className="w-px bg-[var(--primary-color)]/20"></div>
-                            <div className="text-center">
-                                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
-                                    KPI Score
+                        ))}
+                    </div>
+
+                    <div
+                        className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-green-500 ${is4K ? "text-lg" : ""}`}
+                    >
+                        <div className="flex items-center space-x-4">
+                            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                <FaCheck className="text-white text-xl" />
+                            </div>
+                            <div>
+                                <h3
+                                    className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"}`}
+                                >
+                                    Current Partnership
+                                </h3>
+                                <p className="text-[var(--primary-color)]/80">
+                                    {
+                                        partnerships.find(
+                                            (p) => p.id.toUpperCase() === currentPartnership.partnership_level
+                                        )?.partnership_name
+                                    }{" "}
+                                    -{" "}
+                                    {getRoleBasedTitle(
+                                        partnerships.find(
+                                            (p) => p.id.toUpperCase() === currentPartnership.partnership_level
+                                        )!
+                                    )}
                                 </p>
-                                <p className="text-sm font-semibold text-[var(--primary-color)]">
-                                    {p.kpiScore}
+                                <p className="text-sm text-[var(--primary-color)]/70 mt-2">
+                                    Retention Period: {currentPartnership.retention_period} months | KPI Score:{" "}
+                                    {currentPartnership.kpi_score} | Expires:{" "}
+                                    {new Date(currentPartnership.retention_expiration).toLocaleDateString()}
                                 </p>
                             </div>
                         </div>
-
-                        <p
-                            className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}
-                        >
-                            {getRoleBasedDescription(p)}
-                        </p>
                     </div>
-                ))}
-            </div>
-
-            <div
-                className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-green-500 ${is4K ? "text-lg" : ""}`}
-            >
-                <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                        <FaCheck className="text-white text-xl" />
-                    </div>
-                    <div>
-                        <h3
-                            className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"}`}
-                        >
-                            Current Partnership
-                        </h3>
-                        <p className="text-[var(--primary-color)]/80">
-                            {
-                                partnerships.find(
-                                    (p) => p.id.toUpperCase() === currentPartnership.partnership_level
-                                )?.partnership_name
-                            }{" "}
-                            -{" "}
-                            {getRoleBasedTitle(
-                                partnerships.find(
-                                    (p) => p.id.toUpperCase() === currentPartnership.partnership_level
-                                )!
-                            )}
-                        </p>
-                        <p className="text-sm text-[var(--primary-color)]/70 mt-2">
-                            Retention Period: {currentPartnership.retention_period} days | KPI Score:{" "}
-                            {currentPartnership.kpi_score} | Expires:{" "}
-                            {new Date(currentPartnership.retention_expiration).toLocaleDateString()}
-                        </p>
-                    </div>
-                </div>
-            </div>
+                </>
+            )}
         </div>
     );
 }
