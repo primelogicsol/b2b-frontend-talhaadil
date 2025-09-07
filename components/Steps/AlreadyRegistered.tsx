@@ -488,14 +488,21 @@ export default function PartnershipDisplay() {
                                     {getRoleBasedDescription(p)}
                                 </p>
 
-                                {p.available && p.id.toUpperCase() !== currentPartnership.partnership_level && (
-                                    <button
-                                        onClick={() => handleSubmitPartnership(p.id)}
-                                        className={`w-full py-2 text-sm font-semibold text-white bg-[var(--primary-color)] rounded-full hover:bg-[var(--primary-hover-color)] transition-colors ${is4K ? "text-base" : ""}`}
-                                    >
-                                        Submit Partnership
-                                    </button>
-                                )}
+                                {p.available &&
+                                    p.id.toUpperCase() !== currentPartnership.partnership_level &&
+                                    (() => {
+                                        const current = partnerships.find(
+                                            part => part.id.toUpperCase() === currentPartnership?.partnership_level
+                                        );
+                                        return !current || p.level >= current.level;
+                                    })() && (
+                                        <button
+                                            onClick={() => handleSubmitPartnership(p.id)}
+                                            className={`w-full py-2 text-sm font-semibold text-white bg-[var(--primary-color)] rounded-full hover:bg-[var(--primary-hover-color)] transition-colors ${is4K ? "text-base" : ""}`}
+                                        >
+                                            Submit Partnership
+                                        </button>
+                                    )}
                             </div>
                         ))}
                     </div>
