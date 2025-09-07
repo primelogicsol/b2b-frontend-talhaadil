@@ -5,6 +5,7 @@ import { Key, BarChart, Truck, Briefcase, Check } from "lucide-react"
 import { useGlobalContext } from "../../context/ScreenProvider"
 import Image from "next/image"
 import { getUserRegistrationSelected } from "@/services/user"
+import Cookies from "js-cookie"
 
 // Partnership type mapping
 const partnershipTypeMapping: { [key: string]: string } = {
@@ -30,6 +31,7 @@ export default function FinalActivation() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
   const [partnershipName, setPartnershipName] = useState<string>("Drop Shipping Buyer Partnership") // Default
   const { is4K } = useGlobalContext()
+  const role = Cookies.get("user_role");
 
   // Fetch partnership type on component mount
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function FinalActivation() {
               Welcome to Your Partnership Activation!
             </h2>
             <p className="text-lg sm:text-xl text-[var(--primary-light-text-color)] mb-6 sm:mb-8">
-              Buyer Partnership Registration Process
+              {partnershipName}
             </p>
           </div>
         </section>
@@ -92,7 +94,7 @@ export default function FinalActivation() {
         {/* Welcome Message */}
         <section className="mb-12 sm:mb-16 animate-fade-in-up delay-100">
           <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 lg:p-10">
-            <h3 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)] mb-6">Dear Buyer Partner,</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)] mb-6">Dear {role} Partner,</h3>
             <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed">
               <p className="text-base sm:text-lg">
                 Thank you for choosing{" "}

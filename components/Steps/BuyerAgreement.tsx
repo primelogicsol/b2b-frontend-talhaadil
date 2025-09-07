@@ -50,7 +50,6 @@ const partnershipTypeMapping: { [key: string]: string } = {
   museum_institutional: "Museum Institutional Partnership",
   ngo_government: "NGO Government Partnership",
   technology_partnership: "Technology Partnership",
-  franchise_vendor: "Franchise Vendor Partnership",
 }
 
 export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: BuyerAgreementProps) {
