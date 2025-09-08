@@ -238,13 +238,13 @@ export const dropshippingData = {
       icon: "Shield",
       title: "Security & Compliance",
       description:
-        "PCI compliance, encryption, intrusion detection, MFA/SSO, SIEM monitoring, vulnerability scanning.",
+        "PCI compliance, encryption, intrusion detection, SIEM monitoring, vulnerability scanning.",
     },
     {
       icon: "BarChart",
       title: "Marketing Automation",
       description:
-        "AI personalization, omnichannel campaigns, segmentation, predictive targeting, chatbots, ROI analytics.",
+        "AI personalization, omnichannel campaigns, segmentation, predictive targeting, ROI analytics.",
     },
     {
       icon: "Cube",

@@ -255,7 +255,6 @@ export const whiteLabelData = {
           "Premium branded packaging and AR integration",
           "15% logistics waiver",
           "Dedicated account manager",
-          "Early eligibility for Collaborative Partnerships",
         ],
       },
     ],

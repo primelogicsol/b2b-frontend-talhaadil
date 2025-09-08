@@ -22,7 +22,6 @@ export const logisticsData = {
     solutions: [
       "Affordable warehousing solutions.",
       "Reverse logistics for returns & resale.",
-      "Compliance-ready packaging & paperwork.",
       "Shipment insurance + blockchain-based verification.",
       "Dedicated institutional logistics support.",
     ],
@@ -274,7 +273,6 @@ export const logisticsData = {
         features: [
           "Exclusive warehouse sections.",
           "Institutional-level customs concierge.",
-          "Reverse logistics fully managed.",
           "Insurance up to $100,000 shipment value.",
           "Dedicated logistics relationship manager.",
         ],

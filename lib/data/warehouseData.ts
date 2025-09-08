@@ -1,6 +1,6 @@
 export const warehousData = {
-  pricingName : "warehouse",
-  name : "warehouse",
+  pricingName: "warehouse",
+  name: "warehouse",
   hero: {
     headline: "Seamless Warehousing Partnerships for Kashmiri Crafts",
     subtext:
@@ -32,63 +32,75 @@ export const warehousData = {
       {
         icon: "Warehouse",
         title: "Warehouse Access",
-        description: "Vendors place inventory in certified global hubs for distribution."
+        description:
+          "Vendors place inventory in certified global hubs for distribution.",
       },
       {
         icon: "Package",
         title: "Shared Operations",
-        description: "Marketplace provides labeling, packaging, staffing, and point-of-sale services."
+        description:
+          "Marketplace provides labeling, packaging, staffing, and point-of-sale services.",
       },
       {
         icon: "BarChart3",
         title: "Inventory Monitoring",
-        description: "AI dashboards track product movement, shrinkage, and replenishment timelines."
+        description:
+          "AI dashboards track product movement, shrinkage, and replenishment timelines.",
       },
       {
         icon: "ArrowLeftRight",
         title: "Return Handling",
-        description: "Centralized system manages returns, exchanges, and reverse logistics efficiently."
+        description:
+          "Centralized system manages returns, exchanges, and reverse logistics efficiently.",
       },
       {
         icon: "ShoppingCart",
         title: "Buyer Efficiency",
-        description: "Orders consolidated through warehouses, reducing shipping and operational expenses."
+        description:
+          "Orders consolidated through warehouses, reducing shipping and operational expenses.",
       },
       {
         icon: "Shield",
         title: "Buyer Assurance",
-        description: "Goods stored under compliance-driven standards ensure quality upon arrival."
+        description:
+          "Goods stored under compliance-driven standards ensure quality upon arrival.",
       },
       {
         icon: "Layers",
         title: "Buyer Flexibility",
-        description: "Shared warehouse pools enable sourcing from multiple vendors simultaneously."
+        description:
+          "Shared warehouse pools enable sourcing from multiple vendors simultaneously.",
       },
       {
         icon: "TrendingUp",
         title: "Buyer Growth",
-        description: "Scales sourcing capacity with faster fulfillment and reduced logistical burdens."
+        description:
+          "Scales sourcing capacity with faster fulfillment and reduced logistical burdens.",
       },
       {
         icon: "Lock",
         title: "Vendor Security",
-        description: "Products insured, digitally tracked, and protected against theft or loss."
+        description:
+          "Products insured, digitally tracked, and protected against theft or loss.",
       },
       {
         icon: "DollarSign",
         title: "Vendor Liquidity",
-        description: "Steady sales supported by timely order fulfillment and automated payouts."
+        description:
+          "Steady sales supported by timely order fulfillment and automated payouts.",
       },
       {
         icon: "Briefcase",
         title: "Vendor Services",
-        description: "Access value-added support like packaging, labeling, and compliance readiness."
+        description:
+          "Access value-added support like packaging, labeling, and compliance readiness.",
       },
       {
         icon: "ArrowUpRight",
         title: "Vendor Scaling",
-        description: "Warehouse networks prepare vendors for wholesale, export, and franchise expansion."
-      }
+        description:
+          "Warehouse networks prepare vendors for wholesale, export, and franchise expansion.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
@@ -96,7 +108,8 @@ export const warehousData = {
 
   capabilities: {
     heading: "Shared Warehousing Service Grid",
-    subheading:"CCentralized storage, fulfillment, returns improve operational efficiency globally.",
+    subheading:
+      "CCentralized storage, fulfillment, returns improve operational efficiency globally.",
     sections: [
       {
         title: "Core Infrastructure",
@@ -158,9 +171,7 @@ export const warehousData = {
           "Sustainable Growth: Eco-friendly storage practices boost global competitiveness.",
         ],
       },
-    ]
-    
-    ,
+    ],
   },
 
   eligibility: {
@@ -221,49 +232,46 @@ export const warehousData = {
         icon: "Shield",
         title: "Insurance Coverage",
         description:
-          "Comprehensive insurance coverage for warehoused goods against loss or damage.",
+          "Comprehensive insurance for stored goods against loss or damage.",
       },
       {
         icon: "Blockchain",
         title: "Blockchain Receipts",
         description:
-          "Blockchain-linked warehousing receipts for secure and transparent tracking.",
+          "Blockchain-linked receipts for secure and transparent warehousing.",
       },
       {
         icon: "CheckCircle",
-        title: "Regular Audits",
-        description:
-          "Regular audits for inventory accuracy and compliance with regulations.",
+        title: "Inventory Audits",
+        description: "Frequent audits to ensure stock accuracy and compliance.",
       },
       {
         icon: "Lock",
-        title: "Theft/Fraud Prevention",
+        title: "Fraud Prevention",
         description:
-          "Advanced theft and fraud prevention systems to safeguard stored crafts.",
+          "Advanced theft and fraud prevention systems for stored crafts.",
       },
       {
         icon: "Thermometer",
-        title: "Climate Monitoring",
+        title: "Climate Control",
         description:
-          "Temperature and climate monitoring to protect delicate crafts.",
+          "Monitors temperature and humidity to protect delicate crafts.",
       },
       {
         icon: "Gavel",
-        title: "Legal & Claims Support",
-        description:
-          "Legal and claims support for quick resolution in case of loss or damage.",
+        title: "Claims Support",
+        description: "Legal and claims assistance for quick issue resolution.",
       },
       {
-        icon: "Thermometer",
-        title: "Climate Monitoring",
+        icon: "Truck",
+        title: "Logistics Integration",
         description:
-          "Temperature and climate monitoring to protect delicate crafts.",
+          "Seamless integration with transport for efficient dispatch.",
       },
       {
-        icon: "Gavel",
-        title: "Legal & Claims Support",
-        description:
-          "Legal and claims support for quick resolution in case of loss or damage.",
+        icon: "Clipboard",
+        title: "Compliance Tracking",
+        description: "Tracks warehousing compliance with global regulations.",
       },
     ],
     support:
@@ -336,87 +344,92 @@ export const warehousData = {
       answer: "Yes, through API-integrated dashboards for real-time tracking.",
     },
   ],
-  apiIntegration : {
-  heading: "Already Running Warehousing? Accelerate With Us.",
-  description: "Unify WMS/OMS, enhance visibility, standardize SLAs, and scale globally with integrated warehousing tools. Prime Logic Solutions USA ensures seamless operations.",
-  features: [
-    {
-      icon: "UserCheck",
-      title: "Onboarding SLAs",
-      description: "Digital contracts, KYC, SOPs, safety, and service tiers standardized."
+  apiIntegration: {
+    heading: "Already Running Warehousing? Accelerate With Us.",
+    description:
+      "Unify WMS/OMS, enhance visibility, standardize SLAs, and scale globally with integrated warehousing tools. Prime Logic Solutions USA ensures seamless operations.",
+    features: [
+      {
+        icon: "UserCheck",
+        title: "Onboarding SLAs",
+        description:
+          "Digital contracts, KYC, SOPs, safety, and service tiers standardized.",
+      },
+      {
+        icon: "Plug",
+        title: "WMS Connectors",
+        description:
+          "Manhattan, Blue Yonder, ShipBob, 3PL Central, Oracle, Shopify.",
+      },
+      {
+        icon: "Eye",
+        title: "Inventory Visibility",
+        description:
+          "Real-time stock, lot/batch, FIFO/FEFO, cycle counts, RFID/IoT.",
+      },
+      {
+        icon: "Package",
+        title: "Inbound QC",
+        description:
+          "ASNs, appointments, putaway, inspections, nonconformance, vendor scorecards.",
+      },
+      {
+        icon: "Truck",
+        title: "Pick Pack",
+        description:
+          "Wave/pick methods, packing rules, carrier labels, manifests automated.",
+      },
+      {
+        icon: "Box",
+        title: "Value-Added Services",
+        description:
+          "Kitting, relabeling, gift packs, inserts, repairs, personalization.",
+      },
+      {
+        icon: "ArrowLeft",
+        title: "Returns Hub",
+        description:
+          "RMAs, grading, refurbishment, reboxing, dispositions, warranty workflows.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Compliance Custody",
+        description:
+          "GI/KHCRF provenance, labeling, hazmat/fragile handling, audit trails.",
+      },
+      {
+        icon: "Grid",
+        title: "Storage Optimization",
+        description:
+          "ABC velocity, bin sizing, vertical utilization, congestion heatmaps.",
+      },
+      {
+        icon: "Lock",
+        title: "Security Insurance",
+        description:
+          "CCTV, access control, seals, all-risk coverage, claims handling.",
+      },
+      {
+        icon: "DollarSign",
+        title: "3PL Billing",
+        description:
+          "Activities-based billing, surcharges, audits, chargeback prevention, recoveries.",
+      },
+      {
+        icon: "TrendingUp",
+        title: "Capacity Planning",
+        description:
+          "Demand signals, labor planning, dock calendars, overflow strategies.",
+      },
+      
+    ],
+    support: {
+      title: "Prime Logic Support",
+      description:
+        "Prime Logic Solutions USA provides free integration support for WMS/OMS/ERP onboarding, EDI 940/945/943/944/846, GS1/UCC labels, 856 ASNs, RFID/IoT feeds.",
+      note: "Sandbox, SDKs, and SLAs available for partners.",
     },
-    {
-      icon: "Plug",
-      title: "WMS Connectors",
-      description: "Manhattan, Blue Yonder, ShipBob, 3PL Central, Oracle, Shopify."
-    },
-    {
-      icon: "Eye",
-      title: "Inventory Visibility",
-      description: "Real-time stock, lot/batch, FIFO/FEFO, cycle counts, RFID/IoT."
-    },
-    {
-      icon: "Package",
-      title: "Inbound QC",
-      description: "ASNs, appointments, putaway, inspections, nonconformance, vendor scorecards."
-    },
-    {
-      icon: "Truck",
-      title: "Pick Pack",
-      description: "Wave/pick methods, packing rules, carrier labels, manifests automated."
-    },
-    {
-      icon: "Box",
-      title: "Value-Added Services",
-      description: "Kitting, relabeling, gift packs, inserts, repairs, personalization."
-    },
-    {
-      icon: "ArrowLeft",
-      title: "Returns Hub",
-      description: "RMAs, grading, refurbishment, reboxing, dispositions, warranty workflows."
-    },
-    {
-      icon: "ShieldCheck",
-      title: "Compliance Custody",
-      description: "GI/KHCRF provenance, labeling, hazmat/fragile handling, audit trails."
-    },
-    {
-      icon: "Grid",
-      title: "Storage Optimization",
-      description: "ABC velocity, bin sizing, vertical utilization, congestion heatmaps."
-    },
-    {
-      icon: "Lock",
-      title: "Security Insurance",
-      description: "CCTV, access control, seals, all-risk coverage, claims handling."
-    },
-    {
-      icon: "DollarSign",
-      title: "3PL Billing",
-      description: "Activities-based billing, surcharges, audits, chargeback prevention, recoveries."
-    },
-    {
-      icon: "TrendingUp",
-      title: "Capacity Planning",
-      description: "Demand signals, labor planning, dock calendars, overflow strategies."
-    },
-    {
-      icon: "Globe",
-      title: "Multi-Warehouse Network",
-      description: "Geo-routing, cross-dock, consolidation, transfer orders, inventory balancing."
-    },
-    {
-      icon: "Leaf",
-      title: "Sustainability Controls",
-      description: "Carbon data, recyclable materials, energy reporting, green packaging options."
-    }
-  ],
-  support: {
-    title: "Prime Logic Support",
-    description: "Prime Logic Solutions USA provides free integration support for WMS/OMS/ERP onboarding, EDI 940/945/943/944/846, GS1/UCC labels, 856 ASNs, RFID/IoT feeds.",
-    note: "Sandbox, SDKs, and SLAs available for partners."
-  }
-},
+  },
 
   finalCta: {
     heading: "Secure, Store & Scale With De Koshur Crafts Warehousing",

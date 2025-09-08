@@ -1,5 +1,5 @@
 export const storytellingMediaData = {
-pricingName : "storytelling",
+  pricingName: "storytelling",
   name: "storytelling_media",
   hero: {
     headline:
@@ -228,49 +228,51 @@ pricingName : "storytelling",
     features: [
       {
         icon: "Lock",
-        title: "Digital Copyright & DRM",
+        title: "Digital Rights",
         description:
-          "Protects narrative content (videos, photos, text) with digital copyright and DRM.",
+          "Protects videos, photos, and text with DRM and copyright.",
       },
       {
         icon: "Link",
         title: "Blockchain Ledger",
         description:
-          "Links story metadata to artisan and craft for secure traceability.",
+          "Links story metadata to artisans for secure traceability.",
       },
       {
         icon: "Server",
-        title: "Secure Hosting Platforms",
-        description: "Military-grade encrypted storage for media content.",
+        title: "Secure Hosting",
+        description:
+          "Military-grade encrypted storage for digital media files.",
       },
       {
         icon: "Globe",
         title: "Global Monitoring",
-        description: "Scans the web for unauthorized use of narrative content.",
+        description:
+          "Scans the internet for unauthorized use of story content.",
       },
       {
         icon: "Search",
-        title: "Reverse Image & Video Tools",
+        title: "Content Tracking",
         description:
-          "Tracks content misuse worldwide using advanced search tools.",
+          "Tracks misuse of images and videos worldwide with AI tools.",
       },
       {
         icon: "Gavel",
         title: "Legal Support",
         description:
-          "Frameworks to enforce rights violations and protect artisan stories.",
+          "Provides legal assistance to enforce content rights globally.",
       },
       {
-        icon: "Search",
-        title: "Reverse Image & Video Tools",
+        icon: "Shield",
+        title: "Access Control",
         description:
-          "Tracks content misuse worldwide using advanced search tools.",
+          "Restricts unauthorized downloads and copying of creative works.",
       },
       {
-        icon: "Gavel",
-        title: "Legal Support",
+        icon: "Clock",
+        title: "Usage Analytics",
         description:
-          "Frameworks to enforce rights violations and protect artisan stories.",
+          "Monitors content engagement and usage across digital platforms.",
       },
     ],
     support:

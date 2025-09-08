@@ -24,7 +24,7 @@ export const consignmentPageData = {
       "Vendors gain retail shelf access without upfront fees.",
       "Buyers only pay after products are sold (zero initial risk).",
       "Transparent smart contracts manage settlements & timelines.",
-      "Performance in Consignment unlocks Brand Growth opportunities (Exhibitions, White Label).",
+      "Performance in Consignment unlocks Other Brand Growth opportunities",
     ],
   },
   platformDifference: {

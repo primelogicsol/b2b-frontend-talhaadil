@@ -92,6 +92,12 @@ export const brickMortarData = {
         description:
           "Brick & Mortar success accelerates entry into wholesale and franchise.",
       },
+      {
+        icon: "DollarSign",
+        title: "Vendor Profitability",
+        description:
+          "Boosts revenue through optimized pricing and reduced logistics costs.",
+      },
     ],
     exclusivity:
       "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
@@ -257,15 +263,7 @@ export const brickMortarData = {
           "Enhanced omni-channel visibility",
         ],
       },
-      {
-        name: "Premium Urban Store",
-        price: "$3,300/month",
-        features: [
-          "High-footfall urban hub placement",
-          "Targeted marketing for professionals and tourists",
-          "Advanced analytics dashboard",
-        ],
-      },
+     
       {
         name: "Flagship Showcase Store",
         price: "$4,500/month",
@@ -275,24 +273,7 @@ export const brickMortarData = {
           "Dedicated account support",
         ],
       },
-      {
-        name: "Flagship Showcase Store",
-        price: "$4,500/month",
-        features: [
-          "Heritage and cultural zone placement",
-          "Premium branding and display options",
-          "Dedicated account support",
-        ],
-      },
-      {
-        name: "Flagship Showcase Store",
-        price: "$4,500/month",
-        features: [
-          "Heritage and cultural zone placement",
-          "Premium branding and display options",
-          "Dedicated account support",
-        ],
-      },
+    
     ],
     range: "Range: $1,600–$4,500/month",
   },

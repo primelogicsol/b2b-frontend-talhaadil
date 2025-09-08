@@ -315,7 +315,10 @@ export default function InsidePage({ landingPageData }: { landingPageData: Landi
                                     }`}
                             >
                                 <CheckCircle className="w-6 h-6" />
-                                Core Trade Provides:
+                                {landingPageData.pricingName
+                                    .split('_')
+                                    .map((w, i) => (i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+                                    .join(' ')} Provides:
                             </h3>
                             <div className="space-y-4">
                                 {landingPageData.whyDropshipping.solutions.map((solution, index) => (

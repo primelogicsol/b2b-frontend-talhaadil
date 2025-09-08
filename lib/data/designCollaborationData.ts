@@ -1,5 +1,5 @@
 export const designCollaborationData = {
-pricingName : "design_collaboration",
+  pricingName: "design_collaboration",
   name: "design-collaboration",
   hero: {
     headline: "Co-Create Unique Products With Design Collaboration",
@@ -233,37 +233,37 @@ pricingName : "design_collaboration",
         icon: "ShieldCheck",
       },
       {
-        title: "Global Monitoring Network",
+        title: "Global Monitoring",
         description: "Proactive infringement detection.",
         icon: "Globe",
       },
       {
-        title: "Digital Rights Management (DRM)",
+        title: "Digital Rights",
         description: "Prevents unauthorized access.",
         icon: "Lock",
       },
       {
-        title: "Reverse Image Search",
+        title: "Image Search",
         description: "Scans internet for misuse.",
         icon: "Search",
       },
       {
-        title: "Secure Design Hosting Platforms",
+        title: "Secure Hosting",
         description: "Military-grade encrypted storage.",
         icon: "Server",
       },
       {
-        title: "Geographical Distribution Control",
+        title: "Regional Control",
         description: "Control over where products can be sold.",
         icon: "Map",
       },
       {
-        title: "Copyright Registration Systems",
+        title: "Copyright Systems",
         description: "Direct registration with IP authorities.",
         icon: "FileCheck",
       },
       {
-        title: "Legal Action Framework",
+        title: "Legal Framework",
         description: "Immediate legal consultation and enforcement.",
         icon: "Gavel",
       },
@@ -349,7 +349,7 @@ pricingName : "design_collaboration",
         description:
           "Requests, iterations, approvals, courier tracking, cost/time analytics.",
       },
-     
+
       {
         icon: "CheckSquare",
         title: "Compliance Design",

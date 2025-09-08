@@ -310,7 +310,10 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
                   }`}
               >
                 <CheckCircle className="w-6 h-6" />
-                Core Trade Provides:
+                {pageData.hero.headline
+                  .match(/(.*?\bPartnerships\b)/i)?.[1]
+                  ?.replace(/\bPartnerships\b/i, 'Partnership')
+                  .trim() || pageData.hero.headline} Provides:
               </h3>
               <div className="space-y-4">
                 {pageData.whyCoreTrade.solutions.map((solution, index) => (
@@ -453,7 +456,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
           </div>
         </div>
       </motion.section>
-      
+
 
       {/* Core Trade Tracks - Kept only the cards, removed the table */}
       <motion.section

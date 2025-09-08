@@ -1,5 +1,5 @@
 export const packagingData = {
-  pricingName : "packaging",
+  pricingName: "packaging",
   name: "packaging",
   hero: {
     headline:
@@ -230,48 +230,52 @@ export const packagingData = {
       "Every packaged craft is safeguarded by our Protection System.",
     features: [
       {
-        title: "Blockchain-Linked Receipts",
+        title: "Blockchain Receipts",
         description:
-          "Blockchain-linked packaging receipts for secure tracking.",
+          "Digital receipts linked to blockchain for secure traceability.",
         icon: "Blockchain",
       },
       {
-        title: "GI-Certified Tags",
+        title: "GI Tags",
         description:
-          "GI-certified tags embedded into packaging for authenticity.",
+          "Authenticity tags embedded for verified GI certification.",
         icon: "Tag",
       },
       {
         title: "Secure Seals",
-        description: "Secure seals & tamper-proof designs to ensure integrity.",
+        description:
+          "Tamper-proof seals to protect product integrity during transit.",
         icon: "Lock",
       },
       {
-        title: "Insurance Coverage",
-        description: "Insurance coverage for packaging-related damages.",
+        title: "Transit Insurance",
+        description:
+          "Coverage included to protect against transit damages or loss.",
         icon: "Shield",
       },
       {
         title: "Export Compliance",
         description:
-          "Documentation compliance for export to meet global standards.",
+          "Standardized documents for global export and legal clearance.",
         icon: "Document",
       },
       {
-        title: "Carbon Footprint Certification",
-        description: "Carbon footprint certification attached to shipments.",
-        icon: "Leaf",
-      },
-      {
-        title: "Export Compliance",
+        title: "Carbon Certification",
         description:
-          "Documentation compliance for export to meet global standards.",
-        icon: "Document",
+          "Carbon-certified shipments to support eco-friendly trade.",
+        icon: "Leaf",
       },
       {
-        title: "Carbon Footprint Certification",
-        description: "Carbon footprint certification attached to shipments.",
-        icon: "Leaf",
+        title: "Temperature Packaging",
+        description:
+          "Special packaging designed for perishable or sensitive goods.",
+        icon: "Thermometer",
+      },
+      {
+        title: "Shipment Tracking",
+        description:
+          "Real-time shipment tracking from origin to final destination.",
+        icon: "Map",
       },
     ],
     support: "This ensures craft safety and compliance across global markets.",
