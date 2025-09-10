@@ -38,12 +38,12 @@ interface AdminFormData {
 }
 
 const permissionOptions = {
-  user_management: ["view", "approve"],
-  job_postings: ["create", "update", "delete", "view"],
-  team_management: ["view", "update"],
+  user_management: ["view"],
+  job_postings: ["view"],
+  team_management: ["view"],
   appointments: ["view"],
   notifications: ["view"],
-  pricing: ["view", "create"],
+  pricing: ["view"],
 }
 
 export default function OtherAdminsPage() {

@@ -24,20 +24,7 @@ const partnerships = [
   "technology_partnership",
 ]
 
-const monthlyKPIData = [
-  { month: "Jan", kpi: 72, retention: 88, partnerships: 3 },
-  { month: "Feb", kpi: 75, retention: 89, partnerships: 4 },
-  { month: "Mar", kpi: 78, retention: 90, partnerships: 4 },
-  { month: "Apr", kpi: 82, retention: 91, partnerships: 5 },
-  { month: "May", kpi: 85, retention: 92, partnerships: 6 },
-  { month: "Jun", kpi: 85, retention: 92, partnerships: 6 },
-]
 
-const partnershipDistribution = [
-  { name: "Active", value: 6, color: "var(--primary-color)" },
-  { name: "In Progress", value: 2, color: "var(--secondary-color)" },
-  { name: "Pending", value: 8, color: "var(--secondary-light-color)" },
-]
 
 interface UserProfile {
   id: number
@@ -77,7 +64,7 @@ export default function DashboardPage() {
             ? "drop_shipping"
             : response.data.partnership_level
         }
-        
+
 
         setUserProfile(updatedData)
       } catch (err) {
@@ -89,6 +76,7 @@ export default function DashboardPage() {
 
     fetchUserProfile()
   }, [])
+
 
   if (loading) {
     return (
@@ -111,8 +99,24 @@ export default function DashboardPage() {
 
   const currentKPI = userProfile.kpi_score
   const currentPartnership = partnerships.indexOf(userProfile.partnership_level.toLowerCase())
-  const nextMilestone = partnerships[currentPartnership+1]
-
+  const nextMilestone = partnerships[currentPartnership + 1]
+  const partnershipDistribution = [
+    {
+      name: "Active",
+      value: currentPartnership, // Number of completed partnerships
+      color: "var(--primary-color)",
+    },
+    {
+      name: "In Progress",
+      value: currentPartnership >= 0 ? 1 : 0, // Current partnership (1 if there is one)
+      color: "var(--secondary-color)",
+    },
+    {
+      name: "Pending",
+      value: partnerships.length - (currentPartnership + 1), // Remaining partnerships
+      color: "var(--secondary-light-color)",
+    },
+  ].filter(item => item.value > 0)
   return (
     <div className="space-y-8">
       <div>
@@ -126,7 +130,7 @@ export default function DashboardPage() {
           </div>
         )}
       </div>
-        
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2 p-6">
@@ -159,9 +163,9 @@ export default function DashboardPage() {
             <Users className="h-4 w-4 text-[var(--primary-color)]" />
           </div>
           <div className="px-6 pb-6">
-            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentPartnership+1}</div>
+            <div className="text-2xl font-bold text-[var(--primary-color)]">{currentPartnership + 1}</div>
             <p className="text-xs text-[var(--primary-hover-color)] mt-1">of 16 total partnerships</p>
-           
+
           </div>
         </div>
 
@@ -179,33 +183,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
-          <div className="p-6 pb-2">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)]">Performance Trends</h3>
-            <p className="text-sm text-[var(--primary-hover-color)]">6-month KPI and retention analysis</p>
-          </div>
-          <div className="p-6 pt-0">
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={monthlyKPIData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="var(--secondary-light-color)" />
-                  <XAxis dataKey="month" stroke="var(--primary-hover-color)" fontSize={12} />
-                  <YAxis stroke="var(--primary-hover-color)" fontSize={12} />
-                  <Area type="monotone" dataKey="kpi" stackId="1" stroke="var(--primary-color)" fill="var(--primary-color)" fillOpacity={0.6} />
-                  <Area
-                    type="monotone"
-                    dataKey="retention"
-                    stackId="2"
-                    stroke="var(--secondary-color)"
-                    fill="var(--secondary-color)"
-                    fillOpacity={0.6}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
+      <div className="grid grid-cols-1">
 
         <div className="bg-white rounded-lg border border-[var(--primary-hover-color)] shadow-sm">
           <div className="p-6 pb-2">
@@ -254,7 +232,7 @@ export default function DashboardPage() {
         <div className="p-6 pt-0 space-y-6">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-[var(--primary-hover-color)]">Overall Progress</span>
-            <span className="text-sm text-[var(--primary-hover-color)]">{currentPartnership+1}/16 partnerships</span>
+            <span className="text-sm text-[var(--primary-hover-color)]">{currentPartnership + 1}/16 partnerships</span>
           </div>
           <div className="w-full bg-[var(--secondary-light-color)] rounded-full h-3">
             <div

@@ -151,7 +151,7 @@ export default function VendorBuyerDashboard() {
     <div className="min-h-screen bg-white p-4 sm:p-6 lg:p-8 space-y-8">
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-blue-600">Vendor & Buyer Dashboard</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-blue-600">Admin Dashboard</h1>
           <p className="text-gray-600 mt-2 text-base sm:text-lg">Insights into your vendors and buyers.</p>
         </div>
         <div className="mt-4 sm:mt-0 sm:flex items-center space-x-4 hidden">

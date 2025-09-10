@@ -27,7 +27,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
   const { is4K } = useGlobalContext()
 
   const defaults: SectionContent = {
-    imageSrc: "/hero2.png",
+    imageSrc: "/images/hero2.webp",
     sidebarText: "Your Link to Kashmir Craft Markets",
     header: "WELCOME TO B2B CONNECT - USA",
     mainHeading: (

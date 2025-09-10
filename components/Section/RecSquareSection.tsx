@@ -55,7 +55,7 @@ export default function RecSquareSection({
           <div className="absolute inset-0 border-4 border-[#FF6A13] rounded-2xl transform z-20 -mt-4"></div>
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group z-10">
             <Image
-              src="/main2.png"
+              src="/images/main2.webp"
               alt="Main Partnership Image"
               width={390}
               height={590}

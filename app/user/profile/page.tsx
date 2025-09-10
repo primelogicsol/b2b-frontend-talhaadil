@@ -768,12 +768,7 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {productError && (
-          <div className="flex items-center gap-2 px-3 py-2 mb-4 bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-lg">
-            <AlertTriangle className="h-4 w-4 text-[var(--secondary-color)]" />
-            <span className="text-sm text-[var(--secondary-color)]">{productError}</span>
-          </div>
-        )}
+       
       </div>
 
     </div>

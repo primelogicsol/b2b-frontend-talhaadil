@@ -82,8 +82,7 @@ export default function AdminLayout({
           return false
         })
 
-  console.log("Ownership:", parsedOwnership)
-  console.log("Role:", role)
+
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
