@@ -342,113 +342,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   }
 
   const validateAndSubmit = () => {
-    const newErrors: Record<string, string> = {}
+  
 
-    // Validate all required fields
-    newErrors["businessInfo.businessName"] = validateBusinessName(formData.businessInfo.businessName)
-    newErrors["businessInfo.businessRegistrationNumber"] = validateRegistrationNumber(
-      formData.businessInfo.businessRegistrationNumber,
-    )
-    newErrors["businessInfo.businessEstablishedYear"] = validateYear(formData.businessInfo.businessEstablishedYear)
-    newErrors["businessInfo.website"] = validateWebsite(formData.businessInfo.website || "")
+   
 
-    newErrors["businessInfo.gstNumber"] = validateGSTNumber(formData.businessInfo.gstNumber)
-    newErrors["businessInfo.taxIdentificationNumber"] = validateTaxId(formData.businessInfo.taxIdentificationNumber)
-    newErrors["businessInfo.importExportCode"] = validateImportExportCode(formData.businessInfo.importExportCode)
-    newErrors["businessInfo.postalCode"] = validatePostalCode(formData.businessInfo.postalCode)
-
-    newErrors["businessContact.email"] = validateEmail(formData.businessContact.email)
-    newErrors["businessContact.phone"] = validatePhone(formData.businessContact.phone)
-    newErrors["businessContact.pinCode"] = validatePinCode(formData.businessContact.pinCode)
-
-    newErrors["bankingInfo.accountNumber"] = validateAccountNumber(formData.bankingInfo.accountNumber)
-    newErrors["bankingInfo.ifscCode"] = validateIFSCCode(formData.bankingInfo.ifscCode)
-    newErrors["bankingInfo.swiftBisCode"] = validateSWIFTCode(formData.bankingInfo.swiftBisCode || "")
-    newErrors["bankingInfo.ibanCode"] = validateIBANCode(formData.bankingInfo.ibanCode || "")
-
-    // Check required text fields
-    const requiredTextFields = [
-      {
-        field: "businessInfo.streetAddress1",
-        value: formData.businessInfo.streetAddress1,
-        message: "Street address is required",
-      },
-      {
-        field: "businessInfo.city",
-        value: formData.businessInfo.city,
-        message: "City is required",
-      },
-      {
-        field: "businessInfo.stateRegion",
-        value: formData.businessInfo.stateRegion,
-        message: "State/Region is required",
-      },
-      {
-        field: "businessInfo.country",
-        value: formData.businessInfo.country,
-        message: "Country is required",
-      },
-      {
-        field: "businessContact.name",
-        value: formData.businessContact.name,
-        message: "Contact person name is required",
-      },
-      {
-        field: "businessContact.district",
-        value: formData.businessContact.district,
-        message: "District is required",
-      },
-      {
-        field: "businessContact.state",
-        value: formData.businessContact.state,
-        message: "State is required",
-      },
-      {
-        field: "businessContact.country",
-        value: formData.businessContact.country,
-        message: "Country is required",
-      },
-      {
-        field: "bankingInfo.bankName",
-        value: formData.bankingInfo.bankName,
-        message: "Bank name is required",
-      },
-      {
-        field: "bankingInfo.accountName",
-        value: formData.bankingInfo.accountName,
-        message: "Account name is required",
-      },
-      {
-        field: "bankingInfo.accountType",
-        value: formData.bankingInfo.accountType,
-        message: "Account type is required",
-      },
-    ]
-
-    requiredTextFields.forEach(({ field, value, message }) => {
-      if (!value || value.trim() === "") {
-        newErrors[field] = message
-      }
-    })
-
-    // Check required select fields
-    if (!formData.businessInfo.businessLegalStructure) {
-      newErrors["businessInfo.businessLegalStructure"] = "Business legal structure is required"
-    }
-    if (!formData.businessInfo.businessType) {
-      newErrors["businessInfo.businessType"] = "Business type is required"
-    }
-
-    // Filter out empty errors
-    const filteredErrors = Object.fromEntries(Object.entries(newErrors).filter(([_, value]) => value !== ""))
-
-    setErrors(filteredErrors)
-
-    if (Object.keys(filteredErrors).length === 0) {
       handleSubmit()
-    } else {
-      showToast("Please fix all validation errors before submitting.")
-    }
+    
   }
 
   const getFieldLabels = () => {
