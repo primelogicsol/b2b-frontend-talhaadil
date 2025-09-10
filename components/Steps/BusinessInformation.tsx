@@ -342,10 +342,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   }
 
   const validateAndSubmit = () => {
-  
-
-   
-
       handleSubmit()
     
   }
