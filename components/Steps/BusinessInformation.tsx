@@ -1015,7 +1015,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <ErrorMessage error={errors["businessContact.pinCode"]} />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">State *</label>
+                <label className="block text-sm font-semibold text-gray-700">State/County *</label>
                 <input
                   type="text"
                   value={formData.businessContact.state}

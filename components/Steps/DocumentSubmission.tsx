@@ -333,7 +333,7 @@ export default function DocumentSubmission({
               document_type: String(docKey),
               files,
             });
-            console.log(response.data);
+            console.log(response);
           }
         } else {
           const file = docData as File | null;
@@ -347,7 +347,7 @@ export default function DocumentSubmission({
               document_type: String(docKey),
               files: [file], // wrap single file into array
             });
-            console.log(response.data);
+            console.log(response);
           }
         }
       }

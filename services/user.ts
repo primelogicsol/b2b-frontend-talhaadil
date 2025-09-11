@@ -80,3 +80,13 @@ export const updatePartnership = (partnership_level: string) => {
     }
   );
 };
+
+
+
+export const postFirst = () => {
+  return api.post(`/user/first-register?is_first_register=true`, null, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};

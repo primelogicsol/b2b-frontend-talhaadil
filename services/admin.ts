@@ -133,3 +133,30 @@ export const updatePartnershipLevel = (id: number, data: any) => {
   });
 };
 
+
+
+// Get Users
+export const getDocumentInfo = () => {
+  return api.get(`/admin/document-info`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+
+// Approve Document
+export const approveDocument = (document_id: number,status : boolean) => {
+  return api.post(
+    `/admin/documents/approve`,
+    {
+      document_id,
+      approve: status,
+    },
+    {
+      headers: {
+        requiresAuth: true,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};

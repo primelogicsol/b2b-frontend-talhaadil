@@ -12,6 +12,8 @@ import FinalActivation from "@/components/Steps/FinalActivation";
 import PartnershipDisplay from "../Steps/AlreadyRegistered";
 import Cookies from "js-cookie";
 
+
+
 export interface FormData {
   partnership?: {
     selected: string;
@@ -53,7 +55,7 @@ export interface FormData {
 export default function RegistrationProcess() {
   const registrationStatus = Cookies.get("is_registered");
   const stepFromCookie = Cookies.get("registration_step");
-  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1;
+  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) +1: 1;
 
   const [currentStep, setCurrentStep] = useState<number>(initialStep);
   const [formData, setFormData] = useState<FormData>({});

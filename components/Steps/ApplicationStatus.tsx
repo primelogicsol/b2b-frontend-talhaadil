@@ -1,22 +1,31 @@
 "use client"
+import { checkRegistrationStatus, getDocumentProgress, getUserInfo, reuploadDocument } from "@/services/regitsration"
 import { useState, useEffect } from "react"
+import { getUserRegistrationSelected, postFirst } from "@/services/user"
 
 interface Document {
-  document_id: string
+  id: number
   document_type: string
-  file_name: string
-  status: "pending" | "verified" | "failed"
-  kpi_score?: number
+  status: "FAIL" | "PASS" | "PENDING"
+  file_name?: string
   remarks?: string
-  extracted_data?: any
 }
 
-interface DocumentVerificationResponse {
-  documents: Document[]
+interface BusinessInfo {
+  businessName: string
+  businessType: string
+  contactPerson: string
+  email: string
 }
 
-interface AdminApprovalResponse {
-  status: "pending" | "rejected" | "approved"
+interface DocumentProgressResponse {
+  progress: string
+  uploaded_documents: Document[]
+  missing_documents: string[]
+}
+
+interface RegistrationStatusResponse {
+  is_registered: "PENDING" | "APPROVED" | "REJECTED"
 }
 
 interface ApplicationStatusProps {
@@ -24,116 +33,162 @@ interface ApplicationStatusProps {
   onPrev?: () => void
 }
 
-// Mock API responses
-const mockDocumentVerification: DocumentVerificationResponse = {
-  documents: [
-    {
-      document_id: "doc_001",
-      document_type: "Business License",
-      file_name: "business_license.pdf",
-      status: "verified",
-      kpi_score: 95,
-      remarks: "Document verified successfully",
-      extracted_data: { license_number: "BL123456", expiry_date: "2025-12-31" },
-    },
-    {
-      document_id: "doc_002",
-      document_type: "Tax Certificate",
-      file_name: "tax_cert.pdf",
-      status: "failed",
-      kpi_score: 45,
-      remarks: "Document quality is poor, text not clearly visible",
-      extracted_data: null,
-    },
-    {
-      document_id: "doc_003",
-      document_type: "Bank Statement",
-      file_name: "bank_statement.pdf",
-      status: "verified",
-      kpi_score: 88,
-      remarks: "Document verified successfully",
-      extracted_data: { account_number: "****1234", balance: "$50,000" },
-    },
-  ],
-}
-
-const mockAdminApproval: AdminApprovalResponse = {
-  status: "pending",
-}
-
 export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusProps) {
-  const [currentStep, setCurrentStep] = useState(2) // 1: submitted, 2: verified, 3: approved
+  const [currentStep, setCurrentStep] = useState(2)
   const [documents, setDocuments] = useState<Document[]>([])
-  const [adminStatus, setAdminStatus] = useState<"pending" | "rejected" | "approved">("pending")
+  const [adminStatus, setAdminStatus] = useState<"PENDING" | "APPROVED" | "REJECTED">("PENDING")
   const [failedDocs, setFailedDocs] = useState<Document[]>([])
   const [loading, setLoading] = useState(true)
-  const [uploadingDocs, setUploadingDocs] = useState<Set<string>>(new Set())
+  const [info, setInfo] = useState<BusinessInfo | null>(null)
+  const [uploadingDocs, setUploadingDocs] = useState<Set<number>>(new Set())
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const loadInfo = async () => {
+      try {
+        const response = await getUserInfo()
+        const data = response.data
+        console.log(data)
+
+        setInfo({
+          businessName: data.business_name,
+          businessType: data.business_type,
+          contactPerson: data.contact_phone,
+          email: data.contact_email,
+        })
+      } catch (error) {
+        console.error("Failed to fetch business info:", error)
+      }
+    }
+
+    loadInfo()
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
+      setError(null)
+      try {
+        // Fetch document progress
+        const docResponse = await getDocumentProgress()
 
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+        if (docResponse.status < 200 || docResponse.status >= 300) {
+          throw new Error('Failed to fetch document progress')
+        }
 
-      setDocuments(mockDocumentVerification.documents)
+        const docData: DocumentProgressResponse = {
+          ...docResponse.data,
+          uploaded_documents: docResponse.data.uploaded_documents.map((doc: any) => ({
+            ...doc,
+            status: doc.status.toUpperCase(),
+          })),
+        }
+        setDocuments(docData.uploaded_documents)
 
-      setAdminStatus(mockAdminApproval.status)
 
-      const failed = mockDocumentVerification.documents.filter((doc) => doc.status === "failed")
-      setFailedDocs(failed)
+        // Fetch registration status
+        const regResponse = await checkRegistrationStatus()
 
-      const allDocsVerified = mockDocumentVerification.documents.every((doc) => doc.status === "verified")
-      if (mockAdminApproval.status === "approved") {
-        setCurrentStep(3)
-      } else if (allDocsVerified) {
-        setCurrentStep(2)
-      } else {
-        setCurrentStep(1)
+        if (regResponse.status < 200 || regResponse.status >= 300) {
+          throw new Error('Failed to fetch registration status')
+        }
+
+        const regData: RegistrationStatusResponse = regResponse.data
+        setAdminStatus(regData.is_registered)
+
+        // Set failed (REJECTED) documents
+        const failed = docData.uploaded_documents.filter((doc) => doc.status === "FAIL")
+        setFailedDocs(failed)
+
+        // Determine current step
+        const allDocsVerified = docData.uploaded_documents.every((doc) => doc.status === "PASS")
+        if (regData.is_registered === "APPROVED") {
+          setCurrentStep(3)
+        } else if (allDocsVerified) {
+          setCurrentStep(3) // Changed from 2 to 3 to show step 3 as loading when step 2 is done
+        } else {
+          setCurrentStep(1)
+        }
+      } catch (err) {
+        setError('Failed to load application status. Please try again.')
+        console.error(err)
+      } finally {
+        setLoading(false)
       }
-
-      setLoading(false)
     }
 
     fetchData()
   }, [])
-
-  const handleResubmitDocument = async (docId: string, file?: File) => {
-    if (!file) {
-      const input = document.createElement("input")
-      input.type = "file"
-      input.accept = ".pdf,.jpg,.jpeg,.png"
-      input.onchange = (e) => {
-        const selectedFile = (e.target as HTMLInputElement).files?.[0]
-        if (selectedFile) {
-          handleResubmitDocument(docId, selectedFile)
-        }
-      }
-      input.click()
-      return
-    }
-
-    setUploadingDocs((prev) => new Set(prev).add(docId))
-
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    const updatedDocs = documents.map((doc) =>
-      doc.document_id === docId
-        ? {
-          ...doc,
-          status: "pending" as const,
-          remarks: `Document "${file.name}" resubmitted for verification`,
-          file_name: file.name,
-        }
-        : doc,
-    )
-    setDocuments(updatedDocs)
-    setFailedDocs(failedDocs.filter((doc) => doc.document_id !== docId))
-    setUploadingDocs((prev) => {
-      const newSet = new Set(prev)
-      newSet.delete(docId)
-      return newSet
-    })
+  const whenClickNext = async () =>{
+    if(onNext) {
+      const response = await postFirst()
+      console.log(response)
+      onNext()}
   }
+  
+  const handleResubmitDocument = async (docId: number, file: File) => {
+    try {
+      // Step 1: Upload file to your Cloudinary API
+      console.log(docId)
+      const uploadForm = new FormData()
+      uploadForm.append("file", file)
+      uploadForm.append(
+        "doc_type",
+        file.name.split(".").pop()?.toLowerCase() || ""
+      )
+
+      const uploadResponse = await fetch("/api/upload-pdf", {
+        method: "POST",
+        body: uploadForm,
+      })
+
+      if (!uploadResponse.ok) {
+        throw new Error("Failed to upload file to Cloudinary")
+      }
+
+      const { url } = await uploadResponse.json()
+
+      // Step 2: Submit to backend with both file_url and raw file
+      const formData = new FormData()
+      formData.append("document_id", docId.toString())
+      formData.append(
+        "document_type",
+        documents.find((doc) => doc.id === docId)?.document_type || ""
+      )
+      formData.append("file_url", url) // Cloudinary URL
+      formData.append("file", file)    // Raw file too
+
+      const response = await reuploadDocument(formData)
+
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error("Failed to reupload document")
+      }
+
+      setDocuments((prev) =>
+        prev.map((doc) =>
+          doc.id === docId
+            ? {
+              ...doc,
+              status: "PENDING" as const,
+              remarks: `Document "${file.name}" resubmitted for verification`,
+              file_name: file.name,
+            }
+            : doc
+        )
+      )
+      setFailedDocs((prev) => prev.filter((doc) => doc.id !== docId))
+    } catch (err) {
+      setError("Failed to reupload document. Please try again.")
+      console.error(err)
+    } finally {
+      setUploadingDocs((prev) => {
+        const newSet = new Set(prev)
+        newSet.delete(docId)
+        return newSet
+      })
+    }
+  }
+
 
   const getStepStatus = (step: number) => {
     if (step < currentStep) return "completed"
@@ -190,6 +245,10 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
     },
   ]
 
+  // Determine if Next button should be enabled
+  const allDocsVerified = documents.every((doc) => doc.status === "PASS")
+  const canProceed = adminStatus === "APPROVED"
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -200,6 +259,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
       </div>
     )
   }
+
 
   return (
     <div className="min-h-screen bg-gray-50 py-4 sm:py-8">
@@ -221,6 +281,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                   {getStatusIcon(getStepStatus(step.id))}
                   <div className="ml-4 sm:ml-0">
                     <h3 className="text-sm sm:text-base font-semibold text-gray-900">{step.title}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">{step.description}</p>
                   </div>
                 </div>
                 {index < steps.length - 1 && (
@@ -238,23 +299,33 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
 
         {/* Business Information Section */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-          <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6">Business Information</h2>
+          <h2 className="text-xl font-semibold text-[var(--primary-color)] mb-6">
+            Business Information
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Business Name</label>
-              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">Tech Solutions Inc.</p>
+              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">
+                {info?.businessName}
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Business Type</label>
-              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">Technology Services</p>
+              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">
+                {info?.businessType}
+              </p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Contact Name</label>
-              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">John Smith</p>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Contact Phone</label>
+              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">
+                {info?.contactPerson}
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Contact Email</label>
-              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">john.smith@techsolutions.com</p>
+              <p className="text-base text-gray-900 bg-gray-50 px-4 py-3 rounded-lg">
+                {info?.email}
+              </p>
             </div>
           </div>
         </div>
@@ -266,26 +337,25 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
           </h2>
           <div className="space-y-4">
             {documents.map((doc) => (
-              <div key={doc.document_id} className="border border-gray-200 rounded-lg p-4">
+              <div key={doc.id} className="border border-gray-200 rounded-lg p-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-2 sm:space-y-0">
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900">{doc.document_type}</h3>
-                    <p className="text-sm text-gray-600">{doc.file_name}</p>
-                    {doc.remarks && <p className="text-xs text-gray-500 mt-1">{doc.remarks}</p>}
+                    <h3 className="font-medium text-gray-900"> {doc.document_type
+                      .split("_")
+                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(" ")}</h3>
+
                   </div>
                   <div className="flex items-center space-x-2 sm:space-x-4">
-                    {doc.kpi_score && (
-                      <span className="text-xs sm:text-sm font-medium text-gray-600">Score: {doc.kpi_score}%</span>
-                    )}
                     <span
-                      className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${doc.status === "verified"
-                          ? "bg-green-100 text-green-800"
-                          : doc.status === "failed"
-                            ? "bg-red-100 text-red-800"
-                            : "bg-yellow-100 text-yellow-800"
+                      className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${doc.status === "PASS"
+                        ? "bg-green-100 text-green-800"
+                        : doc.status === "FAIL"
+                          ? "bg-red-100 text-red-800"
+                          : "bg-yellow-100 text-yellow-800"
                         }`}
                     >
-                      {doc.status.charAt(0).toUpperCase() + doc.status.slice(1)}
+                      {doc.status.charAt(0).toUpperCase() + doc.status.slice(1).toLowerCase()}
                     </span>
                   </div>
                 </div>
@@ -301,23 +371,38 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
               Action Required: Document Resubmission
             </h2>
             <p className="text-sm text-red-700 mb-4">
-              The following documents failed verification and need to be resubmitted:
+              The following documents were rejected and need to be resubmitted:
             </p>
             <div className="space-y-3">
               {failedDocs.map((doc) => (
-                <div key={doc.document_id} className="bg-white border border-red-200 rounded-lg p-4">
+                <div key={doc.id} className="bg-white border border-red-200 rounded-lg p-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-2 sm:space-y-0">
                     <div className="flex-1">
-                      <h3 className="font-medium text-gray-900">{doc.document_type}</h3>
-                      <p className="text-sm text-red-600 mb-1">{doc.remarks}</p>
+                      <h3 className="font-medium text-gray-900">{doc.document_type
+                        .split("_")
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(" ")}</h3>
+                      <p className="text-sm text-red-600 mb-1">{doc.remarks || "Document rejected. Please reupload."}</p>
                       <p className="text-xs text-gray-500">Accepted formats: PDF, JPG, PNG (Max 10MB)</p>
                     </div>
                     <button
-                      onClick={() => handleResubmitDocument(doc.document_id)}
-                      disabled={uploadingDocs.has(doc.document_id)}
+                      onClick={() => {
+                        const input = document.createElement('input')
+                        input.type = 'file'
+                        input.accept = '.pdf,.jpg,.jpeg,.png'
+                        input.onchange = (e: Event) => {
+                          const target = e.target as HTMLInputElement
+                          if (target.files && target.files[0]) {
+                            setUploadingDocs(prev => new Set(prev).add(doc.id))
+                            handleResubmitDocument(doc.id, target.files[0])
+                          }
+                        }
+                        input.click()
+                      }}
+                      disabled={uploadingDocs.has(doc.id)}
                       className="px-3 sm:px-4 py-2 bg-[var(--secondary-color)] hover:bg-[var(--secondary-color)]/90 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors w-full sm:w-auto flex items-center justify-center space-x-2"
                     >
-                      {uploadingDocs.has(doc.document_id) ? (
+                      {uploadingDocs.has(doc.id) ? (
                         <>
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                           <span>Uploading...</span>
@@ -351,34 +436,45 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
           <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <span className="text-gray-700 font-medium">Current Status:</span>
             <span
-              className={`px-3 py-1 rounded-full text-sm font-medium ${adminStatus === "approved"
-                  ? "bg-green-100 text-green-800"
-                  : adminStatus === "rejected"
-                    ? "bg-red-100 text-red-800"
-                    : "bg-yellow-100 text-yellow-800"
+              className={`px-3 py-1 rounded-full text-sm font-medium ${adminStatus === "APPROVED"
+                ? "bg-green-100 text-green-800"
+                : adminStatus === "REJECTED"
+                  ? "bg-red-100 text-red-800"
+                  : "bg-yellow-100 text-yellow-800"
                 }`}
             >
-              {adminStatus.charAt(0).toUpperCase() + adminStatus.slice(1)}
+              {adminStatus.charAt(0).toUpperCase() + adminStatus.slice(1).toLowerCase()}
             </span>
           </div>
-          {adminStatus === "pending" && (
+          {adminStatus === "PENDING" && (
             <p className="text-sm text-gray-600 mt-2">
-              Your application is currently under review by our admin team. You will be notified once a decision is
-              made.
+              Your application is currently under review by our admin team. You will be notified once a decision is made.
+            </p>
+          )}
+          {adminStatus === "REJECTED" && (
+            <p className="text-sm text-red-600 mt-2">
+              Your application was rejected. Please review the document requirements and resubmit any rejected documents.
             </p>
           )}
         </div>
 
         {/* Navigation */}
-        {onNext && (
+        {(onNext || onPrev) && (
           <div className="flex justify-end">
-            <button
-              onClick={onNext}
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white rounded-lg sm:rounded-xl transition-all font-medium shadow-lg text-sm sm:text-base"
-            >
-              <span className="hidden sm:inline mr-2">Next</span>
-              <span>→</span>
-            </button>
+
+            {onNext && (
+              <button
+                onClick={whenClickNext}
+                disabled={!canProceed}
+                className={`px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl transition-all font-medium shadow-lg text-sm sm:text-base ${canProceed
+                  ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+              >
+                <span className="hidden sm:inline mr-2">Next</span>
+                <span>→</span>
+              </button>
+            )}
           </div>
         )}
       </div>

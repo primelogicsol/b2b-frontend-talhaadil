@@ -57,7 +57,7 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
   const [currentStep, setCurrentStep] = useState(1)
   const [partnershipData, setPartnershipData] = useState<any>(null)
   const [partnershipTitle, setPartnershipTitle] = useState<string>("Drop Shipping Buyer Partnership Agreement")
-
+  const [loading,setLoading] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     businessName: data?.businessName || "",
     businessType: data?.businessType || "",
@@ -405,6 +405,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
   }
 
   const handleGenerateAndUpload = async () => {
+    setLoading(true)
     const pdfBlob = generatePDF()
     const uniqueName = `MyAgreement_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.pdf`
 
@@ -412,7 +413,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
     formData.append("file", pdfBlob, uniqueName)
     formData.append("name", uniqueName)
 
-    const res = await fetch("/api/upload-pdf", {
+    const res = await fetch("/api/upload-agreement", {
       method: "POST",
       body: formData,
     })
@@ -439,6 +440,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
       console.log(data.error)
       console.error("Upload failed:", data.error)
     }
+    setLoading(false)
   }
 
   const handleNext = () => {
@@ -446,6 +448,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
       setCurrentStep(currentStep + 1)
     } else if (currentStep === 4 && canProceedToNext()) {
       handleGenerateAndUpload()
+      onNext()
 
     }
   }
@@ -856,7 +859,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
 
           <button
             onClick={handleNext}
-            disabled={!canProceedToNext()}
+            disabled={!canProceedToNext() || loading}
             className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} rounded-xl transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95 ${canProceedToNext()
               ? currentStep === 4
                 ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white shadow-lg"
@@ -864,7 +867,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
           >
-            <span className="hidden md:inline mr-2">{currentStep === 4 ? "SUBMIT" : "NEXT"}</span>
+            <span className="hidden md:inline mr-2">{currentStep === 4 ? (loading ? "SUBMITTING...." : "SUBMIT") : "NEXT"}</span>
             <span className="inline">→</span>
           </button>
         </div>

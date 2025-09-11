@@ -21,9 +21,19 @@ import {
   X,
   Package,
 } from "lucide-react";
-import { getUserInfo, approveRegistration } from "@/services/admin";
+import { getUserInfo, approveRegistration, getDocumentInfo, approveDocument } from "@/services/admin"; // Added getDocumentInfo and approveDocument
 import { get_product_by_user_id } from "@/services/admin";
 import Cookies from "js-cookie";
+
+// Interface for document info
+interface DocumentInfo {
+  id: number;
+  user_id: number;
+  document_type: string;
+  ai_verification_status: string;
+  file_url: string;
+}
+
 // Interface definitions remain the same
 interface RegistrationInfo {
   business_name: string;
@@ -167,29 +177,19 @@ export default function RegistrationInfoPage() {
   const params = useParams();
   const [registrationInfo, setRegistrationInfo] = useState<RegistrationInfo | null>(null);
   const [productData, setProductData] = useState<ProductData | null>(null);
+  const [documents, setDocuments] = useState<DocumentInfo[]>([]); // Added state for documents
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [register, setRegister] = useState<string | null>(null);
   const [docVerified, setDocVerified] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor");
-  const role=Cookies.get("user_role")
-  const ownership=Cookies.get("ownership")
+  const [approveLoading, setApproveLoading] = useState(false);
+const [rejectLoading, setRejectLoading] = useState(false);
+
 
   // Assuming default as vendor
 
-  let parsedOwnership: any = {};
-try {
-  parsedOwnership = ownershipCookie ? JSON.parse(ownershipCookie) : {};
-} catch (err) {
-  parsedOwnership = {};
-}
-
-// condition to check if Approve/Reject buttons should be shown
-const canApproveOrReject =
-  role === "super_admin" ||
-  (role === "sub_admin" &&
-    parsedOwnership?.user_management?.includes("approve"));
-
+  // condition to check if Approve/Reject buttons should be shown
 
   useEffect(() => {
     const fetchData = async () => {
@@ -207,14 +207,21 @@ const canApproveOrReject =
           setUserRole(role);
         }
 
-        const [userResponse, productResponse] = await Promise.all([
+        const [userResponse, documentResponse] = await Promise.all([
           getUserInfo(id),
-          get_product_by_user_id(parseInt(id)),
+          getDocumentInfo(), // Fetch document info
+          // get_product_by_user_id(parseInt(id)),
         ]);
         setRegistrationInfo(userResponse.data);
-        setProductData(productResponse.data.product_data);
-        console.log(productResponse.data);
+        // Filter documents by user_id
+        const filteredDocuments = documentResponse.data.filter(
+          (doc: DocumentInfo) => doc.user_id === parseInt(id)
+        );
+        setDocuments(filteredDocuments);
+        // setProductData(productResponse.data.product_data);
+        // console.log(productResponse.data);
         console.log(userResponse.data);
+        console.log(filteredDocuments);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
         console.log(err);
@@ -263,6 +270,30 @@ const canApproveOrReject =
       setRegister("REJECTED");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to reject user");
+    }
+  };
+
+  const handleDocumentAction = async (documentId: number, approve: boolean) => {
+    try {
+      if (approve) {
+        setApproveLoading(true);
+      } else {
+        setRejectLoading(true);
+      }
+      await approveDocument(documentId, approve);
+      // Update document state locally after action
+      setDocuments((prevDocs) =>
+        prevDocs.map((doc) =>
+          doc.id === documentId
+            ? { ...doc, ai_verification_status: approve ? "PASS" : "FAIL" }
+            : doc
+        )
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : `Failed to ${approve ? "approve" : "reject"} document`);
+    }finally{
+      setApproveLoading(false);
+      setRejectLoading(false);
     }
   };
 
@@ -370,43 +401,35 @@ const canApproveOrReject =
             </div>
           </div>
           {
-  register?.toLowerCase() === "pending" && canApproveOrReject && (
-    <div className="flex flex-col space-y-2">
-      {docVerified?.toLowerCase() !== "pass" && (
-        <p className="text-sm text-red-500">
-          User&apos;s documents are not verified
-        </p>
-      )}
-      <div className="flex items-center space-x-4">
-        <button
-          onClick={handleApprove}
-          disabled={docVerified?.toLowerCase() !== "pass"}
-          className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
-            docVerified?.toLowerCase() !== "pass"
-              ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-              : "bg-green-600 text-white hover:bg-green-700"
-          }`}
-        >
-          <Check className="w-4 h-4 mr-2" />
-          Approve
-        </button>
-        <button
-          onClick={handleReject}
-          disabled={docVerified?.toLowerCase() !== "pass"}
-          className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
-            docVerified?.toLowerCase() !== "pass"
-              ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-              : "bg-red-600 text-white hover:bg-red-700"
-          }`}
-        >
-          <X className="w-4 h-4 mr-2" />
-          Reject
-        </button>
-      </div>
-    </div>
-  )
-}
-
+            register?.toLowerCase() === "pending" && (
+              <div className="flex flex-col space-y-2">
+               
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={handleApprove}
+                    className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
+                        ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                        : "bg-green-600 text-white hover:bg-green-700"
+                      }`}
+                  >
+                    <Check className="w-4 h-4 mr-2" />
+                    Approve
+                  </button>
+                  <button
+                    onClick={handleReject}
+                    disabled={docVerified?.toLowerCase() !== "pass"}
+                    className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
+                        ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                        : "bg-red-600 text-white hover:bg-red-700"
+                      }`}
+                  >
+                    <X className="w-4 h-4 mr-2" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+            )
+          }
         </div>
 
         {/* Business Information */}
@@ -656,7 +679,61 @@ const canApproveOrReject =
           </div>
         </div>
 
-        {/* Product Information */}
+        {/* Document Information */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-900">Document Information</h2>
+          </div>
+          <div className="space-y-4">
+            {documents.length > 0 ? (
+              documents.map((doc) => (
+                <div key={doc.id} className="flex items-center justify-between border-b border-slate-200 pb-4">
+                  <div>
+                    <p className="text-sm font-medium text-slate-600">{doc.document_type}</p>
+                    <a
+                      href={doc.file_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-600 hover:text-blue-800"
+                    >
+                      View Document
+                    </a>
+                    <p className="text-sm text-slate-900">
+                      Status: {doc.ai_verification_status}
+                    </p>
+                  </div>
+                  {doc.ai_verification_status === "PENDING" && (
+                    <div className="flex items-center space-x-4">
+                      <button
+                        onClick={() => handleDocumentAction(doc.id, true)}
+                        disabled={approveLoading}
+                        className="inline-flex items-center px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors"
+                      >
+                        <Check className="w-4 h-4 mr-2" />
+                        {approveLoading ? "Approving..." : "Approve"}
+                      </button>
+                      <button
+                        disabled={rejectLoading}
+                        onClick={() => handleDocumentAction(doc.id, false)}
+                        className="inline-flex items-center px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors"
+                      >
+                        <X className="w-4 h-4 mr-2" />
+                        {rejectLoading ? "Rejecting..." : "Reject"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))
+            ) : (
+              <p className="text-sm text-slate-600">No documents found for this user.</p>
+            )}
+          </div>
+        </div>
+
+        {/* Product Information
         {productData && (
           <>
             {Array.isArray(productData)
@@ -741,7 +818,7 @@ const canApproveOrReject =
                 </div>
               )}
           </>
-        )}
+        )} */}
 
       </div>
     </div>

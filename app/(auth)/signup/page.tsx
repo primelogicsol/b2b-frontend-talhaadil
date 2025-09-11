@@ -188,13 +188,16 @@ export default function RegisterPage() {
             </div>
             <form className="space-y-5 sm:space-y-6 lg:space-y-7" onSubmit={handleSubmit}>
               {/* User Type */}
-              <div>
-                <label htmlFor="user-type" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
+              <div className="relative">
+                <label
+                  htmlFor="user-type"
+                  className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+                >
                   Account Type
                 </label>
                 <select
                   id="user-type"
-                  className="w-full rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-white focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)]"
+                  className="w-full appearance-none rounded-xl border border-gray-600 bg-gray-800/50 p-3 pr-10 text-white focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)]"
                   required
                   value={userType}
                   onChange={(e) => setUserType(e.target.value)}
@@ -202,7 +205,19 @@ export default function RegisterPage() {
                   <option value="Buyer">Buyer</option>
                   <option value="Vendor">Vendor</option>
                 </select>
+
+                {/* custom dropdown arrow */}
+                <svg
+                  className="pointer-events-none absolute right-3 bottom-3.5 h-5 w-5 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </div>
+
               {/* Username */}
               <div>
                 <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">

@@ -422,7 +422,7 @@ export default function ChoosePartnership({
             )}
 
             <div
-              className={`absolute top-2 right-4 text-white text-xs font-bold px-2 py-1 rounded-full ${
+              className={`absolute top-2 right-7 text-white text-xs font-bold px-2 py-1 rounded-full ${
                 p.available ? "bg-[var(--primary-color)]" : "bg-red-600"
               }`}
             >

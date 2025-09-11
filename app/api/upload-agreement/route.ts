@@ -5,42 +5,18 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const file = formData.get("file");
-    const docType = formData.get("doc_type")?.toString().toLowerCase();
 
-    // Validate file presence
     if (!file || typeof file === "string") {
       return NextResponse.json({ error: "No file uploaded." }, { status: 400 });
     }
 
-    // Validate doc_type
-    const allowedDocTypes = ["jpeg", "png", "docx", "pdf","jpg"];
-    if (!docType || !allowedDocTypes.includes(docType)) {
-      return NextResponse.json(
-        { error: "Invalid or missing doc_type. Allowed types: jpeg, png, docx, pdf." },
-        { status: 400 }
-      );
-    }
-
-    // Validate file type matches doc_type
     // @ts-ignore
-    const fileExtension = file.name.split(".").pop()?.toLowerCase();
-    if (fileExtension !== docType) {
+    if (file.type !== "application/pdf") {
       return NextResponse.json(
-        { error: `File extension does not match specified doc_type (${docType}).` },
+        { error: "Only PDF files are allowed." },
         { status: 400 }
       );
     }
-
-    // Map doc_type to Cloudinary resource_type
-    const resourceTypeMap: { [key: string]: "raw" | "auto" | "image" | "video" } = {
-      jpeg: "image",
-      png: "image",
-      docx: "raw",
-      pdf: "raw",
-      jpg : "image",
-
-      // PDFs are uploaded as 'raw' per request
-    };
 
     // @ts-ignore
     const arrayBuffer = await file.arrayBuffer();
@@ -51,10 +27,10 @@ export async function POST(req: NextRequest) {
       cloudinary.uploader
         .upload_stream(
           {
-            resource_type: resourceTypeMap[docType],
-            folder: `${docType}_uploads`,
-            public_id: file.name.replace(`\.${docType}$`, ""),
-            format: docType,
+            resource_type: "image", // Use 'image' for PDFs to enable rendering
+            folder: "pdf_uploads",
+            public_id: file.name.replace(/\.pdf$/, ""),
+            format: "pdf", // Explicitly set the format to PDF
           },
           (error, result) => {
             if (error) reject(error);
