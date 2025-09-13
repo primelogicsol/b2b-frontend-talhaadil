@@ -1,8 +1,9 @@
 "use client"
 import { checkRegistrationStatus, getDocumentProgress, getUserInfo, reuploadDocument } from "@/services/regitsration"
 import { useState, useEffect } from "react"
-import { getUserRegistrationSelected, postFirst } from "@/services/user"
+import { getRejectedUser, getUserRegistrationSelected, postFirst } from "@/services/user"
 import Cookies from "js-cookie"
+import { get } from "http"
 
 interface Document {
   id: number
@@ -122,7 +123,20 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
   }, [])
   const whenClickNext = async () => {
     if (onNext) {
+      if (adminStatus === "REJECTED") {
+        getRejectedUser(Number(Cookies.get("user_id"))).then((res) => {
+          console.log(res)
+        })
+        Cookies.set("is_registered", "PENDING");
+
+        Cookies.set("registration_step", "0");
+
+        window.location.href = '/'
+
+        return
+      }
       const response = await postFirst()
+      Cookies.set("registration_step", "6");
       console.log(response)
       onNext()
     }
@@ -224,10 +238,23 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
             <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gray-500 rounded-full"></div>
           </div>
         )
+      case "rejected":
+        return (
+          <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-red-500 rounded-full flex items-center justify-center">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M10 8.586L13.95 4.636a1 1 0 111.414 1.414L11.414 10l3.95 3.95a1 1 0 01-1.414 1.414L10 11.414l-3.95 3.95a1 1 0 01-1.414-1.414L8.586 10 4.636 6.05a1 1 0 111.414-1.414L10 8.586z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        )
       default:
         return null
     }
   }
+
 
   const steps = [
     {
@@ -249,7 +276,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
 
   // Determine if Next button should be enabled
   const allDocsVerified = documents.every((doc) => doc.status === "PASS")
-  const canProceed = adminStatus === "APPROVED"
+  const canProceed = adminStatus === "APPROVED" || "REJECTED"
 
   if (loading) {
     return (
@@ -280,7 +307,11 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
             {steps.map((step, index) => (
               <div key={step.id} className="flex items-center w-full sm:w-auto">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                  {getStatusIcon(getStepStatus(step.id))}
+
+                  {adminStatus === "REJECTED" && index === steps.length - 1
+                    ? getStatusIcon("rejected")
+                    : getStatusIcon(getStepStatus(step.id))}
+
                   <div className="ml-4 sm:ml-0">
                     <h3 className="text-sm sm:text-base font-semibold text-gray-900">{step.title}</h3>
                   </div>
@@ -454,7 +485,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
           )}
           {adminStatus === "REJECTED" && (
             <p className="text-sm text-red-600 mt-2">
-              Your application was rejected. Please review the document requirements and resubmit any rejected documents.
+              Your application was not approved. Please try registering again.
             </p>
           )}
         </div>

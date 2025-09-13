@@ -681,95 +681,53 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className="space-y-6">
-        {!productData ? (
-          <div className="flex items-center justify-center">
-            <Loader2 className="h-8 w-8 animate-spin text-[var(--primary-color)]" />
-          </div>
-        ) : Array.isArray(productData) ? (
-          productData.map((category: any) => (
-            <div key={category.categoryId} className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
-              <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
-                <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
-                  <Package className="h-5 w-5 text-[var(--primary-color)]" />
-                  {category.categoryName}
-                </h2>
-              </div>
-
-              <div className="p-4 sm:p-6">
-                {category.subcategories.map((subcat: any) => (
-                  <div key={subcat.subcategoryId} className="mb-6">
-                    <h3 className="text-sm sm:text-base font-medium text-[var(--primary-hover-color)] mb-2">
-                      {subcat.subcategoryName}
-                    </h3>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                      {Object.entries(subcat.specifications).map(([key, values]) => (
-                        <div key={key} className="space-y-2">
-                          <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
-                            {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                          </label>
-                          <div className="flex flex-wrap gap-2">
-                            {Array.isArray(values) ? (
-                              (values as string[]).map((value, index) => (
-                                <span
-                                  key={index}
-                                  className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
-                                >
-                                  {value}
-                                </span>
-                              ))
-                            ) : null}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
+      {/* <div className="space-y-6">
+        {Array.isArray(productData) && productData.map((category: any) => (
+          <div key={category.categoryId} className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
             <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
               <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
                 <Package className="h-5 w-5 text-[var(--primary-color)]" />
-                {productData.categoryName}
+                {category.categoryName}
               </h2>
             </div>
 
             <div className="p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-medium text-[var(--primary-hover-color)] mb-2">
-                {productData.subcategoryName}
-              </h3>
+              {category.subcategories.map((subcat: any) => (
+                <div key={subcat.subcategoryId} className="mb-6">
+                  <h3 className="text-sm sm:text-base font-medium text-[var(--primary-hover-color)] mb-2">
+                    {subcat.subcategoryName}
+                  </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                {Object.entries(productData.specifications).map(([key, values]) => (
-                  <div key={key} className="space-y-2">
-                    <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
-                      {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      {Array.isArray(values) ? (
-                        (values as string[]).map((value, index) => (
-                          <span
-                            key={index}
-                            className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
-                          >
-                            {value}
-                          </span>
-                        ))
-                      ) : null}
-                    </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                    {Object.entries(subcat.specifications).map(([key, values]) => (
+                      <div key={key} className="space-y-2">
+                        <label className="text-xs sm:text-sm font-medium text-[var(--primary-hover-color)]">
+                          {key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                        </label>
+                        <div className="flex flex-wrap gap-2">
+                          {Array.isArray(values) ? (
+                            (values as string[]).map((value, index) => (
+                              <span
+                                key={index}
+                                className="inline-block px-2 py-1 text-xs font-medium border border-[var(--secondary-light-color)] rounded-full bg-white text-[var(--primary-color)]"
+                              >
+                                {value}
+                              </span>
+                            ))
+                          ) : null}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-        )}
+        ))}
 
-       
-      </div>
+
+
+      </div> */}
 
     </div>
   );

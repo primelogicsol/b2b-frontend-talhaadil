@@ -19,7 +19,7 @@ role: string
 
   useEffect(() => {
     const registeredStatus = Cookies.get("is_registered")
-    setIsRegistered(registeredStatus === "true")
+    setIsRegistered(registeredStatus === "APPROVED")
   }, [])
 
   useEffect(() => {

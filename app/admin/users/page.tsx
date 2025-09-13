@@ -17,7 +17,7 @@ interface ApiUser {
   partnership_level: string
   retention_period: string
   is_registered: string
-  
+
 }
 
 interface User {
@@ -31,7 +31,7 @@ interface User {
   partnershipLevel: string
   retentionPeriod: string
   isRegistered: string
-  doc_verified : string
+  doc_verified: string
 }
 
 export default function UsersPage() {
@@ -265,9 +265,7 @@ export default function UsersPage() {
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   Status
                 </th>
-                <th>
-                  Doc Verified
-                </th>
+
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
                   Actions
                 </th>
@@ -327,13 +325,7 @@ export default function UsersPage() {
                         {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
-                      <span
-                        className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getStatusColor(user.status)}`}
-                      >
-                        {user.doc_verified}
-                      </span>
-                    </td> 
+
                     <td className="px-6 py-4">
                       <Link
                         href={`/admin/users/${user.id}-${user.isRegistered}-${user.doc_verified}-${user.type}`}

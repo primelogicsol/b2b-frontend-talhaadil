@@ -26,6 +26,7 @@ import {
 import { getUserInfo, approveRegistration, getDocumentInfo, approveDocument, updateKpiScore } from "@/services/admin"; // Added updateKpiScore
 import { get_product_by_user_id } from "@/services/admin";
 import Cookies from "js-cookie";
+import { categories } from "@/lib/categories";
 
 // Interface for document info
 interface DocumentInfo {
@@ -115,22 +116,9 @@ interface ProductData {
   categoryName: string;
   subcategoryId: string;
   subcategoryName: string;
-  specifications: {
-    quality: string[];
-    Dye_Types: string[];
-    logistics: string[];
-    packaging: string[];
-    Color_Shades: string[];
-    material_type: string[];
-    Embellishments: string[];
-    Product_Line_Size: string[];
-    Production_Process: string[];
-    Design_Pattern_Types: string[];
-    Product_Certifications: string[];
-    vendor_able_to_handle_product_labeling: string[];
-    vendor_able_to_handle_following_services_on_DKC_platform: string[];
-    do_vendor_have_real_time_inventory_management_api_and_integration: string[];
-  };
+  specifications:
+  any
+
 }
 
 // Role-based label mappings
@@ -206,7 +194,6 @@ export default function RegistrationInfoPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [register, setRegister] = useState<string | null>(null);
-  const [docVerified, setDocVerified] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor");
   const [approveLoading, setApproveLoading] = useState(false);
   const [rejectLoading, setRejectLoading] = useState(false);
@@ -227,25 +214,23 @@ export default function RegistrationInfoPage() {
 
         const [id, isRegistered, docVerified, role] = userId.split("-");
         setRegister(isRegistered);
-        setDocVerified(docVerified);
         if (role === "vendor" || role === "buyer") {
           setUserRole(role);
         }
 
-        const [userResponse, documentResponse] = await Promise.all([
+        const [userResponse, documentResponse, productResponse] = await Promise.all([
           getUserInfo(id),
           getDocumentInfo(Number(id)), // Fetch document info
-          // get_product_by_user_id(parseInt(id)),
+          get_product_by_user_id(parseInt(id)),
         ]);
         setRegistrationInfo(userResponse.data);
         // Set initial KPI score
         setTempKpiScore(userResponse.data.kpi_score || 0);
         // Filter documents by user_id
         setDocuments(documentResponse.data);
-        // setProductData(productResponse.data.product_data);
-        // console.log(productResponse.data);
-        console.log(userResponse.data);
-        console.log(documentResponse.data);
+        setProductData(productResponse.data);
+        console.log(productResponse.data)
+        console.log(productData)
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
         console.log(err);
@@ -261,8 +246,7 @@ export default function RegistrationInfoPage() {
 
   // Updated KPI score handler
   const handleUpdateKpiScore = async () => {
-    if (!registrationInfo?.kpi_score) return;
-    
+
     try {
       setKpiUpdating(true);
       const userId = Array.isArray(params.id) ? params.id[0] : params.id;
@@ -270,21 +254,19 @@ export default function RegistrationInfoPage() {
         throw new Error("Invalid user ID");
       }
       const [id] = userId.split("-");
-      
+
       const response = await updateKpiScore(Number(id), tempKpiScore);
       console.log("KPI updated successfully:", response.data);
-      
+
       // Update local state
       setRegistrationInfo(prev => prev ? { ...prev, kpi_score: tempKpiScore } : null);
       setShowKpiInput(false);
-      
+
       // Show success message (you can replace this with a toast notification)
-      alert(`KPI score updated to ${tempKpiScore}`);
     } catch (err) {
       console.error("Failed to update KPI score:", err);
       setError(err instanceof Error ? err.message : "Failed to update KPI score");
       // Revert to previous value on error
-      setTempKpiScore(registrationInfo.kpi_score || 0);
     } finally {
       setKpiUpdating(false);
     }
@@ -346,7 +328,7 @@ export default function RegistrationInfoPage() {
       );
     } catch (err) {
       setError(err instanceof Error ? err.message : `Failed to ${approve ? "approve" : "reject"} document`);
-    }finally{
+    } finally {
       setApproveLoading(false);
       setRejectLoading(false);
     }
@@ -407,7 +389,7 @@ export default function RegistrationInfoPage() {
   const getDocumentName = (type: string): string => {
     return documentMapping[userRole]?.[type] || formatFieldName(type);
   };
-
+  console.log("PRODCTDATA",productData)
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -475,33 +457,53 @@ export default function RegistrationInfoPage() {
             </div>
           </div>
           {
-            register?.toLowerCase() === "pending" && (
+            register?.toLowerCase() === "pending" ? (
               <div className="flex flex-col space-y-2">
-               
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={handleApprove}
-                    className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
-                        ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-                        : "bg-green-600 text-white hover:bg-green-700"
-                      }`}
+                    className="inline-flex items-center px-4 py-2 rounded-lg transition-colors
+                        bg-green-600 text-white hover:bg-green-700"
+
+
                   >
                     <Check className="w-4 h-4 mr-2" />
                     Approve
                   </button>
                   <button
                     onClick={handleReject}
-                    disabled={docVerified?.toLowerCase() !== "pass"}
-                    className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${docVerified?.toLowerCase() !== "pass"
-                        ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-                        : "bg-red-600 text-white hover:bg-red-700"
-                      }`}
+
+                    className="inline-flex items-center px-4 py-2 rounded-lg transition-colors 
+                      bg-red-600 text-white hover:bg-red-700"
+
                   >
                     <X className="w-4 h-4 mr-2" />
                     Reject
                   </button>
                 </div>
               </div>
+            ) : (
+              <div className="flex items-center space-x-4 pt-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={tempKpiScore}
+                    onChange={(e) => setTempKpiScore(parseFloat(e.target.value) || 0)}
+                    className="w-24 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    placeholder="0"
+                  />
+                </div>
+
+                <button
+                  onClick={handleUpdateKpiScore}
+                  disabled={kpiUpdating}
+                  className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-orange-400 transition-colors"
+                >
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  {kpiUpdating ? "Updating..." : "Update KPI"}
+                </button>
+              </div>
+
             )
           }
         </div>
@@ -688,94 +690,8 @@ export default function RegistrationInfoPage() {
           </div>
         </div>
 
-        {/* KPI Score Section - NEW SECTION */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">KPI Score</h2>
-            </div>
-            {!showKpiInput && (
-              <button
-                onClick={() => setShowKpiInput(true)}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-orange-600 bg-orange-100 rounded-lg hover:bg-orange-200 transition-colors"
-              >
-                <Edit3 className="w-4 h-4 mr-2" />
-                Update KPI
-              </button>
-            )}
-          </div>
-          
-          {showKpiInput ? (
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <label className="text-sm font-medium text-slate-600 w-32">KPI Score:</label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    min="0"
-                    max="100"
-                    value={tempKpiScore}
-                    onChange={(e) => setTempKpiScore(Number(e.target.value))}
-                    className="w-24 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  />
-                  <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-sm">/100</span>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3 pt-4">
-                <button
-                  onClick={handleUpdateKpiScore}
-                  disabled={kpiUpdating}
-                  className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-orange-400 transition-colors"
-                >
-                  <TrendingUp className="w-4 h-4 mr-2" />
-                  {kpiUpdating ? "Updating..." : "Update KPI"}
-                </button>
-                <button
-                  onClick={() => {
-                    setShowKpiInput(false);
-                    setTempKpiScore(registrationInfo.kpi_score || 0);
-                  }}
-                  disabled={kpiUpdating}
-                  className="inline-flex items-center px-4 py-2 text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 disabled:bg-slate-50 transition-colors"
-                >
-                  <X className="w-4 h-4 mr-2" />
-                  Cancel
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">Current KPI Score</label>
-                  <p className={`text-2xl font-bold ${getKpiColor(registrationInfo.kpi_score)}`}>
-                    {registrationInfo.kpi_score ?? "N/A"}
-                  </p>
-                </div>
-                {registrationInfo.kpi_score && (
-                  <div className="w-64">
-                    <div className="w-full bg-slate-200 rounded-full h-3">
-                      <div
-                        className={`h-3 rounded-full ${getKpiBarColor(registrationInfo.kpi_score)} transition-all duration-300`}
-                        style={{ width: `${(registrationInfo.kpi_score / 100) * 100}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                )}
-              </div>
-              {registrationInfo.kpi_score && (
-                <div className="text-sm text-slate-600">
-                  {registrationInfo.kpi_score >= 80 && "Excellent performance"}
-                  {registrationInfo.kpi_score >= 60 && registrationInfo.kpi_score < 80 && "Good performance"}
-                  {registrationInfo.kpi_score < 60 && "Needs improvement"}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+
+
 
         {/* Credibility Assessment */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
@@ -896,90 +812,78 @@ export default function RegistrationInfoPage() {
           </div>
         </div>
 
-        {/* Product Information
-        {productData && (
+        {/* {Array.isArray(productData) && (
           <>
-            {Array.isArray(productData)
-              ? productData.map((category: any) => (
-                <div key={category.categoryId} className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+            {productData.map((category: any) => (
+              category?.subcategories?.length > 0 && (
+                <div
+                  key={category.categoryId}
+                  className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6"
+                >
                   <div className="flex items-center space-x-3 mb-6">
                     <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
                       <Package className="w-5 h-5 text-white" />
                     </div>
-                    <h2 className="text-xl font-bold text-slate-900">{category.categoryName}</h2>
+                    <h2 className="text-xl font-bold text-slate-900">
+                      {category.categoryName}
+                    </h2>
                   </div>
 
-                  {category.subcategories.map((subcat: any) => (
-                    <div key={subcat.subcategoryId} className="space-y-4 mb-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-sm font-medium text-slate-600">Category</label>
-                          <p className="text-sm text-slate-900">{category.categoryName}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-slate-600">Subcategory</label>
-                          <p className="text-sm text-slate-900">{subcat.subcategoryName}</p>
-                        </div>
-                      </div>
-
-                      <div className="pt-4 border-t border-slate-200">
-                        <h3 className="text-sm font-medium text-slate-600 mb-3">Specifications</h3>
+                  {Array.isArray(category.subcategories) &&
+                    category.subcategories.map((subcat: any) => (
+                      <div
+                        key={subcat.subcategoryId}
+                        className="space-y-4 mb-4"
+                      >
                         <div className="grid grid-cols-2 gap-4">
-                          {Object.entries(subcat.specifications).map(([key, values]) => (
-                            <div key={key}>
-                              <label className="text-sm font-medium text-slate-600">
-                                {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-                              </label>
-                              <ul className="text-sm text-slate-900 list-disc list-inside">
-                                {Array.isArray(values) && values.map((value, index) => <li key={index}>{value}</li>)}
-                              </ul>
-                            </div>
-                          ))}
+                          <div>
+                            <label className="text-sm font-medium text-slate-600">
+                              Category
+                            </label>
+                            <p className="text-sm text-slate-900">
+                              {category.categoryName}
+                            </p>
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium text-slate-600">
+                              Subcategory
+                            </label>
+                            <p className="text-sm text-slate-900">
+                              {subcat.subcategoryName}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-slate-200">
+                          <h3 className="text-sm font-medium text-slate-600 mb-3">
+                            Specifications
+                          </h3>
+                          <div className="grid grid-cols-2 gap-4">
+                            {subcat.specifications &&
+                              Object.entries(subcat.specifications).map(
+                                ([key, values]) => (
+                                  <div key={key}>
+                                    <label className="text-sm font-medium text-slate-600">
+                                      {key
+                                        .replace(/_/g, " ")
+                                        .replace(/\b\w/g, (c) => c.toUpperCase())}
+                                    </label>
+                                    <ul className="text-sm text-slate-900 list-disc list-inside">
+                                      {Array.isArray(values) &&
+                                        values.map((value, index) => (
+                                          <li key={index}>{value}</li>
+                                        ))}
+                                    </ul>
+                                  </div>
+                                )
+                              )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
-              ))
-              : (
-                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
-                      <Package className="w-5 h-5 text-white" />
-                    </div>
-                    <h2 className="text-xl font-bold text-slate-900">{productData.categoryName}</h2>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-slate-600">Category</label>
-                        <p className="text-sm text-slate-900">{productData.categoryName}</p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-slate-600">Subcategory</label>
-                        <p className="text-sm text-slate-900">{productData.subcategoryName}</p>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-200">
-                      <h3 className="text-sm font-medium text-slate-600 mb-3">Specifications</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {Object.entries(productData.specifications).map(([key, values]) => (
-                          <div key={key}>
-                            <label className="text-sm font-medium text-slate-600">
-                              {key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-                            </label>
-                            <ul className="text-sm text-slate-900 list-disc list-inside">
-                              {Array.isArray(values) && values.map((value, index) => <li key={index}>{value}</li>)}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+              )
+            ))}
           </>
         )} */}
 

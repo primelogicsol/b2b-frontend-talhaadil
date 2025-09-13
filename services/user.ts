@@ -90,3 +90,13 @@ export const postFirst = () => {
     },
   });
 };
+
+
+
+export const getRejectedUser = (userId: number) => {
+  return api.post(`/user/rejected/${userId}`, {
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};

@@ -53,7 +53,7 @@ const partnerships: Partnership[] = [
       "Risk-free inventory management model. Products are sold on behalf of the consignor with shared revenue structure.",
     retention: "12 months",
     kpiScore: "6+",
-    available: true,
+    available: false,
     isAltPath: true,
   },
   {
