@@ -2,6 +2,7 @@
 import { checkRegistrationStatus, getDocumentProgress, getUserInfo, reuploadDocument } from "@/services/regitsration"
 import { useState, useEffect } from "react"
 import { getUserRegistrationSelected, postFirst } from "@/services/user"
+import Cookies from "js-cookie"
 
 interface Document {
   id: number
@@ -103,7 +104,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         // Determine current step
         const allDocsVerified = docData.uploaded_documents.every((doc) => doc.status === "PASS")
         if (regData.is_registered === "APPROVED") {
-          setCurrentStep(3)
+          setCurrentStep(4)
         } else if (allDocsVerified) {
           setCurrentStep(3) // Changed from 2 to 3 to show step 3 as loading when step 2 is done
         } else {
@@ -119,13 +120,14 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
 
     fetchData()
   }, [])
-  const whenClickNext = async () =>{
-    if(onNext) {
+  const whenClickNext = async () => {
+    if (onNext) {
       const response = await postFirst()
       console.log(response)
-      onNext()}
+      onNext()
+    }
   }
-  
+
   const handleResubmitDocument = async (docId: number, file: File) => {
     try {
       // Step 1: Upload file to your Cloudinary API
@@ -281,7 +283,6 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                   {getStatusIcon(getStepStatus(step.id))}
                   <div className="ml-4 sm:ml-0">
                     <h3 className="text-sm sm:text-base font-semibold text-gray-900">{step.title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{step.description}</p>
                   </div>
                 </div>
                 {index < steps.length - 1 && (

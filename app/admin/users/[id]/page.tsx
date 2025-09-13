@@ -20,8 +20,10 @@ import {
   Check,
   X,
   Package,
+  Edit3,
+  TrendingUp,
 } from "lucide-react";
-import { getUserInfo, approveRegistration, getDocumentInfo, approveDocument } from "@/services/admin"; // Added getDocumentInfo and approveDocument
+import { getUserInfo, approveRegistration, getDocumentInfo, approveDocument, updateKpiScore } from "@/services/admin"; // Added updateKpiScore
 import { get_product_by_user_id } from "@/services/admin";
 import Cookies from "js-cookie";
 
@@ -33,6 +35,28 @@ interface DocumentInfo {
   ai_verification_status: string;
   file_url: string;
 }
+
+// Document mapping based on role
+const documentMapping: Record<"vendor" | "buyer", Record<string, string>> = {
+  vendor: {
+    business_registration: "Business Registration Certificate",
+    business_license: "Business License",
+    adhaar_card: "Aadhaar Card",
+    artisan_id_card: "Artisan/Trade License",
+    bank_statement: "Bank Statement",
+    product_catalog: "Catalog/Certifications",
+    certifications: "Catalog/Certifications"
+  },
+  buyer: {
+    business_registration: "Articles of Incorporation",
+    business_license: "Business License",
+    adhaar_card: "Photo ID",
+    artisan_id_card: "Trade License",
+    bank_statement: "Bank Statement",
+    product_catalog: "Product Catalog",
+    certifications: "Certifications"
+  }
+};
 
 // Interface definitions remain the same
 interface RegistrationInfo {
@@ -83,6 +107,7 @@ interface RegistrationInfo {
   payment_gateway_compliance_issues: boolean;
   account_activity_issues: boolean;
   regulatory_actions: boolean;
+  kpi_score?: number; // Added KPI score to interface
 }
 
 interface ProductData {
@@ -184,10 +209,10 @@ export default function RegistrationInfoPage() {
   const [docVerified, setDocVerified] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<"vendor" | "buyer">("vendor");
   const [approveLoading, setApproveLoading] = useState(false);
-const [rejectLoading, setRejectLoading] = useState(false);
-
-
-  // Assuming default as vendor
+  const [rejectLoading, setRejectLoading] = useState(false);
+  const [kpiUpdating, setKpiUpdating] = useState(false); // Added KPI loading state
+  const [showKpiInput, setShowKpiInput] = useState(false); // Added state for KPI input visibility
+  const [tempKpiScore, setTempKpiScore] = useState<number>(registrationInfo?.kpi_score || 0); // Added temp KPI score state
 
   // condition to check if Approve/Reject buttons should be shown
 
@@ -209,19 +234,18 @@ const [rejectLoading, setRejectLoading] = useState(false);
 
         const [userResponse, documentResponse] = await Promise.all([
           getUserInfo(id),
-          getDocumentInfo(), // Fetch document info
+          getDocumentInfo(Number(id)), // Fetch document info
           // get_product_by_user_id(parseInt(id)),
         ]);
         setRegistrationInfo(userResponse.data);
+        // Set initial KPI score
+        setTempKpiScore(userResponse.data.kpi_score || 0);
         // Filter documents by user_id
-        const filteredDocuments = documentResponse.data.filter(
-          (doc: DocumentInfo) => doc.user_id === parseInt(id)
-        );
-        setDocuments(filteredDocuments);
+        setDocuments(documentResponse.data);
         // setProductData(productResponse.data.product_data);
         // console.log(productResponse.data);
         console.log(userResponse.data);
-        console.log(filteredDocuments);
+        console.log(documentResponse.data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
         console.log(err);
@@ -234,6 +258,37 @@ const [rejectLoading, setRejectLoading] = useState(false);
       fetchData();
     }
   }, [params.id]);
+
+  // Updated KPI score handler
+  const handleUpdateKpiScore = async () => {
+    if (!registrationInfo?.kpi_score) return;
+    
+    try {
+      setKpiUpdating(true);
+      const userId = Array.isArray(params.id) ? params.id[0] : params.id;
+      if (!userId || typeof userId !== "string") {
+        throw new Error("Invalid user ID");
+      }
+      const [id] = userId.split("-");
+      
+      const response = await updateKpiScore(Number(id), tempKpiScore);
+      console.log("KPI updated successfully:", response.data);
+      
+      // Update local state
+      setRegistrationInfo(prev => prev ? { ...prev, kpi_score: tempKpiScore } : null);
+      setShowKpiInput(false);
+      
+      // Show success message (you can replace this with a toast notification)
+      alert(`KPI score updated to ${tempKpiScore}`);
+    } catch (err) {
+      console.error("Failed to update KPI score:", err);
+      setError(err instanceof Error ? err.message : "Failed to update KPI score");
+      // Revert to previous value on error
+      setTempKpiScore(registrationInfo.kpi_score || 0);
+    } finally {
+      setKpiUpdating(false);
+    }
+  };
 
   const handleApprove = async () => {
     try {
@@ -309,6 +364,20 @@ const [rejectLoading, setRejectLoading] = useState(false);
     return "bg-red-600";
   };
 
+  const getKpiColor = (score?: number) => {
+    if (!score) return "text-gray-500";
+    if (score >= 80) return "text-green-600";
+    if (score >= 60) return "text-yellow-600";
+    return "text-red-600";
+  };
+
+  const getKpiBarColor = (score?: number) => {
+    if (!score) return "bg-gray-300";
+    if (score >= 80) return "bg-green-600";
+    if (score >= 60) return "bg-yellow-600";
+    return "bg-red-600";
+  };
+
   const credibilityScores = {
     "Material Standard": registrationInfo?.material_standard ?? 0,
     "Quality Level": registrationInfo?.quality_level ?? 0,
@@ -332,6 +401,11 @@ const [rejectLoading, setRejectLoading] = useState(false);
   // Function to get label based on role
   const getLabel = (field: string): string => {
     return roleLabelMappings[field]?.[userRole] || formatFieldName(field);
+  };
+
+  // Function to get document name based on type and role
+  const getDocumentName = (type: string): string => {
+    return documentMapping[userRole]?.[type] || formatFieldName(type);
   };
 
   if (loading) {
@@ -614,7 +688,96 @@ const [rejectLoading, setRejectLoading] = useState(false);
           </div>
         </div>
 
-        {/* Credibility Assessment (unchanged) */}
+        {/* KPI Score Section - NEW SECTION */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900">KPI Score</h2>
+            </div>
+            {!showKpiInput && (
+              <button
+                onClick={() => setShowKpiInput(true)}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-orange-600 bg-orange-100 rounded-lg hover:bg-orange-200 transition-colors"
+              >
+                <Edit3 className="w-4 h-4 mr-2" />
+                Update KPI
+              </button>
+            )}
+          </div>
+          
+          {showKpiInput ? (
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <label className="text-sm font-medium text-slate-600 w-32">KPI Score:</label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={tempKpiScore}
+                    onChange={(e) => setTempKpiScore(Number(e.target.value))}
+                    className="w-24 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  />
+                  <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-sm">/100</span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3 pt-4">
+                <button
+                  onClick={handleUpdateKpiScore}
+                  disabled={kpiUpdating}
+                  className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-orange-400 transition-colors"
+                >
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  {kpiUpdating ? "Updating..." : "Update KPI"}
+                </button>
+                <button
+                  onClick={() => {
+                    setShowKpiInput(false);
+                    setTempKpiScore(registrationInfo.kpi_score || 0);
+                  }}
+                  disabled={kpiUpdating}
+                  className="inline-flex items-center px-4 py-2 text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 disabled:bg-slate-50 transition-colors"
+                >
+                  <X className="w-4 h-4 mr-2" />
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <label className="text-sm font-medium text-slate-600">Current KPI Score</label>
+                  <p className={`text-2xl font-bold ${getKpiColor(registrationInfo.kpi_score)}`}>
+                    {registrationInfo.kpi_score ?? "N/A"}
+                  </p>
+                </div>
+                {registrationInfo.kpi_score && (
+                  <div className="w-64">
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div
+                        className={`h-3 rounded-full ${getKpiBarColor(registrationInfo.kpi_score)} transition-all duration-300`}
+                        style={{ width: `${(registrationInfo.kpi_score / 100) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {registrationInfo.kpi_score && (
+                <div className="text-sm text-slate-600">
+                  {registrationInfo.kpi_score >= 80 && "Excellent performance"}
+                  {registrationInfo.kpi_score >= 60 && registrationInfo.kpi_score < 80 && "Good performance"}
+                  {registrationInfo.kpi_score < 60 && "Needs improvement"}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Credibility Assessment */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
           <div className="flex items-center space-x-3 mb-6">
             <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
@@ -692,7 +855,7 @@ const [rejectLoading, setRejectLoading] = useState(false);
               documents.map((doc) => (
                 <div key={doc.id} className="flex items-center justify-between border-b border-slate-200 pb-4">
                   <div>
-                    <p className="text-sm font-medium text-slate-600">{doc.document_type}</p>
+                    <p className="text-sm font-medium text-slate-600">{getDocumentName(doc.document_type)}</p>
                     <a
                       href={doc.file_url}
                       target="_blank"

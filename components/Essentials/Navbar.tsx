@@ -388,6 +388,7 @@ export function Navbar() {
         let userName = "John Doe";
 
         const userProfile = await getUserProfile();
+        console.log(userProfile.data)
         if (userProfile?.data?.username) {
           userName = userProfile.data.username;
         }

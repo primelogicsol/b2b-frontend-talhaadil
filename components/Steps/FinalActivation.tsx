@@ -151,12 +151,8 @@ export default function FinalActivation() {
                     DKC {partnershipName}
                   </h4>
                   <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
-                    <span className="text-sm sm:text-base font-semibold text-[var(--primary-color)]">
-                      Partnership ID:
-                    </span>
-                    <span className="text-sm sm:text-base font-mono bg-[var(--primary-header-color)] text-[var(--primary-color)] px-3 py-1 rounded-lg">
-                      DKC-{partnershipTypeMapping[partnershipName.toLowerCase().replace(/ /g, "_")] || "DS"}-2024-001
-                    </span>
+                   
+                   
                   </div>
                 </div>
 
@@ -185,94 +181,6 @@ export default function FinalActivation() {
           </div>
         </section>
 
-        {/* Partnership Details & Next Steps Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
-          {/* Partnership Details */}
-          <section className="animate-fade-in-left delay-200">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 h-full">
-              <h3 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)] mb-6 sm:mb-8">
-                Your Partnership Details
-              </h3>
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-200">
-                  <span className="font-semibold text-[var(--primary-color)] mb-1 sm:mb-0">Application ID:</span>
-                  <span className="text-gray-700 font-mono bg-gray-50 px-3 py-1 rounded">VND-2024-001</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-200">
-                  <span className="font-semibold text-[var(--primary-color)] mb-1 sm:mb-0">User ID:</span>
-                  <span className="text-gray-700 font-mono bg-gray-50 px-3 py-1 rounded">[Your Unique User ID]</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-200">
-                  <span className="font-semibold text-[var(--primary-color)] mb-1 sm:mb-0">Last Updated:</span>
-                  <span className="text-gray-700">1/25/2025, 5:57:07 PM</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3">
-                  <span className="font-semibold text-[var(--primary-color)] mb-1 sm:mb-0">Password:</span>
-                  <span className="text-gray-700 font-mono bg-gray-50 px-3 py-1 rounded">
-                    [Your Temporary Password]
-                  </span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Next Steps */}
-          <section className="animate-fade-in-right delay-300">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 h-full">
-              <h3 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)] mb-6 sm:mb-8">Next Steps</h3>
-              <div className="space-y-6 sm:space-y-8">
-                {[
-                  {
-                    number: "1",
-                    title: "Login to Your Account",
-                    subtitle: "Platform Access:",
-                    description: "Use the User ID and Password provided above to access your account.",
-                  },
-                  {
-                    number: "2",
-                    title: "Complete Your Profile",
-                    subtitle: "",
-                    description:
-                      "After logging in, please complete your buyer profile by updating your business details, product offerings, and certifications. This will ensure your account is fully activated.",
-                  },
-                  {
-                    number: "3",
-                    title: "Access Dashboard",
-                    subtitle: "",
-                    description:
-                      "Your personalized dashboard will provide insights into your partnership journey, including access to analytics, sales data, and communications.",
-                  },
-                ].map((step, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-start space-x-4 p-4 rounded-xl transition-all duration-300 cursor-pointer ${
-                      hoveredStep === index ? "bg-[var(--secondary-light-color)] shadow-md" : "hover:bg-gray-50"
-                    }`}
-                    onMouseEnter={() => setHoveredStep(index)}
-                    onMouseLeave={() => setHoveredStep(null)}
-                  >
-                    <div
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white transition-colors duration-300 ${
-                        hoveredStep === index ? "bg-[var(--secondary-color)]" : "bg-[var(--primary-color)]"
-                      }`}
-                    >
-                      {step.number}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-[var(--primary-color)] mb-1">{step.title}</h4>
-                      {step.subtitle && (
-                        <p className="font-semibold text-[var(--primary-light-text-color)] text-sm mb-2">
-                          {step.subtitle}
-                        </p>
-                      )}
-                      <p className="text-gray-700 text-sm leading-relaxed">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
 
         {/* Action Buttons */}
         <section className="animate-fade-in-up delay-400">
@@ -282,12 +190,12 @@ export default function FinalActivation() {
               <p className="text-gray-600">Ready to start your partnership with De Koshur Crafts?</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mx-auto">
-              <button className="flex-1 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white font-bold py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-base sm:text-lg">
-                Login to Dashboard
+              <button onClick={
+                () => window.location.href = '/user/profile'
+              } className="flex-1 bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white font-bold py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-base sm:text-lg">
+                Access Dashboard 
               </button>
-              <button className="flex-1 border-2 border-[var(--secondary-color)] text-[var(--secondary-color)] hover:bg-[var(--secondary-color)] hover:text-white font-bold py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-base sm:text-lg">
-                Contact Support
-              </button>
+             
             </div>
           </div>
         </section>

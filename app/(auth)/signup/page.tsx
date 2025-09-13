@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type React from "react";
-import { useState, useEffect, useRef } from "react"; // Import useEffect and useRef
+import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { FcGoogle } from "react-icons/fc";
 import { useToast } from "@/context/ToastProvider";
@@ -18,17 +18,16 @@ export default function RegisterPage() {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [showOtpVerification, setShowOtpVerification] = useState(false);
-  const [userType, setUserType] = useState("Buyer");
+  const [userType, setUserType] = useState(""); // Changed default to empty string
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [resendTimer, setResendTimer] = useState(showOtpVerification ? 30 : 0); // Initialize timer based on initial showOtpVerification state
-  const timerRef = useRef<NodeJS.Timeout | null>(null); // Ref to store timer ID
+  const [resendTimer, setResendTimer] = useState(showOtpVerification ? 30 : 0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const router = useRouter();
   const { showToast } = useToast();
 
-  // Effect to manage the resend OTP timer
   useEffect(() => {
     if (resendTimer > 0) {
       timerRef.current = setInterval(() => {
@@ -41,13 +40,12 @@ export default function RegisterPage() {
       }
     }
 
-    // Cleanup function to clear the interval when the component unmounts or timer stops
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
       }
     };
-  }, [resendTimer]); // Re-run effect when resendTimer changes
+  }, [resendTimer]);
 
   const validatePassword = (pwd: string): string[] => {
     const errors: string[] = [];
@@ -62,14 +60,13 @@ export default function RegisterPage() {
 
   const handleGoogleRegister = async () => {
     try {
-
-      googleRegister();
+      console.log(userType.toLowerCase());
+      const response = await googleRegister(userType.toLowerCase());
+      console.log(response);
     } catch (err: any) {
       console.log(err);
-    } finally {
     }
-
-  }
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
@@ -80,6 +77,10 @@ export default function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     if (loading) return;
     e.preventDefault();
+    if (!userType) {
+      showToast("Please select an account type.");
+      return;
+    }
     const errors = validatePassword(password);
     if (errors.length > 0) {
       setPasswordErrors(errors);
@@ -99,7 +100,7 @@ export default function RegisterPage() {
       }
       showToast("Registration successful! Please verify your OTP.");
       setShowOtpVerification(true);
-      setResendTimer(30); // Start the timer for 30 seconds after successful registration
+      setResendTimer(30);
     } catch (err: any) {
       console.log(err);
       showToast(err.response?.data?.detail || "Signup failed");
@@ -136,6 +137,7 @@ export default function RegisterPage() {
       Cookies.set("ownership", JSON.stringify(data.ownership));
       Cookies.set("is_registered", data.is_registered);
       Cookies.set("registration_step", data.registration_step.toString());
+      Cookies.set("first_register", data.first_register.toString());
       router.push("/");
     } catch (err: any) {
       showToast(err.response?.data?.detail || "OTP verification failed");
@@ -145,10 +147,7 @@ export default function RegisterPage() {
   };
 
   const handleResendOtp = async () => {
-    if (resendTimer > 0 || loading) return; // Prevent resending if timer is active or loading
-    // Reset and start the timer for 30 second
-
-
+    if (resendTimer > 0 || loading) return;
     try {
       const response = await resendOTP({ email });
       const data = response.data;
@@ -157,19 +156,16 @@ export default function RegisterPage() {
       setResendTimer(30);
     } catch (err: any) {
       console.log(err);
-      showToast(err.response?.data?.detail || "Resend otp failed failed");
+      showToast(err.response?.data?.detail || "Resend OTP failed");
     }
-
   };
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#1b4f68] to-[#0a192f] p-4 text-white sm:p-6 md:p-8 lg:p-10 xl:p-12">
-      {/* Background Decorations */}
       <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-[var(--secondary-light-color)] opacity-10 blur-3xl animate-pulse-fade animation-delay-1000" />
       <div className="absolute -right-40 -bottom-40 h-96 w-96 rounded-full bg-[var(--primary-hover-color)] opacity-10 blur-3xl animate-pulse-fade animation-delay-3000" />
       <div className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-[var(--secondary-color)] opacity-5 blur-3xl animate-float animation-delay-2000" />
       <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-[var(--primary-color)] opacity-5 blur-3xl animate-float animation-delay-4000" />
-      {/* Back Button */}
       <div className="absolute top-8 left-6 z-20">
         <Link href="/" className="flex items-center">
           <ArrowLeft className="h-5 w-5 md:h-10 md:w-10" />
@@ -187,7 +183,6 @@ export default function RegisterPage() {
               </p>
             </div>
             <form className="space-y-5 sm:space-y-6 lg:space-y-7" onSubmit={handleSubmit}>
-              {/* User Type */}
               <div className="relative">
                 <label
                   htmlFor="user-type"
@@ -202,11 +197,10 @@ export default function RegisterPage() {
                   value={userType}
                   onChange={(e) => setUserType(e.target.value)}
                 >
+                  <option value="">Select Account Type</option>
                   <option value="Buyer">Buyer</option>
                   <option value="Vendor">Vendor</option>
                 </select>
-
-                {/* custom dropdown arrow */}
                 <svg
                   className="pointer-events-none absolute right-3 bottom-3.5 h-5 w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -217,8 +211,6 @@ export default function RegisterPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
-
-              {/* Username */}
               <div>
                 <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
                   Username
@@ -233,7 +225,6 @@ export default function RegisterPage() {
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
-              {/* Email */}
               <div>
                 <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
                   Email Address
@@ -248,7 +239,6 @@ export default function RegisterPage() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              {/* Password with Eye Toggle */}
               <div>
                 <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
                   Password
@@ -279,7 +269,6 @@ export default function RegisterPage() {
                   </ul>
                 )}
               </div>
-              {/* Confirm Password with Eye Toggle */}
               <div>
                 <label htmlFor="confirm-password" className="mb-2 block text-sm font-medium text-gray-300 sm:text-base">
                   Confirm Password
@@ -303,7 +292,6 @@ export default function RegisterPage() {
                   </button>
                 </div>
               </div>
-              {/* Submit and Google Button */}
               <button
                 disabled={loading || passwordErrors.length > 0}
                 type="submit"
@@ -313,15 +301,15 @@ export default function RegisterPage() {
               </button>
               <div className="relative flex items-center justify-center py-3 sm:py-4">
                 <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t border-gray-700" />
+                  <span className="w-full border-t border-gray-600" />
                 </div>
                 <div className="relative bg-transparent px-4 text-sm text-gray-400">Or</div>
               </div>
               <button
                 onClick={handleGoogleRegister}
-                disabled={loading}
+                disabled={loading || !userType} // Disable if no userType selected
                 type="button"
-                className="flex w-full items-center justify-center space-x-2 rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-base font-semibold text-white hover:bg-gray-700/50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-[#0a192f]"
+                className="flex w-full items-center justify-center space-x-2 rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-base font-semibold text-white hover:bg-gray-700/50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-[#0a192f] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <FcGoogle className="h-5 w-5 sm:h-6 sm:w-6" />
                 <span>Register with Google</span>
@@ -335,7 +323,6 @@ export default function RegisterPage() {
             </div>
           </>
         ) : (
-          // OTP Verification Section
           <>
             <div className="text-center">
               <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl">
@@ -373,7 +360,7 @@ export default function RegisterPage() {
                   type="button"
                   className="disabled:cursor-default disabled:hover:text-gray-400 cursor-pointer text-sm text-gray-400 hover:text-white"
                   onClick={handleResendOtp}
-                  disabled={resendTimer > 0 || loading} // Disable button if timer is active or loading
+                  disabled={resendTimer > 0 || loading}
                 >
                   {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : "Didn't receive the code? Resend OTP"}
                 </button>
@@ -385,7 +372,7 @@ export default function RegisterPage() {
                 onClick={() => {
                   setShowOtpVerification(false);
                   setOtp("");
-                  setResendTimer(0); // Reset timer when going back to registration form
+                  setResendTimer(0);
                   if (timerRef.current) {
                     clearInterval(timerRef.current);
                     timerRef.current = null;

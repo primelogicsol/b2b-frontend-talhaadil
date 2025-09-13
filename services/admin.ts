@@ -136,13 +136,28 @@ export const updatePartnershipLevel = (id: number, data: any) => {
 
 
 // Get Users
-export const getDocumentInfo = () => {
-  return api.get(`/admin/document-info`, {
+export const getDocumentInfo = (userId: number) => {
+  return api.get(`/admin/document-info/${userId}`, {
     headers: {
       requiresAuth: true,
     },
   });
 };
+
+
+// Update KPI Score
+export const updateKpiScore = (userId: number, kpiScore: number) => {
+  return api.patch(`/admin/update-kpi-score`, null, {
+    params: {
+      user_id: userId,
+      kpi_score: kpiScore,
+    },
+    headers: {
+      requiresAuth: true,
+    },
+  });
+};
+
 
 // Approve Document
 export const approveDocument = (document_id: number,status : boolean) => {

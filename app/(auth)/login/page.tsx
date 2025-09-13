@@ -12,10 +12,15 @@ import { useRouter } from "next/navigation";
 interface LoginData {
   email: string;
   password: string;
+  user_role?: string;
 }
 
 export default function LoginPage() {
-  const [formData, setFormData] = useState<LoginData>({ email: "", password: "" });
+  const [formData, setFormData] = useState<LoginData>({
+    email: "",
+    password: "",
+    user_role: ""
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,7 +32,10 @@ export default function LoginPage() {
     setLoading(true);
     setError("");
     try {
-      const user = await login(formData);
+      const submitData = { ...formData };
+      delete submitData.user_role;
+      console.log(submitData)
+      const user = await login(submitData);
       const data = user.data;
       console.log(data)
 
@@ -49,7 +57,7 @@ export default function LoginPage() {
       Cookies.set("ownership", JSON.stringify(data.ownership));
       Cookies.set("is_registered", data.is_registered);
       Cookies.set("registration_step", data.registration_step.toString());
-
+      Cookies.set("first_register", data.first_register.toString());
       router.push("/");
     } catch (err: any) {
       setError(err.message);
@@ -58,6 +66,7 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#1b4f68] to-[#0a192f] p-4 text-white sm:p-6 md:p-8">
@@ -86,7 +95,40 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-          {/* Email */}
+          {/* Account Type Dropdown */}
+          <div className="relative">
+            <label
+              htmlFor="user-type"
+              className="mb-2 block text-sm font-medium text-gray-300 sm:text-base"
+            >
+              Select Account Type
+            </label>
+            <select
+              id="user-type"
+              className="w-full appearance-none rounded-xl border border-gray-600 bg-gray-800/50 p-3 pr-10 text-white focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)]"
+              required
+              value={formData.user_role || ""}
+              onChange={(e) => {
+                setFormData({ ...formData, user_role: e.target.value });
+              }}
+            >
+              <option value="">Select Account Type</option>
+              <option value="buyer">Buyer</option>
+              <option value="vendor">Vendor</option>
+            </select>
+
+            {/* custom dropdown arrow */}
+            <svg
+              className="pointer-events-none absolute right-3 bottom-3.5 h-5 w-5 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
           <div>
             <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
               Email Address
@@ -137,8 +179,8 @@ export default function LoginPage() {
           {/* Submit Button */}
           <button
             type="submit"
-            disabled={loading}
-            className="w-full rounded-xl bg-[var(--primary-color)] p-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-[#0a192f] sm:text-lg"
+            disabled={loading || !formData.user_role}
+            className="w-full rounded-xl bg-[var(--primary-color)] p-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-[#0a192f] sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
@@ -153,8 +195,9 @@ export default function LoginPage() {
 
           {/* Google Login */}
           <button
+            disabled={!formData.user_role}
             type="button"
-            className="flex w-full items-center justify-center space-x-2 rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-[#0a192f]"
+            className="disabled:opacity-50 disabled:cursor-not-allowed flex w-full items-center justify-center space-x-2 rounded-xl border border-gray-600 bg-gray-800/50 p-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-[#0a192f]"
           >
             <FcGoogle className="h-5 w-5 sm:h-6 sm:w-6" />
             <span>Login with Google</span>

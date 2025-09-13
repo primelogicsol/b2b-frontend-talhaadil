@@ -345,14 +345,14 @@ export default function AppointmentScheduler() {
     
 
       console.log("Existing booking API response:", response);
-      if (response.status === 1) {
+      if (response.status === 201) {
         // Only call the new API if the first one succeeded with 201
         const meetResponse = await fetch("/api/booking", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
-
+        console.log(meetResponse)
         const data = await meetResponse.json();
 
         if (data.success) {

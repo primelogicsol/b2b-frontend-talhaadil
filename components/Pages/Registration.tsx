@@ -54,6 +54,7 @@ export interface FormData {
 
 export default function RegistrationProcess() {
   const registrationStatus = Cookies.get("is_registered");
+  const first_register = Cookies.get("first_register")
   const stepFromCookie = Cookies.get("registration_step");
   const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) +1: 1;
 
@@ -132,7 +133,7 @@ export default function RegistrationProcess() {
     }
   };
 
-  if (registrationStatus === "APPROVED") {
+  if (registrationStatus === "APPROVED" && first_register) {
     return (
       <div className="bg-gradient-to-br from-gray-50 to-gray-100">
         <PartnershipDisplay />
