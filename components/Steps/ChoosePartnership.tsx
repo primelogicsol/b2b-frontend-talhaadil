@@ -403,7 +403,7 @@ export default function ChoosePartnership({
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
-            className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8 z-50
+            className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
               ${p.available
                 ? "cursor-pointer hover:-translate-y-2"
                 : "opacity-60"

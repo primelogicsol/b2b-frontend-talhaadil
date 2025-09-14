@@ -144,21 +144,20 @@ export default function Footer() {
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <Globe className="w-5 h-5 text-[var(--secondary-color)]" /> Craft
-              Registry
+              <Globe className="w-5 h-5 text-[var(--secondary-color)]" /> Craft Registry
             </h3>
             <ul className="space-y-3">
               {[
-                "Kashmir Craft Profile",
-                "Geographical Indication",
-                "Blockchain Traceability",
-                "Carbon Footprint",
-                "Price Estimation",
-                "Trade Registry",
-              ].map((txt, i) => (
+                { txt: "Kashmir Craft Profile", link: "/crafts/kashmir-profile" },
+                { txt: "Geographical Indication", link: "/crafts/geographical-indication" },
+                { txt: "Blockchain Traceability", link: "/crafts/blockchain-traceability" },
+                { txt: "Carbon Footprint", link: "/crafts/carbon-footprint" },
+                { txt: "Price Estimation", link: "/crafts/price-estimation" },
+                { txt: "Trade Registry", link: "/crafts/trade-registry" },
+              ].map(({ txt, link }, i) => (
                 <motion.li key={i}>
                   <motion.a
-                    href="#"
+                    href={link}
                     className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
@@ -178,21 +177,20 @@ export default function Footer() {
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <TrendingUp className="w-5 h-5 text-[var(--secondary-color)]" />{" "}
-              Craft Resources
+              <TrendingUp className="w-5 h-5 text-[var(--secondary-color)]" /> Craft Resources
             </h3>
             <ul className="space-y-3">
               {[
-                "Intellectual Property",
-                "Counterfeits",
-                "Production Insights",
-                "Export Data",
-                "Employment Trends",
-                "Gender Dynamics",
-              ].map((txt, i) => (
+                { txt: "Intellectual Property", link: "/resources/intellectual-property" },
+                { txt: "Counterfeits", link: "/resources/counterfeits" },
+                { txt: "Production Insights", link: "/resources/production-insights" },
+                { txt: "Export Data", link: "/resources/export-data" },
+                { txt: "Employment Trends", link: "/resources/employment-trends" },
+                { txt: "Gender Dynamics", link: "/resources/gender-dynamics" },
+              ].map(({ txt, link }, i) => (
                 <motion.li key={i}>
                   <motion.a
-                    href="#"
+                    href={link}
                     className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
@@ -212,21 +210,20 @@ export default function Footer() {
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <Mail className="w-5 h-5 text-[var(--secondary-color)]" /> About &
-              Connect
+              <Mail className="w-5 h-5 text-[var(--secondary-color)]" /> About & Connect
             </h3>
             <ul className="space-y-3">
               {[
-                "Our Mission",
-                "Projects",
-                "Our Team",
-                "Careers",
-                "Contact Us",
-                "Become a Sponsor",
-              ].map((txt, i) => (
+                { txt: "Network", link: "/our-niche/network" },
+                { txt: "Brand Story", link: "/our-brand/brand-story" },
+                { txt: "Brand Credentials", link: "/our-brand/brand-crednetials" },
+                { txt: "Location", link: "/our-nihcle/location" },
+                { txt: "Business", link: "/our-nihcle/business" },
+                { txt: "Contact", link: "/contact" },
+              ].map(({ txt, link }, i) => (
                 <motion.li key={i}>
                   <motion.a
-                    href="#"
+                    href={link}
                     className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
@@ -239,6 +236,7 @@ export default function Footer() {
               ))}
             </ul>
           </motion.div>
+
         </div>
 
         {/* Newsletter */}

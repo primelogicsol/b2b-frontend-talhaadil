@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ProgressIndicator from "@/components/Steps/ProgressIndicator";
 import ChoosePartnership from "@/components/Steps/ChoosePartnership";
 import BusinessInformation from "@/components/Steps/BusinessInformation";
@@ -10,9 +10,8 @@ import BuyerAgreement from "@/components/Steps/BuyerAgreement";
 import ApplicationStatus from "@/components/Steps/ApplicationStatus";
 import FinalActivation from "@/components/Steps/FinalActivation";
 import PartnershipDisplay from "../Steps/AlreadyRegistered";
+import VerticalHeroSlider from "../Essentials/VerticalBanner";
 import Cookies from "js-cookie";
-
-
 
 export interface FormData {
   partnership?: {
@@ -54,12 +53,13 @@ export interface FormData {
 
 export default function RegistrationProcess() {
   const registrationStatus = Cookies.get("is_registered");
-  const first_register = Cookies.get("first_register")
+  const first_register = Cookies.get("first_register");
   const stepFromCookie = Cookies.get("registration_step");
-  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) +1: 1;
+  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(6);
+  const [currentStep, setCurrentStep] = useState<number>(3);
   const [formData, setFormData] = useState<FormData>({});
+  const contentRef = useRef<HTMLDivElement>(null); // Reference to content area
 
   const updateFormData = (stepData: Partial<FormData>) => {
     setFormData((prev) => ({ ...prev, ...stepData }));
@@ -76,6 +76,45 @@ export default function RegistrationProcess() {
       setCurrentStep((prev) => prev - 1);
     }
   };
+
+  // Scroll to content area when currentStep changes
+  useEffect(() => {
+    const smoothScroll = (targetY: number, duration = 600) => {
+      const startY = window.scrollY;
+      const diff = targetY - startY;
+      let startTime: number | null = null;
+
+      const easeInOutQuad = (t: number) =>
+        t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+      const step = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeInOutQuad(progress);
+
+        window.scrollTo(0, startY + diff * easedProgress);
+
+        if (elapsed < duration) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const timer = setTimeout(() => {
+      if (contentRef.current) {
+        const offsetTop =
+          contentRef.current.getBoundingClientRect().top +
+          window.scrollY -
+          20;
+        smoothScroll(offsetTop, 800); // 800ms for ultra-smooth effect
+      }
+    }, 1);
+
+    return () => clearTimeout(timer);
+  }, [currentStep]);
 
   const renderStep = () => {
     switch (currentStep) {
@@ -137,15 +176,20 @@ export default function RegistrationProcess() {
     return (
       <div className="bg-gradient-to-br from-gray-50 to-gray-100">
         <PartnershipDisplay />
-        
       </div>
     );
   }
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100">
-      <ProgressIndicator currentStep={currentStep} totalSteps={7} />
-      <div className="pt-34 pb-12">{renderStep()}</div>
+    <div>
+      <VerticalHeroSlider />
+      <div
+        ref={contentRef}
+        className="bg-gradient-to-br from-gray-50 to-gray-100"
+      >
+        <ProgressIndicator currentStep={currentStep} totalSteps={7} />
+        <div className="pt-34 pb-12">{renderStep()}</div>
+      </div>
     </div>
   );
 }
