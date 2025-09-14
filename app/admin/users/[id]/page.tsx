@@ -312,11 +312,7 @@ export default function RegistrationInfoPage() {
 
   const handleDocumentAction = async (documentId: number, approve: boolean) => {
     try {
-      if (approve) {
-        setApproveLoading(true);
-      } else {
-        setRejectLoading(true);
-      }
+
       await approveDocument(documentId, approve);
       // Update document state locally after action
       setDocuments((prevDocs) =>
@@ -328,9 +324,6 @@ export default function RegistrationInfoPage() {
       );
     } catch (err) {
       setError(err instanceof Error ? err.message : `Failed to ${approve ? "approve" : "reject"} document`);
-    } finally {
-      setApproveLoading(false);
-      setRejectLoading(false);
     }
   };
 
@@ -389,7 +382,7 @@ export default function RegistrationInfoPage() {
   const getDocumentName = (type: string): string => {
     return documentMapping[userRole]?.[type] || formatFieldName(type);
   };
-  console.log("PRODCTDATA",productData)
+  console.log("PRODCTDATA", productData)
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">

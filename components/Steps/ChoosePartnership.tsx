@@ -130,7 +130,7 @@ const partnerships: Partnership[] = [
     kpiScore: "8+",
     available: false,
   },
-    {
+  {
     id: "packaging",
     level: 12,
     partnership_name: "Packaging",
@@ -153,8 +153,8 @@ const partnerships: Partnership[] = [
     retention: "4 months",
     kpiScore: "8+",
     available: false,
-}
-,
+  }
+  ,
   {
     id: "storytelling",
     level: 10,
@@ -169,7 +169,7 @@ const partnerships: Partnership[] = [
   },
 
 
-    {
+  {
     id: "warehouse",
     level: 11,
     partnership_name: "Warehouse",
@@ -237,7 +237,7 @@ export default function ChoosePartnership({
   onNext,
   onPrev,
 }: ChoosePartnershipProps) {
-  
+
   const { is4K } = useGlobalContext();
   const [selectedPartnership, setSelectedPartnership] = useState(
     data?.selected || ""
@@ -245,8 +245,8 @@ export default function ChoosePartnership({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [user_role, setUserRole] = useState<"buyer" | "vendor">("buyer");
   const { showToast } = useToast();
-  
-  
+
+
   useEffect(() => {
     const roleFromCookie = Cookies.get("user_role") as
       | "vendor"
@@ -286,7 +286,7 @@ export default function ChoosePartnership({
       const allLevelsUpToSelected = partnerships
         .filter((p) => p.level <= selectedLevel)
         .sort((a, b) => a.level - b.level)
-        .map((p) =>  p.id.toUpperCase());
+        .map((p) => p.id.toUpperCase());
 
       const lastElement =
         allLevelsUpToSelected[allLevelsUpToSelected.length - 1];
@@ -341,7 +341,7 @@ export default function ChoosePartnership({
         };
 
         await submitPartnershipSelection(selectedData);
-        
+
       } catch (error) {
         // Error already handled in submitPartnershipSelection
       }
@@ -403,7 +403,7 @@ export default function ChoosePartnership({
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
-            className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
+            className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8 z-50
               ${p.available
                 ? "cursor-pointer hover:-translate-y-2"
                 : "opacity-60"
@@ -416,20 +416,26 @@ export default function ChoosePartnership({
             `}
           >
             {p.isAltPath && (
-              <div className="absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl">
+              <div className={`absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl
+               ${selectedPartnership === p.id
+                  ? "mt-1 ml-1"
+                  : ""}
+              `}>
                 Lateral
               </div>
             )}
 
             <div
-              className={`absolute top-2 right-7 text-white text-xs font-bold px-2 py-1 rounded-full ${
-                p.available ? "bg-[var(--primary-color)]" : "bg-red-600"
-              }`}
+              className={`absolute top-0 right-0 text-white text-xs font-bold px-2 py-1 rounded-tr-2xl rounded-bl-2xl bg-[var(--primary-color)]
+    ${selectedPartnership === p.id
+                  ? "mt-1 mr-1"
+                  : ""}`}
             >
               Level {p.level}
             </div>
 
-            <div className="absolute -top-3 -right-3">
+
+            <div className="absolute -top-3 left-32">
               {selectedPartnership === p.id ? (
                 <div className="w-10 h-10 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
                   <FaCheck className="text-white text-lg" />
@@ -448,8 +454,8 @@ export default function ChoosePartnership({
             <div className="flex justify-start mb-6 mt-6">
               <span
                 className={`px-4 py-2 text-sm font-semibold rounded-full ${p.available
-                    ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
-                    : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
+                  ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
+                  : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
                   }`}
               >
                 {p.available ? "Available Now" : "Requirements Not Met"}
@@ -495,12 +501,12 @@ export default function ChoosePartnership({
             </p>
 
             {!p.available && (
-              
+
               <div className="mt-auto space-y-2">
                 <button
-                onClick={()=>{
-                  window.location.href = '/process'
-                }}
+                  onClick={() => {
+                    window.location.href = '/process'
+                  }}
                   className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
                   text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}
                 >
@@ -555,18 +561,8 @@ export default function ChoosePartnership({
         </div>
       )}
 
-      <div className="flex justify-between items-center mt-8">
-        <button
-          onClick={onPrev}
-          disabled={isSubmitting}
-          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 text-gray-700 rounded-xl transition-all font-medium
-            border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white
-            ${is4K ? "text-lg" : ""} ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-        >
-          <span className="inline">←</span>
-          <span className="hidden md:inline ml-2">Prev</span>
-        </button>
+      <div className="flex justify-end items-center mt-8">
+
 
         <button
           onClick={handleNext}

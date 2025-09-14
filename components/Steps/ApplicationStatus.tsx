@@ -276,7 +276,8 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
 
   // Determine if Next button should be enabled
   const allDocsVerified = documents.every((doc) => doc.status === "PASS")
-  const canProceed = adminStatus === "APPROVED" || "REJECTED"
+  const canProceed = adminStatus === "APPROVED" || adminStatus === "REJECTED";
+
 
   if (loading) {
     return (

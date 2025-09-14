@@ -541,7 +541,7 @@ export default function DocumentSubmission({
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Upload the required documents to complete your partnership
           application. All documents will be securely stored and reviewed by our
-          team.
+          team. Please Read the requirements carefully before uploading
         </p>
       </div>
 

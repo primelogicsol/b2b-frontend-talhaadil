@@ -560,7 +560,7 @@ export default function ComprehensiveProductSelection({
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Select specifications for each product (some allow multiple selections)
             </p>
-            <div className="mt-4 text-sm text-gray-500">
+            <div className="mt-4 text-sm text-[var(--primary-color)] font-bold">
               Progress:{" "}
               {Object.keys(detailedSelections).reduce(
                 (total, subId) =>
@@ -596,6 +596,9 @@ export default function ComprehensiveProductSelection({
                     <div className="flex justify-between items-center">
                       <h3 className="text-2xl font-bold">{subCategory.name}</h3>
                       <div className="flex items-center space-x-4">
+                        <span className="mr-4">
+                          Detailed Specifications
+                        </span>
                         <span
                           className={`transform transition-transform ${expandedSubCategory === subCategoryId ? "rotate-180" : ""
                             }`}

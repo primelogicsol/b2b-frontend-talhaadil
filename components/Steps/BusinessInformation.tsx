@@ -342,8 +342,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   }
 
   const validateAndSubmit = () => {
-      handleSubmit()
-    
+    handleSubmit()
+
   }
 
   const getFieldLabels = () => {
@@ -839,6 +839,27 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Address</h2>
           </div>
           <div className="space-y-6">
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-gray-700">Country *</label>
+              <select
+                value={formData.businessInfo.country}
+                onChange={(e) => handleBusinessInfoChange("country", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.country"] ? "border-red-500" : "border-gray-200"
+                  }`}
+              >
+                <option value="">Select country</option>
+                <option value="IN">India</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="UK">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="JP">Japan</option>
+                <option value="CN">China</option>
+              </select>
+              <ErrorMessage error={errors["businessInfo.country"]} />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">Street Address 1 *</label>
@@ -902,27 +923,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <ErrorMessage error={errors["businessInfo.postalCode"]} />
               </div>
             </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Country *</label>
-              <select
-                value={formData.businessInfo.country}
-                onChange={(e) => handleBusinessInfoChange("country", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.country"] ? "border-red-500" : "border-gray-200"
-                  }`}
-              >
-                <option value="">Select country</option>
-                <option value="IN">India</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="UK">United Kingdom</option>
-                <option value="AU">Australia</option>
-                <option value="DE">Germany</option>
-                <option value="FR">France</option>
-                <option value="JP">Japan</option>
-                <option value="CN">China</option>
-              </select>
-              <ErrorMessage error={errors["businessInfo.country"]} />
-            </div>
+
           </div>
         </div>
 
@@ -988,19 +989,40 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
           {/* Contact Person Address */}
           <div className="mt-8 pt-8 border-t">
             <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Contact Person Address</h3>
+            <div className="space-y-2 mb-6">
+              <label className="block text-sm font-semibold text-gray-700">Country *</label>
+              <select
+                value={formData.businessContact.country}
+                onChange={(e) => handleBusinessContactChange("country", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.country"] ? "border-red-500" : "border-gray-200"
+                  }`}
+              >
+                <option value="">Select country</option>
+                <option value="IN">India</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="UK">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="JP">Japan</option>
+                <option value="CN">China</option>
+              </select>
+              <ErrorMessage error={errors["businessContact.country"]} />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">District *</label>
-                <input
-                  type="text"
-                  value={formData.businessContact.district}
-                  onChange={(e) => handleBusinessContactChange("district", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.district"] ? "border-red-500" : "border-gray-200"
-                    }`}
-                  placeholder="Enter district"
-                />
-                <ErrorMessage error={errors["businessContact.district"]} />
-              </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-700">District/County *</label>
+                  <input
+                    type="text"
+                    value={formData.businessContact.district}
+                    onChange={(e) => handleBusinessContactChange("district", e.target.value)}
+                    className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.district"] ? "border-red-500" : "border-gray-200"
+                      }`}
+                    placeholder="Enter district"
+                  />
+                  <ErrorMessage error={errors["businessContact.district"]} />
+                </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">Pin Code *</label>
                 <input
@@ -1027,29 +1049,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <ErrorMessage error={errors["businessContact.state"]} />
               </div>
             </div>
-            <div className="mt-6">
-              <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Country *</label>
-                <select
-                  value={formData.businessContact.country}
-                  onChange={(e) => handleBusinessContactChange("country", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.country"] ? "border-red-500" : "border-gray-200"
-                    }`}
-                >
-                  <option value="">Select country</option>
-                  <option value="IN">India</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="UK">United Kingdom</option>
-                  <option value="AU">Australia</option>
-                  <option value="DE">Germany</option>
-                  <option value="FR">France</option>
-                  <option value="JP">Japan</option>
-                  <option value="CN">China</option>
-                </select>
-                <ErrorMessage error={errors["businessContact.country"]} />
-              </div>
-            </div>
+
+
           </div>
         </div>
 
