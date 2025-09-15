@@ -3,9 +3,10 @@ import { useEffect, useState } from "react"
 import { Building2, Award, CreditCard, AlertTriangle, Star } from "lucide-react"
 import { useGlobalContext } from "@/context/ScreenProvider"
 import { useToast } from "@/context/ToastProvider"
-import { sendInfo } from "@/services/regitsration"
+import { sendInfo,getUserInfo  } from "@/services/regitsration"
+
 import Cookies from "js-cookie"
-import { validateFieldByRole } from "@/lib/role-based"
+
 interface BusinessInformationProps {
   data?: any
   onUpdate: (data: any) => void
@@ -18,10 +19,13 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
+  const fixStep = 2;
+  const currentStep = parseInt(Cookies.get("registration_step") || "0", 10);
 
   const { showToast } = useToast()
   const { is4K } = useGlobalContext()
   const [loading, setLoading] = useState(false)
+  const [isEditable, setIsEditable] = useState(currentStep <= fixStep)
 
   const [userRole, setUserRole] = useState<"vendor" | "buyer">("buyer")
 
@@ -71,7 +75,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         country: "",
       },
       credibilityAssessment: {
-        materialStandard: 3, // Changed default from 5 to 3 for 1-5 scale
+        materialStandard: 3,
         qualityLevel: 3,
         sustainabilityLevel: 3,
         serviceLevel: 3,
@@ -112,358 +116,143 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
 
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  // Validation functions
-  const validateBusinessName = (name: string): string => {
-    if (!name.trim()) return "Business name is required"
-    if (name.trim().length < 2) return "Business name must be at least 2 characters"
-    if (name.trim().length > 100) return "Business name must not exceed 100 characters"
-    if (!/^[a-zA-Z0-9\s&.-]+$/.test(name)) return "Business name contains invalid characters"
-    return ""
-  }
+  // ✅ Fetch user info if step > fixStep
+  useEffect(() => {
+    if (currentStep > fixStep) {
+      const fetchUserInfo = async () => {
+        try {
+          setLoading(true)
+          const response = await getUserInfo()
+          const apiData = response.data
 
-  const validateRegistrationNumber = (regNum: string): string => {
-    if (!regNum.trim()) return "Registration number is required"
-    if (regNum.trim().length < 5) return "Registration number must be at least 5 characters"
-    if (regNum.trim().length > 30) return "Registration number must not exceed 30 characters"
-    if (!/^[A-Z0-9]+$/.test(regNum.trim())) return "Registration number must contain only uppercase letters and numbers"
-    return ""
-  }
+          // Map API response to formData structure
+          const updatedFormData = {
+            ...formData,
+            businessInfo: {
+              businessName: apiData.business_name || "",
+              businessLegalStructure: apiData.business_legal_structure || "",
+              businessType: apiData.business_type || "",
+              businessEstablishedYear: apiData.year_established || 0,
+              businessRegistrationNumber: apiData.business_registration_number || "",
+              brandAffiliations: apiData.brand_affiliations || "",
+              streetAddress1: apiData.street_address_1 || "",
+              streetAddress2: apiData.street_address_2 || "",
+              city: apiData.city || "",
+              stateRegion: apiData.state_region || "",
+              country: apiData.country || "",
+              postalCode: apiData.postal_code || "",
+              website: apiData.website || "",
+              annualTurnover: apiData.annual_turnover || "",
+              gstNumber: apiData.gst_number || "",
+              taxIdentificationNumber: apiData.tax_identification_number || "",
+              importExportCode: apiData.import_export_code || "",
+            },
+            businessContact: {
+              name: apiData.contact_person_name || "",
+              email: apiData.contact_email || "",
+              phone: apiData.contact_phone || "",
+              whatsapp: apiData.contact_whatsapp || "",
+              district: apiData.contact_district || "",
+              pinCode: apiData.contact_pin_code || "",
+              state: apiData.contact_state || "",
+              country: apiData.contact_country || "",
+            },
+            credibilityAssessment: {
+              materialStandard: apiData.material_standard || 3,
+              qualityLevel: apiData.quality_level || 3,
+              sustainabilityLevel: apiData.sustainability_level || 3,
+              serviceLevel: apiData.service_level || 3,
+              ethicsLevel: apiData.ethics_level || 3,
+              standardsLevel: apiData.standards_level || 3,
+            },
+            certifications: {
+              GICertification: apiData.certifications.includes("GI Certification"),
+              handloomMark: apiData.certifications.includes("Handloom Mark"),
+              craftMark: apiData.certifications.includes("Craft Mark"),
+              indiaHandmade: apiData.certifications.includes("India Handmade"),
+              qualityCouncil: apiData.certifications.includes("Quality Council"),
+              exportCouncil: apiData.certifications.includes("Export Council"),
+              blockChain: apiData.certifications.includes("Blockchain"),
+              ...(userRole === "vendor" ? { none: false } : { notRequired: false }),
+            },
+            bankingInfo: {
+              bankName: apiData.bank_name || "",
+              accountName: apiData.account_name || "",
+              accountType: apiData.account_type || "",
+              accountNumber: apiData.account_number || "",
+              ifscCode: apiData.ifsc_code || "",
+              swiftBisCode: apiData.swift_bis_code || "",
+              ibanCode: apiData.iban_code || "",
+            },
+            complianceIssues: {
+              "Have you faced challenges with KYC regulations recently?": apiData.kyc_challenges || false,
+              "Any issues with GST compliance in transactions?": apiData.gst_compliance_issues || false,
+              "Difficulties with FEMA for international payments recently?": apiData.fema_payment_issues || false,
+              "Have digital banking regulations impacted your operations?": apiData.digital_banking_issues || false,
+              "Encountered any fraud or cybersecurity issues recently?": apiData.fraud_cybersecurity_issues || false,
+              "Challenges with payment gateway compliance or security regulations?": apiData.payment_gateway_compliance_issues || false,
+              "Any account activity issues or fraudulent claims made?": apiData.account_activity_issues || false,
+              "Have regulatory actions been taken against your account?": apiData.regulatory_actions || false,
+            },
+          }
 
-  const validateYear = (year: number): string => {
-    const currentYear = new Date().getFullYear()
-    if (year && (year < 1900 || year > currentYear)) {
-      return `Year must be between 1900 and ${currentYear}`
+          setFormData(updatedFormData)
+          onUpdate(updatedFormData)
+        } catch (error: any) {
+          showToast("Failed to fetch user information. Please try again.")
+          console.error("Fetch Error:", error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      fetchUserInfo()
     }
-    return ""
-  }
-
-  const validateWebsite = (website: string): string => {
-    if (website && !/^https?:\/\/.+\..+/.test(website)) {
-      return "Please enter a valid website URL (e.g., https://example.com)"
-    }
-    return ""
-  }
-
-  const validateEmail = (email: string): string => {
-    if (!email.trim()) return "Email is required"
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) return "Please enter a valid email address"
-    return ""
-  }
-
-  const validatePhone = (phone: string): string => {
-    if (!phone.trim()) return "Phone number is required"
-    const phoneRegex = /^[+]?[1-9][\d]{0,15}$/
-    if (!phoneRegex.test(phone.replace(/[\s\-$$$$]/g, ""))) {
-      return "Please enter a valid phone number"
-    }
-    return ""
-  }
-
-  const validatePinCode = (pinCode: string): string => {
-    if (!pinCode.trim()) return "PIN code is required"
-    if (!/^\d{6}$/.test(pinCode)) return "PIN code must be exactly 6 digits"
-    return ""
-  }
-
-  const validatePostalCode = (postalCode: string): string => {
-    if (!postalCode.trim()) return "Postal code is required"
-    if (!/^[A-Z0-9\s-]{3,10}$/.test(postalCode.toUpperCase())) {
-      return "Please enter a valid postal code"
-    }
-    return ""
-  }
-
-  const validateGSTNumber = (gst: string): string => {
-    return validateFieldByRole("gstNumber", gst, userRole)
-  }
-
-  const validateTaxId = (taxId: string): string => {
-    return validateFieldByRole("taxIdentificationNumber", taxId, userRole)
-  }
-
-  const validateImportExportCode = (code: string): string => {
-    return validateFieldByRole("importExportCode", code, userRole)
-  }
-
-  const validateIFSCCode = (ifsc: string): string => {
-    return validateFieldByRole("ifscCode", ifsc, userRole)
-  }
-
-  const validateSWIFTCode = (swift: string): string => {
-    if (swift && !/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/.test(swift.toUpperCase())) {
-      return "Please enter a valid SWIFT code (8 or 11 characters)"
-    }
-    return ""
-  }
-
-  const validateIBANCode = (iban: string): string => {
-    const trimmed = iban.replace(/\s+/g, '').toUpperCase();
-    // Basic IBAN format: 2 letters + 2 digits + up to 30 alphanumerics
-    if (!/^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$/.test(trimmed)) {
-      return "Please enter a valid IBAN code";
-    }
-    return "";
-  }
-
-  const validateAccountNumber = (accountNumber: string): string => {
-    if (!accountNumber.trim()) return "Account number is required"
-    if (!/^[0-9]+$/.test(accountNumber)) return "Account number must contain only numbers"
-    if (accountNumber.trim().length < 5) return "Account number must be at least 5 digits"
-    if (accountNumber.trim().length > 18) return "Account number must not exceed 18 digits"
-    return ""
-  }
+  }, [currentStep, fixStep])
 
   const handleBusinessInfoChange = (field: string, value: string) => {
+    if (!isEditable) return
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessInfo: { ...prev.businessInfo, [field]: value },
     }))
-
-    // Clear error when user starts typing
-    if (errors[`businessInfo.${field}`]) {
-      setErrors((prev) => ({ ...prev, [`businessInfo.${field}`]: "" }))
-    }
-
-    let error = ""
-    switch (field) {
-      case "businessName":
-        error = validateBusinessName(value)
-        break
-      case "businessRegistrationNumber":
-        error = validateRegistrationNumber(value)
-        break
-      case "website":
-        error = validateWebsite(value)
-        break
-      case "gstNumber":
-        error = validateGSTNumber(value)
-        break
-      case "taxIdentificationNumber":
-        error = validateTaxId(value)
-        break
-      case "importExportCode":
-        error = validateImportExportCode(value)
-        break
-      case "postalCode":
-        error = validatePostalCode(value)
-        break
-    }
-
-    if (error) {
-      setErrors((prev) => ({ ...prev, [`businessInfo.${field}`]: error }))
-    }
   }
 
   const handleBusinessContactChange = (field: string, value: string) => {
+    if (!isEditable) return
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessContact: { ...prev.businessContact, [field]: value },
     }))
-
-    // Clear error when user starts typing
-    if (errors[`businessContact.${field}`]) {
-      setErrors((prev) => ({ ...prev, [`businessContact.${field}`]: "" }))
-    }
-
-    // Real-time validation
-    let error = ""
-    switch (field) {
-      case "email":
-        error = validateEmail(value)
-        break
-      case "phone":
-      case "whatsapp":
-        if (field === "phone" || value) {
-          error = validatePhone(value)
-        }
-        break
-      case "pinCode":
-        error = validatePinCode(value)
-        break
-    }
-
-    if (error) {
-      setErrors((prev) => ({ ...prev, [`businessContact.${field}`]: error }))
-    }
   }
 
   const handleBankingInfoChange = (field: string, value: string) => {
+    if (!isEditable) return
     setFormData((prev: typeof formData) => ({
       ...prev,
       bankingInfo: { ...prev.bankingInfo, [field]: value },
     }))
-
-    // Clear error when user starts typing
-    if (errors[`bankingInfo.${field}`]) {
-      setErrors((prev) => ({ ...prev, [`bankingInfo.${field}`]: "" }))
-    }
-
-    let error = ""
-    switch (field) {
-      case "accountNumber":
-        error = validateAccountNumber(value)
-        break
-      case "ifscCode":
-        error = validateIFSCCode(value)
-        break
-      case "swiftBisCode":
-        error = validateSWIFTCode(value)
-        break
-      case "ibanCode":
-        error = validateIBANCode(value)
-        break
-    }
-
-    if (error) {
-      setErrors((prev) => ({ ...prev, [`bankingInfo.${field}`]: error }))
-    }
   }
 
   const handleYearChange = (value: string) => {
+    if (!isEditable) return
     const year = Number.parseInt(value) || 0
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessInfo: { ...prev.businessInfo, businessEstablishedYear: year },
     }))
-
-    const error = validateYear(year)
-    if (error) {
-      setErrors((prev) => ({
-        ...prev,
-        "businessInfo.businessEstablishedYear": error,
-      }))
-    } else {
-      setErrors((prev) => ({
-        ...prev,
-        "businessInfo.businessEstablishedYear": "",
-      }))
-    }
   }
 
-  const validateAndSubmit = () => {
-    handleSubmit()
-
-  }
-
-  const getFieldLabels = () => {
-    if (userRole === "buyer") {
-      return {
-        taxRegistration: {
-          field1: "State Sales Tax Permit Number",
-          field2: "EIN (Employee Identification Number)",
-          field3: "US Import Exporter",
-        },
-        banking: {
-          routingCode: "ABA Routing Number",
-        },
-        compliance: {
-          "Have you faced challenges with KYC regulations recently?":
-            "Have you faced challenges with Customer Identification Program (CIP) recently?",
-          "Any issues with GST compliance in transactions?": "Any issues with Sales Tax Compliance in transactions?",
-          "Difficulties with FEMA for international payments recently?":
-            "Difficulties with OFAC & FinCEN Cross-Border Payment Rules recently?",
-          "Have digital banking regulations impacted your operations?":
-            "Have Federal Reserve, OCC, FDIC, CFPB Banking Regulations impacted your operations?",
-          "Challenges with payment gateway compliance or security regulations?":
-            "Challenges with PCI-DSS Compliance or security regulations?",
-        },
-      }
-    } else {
-      return {
-        taxRegistration: {
-          field1: "GST Number",
-          field2: "Tax Identification Number",
-          field3: "Import Export Code",
-        },
-        banking: {
-          routingCode: "IFSC Code",
-        },
-        compliance: {
-          "Have you faced challenges with KYC regulations recently?":
-            "Have you faced challenges with KYC regulations recently?",
-          "Any issues with GST compliance in transactions?": "Any issues with GST compliance in transactions?",
-          "Difficulties with FEMA for international payments recently?":
-            "Difficulties with FEMA Rules (Foreign Exchange) recently?",
-          "Have digital banking regulations impacted your operations?":
-            "Have digital banking regulations impacted your operations?",
-          "Challenges with payment gateway compliance or security regulations?":
-            "Challenges with payment gateway compliance or security regulations?",
-        },
-      }
-    }
-  }
-
-  const fieldLabels = getFieldLabels()
-
-  // ✅ Save to localStorage whenever formData changes
-  useEffect(() => {
-    localStorage.setItem("businessRegistrationData", JSON.stringify(formData))
-  }, [formData])
-
-  const certificationMap = {
-    GICertification: "GI Certification",
-    handloomMark: "Handloom Mark",
-    craftMark: "Craft Mark",
-    indiaHandmade: "India Handmade",
-    qualityCouncil: "Quality Council",
-    exportCouncil: "Export Council",
-    blockChain: "Blockchain",
-  }
-
-  // Handler for basic user info
-  const handleUserInfoChange = (field: string, value: string) => {
-    const updatedData = {
-      ...formData,
-      [field]: value,
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
-
-  // Handler for credibility assessment
-  const handleCredibilityChange = (field: string, value: number) => {
-    const updatedData = {
-      ...formData,
-      credibilityAssessment: {
-        ...formData.credibilityAssessment,
-        [field]: value,
-      },
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
-
-  // Handler for certifications
-  const handleCertificationChange = (field: string, value: boolean) => {
-    const updatedData = {
-      ...formData,
-      certifications: {
-        ...formData.certifications,
-        [field]: value,
-      },
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
-
-  // Handler for compliance issues
-  const handleComplianceChange = (field: string, value: boolean) => {
-    const updatedData = {
-      ...formData,
-      complianceIssues: {
-        ...formData.complianceIssues,
-        [field]: value,
-      },
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
-
-  // Handler for form submission
   const handleSubmit = async () => {
+    if (!isEditable) {
+      let step = parseInt(Cookies.get("registration_step") || "0", 10)
+      step += 1
+      Cookies.set("registration_step", step.toString())
+      onNext()
+      return
+    }
+
     try {
-      // Transform form data to match API structure
       const apiPayload = {
         business_name: formData.businessInfo.businessName,
         business_legal_structure: formData.businessInfo.businessLegalStructure,
@@ -527,13 +316,13 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       localStorage.setItem("businessRegistrationData", JSON.stringify(apiPayload))
       console.log("API Payload:", apiPayload)
 
-      const response = sendInfo(apiPayload)
-      const data = (await response).data
+      const response = await sendInfo(apiPayload)
+      const data = response.data
       onNext()
 
-      let step = parseInt(Cookies.get("registration_step") || "0", 10);
-      step += 1;
-      Cookies.set("registration_step", step.toString());
+      let step = parseInt(Cookies.get("registration_step") || "0", 10)
+      step += 1
+      Cookies.set("registration_step", step.toString())
     } catch (error: any) {
       const errorMsg = error?.response?.data?.detail
 
@@ -552,16 +341,134 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
     }
   }
 
-  // ✅ Modified validation and submission
   const handleNext = () => {
-    validateAndSubmit()
-
+    handleSubmit()
   }
 
-  // ✅ Fixed completion percentage - only count required fields
-  const getCompletionPercentage = () => {
+  const getFieldLabels = () => {
+    if (userRole === "buyer") {
+      return {
+        taxRegistration: {
+          field1: "State Sales Tax Permit Number",
+          field2: "EIN (Employee Identification Number)",
+          field3: "US Import Exporter",
+        },
+        banking: {
+          routingCode: "ABA Routing Number",
+        },
+        compliance: {
+          "Have you faced challenges with KYC regulations recently?":
+            "Have you faced challenges with Customer Identification Program (CIP) recently?",
+          "Any issues with GST compliance in transactions?": "Any issues with Sales Tax Compliance in transactions?",
+          "Difficulties with FEMA for international payments recently?":
+            "Difficulties with OFAC & FinCEN Cross-Border Payment Rules recently?",
+          "Have digital banking regulations impacted your operations?":
+            "Have Federal Reserve, OCC, FDIC, CFPB Banking Regulations impacted your operations?",
+          "Challenges with payment gateway compliance or security regulations?":
+            "Challenges with PCI-DSS Compliance or security regulations?",
+        },
+      }
+    } else {
+      return {
+        taxRegistration: {
+          field1: "GST Number",
+          field2: "Tax Identification Number",
+          field3: "Import Export Code",
+        },
+        banking: {
+          routingCode: "IFSC Code",
+        },
+        compliance: {
+          "Have you faced challenges with KYC regulations recently?":
+            "Have you faced challenges with KYC regulations recently?",
+          "Any issues with GST compliance in transactions?": "Any issues with GST compliance in transactions?",
+          "Difficulties with FEMA for international payments recently?":
+            "Difficulties with FEMA Rules (Foreign Exchange) recently?",
+          "Have digital banking regulations impacted your operations?":
+            "Have digital banking regulations impacted your operations?",
+          "Challenges with payment gateway compliance or security regulations?":
+            "Challenges with payment gateway compliance or security regulations?",
+        },
+      }
+    }
+  }
+
+  const fieldLabels = getFieldLabels()
+
+  // ✅ Save to localStorage whenever formData changes (only if editable)
+  useEffect(() => {
+    if (isEditable) {
+      localStorage.setItem("businessRegistrationData", JSON.stringify(formData))
+    }
+  }, [formData, isEditable])
+
+  const certificationMap = {
+    GICertification: "GI Certification",
+    handloomMark: "Handloom Mark",
+    craftMark: "Craft Mark",
+    indiaHandmade: "India Handmade",
+    qualityCouncil: "Quality Council",
+    exportCouncil: "Export Council",
+    blockChain: "Blockchain",
+  }
+
+  // Handler for basic user info
+  const handleUserInfoChange = (field: string, value: string) => {
+    if (!isEditable) return
+    const updatedData = {
+      ...formData,
+      [field]: value,
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
+
+  // Handler for credibility assessment
+  const handleCredibilityChange = (field: string, value: number) => {
+    if (!isEditable) return
+    const updatedData = {
+      ...formData,
+      credibilityAssessment: {
+        ...formData.credibilityAssessment,
+        [field]: value,
+      },
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
+
+  // Handler for certifications
+  const handleCertificationChange = (field: string, value: boolean) => {
+    if (!isEditable) return
+    const updatedData = {
+      ...formData,
+      certifications: {
+        ...formData.certifications,
+        [field]: value,
+      },
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
+
+  // Handler for compliance issues
+  const handleComplianceChange = (field: string, value: boolean) => {
+    if (!isEditable) return
+    const updatedData = {
+      ...formData,
+      complianceIssues: {
+        ...formData.complianceIssues,
+        [field]: value,
+      },
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
+
+  // ✅ Check if all required fields are filled
+  const areRequiredFieldsFilled = () => {
+    if (!isEditable) return true // Always allow next if not editable
     const requiredFields = [
-      // Business info - only required fields
       formData.businessInfo.businessName,
       formData.businessInfo.businessLegalStructure,
       formData.businessInfo.businessType,
@@ -573,7 +480,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       formData.businessInfo.postalCode,
       formData.businessInfo.gstNumber,
       formData.businessInfo.taxIdentificationNumber,
-      // Business contact - only required fields
       formData.businessContact.name,
       formData.businessContact.email,
       formData.businessContact.phone,
@@ -581,7 +487,37 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       formData.businessContact.pinCode,
       formData.businessContact.state,
       formData.businessContact.country,
-      // Banking info - only required fields
+      formData.bankingInfo.bankName,
+      formData.bankingInfo.accountName,
+      formData.bankingInfo.accountType,
+      formData.bankingInfo.accountNumber,
+      formData.bankingInfo.ifscCode,
+    ]
+
+    return requiredFields.every((field) => typeof field === "string" && field.trim() !== "")
+  }
+
+  // ✅ Fixed completion percentage - only count required fields
+  const getCompletionPercentage = () => {
+    const requiredFields = [
+      formData.businessInfo.businessName,
+      formData.businessInfo.businessLegalStructure,
+      formData.businessInfo.businessType,
+      formData.businessInfo.businessRegistrationNumber,
+      formData.businessInfo.streetAddress1,
+      formData.businessInfo.city,
+      formData.businessInfo.stateRegion,
+      formData.businessInfo.country,
+      formData.businessInfo.postalCode,
+      formData.businessInfo.gstNumber,
+      formData.businessInfo.taxIdentificationNumber,
+      formData.businessContact.name,
+      formData.businessContact.email,
+      formData.businessContact.phone,
+      formData.businessContact.district,
+      formData.businessContact.pinCode,
+      formData.businessContact.state,
+      formData.businessContact.country,
       formData.bankingInfo.bankName,
       formData.bankingInfo.accountName,
       formData.bankingInfo.accountType,
@@ -647,19 +583,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.businessInfo.businessName}
                 onChange={(e) => handleBusinessInfoChange("businessName", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessName"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter your business name"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessInfo.businessName"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Business Legal Structure *</label>
               <select
                 value={formData.businessInfo.businessLegalStructure}
                 onChange={(e) => handleBusinessInfoChange("businessLegalStructure", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessLegalStructure"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                disabled={!isEditable}
               >
                 <option value="">Select legal structure</option>
                 <option value="sole-proprietorship">Sole Proprietorship</option>
@@ -669,15 +604,14 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <option value="llp">Limited Liability Partnership</option>
                 <option value="one-person-company">One Person Company</option>
               </select>
-              <ErrorMessage error={errors["businessInfo.businessLegalStructure"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Business Type *</label>
               <select
                 value={formData.businessInfo.businessType}
                 onChange={(e) => handleBusinessInfoChange("businessType", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessType"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                disabled={!isEditable}
               >
                 <option value="">Select business type</option>
                 <option value="manufacturer">Manufacturer</option>
@@ -688,7 +622,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <option value="importer">Importer</option>
                 <option value="service-provider">Service Provider</option>
               </select>
-              <ErrorMessage error={errors["businessInfo.businessType"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Year Established</label>
@@ -696,13 +629,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="number"
                 value={formData.businessInfo.businessEstablishedYear || ""}
                 onChange={(e) => handleYearChange(e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessEstablishedYear"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="YYYY"
                 min="1900"
                 max={new Date().getFullYear()}
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessInfo.businessEstablishedYear"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Business Registration Number *</label>
@@ -710,11 +642,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.businessInfo.businessRegistrationNumber}
                 onChange={(e) => handleBusinessInfoChange("businessRegistrationNumber", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.businessRegistrationNumber"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter registration number"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessInfo.businessRegistrationNumber"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Brand Affiliations</label>
@@ -724,6 +655,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 onChange={(e) => handleBusinessInfoChange("brandAffiliations", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter brand affiliations"
+                disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
@@ -732,11 +664,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="url"
                 value={formData.businessInfo.website || ""}
                 onChange={(e) => handleBusinessInfoChange("website", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.website"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="https://www.example.com"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessInfo.website"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
@@ -748,9 +679,9 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   handleBusinessInfoChange("annualTurnover", e.target.value)
                 }
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
+                disabled={!isEditable}
               >
                 <option value="">Select annual turnover</option>
-
                 {userRole === "buyer" ? (
                   <>
                     <option value="below-20k">Below $20k</option>
@@ -775,9 +706,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 )}
               </select>
             </div>
-
-
-
           </div>
 
           {/* Tax & Registration Information */}
@@ -792,12 +720,11 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.gstNumber}
                   onChange={(e) => handleBusinessInfoChange("gstNumber", e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.gstNumber"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field1.toLowerCase()}`}
                   maxLength={15}
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessInfo.gstNumber"]} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
@@ -807,12 +734,11 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.taxIdentificationNumber}
                   onChange={(e) => handleBusinessInfoChange("taxIdentificationNumber", e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.taxIdentificationNumber"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field2.toLowerCase()}`}
                   maxLength={15}
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessInfo.taxIdentificationNumber"]} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
@@ -824,6 +750,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   onChange={(e) => handleBusinessInfoChange("importExportCode", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field3.toLowerCase()} (if applicable)`}
+                  disabled={!isEditable}
                 />
               </div>
             </div>
@@ -844,8 +771,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.businessInfo.country}
                 onChange={(e) => handleBusinessInfoChange("country", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.country"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                disabled={!isEditable}
               >
                 <option value="">Select country</option>
                 <option value="IN">India</option>
@@ -858,7 +785,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <option value="JP">Japan</option>
                 <option value="CN">China</option>
               </select>
-              <ErrorMessage error={errors["businessInfo.country"]} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -867,11 +793,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.streetAddress1}
                   onChange={(e) => handleBusinessInfoChange("streetAddress1", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.streetAddress1"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter street address"
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessInfo.streetAddress1"]} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">Street Address 2</label>
@@ -881,6 +806,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   onChange={(e) => handleBusinessInfoChange("streetAddress2", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter additional address info"
+                  disabled={!isEditable}
                 />
               </div>
             </div>
@@ -891,11 +817,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.city}
                   onChange={(e) => handleBusinessInfoChange("city", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.city"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter city"
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessInfo.city"]} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">State/Region *</label>
@@ -903,11 +828,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.stateRegion}
                   onChange={(e) => handleBusinessInfoChange("stateRegion", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.stateRegion"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter state/region"
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessInfo.stateRegion"]} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">Postal Code *</label>
@@ -915,15 +839,13 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessInfo.postalCode}
                   onChange={(e) => handleBusinessInfoChange("postalCode", e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessInfo.postalCode"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter postal code"
                   maxLength={10}
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessInfo.postalCode"]} />
               </div>
             </div>
-
           </div>
         </div>
 
@@ -942,11 +864,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.businessContact.name}
                 onChange={(e) => handleBusinessContactChange("name", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.name"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter contact person name"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessContact.name"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Email Address *</label>
@@ -954,11 +875,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="email"
                 value={formData.businessContact.email}
                 onChange={(e) => handleBusinessContactChange("email", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.email"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter email address"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessContact.email"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Phone Number *</label>
@@ -966,11 +886,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="tel"
                 value={formData.businessContact.phone}
                 onChange={(e) => handleBusinessContactChange("phone", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.phone"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter phone number"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessContact.phone"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">WhatsApp Number</label>
@@ -978,11 +897,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="tel"
                 value={formData.businessContact.whatsapp || ""}
                 onChange={(e) => handleBusinessContactChange("whatsapp", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.whatsapp"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter WhatsApp number"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["businessContact.whatsapp"]} />
             </div>
           </div>
 
@@ -994,8 +912,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               <select
                 value={formData.businessContact.country}
                 onChange={(e) => handleBusinessContactChange("country", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.country"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                disabled={!isEditable}
               >
                 <option value="">Select country</option>
                 <option value="IN">India</option>
@@ -1008,33 +926,30 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <option value="JP">Japan</option>
                 <option value="CN">China</option>
               </select>
-              <ErrorMessage error={errors["businessContact.country"]} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">District/County *</label>
-                  <input
-                    type="text"
-                    value={formData.businessContact.district}
-                    onChange={(e) => handleBusinessContactChange("district", e.target.value)}
-                    className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.district"] ? "border-red-500" : "border-gray-200"
-                      }`}
-                    placeholder="Enter district"
-                  />
-                  <ErrorMessage error={errors["businessContact.district"]} />
-                </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700">District/County *</label>
+                <input
+                  type="text"
+                  value={formData.businessContact.district}
+                  onChange={(e) => handleBusinessContactChange("district", e.target.value)}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  placeholder="Enter district"
+                  disabled={!isEditable}
+                />
+              </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">Pin Code *</label>
                 <input
                   type="text"
                   value={formData.businessContact.pinCode}
                   onChange={(e) => handleBusinessContactChange("pinCode", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.pinCode"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter pin code"
                   maxLength={6}
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessContact.pinCode"]} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">State/County *</label>
@@ -1042,15 +957,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   type="text"
                   value={formData.businessContact.state}
                   onChange={(e) => handleBusinessContactChange("state", e.target.value)}
-                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["businessContact.state"] ? "border-red-500" : "border-gray-200"
-                    }`}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter state"
+                  disabled={!isEditable}
                 />
-                <ErrorMessage error={errors["businessContact.state"]} />
               </div>
             </div>
-
-
           </div>
         </div>
 
@@ -1064,12 +976,9 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { key: "materialStandard", label: "Material Standard (1-5)" }, // Updated label to show 1-5 range
+              { key: "materialStandard", label: "Material Standard (1-5)" },
               { key: "qualityLevel", label: "Quality Level (1-5)" },
-              {
-                key: "sustainabilityLevel",
-                label: "Sustainability Level (1-5)",
-              },
+              { key: "sustainabilityLevel", label: "Sustainability Level (1-5)" },
               { key: "serviceLevel", label: "Service Level (1-5)" },
               { key: "standardsLevel", label: "Standards Level (1-5)" },
               { key: "ethicsLevel", label: "Ethics Level (1-5)" },
@@ -1080,10 +989,11 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   <input
                     type="range"
                     min="1"
-                    max="5" // Changed max from 10 to 5
+                    max="5"
                     value={formData.credibilityAssessment[key]}
                     onChange={(e) => handleCredibilityChange(key, Number.parseInt(e.target.value))}
                     className="flex-1 h-2 bg-gray-200 rounded-lg"
+                    disabled={!isEditable}
                   />
                   <span className="w-8 text-center font-bold text-[var(--primary-color)]">
                     {formData.credibilityAssessment[key]}
@@ -1110,6 +1020,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   checked={Boolean(value)}
                   onChange={(e) => handleCertificationChange(key, e.target.checked)}
                   className="w-4 h-4 text-[var(--primary-color)] rounded"
+                  disabled={!isEditable}
                 />
                 <span className="text-sm text-gray-700 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</span>
               </label>
@@ -1132,11 +1043,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.bankName}
                 onChange={(e) => handleBankingInfoChange("bankName", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.bankName"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter bank name"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["bankingInfo.bankName"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Account Name *</label>
@@ -1144,19 +1054,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.accountName}
                 onChange={(e) => handleBankingInfoChange("accountName", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.accountName"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter account holder name"
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["bankingInfo.accountName"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Account Type *</label>
               <select
                 value={formData.bankingInfo.accountType}
                 onChange={(e) => handleBankingInfoChange("accountType", e.target.value)}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.accountType"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                disabled={!isEditable}
               >
                 <option value="">Select account type</option>
                 <option value="savings">Savings Account</option>
@@ -1164,7 +1073,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <option value="business">Business Account</option>
                 <option value="corporate">Corporate Account</option>
               </select>
-              <ErrorMessage error={errors["bankingInfo.accountType"]} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">Account Number *</label>
@@ -1172,39 +1080,35 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.accountNumber}
                 onChange={(e) => handleBankingInfoChange("accountNumber", e.target.value.replace(/\D/g, ""))}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.accountNumber"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter account number"
                 maxLength={18}
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["bankingInfo.accountNumber"]} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">{fieldLabels.banking.routingCode} *</label>{" "}
-              {/* Dynamic routing code label */}
+              <label className="block text-sm font-semibold text-gray-700">{fieldLabels.banking.routingCode} *</label>
               <input
                 type="text"
                 value={formData.bankingInfo.ifscCode}
                 onChange={(e) => handleBankingInfoChange("ifscCode", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.ifscCode"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder={`Enter ${fieldLabels.banking.routingCode.toLowerCase()}`}
                 maxLength={11}
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["bankingInfo.ifscCode"]} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">SWIFT Code</label> {/* Simplified label */}
+              <label className="block text-sm font-semibold text-gray-700">SWIFT Code</label>
               <input
                 type="text"
                 value={formData.bankingInfo.swiftBisCode || ""}
                 onChange={(e) => handleBankingInfoChange("swiftBisCode", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.swiftBisCode"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter SWIFT code (for international)"
                 maxLength={11}
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["bankingInfo.swiftBisCode"]} />
             </div>
             <div className="md:col-span-2 space-y-2">
               <label className="block text-sm font-semibold text-gray-700">IBAN Code</label>
@@ -1212,12 +1116,11 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 type="text"
                 value={formData.bankingInfo.ibanCode || ""}
                 onChange={(e) => handleBankingInfoChange("ibanCode", e.target.value.toUpperCase())}
-                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium ${errors["bankingInfo.ibanCode"] ? "border-red-500" : "border-gray-200"
-                  }`}
+                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter IBAN code (for international)"
                 maxLength={34}
+                disabled={!isEditable}
               />
-              <ErrorMessage error={errors["bankingInfo.ibanCode"]} />
             </div>
           </div>
         </div>
@@ -1238,10 +1141,10 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                   checked={Boolean(value)}
                   onChange={(e) => handleComplianceChange(key, e.target.checked)}
                   className="w-4 h-4 text-red-600 rounded"
+                  disabled={!isEditable}
                 />
                 <span className="text-sm text-gray-700">
-                  {fieldLabels.compliance[key as keyof typeof fieldLabels.compliance] || key}{" "}
-                  {/* Use role-based compliance labels */}
+                  {fieldLabels.compliance[key as keyof typeof fieldLabels.compliance] || key}
                 </span>
               </label>
             ))}
@@ -1249,16 +1152,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         </div>
       </div>
 
-      <div className="flex justify-end items-center mt-8">
-        <button className="hidden px-4 py-2  sm:px-8 sm:py-4  sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium">
+      <div className="flex justify-between items-center mt-8">
+        <button
+          onClick={onPrev}
+          className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+        >
           <span className="inline">←</span>
           <span className="hidden md:inline ml-2">Prev</span>
         </button>
         <button
           onClick={handleNext}
-          disabled={loading}
-          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-xl transition-all font-medium shadow-lg ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[var(--primary-hover-color)]"
-            }`}
+          disabled={loading || (isEditable && !areRequiredFieldsFilled())}
+          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-xl transition-all font-medium shadow-lg ${loading || (isEditable && !areRequiredFieldsFilled()) ? "opacity-50 cursor-not-allowed" : "hover:bg-[var(--primary-hover-color)]"}`}
         >
           {loading ? (
             <span>Submitting...</span>
@@ -1269,7 +1174,6 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             </>
           )}
         </button>
-
       </div>
     </div>
   )

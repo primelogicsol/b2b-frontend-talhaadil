@@ -682,17 +682,17 @@ export default function ComprehensiveProductSelection({
       )}
 
       {/* Navigation */}
-      <div className={`flex items-center ${currentStep === "categories" ? "justify-end" : "justify-between"}`}>
-        {currentStep !== "categories" && (
-          <button
-            onClick={handlePrev}
-            disabled={isSubmitting}
-            className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <span className="inline">←</span>
-            <span className="hidden md:inline ml-2">Prev</span>
-          </button>
-        )}
+      <div className="flex items-center justify-between">
+
+        <button
+          onClick={handlePrev}
+          disabled={isSubmitting}
+          className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span className="inline">←</span>
+          <span className="hidden md:inline ml-2">Prev</span>
+        </button>
+
         <button
           onClick={handleNext}
           disabled={

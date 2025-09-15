@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { FaHandshake, FaCheck, FaLock } from "react-icons/fa";
 import { useGlobalContext } from "@/context/ScreenProvider";
 import { sendLevel } from "@/services/regitsration";
+import { getUserRegistrationSelected } from "@/services/user";
 import Cookies from "js-cookie";
 import { useToast } from "@/context/ToastProvider";
-import { TruckElectricIcon } from "lucide-react";
 
 interface Partnership {
   id: string;
@@ -28,8 +28,9 @@ interface ChoosePartnershipProps {
   onUpdate: (data: { selected: string; title: string }) => void;
   onNext: () => void;
   onPrev: () => void;
-  user_role?: "buyer" | "vendor"; // Add user role prop
+  user_role?: "buyer" | "vendor";
 }
+
 const partnerships: Partnership[] = [
   {
     id: "drop_shipping",
@@ -153,8 +154,7 @@ const partnerships: Partnership[] = [
     retention: "4 months",
     kpiScore: "8+",
     available: false,
-  }
-  ,
+  },
   {
     id: "storytelling",
     level: 10,
@@ -167,8 +167,6 @@ const partnerships: Partnership[] = [
     kpiScore: "8.5+",
     available: false,
   },
-
-
   {
     id: "warehouse",
     level: 11,
@@ -237,15 +235,15 @@ export default function ChoosePartnership({
   onNext,
   onPrev,
 }: ChoosePartnershipProps) {
-
+  const fixStep = 1;
   const { is4K } = useGlobalContext();
   const [selectedPartnership, setSelectedPartnership] = useState(
     data?.selected || ""
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [user_role, setUserRole] = useState<"buyer" | "vendor">("buyer");
+  const [isViewOnly, setIsViewOnly] = useState(false);
   const { showToast } = useToast();
-
 
   useEffect(() => {
     const roleFromCookie = Cookies.get("user_role") as
@@ -255,34 +253,66 @@ export default function ChoosePartnership({
     if (roleFromCookie) {
       setUserRole(roleFromCookie);
     }
-  }, []);
+
+    const registrationStep = parseInt(
+      Cookies.get("registration_step") || "0",
+      10
+    );
+    
+    console.log("FETCHED STEP", registrationStep, fixStep);
+    if (registrationStep > fixStep) {
+      setIsViewOnly(true);
+      getUserRegistrationSelected()
+        .then((response:any) => {
+          const registrationSelected =
+            response.data.registration_selected || [];
+          const lastSelected = registrationSelected[registrationSelected.length - 1]?.toLowerCase();
+          if (lastSelected) {
+            setSelectedPartnership(lastSelected);
+            const selectedPartnershipData = partnerships.find(
+              (p) => p.id === lastSelected
+            );
+            if (selectedPartnershipData) {
+              const roleBasedTitle =
+                user_role === "buyer"
+                  ? selectedPartnershipData.buyer
+                  : selectedPartnershipData.vendor;
+              onUpdate({
+                selected: lastSelected,
+                title: `${selectedPartnershipData.partnership_name} - ${roleBasedTitle}`,
+              });
+            }
+          }
+        })
+        .catch((error:any) => {
+          console.error("Error fetching registration selected:", error);
+          showToast("Error fetching selected partnership. Please try again.");
+        });
+    }
+  }, [user_role, onUpdate]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const handleSelect = (p: Partnership) => {
-    if (p.available) {
-      setSelectedPartnership(p.id);
-      const roleBasedTitle = user_role === "buyer" ? p.buyer : p.vendor;
-      onUpdate({
-        selected: p.id,
-        title: `${p.partnership_name} - ${roleBasedTitle}`,
-      });
-    }
+    if (isViewOnly || !p.available) return;
+    setSelectedPartnership(p.id);
+    const roleBasedTitle = user_role === "buyer" ? p.buyer : p.vendor;
+    onUpdate({
+      selected: p.id,
+      title: `${p.partnership_name} - ${roleBasedTitle}`,
+    });
   };
 
   const submitPartnershipSelection = async (partnershipData: any) => {
     try {
       setIsSubmitting(true);
-      console.log(partnershipData);
-
-      const selectedPartnership = partnerships.find(
+      const selectedPartnershipData = partnerships.find(
         (p) => p.id === partnershipData.selected
       );
-      const selectedLevel = selectedPartnership?.level || 1;
+      const selectedLevel = selectedPartnershipData?.level || 1;
 
-      // Get all partnership IDs from level 1 up to the selected level
       const allLevelsUpToSelected = partnerships
         .filter((p) => p.level <= selectedLevel)
         .sort((a, b) => a.level - b.level)
@@ -295,17 +325,16 @@ export default function ChoosePartnership({
         localStorage.setItem("partnershipType", lastElement);
       }
 
-      const response = sendLevel({
-        levels: allLevelsUpToSelected, // Send all levels instead of just the selected one
+      const response = await sendLevel({
+        levels: allLevelsUpToSelected,
         is_lateral: partnershipData.isLateral || false,
       });
 
-      data = (await response).data;
-      console.log("Partnership selection submitted successfully:", data);
+      console.log("Partnership selection submitted successfully:", response.data);
       let step = parseInt(Cookies.get("registration_step") || "0", 10);
       step += 1;
       Cookies.set("registration_step", step.toString());
-      onNext()
+      onNext();
     } catch (error: any) {
       const errorMsg = error?.response?.data?.detail;
 
@@ -317,9 +346,6 @@ export default function ChoosePartnership({
       } else {
         showToast("Network error. Please try again.");
       }
-
-      console.error("Network Error:", error);
-
       console.error("Error submitting partnership selection:", error);
       throw error;
     } finally {
@@ -328,6 +354,10 @@ export default function ChoosePartnership({
   };
 
   const handleNext = async () => {
+    if (isViewOnly) {
+      onNext();
+      return;
+    }
     if (selectedPartnership) {
       try {
         const selectedData = {
@@ -339,9 +369,7 @@ export default function ChoosePartnership({
             partnerships.find((p) => p.id === selectedPartnership)?.isAltPath ||
             false,
         };
-
         await submitPartnershipSelection(selectedData);
-
       } catch (error) {
         // Error already handled in submitPartnershipSelection
       }
@@ -349,8 +377,10 @@ export default function ChoosePartnership({
   };
 
   const handleGoToPay = (p: Partnership) => {
+    if (isViewOnly) return;
     alert(
-      `Redirecting to payment for ${p.partnership_name} - ${user_role === "buyer" ? p.buyer : p.vendor
+      `Redirecting to payment for ${p.partnership_name} - ${
+        user_role === "buyer" ? p.buyer : p.vendor
       }…`
     );
   };
@@ -365,7 +395,6 @@ export default function ChoosePartnership({
       user_role === "buyer"
         ? `As a ${p.buyer}, you will benefit from this partnership structure.`
         : `As a ${p.vendor}, you will provide services in this partnership model.`;
-
     return `${baseDescription} ${roleContext}`;
   };
 
@@ -376,17 +405,20 @@ export default function ChoosePartnership({
           <FaHandshake className="text-white text-2xl" />
         </div>
         <h1
-          className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"
-            }`}
+          className={`font-bold text-[var(--primary-color)] mb-4 ${
+            is4K ? "text-6xl" : "text-4xl"
+          }`}
         >
-          Choose Your Partnership
+          {isViewOnly ? "Your Selected Partnership" : "Choose Your Partnership"}
         </h1>
         <p
-          className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
-            }`}
+          className={`text-[var(--primary-color)]/70 mx-auto ${
+            is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
+          }`}
         >
-          Select the partnership that best aligns with your business goals as a{" "}
-          {user_role}
+          {isViewOnly
+            ? `Review the partnership you previously selected as a ${user_role}.`
+            : `Select the partnership that best aligns with your business goals as a ${user_role}.`}
         </p>
         <div className="mt-4 inline-flex items-center px-4 py-2 bg-[var(--secondary-light-color)] rounded-full">
           <span className="text-sm font-semibold text-[var(--primary-color)]">
@@ -396,45 +428,43 @@ export default function ChoosePartnership({
       </div>
 
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""
-          }`}
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${
+          is4K ? "gap-12" : ""
+        }`}
       >
         {partnerships.map((p) => (
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
             className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
-              ${p.available
-                ? "cursor-pointer hover:-translate-y-2"
-                : "opacity-60"
+              ${
+                isViewOnly && selectedPartnership !== p.id
+                  ? "opacity-30 pointer-events-none"
+                  : p.available && !isViewOnly
+                  ? "cursor-pointer hover:-translate-y-2"
+                  : "opacity-60 pointer-events-none"
               }
-              ${selectedPartnership === p.id
-                ? "ring-4 ring-[var(--secondary-color)] scale-105"
-                : ""
+              ${
+                selectedPartnership === p.id
+                  ? "ring-4 ring-[var(--secondary-color)] scale-105"
+                  : ""
               }
-              ${is4K ? "text-lg" : "text-base"}
-            `}
+              ${is4K ? "text-lg" : "text-base"}`}
           >
             {p.isAltPath && (
-              <div className={`absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl
-               ${selectedPartnership === p.id
-                  ? "mt-1 ml-1"
-                  : ""}
-              `}>
+              <div
+                className={`absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl
+                  ${selectedPartnership === p.id ? "mt-1 ml-1" : ""}`}
+              >
                 Lateral
               </div>
             )}
-
             <div
               className={`absolute top-0 right-0 text-white text-xs font-bold px-2 py-1 rounded-tr-2xl rounded-bl-2xl bg-[var(--primary-color)]
-    ${selectedPartnership === p.id
-                  ? "mt-1 mr-1"
-                  : ""}`}
+                ${selectedPartnership === p.id ? "mt-1 mr-1" : ""}`}
             >
               Level {p.level}
             </div>
-
-
             <div className="absolute -top-3 left-32">
               {selectedPartnership === p.id ? (
                 <div className="w-10 h-10 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
@@ -450,29 +480,27 @@ export default function ChoosePartnership({
                 </div>
               )}
             </div>
-
             <div className="flex justify-start mb-6 mt-6">
               <span
-                className={`px-4 py-2 text-sm font-semibold rounded-full ${p.available
-                  ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
-                  : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
-                  }`}
+                className={`px-4 py-2 text-sm font-semibold rounded-full ${
+                  p.available
+                    ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
+                    : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
+                }`}
               >
                 {p.available ? "Available Now" : "Requirements Not Met"}
               </span>
             </div>
-
             <h3
-              className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"
-                }`}
+              className={`font-bold text-[var(--primary-color)] mb-2 ${
+                is4K ? "text-2xl" : "text-xl"
+              }`}
             >
               {p.partnership_name}
             </h3>
-
             <p className="text-sm font-semibold text-[var(--secondary-color)] mb-4">
               Role: {getRoleBasedTitle(p)}
             </p>
-
             <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
               <div className="text-center">
                 <p className="text-xs text-[var(--primary-color)]/70 mb-1">
@@ -492,23 +520,21 @@ export default function ChoosePartnership({
                 </p>
               </div>
             </div>
-
             <p
-              className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"
-                } text-[var(--primary-color)]/80`}
+              className={`leading-relaxed mb-6 ${
+                is4K ? "text-base" : "text-sm"
+              } text-[var(--primary-color)]/80`}
             >
               {getRoleBasedDescription(p)}
             </p>
-
-            {!p.available && (
-
+            {!p.available && !isViewOnly && (
               <div className="mt-auto space-y-2">
                 <button
                   onClick={() => {
-                    window.location.href = '/process'
+                    window.location.href = "/process";
                   }}
                   className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
-                  text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}
+                    text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}
                 >
                   Learn About Fast-Track Options →
                 </button>
@@ -519,7 +545,7 @@ export default function ChoosePartnership({
                       handleGoToPay(p);
                     }}
                     className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
-                    text-[var(--primary-color)] border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white`}
+                      text-[var(--primary-color)] border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white`}
                   >
                     Go to Pay
                   </button>
@@ -532,8 +558,9 @@ export default function ChoosePartnership({
 
       {selectedPartnership && (
         <div
-          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${is4K ? "text-lg" : ""
-            }`}
+          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${
+            is4K ? "text-lg" : ""
+          }`}
         >
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
@@ -541,8 +568,9 @@ export default function ChoosePartnership({
             </div>
             <div>
               <h3
-                className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"
-                  }`}
+                className={`font-bold text-[var(--primary-color)] ${
+                  is4K ? "text-2xl" : "text-xl"
+                }`}
               >
                 Partnership Selected
               </h3>
@@ -562,17 +590,16 @@ export default function ChoosePartnership({
       )}
 
       <div className="flex justify-end items-center mt-8">
-
-
         <button
           onClick={handleNext}
           disabled={!selectedPartnership || isSubmitting}
           className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-xl text-white shadow-lg transition-all font-medium
             bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)]
             ${is4K ? "text-lg" : ""} 
-            ${!selectedPartnership || isSubmitting
-              ? "opacity-50 cursor-not-allowed"
-              : ""
+            ${
+              !selectedPartnership || isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : ""
             }`}
         >
           <span className="hidden md:inline mr-2">

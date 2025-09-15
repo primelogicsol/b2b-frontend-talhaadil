@@ -136,7 +136,7 @@ export default function RegisterPage() {
       Cookies.set("visibility_level", data.visibility_level.toString());
       Cookies.set("ownership", JSON.stringify(data.ownership));
       Cookies.set("is_registered", data.is_registered);
-      Cookies.set("registration_step", data.registration_step.toString());
+      Cookies.set("registration_step", (data.registration_step + 1).toString());
       Cookies.set("first_register", data.first_register.toString());
       router.push("/");
     } catch (err: any) {

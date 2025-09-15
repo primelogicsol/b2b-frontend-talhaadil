@@ -55,15 +55,15 @@ export default function RegistrationProcess() {
   const registrationStatus = Cookies.get("is_registered");
   const first_register = Cookies.get("first_register");
   const stepFromCookie = Cookies.get("registration_step");
-  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10) + 1 : 1;
+  const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10): 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(3);
+  const [currentStep, setCurrentStep] = useState<number>(initialStep);
   const [formData, setFormData] = useState<FormData>({});
   const contentRef = useRef<HTMLDivElement>(null); // Reference to content area
 
   const updateFormData = (stepData: Partial<FormData>) => {
     setFormData((prev) => ({ ...prev, ...stepData }));
-  };
+  }
 
   const nextStep = () => {
     if (currentStep < 7) {
