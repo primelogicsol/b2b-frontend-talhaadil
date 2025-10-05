@@ -426,66 +426,99 @@ const tabData = {
 }
 
 export default function PremiumTabs() {
-  const { is4K } = useGlobalContext()
-  const [activeTab, setActiveTab] = useState("brickStores")
+  const { is4K } = useGlobalContext();
+  const [activeTab, setActiveTab] = useState("brickStores");
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const tabs = Object.entries(tabData);
+  const totalTabs = tabs.length;
+
+  const handlePrevTab = () => {
+    setTabIndex((prev) => (prev === 0 ? totalTabs - 1 : prev - 1));
+    setActiveTab(tabs[tabIndex === 0 ? totalTabs - 1 : tabIndex - 1][0]);
+  };
+
+  const handleNextTab = () => {
+    setTabIndex((prev) => (prev === totalTabs - 1 ? 0 : prev + 1));
+    setActiveTab(tabs[tabIndex === totalTabs - 1 ? 0 : tabIndex + 1][0]);
+  };
 
   return (
-    <div className={`${is4K ? "p-8 md:p-16 lg:p-24" : "p-4 md:p-8 lg:p-12"}`}>
-      <div className={`${is4K ? "max-w-[2000px]" : "max-w-7xl"} mx-auto`}>
+    <div className={`${is4K ? "p-6 md:p-12 lg:p-20" : "p-3 md:p-6 lg:p-10"} min-w-[280px]`}>
+      <div className={`${is4K ? "max-w-[2000px]" : "max-w-6xl"} mx-auto`}>
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h1
-            className={`text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-6 text-[var(--secondary-color)] `}
+            className={`text-xl xs:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 text-[var(--secondary-color)]`}
           >
             North American Handicraft Business Insights
           </h1>
           <p
-            className={`${is4K ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} text-center px-2 md:text-center lg:text-center text-gray-700 ${is4K ? "max-w-4xl" : "max-w-3xl"} mx-auto leading-relaxed`}
+            className={`text-base xs:text-lg md:text-xl lg:text-2xl text-center px-2 text-gray-700 ${is4K ? "max-w-4xl" : "max-w-3xl"} mx-auto leading-relaxed`}
           >
-            Actionable Data and Market Strategies to Guide Smarter Trade Decisions
+            Actionable Data and Market Strategies to Guide Smarter Trade Decisions
           </p>
         </motion.div>
 
-        {/* Tabs */}
+        {/* Tab Navigation with Arrows */}
         <motion.div
-          className="flex justify-center mb-8"
+          className="flex items-center justify-center mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div
-            className={`flex gap-1 ${is4K ? "p-3" : "p-2"} rounded-full shadow-lg border overflow-x-auto no-scrollbar`}
-            style={{
-              backgroundColor: "var(--primary-color)",
-              borderColor: "var(--primary-light-text-color)",
-            }}
+          <button
+            onClick={handlePrevTab}
+            className={`p-2 rounded-full bg-[var(--primary-color)] text-white shadow-md hover:bg-[var(--primary-hover-color)] transition-all duration-300 ${is4K ? "mr-6" : "mr-4"}`}
+            aria-label="Previous tab"
           >
-            {Object.entries(tabData).map(([key, data]) => {
-              return (
-                <motion.button
-                  key={key}
-                  onClick={() => setActiveTab(key)}
-                  className={`relative ${is4K ? "px-8 py-4" : "px-6 py-3"} rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${is4K ? "text-base" : "text-sm"} ${
-                    activeTab === key ? "text-white shadow-lg" : "text-white"
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  style={{
-                    background:
-                      activeTab === key
-                        ? "linear-gradient(to right, var(--secondary-color), var(--secondary-hover-color))"
-                        : "transparent",
-                  }}
-                >
-                  <span className="relative z-10 flex items-center gap-2">{data.title}</span>
-                </motion.button>
-              )
-            })}
+            <svg
+              className={`${is4K ? "w-8 h-8" : "w-6 h-6"}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div 
+            className={`flex bg-transparent justify-center items-center rounded-full w-full max-w-[300px] xs:max-w-[400px] md:max-w-[500px]`}
+           
+          >
+            <motion.button
+              onClick={() => setActiveTab(tabs[tabIndex][0])}
+              className={`relative ${is4K ? "px-6 py-4 text-base" : "px-6 py-4 text-sm"} rounded-full font-semibold transition-all duration-300 flex items-center justify-center w-full text-white`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                background: "linear-gradient(to right, var(--secondary-color), var(--secondary-hover-color))",
+              }}
+            >
+              <span className="relative z-10 flex items-center justify-center">
+                {tabs[tabIndex][1].title}
+              </span>
+            </motion.button>
           </div>
+
+          <button
+            onClick={handleNextTab}
+            className={`p-2 rounded-full bg-[var(--primary-color)] text-white shadow-md hover:bg-[var(--primary-hover-color)] transition-all duration-300 ${is4K ? "ml-6" : "ml-4"}`}
+            aria-label="Next tab"
+          >
+            <svg
+              className={`${is4K ? "w-8 h-8" : "w-6 h-6"}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </motion.div>
 
         {/* Cards */}
@@ -496,72 +529,70 @@ export default function PremiumTabs() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
-            {tabData[activeTab as keyof typeof tabData].cards.map((card, index) => {
-              return (
+            {tabData[activeTab].cards.map((card, index) => (
+              <motion.div
+                key={`${card.title}-${index}`}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.5,
+                  type: "spring",
+                  bounce: 0.3,
+                }}
+                whileHover={{
+                  scale: 1.03,
+                  y: -8,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                }}
+                className={`rounded-2xl shadow-xl ${is4K ? "p-8" : "p-6"} border transition-all duration-300 group cursor-pointer relative overflow-hidden`}
+                style={{
+                  backgroundColor: "var(--primary-color)",
+                  borderColor: "var(--primary-light-text-color)",
+                }}
+              >
                 <motion.div
-                  key={`${card.title}-${index}`}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{
-                    delay: index * 0.1,
-                    duration: 0.5,
-                    type: "spring",
-                    bounce: 0.3,
-                  }}
-                  whileHover={{
-                    scale: 1.03,
-                    y: -8,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                  }}
-                  className={`rounded-2xl shadow-xl ${is4K ? "p-10" : "p-8"} border transition-all duration-300 group cursor-pointer relative overflow-hidden`}
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
-                    backgroundColor: "var(--primary-color)",
-                    borderColor: "var(--primary-light-text-color)",
+                    background: "",
                   }}
-                >
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: "",
-                    }}
-                    initial={false}
-                  />
-                  <div className="relative z-10">
-                    <div className={`flex items-center gap-4 ${is4K ? "mb-8" : "mb-6"}`}>
-                      <h3
-                        className={`${is4K ? "text-2xl" : "text-xl"} font-bold text-gray-100 transition-colors duration-300`}
-                      >
-                        {card.title}
-                      </h3>
-                    </div>
-                    <ul className="space-y-3">
-                      {card.points.map((point, pointIndex) => (
-                        <motion.li
-                          key={pointIndex}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 + pointIndex * 0.05 }}
-                          className={`flex items-start gap-3 text-gray-100`}
-                        >
-                          <motion.div
-                            className={`${is4K ? "w-3 h-3" : "w-2 h-2"} rounded-full mt-1`}
-                            style={{
-                              background: "white",
-                            }}
-                          />
-                          <span className={`${is4K ? "text-base" : "text-sm"} leading-relaxed -mt-1`}>{point}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
+                  initial={false}
+                />
+                <div className="relative z-10">
+                  <div className={`flex items-center gap-3 ${is4K ? "mb-6" : "mb-4"}`}>
+                    <h3
+                      className={`${is4K ? "text-xl" : "text-lg"} font-bold text-gray-100 transition-colors duration-300`}
+                    >
+                      {card.title}
+                    </h3>
                   </div>
-                </motion.div>
-              )
-            })}
+                  <ul className="space-y-2">
+                    {card.points.map((point, pointIndex) => (
+                      <motion.li
+                        key={pointIndex}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 + pointIndex * 0.05 }}
+                        className={`flex items-start gap-2 text-gray-100`}
+                      >
+                        <motion.div
+                          className={`${is4K ? "w-2.5 h-2.5" : "w-2 h-2"} rounded-full mt-1`}
+                          style={{
+                            background: "white",
+                          }}
+                        />
+                        <span className={`${is4K ? "text-base" : "text-sm"} leading-relaxed -mt-1`}>{point}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </AnimatePresence>
       </div>
     </div>
-  )
+  );
 }

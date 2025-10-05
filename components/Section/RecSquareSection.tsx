@@ -49,29 +49,34 @@ export default function RecSquareSection({
         fontSize: is4K ? "1.125rem" : "1rem",
       }}
     >
-      {/* Left Section */}
       <div className="relative w-full lg:w-1/2 flex justify-center items-center p-4 lg:p-0">
-        <div className="relative w-full max-w-sm md:max-w-md lg:max-w-[400px] h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl">
-          <div className="absolute inset-0 border-4 border-[#FF6A13] rounded-2xl transform z-20 -mt-4"></div>
-          <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group z-10">
+        {/* Main Image Wrapper with full border */}
+        <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg group">
+          {/* Full border */}
+          <div className="absolute inset-0 -m-4 border-4 border-[#FF6A13] rounded-2xl z-20 pointer-events-none"></div>
+
+          {/* Image container */}
+          <div className="aspect-[3/4] rounded-2xl overflow-hidden">
             <Image
               src="/images/main2.webp"
               alt="Main Partnership Image"
-              width={390}
-              height={590}
-              className="absolute inset-0 w-full h-full object-fit transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+              fill
+              className="object-cover object-top rounded-2xl transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
             />
             <div className="absolute inset-0 opacity-60 mix-blend-multiply"></div>
           </div>
         </div>
 
-        <div className="absolute -bottom-8 right-0 md:top-1/2 md:right-0 md:-translate-y-1/2 lg:top-1/2 lg:left-[calc(100%-120px)] lg:-translate-y-1/2 p-2 bg-white rounded-2xl shadow-2xl z-20 w-[200px] h-[150px] md:w-[250px] md:h-[200px] border border-white group">
+        {/* Floating Small Image */}
+        <div className="absolute -bottom-6 right-4 md:top-1/2 md:right-4 md:-translate-y-1/2 lg:top-1/2 lg:left-[calc(100%-120px)] lg:-translate-y-1/2 
+                  p-2 bg-white rounded-2xl shadow-2xl z-20 
+                  w-[140px] h-[100px] sm:w-[180px] sm:h-[130px] md:w-[220px] md:h-[160px] lg:w-[250px] lg:h-[200px] 
+                  border border-white group">
           <Image
             src="/main.webp"
             alt="Small Partnership Image"
-            width={250}
-            height={200}
-            className="w-full h-full object-cover rounded-xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-1"
+            fill
+            className="object-cover rounded-xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-1"
           />
         </div>
       </div>

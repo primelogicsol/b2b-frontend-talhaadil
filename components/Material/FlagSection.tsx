@@ -143,7 +143,7 @@ export default function HeroSection() {
         </div>
 
         {/* Bottom Center Text (Dynamic) */}
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-black text-xs md:text-lg 2xl:text-2xl text-center mb-4">
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-black text-xs md:text-lg 2xl:text-2xl text-center mb-10 md:mb-4">
           <p className="font-semibold drop-shadow-md">{selectedLogo.title} - {selectedLogo.subtitle}</p>
           
         </div>

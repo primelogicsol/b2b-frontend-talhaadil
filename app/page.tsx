@@ -33,7 +33,7 @@ import {
   MapPin,
 } from "lucide-react";
 import BannerWithFeatures from "@/components/Material/BannerwithFeatures";
-import { useRef, createRef } from "react";
+import { useRef } from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
 import HowItWorksSection from "@/components/Section/HowItWorksSection";
 import ScrollSection from "@/components/Section/ScrollSection";
@@ -43,13 +43,12 @@ import Homepage from "@/components/Essentials/HomePage";
 import KashmirCraftsCarousel from "@/components/Material/ProfitBox";
 import FlagSection from "@/components/Material/FlagSection";
 import Location from "@/components/Essentials/Location";
-// Screen detection hook
 
 const howItWorksData = {
   title: "How It Works",
   description:
     "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC’s transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
-  imageUrl: "/images/onboarding.jpg", // Ensure this image exists in /public/images
+  imageUrl: "/images/onboarding.jpg",
   imageAlt: "Onboarding Illustration",
   mini_desc: " Our Onboarding Process",
   phases: [
@@ -102,7 +101,6 @@ const partnershipCategories = [
         label: "Drop Shipping & E-Commerce",
         href: "/core-trade/dropshipping-ecommerce",
       },
-
       { label: "Consignment", href: "/core-trade/consignment" },
       {
         label: "Wholesale & Distribution",
@@ -166,7 +164,7 @@ const whatSetsUsApartCards = [
     icon: <Scale className="w-8 h-8" />,
     title: "Our Values",
     description:
-      "We are committed to authenticity, fair practices, and cultural preservation, ensuring every step aligns with our core principles.",
+      "Rooted in authenticity, fairness, and cultural preservation at every step.",
     buttonText: "READ MORE",
     link: "/our-values",
   },
@@ -174,15 +172,15 @@ const whatSetsUsApartCards = [
     icon: <BookOpen className="w-8 h-8" />,
     title: "Our Story",
     description:
-      "From the valleys of Kashmir to the global stage, our journey is driven by passion, craftsmanship, and a mission to empower artisans.",
+      "From Kashmir’s valleys to the world, driven by passion and artisanship.",
     buttonText: "READ MORE",
     link: "/our-story",
   },
   {
     icon: <Target className="w-8 h-8" />,
-    title: "Business Niche",
+    title: "Business",
     description:
-      "We specialize in connecting authentic Kashmiri handmade products to worldwide buyers, blending tradition with modern reach.",
+      "Connecting Kashmiri handmade products with global buyers.",
     buttonText: "READ MORE",
     link: "/business-niche",
   },
@@ -190,7 +188,7 @@ const whatSetsUsApartCards = [
     icon: <MapPin className="w-8 h-8" />,
     title: "Our Team",
     description:
-      "A dedicated group of skilled professionals working together to deliver excellence and innovation every day.",
+      "Skilled professionals delivering excellence and innovation together.",
     buttonText: "READ MORE",
     link: "/our-team",
   },
@@ -237,7 +235,34 @@ export default function LandingPage() {
     },
   ];
 
-  // Animated components
+  // Prevent unwanted scrolling to any section on page load, especially for mobile
+  useEffect(() => {
+    // Reset scroll position to top on page load
+    window.scrollTo(0, 0);
+    
+    // Prevent any automatic focus behavior
+    const preventFocus = (e: FocusEvent) => {
+      const target = e.target as HTMLElement;
+      // Prevent focus on elements within KashmirCraftsCarousel or similar sections
+      if (target.closest('[data-section="carousel"]')) {
+        e.preventDefault();
+        window.scrollTo(0, 0); // Force scroll back to top
+      }
+    };
+
+    // Detect mobile devices (screen width <= 768px)
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) {
+      document.addEventListener("focusin", preventFocus);
+    }
+
+    return () => {
+      if (isMobile) {
+        document.removeEventListener("focusin", preventFocus);
+      }
+    };
+  }, []);
+
   const MetricCard = ({ icon, title, value, position, index }: any) => (
     <motion.div
       className={`flex items-center gap-4 ${
@@ -331,7 +356,24 @@ export default function LandingPage() {
   }, [handleScroll]);
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden" style={{ scrollBehavior: "auto" }}>
+      <style jsx global>{`
+        /* Prevent scroll snapping on mobile */
+        @media (max-width: 768px) {
+          html,
+          body,
+          [data-section="carousel"] {
+            scroll-snap-type: none !important;
+            overscroll-behavior: none;
+          }
+
+          /* Ensure no element steals focus */
+          [data-section="carousel"] *:focus {
+            outline: none;
+          }
+        }
+      `}</style>
+
       {/* Hero Section */}
       <BannerWithFeatures />
       <div className="-mt-50">
@@ -340,15 +382,11 @@ export default function LandingPage() {
 
       {/* About Us Sections */}
       <section
-        className="px-2 pb-6
-             
-              md:px-6 lg:px-8 bg-white text-center"
+        className="px-2 pb-6 md:px-6 lg:px-8 bg-white text-center"
       >
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
       <ScrollSection features={scrollFeatures} />
-      {/* Partnerships Section */}
-
       {/* Partnerships Section */}
       <section
         className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
@@ -356,7 +394,6 @@ export default function LandingPage() {
         }`}
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
-          {/* Header */}
           <motion.div
             className="text-center mb-16 flex flex-col items-center gap-6"
             initial={{ opacity: 0, y: 50 }}
@@ -384,8 +421,6 @@ export default function LandingPage() {
               Buyer / Vendor Progressive Partnership Framework and Pathway
             </h3>
           </motion.div>
-
-          {/* Grid */}
           <div className={`grid md:grid-cols-2 ${is4K ? "gap-14" : "gap-8"}`}>
             {partnershipCategories.map((category, index) => {
               const ref = useRef(null);
@@ -405,7 +440,6 @@ export default function LandingPage() {
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* Category Title */}
                   <h3
                     className={`${
                       is4K ? "text-4xl" : "text-2xl"
@@ -413,8 +447,6 @@ export default function LandingPage() {
                   >
                     {category.label}
                   </h3>
-
-                  {/* Summary */}
                   <p
                     className={`${
                       is4K ? "text-xl" : "text-lg"
@@ -422,8 +454,6 @@ export default function LandingPage() {
                   >
                     {category.summary}
                   </p>
-
-                  {/* Subitems */}
                   <ul className="space-y-3 mb-8">
                     {category.subItems.map((item, itemIndex) => (
                       <motion.li
@@ -455,8 +485,6 @@ export default function LandingPage() {
                       </motion.li>
                     ))}
                   </ul>
-
-                  {/* Read More Button */}
                   <Link
                     href={category.href}
                     className={`inline-flex items-center gap-2 ${
@@ -472,11 +500,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Process Section */}
       <RecSquareSection />
-
-      {/* <KashmirCraftsCarousel/> */}
       <MainPageCards />
       <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
         <div className="text-center mt-16 mb-6">
@@ -488,7 +512,6 @@ export default function LandingPage() {
             Our Reach
           </h2>
         </div>
-
         <div className="flex justify-center space-x-6 border-[var(--primary-color)]">
           <button
             onClick={() => setActiveTab("buyer")}
@@ -511,7 +534,6 @@ export default function LandingPage() {
             Vendor
           </button>
         </div>
-
         <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
           <div className="container mx-auto px-4 text-center">
             {activeTab === "buyer" && (
@@ -526,7 +548,6 @@ export default function LandingPage() {
                 <Counter slides={buyerslides} />
               </>
             )}
-
             {activeTab === "vendor" && (
               <>
                 <h3
@@ -542,12 +563,11 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-      <KashmirCraftsCarousel />
-
+      <div data-section="carousel">
+        <KashmirCraftsCarousel />
+      </div>
       <FlagSection />
       <Location />
-
-      {/* New Banner Section */}
       <section
         className="w-full py-16 md:py-24 lg:py-18 text-white"
         style={{
@@ -564,7 +584,6 @@ export default function LandingPage() {
             to help you thrive.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-            {/* Registration Card/Block */}
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
               <UserPlus className="h-12 w-12 text-white mb-4" />
               <h3 className="text-2xl font-bold mb-2">Become a Member</h3>
@@ -578,15 +597,12 @@ export default function LandingPage() {
                   style={{
                     color: "var(--primary-color)",
                     backgroundColor: "white",
-                    // For focus ring if needed
                   }}
                 >
                   Register Now
                 </button>
               </Link>
             </div>
-
-            {/* Book Appointment Card/Block */}
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-white/20 transition-all duration-300 hover:bg-white/20">
               <CalendarCheck className="h-12 w-12 text-white mb-4" />
               <h3 className="text-2xl font-bold mb-2">Book an Appointment</h3>

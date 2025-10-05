@@ -230,54 +230,55 @@ export default function DeKoshurCrafts() {
                                 icon: Store,
                                 title: "Retail and E-Commerce Fusion",
                                 description:
-                                    "Integrating e-commerce with physical stores across the USA, creating a unified shopping experience that bridges digital and physical retail.",
+                                    "Building a unified bridge between digital and physical retail, De Koshur Crafts merges online B2B trade with U.S. store experiences, creating a trusted, tactile, and technology-enabled journey.",
                             },
                             {
                                 icon: Recycle,
-                                title: "Sustainability Through Recommerce",
+                                title: "Sustainable Recommerce",
                                 description:
-                                    "Embracing sustainability through recommerce, offering pre-owned Kashmiri crafts that extend product lifecycles and minimize waste.",
+                                    "Championing a circular craft economy by offering certified pre-owned Kashmiri products, extending lifecycles, reducing waste, and honoring artisanship beyond first ownership.",
                             },
                             {
                                 icon: Palette,
-                                title: "Showcasing Craftsmanship Globally",
+                                title: "Global Craft Showcase",
                                 description:
-                                    "Participating in prestigious exhibitions, celebrating Kashmiri artistry in personal and engaging settings across global platforms.",
+                                    "Bringing Kashmiri artistry to the world stage through international exhibitions, cultural partnerships, and luxury showrooms—turning artisan stories into global collectible experiences.",
                             },
                             {
                                 icon: Plane,
-                                title: "Expanding Through Imports",
+                                title: "Ethical Imports Expansion",
                                 description:
-                                    "Capitalizing on import opportunities to deliver authentic Kashmiri products to the USA, bridging geographical divides.",
+                                    "Delivering authenticity from Kashmir to America via ethical sourcing, legal compliance, and seamless logistics, strengthening the artisan economy while expanding heritage crafts.",
                             },
                             {
                                 icon: Cpu,
                                 title: "Technology-Driven Efficiency",
                                 description:
-                                    "Advanced technology powers seamless operations with inventory management systems, CRM platforms, and e-commerce solutions.",
+                                    "Fusing tradition with technology through AI-powered ERP, CRM, and blockchain systems, ensuring transparent sourcing, reduced delays, and measurable operational precision.",
                             },
                             {
                                 icon: TrendingUp,
                                 title: "Strategic Marketing Excellence",
                                 description:
-                                    "Amplifying reach through advanced marketing strategies, social media campaigns, SEO, and influencer collaborations.",
+                                    "Amplifying artisan voices with advanced analytics, SEO, influencer collaborations, and storytelling campaigns, positioning Kashmiri craftsmanship in premium global markets.",
                             },
-                        ].map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
-                            >
-                                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary-color)]/10 to-[var(--primary-color)]/20 rounded-full mb-6">
-                                    <item.icon className="w-8 h-8 text-[var(--primary-color)]" />
-                                </div>
-                                <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">{item.title}</h3>
-                                <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                            </motion.div>
-                        ))}
+                        ]
+                            .map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                                >
+                                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary-color)]/10 to-[var(--primary-color)]/20 rounded-full mb-6">
+                                        <item.icon className="w-8 h-8 text-[var(--primary-color)]" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">{item.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                                </motion.div>
+                            ))}
                     </div>
                 </div>
             </section>
@@ -296,34 +297,35 @@ export default function DeKoshurCrafts() {
                         {
                             title: "Heritage Foundation",
                             description:
-                                "Rooted in centuries-old Kashmiri traditions, preserving the authentic artistry and cultural essence of Kashmir's master craftsmen.",
+                                "Rooted in Kashmiri traditions, we preserve authentic artistry and discipline of master craftsmen, keeping heritage alive with integrity and cultural devotion.",
                         },
                         {
                             title: "Modern Integration",
                             description:
-                                "Seamlessly blending traditional craftsmanship with cutting-edge technology to create an omni-channel business experience.",
+                                "Blending craftsmanship with technology, we build connected ecosystems of artisans and enterprises, ensuring transparency and authenticity."
+,
                         },
                         {
                             title: "Global Reach",
                             description:
-                                "Connecting with international audiences while maintaining the soul and authenticity of Kashmiri heritage crafts.",
+                                "Bridging Kashmir’s artistry with international markets, we expand heritage through exports and collaborations, uniting cultural legacy with global recognition.",
                         },
                         {
                             title: "Sustainable Future",
                             description:
-                                "Leading the way in sustainable practices through recommerce initiatives and environmental stewardship.",
+                                "Championing conscious commerce, we extend product lifecycles through recommerce, eco-responsible sourcing, and carbon tracking to preserve culture and planet.",
                         },
                     ].map((item, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
-                        >
-                            <h3 className="text-lg sm:text-xl font-bold text-[var(--primary-color)] mb-3">
-                                {item.title}
-                            </h3>
-                            <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                        </div>
-                    ))}
+                            <div
+                                key={index}
+                                className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
+                            >
+                                <h3 className="text-lg sm:text-xl font-bold text-[var(--primary-color)] mb-3">
+                                    {item.title}
+                                </h3>
+                                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                            </div>
+                        ))}
                 </div>
             </section>
         </div>

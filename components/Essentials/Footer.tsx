@@ -283,19 +283,19 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6 text-sm">
             <div className="flex gap-4">
-              <motion.a href="/terms&condition/privacyPolicy" className="text-white hover:text-white">
+              <motion.a href="/terms&condition/privacyPolicy" className="text-white hover:text-white text-xs md:text-md">
                 Privacy Policy
               </motion.a>
-              <motion.a href="/terms&condition/refund&cancellationPolicy" className="text-white hover:text-white">
+              <motion.a href="/terms&condition/refund&cancellationPolicy" className="text-white hover:text-white text-xs md:text-md">
                 Refund Policy
               </motion.a>
-              <motion.a href="/terms&condition/disputeResolution" className="text-white hover:text-white">
+              <motion.a href="/terms&condition/disputeResolution" className="text-white hover:text-white text-xs md:text-md">
                 Dispute Policy
               </motion.a>
-              <motion.a href="/terms&condition/kyc-onboardingPolicy" className="text-white hover:text-white">
+              <motion.a href="/terms&condition/kyc-onboardingPolicy" className="text-white hover:text-white text-xs md:text-md">
                 KYC Policy
               </motion.a>
-              <motion.a href="/terms&condition/contact" className="text-white hover:text-white">
+              <motion.a href="/terms&condition/contact" className="text-white hover:text-white text-xs md:text-md">
                 Contact Support
               </motion.a>
             </div>

@@ -82,36 +82,11 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
               <img
                 src={data.imageSrc}
                 alt="Team collaboration - hands coming together"
-                className={`w-full object-cover ${is4K ? "h-[1200px]" : "h-[500px] md:h-[700px]"}`}
+                className="w-full h-auto object-contain"
               />
-              <div
-                className={`absolute left-0 top-0 ${is4K ? "w-24" : "w-16 md:w-20"} h-full flex items-center justify-center`}
-                style={{ backgroundColor: "var(--secondary-color)" }}
-              >
-                <div className="transform -rotate-90 whitespace-nowrap">
-                  <span className={`${is4K ? "text-2xl tracking-wider" : "text-lg md:text-xl tracking-wide"} text-white font-medium`}>
-                    {data.sidebarText}
-                  </span>
-                </div>
-              </div>
-              <div className={`absolute ${is4K ? "bottom-12 left-12" : "bottom-6 left-6 md:bottom-8 md:left-8"}`}>
-                <div
-                  className={`rounded-full flex items-center justify-center ${is4K ? "w-16 h-16" : "w-10 h-10 md:w-12 md:h-12"}`}
-                  style={{ backgroundColor: "var(--secondary-color)" }}
-                >
-                  <svg
-                    className={`${is4K ? "w-8 h-8" : "w-5 h-5 md:w-6 md:h-6"} text-white`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-              </div>
+
+
+
             </div>
           </div>
           <div className={`${is4K ? "pl-16" : "pl-0 lg:pl-8"}`}>

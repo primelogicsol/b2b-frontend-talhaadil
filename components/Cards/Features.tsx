@@ -48,7 +48,7 @@ const Features = ({ data }: FeaturesProps) => {
   return (
     <section className="py-8 lg:py-20">
       <div className="flex justify-center">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
           {featuresData.map((item, i) => (
             <FeatureCard
               key={i}
@@ -79,7 +79,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) =>
   return (
     <Link href={link} className="block">
       <div
-        className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer p-4 flex flex-col items-center justify-center h-[160px] w-[160px] md:h-[180px] md:w-[180px]`}
+        className={`relative overflow-hidden rounded-xl text-center border transition-all duration-500 cursor-pointer p-4 flex flex-col items-center justify-center h-[160px] w-[240px] md:h-[180px] md:w-[180px]`}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
