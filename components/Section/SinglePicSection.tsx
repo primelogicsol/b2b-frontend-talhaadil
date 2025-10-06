@@ -75,44 +75,78 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
         } as React.CSSProperties
       }
     >
-      <div className={`max-w-[1600px] mx-auto ${is4K ? "px-20 py-32" : "px-6 md:px-8 py-16"}`}>
-        <div className={`grid grid-cols-1 lg:grid-cols-2 items-center ${is4K ? "gap-16" : "gap-12"}`}>
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-lg">
+      <div
+        className={`max-w-[1600px] mx-auto ${is4K ? "px-20 py-32" : "px-6 md:px-8 py-16"
+          }`}
+      >
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 items-stretch ${is4K ? "gap-16" : "gap-12"
+            }`}
+        >
+          {/* Image side */}
+          <div className="relative h-full flex">
+            <div className="relative w-full h-full overflow-hidden rounded-lg">
               <img
                 src={data.imageSrc}
                 alt="Team collaboration - hands coming together"
-                className="w-full h-auto object-contain"
+                className="w-full h-full object-cover"
               />
-
-
-
             </div>
           </div>
-          <div className={`${is4K ? "pl-16" : "pl-0 lg:pl-8"}`}>
+
+          {/* Text side */}
+          <div className={`${is4K ? "pl-16" : "pl-0 lg:pl-8"} flex flex-col justify-center`}>
             <div className="flex items-center mb-2">
-              <div className={`${is4K ? "w-16 h-1" : "w-12 h-0.5"} mr-4`} style={{ backgroundColor: "var(--secondary-color)" }} />
-              <span className={`${is4K ? "text-xl" : "text-sm md:text-base"} font-medium tracking-wide uppercase`} style={{ color: "var(--primary-light-text-color)" }}>
+              <div
+                className={`${is4K ? "w-16 h-1" : "w-12 h-0.5"
+                  } mr-4`}
+                style={{ backgroundColor: "var(--secondary-color)" }}
+              />
+              <span
+                className={`${is4K ? "text-xl" : "text-sm md:text-base"
+                  } font-medium tracking-wide uppercase`}
+                style={{ color: "var(--primary-light-text-color)" }}
+              >
                 {data.header}
               </span>
             </div>
-            <h1 className={`${is4K ? "text-6xl mb-12" : "text-2xl md:text-3xl lg:text-4xl mb-8"} font-bold leading-tight`} style={{ color: "var(--primary-color)" }}>
+            <h1
+              className={`${is4K
+                  ? "text-6xl mb-12"
+                  : "text-2xl md:text-3xl lg:text-4xl mb-8"
+                } font-bold leading-tight`}
+              style={{ color: "var(--primary-color)" }}
+            >
               {data.mainHeading}
             </h1>
-            <p className={`${is4K ? "text-2xl mb-16 leading-relaxed" : "text-base md:text-lg lg:text-[16px] mb-10 leading-relaxed"}`} style={{ color: "var(--primary-light-text-color)" }}>
+            <p
+              className={`${is4K
+                  ? "text-2xl mb-16 leading-relaxed"
+                  : "text-base md:text-lg lg:text-[16px] mb-10 leading-relaxed"
+                }`}
+              style={{ color: "var(--primary-light-text-color)" }}
+            >
               {data.description}
             </p>
             <div className={`${is4K ? "space-y-8" : "space-y-3"}`}>
               {data.features?.map((item, idx) => (
                 <div key={idx} className="flex items-start">
                   <div
-                    className={`${is4K ? "w-16 h-1 mt-2" : "w-12 h-0.5 mt-1"} mr-6 flex-shrink-0`}
+                    className={`${is4K ? "w-16 h-1 mt-2" : "w-12 h-0.5 mt-1"
+                      } mr-6 flex-shrink-0`}
                     style={{ backgroundColor: "var(--secondary-color)" }}
                   />
                   <div>
-                    <h3 className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"} font-semibold`} style={{ color: "var(--primary-color)" }}>
+                    <h3
+                      className={`${is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"
+                        } font-semibold`}
+                      style={{ color: "var(--primary-color)" }}
+                    >
                       {item.title}{" "}
-                      <span className={`${is4K ? "text-xl" : "text-base md:text-[16px]"} font-normal`}>
+                      <span
+                        className={`${is4K ? "text-xl" : "text-base md:text-[16px]"
+                          } font-normal`}
+                      >
                         {item.desc}
                       </span>
                     </h3>
@@ -121,10 +155,20 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
               ))}
             </div>
             <div className={`${is4K ? "mt-20" : "mt-4"}`}>
-              <h2 className={`${is4K ? "text-3xl mb-4" : "text-xl md:text-[20px] mb-3"} font-bold`} style={{ color: "var(--secondary-color)" }}>
+              <h2
+                className={`${is4K
+                    ? "text-3xl mb-4"
+                    : "text-xl md:text-[20px] mb-3"
+                  } font-bold`}
+                style={{ color: "var(--secondary-color)" }}
+              >
                 {data.bottomHeading}
               </h2>
-              <p className={`${is4K ? "text-xl" : "text-sm md:text-base"}`} style={{ color: "var(--primary-light-text-color)" }}>
+              <p
+                className={`${is4K ? "text-xl" : "text-sm md:text-base"
+                  }`}
+                style={{ color: "var(--primary-light-text-color)" }}
+              >
                 {data.bottomText}
               </p>
             </div>
@@ -132,5 +176,6 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
         </div>
       </div>
     </section>
+
   )
 }
