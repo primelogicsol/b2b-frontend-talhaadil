@@ -347,29 +347,9 @@ export default function AppointmentScheduler() {
       console.log("Existing booking API response:", response);
       if (response.status === 201) {
         // Only call the new API if the first one succeeded with 201
-        const meetResponse = await fetch("/api/booking", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
-        console.log(meetResponse)
-        const data = await meetResponse.json();
-
-        if (data.success) {
-          console.log("Booking confirmed and email sent:", data);
           setIsBooked(true);
-
-          if (body.appointment_type === "virtual" && data.meetLink) {
-            showToast(`Booking successful! Meet link: ${data.meetLink}`);
-          } else {
-            showToast("Booking successful!");
-          }
-        } else {
-          showToast("Booking saved but email/Meet link failed.");
-        }
-      } else {
-        setIsBooked(true);
         
+        showToast("Appointment booked successfully!");
       }
     } catch (error: any) {
       console.error("Booking failed:", error);
@@ -377,7 +357,7 @@ export default function AppointmentScheduler() {
 
       if (
         error.response?.data?.detail ===
-        "User already has an appointment at this date and time"
+        "Appointment already exists at this date and time"
       ) {
         showToast("This time slot is already booked");
       } else {

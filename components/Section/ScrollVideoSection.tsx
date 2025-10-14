@@ -18,18 +18,23 @@ function MediaSlider({
   items = [
     {
       type: "video",
-      src: "https://www.w3schools.com/html/mov_bbb.mp4",
+      src: "/videos/1.mp4",
       title: "Default Video 1",
     },
     {
-      type: "image",
-      src: "/placeholder.svg?height=400&width=600",
+      type: "video",
+      src: "/videos/3.mp4",
       title: "Default Image",
     },
     {
       type: "video",
-      src: "https://www.w3schools.com/html/movie.mp4",
+      src: "/videos/2.mp4",
       title: "Default Video 2",
+    },
+    {
+      type: "video",
+      src: "/videos/4.mp4",
+      title: "Default Video 4",
     },
   ],
 }: MediaSliderProps) {
@@ -62,9 +67,7 @@ function MediaSlider({
       )}
 
       {/* title overlay */}
-      <div className="absolute top-4 left-4 text-white text-sm md:text-base lg:text-lg font-medium bg-black bg-opacity-50 px-3 py-1 rounded-md">
-        {currentMedia.title}
-      </div>
+     
 
       {/* slider dots */}
       <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex space-x-2">
@@ -72,9 +75,8 @@ function MediaSlider({
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              currentIndex === index ? "bg-white w-6" : "bg-gray-400"
-            }`}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentIndex === index ? "bg-white w-6" : "bg-gray-400"
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

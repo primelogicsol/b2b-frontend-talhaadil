@@ -239,7 +239,7 @@ export default function LandingPage() {
   useEffect(() => {
     // Reset scroll position to top on page load
     window.scrollTo(0, 0);
-    
+
     // Prevent any automatic focus behavior
     const preventFocus = (e: FocusEvent) => {
       const target = e.target as HTMLElement;
@@ -265,9 +265,8 @@ export default function LandingPage() {
 
   const MetricCard = ({ icon, title, value, position, index }: any) => (
     <motion.div
-      className={`flex items-center gap-4 ${
-        position === "right" ? "flex-row-reverse text-right" : ""
-      }`}
+      className={`flex items-center gap-4 ${position === "right" ? "flex-row-reverse text-right" : ""
+        }`}
       initial={{ opacity: 0, x: position === "left" ? -50 : 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -389,9 +388,8 @@ export default function LandingPage() {
       <ScrollSection features={scrollFeatures} />
       {/* Partnerships Section */}
       <section
-        className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${
-          is4K ? "py-28 px-20" : "py-16 px-4"
-        }`}
+        className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${is4K ? "py-28 px-20" : "py-16 px-4"
+          }`}
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
           <motion.div
@@ -407,97 +405,70 @@ export default function LandingPage() {
               className={`${is4K ? "w-[300px]" : "w-120"} h-auto`}
             />
             <h2
-              className={`${
-                is4K ? "text-6xl" : "text-3xl md:text-4xl"
-              } font-bold text-white`}
+              className={`${is4K ? "text-6xl" : "text-3xl md:text-4xl"
+                } font-bold text-white`}
             >
               Tailored for Your Success
             </h2>
             <h3
-              className={`${
-                is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
-              } text-white font-semibold -mt-2`}
+              className={`${is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
+                } text-white font-semibold -mt-2`}
             >
               Buyer / Vendor Progressive Partnership Framework and Pathway
             </h3>
           </motion.div>
           <div className={`grid md:grid-cols-2 ${is4K ? "gap-14" : "gap-8"}`}>
-            {partnershipCategories.map((category, index) => {
-              const ref = useRef(null);
-              const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-              return (
-                <motion.div
-                  key={index}
-                  ref={ref}
-                  className={`bg-gray-800 ${
-                    is4K ? "p-14" : "p-8"
+            {partnershipCategories.map((category, index) => (
+              <motion.div
+                key={index}
+                className={`bg-gray-800 ${is4K ? "p-14" : "p-8"
                   } rounded-lg border border-gray-700 hover:border-[var(--secondary-color)] transition-all duration-300`}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-                  }
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <h3
-                    className={`${
-                      is4K ? "text-4xl" : "text-2xl"
+                whileHover={{ scale: 1.02 }}
+              >
+                <h3
+                  className={`${is4K ? "text-4xl" : "text-2xl"
                     } font-bold text-white mb-4`}
-                  >
-                    {category.label}
-                  </h3>
-                  <p
-                    className={`${
-                      is4K ? "text-xl" : "text-lg"
+                >
+                  {category.label}
+                </h3>
+                <p
+                  className={`${is4K ? "text-xl" : "text-lg"
                     } text-gray-300 mb-6`}
-                  >
-                    {category.summary}
-                  </p>
-                  <ul className="space-y-3 mb-8">
-                    {category.subItems.map((item, itemIndex) => (
-                      <motion.li
-                        key={itemIndex}
-                        className="flex items-center gap-3 text-gray-400"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={
-                          isInView
-                            ? { opacity: 1, x: 0 }
-                            : { opacity: 0, x: -20 }
-                        }
-                        transition={{
-                          duration: 0.4,
-                          delay: index * 0.1 + itemIndex * 0.05,
-                        }}
-                      >
-                        <CheckCircle
-                          size={is4K ? 28 : 20}
-                          className="text-[var(--secondary-color)] flex-shrink-0"
-                        />
-                        <Link
-                          href={item.href}
-                          className={`${
-                            is4K ? "text-lg" : "text-base"
+                >
+                  {category.summary}
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {category.subItems.map((item, itemIndex) => (
+                    <li
+                      key={itemIndex}
+                      className="flex items-center gap-3 text-gray-400"
+                    >
+                      <CheckCircle
+                        size={is4K ? 28 : 20}
+                        className="text-[var(--secondary-color)] flex-shrink-0"
+                      />
+                      <Link
+                        href={item.href}
+                        className={`${is4K ? "text-lg" : "text-base"
                           } hover:text-white transition-colors duration-200`}
-                        >
-                          {item.label}
-                        </Link>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={category.href}
-                    className={`inline-flex items-center gap-2 ${
-                      is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={category.href}
+                  className={`inline-flex items-center gap-2 ${is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
                     } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--secondary-hover-color)] transition-colors duration-300`}
-                  >
-                    Read More
-                    <ArrowRight size={is4K ? 28 : 20} />
-                  </Link>
-                </motion.div>
-              );
-            })}
+                >
+                  Read More
+                  <ArrowRight size={is4K ? 28 : 20} />
+                </Link>
+              </motion.div>
+            ))}
           </div>
+
         </div>
       </section>
       <RecSquareSection />
@@ -505,9 +476,8 @@ export default function LandingPage() {
       <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
         <div className="text-center mt-16 mb-6">
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${
-              is4K ? "2xl:text-6xl 2xl:mb-6" : ""
-            }`}
+            className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
+              }`}
           >
             Our Reach
           </h2>
@@ -515,21 +485,19 @@ export default function LandingPage() {
         <div className="flex justify-center space-x-6 border-[var(--primary-color)]">
           <button
             onClick={() => setActiveTab("buyer")}
-            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${
-              activeTab === "buyer"
-                ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
-                : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
-            }`}
+            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${activeTab === "buyer"
+              ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
+              : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
+              }`}
           >
             Buyer
           </button>
           <button
             onClick={() => setActiveTab("vendor")}
-            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${
-              activeTab === "vendor"
-                ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
-                : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
-            }`}
+            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${activeTab === "vendor"
+              ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
+              : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
+              }`}
           >
             Vendor
           </button>
@@ -539,11 +507,10 @@ export default function LandingPage() {
             {activeTab === "buyer" && (
               <>
                 <h3
-                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
-                    is4K ? "2xl:text-4xl 2xl:mb-4" : ""
-                  }`}
+                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""
+                    }`}
                 >
-                  Buyer
+                  DKC Buyer Network
                 </h3>
                 <Counter slides={buyerslides} />
               </>
@@ -551,11 +518,10 @@ export default function LandingPage() {
             {activeTab === "vendor" && (
               <>
                 <h3
-                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
-                    is4K ? "2xl:text-4xl 2xl:mb-4" : ""
-                  }`}
+                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""
+                    }`}
                 >
-                  Vendor
+                  DKC Vendor Network
                 </h3>
                 <Counter slides={vendorslides} />
               </>

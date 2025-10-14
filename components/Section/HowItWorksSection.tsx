@@ -43,9 +43,9 @@ export default function HowItWorksSection({
         {description}
       </p>
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
-        <div className="md:w-1/2 justify-center animate-fade-in-delay hidden md:flex">
+        <div className="md:w-1/2 justify-center animate-fade-in-delay">
           <img
-            src={imageUrl || "/placeholder.svg"}
+            src="/images/process1.webp"
             alt={imageAlt}
             width={500}
             height={1000}
@@ -97,30 +97,30 @@ export default function HowItWorksSection({
         </div>
       </div>
       <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-  <Link href="/registration" passHref>
-    <button
-      className={
-        is4K
-          ? "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
-          : "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
-      }
-    >
-      Register Now
-    </button>
-  </Link>
+        <Link href="/registration" passHref>
+          <button
+            className={
+              is4K
+                ? "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
+                : "bg-[var(--secondary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--secondary-hover-color)] hover:shadow-lg animate-pulse-once"
+            }
+          >
+            Register Now
+          </button>
+        </Link>
 
-  <Link href="/appointment" passHref>
-    <button
-      className={
-        is4K
-          ? "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
-          : "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
-      }
-    >
-      Book Appointment
-    </button>
-  </Link>
-</div>
+        <Link href="/appointment" passHref>
+          <button
+            className={
+              is4K
+                ? "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-4 px-10 rounded-full text-xl font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
+                : "bg-[var(--primary-color)] text-[var(--primary-header-color)] py-3 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[var(--primary-hover-color)] hover:shadow-lg animate-pulse-once"
+            }
+          >
+            Book Appointment
+          </button>
+        </Link>
+      </div>
     </section>
   )
 }

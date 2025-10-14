@@ -132,8 +132,8 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
               {data.features?.map((item, idx) => (
                 <div key={idx} className="flex items-start">
                   <div
-                    className={`${is4K ? "w-16 h-1 mt-2" : "w-12 h-0.5 mt-1"
-                      } mr-6 flex-shrink-0`}
+                    className={`${is4K ? "w-16 h-1 mt-2" : "w-4 h-0.5 mt-3"
+                      } mr-4 flex-shrink-0`}
                     style={{ backgroundColor: "var(--secondary-color)" }}
                   />
                   <div>

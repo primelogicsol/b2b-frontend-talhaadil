@@ -7,7 +7,7 @@ function Homepage() {
   return (
     <div>
       <video
-        src="/hero1.mp4"
+        src="/videos/hero1.webm"
         autoPlay
         loop
         muted

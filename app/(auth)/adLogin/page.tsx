@@ -79,11 +79,7 @@ export default function AdminLoginPage() {
           </p>
         </div>
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-xl">
-            {error}
-          </div>
-        )}
+     
 
         <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           {/* Email */}

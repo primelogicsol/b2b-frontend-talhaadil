@@ -82,7 +82,7 @@ export default function HeroSection() {
   return (
     <section
       className={`relative w-full overflow-hidden flex items-center justify-center mt-10 mb-10${
-        is4K ? "h-[60vh]" : "h-[90vh]"
+        is4K ? "" : ""
       }`}
     >
       {/* Background Image */}
@@ -104,7 +104,7 @@ export default function HeroSection() {
         </div>
 
         {/* Main Logo & Small Logos */}
-        <div className="relative w-[350px] h-[350px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] 2xl:w-[700px] 2xl:h-[700px] flex items-center justify-center p-2 lg:p-10 mt-20">
+        <div className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] 2xl:w-[700px] 2xl:h-[700px] flex items-center justify-center p-2 lg:p-10 mt-20">
           {/* Main Logo */}
           <div className="relative w-full h-full ">
             <Image
@@ -143,7 +143,7 @@ export default function HeroSection() {
         </div>
 
         {/* Bottom Center Text (Dynamic) */}
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-black text-xs md:text-lg 2xl:text-2xl text-center mb-10 md:mb-4">
+        <div className="text-black text-xs md:text-lg 2xl:text-2xl text-center mb-10 md:mb-4">
           <p className="font-semibold drop-shadow-md">{selectedLogo.title} - {selectedLogo.subtitle}</p>
           
         </div>

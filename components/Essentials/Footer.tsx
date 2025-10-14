@@ -9,7 +9,7 @@ import {
   Shield,
   TrendingUp,
 } from "lucide-react";
-
+import Image from "next/image";
 import {
   FaFacebookF as Facebook,
   FaTwitter as Twitter,
@@ -75,6 +75,7 @@ export default function Footer() {
               </h3>
             </motion.div>
             <motion.button
+              onClick={() => window.location.href = '/registration'}
               className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-[5px] font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -100,19 +101,30 @@ export default function Footer() {
             variants={itemVariants}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-hover-color)] rounded-full flex items-center justify-center">
-                <Shield className="w-6 h-6 text-white" />
+              <Image
+                src="/B2B-logo.png"
+                alt="De Koshur Crafts"
+                width={48}
+                height={48}
+                className="transition-all duration-500"
+              />
+              <div className="flex flex-col">
+                <span className="text-white font-bold text-lg md:text-2xl">
+                  B2B Connect
+                </span>
+                <span className="text-[var(--secondary-color)] font-bold text-xs md:text-sm">
+                  De Koshur Crafts
+                  <span className="text-xs"> - USA</span>
+                </span>
               </div>
-              <h2 className="text-2xl font-bold bg-[var(--primary-header-color)] bg-clip-text text-transparent">
-                Craftlore
-              </h2>
             </div>
+
             <p className="text-white leading-relaxed mb-8 text-sm">
-              A non-commercial platform and the world's largest open craft
-              repository focused on Kashmir craftsmanship. We empower you with
-              knowledge and tools to make informed, independent choices, free
-              from external pressure or bias.
+              A global trade platform connecting artisans, exporters, and buyers under
+              De Koshur Crafts. We aim to promote sustainable partnerships, transparency,
+              and fair trade across borders.
             </p>
+
             <div className="flex gap-4">
               {[
                 { icon: Facebook, color: "#1877F2" },
@@ -137,7 +149,6 @@ export default function Footer() {
               ))}
             </div>
           </motion.div>
-
           {/* Craft Registry */}
           <motion.div
             variants={itemVariants}
