@@ -1,6 +1,7 @@
 export const dropshippingData = {
   pricingName : "drop_shipping",
   name: "dropshipping",
+  
   hero: {
     headline:
       "Dropshipping Partnerships  Zero-Risk Entry Into Global Craft Trade",
@@ -13,6 +14,7 @@ export const dropshippingData = {
     ],
   },
   whyDropshipping: {
+    text : "DKC is redefining global craft trade by fixing broken entry points between artisans, vendors, and buyers. Through verified sourcing, blockchain-based transparency, and fair-trade alignment, DKC’s dropshipping model eliminates exploitation, counterfeit risks, and inflated pricing, creating a direct, sustainable bridge from Kashmiri craftsmanship to the world’s marketplaces.",
     heading: "Fixing the Entry Point for Global Craft Trade",
     problems: [
       "Vendors exploited by intermediaries.",

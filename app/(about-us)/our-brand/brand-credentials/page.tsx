@@ -23,28 +23,38 @@ export default function Home() {
                   Product Credibility
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Certifications validate quality, authenticity, origin, and global compliance standards.
+                  Certifications validate quality, authenticity, origin, and
+                  global compliance standards.
                 </p>
               </div>
 
               <div className="bg-[var(--secondary-light-color)] p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)]">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Market Access</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Market Access
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Certified products unlock premium global markets and verified trade opportunities.
+                  Certified products unlock premium global markets and verified
+                  trade opportunities.
                 </p>
               </div>
 
               <div className="bg-[var(--secondary-light-color)] p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)]">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Competitive Edge</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Competitive Edge
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Recognized certifications enhance reputation, reliability, and global business differentiation.
+                  Recognized certifications enhance reputation, reliability, and
+                  global business differentiation.
                 </p>
               </div>
 
               <div className="bg-[var(--secondary-light-color)] p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)]">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Customer Trust</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Customer Trust
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Verified quality assurance builds transparency, loyalty, and long-term buyer confidence.
+                  Verified quality assurance builds transparency, loyalty, and
+                  long-term buyer confidence.
                 </p>
               </div>
 
@@ -53,23 +63,32 @@ export default function Home() {
                   Sustainability Edge
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Certified eco-practices attract conscious buyers and promote ethical global commerce.
+                  Certified eco-practices attract conscious buyers and promote
+                  ethical global commerce.
                 </p>
               </div>
 
               <div className="bg-[var(--secondary-light-color)] p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)]">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Growth Potential</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Growth Potential
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Certification drives expansion through partnerships, scalability, and new market access.
+                  Certification drives expansion through partnerships,
+                  scalability, and new market access.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="flex-1">
-            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[500px]">
-              <video className="w-full h-full object-cover" controls poster="/business-certification-success.png">
-                <source src="/placeholder-video.mp4" type="video/mp4" />
+          <div className="flex-1 flex">
+            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg flex-1">
+              <video
+                className="w-full h-full object-fit"
+                controls
+                playsInline
+                poster="/business-certification-success.png"
+              >
+                <source src="/videos/1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -90,8 +109,12 @@ export default function Home() {
         <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12">
           <div className="flex-1 order-2 lg:order-1">
             <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[500px]">
-              <video className="w-full h-full object-cover" controls poster="/global-business-growth-empowerment.png">
-                <source src="/placeholder-video.mp4" type="video/mp4" />
+              <video
+                className="w-full h-full object-fit"
+                controls
+                poster="/global-business-growth-empowerment.png"
+              >
+                <source src="/videos/4.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -101,9 +124,12 @@ export default function Home() {
           <div className="flex-1 order-1 lg:order-2">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 h-fit">
               <div className="bg-white p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)] shadow-sm">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Global Access</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Global Access
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Expand your reach and unlock premium global market opportunities.
+                  Expand your reach and unlock premium global market
+                  opportunities.
                 </p>
               </div>
 
@@ -112,7 +138,8 @@ export default function Home() {
                   Enhanced Credibility
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Boost trust, strengthen reputation, and elevate your brand globally.
+                  Boost trust, strengthen reputation, and elevate your brand
+                  globally.
                 </p>
               </div>
 
@@ -121,7 +148,8 @@ export default function Home() {
                   Strategic Networks
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Forge impactful partnerships and thrive within influential business circles.
+                  Forge impactful partnerships and thrive within influential
+                  business circles.
                 </p>
               </div>
 
@@ -130,21 +158,28 @@ export default function Home() {
                   Sales Acceleration
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Drive demand consistently and amplify your revenue potential exponentially.
+                  Drive demand consistently and amplify your revenue potential
+                  exponentially.
                 </p>
               </div>
 
               <div className="bg-white p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)] shadow-sm">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Industry Insights</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Industry Insights
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Stay ahead with knowledge of trends, innovation, and opportunity.
+                  Stay ahead with knowledge of trends, innovation, and
+                  opportunity.
                 </p>
               </div>
 
               <div className="bg-white p-4 sm:p-6 rounded-lg border-l-4 border-[var(--secondary-color)] shadow-sm">
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">Brand Empowerment</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] mb-3">
+                  Brand Empowerment
+                </h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Strengthen presence, inspire confidence, and achieve sustainable business growth.
+                  Strengthen presence, inspire confidence, and achieve
+                  sustainable business growth.
                 </p>
               </div>
             </div>
@@ -152,5 +187,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }

@@ -75,7 +75,7 @@ export default function Footer() {
               </h3>
             </motion.div>
             <motion.button
-              onClick={() => window.location.href = '/registration'}
+              onClick={() => (window.location.href = "/registration")}
               className="cursor-pointer bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] px-8 py-3 rounded-[5px] font-semibold text-white shadow-lg transition-all duration-300 flex items-center gap-2 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -100,29 +100,19 @@ export default function Footer() {
             className="p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
             variants={itemVariants}
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 -ml-4 -mt-4">
               <Image
-                src="/B2B-logo.png"
-                alt="De Koshur Crafts"
-                width={48}
-                height={48}
-                className="transition-all duration-500"
+                src="/images/logo3.png"
+                alt="Dekoshur Crafts"
+                width={160}
+                height={90}
               />
-              <div className="flex flex-col">
-                <span className="text-white font-bold text-lg md:text-2xl">
-                  B2B Connect
-                </span>
-                <span className="text-[var(--secondary-color)] font-bold text-xs md:text-sm">
-                  De Koshur Crafts
-                  <span className="text-xs"> - USA</span>
-                </span>
-              </div>
             </div>
 
             <p className="text-white leading-relaxed mb-8 text-sm">
-              A global trade platform connecting artisans, exporters, and buyers under
-              De Koshur Crafts. We aim to promote sustainable partnerships, transparency,
-              and fair trade across borders.
+              A global trade platform connecting artisans, exporters, and buyers
+              under De Koshur Crafts. We aim to promote sustainable
+              partnerships, transparency, and fair trade across borders.
             </p>
 
             <div className="flex gap-4">
@@ -155,13 +145,23 @@ export default function Footer() {
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <Globe className="w-5 h-5 text-[var(--secondary-color)]" /> Craft Registry
+              <Globe className="w-5 h-5 text-[var(--secondary-color)]" /> Craft
+              Registry
             </h3>
             <ul className="space-y-3">
               {[
-                { txt: "Kashmir Craft Profile", link: "/crafts/kashmir-profile" },
-                { txt: "Geographical Indication", link: "/crafts/geographical-indication" },
-                { txt: "Blockchain Traceability", link: "/crafts/blockchain-traceability" },
+                {
+                  txt: "Kashmir Craft Profile",
+                  link: "/crafts/kashmir-profile",
+                },
+                {
+                  txt: "Geographical Indication",
+                  link: "/crafts/geographical-indication",
+                },
+                {
+                  txt: "Blockchain Traceability",
+                  link: "/crafts/blockchain-traceability",
+                },
                 { txt: "Carbon Footprint", link: "/crafts/carbon-footprint" },
                 { txt: "Price Estimation", link: "/crafts/price-estimation" },
                 { txt: "Trade Registry", link: "/crafts/trade-registry" },
@@ -169,7 +169,7 @@ export default function Footer() {
                 <motion.li key={i}>
                   <motion.a
                     href={link}
-                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-1 px-1 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
                     whileHover="hover"
@@ -188,21 +188,31 @@ export default function Footer() {
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <TrendingUp className="w-5 h-5 text-[var(--secondary-color)]" /> Craft Resources
+              <TrendingUp className="w-5 h-5 text-[var(--secondary-color)]" />{" "}
+              Craft Resources
             </h3>
             <ul className="space-y-3">
               {[
-                { txt: "Intellectual Property", link: "/resources/intellectual-property" },
+                {
+                  txt: "Intellectual Property",
+                  link: "/resources/intellectual-property",
+                },
                 { txt: "Counterfeits", link: "/resources/counterfeits" },
-                { txt: "Production Insights", link: "/resources/production-insights" },
+                {
+                  txt: "Production Insights",
+                  link: "/resources/production-insights",
+                },
                 { txt: "Export Data", link: "/resources/export-data" },
-                { txt: "Employment Trends", link: "/resources/employment-trends" },
+                {
+                  txt: "Employment Trends",
+                  link: "/resources/employment-trends",
+                },
                 { txt: "Gender Dynamics", link: "/resources/gender-dynamics" },
               ].map(({ txt, link }, i) => (
                 <motion.li key={i}>
                   <motion.a
                     href={link}
-                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-1 px-1 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
                     whileHover="hover"
@@ -221,13 +231,17 @@ export default function Footer() {
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <Mail className="w-5 h-5 text-[var(--secondary-color)]" /> About & Connect
+              <Mail className="w-5 h-5 text-[var(--secondary-color)]" /> About &
+              Connect
             </h3>
             <ul className="space-y-3">
               {[
                 { txt: "Network", link: "/our-niche/network" },
                 { txt: "Brand Story", link: "/our-brand/brand-story" },
-                { txt: "Brand Credentials", link: "/our-brand/brand-crednetials" },
+                {
+                  txt: "Brand Credentials",
+                  link: "/our-brand/brand-crednetials",
+                },
                 { txt: "Location", link: "/our-nihcle/location" },
                 { txt: "Business", link: "/our-nihcle/business" },
                 { txt: "Contact", link: "/contact" },
@@ -235,7 +249,7 @@ export default function Footer() {
                 <motion.li key={i}>
                   <motion.a
                     href={link}
-                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-2 px-3 rounded-lg hover:bg-white/10"
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-1 px-1 rounded-lg hover:bg-white/10"
                     variants={linkVariants}
                     initial="rest"
                     whileHover="hover"
@@ -247,7 +261,6 @@ export default function Footer() {
               ))}
             </ul>
           </motion.div>
-
         </div>
 
         {/* Newsletter */}
@@ -290,31 +303,44 @@ export default function Footer() {
           variants={itemVariants}
         >
           <p className="text-white text-sm">
-            © 2025 Craftlore. All rights reserved.
+            © {new Date().getFullYear()} De Koshur Crafts Bazaar USA. All rights
+            reserved.
           </p>
+
           <div className="flex items-center gap-6 text-sm">
             <div className="flex gap-4">
-              <motion.a href="/terms&condition/privacyPolicy" className="text-white hover:text-white text-xs md:text-md">
+              <motion.a
+                href="/terms&condition/privacyPolicy"
+                className="text-white hover:text-white text-xs md:text-md"
+              >
                 Privacy Policy
               </motion.a>
-              <motion.a href="/terms&condition/refund&cancellationPolicy" className="text-white hover:text-white text-xs md:text-md">
+              <motion.a
+                href="/terms&condition/refund&cancellationPolicy"
+                className="text-white hover:text-white text-xs md:text-md"
+              >
                 Refund Policy
               </motion.a>
-              <motion.a href="/terms&condition/disputeResolution" className="text-white hover:text-white text-xs md:text-md">
+              <motion.a
+                href="/terms&condition/disputeResolution"
+                className="text-white hover:text-white text-xs md:text-md"
+              >
                 Dispute Policy
               </motion.a>
-              <motion.a href="/terms&condition/kyc-onboardingPolicy" className="text-white hover:text-white text-xs md:text-md">
+              <motion.a
+                href="/terms&condition/kyc-onboardingPolicy"
+                className="text-white hover:text-white text-xs md:text-md"
+              >
                 KYC Policy
               </motion.a>
-              <motion.a href="/terms&condition/contact" className="text-white hover:text-white text-xs md:text-md">
+              <motion.a
+                href="/terms&condition/contact"
+                className="text-white hover:text-white text-xs md:text-md"
+              >
                 Contact Support
               </motion.a>
             </div>
-
-
-
           </div>
-
         </motion.div>
       </motion.div>
     </footer>
