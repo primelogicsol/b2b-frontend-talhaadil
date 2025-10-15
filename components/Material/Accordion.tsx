@@ -34,7 +34,7 @@ export default function Accordion({ data }: ResponsiveAccordionProps) {
   const { is4K } = useGlobalContext()
   const accordionData: AccordionItem[] = data || []
   const [activeItem, setActiveItem] = useState<string>(
-    accordionData[2]?.id || "", // safe fallback
+    accordionData[2]?.id || "", 
   )
 
   return (
