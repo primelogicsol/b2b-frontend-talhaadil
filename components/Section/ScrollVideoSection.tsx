@@ -47,10 +47,10 @@ function MediaSlider({
         <video
           key={currentMedia.src}
           className="w-full h-auto object-cover aspect-video"
-          controls
           autoPlay
           muted
           loop
+          playsInline
         >
           <source src={currentMedia.src} type="video/mp4" />
           Your browser does not support the video tag.
@@ -67,7 +67,7 @@ function MediaSlider({
       )}
 
       {/* title overlay */}
-     
+
 
       {/* slider dots */}
       <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex space-x-2">
