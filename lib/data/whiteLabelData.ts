@@ -13,6 +13,7 @@ export const whiteLabelData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/white-label.mp4",
     heading: "Fixing Retail Growth Gaps in Craft Trade",
     problems: [
       "Vendors lose identity in mass production.",

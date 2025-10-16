@@ -83,8 +83,10 @@ export default function Home() {
           <div className="flex-1 flex">
             <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg flex-1">
               <video
-                className="w-full h-full object-fit"
-                controls
+                className="w-full h-full object-fill"
+                autoPlay
+                loop
+                muted
                 playsInline
                 poster="/business-certification-success.png"
               >
@@ -105,13 +107,16 @@ export default function Home() {
           Unlock markets, build trust, and elevate success
         </p>
       </div>
-      <section className="py-16 px-10 max-w-7xl mx-auto bg-gray-50">
+      <section className="py-16 px-10 max-w-7xl mx-auto">
         <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12">
           <div className="flex-1 order-2 lg:order-1">
-            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[500px]">
+            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full">
               <video
-                className="w-full h-full object-fit"
-                controls
+                className="w-full h-full object-fill"
+                autoPlay
+                loop
+                muted
+                playsInline
                 poster="/global-business-growth-empowerment.png"
               >
                 <source src="/videos/4.mp4" type="video/mp4" />

@@ -9,6 +9,7 @@ export const brickMortarData = {
     ctaButtons: ["Start Partnership", "Apply as a Vendor", "Apply as a Buyer"],
   },
   whyDropshipping: {
+    link : "/videos/brick-mortar.mp4",
     heading: "Breaking the Barriers of Physical Retail",
     problems: [
       "High operational costs and staffing headaches.",

@@ -269,7 +269,7 @@ export default function DeKoshurCrafts() {
       <div className="bg-white">
         <Link href="https://craftlore.org/">
         <img
-          src="/images/image6.png"
+          src="/images/image10.webp"
           className="w-full md:w-[60vw] h-[45vh] md:h-[80vh] mx-auto block"
         ></img>
         </Link>

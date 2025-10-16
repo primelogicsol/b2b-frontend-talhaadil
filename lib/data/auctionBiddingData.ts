@@ -70,6 +70,7 @@ export const auctionBiddingData = {
       "Backed by Prime Logic Solutions, ensuring fast bidding, verified participants, and secure auction settlements.",
   },
   whyDropshipping: {
+    link : "/videos/bidding.mp4",
     heading: "Fixing the Auction Gap in Global Craft Trade",
     problems: [
       "Vendors face inconsistent pricing and exploitation by intermediaries.",

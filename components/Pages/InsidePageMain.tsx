@@ -25,6 +25,7 @@ type LandingPageData = {
     heading: string;
     problems: string[];
     solutions: string[];
+    link : string;
   };
   platformDifference: {
     heading: string;
@@ -281,7 +282,7 @@ export default function InsidePage({
                 muted
                 playsInline
               >
-                <source src="/videos/dropshipping.mp4" type="video/mp4" />
+                <source src={landingPageData.whyDropshipping.link} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -305,7 +306,7 @@ export default function InsidePage({
             </motion.h2>
             <motion.h2
               className={`text-black text-left ${
-                is4K ? "text-3xl" : "text-2xl sm:text-xl"
+                is4K ? "text-3xl" : "text-md lg:text-xl"
               }`}
               variants={fadeInUp}
             >

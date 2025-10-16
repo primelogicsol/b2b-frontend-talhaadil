@@ -12,6 +12,7 @@ export const museumInstitutionalsData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/museum.mp4",
     heading: "Bridging Heritage With Global Recognition",
     problems: [
       "Crafts often showcased without artisan credit.",

@@ -181,7 +181,7 @@ export default function CareersPage() {
         .section-title {
           font-size: 2.5rem;
           font-weight: 700;
-          text-align: left;
+          text-align: center;
           margin-bottom: 3rem;
           color: var(--primary-color);
         }
@@ -598,9 +598,7 @@ export default function CareersPage() {
           .container {
             padding: 0 15px;
           }
-          .section-title {
-            margin-left: 4px;
-          }
+          
         }
 
         @media (min-width: 2560px) {
@@ -1009,9 +1007,9 @@ export default function CareersPage() {
           }
         >
           {/* Left: Text content */}
-          <div className="text-left md:text-left flex flex-col justify-center">
+          <div className="text-left flex flex-col justify-center">
             <h2
-              className="section-title mb-6"
+              className="text-left text-4xl font-bold text-[var(--primary-color)] mb-6 ml-3 md:ml-0"
               style={is4K ? { fontSize: "3.5rem" } : {}}
             >
               How to Apply

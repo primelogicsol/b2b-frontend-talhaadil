@@ -13,6 +13,7 @@ export const wholesaleData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/consignment.mp4",
     heading: "Fixing Bulk Trade in the Craft Industry",
     problems: [
       "Lack of reliable bulk supply channels.",

@@ -71,6 +71,7 @@ export const exhibitionData = {
   },
 
   whyDropshipping: {
+    link : "/videos/exhibition.mp4",
     heading: "Global Visibility, Local Roots",
     problems: [
       "Vendors often fail to access genuine global markets.",
