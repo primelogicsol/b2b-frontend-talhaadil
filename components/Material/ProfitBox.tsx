@@ -864,7 +864,7 @@ const categories = [
   },
 ];
 
-// MetricCard component
+// MetricCard component remains unchanged
 interface MetricCardProps {
   icon: React.ReactNode;
   title: string;
@@ -945,10 +945,23 @@ export default function KashmirCraftsCarousel() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const categoryScrollRef = useRef<HTMLDivElement>(null);
   const subcategoryScrollRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const currentCategory = categories[currentCategoryIndex];
   const selectedSubcategory =
     currentCategory.subcategories[selectedSubcategoryIndex];
+
+  // Preserve scroll position on mobile
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollPosition = containerRef.current.scrollTop;
+      return () => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = scrollPosition;
+        }
+      };
+    }
+  }, [currentCategoryIndex, selectedSubcategoryIndex]);
 
   // Effect to scroll category into view when index changes (for mobile arrows)
   useEffect(() => {
@@ -990,21 +1003,29 @@ export default function KashmirCraftsCarousel() {
     }
   };
 
-  const nextCategory = () => {
+  const nextCategory = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     setCurrentCategoryIndex((prev) => (prev + 1) % categories.length);
     setSelectedSubcategoryIndex(0);
   };
 
-  const prevCategory = () => {
+  const prevCategory = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     setCurrentCategoryIndex(
       (prev) => (prev - 1 + categories.length) % categories.length
     );
     setSelectedSubcategoryIndex(0);
   };
 
-  const scrollToCategory = (index: number) => {
+  const scrollToCategory = (index: number, e?: React.MouseEvent) => {
+    e?.preventDefault();
     setCurrentCategoryIndex(index);
     setSelectedSubcategoryIndex(0);
+  };
+
+  const selectSubcategory = (index: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    setSelectedSubcategoryIndex(index);
   };
 
   const getMetricIcon = (key: string) => {
@@ -1050,18 +1071,15 @@ export default function KashmirCraftsCarousel() {
   };
 
   const detailsKeys = Object.keys(selectedSubcategory.details);
-  // Split into two equal columns of 5 metrics each for desktop
   const leftColumnDetails = detailsKeys.slice(0, 5);
   const rightColumnDetails = detailsKeys.slice(5);
 
-  // Create dotted earth pattern
   const createDottedEarth = () => {
     const dots = [];
     const radius = is4K ? 450 : 300;
     const centerX = 400;
     const centerY = 400;
 
-    // Create multiple concentric circles of dots
     for (let ring = 0; ring < 4; ring++) {
       const currentRadius = radius - ring * (is4K ? 90 : 60);
       const dotsInRing = Math.max(24 - ring * 4, 8);
@@ -1094,7 +1112,6 @@ export default function KashmirCraftsCarousel() {
       }
     }
 
-    // Add continental outlines with dots
     const continentPaths = [
       { x: 350, y: 320, size: is4K ? 4.5 : 3 },
       { x: 420, y: 350, size: is4K ? 3.75 : 2.5 },
@@ -1132,9 +1149,10 @@ export default function KashmirCraftsCarousel() {
 
   return (
     <div
+      ref={containerRef}
       className={`${
         is4K ? " py-30" : " "
-      }  bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
+      } bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
       style={
         {
           "--primary-hover-color": "#2a5f7a",
@@ -1156,8 +1174,6 @@ export default function KashmirCraftsCarousel() {
       >
         <svg width="800" height="800" viewBox="0 0 800 800">
           {createDottedEarth()}
-
-          {/* Orbital rings */}
           <motion.circle
             cx="400"
             cy="400"
@@ -1216,10 +1232,10 @@ export default function KashmirCraftsCarousel() {
         </motion.p>
       </motion.div>
 
-      {/* Mobile Category Slider with Arrows (visible on small screens) */}
+      {/* Mobile Category Slider with Arrows */}
       <div className="md:hidden px-4 mb-8 relative z-10 flex items-center justify-center">
         <motion.button
-          onClick={prevCategory}
+          onClick={(e) => prevCategory(e)}
           className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
           aria-label="Previous category"
           whileHover={{ scale: 1.1 }}
@@ -1237,7 +1253,7 @@ export default function KashmirCraftsCarousel() {
             <motion.button
               key={category.id}
               id={`category-btn-${category.id}`}
-              onClick={() => scrollToCategory(index)}
+              onClick={(e) => scrollToCategory(index, e)}
               className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${
                 currentCategoryIndex === index
                   ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
@@ -1253,7 +1269,7 @@ export default function KashmirCraftsCarousel() {
         </div>
 
         <motion.button
-          onClick={nextCategory}
+          onClick={(e) => nextCategory(e)}
           className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
           aria-label="Next category"
           whileHover={{ scale: 1.1 }}
@@ -1270,8 +1286,8 @@ export default function KashmirCraftsCarousel() {
           style={{ width: is4K ? "800px" : "500px" }}
         >
           <motion.button
-            onClick={prevCategory}
-            className={`group  flex-shrink-0 flex items-center justify-center ${
+            onClick={(e) => prevCategory(e)}
+            className={`group flex-shrink-0 flex items-center justify-center ${
               is4K ? "w-20 h-20" : "w-16 h-16"
             } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Previous category"
@@ -1322,7 +1338,7 @@ export default function KashmirCraftsCarousel() {
           </motion.div>
 
           <motion.button
-            onClick={nextCategory}
+            onClick={(e) => nextCategory(e)}
             className={`group flex-shrink-0 flex items-center justify-center ${
               is4K ? "w-20 h-20" : "w-16 h-16"
             } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
@@ -1343,7 +1359,6 @@ export default function KashmirCraftsCarousel() {
       <div className="relative z-10 px-4 md:px-8 pb-12">
         {/* Desktop Layout: Left Details + Center Tabs + Right Details */}
         <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
-          {/* Left Metrics */}
           <div className="col-span-4 space-y-8">
             {leftColumnDetails.map((key, index) => (
               <MetricCard
@@ -1362,7 +1377,6 @@ export default function KashmirCraftsCarousel() {
             ))}
           </div>
 
-          {/* Center - Subcategory Tabs */}
           <motion.div
             className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl h-[545px]"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -1404,7 +1418,7 @@ export default function KashmirCraftsCarousel() {
               {currentCategory.subcategories.map((sub, index) => (
                 <motion.button
                   key={sub.id}
-                  onClick={() => setSelectedSubcategoryIndex(index)}
+                  onClick={(e) => selectSubcategory(index, e)}
                   className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${
                     is4K ? "text-xl" : "text-base"
                   } ${
@@ -1429,7 +1443,6 @@ export default function KashmirCraftsCarousel() {
             </div>
           </motion.div>
 
-          {/* Right Metrics */}
           <div className="col-span-4 space-y-8">
             {rightColumnDetails.map((key, index) => (
               <MetricCard
@@ -1451,7 +1464,6 @@ export default function KashmirCraftsCarousel() {
 
         {/* Mobile/Tablet Layout */}
         <div className="lg:hidden max-w-4xl mx-auto">
-          {/* Subcategory Tabs (scrollable on mobile) */}
           <motion.div
             className="bg-slate-800/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-700/50 mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -1480,7 +1492,7 @@ export default function KashmirCraftsCarousel() {
               {currentCategory.subcategories.map((sub, index) => (
                 <motion.button
                   key={sub.id}
-                  onClick={() => setSelectedSubcategoryIndex(index)}
+                  onClick={(e) => selectSubcategory(index, e)}
                   className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${
                     selectedSubcategoryIndex === index
                       ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
@@ -1507,7 +1519,6 @@ export default function KashmirCraftsCarousel() {
             </div>
           </motion.div>
 
-          {/* Details Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {detailsKeys.map((key, index) => (
               <MetricCard
