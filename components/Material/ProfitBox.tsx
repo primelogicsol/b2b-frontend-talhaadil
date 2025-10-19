@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { useGlobalContext } from "@/context/ScreenProvider";
 
-// Categories array (unchanged)
+// Updated categories array with JSON data
 const categories = [
   {
     name: "Boutique",
@@ -864,7 +864,7 @@ const categories = [
   },
 ];
 
-// MetricCard component (unchanged)
+// MetricCard component remains unchanged
 interface MetricCardProps {
   icon: React.ReactNode;
   title: string;
@@ -947,34 +947,28 @@ export default function KashmirCraftsCarousel() {
   const subcategoryScrollRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const currentCategory = categories[currentCategoryIndex];
+  const selectedSubcategory =
+    currentCategory.subcategories[selectedSubcategoryIndex];
+
   // Preserve scroll position on mobile
   useEffect(() => {
-    const handleScroll = () => {
-      if (containerRef.current) {
-        sessionStorage.setItem("scrollPosition", containerRef.current.scrollTop.toString());
-      }
-    };
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
-
-  // Restore scroll position after state change
-  useEffect(() => {
-    const scrollPosition = parseFloat(sessionStorage.getItem("scrollPosition") || "0");
     if (containerRef.current) {
-      containerRef.current.scrollTop = scrollPosition;
+      const scrollPosition = containerRef.current.scrollTop;
+      return () => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = scrollPosition;
+        }
+      };
     }
-    // Log state changes for debugging
-    console.log("Category Index:", currentCategoryIndex, "Subcategory Index:", selectedSubcategoryIndex);
   }, [currentCategoryIndex, selectedSubcategoryIndex]);
 
-  // Effect to scroll category into view
+  // Effect to scroll category into view when index changes (for mobile arrows)
   useEffect(() => {
     if (categoryScrollRef.current) {
-      const selectedButton = categoryScrollRef.current.children[currentCategoryIndex] as HTMLElement;
+      const selectedButton = categoryScrollRef.current.children[
+        currentCategoryIndex
+      ] as HTMLElement;
       if (selectedButton) {
         selectedButton.scrollIntoView({
           behavior: "smooth",
@@ -985,15 +979,13 @@ export default function KashmirCraftsCarousel() {
     }
   }, [currentCategoryIndex]);
 
-  // Touch handlers for swipe
+  // Touch handlers for swipe functionality
   const onTouchStart = (e: React.TouchEvent) => {
-    e.stopPropagation();
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    e.stopPropagation();
     setTouchEnd(e.targetTouches[0].clientX);
   };
 
@@ -1011,74 +1003,30 @@ export default function KashmirCraftsCarousel() {
     }
   };
 
-  // Navigation functions
   const nextCategory = (e?: React.MouseEvent) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    const scrollPosition = containerRef.current?.scrollTop || window.scrollY;
+    e?.preventDefault();
     setCurrentCategoryIndex((prev) => (prev + 1) % categories.length);
     setSelectedSubcategoryIndex(0);
-    setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.scrollTop = scrollPosition;
-      } else {
-        window.scrollTo({ top: scrollPosition, behavior: "auto" });
-      }
-    }, 0);
   };
 
   const prevCategory = (e?: React.MouseEvent) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    const scrollPosition = containerRef.current?.scrollTop || window.scrollY;
-    setCurrentCategoryIndex((prev) => (prev - 1 + categories.length) % categories.length);
+    e?.preventDefault();
+    setCurrentCategoryIndex(
+      (prev) => (prev - 1 + categories.length) % categories.length
+    );
     setSelectedSubcategoryIndex(0);
-    setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.scrollTop = scrollPosition;
-      } else {
-        window.scrollTo({ top: scrollPosition, behavior: "auto" });
-      }
-    }, 0);
   };
 
   const scrollToCategory = (index: number, e?: React.MouseEvent) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    const scrollPosition = containerRef.current?.scrollTop || window.scrollY;
+    e?.preventDefault();
     setCurrentCategoryIndex(index);
     setSelectedSubcategoryIndex(0);
-    setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.scrollTop = scrollPosition;
-      } else {
-        window.scrollTo({ top: scrollPosition, behavior: "auto" });
-      }
-    }, 0);
   };
 
   const selectSubcategory = (index: number, e: React.MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
-    const scrollPosition = containerRef.current?.scrollTop || window.scrollY;
     setSelectedSubcategoryIndex(index);
-    setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.scrollTop = scrollPosition;
-      } else {
-        window.scrollTo({ top: scrollPosition, behavior: "auto" });
-      }
-    }, 0);
   };
-
-  const currentCategory = categories[currentCategoryIndex];
-  const selectedSubcategory = currentCategory.subcategories[selectedSubcategoryIndex];
 
   const getMetricIcon = (key: string) => {
     const iconSize = is4K ? 32 : 24;
@@ -1107,7 +1055,9 @@ export default function KashmirCraftsCarousel() {
       default:
         return (
           <div
-            className={`w-${is4K ? "8" : "6"} h-${is4K ? "9" : "6"} rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
+            className={`w-${is4K ? "8" : "6"} h-${
+              is4K ? "9" : "6"
+            } rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
           />
         );
     }
@@ -1195,11 +1145,6 @@ export default function KashmirCraftsCarousel() {
     });
 
     return dots;
-  };
-
-  // Button styles to prevent default touch behavior
-  const buttonStyles = {
-    touchAction: "none" as const,
   };
 
   return (
@@ -1290,12 +1235,11 @@ export default function KashmirCraftsCarousel() {
       {/* Mobile Category Slider with Arrows */}
       <div className="md:hidden px-4 mb-8 relative z-10 flex items-center justify-center">
         <motion.button
-          onClick={nextCategory}
+          onClick={(e) => prevCategory(e)}
           className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
           aria-label="Previous category"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          style={buttonStyles}
         >
           <ChevronLeft className="w-6 h-6 text-white group-hover:text-[var(--secondary-color)] transition-colors" />
         </motion.button>
@@ -1315,7 +1259,7 @@ export default function KashmirCraftsCarousel() {
                   ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
                   : "bg-white/10 text-gray-200 hover:bg-white/20"
               }`}
-              style={{ scrollSnapAlign: "center", ...buttonStyles }}
+              style={{ scrollSnapAlign: "center" }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -1325,12 +1269,11 @@ export default function KashmirCraftsCarousel() {
         </div>
 
         <motion.button
-          onClick={prevCategory}
+          onClick={(e) => nextCategory(e)}
           className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
           aria-label="Next category"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          style={buttonStyles}
         >
           <ChevronRight className="w-6 h-6 text-white group-hover:text-[var(--secondary-color)] transition-colors" />
         </motion.button>
@@ -1343,14 +1286,13 @@ export default function KashmirCraftsCarousel() {
           style={{ width: is4K ? "800px" : "500px" }}
         >
           <motion.button
-            onClick={prevCategory}
+            onClick={(e) => prevCategory(e)}
             className={`group flex-shrink-0 flex items-center justify-center ${
               is4K ? "w-20 h-20" : "w-16 h-16"
             } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Previous category"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            style={buttonStyles}
           >
             <ChevronLeft
               className={`${
@@ -1396,14 +1338,13 @@ export default function KashmirCraftsCarousel() {
           </motion.div>
 
           <motion.button
-            onClick={nextCategory}
+            onClick={(e) => nextCategory(e)}
             className={`group flex-shrink-0 flex items-center justify-center ${
               is4K ? "w-20 h-20" : "w-16 h-16"
             } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Next category"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            style={buttonStyles}
           >
             <ChevronRight
               className={`${
@@ -1485,7 +1426,6 @@ export default function KashmirCraftsCarousel() {
                       ? "bg-[var(--secondary-color)] text-white scale-105"
                       : "bg-slate-700/50 text-gray-200 border border-slate-600/30 hover:bg-slate-600/50"
                   }`}
-                  style={buttonStyles}
                   whileHover={{
                     scale: 1.05,
                     y: -2,
@@ -1558,7 +1498,7 @@ export default function KashmirCraftsCarousel() {
                       ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
                       : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
                   }`}
-                  style={{ scrollSnapAlign: "start", ...buttonStyles }}
+                  style={{ scrollSnapAlign: "start" }}
                   whileHover={{
                     scale: 1.05,
                     backgroundColor: "rgba(249, 115, 22, 0.2)",
