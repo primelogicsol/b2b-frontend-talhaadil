@@ -1364,7 +1364,7 @@ export default function KashmirCraftsCarousel() {
 
           {/* Center - Subcategory Tabs */}
           <motion.div
-            className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl h-[600px]"
+            className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl h-[545px]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
