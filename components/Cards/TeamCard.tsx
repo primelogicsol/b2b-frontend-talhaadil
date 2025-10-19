@@ -93,7 +93,7 @@ export default function TeamCard({
           <p
             className={`${
               is4K ? "text-lg" : "text-base"
-            } text-gray-600 group-hover:text-gray-500 transition-all duration-500 mt-1`}
+            } text-[var(--secondary-color)] text-bold transition-all duration-500 mt-1`}
           >
             {title}
           </p>

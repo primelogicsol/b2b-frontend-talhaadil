@@ -58,12 +58,16 @@ const locations = [
 ]
 
 const achievements = [
-  "Fueling Expansion Through Operational Synergy Worldwide.",
-  "Logistics Streamlined for Maximum Efficiency and Impact.",
-  "Bridging Markets, Unlocking Potential, Delivering Growth.",
-  "Innovative Foundations for Limitless Global Connectivity.",
-  "Expanding Horizons, Strengthening Networks, Achieving Goals.",
-]
+  "Strengthened Global Synergy Network.",
+  "Streamlined Logistics Efficiency.",
+  "Expanded International Presence.",
+  "Built Trust Through Transparency.",
+  "Enhanced Artisan Empowerment.",
+  "Established Global Supply Connectivity.",
+  "Promoted Sustainable Craft Growth.",
+  "Elevated Brand Recognition Worldwide.",
+];
+
 
 export default function Location() {
   const { is4K } = useGlobalContext()
@@ -102,7 +106,7 @@ export default function Location() {
             <h2 className={`${is4K ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"} font-bold text-[#1b4f68] mb-6`}>
               Key Achievements
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-4 py-1">
               {achievements.map((item, index) => (
                 <li key={index} className="flex items-start gap-3 text-[#0f172a]">
                   <span className={`${is4K ? "text-3xl" : "text-2xl"} leading-none font-bold`}>•</span>

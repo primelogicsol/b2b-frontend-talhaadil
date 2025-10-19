@@ -74,7 +74,7 @@ export default function PricingTable() {
                 : "text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-[var(--primary-header-color)] mb-4"
             }
           >
-            Confidence in Your Security
+            Lateral Entry Starter Packages
           </h1>
         </div>
 

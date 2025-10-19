@@ -7,679 +7,34 @@ import React from "react";
 import TeamPage from "@/components/Essentials/TeamPage";
 import SectionTitle from "@/components/Section/SectionTitle";
 import { useGlobalContext } from "@/context/ScreenProvider";
+
 export default function OurTeam() {
-  const {is4K} =  useGlobalContext();
+  const { is4K } = useGlobalContext();
+
   // ================= DATA ==================
-
-  // 2A. TECHNOLOGY & PRODUCT DIVISION  Engineering & DevOps
-  const engineeringDevOps = [
-    {
-      name: "Zeeshan Ahmed",
-      title: "Lead Software Engineer",
-      imageUrl: "/images/fake3.jpg",
-      email: "zeeshan.ahmed@example.com",
-    },
-    {
-      name: "Usman Javed",
-      title: "Frontend Developer",
-      imageUrl: "/images/fake4.jpg",
-      email: "usman.javed@example.com",
-    },
-    {
-      name: "Ayesha Bano",
-      title: "Backend Developer",
-      imageUrl: "/images/fake5.jpg",
-      email: "ayesha.bano@example.com",
-    },
-    {
-      name: "Rizwan Ali",
-      title: "QA Engineer",
-      imageUrl: "/images/fake6.jpg",
-      email: "rizwan.ali@example.com",
-    },
-  ];
-
-  // 2B. TECHNOLOGY & PRODUCT DIVISION  Blockchain & AI Systems
-  const blockchainAI = [
-    {
-      name: "Sara Khan",
-      title: "Blockchain Traceability Engineer",
-      imageUrl: "/images/fake7.jpg",
-      email: "sara.khan@example.com",
-    },
-    {
-      name: "Taimoor Iqbal",
-      title: "AI Personalization Developer",
-      imageUrl: "/images/fake8.jpg",
-      email: "taimoor.iqbal@example.com",
-    },
-    {
-      name: "Maham Rashid",
-      title: "Data Systems Analyst",
-      imageUrl: "/images/fake9.jpg",
-      email: "maham.rashid@example.com",
-    },
-    {
-      name: "Adnan Mirza",
-      title: "Security & Authentication Lead",
-      imageUrl: "/images/fake10.jpg",
-      email: "adnan.mirza@example.com",
-    },
-  ];
-
-  // 2C. TECHNOLOGY & PRODUCT DIVISION  Integration & CMS
-  const integrationCMS = [
-    {
-      name: "Sadia Noor",
-      title: "API Integration Manager",
-      imageUrl: "/images/fake11.jpg",
-      email: "sadia.noor@example.com",
-    },
-    {
-      name: "Omer Yousaf",
-      title: "CMS Architect",
-      imageUrl: "/images/fake12.jpg",
-      email: "omer.yousaf@example.com",
-    },
-    {
-      name: "Samiullah Khan",
-      title: "DevOps Manager",
-      imageUrl: "/images/fake13.jpg",
-      email: "samiullah.khan@example.com",
-    },
-    {
-      name: "Rabia Gul",
-      title: "Platform Support Engineer",
-      imageUrl: "/images/fake14.jpg",
-      email: "rabia.gul@example.com",
-    },
-  ];
-
-  // 3A. VENDOR ONBOARDING & ARTISAN SUPPORT  Onboarding & Training
-  const onboardingTraining = [
-    {
-      name: "Hafsa Rehman",
-      title: "Vendor Onboarding Manager",
-      imageUrl: "/images/fake15.jpg",
-      email: "hafsa.rehman@example.com",
-    },
-    {
-      name: "Mehwish Tariq",
-      title: "Digital Literacy Trainer",
-      imageUrl: "/images/fake16.jpg",
-      email: "mehwish.tariq@example.com",
-    },
-    {
-      name: "Noman Aziz",
-      title: "GI Documentation Specialist",
-      imageUrl: "/images/fake17.jpg",
-      email: "noman.aziz@example.com",
-    },
-    {
-      name: "Iqra Hussain",
-      title: "Vendor Dashboard Support Officer",
-      imageUrl: "/images/fake18.jpg",
-      email: "iqra.hussain@example.com",
-    },
-  ];
-
-  // 3B. VENDOR ONBOARDING & ARTISAN SUPPORT  Support & Welfare
-  const supportWelfare = [
-    {
-      name: "Amir Junaid",
-      title: "Vendor Helpdesk Lead",
-      imageUrl: "/images/fake19.jpg",
-      email: "amir.junaid@example.com",
-    },
-    {
-      name: "Farah Ali",
-      title: "Grievance & Retention Manager",
-      imageUrl: "/images/fake20.jpg",
-      email: "farah.ali@example.com",
-    },
-    {
-      name: "Shazia Karim",
-      title: "Women’s Collective Coordinator",
-      imageUrl: "/images/fake21.jpg",
-      email: "shazia.karim@example.com",
-    },
-    {
-      name: "Bilal Sajid",
-      title: "Tool & Tech Support Officer",
-      imageUrl: "/images/fake22.jpg",
-      email: "bilal.sajid@example.com",
-    },
-  ];
-
-  // 4A. LOGISTICS & PACKAGING  Logistics Operations
-  const logisticsOps = [
-    {
-      name: "Owais Khan",
-      title: "Logistics Manager",
-      imageUrl: "/images/fake23.jpg",
-      email: "owais.khan@example.com",
-    },
-    {
-      name: "Fatima Javed",
-      title: "Fulfillment Coordinator",
-      imageUrl: "/images/fake24.jpg",
-      email: "fatima.javed@example.com",
-    },
-    {
-      name: "Salman Iqbal",
-      title: "Customs Compliance Officer",
-      imageUrl: "/images/fake25.jpg",
-      email: "salman.iqbal@example.com",
-    },
-    {
-      name: "Nadia Noor",
-      title: "Order Tracking Specialist",
-      imageUrl: "/images/fake26.jpg",
-      email: "nadia.noor@example.com",
-    },
-  ];
-
-  // 4B. LOGISTICS & PACKAGING  Packaging & Handling
-  const packagingHandling = [
-    {
-      name: "Imran Ali",
-      title: "Eco-Packaging Designer",
-      imageUrl: "/images/fake27.jpg",
-      email: "imran.ali@example.com",
-    },
-    {
-      name: "Sadaf Nazeer",
-      title: "Unboxing Experience Lead",
-      imageUrl: "/images/fake28.jpg",
-      email: "sadaf.nazeer@example.com",
-    },
-    {
-      name: "Abdul Rehman",
-      title: "Fragile Goods Safety Engineer",
-      imageUrl: "/images/fake29.jpg",
-      email: "abdul.rehman@example.com",
-    },
-    {
-      name: "Maryam Yusuf",
-      title: "Branding & Label Compliance Officer",
-      imageUrl: "/images/fake30.jpg",
-      email: "maryam.yusuf@example.com",
-    },
-  ];
-
-  // 5. SUSTAINABILITY & ESG DIVISION
-  const sustainabilityESG = [
-    {
-      name: "Shahbaz Khan",
-      title: "Head of Sustainability",
-      imageUrl: "/images/fake31.jpg",
-      email: "shahbaz.khan@example.com",
-    },
-    {
-      name: "Anum Rafiq",
-      title: "Carbon Tagging Analyst",
-      imageUrl: "/images/fake32.jpg",
-      email: "anum.rafiq@example.com",
-    },
-    {
-      name: "Uswa Raza",
-      title: "Craft Waste Circularity Officer",
-      imageUrl: "/images/fake33.jpg",
-      email: "uswa.raza@example.com",
-    },
-    {
-      name: "Naveed Aslam",
-      title: "ESG Policy Integration Manager",
-      imageUrl: "/images/fake34.jpg",
-      email: "naveed.aslam@example.com",
-    },
-  ];
-
-  // 6. COMPLIANCE & LEGAL DIVISION
-  const complianceLegal = [
-    {
-      name: "Tahir Mehmood",
-      title: "Chief Compliance Officer",
-      imageUrl: "/images/fake35.jpg",
-      email: "tahir.mehmood@example.com",
-    },
-    {
-      name: "Kiran Shah",
-      title: "GI/IP Legal Advisor",
-      imageUrl: "/images/fake36.jpg",
-      email: "kiran.shah@example.com",
-    },
-    {
-      name: "Omer Farooq",
-      title: "Vendor Contract Officer",
-      imageUrl: "/images/fake37.jpg",
-      email: "omer.farooq@example.com",
-    },
-    {
-      name: "Hina Rauf",
-      title: "Labor Ethics Auditor",
-      imageUrl: "/images/fake38.jpg",
-      email: "hina.rauf@example.com",
-    },
-  ];
-
-  // 7. QUALITY ASSURANCE & TRACEABILITY DIVISION
-  const qualityAssurance = [
-    {
-      name: "Shafqat Ali",
-      title: "Master Craft Appraiser",
-      imageUrl: "/images/fake39.jpg",
-      email: "shafqat.ali@example.com",
-    },
-    {
-      name: "Lubna Akhtar",
-      title: "GI Verification Officer",
-      imageUrl: "/images/fake40.jpg",
-      email: "lubna.akhtar@example.com",
-    },
-    {
-      name: "Waqas Ahmad",
-      title: "Product Grading Specialist",
-      imageUrl: "/images/fake41.jpg",
-      email: "waqas.ahmad@example.com",
-    },
-    {
-      name: "Hira Iqbal",
-      title: "Quality Dispute Resolution Lead",
-      imageUrl: "/images/fake42.jpg",
-      email: "hira.iqbal@example.com",
-    },
-  ];
-
-  // 8A. GLOBAL PARTNERSHIPS  Global Strategy & Franchise
-  const globalStrategy = [
-    {
-      name: "Muneeb Hassan",
-      title: "Global Partnership Director",
-      imageUrl: "/images/fake43.jpg",
-      email: "muneeb.hassan@example.com",
-    },
-    {
-      name: "Adeel Ahmed",
-      title: "US Franchise Manager",
-      imageUrl: "/images/fake44.jpg",
-      email: "adeel.ahmed@example.com",
-    },
-    {
-      name: "Hania Zafar",
-      title: "MENA Trade Liaison",
-      imageUrl: "/images/fake45.jpg",
-      email: "hania.zafar@example.com",
-    },
-    {
-      name: "Sohail Tariq",
-      title: "Licensing Legal Officer",
-      imageUrl: "/images/fake46.jpg",
-      email: "sohail.tariq@example.com",
-    },
-  ];
-
-  // 8B. GLOBAL PARTNERSHIPS  Program Operations
-  const programOps = [
-    {
-      name: "Rashid Mehmood",
-      title: "Consignment Program Manager",
-      imageUrl: "/images/fake47.jpg",
-      email: "rashid.mehmood@example.com",
-    },
-    {
-      name: "Aqsa Noor",
-      title: "Exhibition & Event Coordinator",
-      imageUrl: "/images/fake48.jpg",
-      email: "aqsa.noor@example.com",
-    },
-    {
-      name: "Imtiaz Siddiqi",
-      title: "Dropshipping Relations Lead",
-      imageUrl: "/images/fake49.jpg",
-      email: "imtiaz.siddiqi@example.com",
-    },
-    {
-      name: "Farheen Ali",
-      title: "Partner Onboarding Specialist",
-      imageUrl: "/images/fake50.jpg",
-      email: "farheen.ali@example.com",
-    },
-  ];
-
-  // 9. MARKETING & BUYER ENGAGEMENT DIVISION
-  const marketingBuyerEngagement = [
-    {
-      name: "Zoya Khan",
-      title: "Chief Marketing Officer",
-      imageUrl: "/images/team-zoya.jpg",
-      email: "zoya.khan@example.com",
-    },
-    {
-      name: "Shahzaib Rafiq",
-      title: "Campaign Manager",
-      imageUrl: "/images/fake51.jpg",
-      email: "shahzaib.rafiq@example.com",
-    },
-    {
-      name: "Aiman Tariq",
-      title: "CRM & Buyer Loyalty Officer",
-      imageUrl: "/images/fake52.jpg",
-      email: "aiman.tariq@example.com",
-    },
-    {
-      name: "Hassan Javed",
-      title: "Communications & PR Specialist",
-      imageUrl: "/images/fake53.jpg",
-      email: "hassan.javed@example.com",
-    },
-  ];
-
-  // 10. MEDIA & VISUAL CONTENT DIVISION
-  const mediaContent = [
-    {
-      name: "Sadaqat Ali",
-      title: "Visual Content Director",
-      imageUrl: "/images/fake54.jpg",
-      email: "sadaqat.ali@example.com",
-    },
-    {
-      name: "Areeba Saleem",
-      title: "Craft Videographer",
-      imageUrl: "/images/fake55.jpg",
-      email: "areeba.saleem@example.com",
-    },
-    {
-      name: "Waleed Hassan",
-      title: "Product Photographer",
-      imageUrl: "/images/fake56.jpg",
-      email: "waleed.hassan@example.com",
-    },
-    {
-      name: "Samina Yousuf",
-      title: "Post-Production Editor",
-      imageUrl: "/images/fake57.jpg",
-      email: "samina.yousuf@example.com",
-    },
-  ];
-
-  // 11. CRAFT RESEARCH & DOCUMENTATION DIVISION
-  const craftResearch = [
-    {
-      name: "Humaira Tariq",
-      title: "Head of Craft Research",
-      imageUrl: "/images/fake58.jpg",
-      email: "humaira.tariq@example.com",
-    },
-    {
-      name: "Nashit Ali",
-      title: "GI Region Data Analyst",
-      imageUrl: "/images/fake59.jpg",
-      email: "nashit.ali@example.com",
-    },
-    {
-      name: "Iqbal Junaid",
-      title: "Artisan Biographer",
-      imageUrl: "/images/fake60.jpg",
-      email: "iqbal.junaid@example.com",
-    },
-    {
-      name: "Madiha Noor",
-      title: "Cultural Translator",
-      imageUrl: "/images/fake61.jpg",
-      email: "madiha.noor@example.com",
-    },
-  ];
-
-  // 12. FINANCE, GRANTS & INVESTMENT DIVISION
-  const financeDivision = [
-    {
-      name: "Bilal Ahmed",
-      title: "Chief Financial Officer",
-      imageUrl: "/images/team-bilal.jpg",
-      email: "bilal.ahmed@example.com",
-    },
-    {
-      name: "Hafeez Khan",
-      title: "Financial Controller",
-      imageUrl: "/images/fake62.jpg",
-      email: "hafeez.khan@example.com",
-    },
-    {
-      name: "Sumaira Gul",
-      title: "Grants Program Manager",
-      imageUrl: "/images/fake63.jpg",
-      email: "sumaira.gul@example.com",
-    },
-    {
-      name: "Junaid Aslam",
-      title: "Investor Relations Officer",
-      imageUrl: "/images/fake64.jpg",
-      email: "junaid.aslam@example.com",
-    },
-  ];
-
-  // 13. CUSTOMER & VENDOR SUPPORT DIVISION
-  const customerVendorSupport = [
-    {
-      name: "Amna Rauf",
-      title: "Global Support Manager",
-      imageUrl: "/images/fake65.jpg",
-      email: "amna.rauf@example.com",
-    },
-    {
-      name: "Furqan Ali",
-      title: "Buyer Support Agent",
-      imageUrl: "/images/fake66.jpg",
-      email: "furqan.ali@example.com",
-    },
-    {
-      name: "Kinza Mehmood",
-      title: "Vendor Helpdesk Officer",
-      imageUrl: "/images/fake67.jpg",
-      email: "kinza.mehmood@example.com",
-    },
-    {
-      name: "Zainab Akbar",
-      title: "Knowledgebase & FAQ Editor",
-      imageUrl: "/images/fake68.jpg",
-      email: "zainab.akbar@example.com",
-    },
-  ];
-
-  // 14. TRADE INTELLIGENCE & RISK DIVISION
-  const tradeIntelligence = [
-    {
-      name: "Shaheryar Malik",
-      title: "Trade Intelligence Lead",
-      imageUrl: "/images/fake69.jpg",
-      email: "shaheryar.malik@example.com",
-    },
-    {
-      name: "Adeel Jamil",
-      title: "Global Trends Analyst",
-      imageUrl: "/images/fake70.jpg",
-      email: "adeel.jamil@example.com",
-    },
-    {
-      name: "Laiba Khan",
-      title: "Conflict Risk Planner",
-      imageUrl: "/images/fake71.jpg",
-      email: "laiba.khan@example.com",
-    },
-    {
-      name: "Umar Farid",
-      title: "Policy Response Coordinator",
-      imageUrl: "/images/fake72.jpg",
-      email: "umar.farid@example.com",
-    },
-  ];
-
-  // 15. MONITORING & IMPACT DIVISION
-  const monitoringImpact = [
-    {
-      name: "Adil Hussain",
-      title: "M&E Officer",
-      imageUrl: "/images/fake73.jpg",
-      email: "adil.hussain@example.com",
-    },
-    {
-      name: "Eman Tariq",
-      title: "ESG Impact Analyst",
-      imageUrl: "/images/fake74.jpg",
-      email: "eman.tariq@example.com",
-    },
-    {
-      name: "Saqib Zaman",
-      title: "Social ROI Evaluator",
-      imageUrl: "/images/fake75.jpg",
-      email: "saqib.zaman@example.com",
-    },
-    {
-      name: "Sadia Nadeem",
-      title: "Transparency Report Lead",
-      imageUrl: "/images/fake76.jpg",
-      email: "sadia.nadeem@example.com",
-    },
-  ];
-
-  // 16. LOCALIZATION & REGIONAL TRADE DIVISION
-  const localizationTrade = [
-    {
-      name: "Nashit Rafiq",
-      title: "Localization Manager",
-      imageUrl: "/images/fake77.jpg",
-      email: "nashit.rafiq@example.com",
-    },
-    {
-      name: "Hira Naveed",
-      title: "Regional Trade Lead – US",
-      imageUrl: "/images/fake78.jpg",
-      email: "hira.naveed@example.com",
-    },
-    {
-      name: "Hassan Imran",
-      title: "Regional Trade Lead – MENA",
-      imageUrl: "/images/fake79.jpg",
-      email: "hassan.imran@example.com",
-    },
-    {
-      name: "Maryam Saleem",
-      title: "Regional Trade Lead – Europe",
-      imageUrl: "/images/fake80.jpg",
-      email: "maryam.saleem@example.com",
-    },
-  ];
-
-  // 17. ETHICS, INCLUSION & TRANSPARENCY DIVISION
-  const ethicsInclusion = [
-    {
-      name: "Sadaf Yousaf",
-      title: "Head of Inclusion",
-      imageUrl: "/images/fake81.jpg",
-      email: "sadaf.yousaf@example.com",
-    },
-    {
-      name: "Aqeel Tariq",
-      title: "Accessibility & Equity Officer",
-      imageUrl: "/images/fake82.jpg",
-      email: "aqeel.tariq@example.com",
-    },
-    {
-      name: "Kiran Batool",
-      title: "Ethics Audit Coordinator",
-      imageUrl: "/images/fake83.jpg",
-      email: "kiran.batool@example.com",
-    },
-    {
-      name: "Haris Khalid",
-      title: "Transparency Reporting Manager",
-      imageUrl: "/images/fake84.jpg",
-      email: "haris.khalid@example.com",
-    },
-  ];
-
-  // 18. INNOVATION & CRAFT-TECH LAB
-  const innovationLab = [
-    {
-      name: "Fahad Ali",
-      title: "Innovation Lab Director",
-      imageUrl: "/images/fake85.jpg",
-      email: "fahad.ali@example.com",
-    },
-    {
-      name: "Areej Qureshi",
-      title: "AR/VR Craft Experience Developer",
-      imageUrl: "/images/fake86.jpg",
-      email: "areej.qureshi@example.com",
-    },
-    {
-      name: "Kamran Tariq",
-      title: "Blockchain/NFT Tag Lead",
-      imageUrl: "/images/fake87.jpg",
-      email: "kamran.tariq@example.com",
-    },
-    {
-      name: "Sidra Anwar",
-      title: "Sustainable Dye Researcher",
-      imageUrl: "/images/fake88.jpg",
-      email: "sidra.anwar@example.com",
-    },
-  ];
-
-  // 19. ADMIN & CMS CONTROL DIVISION
-  const adminCMSControl = [
-    {
-      name: "Naeem Akhtar",
-      title: "Super Admin",
-      imageUrl: "/images/fake89.jpg",
-      email: "naeem.akhtar@example.com",
-    },
-    {
-      name: "Ambar Liaquat",
-      title: "CMS Workflow Manager",
-      imageUrl: "/images/fake90.jpg",
-      email: "ambar.liaquat@example.com",
-    },
-    {
-      name: "Waseem Javed",
-      title: "Role Permissions Coordinator",
-      imageUrl: "/images/fake91.jpg",
-      email: "waseem.javed@example.com",
-    },
-    {
-      name: "Mahnoor Hassan",
-      title: "Internal Testing & Moderation Lead",
-      imageUrl: "/images/fake92.jpg",
-      email: "mahnoor.hassan@example.com",
-    },
-  ];
-
   const teamMembers = [
-   
     {
       isImportant: true,
-      name: "Sana Malik",
-      title: "Chief Operating Officer",
-      email: "sana.malik@example.com",
-      imageUrl: "/images/team-sana.jpg",
+      name: "Susan McDonald",
+      title: "Chief Operating Officer (USA)",
+      email: "susan.scheff@example.com",
+      imageUrl: "/images/team-susan.jpg",
       description:
-        "Sana ensures smooth daily operations and alignment with sustainability goals. Her expertise in business management helps provide artisans with access to markets, fair wages, and strategic growth opportunities.",
+        "Susan oversees De Koshur Crafts’ U.S. operations, partnerships, and retail growth strategy. With years of experience in cross-cultural leadership and global commerce, she ensures the seamless alignment of American markets with Kashmiri craftsmanship.",
       quote:
-        "Our artisans are the backbone of this platform. My role is to ensure they have everything they need to succeed.",
-     
+        "Every sale must tell a story—of heritage, fairness, and shared humanity.",
     },
-     {
+    {
       name: "Fayaz Ahmad Khan",
       isImportant: true,
       isCeo: true,
       title: "Founder & CEO",
-      email : "fayaz.ahmad@example.com",
-      imageUrl: "/images/team-fayaz.jpg", // Make sure the image exists in your public/images folder
+      email: "fayaz.ahmad@example.com",
+      imageUrl: "/images/team-fayaz.jpg",
       description:
-        "As the founder of De Koshur Crafts, Fayaz is the visionary behind the platform. With 10+ years of experience in international trade and sustainability, he's committed to empowering artisans and preserving Kashmir’s rich heritage.",
+        "As the visionary behind De Koshur Crafts, Fayaz combines his background in environmental science and international trade to empower artisans and revolutionize Kashmir’s craft industry. He leads innovation, sustainability, and policy advocacy across borders.",
       quote:
-        "Our mission is to ensure that the authentic crafts of Kashmir are celebrated and respected around the world.",
+        "Our mission is to make Kashmiri crafts a global movement of ethics, culture, and resilience.",
       social: {
         facebook: "#",
         vimeo: "#",
@@ -689,15 +44,256 @@ export default function OurTeam() {
     },
     {
       isImportant: true,
-      name: "Asad Iqbal",
-      title: "Chief Technology Officer",
-      email:"asad.iqbal@example.com",
-      imageUrl: "/images/team-asad.jpg",
+      name: "Jasif Ahmed Khan",
+      title: "Director – India & South Asia",
+      email: "jasif.khan@example.com",
+      imageUrl: "/images/team-jasif.jpg",
       description:
-        "Asad leads the tech innovation at De Koshur Crafts. From blockchain traceability to AI-driven tools, he ensures the platform is cutting-edge, secure, and optimized for artisan growth and global trade.",
+        "Based in Kashmir, Jasif leads artisan coordination, vendor development, and regional compliance. His deep connection to Kashmir’s craft economy bridges local artisans with global supply chains while preserving authenticity and ethical production.",
       quote:
-        "Technology is a tool for empowerment. We use it to help our artisans grow their businesses and reach international markets.",
-      
+        "Our artisans carry centuries of wisdom; my role is to protect their voice in modern trade.",
+    },
+  ];
+
+  const divisions = [
+    {
+      name: "Engineering & DevOps",
+      members: [
+        { name: "Michael Torres", title: "Lead Software Engineer" },
+        { name: "Ava Robinson", title: "Frontend Developer" },
+        { name: "Liam Patel", title: "Backend Developer" },
+        { name: "Noah Williams", title: "QA Engineer" },
+      ],
+    },
+    {
+      name: "Blockchain & AI Systems",
+      members: [
+        { name: "Sophia Martinez", title: "Blockchain Traceability Engineer" },
+        { name: "Ethan Johnson", title: "AI Personalization Developer" },
+        { name: "Olivia Reed", title: "Data Systems Analyst" },
+        { name: "Jacob Brown", title: "Security & Authentication Lead" },
+      ],
+    },
+    {
+      name: "Integration & CMS",
+      members: [
+        { name: "Emily Carter", title: "API Integration Manager" },
+        { name: "Ryan Anderson", title: "CMS Architect" },
+        { name: "Chloe Bennett", title: "DevOps Manager" },
+        { name: "Grace Miller", title: "Platform Support Engineer" },
+      ],
+    },
+    {
+      name: "Vendor Onboarding & Artisan Support Division",
+      description: "Our dedicated team ensures seamless vendor onboarding, digital literacy, and continuous welfare support for artisans worldwide.",
+      subSections: [
+        {
+          subName: "Onboarding & Training",
+          members: [
+            { name: "Jessica Nguyen", title: "Vendor Onboarding Manager" },
+            { name: "Lauren Mitchell", title: "Digital Literacy Trainer" },
+            { name: "Carlos Rivera", title: "GI Documentation Specialist" },
+            { name: "Alyssa Chen", title: "Vendor Dashboard Support Officer" },
+          ],
+        },
+        {
+          subName: "Support & Welfare",
+          members: [
+            { name: "Marcus Green", title: "Vendor Helpdesk Lead" },
+            { name: "Natalie Brooks", title: "Grievance & Retention Manager" },
+            { name: "Hannah Cooper", title: "Women’s Collective Coordinator" },
+            { name: "David Ross", title: "Tool & Tech Support Officer" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Logistics & Packaging Division",
+      description: "Ensuring every Kashmiri craft reaches the world safely, beautifully, and sustainably.",
+      subSections: [
+        {
+          subName: "Logistics Operations",
+          members: [
+            { name: "Daniel Foster", title: "Logistics Manager" },
+            { name: "Rachel Adams", title: "Fulfillment Coordinator" },
+            { name: "Anthony Cooper", title: "Customs Compliance Officer" },
+            { name: "Megan Blake", title: "Order Tracking Specialist" },
+          ],
+        },
+        {
+          subName: "Packaging & Handling",
+          members: [
+            { name: "Brandon Scott", title: "Eco-Packaging Designer" },
+            { name: "Sophie Turner", title: "Unboxing Experience Lead" },
+            { name: "Christopher Hall", title: "Fragile Goods Safety Engineer" },
+            { name: "Lauren Hayes", title: "Branding & Label Compliance Officer" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Sustainability & ESG Division",
+      description: "Building a conscious trade model that aligns craftsmanship with global sustainability goals and ethical governance.",
+      members: [
+        { name: "Evelyn Carter", title: "Head of Sustainability" },
+        { name: "Marcus Bennett", title: "Carbon Tagging Analyst" },
+        { name: "Sophia Ramirez", title: "Craft Waste Circularity Officer" },
+        { name: "Jonathan Reed", title: "ESG Policy Integration Manager" },
+      ],
+    },
+    {
+      name: "Compliance & Legal Division",
+      description: "Upholding transparency, ethical sourcing, and full regulatory compliance across every aspect of the global craft trade network.",
+      members: [
+        { name: "Michael Grant", title: "Chief Compliance Officer" },
+        { name: "Olivia Hayes", title: "GI/IP Legal Advisor" },
+        { name: "William Brooks", title: "Vendor Contract Officer" },
+        { name: "Sophia Klein", title: "Labor Ethics Auditor" },
+      ],
+    },
+    {
+      name: "Quality Assurance & Traceability Division",
+      description: "Ensuring every Kashmiri craft meets the highest global benchmarks for authenticity, traceability, and artisan excellence.",
+      members: [
+        { name: "Robert Ellis", title: "Master Craft Appraiser" },
+        { name: "Emily Carter", title: "GI Verification Officer" },
+        { name: "James Walker", title: "Product Grading Specialist" },
+        { name: "Natalie Brooks", title: "Quality Dispute Resolution Lead" },
+      ],
+    },
+    {
+      name: "Global Partnerships & Expansion Division",
+      description: "Driving international collaborations, global franchises, and cross-border trade programs that expand Kashmir’s artisan economy with integrity and innovation.",
+      subSections: [
+        {
+          subName: "Global Strategy & Franchise",
+          members: [
+            { name: "Daniel Reed", title: "Global Partnership Director" },
+            { name: "Jessica Miller", title: "U.S. Franchise Manager" },
+            { name: "Amira Lopez", title: "MENA Trade Liaison" },
+            { name: "Christopher Hayes", title: "Licensing Legal Officer" },
+          ],
+        },
+        {
+          subName: "Program Operations",
+          members: [
+            { name: "Benjamin Cooper", title: "Consignment Program Manager" },
+            { name: "Samantha Wright", title: "Exhibition & Event Coordinator" },
+            { name: "Logan Price", title: "Dropshipping Relations Lead" },
+            { name: "Natalie Grant", title: "Partner Onboarding Specialist" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Marketing & Buyer Engagement Division",
+      description: "Connecting hearts and heritage through data-driven storytelling, impactful campaigns, and global buyer engagement strategies that elevate Kashmiri craftsmanship.",
+      members: [
+        { name: "Madison Cole", title: "Chief Marketing Officer" },
+        { name: "Ethan Ross", title: "Campaign Manager" },
+        { name: "Isabella Turner", title: "CRM & Buyer Loyalty Officer" },
+        { name: "Noah Carter", title: "Communications & PR Specialist" },
+      ],
+    },
+    {
+      name: "Media & Visual Content Division",
+      description: "Capturing the soul of craftsmanship through storytelling, photography, and film — blending creativity with precision to bring Kashmiri heritage to global screens.",
+      members: [
+        { name: "Evelyn Brooks", title: "Visual Content Director" },
+        { name: "Jason Rivera", title: "Craft Videographer" },
+        { name: "Lauren Mitchell", title: "Product Photographer" },
+        { name: "Sophia Bennett", title: "Post-Production Editor" },
+      ],
+    },
+    {
+      name: "Craft Research & Documentation Division",
+      description: "Preserving authenticity through rigorous research, data-driven analysis, and cultural storytelling — documenting the legacy of Kashmiri artisans for global archives and future generations.",
+      members: [
+        { name: "Dr. Olivia Carter", title: "Head of Craft Research" },
+        { name: "Liam Bennett", title: "GI Region Data Analyst" },
+        { name: "Emily Foster", title: "Artisan Biographer" },
+        { name: "Grace Morgan", title: "Cultural Translator" },
+      ],
+    },
+    {
+      name: "Finance, Grants & Investment Division",
+      description: "Driving transparency, fiscal growth, and impact funding — this division manages capital flow, grant allocation, and investor engagement to ensure sustainable development and global expansion of Kashmiri craft industries.",
+      members: [
+        { name: "Michael Grant", title: "Chief Financial Officer" },
+        { name: "David Collins", title: "Financial Controller" },
+        { name: "Sophia Lewis", title: "Grants Program Manager" },
+        { name: "Benjamin Harris", title: "Investor Relations Officer" },
+      ],
+    },
+    {
+      name: "Customer & Vendor Support Division",
+      description: "At the heart of our service ecosystem, this division ensures seamless communication, quick resolution, and proactive support for both artisans and global buyers — bridging cultural distances through care, precision, and transparency.",
+      members: [
+        { name: "Emma Reed", title: "Global Support Manager" },
+        { name: "Daniel Brooks", title: "Buyer Support Agent" },
+        { name: "Olivia James", title: "Vendor Helpdesk Officer" },
+        { name: "Rachel Miller", title: "Knowledgebase & FAQ Editor" },
+      ],
+    },
+    {
+      name: "Trade Intelligence & Risk Division",
+      description: "Analyzing market shifts, forecasting trends, and mitigating business risks — this division strengthens global trade strategy through data-driven insights, policy readiness, and cross-border resilience planning.",
+      members: [
+        { name: "Ethan Walker", title: "Trade Intelligence Lead" },
+        { name: "Ava Thompson", title: "Global Trends Analyst" },
+        { name: "Noah Carter", title: "Conflict Risk Planner" },
+        { name: "Lily Adams", title: "Policy Response Coordinator" },
+      ],
+    },
+    {
+      name: "Monitoring & Impact Division",
+      description: "This division measures real-world change — evaluating environmental, social, and governance performance while ensuring that every initiative delivers measurable value, accountability, and transparent impact across the global craft ecosystem.",
+      members: [
+        { name: "Jacob Reed", title: "Monitoring & Evaluation Officer" },
+        { name: "Alyssa Torres", title: "ESG Impact Analyst" },
+        { name: "Logan Patel", title: "Social ROI Evaluator" },
+        { name: "Grace Mitchell", title: "Transparency Report Lead" },
+      ],
+    },
+    {
+      name: "Localization & Regional Trade Division",
+      description: "Bridging global markets through cultural precision and regional expertise, this division ensures that our trade, communication, and branding strategies resonate authentically across continents—strengthening connections between artisans, buyers, and cultures worldwide.",
+      members: [
+        { name: "Nathan Cole", title: "Localization Manager" },
+        { name: "Emily Parker", title: "Regional Trade Lead – North America" },
+        { name: "Omar Rahman", title: "Regional Trade Lead – MENA" },
+        { name: "Sofia Laurent", title: "Regional Trade Lead – Europe" },
+      ],
+    },
+    {
+      name: "Ethics, Inclusion & Transparency Division",
+      description: "This division safeguards fairness, diversity, and accountability within every layer of our trade ecosystem. It ensures ethical governance, equal opportunity, and transparent reporting — building trust across vendors, buyers, and communities worldwide.",
+      members: [
+        { name: "Sophia Reed", title: "Head of Inclusion" },
+        { name: "David Torres", title: "Accessibility & Equity Officer" },
+        { name: "Isabella Grant", title: "Ethics Audit Coordinator" },
+        { name: "Michael Carter", title: "Transparency Reporting Manager" },
+      ],
+    },
+    {
+      name: "Innovation & Craft-Tech Lab",
+      description: "Where creativity meets technology. This division pioneers advanced solutions for traditional craftsmanship — from augmented reality experiences and blockchain authentication to sustainable materials research — ensuring that heritage and innovation evolve together for a smarter, greener future.",
+      members: [
+        { name: "Ethan Clarke", title: "Innovation Lab Director" },
+        { name: "Ava Martinez", title: "AR/VR Craft Experience Developer" },
+        { name: "Noah Rivera", title: "Blockchain/NFT Tag Lead" },
+        { name: "Lila Thompson", title: "Sustainable Dye Researcher" },
+      ],
+    },
+    {
+      name: "Admin & CMS Control Division",
+      description: "The operational backbone of digital governance. This division manages content workflows, access hierarchies, and moderation integrity across all platforms — ensuring seamless collaboration, secure data handling, and system reliability for every user tier.",
+      members: [
+        { name: "Alex Morgan", title: "Super Admin" },
+        { name: "Emma Liu", title: "CMS Workflow Manager" },
+        { name: "Ryan Scott", title: "Role Permissions Coordinator" },
+        { name: "Sophia Bennett", title: "Internal Testing & Moderation Lead" },
+      ],
     },
   ];
 
@@ -711,9 +307,9 @@ export default function OurTeam() {
       {/* Rectangle Highlight Section */}
       <RectangleSection />
 
-      Team Members Section
-       <section className="py-20 bg-[var(--primary-color)] text-center">
-      <SectionTitle SubTitle='Our Team' Title='Our Leadership Team'/>
+      {/* Team Members Section */}
+      <section className="py-20 bg-[var(--primary-color)] text-center">
+        <SectionTitle SubTitle='Our Team' Title='Our Leadership Team' />
         <p className="text-gray-300 mb-12 mt-6 max-w-3xl mx-auto px-2">
           Our core team members bring vision, innovation, and commitment to the heart of De Koshur Crafts.
         </p>
@@ -722,238 +318,62 @@ export default function OurTeam() {
             <TeamCard key={idx} {...member} />
           ))}
         </div>
-      </section> 
-          <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Technology & Product Division
-      </h1>
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Engineering & DevOps
-      </h2>
-      <TeamGrid team={engineeringDevOps} />
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Blockchain & AI Systems
-      </h2>
-      <TeamGrid team={blockchainAI} />
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Integration & CMS
-      </h2>
-      <TeamGrid team={integrationCMS} />
-      {/* ================= MAIN 3 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Vendor Onboarding & Artisan Support Division
-      </h1>
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Onboarding & Training
-      </h2>
-      <TeamGrid team={onboardingTraining} />
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Support & Welfare
-      </h2>
-      <TeamGrid team={supportWelfare} />
-      {/* ================= MAIN 4 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Logistics & Packaging Division
-      </h1>
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Logistics Operations
-      </h2>
-      <TeamGrid team={logisticsOps} />
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Packaging & Handling
-      </h2>
-      <TeamGrid team={packagingHandling} />
-      {/* ================= MAIN 5 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Sustainability & ESG Division
-      </h1>
-      <TeamGrid team={sustainabilityESG} />
-      {/* ================= MAIN 6 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Compliance & Legal Division
-      </h1>
-      <TeamGrid team={complianceLegal} />
-      {/* ================= MAIN 7 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Quality Assurance & Traceability Division
-      </h1>
-      <TeamGrid team={qualityAssurance} />
-      {/* ================= MAIN 8 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Global Partnerships & Expansion Division
-      </h1>
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Global Strategy & Franchise
-      </h2>
-      <TeamGrid team={globalStrategy} />
-      <h2
-        className={`text-center font-bold text-[var(--secondary-color)] mt-12 mb-6 ${
-          is4K ? "text-5xl" : "text-2xl md:text-3xl "
-        }`}
-      >
-        Program Operations
-      </h2>
-      <TeamGrid team={programOps} />
-      {/* ================= MAIN 9 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Marketing & Buyer Engagement Division
-      </h1>
-      <TeamGrid team={marketingBuyerEngagement} />
-      {/* ================= MAIN 10 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Media & Visual Content Division
-      </h1>
-      <TeamGrid team={mediaContent} />
-      {/* ================= MAIN 11 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Craft Research & Documentation Division
-      </h1>
-      <TeamGrid team={craftResearch} />
-      {/* ================= MAIN 12 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Finance, Grants & Investment Division
-      </h1>
-      <TeamGrid team={financeDivision} />
-      {/* ================= MAIN 13 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Customer & Vendor Support Division
-      </h1>
-      <TeamGrid team={customerVendorSupport} />
-      {/* ================= MAIN 14 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Trade Intelligence & Risk Division
-      </h1>
-      <TeamGrid team={tradeIntelligence} />
-      {/* ================= MAIN 15 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Monitoring & Impact Division
-      </h1>
-      <TeamGrid team={monitoringImpact} />
-      {/* ================= MAIN 16 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Localization & Regional Trade Division
-      </h1>
-      <TeamGrid team={localizationTrade} />
-      {/* ================= MAIN 17 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Ethics, Inclusion & Transparency Division
-      </h1>
-      <TeamGrid team={ethicsInclusion} />
-      {/* ================= MAIN 18 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Innovation & Craft‑Tech Lab
-      </h1>
-      <TeamGrid team={innovationLab} />
-      {/* ================= MAIN 19 ================= */}
-      <h1
-        className={`text-center font-extrabold text-[var(--primary-color)] mt-20 mb-12 ${
-          is4K ? "text-6xl" : "text-3xl md:text-4xl "
-        }`}
-      >
-        Admin & CMS Control Division
-      </h1>
-      <TeamGrid team={adminCMSControl} />
-      <TeamPage />
+      </section>
+
+      {/* Divisions Section */}
+      <section className="py-20 bg-gray-100 text-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle SubTitle="Our Divisions" Title="Meet Our Specialized Teams" />
+          <p className="text-gray-600 mb-12 mt-6 max-w-3xl mx-auto text-center">
+            Our diverse divisions work together to ensure every aspect of De Koshur Crafts operates with precision, creativity, and a commitment to global impact.
+          </p>
+          <div className="space-y-16">
+            {divisions.map((division, idx) => (
+              <div key={idx} className="relative">
+                <div className="bg-white rounded-lg shadow-lg p-8 transform hover:scale-[1.02] transition-transform duration-300">
+                  <h3 className="text-2xl font-bold text-[var(--primary-color)] mb-4">{division.name}</h3>
+                  {division.description && (
+                    <p className="text-gray-600 mb-6">{division.description}</p>
+                  )}
+                  {division.subSections ? (
+                    <div className="space-y-8">
+                      {division.subSections.map((subSection, subIdx) => (
+                        <div key={subIdx}>
+                          <h4 className="text-xl font-semibold text-[var(--secondary-color)] mb-4">{subSection.subName}</h4>
+                          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            {subSection.members.map((member, memberIdx) => (
+                              <div
+                                key={memberIdx}
+                                className="bg-[var(--secondary-color)]/10 p-4 rounded-md shadow-sm hover:shadow-md transition-shadow duration-300"
+                              >
+                                <p className="text-lg font-medium text-gray-800">{member.name}</p>
+                                <p className="text-sm text-gray-500">{member.title}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                      {division.members.map((member, memberIdx) => (
+                        <div
+                          key={memberIdx}
+                          className="bg-[var(--secondary-color)]/10 p-4 rounded-md shadow-sm hover:shadow-md transition-shadow duration-300"
+                        >
+                          <p className="text-lg font-medium text-gray-800">{member.name}</p>
+                          <p className="text-sm text-gray-500">{member.title}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+        <TeamPage />
     </div>
   );
 }
-

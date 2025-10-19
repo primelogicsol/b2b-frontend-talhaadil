@@ -690,7 +690,7 @@ const testimonials = [
             <div className="relative">
               <div className="bg-gradient-to-br from-[var(--primary-light-text-color)] to-[var(--primary-color)] rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-                <Award className={is4K ? "w-20 h-20" : "w-16 h-16"} />
+                <Award className={`text-white m mb-1 ${is4K ? "w-20 h-20" : "w-16 h-16"}`} />
                 <h3
                   className={`font-bold text-white mb-4 ${
                     is4K ? "text-3xl" : "text-2xl"
@@ -703,10 +703,7 @@ const testimonials = [
                     is4K ? "text-lg" : ""
                   }`}
                 >
-                  Every initiative we undertake directly uplifts local artisans,
-                  safeguards centuries-old cultural heritage, and drives
-                  long-term, sustainable developmentensuring a resilient and
-                  thriving future for the valley and its communities.
+                  Every initiative we undertake uplifts Kashmiri artisans, safeguards centuries-old craftsmanship, and ensures long-term community resilience. Through CraftLore and KHCRF, we reinvest in artisan education, research, innovation, and welfare programs. Our mission preserves cultural heritage, promotes fair trade, strengthens youth participation, and builds sustainable ecosystems where every handcrafted piece reflects dignity, equity, and environmental responsibility. Together, we ensure that the legacy of Kashmiri crafts continues to inspire, empower, and enlighten generations across the world.
                 </p>
               </div>
             </div>

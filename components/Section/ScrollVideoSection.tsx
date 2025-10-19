@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useGlobalContext } from "@/context/ScreenProvider";
 
@@ -41,6 +41,20 @@ function MediaSlider({
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentMedia = items[currentIndex];
 
+  // Auto-slide for videos when they end
+  useEffect(() => {
+    if (currentMedia.type === "image") {
+      const timer = setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+      }, 5000); // 5 seconds for images
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, items, currentMedia.type]);
+
+  const handleVideoEnd = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+  };
+
   return (
     <div className="relative w-full max-w-6xl 2xl:max-w-7xl mx-auto rounded-xl overflow-hidden shadow-lg">
       {currentMedia.type === "video" ? (
@@ -49,8 +63,9 @@ function MediaSlider({
           className="w-full h-auto object-cover aspect-video"
           autoPlay
           muted
-          loop
+          loop={false} // Remove loop to allow onEnded to trigger
           playsInline
+          onEnded={handleVideoEnd}
         >
           <source src={currentMedia.src} type="video/mp4" />
           Your browser does not support the video tag.
@@ -68,15 +83,15 @@ function MediaSlider({
 
       {/* title overlay */}
 
-
       {/* slider dots */}
       <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex space-x-2">
         {items.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentIndex === index ? "bg-white w-6" : "bg-gray-400"
-              }`}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              currentIndex === index ? "bg-white w-6" : "bg-gray-400"
+            }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
