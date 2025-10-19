@@ -864,6 +864,8 @@ const categories = [
   },
 ];
 
+
+
 // MetricCard component remains unchanged
 interface MetricCardProps {
   icon: React.ReactNode;
@@ -883,9 +885,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
   is4K,
 }) => (
   <motion.div
-    className={`flex items-center gap-4 ${
-      position === "right" ? "flex-row-reverse text-right" : ""
-    }`}
+    className={`flex items-center gap-4 ${position === "right" ? "flex-row-reverse text-right" : ""
+      }`}
     initial={{ opacity: 0, x: position === "right" ? 50 : -50 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -895,9 +896,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
     }}
   >
     <motion.div
-      className={`flex-shrink-0 ${
-        is4K ? "w-16 h-16" : "w-12 h-12"
-      } bg-[var(--primary-color)] rounded-full flex items-center justify-center cursor-pointer shadow-lg`}
+      className={`flex-shrink-0 ${is4K ? "w-16 h-16" : "w-12 h-12"
+        } bg-[var(--primary-color)] rounded-full flex items-center justify-center cursor-pointer shadow-lg`}
       whileHover={{
         backgroundColor: "#ffffff",
         rotate: 360,
@@ -918,9 +918,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
       transition={{ duration: 0.2 }}
     >
       <motion.h3
-        className={`${
-          is4K ? "text-2xl" : "text-lg"
-        } text-white font-semibold mb-1`}
+        className={`${is4K ? "text-2xl" : "text-lg"
+          } text-white font-semibold mb-1`}
         whileHover={{ color: "#808080" }}
         transition={{ duration: 0.2 }}
       >
@@ -950,34 +949,6 @@ export default function KashmirCraftsCarousel() {
   const currentCategory = categories[currentCategoryIndex];
   const selectedSubcategory =
     currentCategory.subcategories[selectedSubcategoryIndex];
-
-  // Preserve scroll position on mobile
-  useEffect(() => {
-    if (containerRef.current) {
-      const scrollPosition = containerRef.current.scrollTop;
-      return () => {
-        if (containerRef.current) {
-          containerRef.current.scrollTop = scrollPosition;
-        }
-      };
-    }
-  }, [currentCategoryIndex, selectedSubcategoryIndex]);
-
-  // Effect to scroll category into view when index changes (for mobile arrows)
-  useEffect(() => {
-    if (categoryScrollRef.current) {
-      const selectedButton = categoryScrollRef.current.children[
-        currentCategoryIndex
-      ] as HTMLElement;
-      if (selectedButton) {
-        selectedButton.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
-      }
-    }
-  }, [currentCategoryIndex]);
 
   // Touch handlers for swipe functionality
   const onTouchStart = (e: React.TouchEvent) => {
@@ -1055,9 +1026,8 @@ export default function KashmirCraftsCarousel() {
       default:
         return (
           <div
-            className={`w-${is4K ? "8" : "6"} h-${
-              is4K ? "9" : "6"
-            } rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
+            className={`w-${is4K ? "8" : "6"} h-${is4K ? "9" : "6"
+              } rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
           />
         );
     }
@@ -1150,9 +1120,8 @@ export default function KashmirCraftsCarousel() {
   return (
     <div
       ref={containerRef}
-      className={`${
-        is4K ? " py-30" : " "
-      } bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
+      className={`${is4K ? " py-30" : " "
+        } bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
       style={
         {
           "--primary-hover-color": "#2a5f7a",
@@ -1213,18 +1182,16 @@ export default function KashmirCraftsCarousel() {
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className={`${
-            is4K ? "text-8xl" : "text-4xl md:text-6xl"
-          } font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4 tracking-tight`}
+          className={`${is4K ? "text-8xl" : "text-4xl md:text-6xl"
+            } font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4 tracking-tight`}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
           Dekoshur Crafts
         </motion.h1>
         <motion.p
-          className={`${
-            is4K ? "text-3xl" : "text-lg md:text-xl"
-          } text-gray-300 font-light tracking-wide`}
+          className={`${is4K ? "text-3xl" : "text-lg md:text-xl"
+            } text-gray-300 font-light tracking-wide`}
           whileHover={{ scale: 1.02, color: "#fb923c" }}
           transition={{ duration: 0.2 }}
         >
@@ -1236,7 +1203,7 @@ export default function KashmirCraftsCarousel() {
       <div className="md:hidden px-4 mb-8 relative z-10 flex items-center justify-center">
         <motion.button
           onClick={(e) => prevCategory(e)}
-          className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
+          className={`hidden md:flex group items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
           aria-label="Previous category"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -1254,11 +1221,10 @@ export default function KashmirCraftsCarousel() {
               key={category.id}
               id={`category-btn-${category.id}`}
               onClick={(e) => scrollToCategory(index, e)}
-              className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${
-                currentCategoryIndex === index
+              className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${currentCategoryIndex === index
                   ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
                   : "bg-white/10 text-gray-200 hover:bg-white/20"
-              }`}
+                }`}
               style={{ scrollSnapAlign: "center" }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -1270,7 +1236,7 @@ export default function KashmirCraftsCarousel() {
 
         <motion.button
           onClick={(e) => nextCategory(e)}
-          className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
+          className={`hidden group md:flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
           aria-label="Next category"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -1287,17 +1253,15 @@ export default function KashmirCraftsCarousel() {
         >
           <motion.button
             onClick={(e) => prevCategory(e)}
-            className={`group flex-shrink-0 flex items-center justify-center ${
-              is4K ? "w-20 h-20" : "w-16 h-16"
-            } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
+            className={`group flex-shrink-0 flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"
+              } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Previous category"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <ChevronLeft
-              className={`${
-                is4K ? "w-12 h-12" : "w-8 h-8"
-              } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+              className={`${is4K ? "w-12 h-12" : "w-8 h-8"
+                } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
             />
           </motion.button>
 
@@ -1311,9 +1275,8 @@ export default function KashmirCraftsCarousel() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h2
-              className={`${
-                is4K ? "text-4xl" : "text-2xl md:text-3xl"
-              } font-bold text-white mb-2 tracking-tight break-words`}
+              className={`${is4K ? "text-4xl" : "text-2xl md:text-3xl"
+                } font-bold text-white mb-2 tracking-tight break-words`}
               whileHover={{ scale: 1.02, color: "#fb923c" }}
               transition={{ duration: 0.2 }}
             >
@@ -1323,13 +1286,11 @@ export default function KashmirCraftsCarousel() {
               {categories.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`${
-                    is4K ? "w-4 h-4" : "w-3 h-3"
-                  } rounded-full transition-all duration-300 ${
-                    currentCategoryIndex === index
+                  className={`${is4K ? "w-4 h-4" : "w-3 h-3"
+                    } rounded-full transition-all duration-300 ${currentCategoryIndex === index
                       ? "bg-[var(--secondary-color)] scale-125"
                       : "bg-white/30 hover:bg-white/50"
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.3 }}
                   whileTap={{ scale: 0.9 }}
                 />
@@ -1339,17 +1300,15 @@ export default function KashmirCraftsCarousel() {
 
           <motion.button
             onClick={(e) => nextCategory(e)}
-            className={`group flex-shrink-0 flex items-center justify-center ${
-              is4K ? "w-20 h-20" : "w-16 h-16"
-            } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
+            className={`group flex-shrink-0 flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"
+              } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Next category"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <ChevronRight
-              className={`${
-                is4K ? "w-12 h-12" : "w-8 h-8"
-              } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+              className={`${is4K ? "w-12 h-12" : "w-8 h-8"
+                } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
             />
           </motion.button>
         </div>
@@ -1367,7 +1326,7 @@ export default function KashmirCraftsCarousel() {
                 title={formatMetricKey(key)}
                 value={
                   selectedSubcategory.details[
-                    key as keyof typeof selectedSubcategory.details
+                  key as keyof typeof selectedSubcategory.details
                   ]
                 }
                 position="left"
@@ -1395,18 +1354,16 @@ export default function KashmirCraftsCarousel() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <motion.h3
-                className={`${
-                  is4K ? "text-5xl" : "text-3xl"
-                } font-bold text-white mb-2`}
+                className={`${is4K ? "text-5xl" : "text-3xl"
+                  } font-bold text-white mb-2`}
                 whileHover={{ scale: 1.05, color: "#fb923c" }}
                 transition={{ duration: 0.2 }}
               >
                 {currentCategory.name}
               </motion.h3>
               <motion.p
-                className={`${
-                  is4K ? "text-2xl" : "text-lg"
-                } text-gray-300 font-medium`}
+                className={`${is4K ? "text-2xl" : "text-lg"
+                  } text-gray-300 font-medium`}
                 whileHover={{ color: "#ffffff" }}
                 transition={{ duration: 0.2 }}
               >
@@ -1419,13 +1376,11 @@ export default function KashmirCraftsCarousel() {
                 <motion.button
                   key={sub.id}
                   onClick={(e) => selectSubcategory(index, e)}
-                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${
-                    is4K ? "text-xl" : "text-base"
-                  } ${
-                    selectedSubcategoryIndex === index
+                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${is4K ? "text-xl" : "text-base"
+                    } ${selectedSubcategoryIndex === index
                       ? "bg-[var(--secondary-color)] text-white scale-105"
                       : "bg-slate-700/50 text-gray-200 border border-slate-600/30 hover:bg-slate-600/50"
-                  }`}
+                    }`}
                   whileHover={{
                     scale: 1.05,
                     y: -2,
@@ -1451,7 +1406,7 @@ export default function KashmirCraftsCarousel() {
                 title={formatMetricKey(key)}
                 value={
                   selectedSubcategory.details[
-                    key as keyof typeof selectedSubcategory.details
+                  key as keyof typeof selectedSubcategory.details
                   ]
                 }
                 position="right"
@@ -1493,11 +1448,10 @@ export default function KashmirCraftsCarousel() {
                 <motion.button
                   key={sub.id}
                   onClick={(e) => selectSubcategory(index, e)}
-                  className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${
-                    selectedSubcategoryIndex === index
+                  className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${selectedSubcategoryIndex === index
                       ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
                       : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
-                  }`}
+                    }`}
                   style={{ scrollSnapAlign: "start" }}
                   whileHover={{
                     scale: 1.05,
@@ -1527,7 +1481,7 @@ export default function KashmirCraftsCarousel() {
                 title={formatMetricKey(key)}
                 value={
                   selectedSubcategory.details[
-                    key as keyof typeof selectedSubcategory.details
+                  key as keyof typeof selectedSubcategory.details
                   ]
                 }
                 position="left"
