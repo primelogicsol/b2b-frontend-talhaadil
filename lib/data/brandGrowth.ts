@@ -1,4 +1,30 @@
 export const brandGrowthData = {
+  data: [
+    {
+      icon: "Presentation",
+      title: "Exhibition",
+      desc: "We help brands showcase globally, attract buyers, and build connections.",
+      link: "/brand-growth/exhibition",
+    },
+    {
+      icon: "Gavel",
+      title: "Auction",
+      desc: "We provide structured auction systems for fair competition and transparent results.",
+      link: "/brand-growth/auction&bidding",
+    },
+    {
+      icon: "Tag",
+      title: "White Label",
+      desc: "We enable private branding solutions with flexible production and packaging options.",
+      link: "/brand-growth/white-label",
+    },
+    {
+      icon: "Building",
+      title: "Brick & Mortar",
+      desc: "We establish physical retail presence in prime markets for stronger brand identity.",
+      link: "/brand-growth/brick&mortar",
+    },
+  ],
   tier: 2,
   hero: {
     headline: "Brand Growth Partnerships — Scale Your Craft, Build Your Brand",

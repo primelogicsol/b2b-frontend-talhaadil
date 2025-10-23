@@ -77,7 +77,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
     >
       <div
         className={`max-w-[1600px] mx-auto ${
-          is4K ? "px-20 py-32" : "px-6 md:px-8 py-16"
+          is4K ? "px-20 py-32" : "px-4 md:px-8 py-16"
         }`}
       >
         <div

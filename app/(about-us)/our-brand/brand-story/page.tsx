@@ -235,12 +235,12 @@ export default function DeKoshurCrafts() {
               },
               {
                 title: "Blueprint for Growth",
-                year: "2023",
+                year: "2024",
                 desc: "De Koshur Crafts represents a blueprint for sustainable growth, balancing cultural preservation with innovation.",
               },
               {
                 title: "Community Engagement",
-                year: "2024",
+                year: "2025",
                 desc: "De Koshur Crafts actively fosters engagement with communities in both Kashmir and the USA.",
               },
             ].map((item, index) => (

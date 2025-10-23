@@ -103,7 +103,7 @@ export default function Location() {
           <div
             className={`lg:col-span-2 flex flex-col justify-center ${is4K ? "p-10" : "p-8"} rounded-xl bg-[#e4e6eb] shadow-lg`}
           >
-            <h2 className={`${is4K ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"} font-bold text-[#1b4f68] mb-6`}>
+            <h2 className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-3xl"} font-bold text-[#1b4f68] mb-6`}>
               Key Achievements
             </h2>
             <ul className="space-y-4 py-1">

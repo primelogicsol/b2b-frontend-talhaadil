@@ -44,6 +44,8 @@ import KashmirCraftsCarousel from "@/components/Material/ProfitBox";
 import FlagSection from "@/components/Material/FlagSection";
 import Location from "@/components/Essentials/Location";
 
+
+
 const howItWorksData = {
   title: "How It Works",
   description:
@@ -234,18 +236,46 @@ export default function LandingPage() {
         "Preserve and celebrate the timeless artistry of Kashmiri crafts, passing its beauty and traditions to future generations.",
     },
   ];
-  
+
+  const data = [
+    {
+      icon: "ShoppingCart",
+      title: "Core Trade",
+      desc: "We focus on trade quality, efficiency, and lasting global reliability.",
+      link: "/core-trade",
+    },
+    {
+      icon: "Rocket",
+      title: "Brand Growth",
+      desc: "We help brands expand reach, boost presence, and achieve success.",
+      link: "/brand-growth",
+    },
+    {
+      icon: "Users",
+      title: "Collaborative",
+      desc: "We build networks, share resources, and create business growth.",
+      link: "/collaborative",
+    },
+    {
+      icon: "Building",
+      title: "Institutional",
+      desc: "We partner with firms, strengthen ties, and foster lasting trust.",
+      link: "/institutional",
+    },
+  ];
 
 
- 
+
+
+
   
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-     
+
 
       {/* Hero Section */}
-      <BannerWithFeatures />
+      <BannerWithFeatures data={data} />
       <div className="-mt-50">
         <Homepage />
       </div>

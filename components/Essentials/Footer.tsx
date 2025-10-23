@@ -98,7 +98,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <motion.div
-            className="w-[135%] p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
+            className="w-[100%] lg:w-[135%] p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
             variants={itemVariants}
           >
             <div className="flex items-center gap-3 mb-6 -ml-4 -mt-4">

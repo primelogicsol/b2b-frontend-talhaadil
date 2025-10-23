@@ -1,4 +1,30 @@
 export const institutionalData = {
+  data: [
+    {
+      icon: "Truck",
+      title: "Logistics",
+      desc: "We deliver efficient global logistics with end-to-end supply chain transparency.",
+      link: "/institutional/logistics",
+    },
+    {
+      icon: "Landmark",
+      title: "Museum",
+      desc: "We collaborate with museums and institutions to preserve heritage",
+      link: "/institutional/museum-institutional",
+    },
+    {
+      icon: "Globe2",
+      title: "Government",
+      desc: "We engage with public sectors and NGOs to support sustainable global initiatives.",
+      link: "/institutional/ngo&government",
+    },
+    {
+      icon: "Cpu",
+      title: "Technology",
+      desc: "We innovate with tech leaders to create smarter, scalable, and sustainable solutions.",
+      link: "/institutional/technology-partnership",
+    },
+  ],
   tier: 4,
   hero: {
     headline:
