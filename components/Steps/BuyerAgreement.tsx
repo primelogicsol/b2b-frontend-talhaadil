@@ -849,12 +849,13 @@ This agreement is governed under U.S. law and is legally binding under federal a
           <div className="animate-fadeIn">{renderStepContent()}</div>
         </div>
 
-        <div className="flex justify-end items-center">
+        <div className="flex justify-between items-center">
           <button
-            className={`hidden px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} text-[var(--primary-color)] rounded-xl border border-[var(--primary-color)] transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95`}
+          onClick={handlePrev}
+            className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} text-[var(--primary-color)] rounded-xl border border-[var(--primary-color)] transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95`}
           >
             <span className="inline">←</span>
-            <span className="hidden md:inline ml-2">BACK</span>
+            <span className="hidden md:inline ml-2">Prev</span>
           </button>
 
           <button

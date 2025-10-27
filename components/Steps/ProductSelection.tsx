@@ -4,6 +4,10 @@ import { categories } from "@/lib/categories"
 import { useGlobalContext } from "@/context/ScreenProvider"
 import Cookies from "js-cookie"
 import { submitProductsToAPI } from "@/services/regitsration"
+import { get_product_by_user_id } from "@/services/user"
+
+const fixStep = 3 // Define fixStep as 3
+
 const getUserRoleFromCookies = (): "vendor" | "buyer" => {
   return (Cookies.get("user_role") as "vendor" | "buyer") || "vendor"
 }
@@ -42,6 +46,16 @@ interface ComprehensiveProductSelectionProps {
   onPrev: () => void
 }
 
+interface SelectedProductData {
+  categoryId: string
+  categoryName: string
+  subcategories: {
+    subcategoryId: string
+    subcategoryName: string
+    specifications: Record<string, string[]>
+  }[]
+}
+
 export default function ComprehensiveProductSelection({
   data,
   onUpdate,
@@ -49,10 +63,6 @@ export default function ComprehensiveProductSelection({
   onPrev,
 }: ComprehensiveProductSelectionProps) {
   const topRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
-
   const { is4K } = useGlobalContext()
   const [userRole, setUserRole] = useState<string | null>(null)
   const [selectedCategories, setSelectedCategories] = useState<string[]>(data?.categories ?? [])
@@ -61,13 +71,36 @@ export default function ComprehensiveProductSelection({
     data?.detailedSelections ?? {},
   )
   const [expandedSubCategory, setExpandedSubCategory] = useState<string | null>(null)
-  const [currentStep, setCurrentStep] = useState<"categories" | "subcategories" | "details">("categories")
+  const currentStep = parseInt(Cookies.get("registration_step") || "0", 10) // Get currentStep from cookies
   const [showAllProducts, setShowAllProducts] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [fetchedProductData, setFetchedProductData] = useState<SelectedProductData[] | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
   useEffect(() => {
     const role = getUserRoleFromCookies()
     setUserRole(role)
+
+    // Fetch product data if currentStep > fixStep
+    if (currentStep > fixStep) {
+      const fetchProductData = async () => {
+        try {
+          setIsLoading(true)
+          const userId = parseInt(Cookies.get("user_id") || "0", 10) // Assuming user_id is stored in cookies
+          const response = await get_product_by_user_id(userId)
+          setFetchedProductData(response.data.selectedData)
+        } catch (error) {
+          console.error("Error fetching product data:", error)
+        } finally {
+          setIsLoading(false)
+        }
+      }
+      fetchProductData()
+    }
   }, [])
 
   const scrollToTop = () => {
@@ -82,18 +115,14 @@ export default function ComprehensiveProductSelection({
     })
   }
 
-  // API submission function
   const submitProductData = async (productData: ProductData) => {
     try {
       setIsSubmitting(true)
-
-      // Create linked/nested structure
       const linkedData = selectedCategories
         .map((categoryId) => {
           const category = categories.find((cat) => cat.id === categoryId)
           if (!category) return null
 
-          // Get subcategories for this category
           const categorySubcategories = category.subcategories
             .filter((sub) => selectedSubCategories.includes(sub.id))
             .map((subcategory) => {
@@ -102,7 +131,7 @@ export default function ComprehensiveProductSelection({
 
               Object.entries(subDetails).forEach(([specKey, specValues]) => {
                 if (specValues && specValues.length > 0) {
-                  specifications[specKey] = specValues // Keep as array, even if single value
+                  specifications[specKey] = specValues
                 }
               })
 
@@ -120,9 +149,8 @@ export default function ComprehensiveProductSelection({
             subcategories: categorySubcategories,
           }
         })
-        .filter(Boolean) // Remove null entries
+        .filter(Boolean)
 
-      // Format the final submission data
       const submissionData = {
         selectedData: linkedData,
       }
@@ -130,9 +158,9 @@ export default function ComprehensiveProductSelection({
 
       const response = await submitProductsToAPI(submissionData)
       console.log(response)
-      let step = parseInt(Cookies.get("registration_step") || "0", 10);
-      step += 1;
-      Cookies.set("registration_step", step.toString());
+      let step = parseInt(Cookies.get("registration_step") || "0", 10)
+      step += 1
+      Cookies.set("registration_step", step.toString())
       onNext()
     } catch (error: any) {
       console.error("Error submitting product data:", error)
@@ -190,21 +218,15 @@ export default function ComprehensiveProductSelection({
     const allowMultiple = isMultipleSelectionAllowed(detailKey)
 
     if (allowMultiple) {
-      // For multiple selection specifications
       if (current.includes(value)) {
-        // Remove if already selected
         updatedDetails[subId][detailKey] = current.filter((v) => v !== value)
       } else {
-        // Add to existing selections
         updatedDetails[subId][detailKey] = [...current, value]
       }
     } else {
-      // For single selection specifications, still store as array
       if (current.includes(value)) {
-        // If already selected, remove it (deselect)
         updatedDetails[subId][detailKey] = []
       } else {
-        // Replace with this single selection (stored as array)
         updatedDetails[subId][detailKey] = [value]
       }
     }
@@ -283,65 +305,58 @@ export default function ComprehensiveProductSelection({
 
   const isMultipleSelectionAllowed = (detailKey: string): boolean => {
     const multipleSelectionKeys = [
-      // Existing multiple selection types
       "colors_available",
       "sizes_available",
       "patterns_available",
       "designs_available",
       "features",
       "accessories_included",
-
-      // Additional logical multiple selection types
-      "occasions", // One item can be suitable for multiple occasions (casual, formal, business)
-      "care_instructions", // Multiple care methods can apply (machine wash, dry clean, hand wash)
-      "certifications", // Products can have multiple certifications (organic, fair trade, etc.)
-      "styles", // Multiple style variations (modern, classic, vintage)
-      "finishes", // Multiple finish options (matte, glossy, textured)
-      "textures", // Multiple texture options (smooth, rough, ribbed)
-      "compatible_with", // Compatible with multiple items/systems
-      "suitable_for", // Suitable for multiple uses/environments
-      "benefits", // Multiple benefits (comfort, durability, style)
-      "applications", // Multiple applications/uses
-      "variations", // Multiple variations available
-      "options", // General options that can be multiple
+      "occasions",
+      "care_instructions",
+      "certifications",
+      "styles",
+      "finishes",
+      "textures",
+      "compatible_with",
+      "suitable_for",
+      "benefits",
+      "applications",
+      "variations",
+      "options",
     ]
 
-    // Single selection types (explicitly defined for clarity)
     const singleSelectionKeys = [
-      "material_type", // Usually one primary material
-      "brand", // One brand per product
-      "gender", // One target gender
-      "fit_type", // One fit style (regular, slim, loose)
-      "season", // One primary season
-      "age_group", // One target age group
-      "weight_category", // One weight class
-      "size_category", // One size category
-      "origin_country", // One country of origin
-      "manufacturer", // One manufacturer
-      "collection", // One collection/series
-      "model", // One model number/name
+      "material_type",
+      "brand",
+      "gender",
+      "fit_type",
+      "season",
+      "age_group",
+      "weight_category",
+      "size_category",
+      "origin_country",
+      "manufacturer",
+      "collection",
+      "model",
     ]
 
     const lowerKey = detailKey.toLowerCase()
 
-    // Check if it's explicitly a single selection type
     if (singleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))) {
       return false
     }
 
-    // Check if it's a multiple selection type
     return multipleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))
   }
 
   const handleNext = async () => {
-    if (currentStep === "categories" && selectedCategories.length > 0) {
-      setCurrentStep("subcategories")
+    if (currentStep === 1 && selectedCategories.length > 0) {
+      Cookies.set("registration_step", "2")
       scrollToTop()
-    } else if (currentStep === "subcategories" && selectedSubCategories.length > 0 && validateSubcategorySelection()) {
-      setCurrentStep("details")
+    } else if (currentStep === 2 && selectedSubCategories.length > 0 && validateSubcategorySelection()) {
+      Cookies.set("registration_step", "3")
       scrollToTop()
-    } else if (currentStep === "details" && areAllSpecificationsSelected()) {
-      // Submit data to API before proceeding
+    } else if (currentStep === 3 && areAllSpecificationsSelected()) {
       const currentData = {
         categories: selectedCategories,
         subCategories: selectedSubCategories,
@@ -352,11 +367,11 @@ export default function ComprehensiveProductSelection({
   }
 
   const handlePrev = () => {
-    if (currentStep === "details") {
-      setCurrentStep("subcategories")
+    if (currentStep === 3) {
+      Cookies.set("registration_step", "2")
       scrollToTop()
-    } else if (currentStep === "subcategories") {
-      setCurrentStep("categories")
+    } else if (currentStep === 2) {
+      Cookies.set("registration_step", "1")
       scrollToTop()
     } else {
       onPrev()
@@ -365,7 +380,6 @@ export default function ComprehensiveProductSelection({
 
   const handleExpandSubCategory = (subCategoryId: string) => {
     setExpandedSubCategory(expandedSubCategory === subCategoryId ? null : subCategoryId)
-    // Scroll to the expanded section after a brief delay to allow for expansion
     setTimeout(() => {
       const element = document.getElementById(`subcategory-${subCategoryId}`)
       if (element && expandedSubCategory !== subCategoryId) {
@@ -386,14 +400,99 @@ export default function ComprehensiveProductSelection({
     return shouldShowAll ? category.subcategories : category.subcategories.slice(0, 3)
   }
 
+  const formatSpecKey = (key: string) => {
+    return key
+      .split("_")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ")
+  }
+
+  const renderReadOnlyProductData = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center justify-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
+        </div>
+      )
+    }
+
+    if (!fetchedProductData || fetchedProductData.length === 0) {
+      return (
+        <div className="text-center py-12">
+          <p className="text-lg text-gray-600">No product data available.</p>
+        </div>
+      )
+    }
+
+    return (
+      <div className="bg-white rounded-3xl shadow-lg p-8">
+        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-8 text-center">
+          Your Selected Products
+        </h1>
+        {fetchedProductData.map((category) => (
+          <div key={category.categoryId} className="mb-12">
+            <h2 className="text-2xl font-semibold text-[var(--primary-color)] mb-4">
+              {category.categoryName}
+            </h2>
+            {category.subcategories.map((subcategory) => (
+              <div key={subcategory.subcategoryId} className="mb-8">
+                <h3 className="text-xl font-medium text-gray-700 mb-4">
+                  {subcategory.subcategoryName}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {Object.entries(subcategory.specifications).map(([key, values]) => (
+                    <div key={key} className="bg-gray-50 rounded-xl p-4">
+                      <p className="text-sm font-semibold text-[var(--primary-color)]">
+                        {formatSpecKey(key)}
+                      </p>
+                      <ul className="list-disc list-inside text-sm text-gray-600 mt-2">
+                        {values.map((value, index) => (
+                          <li key={index}>{replaceVendorWithBuyer(value, userRole)}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  if (currentStep > fixStep) {
+    return (
+      <div className={`mx-auto px-4 py-8 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
+        <div ref={topRef} />
+        {renderReadOnlyProductData()}
+        <div className="flex justify-between mt-8">
+          <button
+            onClick={onPrev}
+            className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <span className="inline">←</span>
+            <span className="hidden md:inline ml-2">Prev</span>
+          </button>
+          <button
+            onClick={onNext}
+            className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-2xl hover:bg-[var(--primary-hover-color)] hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold"
+          >
+            <span className="hidden md:inline mr-2">Next</span>
+            <span className="inline">→</span>
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={`mx-auto px-4 py-8 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
       <div ref={topRef} />
-      {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex items-center justify-center space-x-4 mb-4">
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "categories"
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === 1
               ? "bg-[var(--secondary-color)] text-white"
               : selectedCategories.length > 0
                 ? "bg-[var(--primary-color)] text-white"
@@ -406,7 +505,7 @@ export default function ComprehensiveProductSelection({
             className={`w-16 h-1 ${selectedCategories.length > 0 ? "bg-[var(--primary-color)]" : "bg-gray-300"}`}
           ></div>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "subcategories"
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === 2
               ? "bg-[var(--secondary-color)] text-white"
               : selectedSubCategories.length > 0
                 ? "bg-[var(--primary-color)] text-white"
@@ -419,7 +518,7 @@ export default function ComprehensiveProductSelection({
             className={`w-16 h-1 ${selectedSubCategories.length > 0 ? "bg-[var(--primary-color)]" : "bg-gray-300"}`}
           ></div>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "details"
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === 3
               ? "bg-[var(--secondary-color)] text-white"
               : getTotalSelections() > 0
                 ? "bg-[var(--primary-color)] text-white"
@@ -430,22 +529,19 @@ export default function ComprehensiveProductSelection({
           </div>
         </div>
         <div className="flex justify-center space-x-8 text-sm">
-          <span className={currentStep === "categories" ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
+          <span className={currentStep === 1 ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
             Categories
           </span>
-          <span
-            className={currentStep === "subcategories" ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}
-          >
+          <span className={currentStep === 2 ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
             Products
           </span>
-          <span className={currentStep === "details" ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
+          <span className={currentStep === 3 ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
             Specifications
           </span>
         </div>
       </div>
 
-      {/* Step 1: Categories */}
-      {currentStep === "categories" && (
+      {currentStep === 1 && (
         <div>
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Product Categories</h1>
@@ -496,8 +592,7 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      {/* Step 2: Subcategories */}
-      {currentStep === "subcategories" && selectedCategories.length > 0 && (
+      {currentStep === 2 && selectedCategories.length > 0 && (
         <div>
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Specific Products</h1>
@@ -517,10 +612,7 @@ export default function ComprehensiveProductSelection({
 
               return (
                 <div key={categoryId} className="mb-8 last:mb-0">
-                  {/* Category heading */}
                   <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4 px-4">{category.name}</h3>
-
-                  {/* Subcategories grid for this category */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 px-4">
                     {category.subcategories.map((subCategory) => (
                       <label
@@ -552,8 +644,7 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      {/* Step 3: Detailed Specifications */}
-      {currentStep === "details" && selectedSubCategories.length > 0 && (
+      {currentStep === 3 && selectedSubCategories.length > 0 && (
         <div>
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Product Specifications</h1>
@@ -596,9 +687,7 @@ export default function ComprehensiveProductSelection({
                     <div className="flex justify-between items-center">
                       <h3 className="text-2xl font-bold">{subCategory.name}</h3>
                       <div className="flex items-center space-x-4">
-                        <span className="mr-4">
-                          Detailed Specifications
-                        </span>
+                        <span className="mr-4">Detailed Specifications</span>
                         <span
                           className={`transform transition-transform ${expandedSubCategory === subCategoryId ? "rotate-180" : ""
                             }`}
@@ -660,7 +749,6 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      {/* Summary */}
       {(selectedCategories.length > 0 || selectedSubCategories.length > 0 || getTotalSelections() > 0) && (
         <div className="bg-gradient-to-r from-[var(--secondary-light-color)] to-[var(--secondary-light-color)]/50 rounded-3xl p-8 mb-12 mt-12">
           <h3 className="text-xl font-semibold text-[var(--primary-color)] mb-4">Selection Summary</h3>
@@ -681,9 +769,7 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      {/* Navigation */}
       <div className="flex items-center justify-between">
-
         <button
           onClick={handlePrev}
           disabled={isSubmitting}
@@ -697,18 +783,18 @@ export default function ComprehensiveProductSelection({
           onClick={handleNext}
           disabled={
             isSubmitting ||
-            (currentStep === "categories" && selectedCategories.length === 0) ||
-            (currentStep === "subcategories" &&
+            (currentStep === 1 && selectedCategories.length === 0) ||
+            (currentStep === 2 &&
               (selectedSubCategories.length === 0 || !validateSubcategorySelection())) ||
-            (currentStep === "details" && !areAllSpecificationsSelected())
+            (currentStep === 3 && !areAllSpecificationsSelected())
           }
-          className={`px-4 py-2  sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${!isSubmitting &&
+          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${!isSubmitting &&
             (
-              (currentStep === "categories" && selectedCategories.length > 0) ||
-              (currentStep === "subcategories" &&
+              (currentStep === 1 && selectedCategories.length > 0) ||
+              (currentStep === 2 &&
                 selectedSubCategories.length > 0 &&
                 validateSubcategorySelection()) ||
-              (currentStep === "details" && areAllSpecificationsSelected())
+              (currentStep === 3 && areAllSpecificationsSelected())
             )
             ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
             : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -720,7 +806,7 @@ export default function ComprehensiveProductSelection({
             </>
           ) : (
             <>
-              <span className="hidden md:inline mr-2">{currentStep === "details" ? "Submit" : "Next"}</span>
+              <span className="hidden md:inline mr-2">{currentStep === 3 ? "Submit" : "Next"}</span>
               <span className="inline">→</span>
             </>
           )}

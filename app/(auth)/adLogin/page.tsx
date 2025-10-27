@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-white p-4 sm:p-6 md:p-8">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-white p-4 sm:p-6 md:p-8 overflow-x-hidden">
       {/* Background Effects */}
       <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-blue-600 opacity-10 blur-3xl animate-pulse" />
       <div className="absolute -right-40 -bottom-40 h-96 w-96 rounded-full bg-blue-600 opacity-10 blur-3xl animate-pulse" />
