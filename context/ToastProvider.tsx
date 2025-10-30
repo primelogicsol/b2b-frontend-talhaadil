@@ -32,7 +32,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
       setMessage(msg)
       setVisible(true)
 
-      const id = setTimeout(() => setVisible(false), 4000)
+      const id = setTimeout(() => setVisible(false), 10000)
       setTimeoutId(id)
     },
     [timeoutId],
