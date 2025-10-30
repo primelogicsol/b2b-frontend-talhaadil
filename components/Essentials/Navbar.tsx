@@ -400,8 +400,7 @@ export function Navbar() {
         console.log("isSignedIn:", !!token);
       } catch (error) {
         console.error("Error fetching user profile:", error);
-        setUserName("John Doe");
-        setIsSignedIn(true);
+      
       }
     };
 

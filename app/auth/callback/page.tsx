@@ -10,30 +10,49 @@ export default function CallbackPage() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        const rawData = searchParams.keys().next().value;
-        if (!rawData) return;
+        console.log("Processing callback URL...");
+        // Get the raw encoded data (it's the only value in query string, with empty key)
+        const raw = searchParams.get("") ?? [...searchParams.values()][0];
+        console.log("Raw callback data:", raw);
+
 
         try {
-            const data = JSON.parse(
-                decodeURIComponent(rawData.replace(/'/g, '"'))
-            );
+            // Step 1: URL decode
+            const decoded = decodeURIComponent(raw);
+            console.log("Decoded callback data:", decoded);
 
-            Cookies.set("access_token", data.access_token, { path: "/", sameSite: "Strict", secure: process.env.NODE_ENV === "production" });
-            Cookies.set("refresh_token", data.refresh_token, { path: "/", sameSite: "Strict", secure: process.env.NODE_ENV === "production" });
+            // Step 2: Replace single quotes with double quotes for valid JSON
+            const jsonString = decoded.replace(/'/g, '"');
+
+            // Step 3: Parse JSON
+            const data = JSON.parse(jsonString);
+
+            // Step 4: Set all cookies
+            Cookies.set("access_token", data.access_token, {
+                path: "/",
+                sameSite: "Strict",
+                secure: process.env.NODE_ENV === "production",
+            });
+            Cookies.set("refresh_token", data.refresh_token, {
+                path: "/",
+                sameSite: "Strict",
+                secure: process.env.NODE_ENV === "production",
+            });
             Cookies.set("user_role", data.user_role);
             Cookies.set("user_id", data.user_id.toString());
             Cookies.set("visibility_level", data.visibility_level.toString());
-            Cookies.set("ownership", JSON.stringify(data.ownership));
+            Cookies.set("ownership", JSON.stringify(data.ownership ?? null));
             Cookies.set("is_registered", data.is_registered);
             Cookies.set("registration_step", data.registration_step.toString());
             Cookies.set("first_register", data.first_register.toString());
 
             console.log("Callback data processed successfully:", data);
 
-            // ✅ Redirect after cookies are stored
+            // Step 5: Redirect to home
             router.replace("/");
         } catch (err) {
             console.error("Failed to parse callback data", err);
+            router.replace("/login?error=invalid_data");
         }
     }, [router, searchParams]);
 
