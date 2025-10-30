@@ -6,7 +6,6 @@ import Cookies from "js-cookie"
 import { submitProductsToAPI } from "@/services/regitsration"
 import { get_product_by_user_id } from "@/services/user"
 
-const fixStep = 3 // Define fixStep as 3
 
 const getUserRoleFromCookies = (): "vendor" | "buyer" => {
   return (Cookies.get("user_role") as "vendor" | "buyer") || "vendor"
@@ -46,15 +45,6 @@ interface ComprehensiveProductSelectionProps {
   onPrev: () => void
 }
 
-interface SelectedProductData {
-  categoryId: string
-  categoryName: string
-  subcategories: {
-    subcategoryId: string
-    subcategoryName: string
-    specifications: Record<string, string[]>
-  }[]
-}
 
 export default function ComprehensiveProductSelection({
   data,
@@ -70,38 +60,41 @@ export default function ComprehensiveProductSelection({
   const [detailedSelections, setDetailedSelections] = useState<Record<string, DetailMap>>(
     data?.detailedSelections ?? {},
   )
+  const [currentStep, setCurrentStep] = useState<"categories" | "subcategories" | "details">("categories")
   const [expandedSubCategory, setExpandedSubCategory] = useState<string | null>(null)
-  const currentStep = parseInt(Cookies.get("registration_step") || "0", 10) // Get currentStep from cookies
   const [showAllProducts, setShowAllProducts] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [fetchedProductData, setFetchedProductData] = useState<SelectedProductData[] | null>(null)
+  const [fetchedData, setFetchedData] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
+  const fixStep = 3
 
   useEffect(() => {
     const role = getUserRoleFromCookies()
     setUserRole(role)
 
-    // Fetch product data if currentStep > fixStep
-    if (currentStep > fixStep) {
-      const fetchProductData = async () => {
-        try {
-          setIsLoading(true)
-          const userId = parseInt(Cookies.get("user_id") || "0", 10) // Assuming user_id is stored in cookies
-          const response = await get_product_by_user_id(userId)
-          setFetchedProductData(response.data.selectedData)
-        } catch (error) {
-          console.error("Error fetching product data:", error)
-        } finally {
-          setIsLoading(false)
-        }
-      }
-      fetchProductData()
+    const savedStep = parseInt(Cookies.get("registration_step") || "0", 10)
+    console.log("SAVED STEP", savedStep)
+    const userId = Cookies.get("user_id")
+
+    if (savedStep > fixStep && userId) {
+      fetchUserProductData(parseInt(userId, 10))
+    } else {
+      setCurrentStep("categories")
     }
   }, [])
+
+  const fetchUserProductData = async (userId: number) => {
+    setIsLoading(true)
+    try {
+      const response = await get_product_by_user_id(userId)
+      setFetchedData(response.data)
+    } catch (error) {
+      console.error("Failed to fetch product data:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const scrollToTop = () => {
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -118,6 +111,7 @@ export default function ComprehensiveProductSelection({
   const submitProductData = async (productData: ProductData) => {
     try {
       setIsSubmitting(true)
+
       const linkedData = selectedCategories
         .map((categoryId) => {
           const category = categories.find((cat) => cat.id === categoryId)
@@ -151,20 +145,16 @@ export default function ComprehensiveProductSelection({
         })
         .filter(Boolean)
 
-      const submissionData = {
-        selectedData: linkedData,
-      }
-      console.log(submissionData)
-
+      const submissionData = { selectedData: linkedData }
       const response = await submitProductsToAPI(submissionData)
       console.log(response)
+
       let step = parseInt(Cookies.get("registration_step") || "0", 10)
       step += 1
       Cookies.set("registration_step", step.toString())
       onNext()
     } catch (error: any) {
       console.error("Error submitting product data:", error)
-      console.log(error)
     } finally {
       setIsSubmitting(false)
     }
@@ -180,9 +170,7 @@ export default function ComprehensiveProductSelection({
       if (category) {
         const subIds = category.subcategories.map((s) => s.id)
         const updatedSubCats = selectedSubCategories.filter((id) => !subIds.includes(id))
-        const updatedDetails: Record<string, DetailMap> = {
-          ...detailedSelections,
-        }
+        const updatedDetails: Record<string, DetailMap> = { ...detailedSelections }
         subIds.forEach((id) => delete updatedDetails[id])
         setSelectedSubCategories(updatedSubCats)
         setDetailedSelections(updatedDetails)
@@ -199,9 +187,7 @@ export default function ComprehensiveProductSelection({
       : [...selectedSubCategories, subId]
     setSelectedSubCategories(updated)
     if (!updated.includes(subId)) {
-      const updatedDetails: Record<string, DetailMap> = {
-        ...detailedSelections,
-      }
+      const updatedDetails: Record<string, DetailMap> = { ...detailedSelections }
       delete updatedDetails[subId]
       setDetailedSelections(updatedDetails)
       updateData(selectedCategories, updated, updatedDetails)
@@ -224,11 +210,7 @@ export default function ComprehensiveProductSelection({
         updatedDetails[subId][detailKey] = [...current, value]
       }
     } else {
-      if (current.includes(value)) {
-        updatedDetails[subId][detailKey] = []
-      } else {
-        updatedDetails[subId][detailKey] = [value]
-      }
+      updatedDetails[subId][detailKey] = current.includes(value) ? [] : [value]
     }
 
     setDetailedSelections(updatedDetails)
@@ -260,7 +242,6 @@ export default function ComprehensiveProductSelection({
       .split("_")
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(" ")
-
     return replaceVendorWithBuyer(formatted, userRole)
   }
 
@@ -280,9 +261,7 @@ export default function ComprehensiveProductSelection({
       if (!details) continue
       for (const detailKey of Object.keys(details)) {
         const hasSelection = detailedSelections[subCategoryId]?.[detailKey]?.length > 0
-        if (!hasSelection) {
-          return false
-        }
+        if (!hasSelection) return false
       }
     }
     return true
@@ -292,71 +271,36 @@ export default function ComprehensiveProductSelection({
     for (const categoryId of selectedCategories) {
       const category = categories.find((cat) => cat.id === categoryId)
       if (!category) continue
-
       const categorySubcategoryIds = category.subcategories.map((sub) => sub.id)
       const hasSelectedSubcategory = categorySubcategoryIds.some((subId) => selectedSubCategories.includes(subId))
-
-      if (!hasSelectedSubcategory) {
-        return false
-      }
+      if (!hasSelectedSubcategory) return false
     }
     return true
   }
 
   const isMultipleSelectionAllowed = (detailKey: string): boolean => {
     const multipleSelectionKeys = [
-      "colors_available",
-      "sizes_available",
-      "patterns_available",
-      "designs_available",
-      "features",
-      "accessories_included",
-      "occasions",
-      "care_instructions",
-      "certifications",
-      "styles",
-      "finishes",
-      "textures",
-      "compatible_with",
-      "suitable_for",
-      "benefits",
-      "applications",
-      "variations",
-      "options",
+      "colors_available", "sizes_available", "patterns_available", "designs_available", "features", "accessories_included",
+      "occasions", "care_instructions", "certifications", "styles", "finishes", "textures", "compatible_with",
+      "suitable_for", "benefits", "applications", "variations", "options",
     ]
-
     const singleSelectionKeys = [
-      "material_type",
-      "brand",
-      "gender",
-      "fit_type",
-      "season",
-      "age_group",
-      "weight_category",
-      "size_category",
-      "origin_country",
-      "manufacturer",
-      "collection",
-      "model",
+      "material_type", "brand", "gender", "fit_type", "season", "age_group", "weight_category",
+      "size_category", "origin_country", "manufacturer", "collection", "model",
     ]
-
     const lowerKey = detailKey.toLowerCase()
-
-    if (singleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))) {
-      return false
-    }
-
+    if (singleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))) return false
     return multipleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))
   }
 
   const handleNext = async () => {
-    if (currentStep === 1 && selectedCategories.length > 0) {
-      Cookies.set("registration_step", "2")
+    if (currentStep === "categories" && selectedCategories.length > 0) {
+      setCurrentStep("subcategories")
       scrollToTop()
-    } else if (currentStep === 2 && selectedSubCategories.length > 0 && validateSubcategorySelection()) {
-      Cookies.set("registration_step", "3")
+    } else if (currentStep === "subcategories" && selectedSubCategories.length > 0 && validateSubcategorySelection()) {
+      setCurrentStep("details")
       scrollToTop()
-    } else if (currentStep === 3 && areAllSpecificationsSelected()) {
+    } else if (currentStep === "details" && areAllSpecificationsSelected()) {
       const currentData = {
         categories: selectedCategories,
         subCategories: selectedSubCategories,
@@ -367,11 +311,11 @@ export default function ComprehensiveProductSelection({
   }
 
   const handlePrev = () => {
-    if (currentStep === 3) {
-      Cookies.set("registration_step", "2")
+    if (currentStep === "details") {
+      setCurrentStep("subcategories")
       scrollToTop()
-    } else if (currentStep === 2) {
-      Cookies.set("registration_step", "1")
+    } else if (currentStep === "subcategories") {
+      setCurrentStep("categories")
       scrollToTop()
     } else {
       onPrev()
@@ -400,14 +344,10 @@ export default function ComprehensiveProductSelection({
     return shouldShowAll ? category.subcategories : category.subcategories.slice(0, 3)
   }
 
-  const formatSpecKey = (key: string) => {
-    return key
-      .split("_")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ")
-  }
+  const cookieStep = parseInt(Cookies.get("registration_step") || "0", 10)
 
-  const renderReadOnlyProductData = () => {
+  // READ-ONLY MODE: Step > 3
+  if (cookieStep > fixStep) {
     if (isLoading) {
       return (
         <div className="flex items-center justify-center">
@@ -416,83 +356,84 @@ export default function ComprehensiveProductSelection({
       )
     }
 
-    if (!fetchedProductData || fetchedProductData.length === 0) {
+    if (!fetchedData?.selectedData?.length) {
       return (
-        <div className="text-center py-12">
-          <p className="text-lg text-gray-600">No product data available.</p>
+        <div className="text-center py-20">
+          <p className="text-gray-600 text-lg">No product data found.</p>
         </div>
       )
     }
 
     return (
-      <div className="bg-white rounded-3xl shadow-lg p-8">
-        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-8 text-center">
-          Your Selected Products
-        </h1>
-        {fetchedProductData.map((category) => (
-          <div key={category.categoryId} className="mb-12">
-            <h2 className="text-2xl font-semibold text-[var(--primary-color)] mb-4">
-              {category.categoryName}
-            </h2>
-            {category.subcategories.map((subcategory) => (
-              <div key={subcategory.subcategoryId} className="mb-8">
-                <h3 className="text-xl font-medium text-gray-700 mb-4">
-                  {subcategory.subcategoryName}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {Object.entries(subcategory.specifications).map(([key, values]) => (
-                    <div key={key} className="bg-gray-50 rounded-xl p-4">
-                      <p className="text-sm font-semibold text-[var(--primary-color)]">
-                        {formatSpecKey(key)}
-                      </p>
-                      <ul className="list-disc list-inside text-sm text-gray-600 mt-2">
-                        {values.map((value, index) => (
-                          <li key={index}>{replaceVendorWithBuyer(value, userRole)}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  if (currentStep > fixStep) {
-    return (
       <div className={`mx-auto px-4 py-8 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
         <div ref={topRef} />
-        {renderReadOnlyProductData()}
-        <div className="flex justify-between mt-8">
-          <button
-            onClick={onPrev}
-            className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-[var(--primary-color)] rounded-2xl hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-          >
-            <span className="inline">←</span>
-            <span className="hidden md:inline ml-2">Prev</span>
-          </button>
-          <button
-            onClick={onNext}
-            className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-2xl hover:bg-[var(--primary-hover-color)] hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold"
-          >
-            <span className="hidden md:inline mr-2">Next</span>
-            <span className="inline">→</span>
-          </button>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">
+            Your Product Selections
+          </h1>
+          <p className="text-lg text-gray-600">You have completed this step. Here’s what you selected.</p>
         </div>
+
+        <div className="space-y-8">
+          {fetchedData.selectedData.map((cat: any) => (
+            <div key={cat.categoryId} className="bg-white rounded-3xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-[var(--primary-color)] mb-6">{cat.categoryName}</h2>
+              <div className="space-y-8">
+                {cat.subcategories.map((sub: any) => (
+                  <div key={sub.subcategoryId} className="border-l-4 border-[var(--secondary-color)] pl-6">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4">{sub.subcategoryName}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      {Object.entries(sub.specifications).map(([key, values]: [string, any]) => (
+                        <div key={key} className="bg-gray-50 rounded-xl p-4">
+                          <span className="font-medium text-gray-700">
+                            {formatDetailKey(key)}:
+                          </span>{" "}
+                          <span className="text-gray-600">
+                            {(values as string[])
+                              .map((v: string) => replaceVendorWithBuyer(v, userRole))
+                              .join(", ")}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+             <div className="flex justify-between items-center mt-8">
+        <button
+          onClick={onPrev}
+          className="px-4 py-2 sm:px-8 sm:py-4 sm:font-bold border-2 border-[var(--primary-color)] text-gray-700 rounded-xl hover:bg-[var(--primary-hover-color)] hover:text-white transition-all font-medium"
+        >
+          <span className="inline">←</span>
+          <span className="hidden md:inline ml-2">Prev</span>
+        </button>
+        <button
+          onClick={onNext}
+          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-xl transition-all font-medium shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed`}
+        >
+         
+              <span className="hidden md:inline mr-2">Next</span>
+              <span className="inline">→</span>
+       
+        </button>
+      </div>
       </div>
     )
   }
 
+  // NORMAL FORM MODE (step <= 3)
   return (
     <div className={`mx-auto px-4 py-8 ${is4K ? "max-w-[2000px]" : "max-w-7xl"}`}>
       <div ref={topRef} />
+      {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex items-center justify-center space-x-4 mb-4">
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === 1
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "categories"
               ? "bg-[var(--secondary-color)] text-white"
               : selectedCategories.length > 0
                 ? "bg-[var(--primary-color)] text-white"
@@ -505,7 +446,7 @@ export default function ComprehensiveProductSelection({
             className={`w-16 h-1 ${selectedCategories.length > 0 ? "bg-[var(--primary-color)]" : "bg-gray-300"}`}
           ></div>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === 2
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "subcategories"
               ? "bg-[var(--secondary-color)] text-white"
               : selectedSubCategories.length > 0
                 ? "bg-[var(--primary-color)] text-white"
@@ -518,7 +459,7 @@ export default function ComprehensiveProductSelection({
             className={`w-16 h-1 ${selectedSubCategories.length > 0 ? "bg-[var(--primary-color)]" : "bg-gray-300"}`}
           ></div>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === 3
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${currentStep === "details"
               ? "bg-[var(--secondary-color)] text-white"
               : getTotalSelections() > 0
                 ? "bg-[var(--primary-color)] text-white"
@@ -529,19 +470,22 @@ export default function ComprehensiveProductSelection({
           </div>
         </div>
         <div className="flex justify-center space-x-8 text-sm">
-          <span className={currentStep === 1 ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
+          <span className={currentStep === "categories" ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
             Categories
           </span>
-          <span className={currentStep === 2 ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
+          <span
+            className={currentStep === "subcategories" ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}
+          >
             Products
           </span>
-          <span className={currentStep === 3 ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
+          <span className={currentStep === "details" ? "text-[var(--secondary-color)] font-bold" : "text-gray-600"}>
             Specifications
           </span>
         </div>
       </div>
 
-      {currentStep === 1 && (
+      {/* Step 1: Categories */}
+      {currentStep === "categories" && (
         <div>
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Product Categories</h1>
@@ -563,7 +507,6 @@ export default function ComprehensiveProductSelection({
                   <h3 className="text-xl font-bold text-[var(--primary-color)] leading-tight">{category.name}</h3>
                   {selectedCategories.includes(category.id) && (
                     <div className="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center flex-shrink-0 ml-2">
-                      <span className="text-white text-lg font-bold">✓</span>
                     </div>
                   )}
                 </div>
@@ -592,7 +535,8 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      {currentStep === 2 && selectedCategories.length > 0 && (
+      {/* Step 2: Subcategories */}
+      {currentStep === "subcategories" && selectedCategories.length > 0 && (
         <div>
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Select Specific Products</h1>
@@ -644,7 +588,8 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      {currentStep === 3 && selectedSubCategories.length > 0 && (
+      {/* Step 3: Detailed Specifications */}
+      {currentStep === "details" && selectedSubCategories.length > 0 && (
         <div>
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Product Specifications</h1>
@@ -687,12 +632,14 @@ export default function ComprehensiveProductSelection({
                     <div className="flex justify-between items-center">
                       <h3 className="text-2xl font-bold">{subCategory.name}</h3>
                       <div className="flex items-center space-x-4">
-                        <span className="mr-4">Detailed Specifications</span>
+                        <span className="mr-4">
+                          Detailed Specifications
+                        </span>
                         <span
                           className={`transform transition-transform ${expandedSubCategory === subCategoryId ? "rotate-180" : ""
                             }`}
                         >
-                          ▼
+                         ↓
                         </span>
                       </div>
                     </div>
@@ -749,6 +696,7 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
+      {/* Summary */}
       {(selectedCategories.length > 0 || selectedSubCategories.length > 0 || getTotalSelections() > 0) && (
         <div className="bg-gradient-to-r from-[var(--secondary-light-color)] to-[var(--secondary-light-color)]/50 rounded-3xl p-8 mb-12 mt-12">
           <h3 className="text-xl font-semibold text-[var(--primary-color)] mb-4">Selection Summary</h3>
@@ -769,7 +717,8 @@ export default function ComprehensiveProductSelection({
         </div>
       )}
 
-      <div className="flex items-center justify-between">
+      {/* Navigation */}
+      <div className="flex items-center justify-between mt-12">
         <button
           onClick={handlePrev}
           disabled={isSubmitting}
@@ -783,30 +732,29 @@ export default function ComprehensiveProductSelection({
           onClick={handleNext}
           disabled={
             isSubmitting ||
-            (currentStep === 1 && selectedCategories.length === 0) ||
-            (currentStep === 2 &&
+            (currentStep === "categories" && selectedCategories.length === 0) ||
+            (currentStep === "subcategories" &&
               (selectedSubCategories.length === 0 || !validateSubcategorySelection())) ||
-            (currentStep === 3 && !areAllSpecificationsSelected())
+            (currentStep === "details" && !areAllSpecificationsSelected())
           }
-          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${!isSubmitting &&
+          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-2xl transition-all duration-300 font-semibold shadow-lg transform ${
+            !isSubmitting &&
             (
-              (currentStep === 1 && selectedCategories.length > 0) ||
-              (currentStep === 2 &&
+              (currentStep === "categories" && selectedCategories.length > 0) ||
+              (currentStep === "subcategories" &&
                 selectedSubCategories.length > 0 &&
                 validateSubcategorySelection()) ||
-              (currentStep === 3 && areAllSpecificationsSelected())
+              (currentStep === "details" && areAllSpecificationsSelected())
             )
-            ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
-            : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }`}
+              ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white hover:shadow-xl hover:scale-105"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
         >
           {isSubmitting ? (
-            <>
-              <span className="hidden md:inline mr-2">Submitting...</span>
-            </>
+            <span className="hidden md:inline mr-2">Submitting...</span>
           ) : (
             <>
-              <span className="hidden md:inline mr-2">{currentStep === 3 ? "Submit" : "Next"}</span>
+              <span className="hidden md:inline mr-2">{currentStep === "details" ? "Submit" : "Next"}</span>
               <span className="inline">→</span>
             </>
           )}

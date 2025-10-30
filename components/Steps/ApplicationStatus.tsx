@@ -136,6 +136,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         return
       }
       const response = await postFirst()
+      Cookies.set("is_registered", "APPROVED");
       Cookies.set("registration_step", "6");
       console.log(response)
       onNext()

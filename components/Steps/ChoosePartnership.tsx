@@ -243,6 +243,7 @@ export default function ChoosePartnership({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [user_role, setUserRole] = useState<"buyer" | "vendor">("buyer");
   const [isViewOnly, setIsViewOnly] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -258,15 +259,19 @@ export default function ChoosePartnership({
       Cookies.get("registration_step") || "0",
       10
     );
-    
+
     console.log("FETCHED STEP", registrationStep, fixStep);
     if (registrationStep > fixStep) {
       setIsViewOnly(true);
+      setLoading(true);
       getUserRegistrationSelected()
-        .then((response:any) => {
+        .then((response: any) => {
           const registrationSelected =
             response.data.registration_selected || [];
-          const lastSelected = registrationSelected[registrationSelected.length - 1]?.toLowerCase();
+          const lastSelected =
+            registrationSelected[
+              registrationSelected.length - 1
+            ]?.toLowerCase();
           if (lastSelected) {
             setSelectedPartnership(lastSelected);
             const selectedPartnershipData = partnerships.find(
@@ -284,10 +289,11 @@ export default function ChoosePartnership({
             }
           }
         })
-        .catch((error:any) => {
+        .catch((error: any) => {
           console.error("Error fetching registration selected:", error);
           showToast("Error fetching selected partnership. Please try again.");
         });
+      setLoading(false);
     }
   }, [user_role, onUpdate]);
 
@@ -330,7 +336,10 @@ export default function ChoosePartnership({
         is_lateral: partnershipData.isLateral || false,
       });
 
-      console.log("Partnership selection submitted successfully:", response.data);
+      console.log(
+        "Partnership selection submitted successfully:",
+        response.data
+      );
       let step = parseInt(Cookies.get("registration_step") || "0", 10);
       step += 1;
       Cookies.set("registration_step", step.toString());
@@ -397,6 +406,13 @@ export default function ChoosePartnership({
         : `As a ${p.vendor}, you will provide services in this partnership model.`;
     return `${baseDescription} ${roleContext}`;
   };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
+      </div>
+    );
+  }
 
   return (
     <div className={`mx-auto px-6 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
@@ -443,7 +459,6 @@ export default function ChoosePartnership({
                   : p.available && !isViewOnly
                   ? "cursor-pointer hover:-translate-y-2 bg-green-100"
                   : "opacity-60 pointer-events-none"
-
               }
               ${
                 selectedPartnership === p.id

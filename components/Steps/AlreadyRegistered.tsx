@@ -358,7 +358,7 @@ export default function PartnershipDisplay() {
     }
 
     return (
-        <div className={`mx-auto px-6 pt-20 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
+        <div className={`mx-auto px-6 pt-30 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
             {selectedPartnershipId ? (
                 <RegisterAgreement partnershipId={selectedPartnershipId} />
             ) : (

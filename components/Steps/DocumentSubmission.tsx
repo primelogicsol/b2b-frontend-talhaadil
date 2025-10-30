@@ -208,9 +208,11 @@ export default function DocumentSubmission({
   onNext,
   onPrev,
 }: DocumentSubmissionProps) {
+
   const [userRole, setUserRole] = useState<string>("vendor");
   const [documentTypes, setDocumentTypes] = useState(getDocumentTypes("vendor"));
   const currentStep = parseInt(Cookies.get("registration_step") || "0", 10); // Get currentStep from cookies
+  console.log("Current Step:", currentStep);
   const [documents, setDocuments] = useState<DocumentData>(
     data || {
       business_registration: null,

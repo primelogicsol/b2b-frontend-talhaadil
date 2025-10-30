@@ -53,7 +53,7 @@ export interface FormData {
 
 export default function RegistrationProcess() {
   const registrationStatus = Cookies.get("is_registered");
-  const first_register = Cookies.get("first_register");
+  const first_register = Cookies.get("first_register") == "true";
   const stepFromCookie = Cookies.get("registration_step");
   const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10): 1;
 

@@ -1,40 +1,55 @@
-"use client"
-import { useEffect, useState } from "react"
-import { Building2, Award, CreditCard, AlertTriangle, Star } from "lucide-react"
-import { useGlobalContext } from "@/context/ScreenProvider"
-import { useToast } from "@/context/ToastProvider"
-import { sendInfo,getUserInfo  } from "@/services/regitsration"
+"use client";
+import { useEffect, useState } from "react";
+import {
+  Building2,
+  Award,
+  CreditCard,
+  AlertTriangle,
+  Star,
+} from "lucide-react";
+import { useGlobalContext } from "@/context/ScreenProvider";
+import { useToast } from "@/context/ToastProvider";
+import { sendInfo, getUserInfo } from "@/services/regitsration";
 
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
 interface BusinessInformationProps {
-  data?: any
-  onUpdate: (data: any) => void
-  onNext: () => void
-  onPrev: () => void
+  data?: any;
+  onUpdate: (data: any) => void;
+  onNext: () => void;
+  onPrev: () => void;
 }
 
-export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: BusinessInformationProps) {
+export default function BusinessInformation({
+  data,
+  onUpdate,
+  onNext,
+  onPrev,
+}: BusinessInformationProps) {
   // ✅ Scroll to top on component mount
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const fixStep = 2;
   const currentStep = parseInt(Cookies.get("registration_step") || "0", 10);
 
-  const { showToast } = useToast()
-  const { is4K } = useGlobalContext()
-  const [loading, setLoading] = useState(false)
-  const [isEditable, setIsEditable] = useState(currentStep <= fixStep)
+  const { showToast } = useToast();
+  const { is4K } = useGlobalContext();
+  const [loading, setLoading] = useState(false);
+  const [isEditable, setIsEditable] = useState(currentStep <= fixStep);
+  const [getLoading, setGetLoading] = useState(false);
 
-  const [userRole, setUserRole] = useState<"vendor" | "buyer">("buyer")
+  const [userRole, setUserRole] = useState<"vendor" | "buyer">("buyer");
 
   useEffect(() => {
-    const roleFromCookie = Cookies.get("user_role") as "vendor" | "buyer" | undefined
+    const roleFromCookie = Cookies.get("user_role") as
+      | "vendor"
+      | "buyer"
+      | undefined;
     if (roleFromCookie) {
-      setUserRole(roleFromCookie)
+      setUserRole(roleFromCookie);
     }
-  }, [])
+  }, []);
 
   const [formData, setFormData] = useState(
     data || {
@@ -107,23 +122,25 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         "Difficulties with FEMA for international payments recently?": false,
         "Have digital banking regulations impacted your operations?": false,
         "Encountered any fraud or cybersecurity issues recently?": false,
-        "Challenges with payment gateway compliance or security regulations?": false,
+        "Challenges with payment gateway compliance or security regulations?":
+          false,
         "Any account activity issues or fraudulent claims made?": false,
         "Have regulatory actions been taken against your account?": false,
       },
-    },
-  )
+    }
+  );
 
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // ✅ Fetch user info if step > fixStep
   useEffect(() => {
     if (currentStep > fixStep) {
       const fetchUserInfo = async () => {
         try {
-          setLoading(true)
-          const response = await getUserInfo()
-          const apiData = response.data
+          setLoading(true);
+          setGetLoading(true);
+          const response = await getUserInfo();
+          const apiData = response.data;
 
           // Map API response to formData structure
           const updatedFormData = {
@@ -133,7 +150,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               businessLegalStructure: apiData.business_legal_structure || "",
               businessType: apiData.business_type || "",
               businessEstablishedYear: apiData.year_established || 0,
-              businessRegistrationNumber: apiData.business_registration_number || "",
+              businessRegistrationNumber:
+                apiData.business_registration_number || "",
               brandAffiliations: apiData.brand_affiliations || "",
               streetAddress1: apiData.street_address_1 || "",
               streetAddress2: apiData.street_address_2 || "",
@@ -166,14 +184,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               standardsLevel: apiData.standards_level || 3,
             },
             certifications: {
-              GICertification: apiData.certifications.includes("GI Certification"),
+              GICertification:
+                apiData.certifications.includes("GI Certification"),
               handloomMark: apiData.certifications.includes("Handloom Mark"),
               craftMark: apiData.certifications.includes("Craft Mark"),
               indiaHandmade: apiData.certifications.includes("India Handmade"),
-              qualityCouncil: apiData.certifications.includes("Quality Council"),
+              qualityCouncil:
+                apiData.certifications.includes("Quality Council"),
               exportCouncil: apiData.certifications.includes("Export Council"),
               blockChain: apiData.certifications.includes("Blockchain"),
-              ...(userRole === "vendor" ? { none: false } : { notRequired: false }),
+              ...(userRole === "vendor"
+                ? { none: false }
+                : { notRequired: false }),
             },
             bankingInfo: {
               bankName: apiData.bank_name || "",
@@ -185,71 +207,78 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               ibanCode: apiData.iban_code || "",
             },
             complianceIssues: {
-              "Have you faced challenges with KYC regulations recently?": apiData.kyc_challenges || false,
-              "Any issues with GST compliance in transactions?": apiData.gst_compliance_issues || false,
-              "Difficulties with FEMA for international payments recently?": apiData.fema_payment_issues || false,
-              "Have digital banking regulations impacted your operations?": apiData.digital_banking_issues || false,
-              "Encountered any fraud or cybersecurity issues recently?": apiData.fraud_cybersecurity_issues || false,
-              "Challenges with payment gateway compliance or security regulations?": apiData.payment_gateway_compliance_issues || false,
-              "Any account activity issues or fraudulent claims made?": apiData.account_activity_issues || false,
-              "Have regulatory actions been taken against your account?": apiData.regulatory_actions || false,
+              "Have you faced challenges with KYC regulations recently?":
+                apiData.kyc_challenges || false,
+              "Any issues with GST compliance in transactions?":
+                apiData.gst_compliance_issues || false,
+              "Difficulties with FEMA for international payments recently?":
+                apiData.fema_payment_issues || false,
+              "Have digital banking regulations impacted your operations?":
+                apiData.digital_banking_issues || false,
+              "Encountered any fraud or cybersecurity issues recently?":
+                apiData.fraud_cybersecurity_issues || false,
+              "Challenges with payment gateway compliance or security regulations?":
+                apiData.payment_gateway_compliance_issues || false,
+              "Any account activity issues or fraudulent claims made?":
+                apiData.account_activity_issues || false,
+              "Have regulatory actions been taken against your account?":
+                apiData.regulatory_actions || false,
             },
-          }
+          };
 
-          setFormData(updatedFormData)
-          onUpdate(updatedFormData)
+          setFormData(updatedFormData);
+          onUpdate(updatedFormData);
         } catch (error: any) {
-          showToast("Failed to fetch user information. Please try again.")
-          console.error("Fetch Error:", error)
+          showToast("Failed to fetch user information. Please try again.");
+          console.error("Fetch Error:", error);
         } finally {
-          setLoading(false)
+          setLoading(false);
+          setGetLoading(false);
         }
-      }
+      };
 
-      fetchUserInfo()
+      fetchUserInfo();
     }
-  }, [currentStep, fixStep])
+  }, [currentStep, fixStep]);
 
   const handleBusinessInfoChange = (field: string, value: string) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessInfo: { ...prev.businessInfo, [field]: value },
-    }))
-  }
+    }));
+  };
 
   const handleBusinessContactChange = (field: string, value: string) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessContact: { ...prev.businessContact, [field]: value },
-    }))
-  }
+    }));
+  };
 
   const handleBankingInfoChange = (field: string, value: string) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     setFormData((prev: typeof formData) => ({
       ...prev,
       bankingInfo: { ...prev.bankingInfo, [field]: value },
-    }))
-  }
+    }));
+  };
 
   const handleYearChange = (value: string) => {
-    if (!isEditable) return
-    const year = Number.parseInt(value) || 0
+    if (!isEditable) return;
+    const year = Number.parseInt(value) || 0;
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessInfo: { ...prev.businessInfo, businessEstablishedYear: year },
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async () => {
     if (!isEditable) {
-      let step = parseInt(Cookies.get("registration_step") || "0", 10)
-      step += 1
-      Cookies.set("registration_step", step.toString())
-      onNext()
-      return
+      
+      onNext();
+      return;
     }
 
     try {
@@ -258,12 +287,14 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         business_legal_structure: formData.businessInfo.businessLegalStructure,
         business_type: formData.businessInfo.businessType,
         year_established: formData.businessInfo.businessEstablishedYear || 1800,
-        business_registration_number: formData.businessInfo.businessRegistrationNumber,
+        business_registration_number:
+          formData.businessInfo.businessRegistrationNumber,
         brand_affiliations: formData.businessInfo.brandAffiliations || "",
         website: formData.businessInfo.website || "",
         annual_turnover: formData.businessInfo.annualTurnover || "",
         gst_number: formData.businessInfo.gstNumber,
-        tax_identification_number: formData.businessInfo.taxIdentificationNumber,
+        tax_identification_number:
+          formData.businessInfo.taxIdentificationNumber,
         import_export_code: formData.businessInfo.importExportCode || "",
         street_address_1: formData.businessInfo.streetAddress1,
         street_address_2: formData.businessInfo.streetAddress2 || "",
@@ -281,15 +312,19 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         contact_country: formData.businessContact.country,
         material_standard: formData.credibilityAssessment.materialStandard,
         quality_level: formData.credibilityAssessment.qualityLevel,
-        sustainability_level: formData.credibilityAssessment.sustainabilityLevel,
+        sustainability_level:
+          formData.credibilityAssessment.sustainabilityLevel,
         service_level: formData.credibilityAssessment.serviceLevel,
         standards_level: formData.credibilityAssessment.standardsLevel,
         ethics_level: formData.credibilityAssessment.ethicsLevel,
         certifications: Object.entries(formData.certifications)
-          .filter(([key, value]) =>
-            value && key !== (userRole === "vendor" ? "none" : "notRequired")
+          .filter(
+            ([key, value]) =>
+              value && key !== (userRole === "vendor" ? "none" : "notRequired")
           )
-          .map(([key]) => certificationMap[key as keyof typeof certificationMap]),
+          .map(
+            ([key]) => certificationMap[key as keyof typeof certificationMap]
+          ),
         bank_name: formData.bankingInfo.bankName,
         account_name: formData.bankingInfo.accountName,
         account_type: formData.bankingInfo.accountType,
@@ -297,53 +332,74 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         ifsc_code: formData.bankingInfo.ifscCode,
         swift_bis_code: formData.bankingInfo.swiftBisCode || "",
         iban_code: formData.bankingInfo.ibanCode || "",
-        kyc_challenges: formData.complianceIssues["Have you faced challenges with KYC regulations recently?"] || false,
-        gst_compliance_issues: formData.complianceIssues["Any issues with GST compliance in transactions?"] || false,
+        kyc_challenges:
+          formData.complianceIssues[
+            "Have you faced challenges with KYC regulations recently?"
+          ] || false,
+        gst_compliance_issues:
+          formData.complianceIssues[
+            "Any issues with GST compliance in transactions?"
+          ] || false,
         fema_payment_issues:
-          formData.complianceIssues["Difficulties with FEMA for international payments recently?"] || false,
+          formData.complianceIssues[
+            "Difficulties with FEMA for international payments recently?"
+          ] || false,
         digital_banking_issues:
-          formData.complianceIssues["Have digital banking regulations impacted your operations?"] || false,
+          formData.complianceIssues[
+            "Have digital banking regulations impacted your operations?"
+          ] || false,
         fraud_cybersecurity_issues:
-          formData.complianceIssues["Encountered any fraud or cybersecurity issues recently?"] || false,
+          formData.complianceIssues[
+            "Encountered any fraud or cybersecurity issues recently?"
+          ] || false,
         payment_gateway_compliance_issues:
-          formData.complianceIssues["Challenges with payment gateway compliance or security regulations?"] || false,
+          formData.complianceIssues[
+            "Challenges with payment gateway compliance or security regulations?"
+          ] || false,
         account_activity_issues:
-          formData.complianceIssues["Any account activity issues or fraudulent claims made?"] || false,
+          formData.complianceIssues[
+            "Any account activity issues or fraudulent claims made?"
+          ] || false,
         regulatory_actions:
-          formData.complianceIssues["Have regulatory actions been taken against your account?"] || false,
-      }
-      setLoading(true)
-      localStorage.setItem("businessRegistrationData", JSON.stringify(apiPayload))
-      console.log("API Payload:", apiPayload)
+          formData.complianceIssues[
+            "Have regulatory actions been taken against your account?"
+          ] || false,
+      };
+      setLoading(true);
+      localStorage.setItem(
+        "businessRegistrationData",
+        JSON.stringify(apiPayload)
+      );
+      console.log("API Payload:", apiPayload);
 
-      const response = await sendInfo(apiPayload)
-      const data = response.data
-      onNext()
+      const response = await sendInfo(apiPayload);
+      const data = response.data;
+      onNext();
 
-      let step = parseInt(Cookies.get("registration_step") || "0", 10)
-      step += 1
-      Cookies.set("registration_step", step.toString())
+      let step = parseInt(Cookies.get("registration_step") || "0", 10);
+      step += 1;
+      Cookies.set("registration_step", step.toString());
     } catch (error: any) {
-      const errorMsg = error?.response?.data?.detail
+      const errorMsg = error?.response?.data?.detail;
 
       if (errorMsg === "User already has registration levels") {
-        showToast("You have already submitted the information.")
+        showToast("You have already submitted the information.");
         setTimeout(() => {
-          onNext()
-        }, 4000)
+          onNext();
+        }, 4000);
       } else {
-        showToast("Network error. Please try again.")
+        showToast("Network error. Please try again.");
       }
 
-      console.error("Network Error:", error)
+      console.error("Network Error:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleNext = () => {
-    handleSubmit()
-  }
+    handleSubmit();
+  };
 
   const getFieldLabels = () => {
     if (userRole === "buyer") {
@@ -359,7 +415,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         compliance: {
           "Have you faced challenges with KYC regulations recently?":
             "Have you faced challenges with Customer Identification Program (CIP) recently?",
-          "Any issues with GST compliance in transactions?": "Any issues with Sales Tax Compliance in transactions?",
+          "Any issues with GST compliance in transactions?":
+            "Any issues with Sales Tax Compliance in transactions?",
           "Difficulties with FEMA for international payments recently?":
             "Difficulties with OFAC & FinCEN Cross-Border Payment Rules recently?",
           "Have digital banking regulations impacted your operations?":
@@ -367,7 +424,7 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
           "Challenges with payment gateway compliance or security regulations?":
             "Challenges with PCI-DSS Compliance or security regulations?",
         },
-      }
+      };
     } else {
       return {
         taxRegistration: {
@@ -381,7 +438,8 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         compliance: {
           "Have you faced challenges with KYC regulations recently?":
             "Have you faced challenges with KYC regulations recently?",
-          "Any issues with GST compliance in transactions?": "Any issues with GST compliance in transactions?",
+          "Any issues with GST compliance in transactions?":
+            "Any issues with GST compliance in transactions?",
           "Difficulties with FEMA for international payments recently?":
             "Difficulties with FEMA Rules (Foreign Exchange) recently?",
           "Have digital banking regulations impacted your operations?":
@@ -389,18 +447,21 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
           "Challenges with payment gateway compliance or security regulations?":
             "Challenges with payment gateway compliance or security regulations?",
         },
-      }
+      };
     }
-  }
+  };
 
-  const fieldLabels = getFieldLabels()
+  const fieldLabels = getFieldLabels();
 
   // ✅ Save to localStorage whenever formData changes (only if editable)
   useEffect(() => {
     if (isEditable) {
-      localStorage.setItem("businessRegistrationData", JSON.stringify(formData))
+      localStorage.setItem(
+        "businessRegistrationData",
+        JSON.stringify(formData)
+      );
     }
-  }, [formData, isEditable])
+  }, [formData, isEditable]);
 
   const certificationMap = {
     GICertification: "GI Certification",
@@ -410,64 +471,64 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
     qualityCouncil: "Quality Council",
     exportCouncil: "Export Council",
     blockChain: "Blockchain",
-  }
+  };
 
   // Handler for basic user info
   const handleUserInfoChange = (field: string, value: string) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     const updatedData = {
       ...formData,
       [field]: value,
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
+    };
+    setFormData(updatedData);
+    onUpdate(updatedData);
+  };
 
   // Handler for credibility assessment
   const handleCredibilityChange = (field: string, value: number) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     const updatedData = {
       ...formData,
       credibilityAssessment: {
         ...formData.credibilityAssessment,
         [field]: value,
       },
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
+    };
+    setFormData(updatedData);
+    onUpdate(updatedData);
+  };
 
   // Handler for certifications
   const handleCertificationChange = (field: string, value: boolean) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     const updatedData = {
       ...formData,
       certifications: {
         ...formData.certifications,
         [field]: value,
       },
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
+    };
+    setFormData(updatedData);
+    onUpdate(updatedData);
+  };
 
   // Handler for compliance issues
   const handleComplianceChange = (field: string, value: boolean) => {
-    if (!isEditable) return
+    if (!isEditable) return;
     const updatedData = {
       ...formData,
       complianceIssues: {
         ...formData.complianceIssues,
         [field]: value,
       },
-    }
-    setFormData(updatedData)
-    onUpdate(updatedData)
-  }
+    };
+    setFormData(updatedData);
+    onUpdate(updatedData);
+  };
 
   // ✅ Check if all required fields are filled
   const areRequiredFieldsFilled = () => {
-    if (!isEditable) return true // Always allow next if not editable
+    if (!isEditable) return true; // Always allow next if not editable
     const requiredFields = [
       formData.businessInfo.businessName,
       formData.businessInfo.businessLegalStructure,
@@ -492,10 +553,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       formData.bankingInfo.accountType,
       formData.bankingInfo.accountNumber,
       formData.bankingInfo.ifscCode,
-    ]
+    ];
 
-    return requiredFields.every((field) => typeof field === "string" && field.trim() !== "")
-  }
+    return requiredFields.every(
+      (field) => typeof field === "string" && field.trim() !== ""
+    );
+  };
 
   // ✅ Fixed completion percentage - only count required fields
   const getCompletionPercentage = () => {
@@ -523,41 +586,54 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
       formData.bankingInfo.accountType,
       formData.bankingInfo.accountNumber,
       formData.bankingInfo.ifscCode,
-    ]
+    ];
 
     const filledFields = requiredFields.filter((field) => {
       if (typeof field === "string") {
-        return field.trim() !== ""
+        return field.trim() !== "";
       }
-      return field !== null && field !== undefined && field !== 0
-    }).length
+      return field !== null && field !== undefined && field !== 0;
+    }).length;
 
-    return Math.round((filledFields / requiredFields.length) * 100)
-  }
+    return Math.round((filledFields / requiredFields.length) * 100);
+  };
 
   const ErrorMessage = ({ error }: { error?: string }) => {
-    if (!error) return null
-    return <p className="text-red-500 text-sm mt-1">{error}</p>
+    if (!error) return null;
+    return <p className="text-red-500 text-sm mt-1">{error}</p>;
+  };
+  if (getLoading) {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
+      </div>
+    );
   }
-
   return (
     <div className={`mx-auto px-2 ${is4K ? "max-w-[2000px]" : "max-w-5xl"}`}>
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <Building2 className="w-8 h-8 text-white" />
         </div>
-        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Complete Business Registration</h1>
+        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">
+          Complete Business Registration
+        </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Please provide comprehensive business details for partnership registration. This information helps us
-          understand your business better and assess partnership opportunities.
+          Please provide comprehensive business details for partnership
+          registration. This information helps us understand your business
+          better and assess partnership opportunities.
         </p>
       </div>
 
       {/* Progress Bar */}
       <div className="bg-white rounded-3xl shadow-xl p-6 mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-[var(--primary-color)]">Form Completion</h3>
-          <span className="text-2xl font-bold text-[var(--secondary-color)]">{getCompletionPercentage()}%</span>
+          <h3 className="text-lg font-semibold text-[var(--primary-color)]">
+            Form Completion
+          </h3>
+          <span className="text-2xl font-bold text-[var(--secondary-color)]">
+            {getCompletionPercentage()}%
+          </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3">
           <div
@@ -574,25 +650,38 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Details</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Business Details
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Business Name *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Business Name *
+              </label>
               <input
                 type="text"
                 value={formData.businessInfo.businessName}
-                onChange={(e) => handleBusinessInfoChange("businessName", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange("businessName", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter your business name"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Business Legal Structure *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Business Legal Structure *
+              </label>
               <select
                 value={formData.businessInfo.businessLegalStructure}
-                onChange={(e) => handleBusinessInfoChange("businessLegalStructure", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange(
+                    "businessLegalStructure",
+                    e.target.value
+                  )
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 disabled={!isEditable}
               >
@@ -606,10 +695,14 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Business Type *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Business Type *
+              </label>
               <select
                 value={formData.businessInfo.businessType}
-                onChange={(e) => handleBusinessInfoChange("businessType", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange("businessType", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 disabled={!isEditable}
               >
@@ -624,7 +717,9 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Year Established</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Year Established
+              </label>
               <input
                 type="number"
                 value={formData.businessInfo.businessEstablishedYear || ""}
@@ -637,33 +732,48 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Business Registration Number *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Business Registration Number *
+              </label>
               <input
                 type="text"
                 value={formData.businessInfo.businessRegistrationNumber}
-                onChange={(e) => handleBusinessInfoChange("businessRegistrationNumber", e.target.value.toUpperCase())}
+                onChange={(e) =>
+                  handleBusinessInfoChange(
+                    "businessRegistrationNumber",
+                    e.target.value.toUpperCase()
+                  )
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter registration number"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Brand Affiliations</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Brand Affiliations
+              </label>
               <input
                 type="text"
                 value={formData.businessInfo.brandAffiliations || ""}
-                onChange={(e) => handleBusinessInfoChange("brandAffiliations", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange("brandAffiliations", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter brand affiliations"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Website</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Website
+              </label>
               <input
                 type="url"
                 value={formData.businessInfo.website || ""}
-                onChange={(e) => handleBusinessInfoChange("website", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange("website", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="https://www.example.com"
                 disabled={!isEditable}
@@ -710,7 +820,9 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
 
           {/* Tax & Registration Information */}
           <div className="mt-8 pt-8 border-t">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Tax & Registration Information</h3>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
+              Tax & Registration Information
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
@@ -719,7 +831,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <input
                   type="text"
                   value={formData.businessInfo.gstNumber}
-                  onChange={(e) => handleBusinessInfoChange("gstNumber", e.target.value.toUpperCase())}
+                  onChange={(e) =>
+                    handleBusinessInfoChange(
+                      "gstNumber",
+                      e.target.value.toUpperCase()
+                    )
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field1.toLowerCase()}`}
                   maxLength={15}
@@ -733,7 +850,12 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <input
                   type="text"
                   value={formData.businessInfo.taxIdentificationNumber}
-                  onChange={(e) => handleBusinessInfoChange("taxIdentificationNumber", e.target.value.toUpperCase())}
+                  onChange={(e) =>
+                    handleBusinessInfoChange(
+                      "taxIdentificationNumber",
+                      e.target.value.toUpperCase()
+                    )
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field2.toLowerCase()}`}
                   maxLength={15}
@@ -747,7 +869,9 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 <input
                   type="text"
                   value={formData.businessInfo.importExportCode || ""}
-                  onChange={(e) => handleBusinessInfoChange("importExportCode", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessInfoChange("importExportCode", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field3.toLowerCase()} (if applicable)`}
                   disabled={!isEditable}
@@ -763,14 +887,20 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Address</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Business Address
+            </h2>
           </div>
           <div className="space-y-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Country *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Country *
+              </label>
               <select
                 value={formData.businessInfo.country}
-                onChange={(e) => handleBusinessInfoChange("country", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessInfoChange("country", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 disabled={!isEditable}
               >
@@ -788,22 +918,30 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Street Address 1 *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  Street Address 1 *
+                </label>
                 <input
                   type="text"
                   value={formData.businessInfo.streetAddress1}
-                  onChange={(e) => handleBusinessInfoChange("streetAddress1", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessInfoChange("streetAddress1", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter street address"
                   disabled={!isEditable}
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Street Address 2</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  Street Address 2
+                </label>
                 <input
                   type="text"
                   value={formData.businessInfo.streetAddress2 || ""}
-                  onChange={(e) => handleBusinessInfoChange("streetAddress2", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessInfoChange("streetAddress2", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter additional address info"
                   disabled={!isEditable}
@@ -812,33 +950,48 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">City *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  City *
+                </label>
                 <input
                   type="text"
                   value={formData.businessInfo.city}
-                  onChange={(e) => handleBusinessInfoChange("city", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessInfoChange("city", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter city"
                   disabled={!isEditable}
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">State/Region *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  State/Region *
+                </label>
                 <input
                   type="text"
                   value={formData.businessInfo.stateRegion}
-                  onChange={(e) => handleBusinessInfoChange("stateRegion", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessInfoChange("stateRegion", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter state/region"
                   disabled={!isEditable}
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Postal Code *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  Postal Code *
+                </label>
                 <input
                   type="text"
                   value={formData.businessInfo.postalCode}
-                  onChange={(e) => handleBusinessInfoChange("postalCode", e.target.value.toUpperCase())}
+                  onChange={(e) =>
+                    handleBusinessInfoChange(
+                      "postalCode",
+                      e.target.value.toUpperCase()
+                    )
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter postal code"
                   maxLength={10}
@@ -855,48 +1008,66 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Contact Person</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Business Contact Person
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Contact Person Name *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Contact Person Name *
+              </label>
               <input
                 type="text"
                 value={formData.businessContact.name}
-                onChange={(e) => handleBusinessContactChange("name", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessContactChange("name", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter contact person name"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Email Address *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Email Address *
+              </label>
               <input
                 type="email"
                 value={formData.businessContact.email}
-                onChange={(e) => handleBusinessContactChange("email", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessContactChange("email", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter email address"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Phone Number *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Phone Number *
+              </label>
               <input
                 type="tel"
                 value={formData.businessContact.phone}
-                onChange={(e) => handleBusinessContactChange("phone", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessContactChange("phone", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter phone number"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">WhatsApp Number</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                WhatsApp Number
+              </label>
               <input
                 type="tel"
                 value={formData.businessContact.whatsapp || ""}
-                onChange={(e) => handleBusinessContactChange("whatsapp", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessContactChange("whatsapp", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter WhatsApp number"
                 disabled={!isEditable}
@@ -906,12 +1077,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
 
           {/* Contact Person Address */}
           <div className="mt-8 pt-8 border-t">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Contact Person Address</h3>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
+              Contact Person Address
+            </h3>
             <div className="space-y-2 mb-6">
-              <label className="block text-sm font-semibold text-gray-700">Country *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Country *
+              </label>
               <select
                 value={formData.businessContact.country}
-                onChange={(e) => handleBusinessContactChange("country", e.target.value)}
+                onChange={(e) =>
+                  handleBusinessContactChange("country", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 disabled={!isEditable}
               >
@@ -929,22 +1106,30 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">District/County *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  District/County *
+                </label>
                 <input
                   type="text"
                   value={formData.businessContact.district}
-                  onChange={(e) => handleBusinessContactChange("district", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessContactChange("district", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter district"
                   disabled={!isEditable}
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Pin Code *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  Pin Code *
+                </label>
                 <input
                   type="text"
                   value={formData.businessContact.pinCode}
-                  onChange={(e) => handleBusinessContactChange("pinCode", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessContactChange("pinCode", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter pin code"
                   maxLength={6}
@@ -952,11 +1137,15 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
                 />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">State/County *</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  State/County *
+                </label>
                 <input
                   type="text"
                   value={formData.businessContact.state}
-                  onChange={(e) => handleBusinessContactChange("state", e.target.value)}
+                  onChange={(e) =>
+                    handleBusinessContactChange("state", e.target.value)
+                  }
                   className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                   placeholder="Enter state"
                   disabled={!isEditable}
@@ -972,26 +1161,38 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Star className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Credibility Assessment</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Credibility Assessment
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { key: "materialStandard", label: "Material Standard (1-5)" },
               { key: "qualityLevel", label: "Quality Level (1-5)" },
-              { key: "sustainabilityLevel", label: "Sustainability Level (1-5)" },
+              {
+                key: "sustainabilityLevel",
+                label: "Sustainability Level (1-5)",
+              },
               { key: "serviceLevel", label: "Service Level (1-5)" },
               { key: "standardsLevel", label: "Standards Level (1-5)" },
               { key: "ethicsLevel", label: "Ethics Level (1-5)" },
             ].map(({ key, label }) => (
               <div key={key} className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">{label}</label>
+                <label className="block text-sm font-semibold text-gray-700">
+                  {label}
+                </label>
                 <div className="flex items-center space-x-3">
                   <input
                     type="range"
                     min="1"
                     max="5"
                     value={formData.credibilityAssessment[key]}
-                    onChange={(e) => handleCredibilityChange(key, Number.parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleCredibilityChange(
+                        key,
+                        Number.parseInt(e.target.value)
+                      )
+                    }
                     className="flex-1 h-2 bg-gray-200 rounded-lg"
                     disabled={!isEditable}
                   />
@@ -1010,19 +1211,28 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Award className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Certifications</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Certifications
+            </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(formData.certifications).map(([key, value]) => (
-              <label key={key} className="flex items-center space-x-2 cursor-pointer">
+              <label
+                key={key}
+                className="flex items-center space-x-2 cursor-pointer"
+              >
                 <input
                   type="checkbox"
                   checked={Boolean(value)}
-                  onChange={(e) => handleCertificationChange(key, e.target.checked)}
+                  onChange={(e) =>
+                    handleCertificationChange(key, e.target.checked)
+                  }
                   className="w-4 h-4 text-[var(--primary-color)] rounded"
                   disabled={!isEditable}
                 />
-                <span className="text-sm text-gray-700 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</span>
+                <span className="text-sm text-gray-700 capitalize">
+                  {key.replace(/([A-Z])/g, " $1").trim()}
+                </span>
               </label>
             ))}
           </div>
@@ -1034,36 +1244,50 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <CreditCard className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Banking Information</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Banking Information
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Bank Name *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Bank Name *
+              </label>
               <input
                 type="text"
                 value={formData.bankingInfo.bankName}
-                onChange={(e) => handleBankingInfoChange("bankName", e.target.value)}
+                onChange={(e) =>
+                  handleBankingInfoChange("bankName", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter bank name"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Account Name *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Account Name *
+              </label>
               <input
                 type="text"
                 value={formData.bankingInfo.accountName}
-                onChange={(e) => handleBankingInfoChange("accountName", e.target.value)}
+                onChange={(e) =>
+                  handleBankingInfoChange("accountName", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter account holder name"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Account Type *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Account Type *
+              </label>
               <select
                 value={formData.bankingInfo.accountType}
-                onChange={(e) => handleBankingInfoChange("accountType", e.target.value)}
+                onChange={(e) =>
+                  handleBankingInfoChange("accountType", e.target.value)
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 disabled={!isEditable}
               >
@@ -1075,11 +1299,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Account Number *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                Account Number *
+              </label>
               <input
                 type="text"
                 value={formData.bankingInfo.accountNumber}
-                onChange={(e) => handleBankingInfoChange("accountNumber", e.target.value.replace(/\D/g, ""))}
+                onChange={(e) =>
+                  handleBankingInfoChange(
+                    "accountNumber",
+                    e.target.value.replace(/\D/g, "")
+                  )
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter account number"
                 maxLength={18}
@@ -1087,11 +1318,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">{fieldLabels.banking.routingCode} *</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                {fieldLabels.banking.routingCode} *
+              </label>
               <input
                 type="text"
                 value={formData.bankingInfo.ifscCode}
-                onChange={(e) => handleBankingInfoChange("ifscCode", e.target.value.toUpperCase())}
+                onChange={(e) =>
+                  handleBankingInfoChange(
+                    "ifscCode",
+                    e.target.value.toUpperCase()
+                  )
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder={`Enter ${fieldLabels.banking.routingCode.toLowerCase()}`}
                 maxLength={11}
@@ -1099,11 +1337,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">SWIFT Code</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                SWIFT Code
+              </label>
               <input
                 type="text"
                 value={formData.bankingInfo.swiftBisCode || ""}
-                onChange={(e) => handleBankingInfoChange("swiftBisCode", e.target.value.toUpperCase())}
+                onChange={(e) =>
+                  handleBankingInfoChange(
+                    "swiftBisCode",
+                    e.target.value.toUpperCase()
+                  )
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter SWIFT code (for international)"
                 maxLength={11}
@@ -1111,11 +1356,18 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
               />
             </div>
             <div className="md:col-span-2 space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">IBAN Code</label>
+              <label className="block text-sm font-semibold text-gray-700">
+                IBAN Code
+              </label>
               <input
                 type="text"
                 value={formData.bankingInfo.ibanCode || ""}
-                onChange={(e) => handleBankingInfoChange("ibanCode", e.target.value.toUpperCase())}
+                onChange={(e) =>
+                  handleBankingInfoChange(
+                    "ibanCode",
+                    e.target.value.toUpperCase()
+                  )
+                }
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter IBAN code (for international)"
                 maxLength={34}
@@ -1131,20 +1383,29 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <AlertTriangle className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Compliance Issues</h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
+              Compliance Issues
+            </h2>
           </div>
           <div className="grid grid-cols-1 gap-4">
             {Object.entries(formData.complianceIssues).map(([key, value]) => (
-              <label key={key} className="flex items-center space-x-2 cursor-pointer">
+              <label
+                key={key}
+                className="flex items-center space-x-2 cursor-pointer"
+              >
                 <input
                   type="checkbox"
                   checked={Boolean(value)}
-                  onChange={(e) => handleComplianceChange(key, e.target.checked)}
+                  onChange={(e) =>
+                    handleComplianceChange(key, e.target.checked)
+                  }
                   className="w-4 h-4 text-red-600 rounded"
                   disabled={!isEditable}
                 />
                 <span className="text-sm text-gray-700">
-                  {fieldLabels.compliance[key as keyof typeof fieldLabels.compliance] || key}
+                  {fieldLabels.compliance[
+                    key as keyof typeof fieldLabels.compliance
+                  ] || key}
                 </span>
               </label>
             ))}
@@ -1163,7 +1424,11 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         <button
           onClick={handleNext}
           disabled={loading || (isEditable && !areRequiredFieldsFilled())}
-          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-xl transition-all font-medium shadow-lg ${loading || (isEditable && !areRequiredFieldsFilled()) ? "opacity-50 cursor-not-allowed" : "hover:bg-[var(--primary-hover-color)]"}`}
+          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold bg-[var(--primary-color)] text-white rounded-xl transition-all font-medium shadow-lg ${
+            loading || (isEditable && !areRequiredFieldsFilled())
+              ? "opacity-50 cursor-not-allowed"
+              : "hover:bg-[var(--primary-hover-color)]"
+          }`}
         >
           {loading ? (
             <span>Submitting...</span>
@@ -1176,5 +1441,5 @@ export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: 
         </button>
       </div>
     </div>
-  )
+  );
 }
