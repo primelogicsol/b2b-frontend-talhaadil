@@ -17,6 +17,7 @@ import {
 import { EligibilityQuiz } from "../Essentials/ElgibiltyProvider";
 import Image from "next/image";
 import Link from "next/link";
+import BannerWithFeatures from "../Material/BannerwithFeatures";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -69,6 +70,7 @@ const itemVariants = {
 
 
 type pageData = {
+  data : any[];
   tier: number,
   hero: {
     headline: string;
@@ -187,58 +189,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="absolute inset-0 bg-black/10" />
-        <div
-          className={`relative mx-auto px-6 py-20 sm:py-32 ${containerClass}`}
-        >
-          <motion.div
-            className="text-center"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            <motion.h1
-              className={`font-bold text-white mb-6 ${is4K ? "text-7xl" : "text-4xl sm:text-5xl lg:text-6xl"
-                }`}
-              variants={fadeInUp}
-            >
-              {pageData.hero.headline}
-            </motion.h1>
-            <motion.p
-              className={`text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed ${is4K ? "text-2xl" : "text-lg sm:text-xl"
-                }`}
-              variants={fadeInUp}
-            >
-              {pageData.hero.subtext}
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              variants={fadeInUp}
-            >
-              {pageData.hero.ctaButtons.map((button, index) => (
-                <motion.button
-                  key={index}
-                  className={`px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${index === 0
-                    ? "bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-color)]/90 shadow-lg hover:shadow-xl"
-                    : "bg-white text-[var(--primary-color)] hover:bg-gray-100"
-                    } ${is4K ? "text-xl px-12 py-6" : "text-base"}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {button}
-                </motion.button>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
+      <BannerWithFeatures data={pageData.data}/>
       {/* Why Core Trade Section */}
       <motion.section
         className={`mx-auto px-6 py-20 ${containerClass}`}

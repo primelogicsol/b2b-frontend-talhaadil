@@ -13,6 +13,7 @@ export const ngoGovernmentData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/ngo-buyer.mp4",
     heading: "Aligning Craft Heritage With Development & Policy",
     problems: [
       "Artisans often left out of policy decisions.",

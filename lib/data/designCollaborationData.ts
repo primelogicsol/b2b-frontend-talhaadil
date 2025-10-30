@@ -12,6 +12,7 @@ export const designCollaborationData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/desgin.mp4",
     heading: "Blending Creativity With Cultural Heritage",
     problems: [
       "Buyers face limited customization in conventional trade.",

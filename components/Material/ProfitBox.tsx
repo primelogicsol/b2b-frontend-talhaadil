@@ -16,10 +16,11 @@ import {
   Key,
   Heart,
   Clock,
-  Zap,
   Star,
 } from "lucide-react";
 import { useGlobalContext } from "@/context/ScreenProvider";
+
+// Updated categories array with JSON data
 const categories = [
   {
     name: "Boutique",
@@ -29,546 +30,192 @@ const categories = [
         name: "Pashmina",
         id: "pashmina",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Cashmere",
-        id: "cashmere",
-        details: {
-          annual_revenue: "$140M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "12.5%",
+          global_export: "11.5%",
+          artisans: "2850",
+          market_growth: "36.0% YoY",
+          quality_rating: "4.9/5",
+          sustainability: "96.0%",
+          product_range: "2010",
+          customer_satisfaction: "99.0%",
+          avg_production_time: "720 Days",
+          innovation_index: "4.8/5",
         },
       },
       {
         name: "Kani",
         id: "kani",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "8.2%",
+          global_export: "7.544%",
+          artisans: "1870",
+          market_growth: "30.8% YoY",
+          quality_rating: "4.83/5",
+          sustainability: "94.6%",
+          product_range: "1319",
+          customer_satisfaction: "98.0%",
+          avg_production_time: "485 Days",
+          innovation_index: "4.7/5",
+        },
+      },
+      {
+        name: "Cashmere",
+        id: "cashmere",
+        details: {
+          global_share: "1.2%",
+          global_export: "1.104%",
+          artisans: "274",
+          market_growth: "22.3% YoY",
+          quality_rating: "4.44/5",
+          sustainability: "88.5%",
+          product_range: "193",
+          customer_satisfaction: "94.3%",
+          avg_production_time: "40 Days",
+          innovation_index: "4.25/5",
         },
       },
       {
         name: "Silk",
         id: "silk",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Sarongs",
-        id: "sarongs",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Bags",
-        id: "bags",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Purses",
-        id: "purses",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Jackets",
-        id: "jackets",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Kaftans",
-        id: "kaftans",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Kurtas",
-        id: "kurtas",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Pherans",
-        id: "pherans",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.8%",
+          global_export: "0.736%",
+          artisans: "182",
+          market_growth: "21.8% YoY",
+          quality_rating: "4.43/5",
+          sustainability: "88.3%",
+          product_range: "129",
+          customer_satisfaction: "94.2%",
+          avg_production_time: "29 Days",
+          innovation_index: "4.23/5",
         },
       },
       {
         name: "Jewelry",
         id: "jewelry",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Interior Décor",
-    id: "cat2",
-    subcategories: [
-      {
-        name: "Papier-Mache",
-        id: "papierMachie",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.6%",
+          global_export: "0.552%",
+          artisans: "137",
+          market_growth: "21.5% YoY",
+          quality_rating: "4.42/5",
+          sustainability: "88.2%",
+          product_range: "96",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "23 Days",
+          innovation_index: "4.22/5",
         },
       },
       {
-        name: "Tapestry",
-        id: "tapestry",
+        name: "Bags",
+        id: "bags",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.5%",
+          global_export: "0.46%",
+          artisans: "114",
+          market_growth: "21.4% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.2%",
+          product_range: "80",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "20 Days",
+          innovation_index: "4.22/5",
         },
       },
       {
-        name: "Jeweled Wall Hangings",
-        id: "jeweled",
+        name: "Jackets",
+        id: "jackets",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.5%",
+          global_export: "0.46%",
+          artisans: "114",
+          market_growth: "21.4% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.2%",
+          product_range: "80",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "20 Days",
+          innovation_index: "4.22/5",
         },
       },
       {
-        name: "Office Accessories",
-        id: "officeAcc",
+        name: "Pherans",
+        id: "pherans",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.5%",
+          global_export: "0.46%",
+          artisans: "114",
+          market_growth: "21.4% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.2%",
+          product_range: "80",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "20 Days",
+          innovation_index: "4.22/5",
         },
       },
       {
-        name: "Room Divider Screens",
-        id: "roomDividerSec",
+        name: "Sarongs",
+        id: "sarongs",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.4%",
+          global_export: "0.368%",
+          artisans: "91",
+          market_growth: "21.3% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.1%",
+          product_range: "64",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "17 Days",
+          innovation_index: "4.21/5",
         },
       },
       {
-        name: "Sofa and Cushion Covers",
-        id: "sofaCushion",
+        name: "Purses",
+        id: "purses",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.4%",
+          global_export: "0.368%",
+          artisans: "91",
+          market_growth: "21.3% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.1%",
+          product_range: "64",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "17 Days",
+          innovation_index: "4.21/5",
         },
       },
       {
-        name: "Bed Linens",
-        id: "bedLinens",
+        name: "Kaftans",
+        id: "kaftans",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Dining & Serving Ware",
-    id: "cat3",
-    subcategories: [
-      {
-        name: "Papermachieware",
-        id: " papermachieware",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.4%",
+          global_export: "0.368%",
+          artisans: "91",
+          market_growth: "21.3% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.1%",
+          product_range: "64",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "17 Days",
+          innovation_index: "4.21/5",
         },
       },
       {
-        name: "Walnutware",
-        id: "walnutware",
+        name: "Kurtas",
+        id: "kurtas",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Silverware",
-        id: "silverware",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Copperware",
-        id: "copperware",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Rugs and Carpets",
-    id: "cat4",
-    subcategories: [
-      {
-        name: "Rugs and Carpets",
-        id: "rugs",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Namda Embroidery Rugs",
-        id: "namda",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Furniture",
-    id: "cat5",
-    subcategories: [
-      {
-        name: "Walnut Wood Carving Furniture",
-        id: "walnut",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Crewel Upholstered Furniture",
-        id: "crewel",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Wicker Furniture",
-        id: "wicker",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Room Dividers",
-        id: "roomDivider",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.4%",
+          global_export: "0.368%",
+          artisans: "91",
+          market_growth: "21.3% YoY",
+          quality_rating: "4.41/5",
+          sustainability: "88.1%",
+          product_range: "64",
+          customer_satisfaction: "94.1%",
+          avg_production_time: "17 Days",
+          innovation_index: "4.21/5",
         },
       },
     ],
@@ -581,186 +228,16 @@ const categories = [
         name: "Ceiling Treatment (Khatamband)",
         id: "ceiling",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Window Treatment",
-    id: "cat7",
-    subcategories: [
-      {
-        name: "Pinjrakari - Kashmir Lattice Work",
-        id: "pinjrakari",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Crewel - Embroidery Curtains",
-        id: "crewel_embroi",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Recycled Craft",
-    id: "cat8",
-    subcategories: [
-      {
-        name: "Papier-Mache",
-        id: "papier-machie",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Gabba",
-        id: "gabba",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Sports Craft",
-    id: "cat9",
-    subcategories: [
-      {
-        name: "Circket-Bat",
-        id: "circketBag",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Chess-Board",
-        id: "chess-board",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-    ],
-  },
-  {
-    name: "Hide Craft",
-    id: "cat10",
-    subcategories: [
-      {
-        name: "Leather",
-        id: "leather",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Fur & Astrakhan",
-        id: "astrakhan",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.2%",
+          global_export: "0.184%",
+          artisans: "46",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "32",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "11 Days",
+          innovation_index: "4.3/5",
         },
       },
     ],
@@ -773,198 +250,628 @@ const categories = [
         name: "Kashmiri Wazwan Canned Food",
         id: "wazwan",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.25%",
+          global_export: "0.23%",
+          artisans: "57",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "40",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "11 Days",
+          innovation_index: "4.3/5",
         },
       },
       {
         name: "Kahwa & Pink Tea",
         id: "kahwa",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.15%",
+          global_export: "0.138%",
+          artisans: "34",
+          market_growth: "21.0% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "24",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "10 Days",
+          innovation_index: "4.3/5",
         },
       },
     ],
   },
   {
-    name: "Embriodery",
+    name: "Dining & Serving Ware",
+    id: "cat3",
+    subcategories: [
+      {
+        name: "Silverware",
+        id: "silverware",
+        details: {
+          global_share: "0.5%",
+          global_export: "0.46%",
+          artisans: "114",
+          market_growth: "21.4% YoY",
+          quality_rating: "4.51/5",
+          sustainability: "88.1%",
+          product_range: "80",
+          customer_satisfaction: "93.1%",
+          avg_production_time: "15 Days",
+          innovation_index: "4.31/5",
+        },
+      },
+      {
+        name: "Papermachieware",
+        id: "papermachieware",
+        details: {
+          global_share: "0.4%",
+          global_export: "0.368%",
+          artisans: "91",
+          market_growth: "21.3% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.1%",
+          product_range: "64",
+          customer_satisfaction: "93.1%",
+          avg_production_time: "13 Days",
+          innovation_index: "4.31/5",
+        },
+      },
+      {
+        name: "Walnutware",
+        id: "walnutware",
+        details: {
+          global_share: "0.3%",
+          global_export: "0.276%",
+          artisans: "68",
+          market_growth: "21.2% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "48",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "12 Days",
+          innovation_index: "4.3/5",
+        },
+      },
+      {
+        name: "Copperware",
+        id: "copperware",
+        details: {
+          global_share: "0.3%",
+          global_export: "0.276%",
+          artisans: "68",
+          market_growth: "21.2% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "48",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "12 Days",
+          innovation_index: "4.3/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Embroidery",
     id: "cat12",
     subcategories: [
       {
-        name: "Suzani/Sozni - Fine Needlework",
+        name: "Suzani/Sozni – Fine Needlework",
         id: "sozni",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "3.2%",
+          global_export: "2.944%",
+          artisans: "730",
+          market_growth: "24.7% YoY",
+          quality_rating: "4.75/5",
+          sustainability: "93.0%",
+          product_range: "515",
+          customer_satisfaction: "96.7%",
+          avg_production_time: "212 Days",
+          innovation_index: "4.57/5",
         },
       },
       {
-        name: "Zardozi -- Metal Thread Work",
+        name: "Zardozi – Metal Thread Work",
         id: "zardozi",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "2.8%",
+          global_export: "2.576%",
+          artisans: "638",
+          market_growth: "24.2% YoY",
+          quality_rating: "4.74/5",
+          sustainability: "92.9%",
+          product_range: "450",
+          customer_satisfaction: "96.6%",
+          avg_production_time: "190 Days",
+          innovation_index: "4.56/5",
         },
       },
       {
-        name: "Zalakdozi - Crewel Work",
-        id: "zalakdozi",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Ari/Aari - Hook Work",
+        name: "Ari/Aari – Hook Work",
         id: "aari",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "2.4%",
+          global_export: "2.208%",
+          artisans: "547",
+          market_growth: "23.7% YoY",
+          quality_rating: "4.74/5",
+          sustainability: "92.7%",
+          product_range: "386",
+          customer_satisfaction: "96.5%",
+          avg_production_time: "168 Days",
+          innovation_index: "4.55/5",
         },
       },
       {
-        name: "Dorukh - Double-sided Work",
-        id: "dorukh",
-        details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
-        },
-      },
-      {
-        name: "Kashidakari - Surface Embroidery",
+        name: "Kashidakari – Surface Embroidery",
         id: "kashidakari",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "2.2%",
+          global_export: "2.024%",
+          artisans: "502",
+          market_growth: "23.5% YoY",
+          quality_rating: "4.73/5",
+          sustainability: "92.7%",
+          product_range: "354",
+          customer_satisfaction: "96.5%",
+          avg_production_time: "157 Days",
+          innovation_index: "4.55/5",
         },
       },
       {
-        name: "Jaaldar - Net Work",
+        name: "Zalakdozi – Crewel Work",
+        id: "zalakdozi",
+        details: {
+          global_share: "2.0%",
+          global_export: "1.84%",
+          artisans: "456",
+          market_growth: "23.2% YoY",
+          quality_rating: "4.73/5",
+          sustainability: "92.6%",
+          product_range: "322",
+          customer_satisfaction: "96.4%",
+          avg_production_time: "146 Days",
+          innovation_index: "4.54/5",
+        },
+      },
+      {
+        name: "Jaaldar – Net Work",
         id: "jaaldar",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "1.6%",
+          global_export: "1.472%",
+          artisans: "365",
+          market_growth: "22.8% YoY",
+          quality_rating: "4.72/5",
+          sustainability: "92.5%",
+          product_range: "257",
+          customer_satisfaction: "96.4%",
+          avg_production_time: "124 Days",
+          innovation_index: "4.54/5",
         },
       },
       {
-        name: "Papier-Machie Inspired Embriodery",
+        name: "Dorukh – Double-sided Work",
+        id: "dorukh",
+        details: {
+          global_share: "1.2%",
+          global_export: "1.104%",
+          artisans: "274",
+          market_growth: "22.3% YoY",
+          quality_rating: "4.72/5",
+          sustainability: "92.3%",
+          product_range: "193",
+          customer_satisfaction: "96.3%",
+          avg_production_time: "102 Days",
+          innovation_index: "4.53/5",
+        },
+      },
+      {
+        name: "Papier-Mâché Inspired Embroidery",
         id: "paperMachieInspired",
         details: {
-          annual_revenue: "$160M+",
-          global_export: "78%",
-          artisans: "88000+",
-          market_growth: "17% YoY",
-          quality_rating: "4.8/5",
-          sustainability: "96%",
-          market_share: "30%",
-          product_range: "80+",
-          customer_satisfaction: "97%",
-          avg_production_time: "60 Days",
-          energy_efficiency: "95%",
-          innovation_index: "4.6/5",
+          global_share: "0.8%",
+          global_export: "0.736%",
+          artisans: "182",
+          market_growth: "21.8% YoY",
+          quality_rating: "4.71/5",
+          sustainability: "92.2%",
+          product_range: "129",
+          customer_satisfaction: "96.2%",
+          avg_production_time: "81 Days",
+          innovation_index: "4.52/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Furniture",
+    id: "cat5",
+    subcategories: [
+      {
+        name: "Walnut Wood Carving Furniture",
+        id: "walnut",
+        details: {
+          global_share: "7.5%",
+          global_export: "6.9%",
+          artisans: "1710",
+          market_growth: "29.9% YoY",
+          quality_rating: "4.75/5",
+          sustainability: "91.8%",
+          product_range: "1206",
+          customer_satisfaction: "96.8%",
+          avg_production_time: "441 Days",
+          innovation_index: "4.62/5",
+        },
+      },
+      {
+        name: "Crewel Upholstered Furniture",
+        id: "crewel",
+        details: {
+          global_share: "4.5%",
+          global_export: "4.14%",
+          artisans: "1026",
+          market_growth: "26.3% YoY",
+          quality_rating: "4.69/5",
+          sustainability: "91.1%",
+          product_range: "724",
+          customer_satisfaction: "96.1%",
+          avg_production_time: "273 Days",
+          innovation_index: "4.57/5",
+        },
+      },
+      {
+        name: "Room Dividers",
+        id: "roomDivider",
+        details: {
+          global_share: "3.0%",
+          global_export: "2.76%",
+          artisans: "684",
+          market_growth: "24.5% YoY",
+          quality_rating: "4.66/5",
+          sustainability: "90.7%",
+          product_range: "482",
+          customer_satisfaction: "95.7%",
+          avg_production_time: "189 Days",
+          innovation_index: "4.55/5",
+        },
+      },
+      {
+        name: "Wicker Furniture",
+        id: "wicker",
+        details: {
+          global_share: "0.2%",
+          global_export: "0.184%",
+          artisans: "46",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.6/5",
+          sustainability: "90.0%",
+          product_range: "32",
+          customer_satisfaction: "95.0%",
+          avg_production_time: "33 Days",
+          innovation_index: "4.5/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Hide Craft",
+    id: "cat10",
+    subcategories: [
+      {
+        name: "Leather",
+        id: "leather",
+        details: {
+          global_share: "1.5%",
+          global_export: "1.38%",
+          artisans: "342",
+          market_growth: "22.6% YoY",
+          quality_rating: "4.52/5",
+          sustainability: "88.4%",
+          product_range: "241",
+          customer_satisfaction: "93.4%",
+          avg_production_time: "29 Days",
+          innovation_index: "4.33/5",
+        },
+      },
+      {
+        name: "Fur & Astrakhan",
+        id: "astrakhan",
+        details: {
+          global_share: "0.2%",
+          global_export: "0.184%",
+          artisans: "46",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "32",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "11 Days",
+          innovation_index: "4.3/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Interior Décor",
+    id: "cat2",
+    subcategories: [
+      {
+        name: "Papier-Mâché",
+        id: "papierMachie",
+        details: {
+          global_share: "6.0%",
+          global_export: "5.52%",
+          artisans: "1368",
+          market_growth: "28.1% YoY",
+          quality_rating: "4.69/5",
+          sustainability: "91.9%",
+          product_range: "965",
+          customer_satisfaction: "96.4%",
+          avg_production_time: "183 Days",
+          innovation_index: "4.52/5",
+        },
+      },
+      {
+        name: "Tapestry",
+        id: "tapestry",
+        details: {
+          global_share: "5.0%",
+          global_export: "4.6%",
+          artisans: "1140",
+          market_growth: "26.9% YoY",
+          quality_rating: "4.68/5",
+          sustainability: "91.6%",
+          product_range: "804",
+          customer_satisfaction: "96.2%",
+          avg_production_time: "155 Days",
+          innovation_index: "4.5/5",
+        },
+      },
+      {
+        name: "Jeweled Wall Hangings",
+        id: "jeweled",
+        details: {
+          global_share: "4.5%",
+          global_export: "4.14%",
+          artisans: "1026",
+          market_growth: "26.3% YoY",
+          quality_rating: "4.67/5",
+          sustainability: "91.4%",
+          product_range: "724",
+          customer_satisfaction: "96.1%",
+          avg_production_time: "142 Days",
+          innovation_index: "4.49/5",
+        },
+      },
+      {
+        name: "Sofa & Cushion Covers",
+        id: "sofaCushion",
+        details: {
+          global_share: "3.5%",
+          global_export: "3.22%",
+          artisans: "798",
+          market_growth: "25.1% YoY",
+          quality_rating: "4.65/5",
+          sustainability: "91.1%",
+          product_range: "563",
+          customer_satisfaction: "95.8%",
+          avg_production_time: "114 Days",
+          innovation_index: "4.47/5",
+        },
+      },
+      {
+        name: "Office Accessories",
+        id: "officeAcc",
+        details: {
+          global_share: "0.6%",
+          global_export: "0.552%",
+          artisans: "137",
+          market_growth: "21.5% YoY",
+          quality_rating: "4.61/5",
+          sustainability: "90.1%",
+          product_range: "96",
+          customer_satisfaction: "95.1%",
+          avg_production_time: "33 Days",
+          innovation_index: "4.41/5",
+        },
+      },
+      {
+        name: "Room Divider Screens",
+        id: "roomDividerSec",
+        details: {
+          global_share: "0.5%",
+          global_export: "0.46%",
+          artisans: "114",
+          market_growth: "21.4% YoY",
+          quality_rating: "4.61/5",
+          sustainability: "90.1%",
+          product_range: "80",
+          customer_satisfaction: "95.1%",
+          avg_production_time: "30 Days",
+          innovation_index: "4.41/5",
+        },
+      },
+      {
+        name: "Bed Linens",
+        id: "bedLinens",
+        details: {
+          global_share: "0.4%",
+          global_export: "0.368%",
+          artisans: "91",
+          market_growth: "21.3% YoY",
+          quality_rating: "4.6/5",
+          sustainability: "90.1%",
+          product_range: "64",
+          customer_satisfaction: "95.1%",
+          avg_production_time: "27 Days",
+          innovation_index: "4.41/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Recycled Craft",
+    id: "cat8",
+    subcategories: [
+      {
+        name: "Papier-Mâché (Recycled)",
+        id: "papier-machie",
+        details: {
+          global_share: "0.25%",
+          global_export: "0.23%",
+          artisans: "57",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.6/5",
+          sustainability: "90.0%",
+          product_range: "40",
+          customer_satisfaction: "95.0%",
+          avg_production_time: "23 Days",
+          innovation_index: "4.4/5",
+        },
+      },
+      {
+        name: "Gabba",
+        id: "gabba",
+        details: {
+          global_share: "0.15%",
+          global_export: "0.138%",
+          artisans: "34",
+          market_growth: "21.0% YoY",
+          quality_rating: "4.6/5",
+          sustainability: "90.0%",
+          product_range: "24",
+          customer_satisfaction: "95.0%",
+          avg_production_time: "20 Days",
+          innovation_index: "4.4/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Rugs & Carpets",
+    id: "cat4",
+    subcategories: [
+      {
+        name: "Rugs & Carpets",
+        id: "rugs",
+        details: {
+          global_share: "9.5%",
+          global_export: "8.74%",
+          artisans: "2166",
+          market_growth: "32.4% YoY",
+          quality_rating: "4.79/5",
+          sustainability: "92.3%",
+          product_range: "1528",
+          customer_satisfaction: "97.3%",
+          avg_production_time: "552 Days",
+          innovation_index: "4.65/5",
+        },
+      },
+      {
+        name: "Namda Embroidery Rugs",
+        id: "namda",
+        details: {
+          global_share: "5.5%",
+          global_export: "5.06%",
+          artisans: "1254",
+          market_growth: "27.5% YoY",
+          quality_rating: "4.71/5",
+          sustainability: "91.3%",
+          product_range: "884",
+          customer_satisfaction: "96.3%",
+          avg_production_time: "329 Days",
+          innovation_index: "4.59/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Sports Craft",
+    id: "cat9",
+    subcategories: [
+      {
+        name: "Cricket Bat",
+        id: "circketBat",
+        details: {
+          global_share: "0.25%",
+          global_export: "0.23%",
+          artisans: "57",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "40",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "11 Days",
+          innovation_index: "4.3/5",
+        },
+      },
+      {
+        name: "Chess Board",
+        id: "chess-board",
+        details: {
+          global_share: "0.15%",
+          global_export: "0.138%",
+          artisans: "34",
+          market_growth: "21.0% YoY",
+          quality_rating: "4.5/5",
+          sustainability: "88.0%",
+          product_range: "24",
+          customer_satisfaction: "93.0%",
+          avg_production_time: "10 Days",
+          innovation_index: "4.3/5",
+        },
+      },
+    ],
+  },
+  {
+    name: "Window Treatment",
+    id: "cat7",
+    subcategories: [
+      {
+        name: "Crewel – Embroidery Curtains",
+        id: "crewel_embroi",
+        details: {
+          global_share: "2.6%",
+          global_export: "2.392%",
+          artisans: "593",
+          market_growth: "24.0% YoY",
+          quality_rating: "4.64/5",
+          sustainability: "90.8%",
+          product_range: "418",
+          customer_satisfaction: "95.6%",
+          avg_production_time: "88 Days",
+          innovation_index: "4.45/5",
+        },
+      },
+      {
+        name: "Pinjrakaari – Kashmir Lattice Work",
+        id: "pinjrakari",
+        details: {
+          global_share: "0.2%",
+          global_export: "0.184%",
+          artisans: "46",
+          market_growth: "21.1% YoY",
+          quality_rating: "4.6/5",
+          sustainability: "90.0%",
+          product_range: "32",
+          customer_satisfaction: "95.0%",
+          avg_production_time: "21 Days",
+          innovation_index: "4.4/5",
         },
       },
     ],
   },
 ];
 
-// MetricCard component adapted from your ProfitBox
+
+
+// MetricCard component remains unchanged
 interface MetricCardProps {
   icon: React.ReactNode;
   title: string;
   value: string;
-  position: "left" | "right"; // Position is still relevant for desktop layout
+  position: "left" | "right";
   index: number;
   is4K: boolean;
 }
@@ -978,10 +885,9 @@ const MetricCard: React.FC<MetricCardProps> = ({
   is4K,
 }) => (
   <motion.div
-    className={`flex items-center gap-4 ${
-      position === "right" ? "flex-row-reverse text-right" : ""
-    }`}
-    initial={{ opacity: 0, x: position === "right" ? 50 : -50 }} // Adjusted initial x for mobile to be consistent
+    className={`flex items-center gap-4 ${position === "right" ? "flex-row-reverse text-right" : ""
+      }`}
+    initial={{ opacity: 0, x: position === "right" ? 50 : -50 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
     whileHover={{
@@ -990,9 +896,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
     }}
   >
     <motion.div
-      className={`flex-shrink-0 ${
-        is4K ? "w-16 h-16" : "w-12 h-12"
-      } bg-[var(--primary-color)] rounded-full flex items-center justify-center cursor-pointer shadow-lg`}
+      className={`flex-shrink-0 ${is4K ? "w-16 h-16" : "w-12 h-12"
+        } bg-[var(--primary-color)] rounded-full flex items-center justify-center cursor-pointer shadow-lg`}
       whileHover={{
         backgroundColor: "#ffffff",
         rotate: 360,
@@ -1013,9 +918,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
       transition={{ duration: 0.2 }}
     >
       <motion.h3
-        className={`${
-          is4K ? "text-2xl" : "text-lg"
-        } text-white font-semibold mb-1`}
+        className={`${is4K ? "text-2xl" : "text-lg"
+          } text-white font-semibold mb-1`}
         whileHover={{ color: "#808080" }}
         transition={{ duration: 0.2 }}
       >
@@ -1040,26 +944,11 @@ export default function KashmirCraftsCarousel() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const categoryScrollRef = useRef<HTMLDivElement>(null);
   const subcategoryScrollRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const currentCategory = categories[currentCategoryIndex];
   const selectedSubcategory =
     currentCategory.subcategories[selectedSubcategoryIndex];
-
-  // Effect to scroll category into view when index changes (for mobile arrows)
-  useEffect(() => {
-    if (categoryScrollRef.current) {
-      const selectedButton = categoryScrollRef.current.children[
-        currentCategoryIndex
-      ] as HTMLElement;
-      if (selectedButton) {
-        selectedButton.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
-      }
-    }
-  }, [currentCategoryIndex]);
 
   // Touch handlers for swipe functionality
   const onTouchStart = (e: React.TouchEvent) => {
@@ -1085,29 +974,37 @@ export default function KashmirCraftsCarousel() {
     }
   };
 
-  const nextCategory = () => {
+  const nextCategory = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     setCurrentCategoryIndex((prev) => (prev + 1) % categories.length);
     setSelectedSubcategoryIndex(0);
   };
 
-  const prevCategory = () => {
+  const prevCategory = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     setCurrentCategoryIndex(
       (prev) => (prev - 1 + categories.length) % categories.length
     );
     setSelectedSubcategoryIndex(0);
   };
 
-  const scrollToCategory = (index: number) => {
+  const scrollToCategory = (index: number, e?: React.MouseEvent) => {
+    e?.preventDefault();
     setCurrentCategoryIndex(index);
     setSelectedSubcategoryIndex(0);
   };
 
+  const selectSubcategory = (index: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    setSelectedSubcategoryIndex(index);
+  };
+
   const getMetricIcon = (key: string) => {
-    const iconSize = is4K ? 32 : 24; // Adjusted icon size for 4K
-    const iconProps = { size: iconSize, className: "text-gray-400" }; // Default icon color
+    const iconSize = is4K ? 32 : 24;
+    const iconProps = { size: iconSize, className: "text-gray-400" };
     switch (key) {
-      case "annual_revenue":
-        return <DollarSign {...iconProps} />;
+      case "global_share":
+        return <Target {...iconProps} />;
       case "global_export":
         return <Globe {...iconProps} />;
       case "artisans":
@@ -1118,24 +1015,19 @@ export default function KashmirCraftsCarousel() {
         return <Award {...iconProps} />;
       case "sustainability":
         return <Leaf {...iconProps} />;
-      case "market_share":
-        return <Target {...iconProps} />;
       case "product_range":
         return <Key {...iconProps} />;
       case "customer_satisfaction":
         return <Heart {...iconProps} />;
       case "avg_production_time":
         return <Clock {...iconProps} />;
-      case "energy_efficiency":
-        return <Zap {...iconProps} />;
       case "innovation_index":
         return <Star {...iconProps} />;
       default:
         return (
           <div
-            className={`w-${is4K ? "8" : "6"} h-${
-              is4K ? "9" : "6"
-            } rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
+            className={`w-${is4K ? "8" : "6"} h-${is4K ? "9" : "6"
+              } rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
           />
         );
     }
@@ -1149,22 +1041,15 @@ export default function KashmirCraftsCarousel() {
   };
 
   const detailsKeys = Object.keys(selectedSubcategory.details);
-  const leftColumnDetails = detailsKeys.slice(
-    0,
-    Math.ceil(detailsKeys.length / 2)
-  );
-  const rightColumnDetails = detailsKeys.slice(
-    Math.ceil(detailsKeys.length / 2)
-  );
+  const leftColumnDetails = detailsKeys.slice(0, 5);
+  const rightColumnDetails = detailsKeys.slice(5);
 
-  // Create dotted earth pattern
   const createDottedEarth = () => {
     const dots = [];
     const radius = is4K ? 450 : 300;
     const centerX = 400;
     const centerY = 400;
 
-    // Create multiple concentric circles of dots
     for (let ring = 0; ring < 4; ring++) {
       const currentRadius = radius - ring * (is4K ? 90 : 60);
       const dotsInRing = Math.max(24 - ring * 4, 8);
@@ -1197,15 +1082,13 @@ export default function KashmirCraftsCarousel() {
       }
     }
 
-    // Add continental outlines with dots
     const continentPaths = [
-      // Simplified continent shapes with dots
-      { x: 350, y: 320, size: is4K ? 4.5 : 3 }, // North America
-      { x: 420, y: 350, size: is4K ? 3.75 : 2.5 }, // Europe
-      { x: 480, y: 380, size: is4K ? 6 : 4 }, // Asia
-      { x: 380, y: 450, size: is4K ? 5.25 : 3.5 }, // Africa
-      { x: 320, y: 480, size: is4K ? 3 : 2 }, // South America
-      { x: 520, y: 480, size: is4K ? 3.75 : 2.5 }, // Australia
+      { x: 350, y: 320, size: is4K ? 4.5 : 3 },
+      { x: 420, y: 350, size: is4K ? 3.75 : 2.5 },
+      { x: 480, y: 380, size: is4K ? 6 : 4 },
+      { x: 380, y: 450, size: is4K ? 5.25 : 3.5 },
+      { x: 320, y: 480, size: is4K ? 3 : 2 },
+      { x: 520, y: 480, size: is4K ? 3.75 : 2.5 },
     ];
 
     continentPaths.forEach((continent, index) => {
@@ -1236,9 +1119,9 @@ export default function KashmirCraftsCarousel() {
 
   return (
     <div
-      className={`${
-        is4K ? " py-30" : " "
-      }  bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
+      ref={containerRef}
+      className={`${is4K ? " py-30" : " "
+        } bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
       style={
         {
           "--primary-hover-color": "#2a5f7a",
@@ -1260,8 +1143,6 @@ export default function KashmirCraftsCarousel() {
       >
         <svg width="800" height="800" viewBox="0 0 800 800">
           {createDottedEarth()}
-
-          {/* Orbital rings */}
           <motion.circle
             cx="400"
             cy="400"
@@ -1301,18 +1182,16 @@ export default function KashmirCraftsCarousel() {
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className={`${
-            is4K ? "text-8xl" : "text-4xl md:text-6xl"
-          } font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4 tracking-tight`}
+          className={`${is4K ? "text-8xl" : "text-4xl md:text-6xl"
+            } font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4 tracking-tight`}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
           Dekoshur Crafts
         </motion.h1>
         <motion.p
-          className={`${
-            is4K ? "text-3xl" : "text-lg md:text-xl"
-          } text-gray-300 font-light tracking-wide`}
+          className={`${is4K ? "text-3xl" : "text-lg md:text-xl"
+            } text-gray-300 font-light tracking-wide`}
           whileHover={{ scale: 1.02, color: "#fb923c" }}
           transition={{ duration: 0.2 }}
         >
@@ -1320,11 +1199,11 @@ export default function KashmirCraftsCarousel() {
         </motion.p>
       </motion.div>
 
-      {/* Mobile Category Slider with Arrows (visible on small screens) */}
+      {/* Mobile Category Slider with Arrows */}
       <div className="md:hidden px-4 mb-8 relative z-10 flex items-center justify-center">
         <motion.button
-          onClick={prevCategory}
-          className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
+          onClick={(e) => prevCategory(e)}
+          className={`hidden md:flex group items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
           aria-label="Previous category"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -1340,14 +1219,13 @@ export default function KashmirCraftsCarousel() {
           {categories.map((category, index) => (
             <motion.button
               key={category.id}
-              id={`category-btn-${category.id}`} // Add ID for scrolling
-              onClick={() => scrollToCategory(index)}
-              className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${
-                currentCategoryIndex === index
+              id={`category-btn-${category.id}`}
+              onClick={(e) => scrollToCategory(index, e)}
+              className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${currentCategoryIndex === index
                   ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
                   : "bg-white/10 text-gray-200 hover:bg-white/20"
-              }`}
-              style={{ scrollSnapAlign: "center" }} // Changed to center for better snapping
+                }`}
+              style={{ scrollSnapAlign: "center" }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -1357,8 +1235,8 @@ export default function KashmirCraftsCarousel() {
         </div>
 
         <motion.button
-          onClick={nextCategory}
-          className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
+          onClick={(e) => nextCategory(e)}
+          className={`hidden group md:flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
           aria-label="Next category"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -1369,29 +1247,24 @@ export default function KashmirCraftsCarousel() {
 
       {/* Desktop Category Navigation */}
       <div className="hidden md:flex items-center justify-center mb-12 px-8 relative z-10">
-        {/* Fixed container for arrows + text */}
         <div
           className="flex items-center"
           style={{ width: is4K ? "800px" : "500px" }}
         >
-          {/* Left Arrow - fixed position */}
           <motion.button
-            onClick={prevCategory}
-            className={`group  flex-shrink-0 flex items-center justify-center ${
-              is4K ? "w-20 h-20" : "w-16 h-16"
-            } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
+            onClick={(e) => prevCategory(e)}
+            className={`group flex-shrink-0 flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"
+              } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Previous category"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <ChevronLeft
-              className={`${
-                is4K ? "w-12 h-12" : "w-8 h-8"
-              } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+              className={`${is4K ? "w-12 h-12" : "w-8 h-8"
+                } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
             />
           </motion.button>
 
-          {/* Center Text - fixed width area */}
           <motion.div
             className="text-center cursor-pointer select-none flex-1 px-6"
             onTouchStart={onTouchStart}
@@ -1402,9 +1275,8 @@ export default function KashmirCraftsCarousel() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h2
-              className={`${
-                is4K ? "text-4xl" : "text-2xl md:text-3xl"
-              } font-bold text-white mb-2 tracking-tight break-words`}
+              className={`${is4K ? "text-4xl" : "text-2xl md:text-3xl"
+                } font-bold text-white mb-2 tracking-tight break-words`}
               whileHover={{ scale: 1.02, color: "#fb923c" }}
               transition={{ duration: 0.2 }}
             >
@@ -1414,13 +1286,11 @@ export default function KashmirCraftsCarousel() {
               {categories.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`${
-                    is4K ? "w-4 h-4" : "w-3 h-3"
-                  } rounded-full transition-all duration-300 ${
-                    currentCategoryIndex === index
+                  className={`${is4K ? "w-4 h-4" : "w-3 h-3"
+                    } rounded-full transition-all duration-300 ${currentCategoryIndex === index
                       ? "bg-[var(--secondary-color)] scale-125"
                       : "bg-white/30 hover:bg-white/50"
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.3 }}
                   whileTap={{ scale: 0.9 }}
                 />
@@ -1428,20 +1298,17 @@ export default function KashmirCraftsCarousel() {
             </div>
           </motion.div>
 
-          {/* Right Arrow - fixed position */}
           <motion.button
-            onClick={nextCategory}
-            className={`group flex-shrink-0 flex items-center justify-center ${
-              is4K ? "w-20 h-20" : "w-16 h-16"
-            } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
+            onClick={(e) => nextCategory(e)}
+            className={`group flex-shrink-0 flex items-center justify-center ${is4K ? "w-20 h-20" : "w-16 h-16"
+              } rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl`}
             aria-label="Next category"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <ChevronRight
-              className={`${
-                is4K ? "w-12 h-12" : "w-8 h-8"
-              } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
+              className={`${is4K ? "w-12 h-12" : "w-8 h-8"
+                } text-white group-hover:text-[var(--secondary-color)] transition-colors`}
             />
           </motion.button>
         </div>
@@ -1451,7 +1318,6 @@ export default function KashmirCraftsCarousel() {
       <div className="relative z-10 px-4 md:px-8 pb-12">
         {/* Desktop Layout: Left Details + Center Tabs + Right Details */}
         <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
-          {/* Left Metrics */}
           <div className="col-span-4 space-y-8">
             {leftColumnDetails.map((key, index) => (
               <MetricCard
@@ -1460,7 +1326,7 @@ export default function KashmirCraftsCarousel() {
                 title={formatMetricKey(key)}
                 value={
                   selectedSubcategory.details[
-                    key as keyof typeof selectedSubcategory.details
+                  key as keyof typeof selectedSubcategory.details
                   ]
                 }
                 position="left"
@@ -1470,9 +1336,8 @@ export default function KashmirCraftsCarousel() {
             ))}
           </div>
 
-          {/* Center - Subcategory Tabs */}
           <motion.div
-            className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl h-[600px]"
+            className="col-span-4 bg-slate-800/40 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 shadow-2xl h-[545px]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -1489,18 +1354,16 @@ export default function KashmirCraftsCarousel() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <motion.h3
-                className={`${
-                  is4K ? "text-5xl" : "text-3xl"
-                } font-bold text-white mb-2`}
+                className={`${is4K ? "text-5xl" : "text-3xl"
+                  } font-bold text-white mb-2`}
                 whileHover={{ scale: 1.05, color: "#fb923c" }}
                 transition={{ duration: 0.2 }}
               >
                 {currentCategory.name}
               </motion.h3>
               <motion.p
-                className={`${
-                  is4K ? "text-2xl" : "text-lg"
-                } text-gray-300 font-medium`}
+                className={`${is4K ? "text-2xl" : "text-lg"
+                  } text-gray-300 font-medium`}
                 whileHover={{ color: "#ffffff" }}
                 transition={{ duration: 0.2 }}
               >
@@ -1512,14 +1375,12 @@ export default function KashmirCraftsCarousel() {
               {currentCategory.subcategories.map((sub, index) => (
                 <motion.button
                   key={sub.id}
-                  onClick={() => setSelectedSubcategoryIndex(index)}
-                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${
-                    is4K ? "text-xl" : "text-base"
-                  } ${
-                    selectedSubcategoryIndex === index
+                  onClick={(e) => selectSubcategory(index, e)}
+                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg ${is4K ? "text-xl" : "text-base"
+                    } ${selectedSubcategoryIndex === index
                       ? "bg-[var(--secondary-color)] text-white scale-105"
                       : "bg-slate-700/50 text-gray-200 border border-slate-600/30 hover:bg-slate-600/50"
-                  }`}
+                    }`}
                   whileHover={{
                     scale: 1.05,
                     y: -2,
@@ -1537,7 +1398,6 @@ export default function KashmirCraftsCarousel() {
             </div>
           </motion.div>
 
-          {/* Right Metrics */}
           <div className="col-span-4 space-y-8">
             {rightColumnDetails.map((key, index) => (
               <MetricCard
@@ -1546,7 +1406,7 @@ export default function KashmirCraftsCarousel() {
                 title={formatMetricKey(key)}
                 value={
                   selectedSubcategory.details[
-                    key as keyof typeof selectedSubcategory.details
+                  key as keyof typeof selectedSubcategory.details
                   ]
                 }
                 position="right"
@@ -1559,7 +1419,6 @@ export default function KashmirCraftsCarousel() {
 
         {/* Mobile/Tablet Layout */}
         <div className="lg:hidden max-w-4xl mx-auto">
-          {/* Subcategory Tabs (scrollable on mobile) */}
           <motion.div
             className="bg-slate-800/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-700/50 mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -1588,12 +1447,11 @@ export default function KashmirCraftsCarousel() {
               {currentCategory.subcategories.map((sub, index) => (
                 <motion.button
                   key={sub.id}
-                  onClick={() => setSelectedSubcategoryIndex(index)}
-                  className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${
-                    selectedSubcategoryIndex === index
+                  onClick={(e) => selectSubcategory(index, e)}
+                  className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${selectedSubcategoryIndex === index
                       ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
                       : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
-                  }`}
+                    }`}
                   style={{ scrollSnapAlign: "start" }}
                   whileHover={{
                     scale: 1.05,
@@ -1615,7 +1473,6 @@ export default function KashmirCraftsCarousel() {
             </div>
           </motion.div>
 
-          {/* Details Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {detailsKeys.map((key, index) => (
               <MetricCard
@@ -1624,10 +1481,10 @@ export default function KashmirCraftsCarousel() {
                 title={formatMetricKey(key)}
                 value={
                   selectedSubcategory.details[
-                    key as keyof typeof selectedSubcategory.details
+                  key as keyof typeof selectedSubcategory.details
                   ]
                 }
-                position="left" // Position doesn't matter for mobile grid, but required by prop
+                position="left"
                 index={index}
                 is4K={is4K}
               />

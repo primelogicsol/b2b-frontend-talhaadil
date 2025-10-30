@@ -15,41 +15,15 @@ interface FeaturesProps {
   data?: FeatureItem[];
 }
 
-// ✅ Shortened & balanced descriptions (10 words each)
-const fallbackData: FeatureItem[] = [
-  {
-    icon: "ShoppingCart",
-    title: "Core Trade",
-    desc: "We focus on trade quality, efficiency, and lasting global reliability.",
-    link: "/core-trade",
-  },
-  {
-    icon: "Rocket",
-    title: "Brand Growth",
-    desc: "We help brands expand reach, boost presence, and achieve success.",
-    link: "/brand-growth",
-  },
-  {
-    icon: "Users",
-    title: "Collaborative",
-    desc: "We build networks, share resources, and create business growth.",
-    link: "/collaborative",
-  },
-  {
-    icon: "Building",
-    title: "Institutional",
-    desc: "We partner with firms, strengthen ties, and foster lasting trust.",
-    link: "/institutional",
-  },
-];
 
 const Features = ({ data }: FeaturesProps) => {
-  const featuresData = data && data.length > 0 ? data : fallbackData;
+  const featuresData = data 
+  
   return (
     <section className="py-8 lg:py-20">
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
-          {featuresData.map((item, i) => (
+          {featuresData?.map((item, i) => (
             <FeatureCard
               key={i}
               icon={item.icon}

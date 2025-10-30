@@ -77,7 +77,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
     >
       <div
         className={`max-w-[1600px] mx-auto ${
-          is4K ? "px-20 py-32" : "px-6 md:px-8 py-16"
+          is4K ? "px-20 py-32" : "px-4 md:px-8 py-16"
         }`}
       >
         <div
@@ -89,7 +89,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
           <div className="relative h-full flex">
             <div className="relative w-full h-full overflow-hidden rounded-lg">
               <video
-                src="/videos/gateway.mp4" // replace with your actual video path
+                src="/videos/gateway.webm" // replace with your actual video path
                 autoPlay
                 loop
                 muted

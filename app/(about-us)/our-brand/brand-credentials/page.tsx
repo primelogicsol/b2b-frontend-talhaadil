@@ -83,8 +83,10 @@ export default function Home() {
           <div className="flex-1 flex">
             <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg flex-1">
               <video
-                className="w-full h-full object-fit"
-                controls
+                className="w-full h-full object-fill"
+                autoPlay
+                loop
+                muted
                 playsInline
                 poster="/business-certification-success.png"
               >
@@ -105,13 +107,16 @@ export default function Home() {
           Unlock markets, build trust, and elevate success
         </p>
       </div>
-      <section className="py-16 px-10 max-w-7xl mx-auto bg-gray-50">
+      <section className="py-16 px-10 max-w-7xl mx-auto">
         <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12">
           <div className="flex-1 order-2 lg:order-1">
-            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full min-h-[300px] lg:min-h-[500px]">
+            <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg h-full">
               <video
-                className="w-full h-full object-fit"
-                controls
+                className="w-full h-full object-fill"
+                autoPlay
+                loop
+                muted
+                playsInline
                 poster="/global-business-growth-empowerment.png"
               >
                 <source src="/videos/4.mp4" type="video/mp4" />
@@ -186,6 +191,27 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Final Section - Free Certification Help Card */}
+      <section className="py-16 px-6 sm:px-10 flex justify-center">
+        <div className="max-w-3xl w-full bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-2xl shadow-lg p-8 sm:p-10 text-center transition-transform duration-300 hover:scale-[1.02]">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)] mb-4">
+            Free Certification Help
+          </h2>
+          <p className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed">
+            Don’t use our certifications? We’ll help you earn yours — free consultation,
+            requirement mapping, paperwork, audits, and liaison until final approval.
+          </p>
+          <a
+            href="https://khcrf.org/business_certification_evaluation.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[var(--secondary-color)] text-white font-medium px-6 py-3 rounded-full hover:bg-[var(--primary-color)] transition-colors"
+          >
+            Get My Certification →
+          </a>
+        </div>
+      </section>
+
     </div>
   );
 }

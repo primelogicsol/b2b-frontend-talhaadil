@@ -52,42 +52,42 @@ export default function CareersPage() {
     {
       title: "Make a Difference",
       description:
-        "Help shape a platform that values craft, supports fair trade, and builds lasting cultural growth.",
+        "Join a movement that revives heritage, empowers artisans, and builds meaningful global impact through craft.",
     },
     {
       title: "Team Collaboration",
       description:
-        "Work inside a group that shares ideas, builds trust, and grows strong through open support.",
+        "Work with creative minds worldwide, share ideas openly, build trust daily, and celebrate collective success.",
     },
     {
       title: "Career Progression",
       description:
-        "Gain rich learning chances that grow your skill set and keep you moving toward better roles.",
+        "Advance your professional journey through mentorship and real-world exposure across global markets.",
     },
     {
       title: "Flexible Schedule",
       description:
-        "Enjoy a balanced approach that values your time and allows remote work with true freedom.",
+        "Enjoy balanced work hours, remote options, and personal creative time for a truly holistic work-life blend.",
     },
     {
-      title: "Diverse Inclusion",
+      title: "Diversity",
       description:
-        "Be part of a team that honors each background and creates space where all members belong.",
+        "Celebrate individuality where every voice counts, every background matters, and every culture adds strength.",
     },
     {
-      title: "Diverse Inclusion",
+      title: "Global Exposure",
       description:
-        "Be part of a team that honors each background and creates space where all members belong.",
+        "Collaborate with artisans, designers, and innovators across continents to promote authentic, sustainable trade.",
     },
     {
-      title: "Diverse Inclusion",
+      title: "Innovation Culture",
       description:
-        "Be part of a team that honors each background and creates space where all members belong.",
+        "Be part of a space where tradition meets technology, and ideas shape the future of craftsmanship.",
     },
     {
-      title: "Positive Culture",
+      title: "Good Workplace",
       description:
-        "Join a mindful workplace that blends kind values and clear goals for steady shared success.",
+        "Thrive in a workplace built on empathy, growth, and purpose, where creativity drives cultural preservation.",
     },
   ];
 
@@ -181,8 +181,8 @@ export default function CareersPage() {
         .section-title {
           font-size: 2.5rem;
           font-weight: 700;
-          text-align: left;
-          margin-bottom: 3rem;
+          text-align: center;
+          margin-bottom: 1rem;
           color: var(--primary-color);
         }
 
@@ -598,9 +598,7 @@ export default function CareersPage() {
           .container {
             padding: 0 15px;
           }
-          .section-title {
-            margin-left: 4px;
-          }
+          
         }
 
         @media (min-width: 2560px) {
@@ -660,19 +658,31 @@ export default function CareersPage() {
           style={
             is4K
               ? {
-                  maxWidth: "2000px",
-                  paddingLeft: "290px",
-                  paddingRight: "340px",
-                }
+                maxWidth: "2000px",
+                paddingLeft: "290px",
+                paddingRight: "340px",
+              }
               : {}
           }
         >
           <h2
-            className="section-title"
+            className="section-title mb-2"
             style={is4K ? { fontSize: "4.5rem" } : {}}
           >
             Why Work at De Koshur Crafts?
           </h2>
+
+          <h3
+            className="text-center font-medium"
+            style={{
+              fontSize: is4K ? "2.5rem" : "1.5rem",
+              color: "var(--secondary-color)",
+              marginBottom: "1rem",
+            }}
+          >
+            Where Purpose Meets Passion, and Tradition Meets Tomorrow.
+          </h3>
+
           <p
             className="text-left lg:text-center px-3 lg:px-0"
             style={{
@@ -682,9 +692,9 @@ export default function CareersPage() {
               color: "var(--primary-light-text-color)",
             }}
           >
-            We believe in building a supportive, inclusive, and empowering work
-            environment. We are a diverse team committed to sustainability,
-            innovation, and ethical business practices.
+            At De Koshur Crafts, purpose meets passion and tradition meets tomorrow.
+            We are a collective of dreamers and doers, reviving the soul of Kashmiri craftsmanship.
+            Driven by integrity, innovation, and cultural pride, we craft change with every creation.
           </p>
           <div className="benefits-grid">
             {benefits.map((b, i) => (
@@ -711,10 +721,10 @@ export default function CareersPage() {
           style={
             is4K
               ? {
-                  maxWidth: "2000px",
-                  paddingLeft: "40px",
-                  paddingRight: "40px",
-                }
+                maxWidth: "2000px",
+                paddingLeft: "40px",
+                paddingRight: "40px",
+              }
               : {}
           }
         >
@@ -761,19 +771,18 @@ export default function CareersPage() {
                       style={
                         is4K
                           ? {
-                              fontSize: "1.2rem",
-                              padding: "16px 20px",
-                              width: "250px",
-                            }
+                            fontSize: "1.2rem",
+                            padding: "16px 20px",
+                            width: "250px",
+                          }
                           : {}
                       }
                     >
                       {filters.find((f) => f.value === selectedFilter)?.label}
                       <ChevronDown
                         size={is4K ? 24 : 18}
-                        className={`transition-transform duration-200 ${
-                          openDropdown ? "rotate-180" : ""
-                        }`}
+                        className={`transition-transform duration-200 ${openDropdown ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
@@ -938,10 +947,10 @@ export default function CareersPage() {
           style={
             is4K
               ? {
-                  maxWidth: "2000px",
-                  paddingLeft: "40px",
-                  paddingRight: "40px",
-                }
+                maxWidth: "2000px",
+                paddingLeft: "40px",
+                paddingRight: "40px",
+              }
               : {}
           }
         >
@@ -1001,17 +1010,17 @@ export default function CareersPage() {
           style={
             is4K
               ? {
-                  maxWidth: "2000px",
-                  paddingLeft: "40px",
-                  paddingRight: "40px",
-                }
+                maxWidth: "2000px",
+                paddingLeft: "40px",
+                paddingRight: "40px",
+              }
               : {}
           }
         >
           {/* Left: Text content */}
-          <div className="text-left md:text-left flex flex-col justify-center">
+          <div className="text-left flex flex-col justify-center">
             <h2
-              className="section-title mb-6"
+              className="text-left text-4xl font-bold text-[var(--primary-color)] mb-6 ml-3 md:ml-0"
               style={is4K ? { fontSize: "3.5rem" } : {}}
             >
               How to Apply

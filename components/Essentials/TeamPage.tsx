@@ -16,7 +16,7 @@ import {
   Pin,
   ShoppingBasket,
   Spool
-  ,Headset,
+  , Headset,
   Package,
   ShieldCheck,
   BarChart3
@@ -51,43 +51,43 @@ export default function TeamPage() {
     },
   ]
   const supportItems = [
-  {
-    icon: <Headset className="w-8 h-8" />,
-    title: "Customer Support",
-    description:
-      "Providing 24/7 guidance for artisans and buyers, ensuring smooth onboarding, fast query resolution, and consistent platform satisfaction.",
-  },
-  {
-    icon: <Megaphone className="w-8 h-8" />,
-    title: "Marketing & Outreach",
-    description:
-      "Expanding global presence with campaigns, cultural storytelling, and partnerships that connect markets and boost authentic engagement.",
-  },
-  {
-    icon: <DollarSign className="w-8 h-8" />,
-    title: "Finance & Operations",
-    description:
-      "Managing transparent payments, timely settlements, and efficient workflows to ensure reliable trade for vendors and buyers alike.",
-  },
-  {
-    icon: <Package className="w-8 h-8" />,
-    title: "Logistics & Supply Chain",
-    description:
-      "Coordinating warehousing, packaging, and shipping solutions that ensure reliable, trackable, and cost-effective order fulfillment.",
-  },
-  {
-    icon: <ShieldCheck className="w-8 h-8" />,
-    title: "Compliance & Verification",
-    description:
-      "Maintaining trade integrity through quality checks, GI certification, and strict compliance with international trade regulations.",
-  },
-  {
-    icon: <BarChart3 className="w-8 h-8" />,
-    title: "Technology & Data Support",
-    description:
-      "Delivering AI-driven insights, blockchain verification, and analytics tools to empower artisans and optimize business decisions.",
-  },
-]
+    {
+      icon: <Headset className="w-8 h-8" />,
+      title: "Customer Support",
+      description:
+        "Providing 24/7 guidance for artisans and buyers, ensuring smooth onboarding, fast query resolution, and consistent platform satisfaction.",
+    },
+    {
+      icon: <Megaphone className="w-8 h-8" />,
+      title: "Marketing & Outreach",
+      description:
+        "Expanding global presence with campaigns, cultural storytelling, and partnerships that connect markets and boost authentic engagement.",
+    },
+    {
+      icon: <DollarSign className="w-8 h-8" />,
+      title: "Finance & Operations",
+      description:
+        "Managing transparent payments, timely settlements, and efficient workflows to ensure reliable trade for vendors and buyers alike.",
+    },
+    {
+      icon: <Package className="w-8 h-8" />,
+      title: "Logistics & Supply Chain",
+      description:
+        "Coordinating warehousing, packaging, and shipping solutions that ensure reliable, trackable, and cost-effective order fulfillment.",
+    },
+    {
+      icon: <ShieldCheck className="w-8 h-8" />,
+      title: "Compliance & Verification",
+      description:
+        "Maintaining trade integrity through quality checks, GI certification, and strict compliance with international trade regulations.",
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8" />,
+      title: "Technology & Data Support",
+      description:
+        "Delivering AI-driven insights, blockchain verification, and analytics tools to empower artisans and optimize business decisions.",
+    },
+  ]
 
   const artisans = [
     {
@@ -151,7 +151,7 @@ export default function TeamPage() {
   const isInView = useInView(sectionRef, { amount: 0.3, once: true })
 
   const stats = [
-    { value: 500, label: "Skilled Artisans" },
+    { value: 5080, label: "Skilled Artisans" },
     { value: 50, label: "Villages" },
     { value: 25, label: "Craft Types" },
     { value: 15, label: "Countries" },
@@ -873,10 +873,9 @@ export default function TeamPage() {
             <section className="section">
               <div ref={sectionRef} className="section-header">
                 <div className="section-badge">✨ Meet Our Amazing Team</div>
-                <h1 className="section-title">Our Crafting Team</h1>
+                <h1 className="section-title">Our Crafting Family</h1>
                 <p className="section-subtitle">
-                  The Artisans Who Make It All Possible. At De Koshur Crafts, we are not just a businesswe are a
-                  community of passionate creators preserving Kashmir's rich heritage.
+                At De Koshur Crafts, we are more than a company — we are the living heritage of Kashmir, where every artisan’s hand tells a story and every weave carries a soul, bridging tradition with tomorrow and shaping the world’s love for authentic Kashmiri art.
                 </p>
                 <div className="hero-stats">
                   {stats.map((stat, idx) => (
@@ -921,7 +920,7 @@ export default function TeamPage() {
                 <div className="section-badge">Support Team</div>
                 <h2 className="section-title">The Backbone of Operations</h2>
                 <p className="section-subtitle text-left lg:text-center">
-                 Behind every thriving marketplace is a strong support ecosystem. Our team ensures artisans and buyers experience seamless trade through expertise in service, finance, logistics, compliance, and global outreach.
+                  Behind every thriving marketplace is a strong support ecosystem. Our team ensures artisans and buyers experience seamless trade through expertise in service, finance, logistics, compliance, and global outreach.
 
                 </p>
               </div>

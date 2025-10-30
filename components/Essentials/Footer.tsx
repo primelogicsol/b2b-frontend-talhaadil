@@ -8,6 +8,7 @@ import {
   Globe,
   Shield,
   TrendingUp,
+  Info
 } from "lucide-react";
 import Image from "next/image";
 import {
@@ -94,10 +95,10 @@ export default function Footer() {
         initial="hidden"
         animate="visible"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <motion.div
-            className="p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
+            className="w-[100%] lg:w-[135%] p-6 rounded-xl hover:bg-white/5 transition-all duration-300"
             variants={itemVariants}
           >
             <div className="flex items-center gap-3 mb-6 -ml-4 -mt-4">
@@ -224,15 +225,13 @@ export default function Footer() {
               ))}
             </ul>
           </motion.div>
-
-          {/* About & Connect */}
           <motion.div
             variants={itemVariants}
             className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
-              <Mail className="w-5 h-5 text-[var(--secondary-color)]" /> About &
-              Connect
+              <Info className="w-5 h-5 text-[var(--secondary-color)]" />
+              About Us
             </h3>
             <ul className="space-y-3">
               {[
@@ -240,10 +239,10 @@ export default function Footer() {
                 { txt: "Brand Story", link: "/our-brand/brand-story" },
                 {
                   txt: "Brand Credentials",
-                  link: "/our-brand/brand-crednetials",
+                  link: "/our-brand/brand-credentials",
                 },
-                { txt: "Location", link: "/our-nihcle/location" },
-                { txt: "Business", link: "/our-nihcle/business" },
+                { txt: "Location", link: "/our-niche/location" },
+                { txt: "Business", link: "/our-niche/business" },
                 { txt: "Contact", link: "/contact" },
               ].map(({ txt, link }, i) => (
                 <motion.li key={i}>
@@ -261,6 +260,43 @@ export default function Footer() {
               ))}
             </ul>
           </motion.div>
+          {/* About & Connect */}
+          <motion.div
+            variants={itemVariants}
+            className="p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-[var(--primary-header-color)]">
+              <Mail className="w-5 h-5 text-[var(--secondary-color)]" />
+              Connect
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { txt: "Core Trade", link: "/core-trade" },
+                { txt: "Brand Expansion", link: "/brand-growth" },
+                {
+                  txt: "Collaborative",
+                  link: "/collaborative",
+                },
+                { txt: "Institutional", link: "/institutional" },
+                { txt: "Register", link: "/registration" },
+                { txt: "Process", link: "/process" },
+              ].map(({ txt, link }, i) => (
+                <motion.li key={i}>
+                  <motion.a
+                    href={link}
+                    className="text-white hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group py-1 px-1 rounded-lg hover:bg-white/10"
+                    variants={linkVariants}
+                    initial="rest"
+                    whileHover="hover"
+                  >
+                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1" />
+                    {txt}
+                  </motion.a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
         </div>
 
         {/* Newsletter */}
@@ -268,8 +304,9 @@ export default function Footer() {
           className="mt-16 pt-12 border-t border-[var(--secondary-color)]/50"
           variants={itemVariants}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            {/* Text Section */}
+            <div className="lg:col-span-1">
               <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-white to-[var(--secondary-light-color)] bg-clip-text text-transparent">
                 Stay Updated
               </h3>
@@ -278,7 +315,8 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full">
+            {/* Email Input + Button */}
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:col-span-1">
               <motion.input
                 type="email"
                 placeholder="Enter your email"
@@ -294,19 +332,31 @@ export default function Footer() {
                 JOIN
               </motion.button>
             </div>
+
+            {/* Verified Payment / Price Tag Image */}
+            <div className="flex justify-center lg:justify-end">
+              <img
+                src="/images/price-tag.png"
+                alt="Verified Payment"
+                className="w-110 h-auto object-contain opacity-90"
+              />
+            </div>
           </div>
         </motion.div>
-
         {/* Bottom */}
         <motion.div
           className="mt-12 pt-8 border-t border-[var(--secondary-color)]/50 flex flex-col md:flex-row justify-between items-center gap-4"
           variants={itemVariants}
         >
-          <p className="text-white text-sm">
-            © {new Date().getFullYear()} De Koshur Crafts Bazaar USA. All rights
-            reserved.
-          </p>
-
+          <div className="flex flex-col gap-1">
+            <p className="text-white text-sm">
+              © {new Date().getFullYear()} De Koshur Crafts Bazaar USA. All rights
+              reserved.
+            </p>
+            <p className="text-white text-sm">
+              Desgined and Developed by <a href="https://primelogicsol.com/" target="_blank" className="text-[var(--secondary-light-color)]">Prime Logical Solutions USA</a>
+            </p>
+          </div>
           <div className="flex items-center gap-6 text-sm">
             <div className="flex gap-4">
               <motion.a

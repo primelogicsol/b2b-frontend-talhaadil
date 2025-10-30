@@ -12,6 +12,7 @@ export const warehousData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/warehouse.mp4",
     heading: "Solving Storage & Distribution Challenges",
     problems: [
       "Vendors struggle with storage, packaging, and compliance documentation.",

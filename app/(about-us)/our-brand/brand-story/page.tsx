@@ -235,12 +235,12 @@ export default function DeKoshurCrafts() {
               },
               {
                 title: "Blueprint for Growth",
-                year: "2023",
+                year: "2024",
                 desc: "De Koshur Crafts represents a blueprint for sustainable growth, balancing cultural preservation with innovation.",
               },
               {
                 title: "Community Engagement",
-                year: "2024",
+                year: "2025",
                 desc: "De Koshur Crafts actively fosters engagement with communities in both Kashmir and the USA.",
               },
             ].map((item, index) => (
@@ -268,10 +268,10 @@ export default function DeKoshurCrafts() {
       </section>
       <div className="bg-white">
         <Link href="https://craftlore.org/">
-        <img
-          src="/images/image6.png"
-          className="w-full md:w-[60vw] h-[45vh] md:h-[80vh] mx-auto block"
-        ></img>
+          <img
+            src="/images/image10.webp"
+            className="w-full md:w-[60vw] h-[45vh] md:h-[80vh] mx-auto block"
+          ></img>
         </Link>
       </div>
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[var(--secondary-color)]/5 to-[var(--primary-color)]/5">
@@ -407,33 +407,46 @@ export default function DeKoshurCrafts() {
         </div>
       </section>
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-  <div className="max-w-5xl mx-auto text-center mb-12">
-    <h2 className="text-3xl sm:text-4xl font-bold text-[var(--primary-color)] mb-4">
-      Brand Transformation Journey
-    </h2>
-    <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-      From traditional craftsmanship to modern technology, preserving
-      heritage while embracing innovation
-    </p>
-  </div>
+        <div className="max-w-5xl mx-auto text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[var(--primary-color)] mb-4">
+            Let’s Uphold the Legacy of Kashmir Craft Together
+          </h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-    {[
-      "/images/image8.png",
-      "/images/image9.png",
-      "/images/image10.png",
-      "/images/image11.png",
-    ].map((src, index) => (
-      <div key={index} className="overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105">
-        <img
-          src={src}
-          alt={`Transformation step ${index + 1}`}
-          className="w-full h-64 object-cover"
-        />
-      </div>
-    ))}
-  </div>
-</section>
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+            In a world dominated by mass production, Kashmir has remained steadfast —
+            refusing to let machines erode the sacred soul of its artistry. Kashmir and
+            its capital, Srinagar, stand as the beating heart of this timeless heritage.
+            Proudly stands among 50 global cities in the UNESCO Creative Cities Network
+            (Crafts & Folk Art) — a mark of enduring excellence on the world stage.
+            Honored among 63 World Craft Cities by the World Craft Council (WCC),
+            reaffirming Kashmir’s stature as a global epicenter of artisanal brilliance.
+            Bears the legacy of the Silk Route, the ancient civilization of creative
+            exchange and craftsmanship (1st Century BCE – 15th Century CE). Home to the
+            largest living guild of master artisans — a timeless sanctuary for those who
+            made Kashmir their lifelong devotion, preserving and perfecting its sacred
+            craft legacy.
+          </p>
+
+
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          {[
+            "/images/image8.png",
+            "/images/image9.png",
+            "/images/image10.png",
+            "/images/image11.png",
+          ].map((src, index) => (
+            <div key={index} className="overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105">
+              <img
+                src={src}
+                alt={`Transformation step ${index + 1}`}
+                className="w-full h-64 object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
     </div>
   );

@@ -13,6 +13,7 @@ export const storytellingMediaData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/storytelling.mp4",
     heading: "Transforming Crafts Into Stories That Sell",
     problems: [
       "Buyers face difficulty differentiating authentic crafts from counterfeits.",

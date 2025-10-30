@@ -176,9 +176,10 @@ export default function ProfilePage() {
       try {
 
         const response = await get_product_by_user_id(Number(userId));
-        const productData = response.data.product_data;
-        setProductData(productData);
+        console.log(response)
+        const productData = response.data.selectedData;
 
+        setProductData(productData);
 
       } catch (err) {
         console.log(err);
@@ -694,7 +695,7 @@ export default function ProfilePage() {
             <div className="p-4 sm:p-6">
               {category.subcategories.map((subcat: any) => (
                 <div key={subcat.subcategoryId} className="mb-6">
-                  <h3 className="text-sm sm:text-base font-medium text-[var(--primary-hover-color)] mb-2">
+                  <h3 className="text-md sm:text-base font-extrabold text-[var(--primary-hover-color)] mb-2">
                     {subcat.subcategoryName}
                   </h3>
 

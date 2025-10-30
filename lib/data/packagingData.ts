@@ -13,6 +13,7 @@ export const packagingData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/packaging.mp4",
     heading: "Fixing a Missing Link in Global Craft Trade",
     problems: [
       "Crafts lose value due to poor or damaged packaging.",

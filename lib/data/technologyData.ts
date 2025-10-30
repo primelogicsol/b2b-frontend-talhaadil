@@ -13,6 +13,7 @@ pricingName : "technology_partnership",
     ],
   },
   whyDropshipping: {
+    link : "/videos/tech.mp4",
     heading: "Transforming Craft Commerce with Technology",
     problems: [
       "Outdated e-commerce systems limit global scalability.",

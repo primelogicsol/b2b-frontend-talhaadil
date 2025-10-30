@@ -27,18 +27,18 @@ export default function CallbackPage() {
             Cookies.set("is_registered", data.is_registered);
             Cookies.set("registration_step", data.registration_step.toString());
             Cookies.set("first_register", data.first_register.toString());
+
             console.log("Callback data processed successfully:", data);
 
-            // router.replace("/"); // redirect after cookies are stored
+            // ✅ Redirect after cookies are stored
+            router.replace("/");
         } catch (err) {
             console.error("Failed to parse callback data", err);
         }
     }, [router, searchParams]);
 
-    // Show loader while processing
     return (
-        <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white"    >
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
             <div className="relative">
                 <div
                     className="w-32 h-32 md:w-40 md:h-40 rounded-full animate-spin"
@@ -49,7 +49,6 @@ export default function CallbackPage() {
                         WebkitMask: `radial-gradient(circle, transparent 50%, black 50%, black 55%, transparent 55%)`,
                     }}
                 />
-
                 <div
                     className="absolute inset-4 md:inset-6 rounded-full animate-spin"
                     style={{
@@ -60,7 +59,6 @@ export default function CallbackPage() {
                         WebkitMask: `radial-gradient(circle, transparent 50%, black 50%, black 56%, transparent 56%)`,
                     }}
                 />
-
                 <div
                     className="absolute inset-8 md:inset-12 rounded-full animate-spin"
                     style={{
@@ -70,27 +68,22 @@ export default function CallbackPage() {
                         WebkitMask: `radial-gradient(circle, transparent 50%, black 50%, black 57%, transparent 57%)`,
                     }}
                 />
-
                 <div
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[var(--primary-color)] rounded-full animate-pulse"
                     style={{ animationDuration: "2s" }}
                 />
-
                 <div
                     className="absolute -top-2 -right-2 w-2 h-2 bg-[var(--secondary-color)] rounded-full animate-ping"
                     style={{ animationDelay: "0s", animationDuration: "2s" }}
                 />
-
                 <div
                     className="absolute -bottom-1 -left-3 w-1.5 h-1.5 bg-[var(--primary-hover-color)] rounded-full animate-ping"
                     style={{ animationDelay: "0.7s", animationDuration: "2.5s" }}
                 />
-
                 <div
                     className="absolute -top-3 -left-1 w-1 h-1 bg-[var(--secondary-color)] rounded-full animate-ping"
                     style={{ animationDelay: "1.2s", animationDuration: "2.2s" }}
                 />
-
                 <div
                     className="absolute -bottom-2 -right-1 w-1.5 h-1.5 bg-[var(--primary-color)] rounded-full animate-ping"
                     style={{ animationDelay: "1.8s", animationDuration: "2.8s" }}
@@ -99,4 +92,3 @@ export default function CallbackPage() {
         </div>
     );
 }
-

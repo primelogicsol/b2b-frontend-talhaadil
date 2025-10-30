@@ -12,6 +12,7 @@ export const logisticsData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/logistic.mp4",
     heading: "Fixing the Gaps in Craft Trade Logistics",
     problems: [
       "High cost of international logistics.",

@@ -228,7 +228,7 @@ export default function RegistrationInfoPage() {
         setTempKpiScore(userResponse.data.kpi_score || 0);
         // Filter documents by user_id
         setDocuments(documentResponse.data);
-        setProductData(productResponse.data);
+        setProductData(productResponse.data.selectedData);
         console.log(productResponse.data)
         console.log(productData)
       } catch (err) {
@@ -805,7 +805,7 @@ export default function RegistrationInfoPage() {
           </div>
         </div>
 
-        {/* {Array.isArray(productData) && (
+        {Array.isArray(productData) && (
           <>
             {productData.map((category: any) => (
               category?.subcategories?.length > 0 && (
@@ -878,7 +878,7 @@ export default function RegistrationInfoPage() {
               )
             ))}
           </>
-        )} */}
+        )}
 
       </div>
     </div>

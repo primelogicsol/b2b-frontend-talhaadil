@@ -13,6 +13,7 @@ export const consignmentPageData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/wholesale.mp4",
     heading: "Fixing the Retail Access Problem in Craft Trade",
     problems: [
       "Buyers hesitant to invest upfront in unfamiliar crafts.",

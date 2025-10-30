@@ -37,21 +37,24 @@ export default function BusinessLocation() {
         <div className={`${is4K ? "max-w-[2000px]" : "max-w-7xl"} mx-auto px-4 sm:px-6 lg:px-8`}>
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <div className="flex items-center mb-6">
-                <Building2 className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-[var(--secondary-color)] mr-3`} />
+              <div className="flex items-start mb-6">
+                <Building2
+                  className={`${is4K ? "w-8 h-8" : "w-6 h-6"} text-[var(--secondary-color)] mr-3 mt-3 flex-shrink-0`}
+                />
                 <h2
-                  className={`text-2xl md:text-3xl ${is4K ? "lg:text-5xl" : "lg:text-4xl"} font-bold text-[var(--primary-color)]`}
+                  className={`text-2xl md:text-3xl ${is4K ? "lg:text-5xl" : "lg:text-4xl"} font-bold text-[var(--primary-color)] leading-snug`}
                 >
-                  Headquarters: Washington, D.C. (USA)
+                  Headquarters: Greater Washington, D.C. (Virginia Fairfax, USA)
                 </h2>
               </div>
+
               <p
                 className={`${is4K ? "text-lg md:text-xl lg:text-2xl" : "text-gray-700 mb-8 text-sm md:text-base lg:text-lg"} leading-relaxed`}
               >
-                De Koshur Crafts operates out of its headquarters in Washington, D.C., where we manage global
-                operations, customer relations, and international partnerships. Our headquarters plays a critical role
-                in supporting our artisans by managing logistics, marketing, and ensuring smooth operations across our
-                international market.
+                De Koshur Crafts operates from its headquarters in Virginia – Fairfax, part of the Greater Washington, D.C.
+                Metropolitan Area, where we manage our global operations, customer relations, and international partnerships.
+                Our headquarters serves as the command center for coordinating logistics, marketing, and vendor management,
+                ensuring smooth connectivity between our artisan network in Kashmir and our markets across North America and beyond.
               </p>
             </div>
             <div className={`bg-white rounded-lg shadow-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"}`}>
@@ -70,7 +73,7 @@ export default function BusinessLocation() {
                       Operations & Logistics Management
                     </h4>
                     <p className={`${is4K ? "text-lg" : "text-gray-600 text-sm md:text-base"}`}>
-                      Overseeing the smooth delivery of products from Kashmir to international markets.
+                      Managing seamless product movement from Kashmir to global destinations.
                     </p>
                   </div>
                 </div>
@@ -83,8 +86,7 @@ export default function BusinessLocation() {
                       International Sales & Partnerships
                     </h4>
                     <p className={`${is4K ? "text-lg" : "text-gray-600 text-sm md:text-base"}`}>
-                      Cultivating relationships with global retailers, designers, and businesses to promote Kashmiri
-                      crafts worldwide.
+                      Building relationships with global retailers and craft distributors.
                     </p>
                   </div>
                 </div>
@@ -97,8 +99,7 @@ export default function BusinessLocation() {
                       Customer Support
                     </h4>
                     <p className={`${is4K ? "text-lg" : "text-gray-600 text-sm md:text-base"}`}>
-                      Providing support for global customers, ensuring that all inquiries and orders are managed
-                      efficiently.
+                      Assisting global clients with efficient communication and order handling.
                     </p>
                   </div>
                 </div>
@@ -112,14 +113,17 @@ export default function BusinessLocation() {
       <section className={`${is4K ? "py-20 md:py-24 lg:py-32" : "py-12 md:py-16 lg:py-20"}`}>
         <div className={`${is4K ? "max-w-[2000px]" : "max-w-7xl"} mx-auto px-4 sm:px-6 lg:px-8`}>
           <div className="text-center mb-12">
-            <div className="flex items-center justify-center mb-4">
-              <Users className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-[var(--secondary-color)] mr-3`} />
+            <div className="flex items-center justify-start lg:justify-center mb-6">
+              <Users
+                className={`${is4K ? "w-8 h-8" : "w-6 h-6"} text-[var(--secondary-color)] mr-3 mt-1 lg:mt-2 flex-shrink-0`}
+              />
               <h2
-                className={`text-2xl md:text-3xl ${is4K ? "lg:text-5xl" : "lg:text-4xl"} font-bold text-[var(--primary-color)]`}
+                className={`text-2xl md:text-3xl ${is4K ? "lg:text-5xl" : "lg:text-4xl"} font-bold text-[var(--primary-color)] leading-snug`}
               >
-                Artisan Network in Kashmir & India
+                Artisan Network in India
               </h2>
             </div>
+
             <p
               className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-gray-700 max-w-4xl mx-auto text-sm md:text-base lg:text-lg"} text-left md:text-center lg:text-center  leading-relaxed`}
             >
@@ -128,47 +132,68 @@ export default function BusinessLocation() {
               that are sold globally.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <div className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}>
-              <MapPin className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`} />
+            <div
+              className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}
+            >
+              <MapPin
+                className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`}
+              />
               <h3
-                className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold text-gray-200 mb-3`}
+                className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold !text-gray-200 mb-3`}
               >
                 Srinagar
               </h3>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
-                The heart of Kashmiri crafts, where we collaborate with artisans to produce Pashmina shawls, Papier
-                Mâché art, and Kani weaving.
+              <p
+                className={`${is4K ? "text-lg md:text-xl" : "text-sm md:text-base"} !text-gray-200 text-left md:text-center lg:text-center`}
+              >
+                The heart of Kashmiri crafts, where we collaborate with artisans to
+                produce Pashmina shawls, Papier Mâché art, and Kani weaving.
               </p>
             </div>
-            <div className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}>
-              <MapPin className={`${is4K ? "w-16 h-16" : "w-12 h-12"}  text-gray-200 mx-auto mb-4 `} />
+
+            <div
+              className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}
+            >
+              <MapPin
+                className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`}
+              />
               <h3
-                className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold text-gray-200 mb-3`}
+                className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold !text-gray-200 mb-3`}
               >
                 Jammu & Kashmir
               </h3>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
-                Throughout the region, we work with woodcarvers, silk weavers, and embroiderers to create unique
-                handcrafted products.
+              <p
+                className={`${is4K ? "text-lg md:text-xl" : "text-sm md:text-base"} !text-gray-200 text-left md:text-center lg:text-center`}
+              >
+                Throughout the region, we work with woodcarvers, silk weavers, and
+                embroiderers to create unique handcrafted products.
               </p>
             </div>
+
             <div
               className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center md:col-span-2 lg:col-span-1`}
             >
-              <Heart className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`} />
+              <Heart
+                className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`}
+              />
               <h3
-                className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold text-gray-200 mb-3`}
+                className={`${is4K ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"} font-semibold !text-gray-200 mb-3`}
               >
                 Rural Areas
               </h3>
-              <p className={`${is4K ? "text-lg md:text-xl" : "text-gray-200 text-sm md:text-base"} text-left md:text-center lg:text-center`}>
-                We ensure that even artisans from remote areas have access to essential resources, proper training, and
-                a global platform to showcase their crafts.
+              <p
+                className={`${is4K ? "text-lg md:text-xl" : "text-sm md:text-base"} !text-gray-200 text-left md:text-center lg:text-center`}
+              >
+                We ensure that even artisans from remote areas have access to essential
+                resources, proper training, and a global platform to showcase their
+                crafts.
               </p>
             </div>
           </div>
+
+
+
         </div>
       </section>
       {/* Importance Section */}
@@ -185,10 +210,7 @@ export default function BusinessLocation() {
             <p
               className={`${is4K ? "text-xl md:text-2xl lg:text-3xl" : "text-base md:text-lg lg:text-xl"} leading-relaxed  text-left md:text-center lg:text-center${is4K ? "max-w-5xl" : "max-w-4xl"} mx-auto`}
             >
-              Each of our business locations Washington, D.C., Kashmir, and our global retail hubs plays an essential
-              role in our ability to promote authentic Kashmiri craftsmanship and empower artisans. By expanding our
-              presence in global markets while maintaining our roots in Kashmir, we continue to ensure that the legacy
-              of Kashmiri crafts thrives in the modern world.
+              Our headquarters in Fairfax, Virginia — part of the Greater Washington, D.C. area — places us at the center of U.S. global trade, logistics, and international partnerships, giving our artisan network direct access to world markets. Together with our base in Kashmir and our expanding global retail hubs, this strategic presence allows us to promote authentic Kashmiri craftsmanship, empower artisans, and ensure that the timeless legacy of Kashmir’s artistry continues to thrive across the modern world.
             </p>
             <div className="mt-8">
               <div className={`${is4K ? "w-32 h-1.5" : "w-24 h-1"} bg-[var(--secondary-color)] mx-auto`}></div>
@@ -196,14 +218,14 @@ export default function BusinessLocation() {
           </div>
         </div>
       </section>
-      <Location/>
+      <Location />
 
       {/* Global Expansion Section */}
       <section className={`${is4K ? "py-20 md:py-24 lg:py-32" : "py-12 md:py-16 lg:py-20"} bg-gray-50`}>
         <div className={`${is4K ? "max-w-[2000px]" : "max-w-7xl"} mx-auto px-4 sm:px-6 lg:px-8`}>
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
-              <Globe className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-[var(--secondary-color)] mr-3`} />
+              <Globe className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-[var(--secondary-color)] mr-3 -mt-6 lg:mt-0`} />
               <h2
                 className={`${is4K ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} text-left md:text-center lg:text-center font-bold text-[var(--primary-color)]`}
               >

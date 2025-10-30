@@ -44,6 +44,8 @@ import KashmirCraftsCarousel from "@/components/Material/ProfitBox";
 import FlagSection from "@/components/Material/FlagSection";
 import Location from "@/components/Essentials/Location";
 
+
+
 const howItWorksData = {
   title: "How It Works",
   description:
@@ -235,146 +237,45 @@ export default function LandingPage() {
     },
   ];
 
-  // Prevent unwanted scrolling to any section on page load, especially for mobile
-  useEffect(() => {
-    // Reset scroll position to top on page load
-    window.scrollTo(0, 0);
+  const data = [
+    {
+      icon: "ShoppingCart",
+      title: "Core Trade",
+      desc: "We focus on trade quality, efficiency, and lasting global reliability.",
+      link: "/core-trade",
+    },
+    {
+      icon: "Rocket",
+      title: "Brand Growth",
+      desc: "We help brands expand reach, boost presence, and achieve success.",
+      link: "/brand-growth",
+    },
+    {
+      icon: "Users",
+      title: "Collaborative",
+      desc: "We build networks, share resources, and create business growth.",
+      link: "/collaborative",
+    },
+    {
+      icon: "Building",
+      title: "Institutional",
+      desc: "We partner with firms, strengthen ties, and foster lasting trust.",
+      link: "/institutional",
+    },
+  ];
 
-    // Prevent any automatic focus behavior
-    const preventFocus = (e: FocusEvent) => {
-      const target = e.target as HTMLElement;
-      // Prevent focus on elements within KashmirCraftsCarousel or similar sections
-      if (target.closest('[data-section="carousel"]')) {
-        e.preventDefault();
-        window.scrollTo(0, 0); // Force scroll back to top
-      }
-    };
 
-    // Detect mobile devices (screen width <= 768px)
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) {
-      document.addEventListener("focusin", preventFocus);
-    }
 
-    return () => {
-      if (isMobile) {
-        document.removeEventListener("focusin", preventFocus);
-      }
-    };
-  }, []);
 
-  const MetricCard = ({ icon, title, value, position, index }: any) => (
-    <motion.div
-      className={`flex items-center gap-4 ${position === "right" ? "flex-row-reverse text-right" : ""
-        }`}
-      initial={{ opacity: 0, x: position === "left" ? -50 : 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ scale: 1.05 }}
-    >
-      <motion.div
-        className="flex-shrink-0 w-12 h-12 bg-[var(--primary-color)] rounded-full flex items-center justify-center cursor-pointer"
-        whileHover={{ backgroundColor: "#ffffff", rotate: 360 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <motion.div className="text-gray-400" whileHover={{ scale: 1.2 }}>
-          {icon}
-        </motion.div>
-      </motion.div>
-      <motion.div whileHover={{ x: position === "left" ? 5 : -5 }}>
-        <motion.h3
-          className="text-white font-semibold text-lg"
-          whileHover={{ color: "#808080" }}
-        >
-          {title}
-        </motion.h3>
-        <motion.p
-          className="text-gray-300 text-sm"
-          whileHover={{ color: "#ffffff" }}
-        >
-          {value}
-        </motion.p>
-      </motion.div>
-    </motion.div>
-  );
 
-  const createDottedEarth = () => {
-    const dots = [];
-    const radius = is4K ? 400 : 300;
-    const centerX = is4K ? 500 : 400;
-    const centerY = is4K ? 500 : 400;
-
-    for (let ring = 0; ring < 4; ring++) {
-      const currentRadius = radius - ring * (is4K ? 80 : 60);
-      const dotsInRing = Math.max(24 - ring * 4, 8);
-
-      for (let i = 0; i < dotsInRing; i++) {
-        const angle = (i / dotsInRing) * 2 * Math.PI;
-        const x = centerX + Math.cos(angle) * currentRadius;
-        const y = centerY + Math.sin(angle) * currentRadius;
-
-        dots.push(
-          <motion.circle
-            key={`${ring}-${i}`}
-            cx={x}
-            cy={y}
-            r={2 + ring * 0.5}
-            fill="rgba(59, 130, 246, 0.3)"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.2, 1] }}
-            transition={{
-              duration: 3,
-              delay: ring * 0.2 + i * 0.1,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        );
-      }
-    }
-    return dots;
-  };
-
-  const handleScroll = useCallback(() => {
-    if (scrollContainerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } =
-        scrollContainerRef.current;
-      const scrollableHeight = scrollHeight - clientHeight;
-      if (scrollableHeight > 0) {
-        setScrollProgress(scrollTop / scrollableHeight);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
-    }
-  }, [handleScroll]);
+  
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden" style={{ scrollBehavior: "auto" }}>
-      <style jsx global>{`
-        /* Prevent scroll snapping on mobile */
-        @media (max-width: 768px) {
-          html,
-          body,
-          [data-section="carousel"] {
-            scroll-snap-type: none !important;
-            overscroll-behavior: none;
-          }
+    <div className="min-h-screen bg-white overflow-x-hidden">
 
-          /* Ensure no element steals focus */
-          [data-section="carousel"] *:focus {
-            outline: none;
-          }
-        }
-      `}</style>
 
       {/* Hero Section */}
-      <BannerWithFeatures />
+      <BannerWithFeatures data={data} />
       <div className="-mt-50">
         <Homepage />
       </div>
@@ -529,7 +430,7 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-      <div data-section="carousel">
+      <div>
         <KashmirCraftsCarousel />
       </div>
       <FlagSection />

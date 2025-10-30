@@ -13,6 +13,7 @@ export const importExportData = {
     ],
   },
   whyDropshipping: {
+    link : "/videos/import.mp4",
     heading: "Fixing Compliance Gaps in Global Craft Trade",
     problems: [
       "No uniform export compliance and certifications.",

@@ -1,5 +1,31 @@
 export const collaborativeData = {
-  tier : 3,
+  data: [
+  {
+    icon: "Box",
+    title: "Packaging",
+    desc: "We design and develop high-quality packaging tailored to brand identity and sustainability.",
+    link: "/collaborative/packaging",
+  },
+  {
+    icon: "PenTool",
+    title: "Collaboration",
+    desc: "We co-create visuals, campaigns, and branding that reflect creativity and precision.",
+    link: "/collaborative/design-collaboration",
+  },
+  {
+    icon: "Camera",
+    title: "Storytelling",
+    desc: "We craft narratives through visuals and media that inspire engagement and trust.",
+    link: "/collaborative/storytelling&media",
+  },
+  {
+    icon: "Warehouse",
+    title: "Warehouse",
+    desc: "We provide reliable storage, handling, and distribution from our U.S.-based facilities.",
+    link: "/collaborative/warehouse",
+  },
+],
+  tier: 3,
   hero: {
     
     headline: "Collaborative Partnerships — Where Innovation Meets Tradition",

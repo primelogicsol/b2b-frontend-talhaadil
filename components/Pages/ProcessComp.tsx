@@ -943,7 +943,7 @@ export default function Process() {
                     Evaluation is mandatory even if you pay for the Lateral Pathway Package.
                   </p>
                   <a
-                    href="https://khcrf.org/"
+                    href="/lateral-path-way"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={
