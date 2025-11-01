@@ -50,7 +50,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
       {visible && (
         <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-right-full duration-300">
-          <div className="bg-white border-l-4 border-[var(--primary-color)] rounded-lg shadow-xl backdrop-blur-sm min-w-[320px] max-w-[400px] p-5 transform transition-all duration-300 ease-out hover:shadow-2xl hover:scale-[1.02]">
+          <div className="bg-white border-l-4 border-[var(--primary-color)] rounded-lg shadow-xl backdrop-blur-sm min-w-[260px] max-w-[400px] p-5 transform transition-all duration-300 ease-out hover:shadow-2xl hover:scale-[1.02]">
             <div className="flex items-start gap-3">
               <div className="w-3 h-3 bg-[var(--primary-color)] rounded-full flex-shrink-0 mt-1"></div>
               <div className="flex-1 min-w-0">
