@@ -478,7 +478,7 @@ export default function ChoosePartnership({
             >
               Level {p.level}
             </div>
-            <div className="absolute -top-3 left-32">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
               {selectedPartnership === p.id ? (
                 <div className="w-10 h-10 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
                   <FaCheck className="text-white text-lg" />
@@ -609,10 +609,14 @@ export default function ChoosePartnership({
               : ""
             }`}
         >
-          <span className="hidden md:inline mr-2">
-            {isSubmitting ? "Submitting..." : "Next"}
-          </span>
-          <span className="inline">{isSubmitting ? "" : "→"}</span>
+           {isSubmitting ? (
+            <span>Submitting...</span>
+          ) : (
+            <>
+              <span className="hidden md:inline mr-2">Next</span>
+              <span className="inline">→</span>
+            </>
+          )}
         </button>
       </div>
     </div>

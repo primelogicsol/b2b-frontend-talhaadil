@@ -751,7 +751,7 @@ export default function ComprehensiveProductSelection({
           }`}
         >
           {isSubmitting ? (
-            <span className="hidden md:inline mr-2">Submitting...</span>
+            <span>Submitting...</span>
           ) : (
             <>
               <span className="hidden md:inline mr-2">{currentStep === "details" ? "Submit" : "Next"}</span>

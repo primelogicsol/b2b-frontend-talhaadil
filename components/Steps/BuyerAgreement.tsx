@@ -871,6 +871,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
               }`}
           >
             <span className="hidden md:inline mr-2">{currentStep === 4 ? (loading ? "SUBMITTING...." : "SUBMIT") : "NEXT"}</span>
+            <span className="inline md:hidden">{loading ? "SUBMITTING...." : ""}</span>
             <span className="inline">→</span>
           </button>
         </div>

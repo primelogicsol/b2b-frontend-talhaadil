@@ -36,6 +36,7 @@ interface ApplicationStatusProps {
 }
 
 export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusProps) {
+  const [getLoading,setGetLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(2)
   const [documents, setDocuments] = useState<Document[]>([])
   const [adminStatus, setAdminStatus] = useState<"PENDING" | "APPROVED" | "REJECTED">("PENDING")
@@ -122,6 +123,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
     fetchData()
   }, [])
   const whenClickNext = async () => {
+    setGetLoading(true)
     if (onNext) {
       if (adminStatus === "REJECTED") {
         getRejectedUser(Number(Cookies.get("user_id"))).then((res) => {
@@ -132,6 +134,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         Cookies.set("registration_step", "0");
 
         window.location.href = '/'
+          setGetLoading(false)
 
         return
       }
@@ -139,6 +142,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
       Cookies.set("is_registered", "APPROVED");
       Cookies.set("registration_step", "6");
       console.log(response)
+      setGetLoading(false)
       onNext()
     }
   }
@@ -505,7 +509,8 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
                   }`}
               >
-                <span className="hidden sm:inline mr-2">Next</span>
+                <span className="hidden sm:inline mr-2">{getLoading ? "Submitting..." : "Next"}</span>
+                <span className="inline md:hidden">{getLoading ? "Submitting..." : ""}</span>
                 <span>→</span>
               </button>
             )}

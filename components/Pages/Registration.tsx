@@ -57,7 +57,7 @@ export default function RegistrationProcess() {
   const stepFromCookie = Cookies.get("registration_step");
   const initialStep = stepFromCookie ? parseInt(stepFromCookie, 10): 1;
 
-  const [currentStep, setCurrentStep] = useState<number>(initialStep);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [formData, setFormData] = useState<FormData>({});
   const contentRef = useRef<HTMLDivElement>(null); // Reference to content area
 
