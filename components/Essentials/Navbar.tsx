@@ -379,6 +379,7 @@ export function Navbar() {
   const { handleLogout } = useAuthentication()
   const router = useRouter()
   const user_role = Cookies.get("user_role")
+  const level = Cookies.get("registration_step")
   console.log(user_role)
 
   useEffect(() => {
@@ -400,7 +401,7 @@ export function Navbar() {
         console.log("isSignedIn:", !!token);
       } catch (error) {
         console.error("Error fetching user profile:", error);
-      
+
       }
     };
 
@@ -542,7 +543,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
 
             <Image src="/images/logo3.png" alt="Dekoshur Crafts" width={isScrolled ? 80 : 160} height={isScrolled ? 70 : 100} />
-            
+
           </Link>
 
           <div className="hidden lg:flex items-center space-x-8 transition-all duration-500">
@@ -595,7 +596,7 @@ export function Navbar() {
                     }
                   }}
                 >
-                  Registration
+                  {level === "6" ? "Status" : "Registration"}
                   {!isSignedIn && <FiLock size={14} className="ml-2" />}
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
                 </Link>
@@ -762,7 +763,7 @@ export function Navbar() {
                             setIsMobileMenuOpen(false)
                           }}
                         >
-                          <span>Registration</span>
+                          <span>{level === "6" ? "Status" : "Registration"}</span>
                           {!isSignedIn && <FiLock size={16} className="ml-2" />}
                         </Link>
                       </div>

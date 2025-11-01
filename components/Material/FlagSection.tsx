@@ -48,8 +48,8 @@ export default function HeroSection() {
       src: "/images/flags/18.webp",
       alt: "Flower logo",
       position: "left",
-      title: "DKC Kashmir Floor Art",
-      subtitle: "Transforms Your Floor into a Masterpiece.",
+      title: "De Koshur Crafts Bazaar",
+      subtitle: "Parent Company",
     },
     {
       src: "/images/flags/19.webp",

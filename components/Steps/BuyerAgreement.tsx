@@ -58,6 +58,7 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
   const [partnershipData, setPartnershipData] = useState<any>(null)
   const [partnershipTitle, setPartnershipTitle] = useState<string>("Drop Shipping Buyer Partnership Agreement")
   const [loading,setLoading] = useState(false)
+  const isVendor = Cookies.get("user_role") == "vendor" 
   const [formData, setFormData] = useState<FormData>({
     businessName: data?.businessName || "",
     businessType: data?.businessType || "",
@@ -79,6 +80,7 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
     
     const loadPartnershipData = async () => {
       try {
+        
         const response = await getUserRegistrationSelected();
         const partnershipType = response.data.registration_selected[response.data.registration_selected.length - 1].toLowerCase() || "drop_shipping"
         let selectedPartnership = partnershipAgreements.find((agreement) => {
@@ -503,7 +505,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
                 htmlFor="einNumber"
                 className={`text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} text-gray-700 font-medium`}
               >
-                EIN Number
+                {isVendor ? `Tax Identification Number` : `EIN Number`}
               </label>
               <input
                 id="einNumber"
@@ -519,7 +521,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
                 htmlFor="tinNumber"
                 className={`text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} text-gray-700 font-medium`}
               >
-                TIN Number
+                {isVendor ? `GST Number` : `State Sales Tax Permit Number`}
               </label>
               <input
                 id="tinNumber"

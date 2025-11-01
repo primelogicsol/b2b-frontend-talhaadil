@@ -43,7 +43,7 @@ export interface User {
     country: string
   }
 
-  // Business Credibility Assessment
+  // Business Self Credibility Assessment
   credibilityAssessment: {
     materialStandard: number // 1-10
     qualityLevel: number // 1-10

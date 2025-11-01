@@ -21,7 +21,7 @@ export default function StatisticsSection() {
       label: "Operational Cost Savings",
     },
   ]
-  
+
   return (
     <div className="max-w-[1580px] bg-white px-4 mx-auto">
       <div
@@ -68,27 +68,14 @@ export default function StatisticsSection() {
                   />
                 )}
 
-                <div
-                  className="text-white font-bold "
-                  style={{
-                    fontSize: is4K ? "4.5rem" : "2.2rem",
-                    lineHeight: "1",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
+                <div className="text-white font-bold leading-none tracking-tight text-[1.2rem] md:text-[2.4rem] ]">
                   {stat.percentage}
                 </div>
 
-                <div
-                  className="text-white font-semibold tracking-wider"
-                  style={{
-                    fontSize: is4K ? "1.25rem" : "1.2rem",
-                    lineHeight: "1.2",
-                    maxWidth: is4K ? "280px" : "200px",
-                  }}
-                >
+                <div className="text-white font-semibold tracking-wider leading-snug max-w-[180px] sm:max-w-[200px] md:max-w-[220px] xl:max-w-[250px] 2xl:max-w-[280px] text-[1rem] md:text-[1.5rem] ">
                   {stat.label}
                 </div>
+
               </div>
             ))}
           </div>

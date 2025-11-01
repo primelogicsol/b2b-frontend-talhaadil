@@ -484,7 +484,7 @@ export default function BusinessInformation({
     onUpdate(updatedData);
   };
 
-  // Handler for credibility assessment
+  // Handler for Self Credibility Assessment
   const handleCredibilityChange = (field: string, value: number) => {
     if (!isEditable) return;
     const updatedData = {
@@ -1155,14 +1155,14 @@ export default function BusinessInformation({
           </div>
         </div>
 
-        {/* Business Credibility Assessment */}
+        {/* Business Self Credibility Assessment */}
         <div className="bg-white rounded-3xl shadow-xl p-8">
           <div className="flex items-center mb-6">
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Star className="w-6 h-6 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Credibility Assessment
+              Self Credibility Assessment
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

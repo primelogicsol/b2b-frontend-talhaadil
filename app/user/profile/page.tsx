@@ -499,13 +499,13 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* Credibility Assessment */}
+      {/* Self Credibility Assessment */}
       <div className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
         <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg sm:text-xl font-semibold text-[var(--primary-color)] flex items-center gap-2">
               <Shield className="h-5 w-5 text-[var(--primary-color)]" />
-              Credibility Assessment
+              Self Credibility Assessment
             </h2>
             {renderSectionActions("credibility")}
           </div>

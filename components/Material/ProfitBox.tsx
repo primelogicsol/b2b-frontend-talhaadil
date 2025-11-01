@@ -864,8 +864,6 @@ const categories = [
   },
 ];
 
-
-
 // MetricCard component remains unchanged
 interface MetricCardProps {
   icon: React.ReactNode;
@@ -918,7 +916,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
       transition={{ duration: 0.2 }}
     >
       <motion.h3
-        className={`${is4K ? "text-2xl" : "text-lg"
+        className={`${is4K ? "text-2xl" : "text-sm md:text-md lg:text-lg"
           } text-white font-semibold mb-1`}
         whileHover={{ color: "#808080" }}
         transition={{ duration: 0.2 }}
@@ -997,6 +995,31 @@ export default function KashmirCraftsCarousel() {
   const selectSubcategory = (index: number, e: React.MouseEvent) => {
     e.preventDefault();
     setSelectedSubcategoryIndex(index);
+  };
+
+  // Scroll functions for mobile
+  const scrollCategoryLeft = () => {
+    if (categoryScrollRef.current) {
+      categoryScrollRef.current.scrollBy({ left: -150, behavior: "smooth" });
+    }
+  };
+
+  const scrollCategoryRight = () => {
+    if (categoryScrollRef.current) {
+      categoryScrollRef.current.scrollBy({ left: 150, behavior: "smooth" });
+    }
+  };
+
+  const scrollSubcategoryLeft = () => {
+    if (subcategoryScrollRef.current) {
+      subcategoryScrollRef.current.scrollBy({ left: -120, behavior: "smooth" });
+    }
+  };
+
+  const scrollSubcategoryRight = () => {
+    if (subcategoryScrollRef.current) {
+      subcategoryScrollRef.current.scrollBy({ left: 120, behavior: "smooth" });
+    }
   };
 
   const getMetricIcon = (key: string) => {
@@ -1086,7 +1109,7 @@ export default function KashmirCraftsCarousel() {
       { x: 350, y: 320, size: is4K ? 4.5 : 3 },
       { x: 420, y: 350, size: is4K ? 3.75 : 2.5 },
       { x: 480, y: 380, size: is4K ? 6 : 4 },
-      { x: 380, y: 450, size: is4K ? 5.25 : 3.5 },
+      { x: 380, y: 380, size: is4K ? 5.25 : 3.5 },
       { x: 320, y: 480, size: is4K ? 3 : 2 },
       { x: 520, y: 480, size: is4K ? 3.75 : 2.5 },
     ];
@@ -1120,7 +1143,7 @@ export default function KashmirCraftsCarousel() {
   return (
     <div
       ref={containerRef}
-      className={`${is4K ? " py-30" : " "
+      className={`${is4K ? "py-30" : ""
         } bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
       style={
         {
@@ -1199,54 +1222,54 @@ export default function KashmirCraftsCarousel() {
         </motion.p>
       </motion.div>
 
-      {/* Mobile Category Slider with Arrows */}
-      <div className="md:hidden px-4 mb-8 relative z-10 flex items-center justify-center">
-        <motion.button
-          onClick={(e) => prevCategory(e)}
-          className={`hidden md:flex group items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl mr-2`}
-          aria-label="Previous category"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ChevronLeft className="w-6 h-6 text-white group-hover:text-[var(--secondary-color)] transition-colors" />
-        </motion.button>
+      {/* Mobile Category Slider with Scroll Buttons */}
+      <div className="lg:hidden px-4 mb-8 relative z-10">
+        <div className="flex items-center gap-2">
+          <motion.button
+            onClick={scrollCategoryLeft}
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-lg flex items-center justify-center"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </motion.button>
 
-        <div
-          ref={categoryScrollRef}
-          className="flex flex-grow gap-3 overflow-x-auto no-scrollbar pb-2"
-          style={{ scrollSnapType: "x mandatory" }}
-        >
-          {categories.map((category, index) => (
-            <motion.button
-              key={category.id}
-              id={`category-btn-${category.id}`}
-              onClick={(e) => scrollToCategory(index, e)}
-              className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${currentCategoryIndex === index
-                  ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
-                  : "bg-white/10 text-gray-200 hover:bg-white/20"
-                }`}
-              style={{ scrollSnapAlign: "center" }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {category.name}
-            </motion.button>
-          ))}
+          <div
+            ref={categoryScrollRef}
+            className="flex flex-grow gap-3 overflow-x-auto no-scrollbar pb-2"
+            style={{ scrollSnapType: "x mandatory" }}
+          >
+            {categories.map((category, index) => (
+              <motion.button
+                key={category.id}
+                id={`category-btn-${category.id}`}
+                onClick={(e) => scrollToCategory(index, e)}
+                className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${currentCategoryIndex === index
+                    ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
+                    : "bg-white/10 text-gray-200 hover:bg-white/20"
+                  }`}
+                style={{ scrollSnapAlign: "center" }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {category.name}
+              </motion.button>
+            ))}
+          </div>
+
+          <motion.button
+            onClick={scrollCategoryRight}
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-lg flex items-center justify-center"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </motion.button>
         </div>
-
-        <motion.button
-          onClick={(e) => nextCategory(e)}
-          className={`hidden group md:flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl ml-2`}
-          aria-label="Next category"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ChevronRight className="w-6 h-6 text-white group-hover:text-[var(--secondary-color)] transition-colors" />
-        </motion.button>
       </div>
 
       {/* Desktop Category Navigation */}
-      <div className="hidden md:flex items-center justify-center mb-12 px-8 relative z-10">
+      <div className="hidden lg:flex items-center justify-center mb-12 px-8 relative z-10">
         <div
           className="flex items-center"
           style={{ width: is4K ? "800px" : "500px" }}
@@ -1275,7 +1298,7 @@ export default function KashmirCraftsCarousel() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h2
-              className={`${is4K ? "text-4xl" : "text-2xl md:text-3xl"
+              className={`${is4K ? "text-4xl" : "text-2xl lg:text-3xl"
                 } font-bold text-white mb-2 tracking-tight break-words`}
               whileHover={{ scale: 1.02, color: "#fb923c" }}
               transition={{ duration: 0.2 }}
@@ -1439,37 +1462,57 @@ export default function KashmirCraftsCarousel() {
               </p>
             </motion.div>
 
-            <div
-              ref={subcategoryScrollRef}
-              className="flex flex-nowrap no-scrollbar overflow-x-auto whitespace-nowrap gap-3 pb-2"
-              style={{ scrollSnapType: "x mandatory" }}
-            >
-              {currentCategory.subcategories.map((sub, index) => (
-                <motion.button
-                  key={sub.id}
-                  onClick={(e) => selectSubcategory(index, e)}
-                  className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${selectedSubcategoryIndex === index
-                      ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
-                      : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
-                    }`}
-                  style={{ scrollSnapAlign: "start" }}
-                  whileHover={{
-                    scale: 1.05,
-                    backgroundColor: "rgba(249, 115, 22, 0.2)",
-                    borderColor: "rgba(249, 115, 22, 0.5)",
-                    color: "#fb923c",
-                    y: -2,
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.span
-                    whileHover={{ fontWeight: 600 }}
-                    transition={{ duration: 0.2 }}
+            <div className="flex items-center gap-2">
+              <motion.button
+                onClick={scrollSubcategoryLeft}
+                className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-lg flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronLeft className="w-5 h-5 text-white" />
+              </motion.button>
+
+              <div
+                ref={subcategoryScrollRef}
+                className="flex flex-nowrap no-scrollbar overflow-x-auto whitespace-nowrap gap-3 pb-2 flex-grow"
+                style={{ scrollSnapType: "x mandatory" }}
+              >
+                {currentCategory.subcategories.map((sub, index) => (
+                  <motion.button
+                    key={sub.id}
+                    onClick={(e) => selectSubcategory(index, e)}
+                    className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${selectedSubcategoryIndex === index
+                        ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
+                        : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
+                      }`}
+                    style={{ scrollSnapAlign: "start" }}
+                    whileHover={{
+                      scale: 1.05,
+                      backgroundColor: "rgba(249, 115, 22, 0.2)",
+                      borderColor: "rgba(249, 115, 22, 0.5)",
+                      color: "#fb923c",
+                      y: -2,
+                    }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {sub.name}
-                  </motion.span>
-                </motion.button>
-              ))}
+                    <motion.span
+                      whileHover={{ fontWeight: 600 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {sub.name}
+                    </motion.span>
+                  </motion.button>
+                ))}
+              </div>
+
+              <motion.button
+                onClick={scrollSubcategoryRight}
+                className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-lg flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="w-5 h-5 text-white" />
+              </motion.button>
             </div>
           </motion.div>
 
