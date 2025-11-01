@@ -503,7 +503,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
             {onNext && (
               <button
                 onClick={whenClickNext}
-                disabled={!canProceed}
+                disabled={!canProceed || getLoading}
                 className={`px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl transition-all font-medium shadow-lg text-sm sm:text-base ${canProceed
                   ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
