@@ -5,6 +5,7 @@ import { useGlobalContext } from "@/context/ScreenProvider"
 import Cookies from "js-cookie"
 import { submitProductsToAPI } from "@/services/regitsration"
 import { get_product_by_user_id } from "@/services/user"
+import { useToast } from "@/context/ToastProvider"
 
 
 const getUserRoleFromCookies = (): "vendor" | "buyer" => {
@@ -53,6 +54,7 @@ export default function ComprehensiveProductSelection({
   onPrev,
 }: ComprehensiveProductSelectionProps) {
   const topRef = useRef<HTMLDivElement>(null)
+  const { showToast } = useToast()
   const { is4K } = useGlobalContext()
   const [userRole, setUserRole] = useState<string | null>(null)
   const [selectedCategories, setSelectedCategories] = useState<string[]>(data?.categories ?? [])
@@ -154,6 +156,7 @@ export default function ComprehensiveProductSelection({
       Cookies.set("registration_step", step.toString())
       onNext()
     } catch (error: any) {
+      showToast(error?.response?.data?.detail || "Error submitting product data. Please try again.");
       console.error("Error submitting product data:", error)
     } finally {
       setIsSubmitting(false)

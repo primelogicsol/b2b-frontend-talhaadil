@@ -44,8 +44,10 @@ export const submitDocumentToAPI = async (body: any) => {
       body: uploadForm,
     });
 
-    if (!uploadRes.ok) throw new Error("File upload failed");
-
+    if (!uploadRes.ok) {
+      const errData = await uploadRes.json().catch(() => ({}));
+      throw new Error(errData?.detail || "File upload failed");
+    }
     const { url } = await uploadRes.json();
     fileUrl = url;
     formData.append("file_url", fileUrl);
@@ -110,7 +112,6 @@ export const getDocumentProgress = () => {
 };
 
 export const reuploadDocument = (body: FormData) => {
-
   return api.post(`/user/reupload`, body, {
     headers: {
       requiresAuth: true,

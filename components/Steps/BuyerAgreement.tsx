@@ -8,6 +8,7 @@ import { sendAgreement, getUserInfo } from "@/services/regitsration"
 import { partnershipAgreements } from "@/lib/partnership-agreement"
 import Cookies from "js-cookie"
 import { getUserRegistrationSelected } from "@/services/user"
+import { useToast } from "@/context/ToastProvider"
 
 export interface FormData {
   businessName: string
@@ -54,11 +55,12 @@ const partnershipTypeMapping: { [key: string]: string } = {
 
 export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: BuyerAgreementProps) {
   const { is4K } = useGlobalContext()
+  const { showToast } = useToast()
   const [currentStep, setCurrentStep] = useState(1)
   const [partnershipData, setPartnershipData] = useState<any>(null)
   const [partnershipTitle, setPartnershipTitle] = useState<string>("Drop Shipping Buyer Partnership Agreement")
-  const [loading,setLoading] = useState(false)
-  const isVendor = Cookies.get("user_role") == "vendor" 
+  const [loading, setLoading] = useState(false)
+  const isVendor = Cookies.get("user_role") == "vendor"
   const [formData, setFormData] = useState<FormData>({
     businessName: data?.businessName || "",
     businessType: data?.businessType || "",
@@ -77,10 +79,10 @@ export default function BuyerAgreement({ data, onUpdate, onNext, onPrev }: Buyer
   })
 
   useEffect(() => {
-    
+
     const loadPartnershipData = async () => {
       try {
-        
+
         const response = await getUserRegistrationSelected();
         const partnershipType = response.data.registration_selected[response.data.registration_selected.length - 1].toLowerCase() || "drop_shipping"
         let selectedPartnership = partnershipAgreements.find((agreement) => {
@@ -405,45 +407,59 @@ This agreement is governed under U.S. law and is legally binding under federal a
 
     return pdfBlob
   }
-
   const handleGenerateAndUpload = async () => {
-    setLoading(true)
-    const pdfBlob = generatePDF()
-    const uniqueName = `MyAgreement_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.pdf`
+    try {
+      setLoading(true);
 
-    const formData = new FormData()
-    formData.append("file", pdfBlob, uniqueName)
-    formData.append("name", uniqueName)
+      const pdfBlob = generatePDF();
+      const uniqueName = `MyAgreement_${Date.now()}_${Math.random()
+        .toString(36)
+        .substring(2, 8)}.pdf`;
 
-    const res = await fetch("/api/upload-agreement", {
-      method: "POST",
-      body: formData,
-    })
+      const formData = new FormData();
+      formData.append("file", pdfBlob, uniqueName);
+      formData.append("name", uniqueName);
 
-    const data = await res.json()
+      const res = await fetch("/api/upload-agreement", {
+        method: "POST",
+        body: formData,
+      });
 
-    // Open PDF in a new tab
-    console.log(data)
-    if (res.ok) {
-      console.log("Upload successful:", data)
-      const response = await sendAgreement({
-        agreement_signed: true,
-        agreement_url: data.url,
-      })
-      // Create object URL
+      const data = await res.json();
 
-      // Open PDF in a new tab
-      let step = parseInt(Cookies.get("registration_step") || "0", 10)
-      step += 1
-      Cookies.set("registration_step", step.toString())
-      console.log(response)
-      return data.url
-    } else {
-      console.log(data.error)
-      console.error("Upload failed:", data.error)
+      console.log(data);
+
+      if (res.ok) {
+        try {
+          const response = await sendAgreement({
+            agreement_signed: true,
+            agreement_url: data.url,
+          });
+
+          let step = parseInt(Cookies.get("registration_step") || "0", 10);
+          step += 1;
+          Cookies.set("registration_step", step.toString());
+
+          console.log(response);
+          return data.url;
+        } catch (error: any) {
+          showToast(
+            error?.response?.data?.detail ||
+            "Error submitting agreement. Please try again."
+          );
+        }
+      } else {
+        showToast(data.error || "File upload failed");
+        console.error("Upload failed:", data.error);
+      }
+    } catch (error: any) {
+      console.error("Unexpected error:", error);
+      showToast(error.message || "Unexpected error occurred.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false)
-  }
+  };
+
 
   const handleNext = () => {
     if (currentStep < 4 && canProceedToNext()) {
@@ -853,7 +869,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
 
         <div className="flex justify-between items-center">
           <button
-          onClick={handlePrev}
+            onClick={handlePrev}
             className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} text-[var(--primary-color)] rounded-xl border border-[var(--primary-color)] transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95`}
           >
             <span className="inline">←</span>

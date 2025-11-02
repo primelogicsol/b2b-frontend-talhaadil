@@ -388,7 +388,7 @@ export default function BusinessInformation({
           onNext();
         }, 4000);
       } else {
-        showToast("Network error. Please try again.");
+        showToast(errorMsg || "Error submitting information. Please try again.");
       }
 
       console.error("Network Error:", error);

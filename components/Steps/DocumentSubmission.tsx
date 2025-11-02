@@ -17,6 +17,7 @@ import { useGlobalContext } from "../../context/ScreenProvider";
 import { submitDocumentToAPI } from "@/services/regitsration";
 import { getDocumentProgress } from "@/services/regitsration"; // Import the API function
 import Cookies from "js-cookie";
+import { useToast } from "@/context/ToastProvider";
 
 const fixStep = 4; // Define fixStep as 4
 
@@ -210,6 +211,7 @@ export default function DocumentSubmission({
 }: DocumentSubmissionProps) {
 
   const [userRole, setUserRole] = useState<string>("vendor");
+  const { showToast } = useToast();
   const [documentTypes, setDocumentTypes] = useState(getDocumentTypes("vendor"));
   const currentStep = parseInt(Cookies.get("registration_step") || "0", 10); // Get currentStep from cookies
   console.log("Current Step:", currentStep);
@@ -319,7 +321,7 @@ export default function DocumentSubmission({
       });
 
     if (!allRequired) {
-      alert("Please upload all required documents before proceeding.");
+      showToast("Please upload all required documents before proceeding.");
       return;
     }
 
@@ -360,6 +362,7 @@ export default function DocumentSubmission({
       Cookies.set("registration_step", step.toString());
       onNext();
     } catch (error: any) {
+      showToast(error?.response?.data?.detail || "Error submitting documents. Please try again.");
       console.error("Error submitting documents:", error);
     } finally {
       setIsSubmitting(false);

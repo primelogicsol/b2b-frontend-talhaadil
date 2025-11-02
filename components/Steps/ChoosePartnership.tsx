@@ -353,7 +353,7 @@ export default function ChoosePartnership({
           onNext();
         }, 4000);
       } else {
-        showToast("Network error. Please try again.");
+        showToast(errorMsg || "Error submitting partnership selection. Please try again.");
       }
       console.error("Error submitting partnership selection:", error);
       throw error;

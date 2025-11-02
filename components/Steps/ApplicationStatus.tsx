@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { getRejectedUser, getUserRegistrationSelected, postFirst } from "@/services/user"
 import Cookies from "js-cookie"
 import { get } from "http"
-
+import { useToast } from "@/context/ToastProvider"
 interface Document {
   id: number
   document_type: string
@@ -36,7 +36,8 @@ interface ApplicationStatusProps {
 }
 
 export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusProps) {
-  const [getLoading,setGetLoading] = useState(false)
+  const { showToast } = useToast()
+  const [getLoading, setGetLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(2)
   const [documents, setDocuments] = useState<Document[]>([])
   const [adminStatus, setAdminStatus] = useState<"PENDING" | "APPROVED" | "REJECTED">("PENDING")
@@ -134,7 +135,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         Cookies.set("registration_step", "0");
 
         window.location.href = '/'
-          setGetLoading(false)
+        setGetLoading(false)
 
         return
       }
@@ -182,6 +183,7 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
       const response = await reuploadDocument(formData)
 
       if (response.status < 200 || response.status >= 300) {
+        showToast("Failed to reupload document")
         throw new Error("Failed to reupload document")
       }
 
@@ -198,9 +200,10 @@ export default function ApplicationStatus({ onNext, onPrev }: ApplicationStatusP
         )
       )
       setFailedDocs((prev) => prev.filter((doc) => doc.id !== docId))
-    } catch (err) {
+    } catch (err: any) {
+      showToast("Error submitting Document. Please try again.");
       setError("Failed to reupload document. Please try again.")
-      console.error(err)
+
     } finally {
       setUploadingDocs((prev) => {
         const newSet = new Set(prev)
