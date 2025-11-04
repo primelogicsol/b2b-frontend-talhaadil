@@ -1,5 +1,5 @@
 export const consignmentPageData = {
-  pricingName : "consignment",
+  pricingName: "consignment",
   name: "consignment",
   hero: {
     headline:
@@ -13,7 +13,7 @@ export const consignmentPageData = {
     ],
   },
   whyDropshipping: {
-    link : "/videos/wholesale.mp4",
+    link: "/videos/wholesale.mp4",
     heading: "Fixing the Retail Access Problem in Craft Trade",
     problems: [
       "Buyers hesitant to invest upfront in unfamiliar crafts.",
@@ -225,64 +225,64 @@ export const consignmentPageData = {
     ],
     range: "Range: $50–$250",
   },
-technology: {
-  heading: "Consignment & Inventory Systems",
-  description:
-    "De Koshur Crafts offers advanced systems for seamless vendor relations, automated workflows, and intelligent stock management.",
-  features: [
-    {
-      icon: "ListChecks",
-      title: "Inventory Reconciliation",
-      description:
-        "Track SKUs in real time, automate sales matching, and provide clear vendor reporting tools.",
-    },
-    {
-      icon: "DollarSign",
-      title: "Revenue Sharing",
-      description:
-        "Split payments instantly, manage commission payouts, and track platform-vendor earnings.",
-    },
-    {
-      icon: "FileSignature",
-      title: "Contract Management",
-      description:
-        "Digitize agreements, automate renewals, and monitor compliance with consignor policies.",
-    },
-    {
-      icon: "Lock",
-      title: "Ownership Tracking",
-      description:
-        "Use blockchain to verify item ownership and ensure transfer only after confirmed sales.",
-    },
-    {
-      icon: "Activity",
-      title: "Stock Forecasting",
-      description:
-        "Predict demand with AI, flag unsold inventory, and optimize future restocking cycles.",
-    },
-    {
-      icon: "MapPin",
-      title: "Location Sync",
-      description:
-        "Unify POS data and maintain centralized stock visibility across all retail points.",
-    },
-    {
-      icon: "Repeat",
-      title: "Reverse Logistics",
-      description:
-        "Automate returns, reclaim inventory, and streamline redistribution of unsold items.",
-    },
-    {
-      icon: "BarChart2",
-      title: "Performance Analytics",
-      description:
-        "Track sales KPIs, analyze SKU-level profits, and evaluate vendor performance trends.",
-    },
-  ],
-  support:
-    "Backed by Prime Logic Solutions, ensuring constant upgrades, reliable support, and effortless integration.",
-}
-,  platformAdvantage: {
+  technology: {
+    heading: "Consignment & Inventory Systems",
+    description:
+      "De Koshur Crafts offers advanced systems for seamless vendor relations, automated workflows, and intelligent stock management.",
+    features: [
+      {
+        icon: "ListChecks",
+        title: "Inventory Reconciliation",
+        description:
+          "Track SKUs in real time, automate sales matching, and provide clear vendor reporting tools.",
+      },
+      {
+        icon: "DollarSign",
+        title: "Revenue Sharing",
+        description:
+          "Split payments instantly, manage commission payouts, and track platform-vendor earnings.",
+      },
+      {
+        icon: "FileSignature",
+        title: "Contract Management",
+        description:
+          "Digitize agreements, automate renewals, and monitor compliance with consignor policies.",
+      },
+      {
+        icon: "Lock",
+        title: "Ownership Tracking",
+        description:
+          "Use blockchain to verify item ownership and ensure transfer only after confirmed sales.",
+      },
+      {
+        icon: "Activity",
+        title: "Stock Forecasting",
+        description:
+          "Predict demand with AI, flag unsold inventory, and optimize future restocking cycles.",
+      },
+      {
+        icon: "MapPin",
+        title: "Location Sync",
+        description:
+          "Unify POS data and maintain centralized stock visibility across all retail points.",
+      },
+      {
+        icon: "Repeat",
+        title: "Reverse Logistics",
+        description:
+          "Automate returns, reclaim inventory, and streamline redistribution of unsold items.",
+      },
+      {
+        icon: "BarChart2",
+        title: "Performance Analytics",
+        description:
+          "Track sales KPIs, analyze SKU-level profits, and evaluate vendor performance trends.",
+      },
+    ],
+    support:
+      "Backed by Prime Logic Solutions, ensuring constant upgrades, reliable support, and effortless integration.",
+  },
+  platformAdvantage: {
     heading: "Our Platform Advantage",
     description:
       "Enabling Kashmiri handicrafts to enter U.S. retail stores via a consignment-based model that preserves artisan ownership while increasing visibility and sales opportunities.",
@@ -356,52 +356,52 @@ technology: {
     },
   ],
   apiIntegration: {
-    heading: "Already Selling Wholesale? Accelerate With Us.",
+    heading: "Already Selling Retail? Integrate Consignment Seamlessly.",
     description:
-      "Automate POs, pricing, compliance, logistics, analytics—globally, at scale.",
+      "Digitize retail consignment operations with De Koshur Crafts USA — connecting vendors, consignors, and stores through one transparent platform.",
     features: [
       {
-        icon: "PlugZap",
-        title: "EDI & ERP Connectors",
+        icon: "FileText",
+        title: "Contract Automation",
         description:
-          "POs, ASNs, invoices, acknowledgments—rapid distributor and retailer onboarding.",
-      },
-      {
-        icon: "Tag",
-        title: "Pricing & Trade Terms",
-        description:
-          "Volume tiers, MOQs, rebates, and contract compliance automatically enforced.",
-      },
-      {
-        icon: "Layers",
-        title: "Catalog & PIM Syndication",
-        description:
-          "Publish SKUs, attributes, media, certifications to retailer portals seamlessly.",
+          "Digital agreements manage commission splits, payouts, and renewals with full transparency.",
       },
       {
         icon: "Package",
-        title: "Order Orchestration",
+        title: "Inventory Sync & Tracking",
         description:
-          "Consolidation, allocations, backorders, multi-warehouse routing with live visibility.",
+          "Live SKU updates, stock visibility, and reconciliation across multiple retail store locations.",
       },
       {
-        icon: "ShieldCheck",
-        title: "Compliance & Chargebacks",
+        icon: "CreditCard",
+        title: "Payment Assurance",
         description:
-          "GS1/UCC labels, routing guides, OTIF tracking—prevent costly penalties.",
+          "Automated settlements confirm payouts instantly, removing manual work and payment delays.",
       },
       {
         icon: "BarChart3",
         title: "Performance Analytics",
         description:
-          "Fill rate, lead times, margins, SKU productivity—actionable executive dashboards.",
+          "Interactive dashboards show KPIs, turnover ratios, and stock efficiency for better insight.",
+      },
+      {
+        icon: "PlugZap",
+        title: "API & ERP Connectors",
+        description:
+          "Seamless POS, Shopify, and ERP plug-ins keep consignment data synced across all systems.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Ownership Verification",
+        description:
+          "Blockchain validation secures ownership records until items are sold, protecting all parties.",
       },
     ],
     support: {
       title:
         "Prime Logic Solutions USA (Subsidiary Software House of De Koshur Crafts USA)",
       description:
-        "Wholesale Integration Assurance: EDI onboarding, PIM setup, GS1/UCC labeling—sandbox, SDKs, SLAs.",
+        "Retail Integration Assurance: POS onboarding, API connectors, inventory mapping, blockchain verification — with sandbox environments, SDKs, and SLAs.",
       note: "API documentation and sandbox available for partners.",
     },
   },

@@ -253,7 +253,7 @@ export default function LandingPage() {
     {
       icon: "Users",
       title: "Collaborative",
-      desc: "We build networks, share resources, and create business growth.",
+      desc: "We build networks, share resources, and drive growth.",
       link: "/collaborative",
     },
     {

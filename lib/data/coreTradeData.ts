@@ -12,17 +12,18 @@ export const coreTradeData = {
       desc: "We manage stock efficiently, ensuring transparent sales and reliable returns.",
       link: "/core-trade/consignment",
     },
-    {
-      icon: "Globe",
-      title: "Import",
-      desc: "We handle international trade with compliance, speed, and trusted logistics.",
-      link: "/core-trade/import-export",
-    },
+   
     {
       icon: "Store",
       title: "Wholesale",
       desc: "We supply products in bulk with consistent quality and competitive pricing.",
       link: "/core-trade/wholesale&distribution",
+    },
+     {
+      icon: "Globe",
+      title: "Import",
+      desc: "We handle international trade with compliance, speed, and trusted logistics.",
+      link: "/core-trade/import-export",
     },
   ],
   tier: 1,

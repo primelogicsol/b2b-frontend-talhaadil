@@ -443,7 +443,7 @@ export function Navbar() {
         subItems: [
           { label: "Drop Shipping", href: "/core-trade/dropshipping-ecommerce" },
           { label: "Consignment", href: "/core-trade/consignment" },
-          { label: "Distribution", href: "/core-trade/wholesale&distribution" },
+          { label: "Wholesale", href: "/core-trade/wholesale&distribution" },
           { label: "Export", href: "/core-trade/import-export" },
         ],
       },

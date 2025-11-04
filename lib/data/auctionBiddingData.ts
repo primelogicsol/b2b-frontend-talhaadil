@@ -1,5 +1,5 @@
 export const auctionBiddingData = {
-  pricingName : "auction",
+  pricingName: "auction",
   name: "auction",
   hero: {
     headline:
@@ -70,7 +70,7 @@ export const auctionBiddingData = {
       "Backed by Prime Logic Solutions, ensuring fast bidding, verified participants, and secure auction settlements.",
   },
   whyDropshipping: {
-    link : "/videos/bidding.mp4",
+    link: "/videos/bidding.mp4",
     heading: "Fixing the Auction Gap in Global Craft Trade",
     problems: [
       "Vendors face inconsistent pricing and exploitation by intermediaries.",
@@ -90,80 +90,81 @@ export const auctionBiddingData = {
     features: [
       {
         icon: "Gavel",
-        title: "Organizer Platform",
+        title: "Auction Platform",
         description:
-          "Runs online auction systems with live bidding and digital catalogs.",
+          "Runs live and timed auctions with smart bidding engines, catalog tools, and secure settlements.",
       },
       {
-        icon: "Globe",
+        icon: "Users",
         title: "Organizer Access",
         description:
-          "Connects collectors, buyers, and vendors globally in real time.",
+          "Connects verified curators, collectors, and vendors globally through live interactive dashboards.",
       },
       {
-        icon: "Shield",
+        icon: "ShieldCheck",
         title: "Organizer Standards",
         description:
-          "Verifies authenticity through GI tags, blockchain, and KHCRF checks.",
+          "Authenticity verified via GI tags, blockchain records, KHCRF provenance, and curator audits.",
       },
       {
-        icon: "FileText",
-        title: "Organizer Transparency",
+        icon: "Eye",
+        title: "Auction Transparency",
         description:
-          "Publishes live bid logs ensuring fairness, integrity, and trust.",
+          "Publishes bid histories and valuations in real time, ensuring fairness, trust, and accountability.",
       },
       {
         icon: "Megaphone",
-        title: "Organizer Promotion",
+        title: "Auction Promotion",
         description:
-          "Markets events via online campaigns, newsletters, and collector networks.",
+          "Markets events through campaigns, collector newsletters, and global cultural collaborations.",
       },
       {
         icon: "TrendingUp",
         title: "Organizer Growth",
         description:
-          "Scales platform through seasonal, themed, and global auction events.",
+          "Expands events through seasonal, thematic curation aligned with exhibitions and festivals.",
       },
       {
         icon: "Store",
-        title: "Exhibitor Access",
+        title: "Artisan Access",
         description:
-          "Showcases rare crafts digitally to buyers worldwide instantly.",
+          "Lists handcrafted artifacts for verified buyers across curated auction categories worldwide.",
       },
       {
         icon: "Award",
-        title: "Exhibitor Recognition",
+        title: "Artisan Recognition",
         description:
-          "Gains prestige from verified online auction listings and successful sales.",
+          "Grants 'Heritage Seller' status to top artisans achieving excellence in verified auction events.",
       },
       {
         icon: "DollarSign",
-        title: "Exhibitor Revenue",
+        title: "Artisan Revenue",
         description:
-          "Achieves premium margins through competitive online global bidding.",
+          "Boosts margins through competitive bidding and multi-currency settlement infrastructure.",
       },
       {
-        icon: "CheckCircle",
-        title: "Exhibitor Compliance",
+        icon: "FileText",
+        title: "Compliance",
         description:
-          "Adheres to online platform rules for provenance, authenticity, sustainability.",
+          "Follows KHCRF standards for origin proof, ethical sourcing, and sustainability compliance.",
       },
       {
         icon: "Lock",
-        title: "Exhibitor Security",
+        title: "Asset Security",
         description:
-          "Crafts digitally documented, insured, and securely managed post-sale.",
+          "Digitally documents, insures, and tracks post-sale ownership transfers for full authenticity.",
       },
       {
         icon: "ArrowUpRight",
-        title: "Exhibitor Pathway",
+        title: "Growth Pathway",
         description:
-          "Online auctions accelerate entry into luxury retail and export.",
+          "Successful auctions qualify artisans for White Label, Royal Collection, or Heritage tiers.",
       },
     ],
     exclusivity:
-      "Exclusively for Kashmiri handmade crafts — no mass production, no intermediaries.",
+      "Exclusively for certified Kashmiri handmade crafts — no replicas, no intermediaries.",
   },
+
   capabilities: {
     heading: "Premium Heritage Auction Gateway",
     subheading:
