@@ -67,12 +67,20 @@ function CircularProgress({ number, maxNumber, title, isInView, is4K }: Circular
     <div className={`flex flex-col items-center justify-center ${is4K ? "p-10" : "p-6"}`}>
       <div className={`relative ${is4K ? "w-48 h-48" : "w-32 h-32"} mb-4`}>
         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="45" stroke="#f9c6b2" strokeWidth="4" fill="none" className="opacity-30" />
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="var(--secondary-light-color)"
+            strokeWidth="4"
+            fill="none"
+            className="opacity-30"
+          />
           <motion.circle
             cx="50"
             cy="50"
             r="45"
-            stroke="#d85834"
+            stroke="var(--secondary-color)"
             strokeWidth="4"
             fill="none"
             strokeLinecap="round"
@@ -84,7 +92,7 @@ function CircularProgress({ number, maxNumber, title, isInView, is4K }: Circular
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.span
-            className={`${is4K ? "text-4xl" : "text-2xl"} font-bold text-[#1b4f68]`}
+            className={`${is4K ? "text-4xl" : "text-2xl"} font-bold text-[var(--secondary-color)]`}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.5 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -94,7 +102,9 @@ function CircularProgress({ number, maxNumber, title, isInView, is4K }: Circular
         </div>
       </div>
       <h3
-        className={`text-center ${is4K ? "text-base" : "text-sm"} font-semibold text-[#1b4f68] ${is4K ? "max-w-48" : "max-w-32"}`}
+        className={`text-center ${is4K ? "text-base" : "text-sm"} font-semibold text-[var(--secondary-light-color)] ${
+          is4K ? "max-w-48" : "max-w-32"
+        }`}
       >
         {title}
       </h3>
@@ -172,7 +182,7 @@ export default function Counter({ slides }: CounterProps) {
           disabled={!canGoPrev}
           className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full transition-all duration-200 ${
             canGoPrev
-              ? "bg-[#1b4f68] hover:bg-[#2a5f7a] text-white shadow-lg"
+              ? "bg-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)] text-white shadow-lg"
               : "bg-gray-200 text-gray-400 cursor-not-allowed"
           }`}
         >
@@ -184,7 +194,7 @@ export default function Counter({ slides }: CounterProps) {
           disabled={!canGoNext}
           className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full transition-all duration-200 ${
             canGoNext
-              ? "bg-[#1b4f68] hover:bg-[#2a5f7a] text-white shadow-lg"
+              ? "bg-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)] text-white shadow-lg"
               : "bg-gray-200 text-gray-400 cursor-not-allowed"
           }`}
         >
@@ -212,8 +222,8 @@ export default function Counter({ slides }: CounterProps) {
               onClick={() => setCurrentIndex(index * slidesToShow)}
               className={`w-3 h-3 rounded-full transition-all duration-200 ${
                 Math.floor(currentIndex / slidesToShow) === index
-                  ? "bg-[#d85834] scale-110"
-                  : "bg-[#f9c6b2] hover:bg-[#d85834]"
+                  ? "bg-[var(--secondary-color)] scale-110"
+                  : "bg-[var(--secondary-light-color)] hover:bg-[var(--secondary-color)]"
               } ${is4K ? "w-4 h-4" : ""}`}
             />
           ))}

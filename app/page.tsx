@@ -322,7 +322,7 @@ export default function LandingPage() {
             {partnershipCategories.map((category, index) => (
               <motion.div
                 key={index}
-                className={`bg-gray-800 ${is4K ? "p-14" : "p-8"
+                className={`bg-[var(--secondary-color)] ${is4K ? "p-14" : "p-8"
                   } rounded-lg border border-gray-700 hover:border-[var(--secondary-color)] transition-all duration-300`}
                 whileHover={{ scale: 1.02 }}
               >
@@ -334,7 +334,7 @@ export default function LandingPage() {
                 </h3>
                 <p
                   className={`${is4K ? "text-xl" : "text-lg"
-                    } text-gray-300 mb-6`}
+                    } text-white mb-6`}
                 >
                   {category.summary}
                 </p>
@@ -342,11 +342,11 @@ export default function LandingPage() {
                   {category.subItems.map((item, itemIndex) => (
                     <li
                       key={itemIndex}
-                      className="flex items-center gap-3 text-gray-400"
+                      className="flex items-center gap-3 text-white"
                     >
                       <CheckCircle
                         size={is4K ? 28 : 20}
-                        className="text-[var(--secondary-color)] flex-shrink-0"
+                        className="text-[var(--white)] flex-shrink-0"
                       />
                       <Link
                         href={item.href}
@@ -361,7 +361,7 @@ export default function LandingPage() {
                 <Link
                   href={category.href}
                   className={`inline-flex items-center gap-2 ${is4K ? "px-8 py-4 text-xl" : "px-6 py-3 text-lg"
-                    } bg-[var(--secondary-color)] text-white rounded-lg font-semibold hover:bg-[var(--secondary-hover-color)] transition-colors duration-300`}
+                    } bg-[var(--primary-color)] text-white rounded-lg font-semibold hover:bg-[var(--primary-hover-color)] transition-colors duration-300`}
                 >
                   Read More
                   <ArrowRight size={is4K ? 28 : 20} />

@@ -22,7 +22,7 @@ export default function MainPageCards() {
         "Limited international access for Kashmiri artisans, restricting visibility.",
       benefit:
         "De Koshur Crafts empowers global visibility through e-commerce, exhibitions, and retail spaces, connecting artisans to U.S. buyers.",
-      color: "text-blue-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Truck,
@@ -31,7 +31,7 @@ export default function MainPageCards() {
         "Small businesses struggle with logistics, warehousing, and customs navigation.",
       benefit:
         "De Koshur Crafts handles logistics, ensuring seamless global access for U.S. buyers while artisans focus on craftsmanship.",
-      color: "text-green-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Shield,
@@ -40,7 +40,7 @@ export default function MainPageCards() {
         "Difficulty in meeting global compliance standards for fair trade and sustainability.",
       benefit:
         "De Koshur Crafts ensures products align with global standards, ensuring ethical sourcing and credibility.",
-      color: "text-emerald-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: DollarSign,
@@ -49,7 +49,7 @@ export default function MainPageCards() {
         "High upfront costs for international marketing and distribution.",
       benefit:
         "De Koshur Crafts offers flexible models like consignment, reducing risks and maximizing global exposure for buyers.",
-      color: "text-yellow-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Megaphone,
@@ -58,7 +58,7 @@ export default function MainPageCards() {
         "Difficulty in establishing brand recognition in global markets.",
       benefit:
         "De Koshur Crafts provides professional branding, marketing platforms, and event promotions to boost product visibility.",
-      color: "text-purple-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Award,
@@ -67,7 +67,7 @@ export default function MainPageCards() {
         "Difficulty in meeting global quality standards and packaging requirements.",
       benefit:
         "De Koshur Crafts offers quality tools, expert photography, and eco-friendly packaging, empowering buyers to compete globally.",
-      color: "text-indigo-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Network,
@@ -76,7 +76,7 @@ export default function MainPageCards() {
         "Limited access to essential industry networks and high-value international buyers.",
       benefit:
         "De Koshur Crafts connects buyers to industry networks, opening doors to critical markets and new opportunities.",
-      color: "text-pink-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Recycle,
@@ -84,7 +84,7 @@ export default function MainPageCards() {
       challenge: "Seasonal demand and limited market diversification.",
       benefit:
         "De Koshur Crafts offers diverse business models, from e-commerce to franchises, ensuring long-term sustainability for buyers.",
-      color: "text-teal-600",
+      color: "text-[var(--secondary-color)]",
     },
     {
       icon: Lock,
@@ -92,21 +92,14 @@ export default function MainPageCards() {
       challenge: "Risk of counterfeit goods and misrepresentation.",
       benefit:
         "De Koshur Crafts safeguards authenticity with blockchain verification, ensuring only genuine products reach global customers.",
-      color: "text-red-600",
+      color: "text-[var(--secondary-color)]",
     },
   ];
 
   return (
     <div
       className="p-3 sm:p-4 md:p-6 lg:p-8 mt-4 bg-gradient-to-br from-slate-200 to-slate-100"
-      style={
-        {
-          "--primary-color": "#1b4f68",
-          "--primary-hover-color": "#2a5f7a",
-          "--secondary-color": "#d85834",
-          "--secondary-light-color": "#f9c6b2",
-        } as React.CSSProperties
-      }
+     
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -140,7 +133,7 @@ export default function MainPageCards() {
                         className={`w-5 h-5 sm:w-6 sm:h-6 ${solution.color}`}
                       />
                     </div>
-                    <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--primary-color)] leading-tight">
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--secondary-color)] leading-tight">
                       {solution.title}
                     </h2>
                   </div>
@@ -156,7 +149,7 @@ export default function MainPageCards() {
                         Challenge
                       </span>
                     </div>
-                    <div className="pl-5 sm:pl-6 border-l-2 border-[var(--secondary-light-color)]">
+                    <div className="pl-5 sm:pl-6 border-l-2 border-[var(--secondary-color)]">
                       <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                         {solution.challenge}
                       </p>

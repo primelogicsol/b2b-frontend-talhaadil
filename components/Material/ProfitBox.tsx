@@ -1145,14 +1145,7 @@ export default function KashmirCraftsCarousel() {
       ref={containerRef}
       className={`${is4K ? "py-30" : ""
         } bg-gradient-to-br from-slate-900 via-[var(--primary-hover-color)] to-slate-900 relative overflow-hidden`}
-      style={
-        {
-          "--primary-hover-color": "#2a5f7a",
-          "--primary-color": "#1b4f68",
-          "--secondary-color": "#d85834",
-          "--secondary-light-color": "#f9c6b2",
-        } as React.CSSProperties
-      }
+     
     >
       {/* Animated Dotted Earth Background */}
       <motion.div

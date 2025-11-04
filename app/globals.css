@@ -50,18 +50,16 @@
   --border: #ecf1f5;
   --heading-font: "Outfit", sans-serif;
   --body-color-font: "DM Sans", sans-serif;
-
-  --primary-hover-color: #2a5f7a;
-  --primary-color: #0d1308;
-  --primary-light-text-color: #346880;
-  --primary-header-color: #e4e6eb;
-  --primary-dark-slate: #0f172a;
-  --primary-cyan-color: #00acc1;
-  --primary-navy-color: #0d47a1;
-
+  --primary-color: #0d1308; /* Deep moss-black – new base */
+  --primary-hover-color: #18331e; /* Slightly lighter greenish tint for hover */
+  --primary-light-text-color: #4b6b58; /* Muted green-gray for subtle accent text */
+  --primary-header-color: #e7e9e5; /* Softer off-white gray (fits the earthy tone) */
+  --primary-dark-slate: #121a12; /* Darker but same hue family – subtle depth */
+  --primary-cyan-color: #00bfa6; /* Balanced teal pop for buttons/links */
+  --primary-navy-color: #143d2b;
   --secondary-hover-color: #5b922c;
   --secondary-color: #385a1b;
-  --secondary-light-color: #f9c6b2;
+  --secondary-light-color: #5b922c;
 }
 
 @theme inline {
