@@ -12,7 +12,7 @@ function BannerWithFeatures({ data }: { data?: any[] }) {
       <VerticalHeroSlider isBanner />
       <div
         className="mt-0 flex justify-center mx-4 lg:mx-0
-             lg:mt-0 lg:absolute lg:inset-x-0 lg:-bottom-50 z-10"
+             lg:mt-0 lg:absolute lg:inset-x-0 lg:-bottom-2 z-10"
       >
         <Features data={data} />
       </div>

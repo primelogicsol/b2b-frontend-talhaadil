@@ -289,7 +289,7 @@ export default function LandingPage() {
       <ScrollSection features={scrollFeatures} />
       {/* Partnerships Section */}
       <section
-        className={`bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] text-left ${is4K ? "py-28 px-20" : "py-16 px-4"
+        className={`bg-white text-left ${is4K ? "py-28 px-20" : "py-16 px-4"
           }`}
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
@@ -307,13 +307,13 @@ export default function LandingPage() {
             />
             <h2
               className={`${is4K ? "text-6xl" : "text-3xl md:text-4xl"
-                } font-bold text-white`}
+                } font-bold text-[var(--primary-color)]`}
             >
               Tailored for Your Success
             </h2>
             <h3
               className={`${is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
-                } text-white font-semibold -mt-2`}
+                } text-[var(--primary-color)] font-semibold -mt-2`}
             >
               Buyer / Vendor Progressive Partnership Framework and Pathway
             </h3>

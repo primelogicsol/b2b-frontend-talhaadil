@@ -58,7 +58,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) =>
         onMouseLeave={() => setHovered(false)}
         style={{
           backgroundColor: hovered ? "var(--secondary-color)" : "rgb(243 244 246)",
-          borderColor: hovered ? "var(--primary-hover-color)" : "rgb(229 231 235)",
+          borderColor: hovered ? "var(--secondary-color)" : "var(--secondary-color)",
           color: hovered ? "#fff" : "#111",
         }}
       >
@@ -82,7 +82,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) =>
           {IconComponent && (
             <IconComponent
               className={`relative z-10 transition duration-500 ${
-                hovered ? "text-white" : "text-gray-900"
+                hovered ? "text-white" : "text-[var(--secondary-color)]"
               }`}
               size={24}
             />
@@ -93,7 +93,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, link }) =>
         <div className="relative z-10 px-2">
           <h6
             className={`text-base sm:text-lg font-semibold transition-colors duration-500 ${
-              hovered ? "text-white" : "text-gray-900"
+              hovered ? "text-white" : "text-[var(--primary-color)]"
             }`}
           >
             {title}

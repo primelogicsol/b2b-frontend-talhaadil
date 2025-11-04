@@ -63,17 +63,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
   return (
     <section
       className="w-full bg-white"
-      style={
-        {
-          "--primary-hover-color": "#2a5f7a",
-          "--primary-color": "#1b4f68",
-          "--primary-light-text-color": "#346880",
-          "--primary-header-color": "#e4e6eb",
-          "--secondary-hover-color": "#f48261",
-          "--secondary-color": "#d85834",
-          "--secondary-light-color": "#f9c6b2",
-        } as React.CSSProperties
-      }
+     
     >
       <div
         className={`max-w-[1600px] mx-auto ${
