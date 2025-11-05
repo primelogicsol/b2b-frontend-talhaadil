@@ -30,10 +30,10 @@ const achievements = [
 export default function Location() {
   const { is4K } = useGlobalContext()
   return (
-    <section className={`${is4K ? "py-24" : "py-6"} bg-white mt-4`}>
+    <section className={`${is4K ? "py-24" : "py-6 lg:py-16"} bg-white mt-4`}>
       <div className={`container ${is4K ? "max-w-8xl" : "max-w-6xl"} mx-auto px-4 md:px-6`}>
         <h1
-          className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-extrabold text-[var(--primary-color)] text-center mb-12 leading-tight`}
+          className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-bold text-[var(--primary-color)] text-left mb-12 leading-tight`}
         >
           Our Global Presence & Impact
         </h1>
@@ -54,7 +54,7 @@ export default function Location() {
                   <h3 className={`${is4K ? "text-xl" : "text-lg"} font-semibold text-[var(--primary-color)]`}>
                     {item.title}
                   </h3>
-                  <p className={`${is4K ? "text-base" : "text-sm"} text-[var(--secondary-light-color)]`}>
+                  <p className={`${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]`}>
                     {item.location}
                   </p>
                 </div>
@@ -73,8 +73,8 @@ export default function Location() {
             </h2>
             <ul className="space-y-4 py-1">
               {achievements.map((item, index) => (
-                <li key={index} className="flex items-start gap-3 text-[var(--secondary-color)]">
-                  <span className={`${is4K ? "text-3xl" : "text-2xl"} leading-none font-bold`}>•</span>
+                <li key={index} className="flex items-start gap-3 text-[var(--primary-color)]">
+                  <span className={`${is4K ? "text-3xl" : "text-2xl"} leading-none `}>•</span>
                   <p className={`flex-1 ${is4K ? "text-lg md:text-xl" : "text-base md:text-lg"}`}>{item}</p>
                 </li>
               ))}

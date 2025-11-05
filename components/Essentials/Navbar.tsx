@@ -428,6 +428,7 @@ export function Navbar() {
         { label: "Product", href: "/our-niche/product" },
       ],
     },
+    { label: "Our Mission", href: "/our-mission" },
     { label: "Our Values", href: "/our-values" },
     { label: "Our Team", href: "/our-team" },
     { label: "Careers", href: "/careers" },

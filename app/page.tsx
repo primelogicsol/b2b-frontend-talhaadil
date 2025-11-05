@@ -100,7 +100,7 @@ const partnershipCategories = [
       "Trade-centric partnerships including dropshipping, consignment, distribution and import / export.",
     subItems: [
       {
-        label: "Drop Shipping & E-Commerce",
+        label: "Drop Shipping ",
         href: "/core-trade/dropshipping-ecommerce",
       },
       { label: "Consignment", href: "/core-trade/consignment" },
@@ -115,7 +115,7 @@ const partnershipCategories = [
     label: "Brand Expansion",
     href: "/brand-growth",
     summary:
-      "Expand reach via exhibitions, auction & bidding , white-label, and US B=based physical brick & mortar.",
+      "Expand reach via exhibitions, auction & bidding , white-label, and US based physical brick & mortar.",
     subItems: [
       { label: "Exhibition", href: "/brand-growth/exhibition" },
       { label: "Auction & Bidding", href: "/brand-growth/auction&bidding" },
@@ -127,7 +127,7 @@ const partnershipCategories = [
     label: "Collaborative",
     href: "/collaborative",
     summary:
-      "Collaboration through packaging, desgin, media and US based warehouse.",
+      "Collaboration through packaging, desgin, media and US based warehouse dasdhh dhasjhd.",
     subItems: [
       { label: "Packaging", href: "/collaborative/packaging" },
       {
@@ -163,6 +163,15 @@ const partnershipCategories = [
 
 const whatSetsUsApartCards = [
   {
+    icon: <MapPin className="w-8 h-8" />,
+    title: "Our Mission",
+    description:
+      "Empowering innovation through expertise and excellence.",
+    buttonText: "READ MORE",
+    link: "/our-mission",
+  },
+  {
+
     icon: <Scale className="w-8 h-8" />,
     title: "Our Values",
     description:
@@ -170,6 +179,7 @@ const whatSetsUsApartCards = [
     buttonText: "READ MORE",
     link: "/our-values",
   },
+
   {
     icon: <BookOpen className="w-8 h-8" />,
     title: "Our Story",
@@ -186,14 +196,7 @@ const whatSetsUsApartCards = [
     buttonText: "READ MORE",
     link: "/business-niche",
   },
-  {
-    icon: <MapPin className="w-8 h-8" />,
-    title: "Our Team",
-    description:
-      "Skilled professionals delivering excellence and innovation together.",
-    buttonText: "READ MORE",
-    link: "/our-team",
-  },
+
 ];
 
 export default function LandingPage() {
@@ -268,7 +271,7 @@ export default function LandingPage() {
 
 
 
-  
+
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -282,7 +285,7 @@ export default function LandingPage() {
 
       {/* About Us Sections */}
       <section
-        className="px-2 pb-6 md:px-6 lg:px-8 bg-white text-center"
+        className="px-2 py-10 lg:py-26 md:px-6 lg:px-8 bg-white text-center"
       >
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
@@ -300,25 +303,35 @@ export default function LandingPage() {
             transition={{ duration: 0.2 }}
             viewport={{ once: true }}
           >
-            <img
-              src="/images/main-page-image.png"
-              alt="De Koshur Crafts Logo"
-              className={`${is4K ? "w-[300px]" : "w-120"} h-auto`}
-            />
-            <h2
-              className={`${is4K ? "text-6xl" : "text-3xl md:text-4xl"
-                } font-bold text-[var(--primary-color)]`}
-            >
-              Tailored for Your Success
-            </h2>
-            <h3
-              className={`${is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
-                } text-[var(--primary-color)] font-semibold -mt-2`}
-            >
-              Buyer / Vendor Progressive Partnership Framework and Pathway
-            </h3>
+            <div className="text-left -ml-165">
+              <h2
+                className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
+                  } font-bold text-[var(--primary-color)] text-left`}
+              >
+                De Koshur Crafts
+              </h2>
+              <h2
+                className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
+                  } font-bold text-[var(--primary-color)] text-left`}
+              >
+                Partnerships  <span className="text-[#544a48]">YOUR WAY</span>
+              </h2>
+
+              <h2
+                className={`${is4K ? "text-6xl" : "text-3xl md:text-4xl"
+                  } font-bold text-[var(--primary-color)] text-left mt-4`}
+              >
+                Tailored for Your Success
+              </h2>
+              <h3
+                className={`${is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
+                  } text-[var(--primary-color)] font-semibold text-left`}
+              >
+                Buyer / Vendor Progressive Partnership Framework and Pathway
+              </h3>
+            </div>
           </motion.div>
-          <div className={`grid md:grid-cols-2 ${is4K ? "gap-14" : "gap-8"}`}>
+          <div className={`grid md:grid-cols-4 ${is4K ? "gap-14" : "gap-6"}`}>
             {partnershipCategories.map((category, index) => (
               <motion.div
                 key={index}
@@ -374,30 +387,30 @@ export default function LandingPage() {
       </section>
       <RecSquareSection />
       <MainPageCards />
-      <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
+      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4">
         <div className="text-center mt-16 mb-6">
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
+            className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
               }`}
           >
-            Our Reach
+            Our Business Network
           </h2>
         </div>
         <div className="flex justify-center space-x-6 border-[var(--primary-color)]">
           <button
             onClick={() => setActiveTab("buyer")}
-            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${activeTab === "buyer"
-              ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
-              : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
+            className={`py-3 px-6 font-bold text-2xl focus:outline-none rounded-md ${activeTab === "vendor"
+              ? "border-[var(--primary-color)] text-[var(--primary-color)]"
+              : "bg-gray-400 text-white"
               }`}
           >
             Buyer
           </button>
           <button
             onClick={() => setActiveTab("vendor")}
-            className={`py-3 px-6 font-extrabold text-2xl focus:outline-none ${activeTab === "vendor"
-              ? "border-b-4 border-[var(--primary-color)] text-[var(--primary-color)]"
-              : "text-[var(--secondary-color)] hover:text-[var(--primary-color)]"
+            className={`py-3 px-6 font-bold text-2xl focus:outline-none rounded-md ${activeTab === "buyer"
+              ? "border-[var(--primary-color)] text-[var(--primary-color)]"
+              : "bg-gray-400 text-white"
               }`}
           >
             Vendor
@@ -407,23 +420,13 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 text-center">
             {activeTab === "buyer" && (
               <>
-                <h3
-                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""
-                    }`}
-                >
-                  DKC Buyer Network
-                </h3>
+             
                 <Counter slides={buyerslides} />
               </>
             )}
             {activeTab === "vendor" && (
               <>
-                <h3
-                  className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""
-                    }`}
-                >
-                  DKC Vendor Network
-                </h3>
+              
                 <Counter slides={vendorslides} />
               </>
             )}
@@ -442,7 +445,7 @@ export default function LandingPage() {
         }}
       >
         <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center gap-8">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
             Unlock Your Potential: Join Our Community!
           </h2>
           <p className="max-w-3xl text-lg md:text-xl lg:text-2xl opacity-90">

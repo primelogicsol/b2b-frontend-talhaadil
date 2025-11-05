@@ -64,17 +64,7 @@ export default function RecSquareSection({
           </div>
         </div>
 
-        <div className="absolute -bottom-6 right-4 md:top-1/2 md:right-4 md:-translate-y-1/2 lg:top-1/2 lg:left-[calc(100%-120px)] lg:-translate-y-1/2 
-                  p-2 bg-white rounded-2xl shadow-2xl z-20 
-                  w-[140px] h-[100px] sm:w-[180px] sm:h-[130px] md:w-[220px] md:h-[160px] lg:w-[250px] lg:h-[200px] 
-                  border border-white group">
-          <Image
-            src="/main.webp"
-            alt="Small Partnership Image"
-            fill
-            className="object-cover rounded-xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-1"
-          />
-        </div>
+       
       </div>
 
       <div className="w-full lg:w-1/2 p-4 md:p-8 lg:pl-16 mt-8 lg:mt-0 text-center lg:text-left">

@@ -98,7 +98,7 @@ export default function MainPageCards() {
 
   return (
     <div
-      className="p-3 sm:p-4 md:p-6 lg:p-8 mt-4 bg-gradient-to-br from-slate-200 to-slate-100"
+      className="px-3 sm:px-4 md:px-6 lg:px-8 mt-4 bg-gradient-to-br from-slate-200 to-slate-100  py-4 lg:py-10"
      
     >
       <div className="max-w-7xl mx-auto">
@@ -120,7 +120,7 @@ export default function MainPageCards() {
             return (
               <div
                 key={index}
-                className="group relative bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-gray-100 overflow-hidden"
+                className="group relative bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden )]"
               >
                 {/* Card Header */}
                 <div className="p-4 sm:p-5 md:p-6 pb-3 sm:pb-4">
@@ -133,7 +133,7 @@ export default function MainPageCards() {
                         className={`w-5 h-5 sm:w-6 sm:h-6 ${solution.color}`}
                       />
                     </div>
-                    <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--secondary-color)] leading-tight">
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--primary-color)] leading-tight">
                       {solution.title}
                     </h2>
                   </div>
@@ -144,8 +144,8 @@ export default function MainPageCards() {
                   {/* Challenge Section */}
                   <div className="space-y-2 sm:space-y-3">
                     <div className="flex items-center gap-2">
-                      <AlertTriangle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--secondary-color)] flex-shrink-0" />
-                      <span className="text-xs sm:text-sm font-semibold text-[var(--secondary-color)] uppercase tracking-wide">
+                      <AlertTriangle className="w-3.5 h-3.5 text-red-800 sm:w-4 sm:h-4 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm font-semibold text-red-800 uppercase tracking-wide">
                         Challenge
                       </span>
                     </div>
@@ -159,8 +159,8 @@ export default function MainPageCards() {
                   {/* Benefit Section */}
                   <div className="space-y-2 sm:space-y-3">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--primary-color)] flex-shrink-0" />
-                      <span className="text-xs sm:text-sm font-semibold text-[var(--primary-color)] uppercase tracking-wide">
+                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--secondary-color)] flex-shrink-0" />
+                      <span className="text-xs sm:text-sm font-semibold text-[var(--secondary-color)] uppercase tracking-wide">
                         Solution
                       </span>
                     </div>

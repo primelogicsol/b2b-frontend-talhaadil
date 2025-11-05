@@ -23,7 +23,7 @@ export default function StatisticsSection() {
   ]
 
   return (
-    <div className="max-w-[1580px] bg-white px-4 mx-auto">
+    <div className="max-w-[1580px] bg-white px-4 mx-auto py-0 lg:py-10">
       <div
         className="relative overflow-hidden"
         style={{
@@ -72,7 +72,7 @@ export default function StatisticsSection() {
                   {stat.percentage}
                 </div>
 
-                <div className="text-white font-semibold tracking-wider leading-snug max-w-[180px] sm:max-w-[200px] md:max-w-[220px] xl:max-w-[250px] 2xl:max-w-[280px] text-[1rem] md:text-[1.5rem] ">
+                <div className="text-white font-semibold tracking-wider leading-snug max-w-[180px] sm:max-w-[200px] md:max-w-[220px] xl:max-w-[250px] 2xl:max-w-[280px] text-[1rem] md:text-[1rem] ">
                   {stat.label}
                 </div>
 

@@ -17,7 +17,7 @@ function Homepage() {
 
       <SinglePicSection />
       <StatisticsSection />
-      <ScrollVideoSection />
+      
     </div>
   );
 }
