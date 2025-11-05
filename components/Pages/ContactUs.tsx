@@ -197,8 +197,8 @@ export default function ContactUs() {
                       <h3
                         className={
                           is4K
-                            ? "text-3xl sm:text-4xl font-bold text-[#0f172a] group-hover:text-[#1b4f68] transition-colors duration-300"
-                            : "text-xl sm:text-2xl font-bold text-[#0f172a] group-hover:text-[#1b4f68] transition-colors duration-300"
+                            ? "text-3xl sm:text-4xl font-bold text-[#0f172a] group-hover:text-[var(--secondary-color)] transition-colors duration-300"
+                            : "text-xl sm:text-2xl font-bold text-[#0f172a] group-hover:text-[var(--secondary-color)] transition-colors duration-300"
                         }
                       >
                         {section.title}
@@ -216,13 +216,13 @@ export default function ContactUs() {
                     </p>
 
                     <div className={is4K ? "space-y-4 text-sm sm:text-lg" : "space-y-3 text-[12px] sm:text-base"}>
-                      <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
+                      <div className="flex items-center text-[var(--secondary-color)] hover:text-[#2a5f7a] transition-colors duration-300">
                         <Mail className={is4K ? "w-7 h-7 mr-4" : "w-5 h-5 mr-3"} />
                         <a href={`mailto:${section.email}`} className="hover:underline break-all">
                           {section.email}
                         </a>
                       </div>
-                      <div className="flex items-center text-[#1b4f68] hover:text-[#2a5f7a] transition-colors duration-300">
+                      <div className="flex items-center text-[var(--secondary-color)] hover:text-[#2a5f7a] transition-colors duration-300">
                         <Phone className={is4K ? "w-7 h-7 mr-4" : "w-5 h-5 mr-3"} />
                         <a href={`tel:${section.phone}`} className="hover:underline">
                           {section.phone}
@@ -382,7 +382,7 @@ export default function ContactUs() {
                 : "text-2xl sm:text-3xl md:text-4xl font-bold text-[#0f172a] mb-4 sm:mb-6"
             }
           >
-            Stay <span className="text-[#d85834]">Connected</span>
+            Stay <span className="text-[var(--secondary-color)]">Connected</span>
           </h2>
           <p
             className={
@@ -406,8 +406,8 @@ export default function ContactUs() {
                   <IconComponent
                     className={
                       is4K
-                        ? "w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 sm:mb-5 text-[#1b4f68] group-hover:scale-125 transition-transform duration-300"
-                        : "w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-[#1b4f68] group-hover:scale-125 transition-transform duration-300"
+                        ? "w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 sm:mb-5 text-[var(--secondary-color)] group-hover:scale-125 transition-transform duration-300"
+                        : "w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-[var(--secondary-color)] group-hover:scale-125 transition-transform duration-300"
                     }
                   />
                   <h4
@@ -489,8 +489,8 @@ export default function ContactUs() {
                       required
                       className={
                         is4K
-                          ? "w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:border-[#1b4f68] focus:outline-none transition-colors duration-300"
-                          : "w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#1b4f68] focus:outline-none transition-colors duration-300"
+                          ? "w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:border-[var(--secondary-color)] focus:outline-none transition-colors duration-300"
+                          : "w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[var(--secondary-color)] focus:outline-none transition-colors duration-300"
                       }
                       placeholder="Enter your full name"
                     />
@@ -525,8 +525,8 @@ export default function ContactUs() {
                       required
                       className={
                         is4K
-                          ? "w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:border-[#1b4f68] focus:outline-none transition-colors duration-300"
-                          : "w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#1b4f68] focus:outline-none transition-colors duration-300"
+                          ? "w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:border-[var(--secondary-color)] focus:outline-none transition-colors duration-300"
+                          : "w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[var(--secondary-color)] focus:outline-none transition-colors duration-300"
                       }
                       placeholder="Enter your email address"
                     />

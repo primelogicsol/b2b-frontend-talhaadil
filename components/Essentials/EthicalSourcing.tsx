@@ -57,7 +57,7 @@ export default function EthicalSourcingSustainability() {
       description: "Zero waste production",
     },
   ];
-const testimonials = [
+  const testimonials = [
     {
       name: "Priya Sharma",
       location: "Kashmir, India",
@@ -126,7 +126,7 @@ const testimonials = [
       icon: Heart,
       title: "Fair Compensation",
       description:
-        "Every artisan receives a fair wage for their work, allowing them to sustain their livelihoods and reinvest in their communities.",
+        "Every artisan receives a fair, dignified wage for their work, allowing them to sustainably support their livelihoods and reinvest in their communities.",
       stat: "40% above market rate",
     },
     {
@@ -247,18 +247,16 @@ const testimonials = [
     <div className="bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section with Image Slider */}
       <section
-        className={`scroll-section relative overflow-hidden transition-all duration-1000 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        } ${is4K ? "py-32 px-24" : "py-20 px-4"}`}
+        className={`scroll-section relative overflow-hidden transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          } ${is4K ? "py-32 px-24" : "py-20 px-4"}`}
       >
         <div className="absolute inset-0">
           <div className="relative w-full h-full">
             {heroImages.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  index === currentSlide ? "opacity-20" : "opacity-0"
-                }`}
+                className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-20" : "opacity-0"
+                  }`}
               >
                 <img
                   src={image.url || "/placeholder.svg"}
@@ -271,9 +269,8 @@ const testimonials = [
           </div>
         </div>
         <div
-          className={`text-center relative z-10 mx-auto ${
-            is4K ? "max-w-[1800px]" : "max-w-6xl"
-          }`}
+          className={`text-center relative z-10 mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"
+            }`}
         >
           <div className="inline-flex items-center gap-2 bg-[var(--secondary-light-color)] text-[var(--secondary-color)] px-6 py-2 rounded-full text-sm font-medium mb-6 hover:scale-105 transition-transform duration-300">
             <Leaf className="w-4 h-4" />
@@ -303,65 +300,62 @@ const testimonials = [
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
                     ? "bg-[var(--secondary-hover-color)] scale-125"
                     : "bg-white bg-opacity-50"
-                }`}
+                  }`}
               />
             ))}
           </div>
         </div>
       </section>
 
-{/* Sustainability Stats Slider */}
-<section
-  className={`scroll-section text-[var(--primary-hover-color)] ${
-    is4K ? "py-24 px-20" : "py-16 px-4"
-  }`}
->
-  <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
-    <div className="text-center mb-12">
-      <h2
-        className={`font-bold mb-4 ${
-          is4K ? "text-5xl" : "text-3xl md:text-4xl"
-        }`}
+      {/* Sustainability Stats Slider */}
+      <section
+        className={`scroll-section text-[var(--primary-hover-color)] ${is4K ? "py-24 px-20" : "py-16 px-4"
+          }`}
       >
-        Our <span className="text-[var(--secondary-color)]">Impact</span>{" "}
-        in Numbers
-      </h2>
-    </div>
-    <div className="grid md:grid-cols-4 gap-8">
-      {sustainabilityStats.map((stat, index) => {
-        const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-
-        return (
-          <div
-            ref={ref}
-            key={index}
-            className="group bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-light-text-color)] rounded-2xl p-8 text-center hover:scale-105 transition-all duration-500 hover:shadow-2xl"
-            style={{ animationDelay: `${index * 0.2}s` }}
-          >
-            <div className="bg-[var(--secondary-hover-color)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
-              <stat.icon className="w-8 h-8 text-white" />
-            </div>
-            <div className="text-4xl font-bold text-[var(--secondary-hover-color)] mb-2">
-              {inView ? (
-                <CountUp end={stat.value} duration={2} separator="," />
-              ) : (
-                0
-              )}
-            </div>
-            <div className="text-sm text-gray-200 mb-1">{stat.unit}</div>
-            <div className="text-lg font-semibold text-gray-200">
-              {stat.label}
-            </div>
+        <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
+          <div className="text-center mb-12">
+            <h2
+              className={`font-bold mb-4 ${is4K ? "text-5xl" : "text-3xl md:text-4xl"
+                }`}
+            >
+              Our <span className="text-[var(--secondary-color)]">Impact</span>{" "}
+              in Numbers
+            </h2>
           </div>
-        );
-      })}
-    </div>
-  </div>
-</section>
+          <div className="grid md:grid-cols-4 gap-8">
+            {sustainabilityStats.map((stat, index) => {
+              const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
+              return (
+                <div
+                  ref={ref}
+                  key={index}
+                  className="group bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-light-text-color)] rounded-2xl p-8 text-center hover:scale-105 transition-all duration-500 hover:shadow-2xl"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <div className="bg-[var(--secondary-hover-color)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+                    <stat.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-4xl font-bold text-[var(--secondary-hover-color)] mb-2">
+                    {inView ? (
+                      <CountUp end={stat.value} duration={2} separator="," />
+                    ) : (
+                      0
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-200 mb-1">{stat.unit}</div>
+                  <div className="text-lg font-semibold text-gray-200">
+                    {stat.label}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Ethical Sourcing Principles */}
       <section
@@ -370,9 +364,8 @@ const testimonials = [
         <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
           <div className="text-center mb-16">
             <h2
-              className={`font-bold text-[#0f172a] mb-4 ${
-                is4K ? "text-5xl" : "text-3xl md:text-4xl"
-              }`}
+              className={`font-bold text-[#0f172a] mb-4 ${is4K ? "text-5xl" : "text-3xl md:text-4xl"
+                }`}
             >
               Our Commitment to{" "}
               <span className="text-[var(--secondary-color)]">
@@ -380,9 +373,8 @@ const testimonials = [
               </span>
             </h2>
             <p
-              className={`text-gray-600 max-w-3xl mx-auto ${
-                is4K ? "text-xl" : "text-lg"
-              }`}
+              className={`text-gray-600 max-w-3xl mx-auto ${is4K ? "text-xl" : "text-lg"
+                }`}
             >
               Every product is carefully vetted for its origin, materials, and
               crafting process to ensure it meets our ethical standards.
@@ -399,7 +391,7 @@ const testimonials = [
                 <div className="bg-gradient-to-br from-[var(--primary-hover-color)] to-[var(--primary-color)] w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
                   <principle.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0f172a] mb-4 group-hover:text-[#1b4f68] transition-colors duration-300">
+                <h3 className="text-xl font-bold text-[#0f172a] mb-4 group-hover:text-[var(--secondary-color)] transition-colors duration-300">
                   {principle.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -416,16 +408,14 @@ const testimonials = [
 
       <section
         ref={testimonialSectionRef}
-        className={`scroll-section bg-gradient-to-r from-[#e4e6eb] to-white ${
-          is4K ? "py-28 px-20" : "py-20 px-4"
-        }`}
+        className={`scroll-section bg-gradient-to-r from-[#e4e6eb] to-white ${is4K ? "py-28 px-20" : "py-20 px-4"
+          }`}
       >
         <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
           <div className="text-center mb-16">
             <h2
-              className={`font-bold text-[#0f172a] mb-4 ${
-                is4K ? "text-5xl" : "text-3xl md:text-4xl"
-              }`}
+              className={`font-bold text-[#0f172a] mb-4 ${is4K ? "text-5xl" : "text-3xl md:text-4xl"
+                }`}
             >
               Sustainability:{" "}
               <span className="text-[var(--secondary-color)]">
@@ -433,69 +423,68 @@ const testimonials = [
               </span>
             </h2>
             <p
-              className={`text-gray-600 max-w-3xl mx-auto ${
-                is4K ? "text-xl" : "text-lg"
-              }`}
+              className={`text-gray-600 max-w-3xl mx-auto ${is4K ? "text-xl" : "text-lg"
+                }`}
             >
               Building a business model that benefits artisans while supporting
               long-term environmental responsibility.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-             {sustainabilityPractices.map((practice, index) => {
-        const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+            {sustainabilityPractices.map((practice, index) => {
+              const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
-        return (
-          <div
-            key={index}
-            ref={ref}
-            className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
-          >
-            <div className="flex flex-col sm:flex-row gap-4">
-              {/* Icon */}
-              <div className="flex flex-col items-center sm:items-start">
-                <div className="bg-gradient-to-br from-[var(--primary-cyan-color)] to-[var(--primary-hover-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
-                  <practice.icon className="w-7 h-7 text-white" />
+              return (
+                <div
+                  key={index}
+                  ref={ref}
+                  className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                >
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    {/* Icon */}
+                    <div className="flex flex-col items-center sm:items-start">
+                      <div className="bg-[var(--secondary-color)] w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                        <practice.icon className="w-7 h-7 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Right Section */}
+                    <div className="flex-1 w-full flex flex-col gap-2">
+                      {/* Heading + Percentage */}
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
+                          {practice.title}
+                        </h3>
+                        <span className="text-xl font-bold text-[var(--primary-color)] sm:self-start">
+                          {inView ? (
+                            <CountUp end={practice.percentage} duration={2} suffix="%" />
+                          ) : (
+                            "0%"
+                          )}
+                        </span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {practice.description}
+                      </p>
+
+                      {/* Progress Bar */}
+                      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <motion.div
+                          className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
+                          initial={{ width: "0%" }}
+                          animate={{
+                            width: inView ? `${practice.percentage}%` : "0%",
+                          }}
+                          transition={{ duration: 3, ease: "easeOut" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* Right Section */}
-              <div className="flex-1 w-full flex flex-col gap-2">
-                {/* Heading + Percentage */}
-                <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[var(--primary-hover-color)] transition-colors duration-300">
-                    {practice.title}
-                  </h3>
-                  <span className="text-xl font-bold text-[var(--primary-cyan-color)] sm:self-start">
-                    {inView ? (
-                      <CountUp end={practice.percentage} duration={2} suffix="%" />
-                    ) : (
-                      "0%"
-                    )}
-                  </span>
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {practice.description}
-                </p>
-
-                {/* Progress Bar */}
-                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                  <motion.div
-                    className={`bg-gradient-to-r ${practice.color} h-3 rounded-full`}
-                    initial={{ width: "0%" }}
-                    animate={{
-                      width: inView ? `${practice.percentage}%` : "0%",
-                    }}
-                    transition={{ duration: 3, ease: "easeOut" }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+              );
+            })}
           </div>
 
           {/* Carbon Footprint Card */}
@@ -507,17 +496,15 @@ const testimonials = [
                   <Globe className="w-8 h-8 text-white" />
                 </div>
                 <h3
-                  className={`font-bold ${
-                    is4K ? "text-5xl" : "text-2xl md:text-3xl"
-                  }`}
+                  className={`font-bold ${is4K ? "text-5xl" : "text-2xl md:text-3xl"
+                    }`}
                 >
                   Carbon Footprint Reduction
                 </h3>
               </div>
               <p
-                className={`opacity-90 mb-8 max-w-3xl ${
-                  is4K ? "text-xl" : "text-lg"
-                }`}
+                className={`opacity-90 mb-8 max-w-3xl ${is4K ? "text-xl" : "text-lg"
+                  }`}
               >
                 We implement energy-efficient practices, promote carbon-neutral
                 shipping options, and partner with logistics companies that
@@ -528,133 +515,23 @@ const testimonials = [
         </div>
       </section>
 
-      {/* Testimonials Slider */}
-      <section className="scroll-section py-20 px-4">
-        <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] mb-4">
-              Voices from Our{" "}
-              <span className="text-[var(--secondary-color)]">
-                Artisan Community
-              </span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Hear directly from the artisans whose lives have been transformed
-              through sustainable practices.
-            </p>
-          </div>
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${testimonialSlide * 100}%)` }}
-              >
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-gradient-to-br rounded-3xl p-8 md:p-12 max-w-4xl mx-auto border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="flex flex-col md:flex-row items-center gap-8">
-                        <div className="flex-shrink-0">
-                          <img
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            className="w-24 h-24 rounded-full object-cover border-4 border-[var(--secondary-color)]"
-                          />
-                        </div>
-                        <div className="flex-1 text-left">
-                          <div className="flex justify-center md:justify-start gap-1 mb-4">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className="w-5 h-5 fill-[var(--secondary-color)] text-[var(--secondary-hover-color)]"
-                              />
-                            ))}
-                          </div>
-                          <blockquote className="text-lg md:text-xl text-[#0f172a] leading-relaxed mb-6 italic">
-                            "{testimonial.quote}"
-                          </blockquote>
-                          <div>
-                            <div className="font-bold text-xl text-[#0f172a]">
-                              {testimonial.name}
-                            </div>
-                            <div className="text-[var(--secondary-color)] font-semibold">
-                              {testimonial.craft}
-                            </div>
-                            <div className="flex items-center md:justify-start gap-2 text-gray-600 mt-2">
-                              <MapPin className="w-4 h-4" />
-                              {testimonial.location}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Testimonial Controls */}
-            <div className="flex justify-center gap-4 mt-8">
-              <button
-                onClick={() =>
-                  prevSlide(
-                    testimonialSlide,
-                    testimonials.length,
-                    setTestimonialSlide
-                  )
-                }
-                className="bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <div className="flex gap-2 items-center">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setTestimonialSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === testimonialSlide
-                        ? "bg-[#d85834] scale-125"
-                        : "bg-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={() =>
-                  nextSlide(
-                    testimonialSlide,
-                    testimonials.length,
-                    setTestimonialSlide
-                  )
-                }
-                className="bg-[var(--secondary-color)] hover:bg-[var(--secondary-hover-color)] text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section
-        className={`scroll-section ${
-          is4K ? "py-28 px-20" : "py-20 px-4"
-        } text-gray-900`}
+        className={`scroll-section ${is4K ? "py-28 px-20" : "py-20 px-4"
+          } text-gray-900`}
       >
         <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2
-                className={`font-bold mb-6 text-center md:text-left ${
-                  is4K ? "text-5xl" : "text-3xl md:text-4xl"
-                }`}
+                className={`font-bold mb-6 text-center md:text-left ${is4K ? "text-5xl" : "text-3xl md:text-4xl"
+                  }`}
               >
                 Our Promise to{" "}
                 <span className="text-[var(--primary-color)]">Kashmir</span>
               </h2>
               <p
-                className={`opacity-90 mb-8 leading-relaxed ${
-                  is4K ? "text-xl" : "text-lg"
-                }`}
+                className={`opacity-90 mb-8 leading-relaxed ${is4K ? "text-xl" : "text-lg"
+                  }`}
               >
                 Every dollar earned through B2B Connect drives initiatives back
                 to the valley:
@@ -670,9 +547,8 @@ const testimonials = [
                   <div key={index} className="flex items-center gap-3 group">
                     <CheckCircle className={is4K ? "w-7 h-7" : "w-6 h-6"} />
                     <span
-                      className={`opacity-90 group-hover:opacity-100 transition-opacity duration-300 ${
-                        is4K ? "text-lg" : ""
-                      }`}
+                      className={`opacity-90 group-hover:opacity-100 transition-opacity duration-300 ${is4K ? "text-lg" : ""
+                        }`}
                     >
                       {point}
                     </span>
@@ -680,9 +556,8 @@ const testimonials = [
                 ))}
               </div>
               <p
-                className={`opacity-90 mt-8 leading-relaxed ${
-                  is4K ? "text-xl" : "text-lg"
-                }`}
+                className={`opacity-90 mt-8 leading-relaxed ${is4K ? "text-xl" : "text-lg"
+                  }`}
               >
                 We don't extract value from Kashmir. We return it.
               </p>
@@ -692,16 +567,14 @@ const testimonials = [
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
                 <Award className={`text-white m mb-1 ${is4K ? "w-20 h-20" : "w-16 h-16"}`} />
                 <h3
-                  className={`font-bold text-white mb-4 ${
-                    is4K ? "text-3xl" : "text-2xl"
-                  }`}
+                  className={`font-bold text-white mb-4 ${is4K ? "text-3xl" : "text-2xl"
+                    }`}
                 >
                   Impact That Matters
                 </h3>
                 <p
-                  className={`text-white opacity-90 leading-relaxed ${
-                    is4K ? "text-lg" : ""
-                  }`}
+                  className={`text-white opacity-90 leading-relaxed ${is4K ? "text-lg" : ""
+                    }`}
                 >
                   Every initiative we undertake uplifts Kashmiri artisans, safeguards centuries-old craftsmanship, and ensures long-term community resilience. Through CraftLore and KHCRF, we reinvest in artisan education, research, innovation, and welfare programs. Our mission preserves cultural heritage, promotes fair trade, strengthens youth participation, and builds sustainable ecosystems where every handcrafted piece reflects dignity, equity, and environmental responsibility. Together, we ensure that the legacy of Kashmiri crafts continues to inspire, empower, and enlighten generations across the world.
                 </p>
@@ -718,17 +591,15 @@ const testimonials = [
         <div className={`mx-auto ${is4K ? "max-w-[1800px]" : "max-w-6xl"}`}>
           <div className="text-center mb-16">
             <h2
-              className={`font-bold text-[#0f172a] mb-4 ${
-                is4K ? "text-5xl" : "text-3xl md:text-4xl"
-              }`}
+              className={`font-bold text-[var(--secondary-color)] mb-4 ${is4K ? "text-5xl" : "text-3xl md:text-4xl"
+                }`}
             >
               Our Future:{" "}
-              <span className="text-[#1b4f68]">Growing Sustainably</span>
+              <span className="text-[var(--secondary-color)]">Growing Sustainably</span>
             </h2>
             <p
-              className={`text-gray-600 max-w-3xl mx-auto ${
-                is4K ? "text-xl" : "text-lg"
-              }`}
+              className={`text-gray-600 max-w-3xl mx-auto ${is4K ? "text-xl" : "text-lg"
+                }`}
             >
               We are excited about continued growth and the positive impact we
               can make on the world.
@@ -772,16 +643,14 @@ const testimonials = [
                   <goal.icon className={is4K ? "w-9 h-9" : "w-8 h-8"} />
                 </div>
                 <h3
-                  className={`font-bold text-[#0f172a] mb-4 group-hover:text-[#1b4f68] transition-colors duration-300 ${
-                    is4K ? "text-2xl" : "text-xl"
-                  }`}
+                  className={`font-bold text-[var(--secondary-color)] mb-4 group-hover:text-[var(--secondary-color)] transition-colors duration-300 ${is4K ? "text-2xl" : "text-xl"
+                    }`}
                 >
                   {goal.title}
                 </h3>
                 <p
-                  className={`text-gray-600 leading-relaxed ${
-                    is4K ? "text-lg" : ""
-                  }`}
+                  className={`text-gray-600 leading-relaxed ${is4K ? "text-lg" : ""
+                    }`}
                 >
                   {goal.description}
                 </p>
@@ -790,6 +659,7 @@ const testimonials = [
           </div>
         </div>
       </section>
+
     </div>
   );
 }

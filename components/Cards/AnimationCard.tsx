@@ -28,22 +28,22 @@ export function AnimationCard({
         is4K ? "max-w-md h-[460px] p-10" : "max-w-xs sm:max-w-sm h-96 p-8"
       } rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl bg-white`}
     >
-      <div className="absolute top-0 left-0 w-12 h-24 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-12 h-24 bg-[var(--primary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
+      <div className="absolute top-0 left-0 w-12 h-24 bg-[var(--secondary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-12 h-24 bg-[var(--secondary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
         <div className="relative mb-8">
           <div
             className={`${
               is4K ? "w-24 h-24" : "w-20 h-20"
-            } rounded-full bg-white border-4 border-[var(--primary-color)] flex items-center justify-center text-[var(--primary-color)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:border-[var(--primary-hover-color)]`}
+            } rounded-full bg-white border-4 border-[var(--secondary-color)] flex items-center justify-center text-[var(--secondary-color)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:border-[var(--secondary-hover-color)]`}
           >
             {icon}
           </div>
           <div
             className={`absolute inset-0 ${
               is4K ? "w-24 h-24" : "w-20 h-20"
-            } rounded-full border-2 border-[var(--primary-light-text-color)] opacity-0 group-hover:opacity-100 scale-150 group-hover:scale-125 transition-all duration-700 ease-out`}
+            } rounded-full border-2 border-[var(--secondary-light-text-color)] opacity-0 group-hover:opacity-100 scale-150 group-hover:scale-125 transition-all duration-700 ease-out`}
           ></div>
         </div>
 
@@ -65,7 +65,7 @@ export function AnimationCard({
         {link && (
           <Link
             href={link}
-            className="inline-block px-4 py-2 bg-[var(--primary-color)] text-white rounded-md hover:bg-[var(--primary-hover-color)] no-underline"
+            className="inline-block px-4 py-2 bg-[var(--secondary-color)] text-white rounded-md hover:bg-[var(--secondary-hover-color)] no-underline"
           >
             Read More
           </Link>
@@ -94,7 +94,6 @@ interface AnimationCardGridProps {
 export function AnimationCardGrid({ data }: AnimationCardGridProps) {
   const { is4K } = useGlobalContext();
 
- 
   return (
     <div
       className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center ${

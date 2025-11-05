@@ -265,7 +265,7 @@ function page() {
                 className="text-center p-6 rounded-2xl bg-white shadow-md"
               >
                 <div
-                  className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[var(--primary-color)] ${
+                  className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto bg-[var(--secondary-color)] ${
                     is4K ? "2xl:w-24 2xl:h-24 2xl:mb-6" : ""
                   }`}
                 >

@@ -193,11 +193,11 @@ export default function Home() {
       </section>
       {/* Final Section - Free Certification Help Card */}
       <section className="py-16 px-6 sm:px-10 flex justify-center">
-        <div className="max-w-3xl w-full bg-[var(--secondary-light-color)] border border-[var(--secondary-color)] rounded-2xl shadow-lg p-8 sm:p-10 text-center transition-transform duration-300 hover:scale-[1.02]">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--primary-color)] mb-4">
+        <div className="max-w-3xl w-full bg-[var(--primary-color)] border border-[var(--secondary-color)] rounded-2xl shadow-lg p-8 sm:p-10 text-center transition-transform duration-300 hover:scale-[1.02]">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             Free Certification Help
           </h2>
-          <p className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed">
+          <p className="text-white text-base sm:text-lg mb-6 leading-relaxed">
             Don’t use our certifications? We’ll help you earn yours — free consultation,
             requirement mapping, paperwork, audits, and liaison until final approval.
           </p>

@@ -345,7 +345,7 @@ export default function DeKoshurCrafts() {
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary-color)]/10 to-[var(--primary-color)]/20 rounded-full mb-6">
-                  <item.icon className="w-8 h-8 text-[var(--primary-color)]" />
+                  <item.icon className="w-8 h-8 text-[var(--secondary-color)]" />
                 </div>
                 <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">
                   {item.title}

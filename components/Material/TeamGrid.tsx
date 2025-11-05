@@ -66,8 +66,8 @@ export default function TeamGrid({ team }: TeamGridProps) {
     <div className="py-6 px-4">
       <style jsx>{`
         :root {
-          --primary-color: #1b4f68;
-          --secondary-color: #d85834;
+          --primary-color: var(--secondary-color);
+          --secondary-color: var(--secondary-color);
           --secondary-light-color: #f9c6b2;
         }
       `}</style>

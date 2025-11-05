@@ -973,7 +973,7 @@ export function MainPartnership({ pageData }: { pageData: pageData }) {
               )}
             </div>
             <p
-              className={`text-orange-600 mb-6 flex items-start gap-2 ${is4K ? "text-lg" : "text-sm"
+              className={`text-[var(--secondary-color)] mb-6 flex items-start gap-2 ${is4K ? "text-lg" : "text-sm"
                 }`}
             >
               <TrendingUp className="w-4 h-4 mt-1 flex-shrink-0" />

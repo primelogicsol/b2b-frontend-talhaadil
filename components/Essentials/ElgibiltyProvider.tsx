@@ -4352,7 +4352,7 @@ export function EligibilityQuiz({
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-2xl p-8 text-white text-center">
+        <div className="bg-[var(--secondary-color)] rounded-2xl p-8 text-white text-center">
           <motion.div
             className="mb-6"
             initial={{ opacity: 0, y: 20 }}
@@ -4433,7 +4433,7 @@ export function EligibilityQuiz({
         transition={{ duration: 0.5 }}
       >
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] p-8 text-white text-center">
+          <div className="bg-[var(--secondary-color)] p-8 text-white text-center">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -4633,7 +4633,7 @@ export function EligibilityQuiz({
       <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
         <div className="bg-gray-200 h-2">
           <motion.div
-            className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] h-full"
+            className="bg-[var(--secondary-color)] h-full"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5 }}

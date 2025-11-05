@@ -344,10 +344,10 @@ export default function OurTeam() {
                             {subSection.members.map((member, memberIdx) => (
                               <div
                                 key={memberIdx}
-                                className="bg-[var(--primary-color)]/20 p-4 rounded-md shadow-sm hover:shadow-md transition-shadow duration-300"
+                                className="bg-[var(--secondary-color)] p-4 rounded-md shadow-sm hover:shadow-md transition-shadow duration-300"
                               >
-                                <p className="text-lg font-medium text-gray-800">{member.name}</p>
-                                <p className="text-sm text-gray-500">{member.title}</p>
+                                <p className="text-lg font-medium text-white">{member.name}</p>
+                                <p className="text-sm text-white">{member.title}</p>
                               </div>
                             ))}
                           </div>
@@ -359,10 +359,10 @@ export default function OurTeam() {
                       {division.members.map((member, memberIdx) => (
                         <div
                           key={memberIdx}
-                          className="bg-[var(--primary-color)]/20 p-4 rounded-md shadow-sm hover:shadow-md transition-shadow duration-300"
+                          className="bg-[var(--secondary-color)] p-4 rounded-md shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <p className="text-lg font-medium text-gray-800">{member.name}</p>
-                          <p className="text-sm text-gray-500">{member.title}</p>
+                          <p className="text-lg font-medium text-white">{member.name}</p>
+                          <p className="text-sm text-white">{member.title}</p>
                         </div>
                       ))}
                     </div>

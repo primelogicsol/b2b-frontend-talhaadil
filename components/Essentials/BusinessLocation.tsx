@@ -134,7 +134,7 @@ export default function BusinessLocation() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             <div
-              className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}
+              className={`bg-[var(--secondary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}
             >
               <MapPin
                 className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`}
@@ -153,7 +153,7 @@ export default function BusinessLocation() {
             </div>
 
             <div
-              className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}
+              className={`bg-[var(--secondary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center`}
             >
               <MapPin
                 className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`}
@@ -172,7 +172,7 @@ export default function BusinessLocation() {
             </div>
 
             <div
-              className={`bg-[var(--primary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center md:col-span-2 lg:col-span-1`}
+              className={`bg-[var(--secondary-color)] rounded-lg ${is4K ? "p-10 md:p-12" : "p-6 md:p-8"} text-center md:col-span-2 lg:col-span-1`}
             >
               <Heart
                 className={`${is4K ? "w-16 h-16" : "w-12 h-12"} text-gray-200 mx-auto mb-4`}
@@ -246,7 +246,7 @@ export default function BusinessLocation() {
             >
               <div className="text-center mb-4">
                 <div
-                  className={`w-20 h-20 bg-[var(--primary-color)] rounded-full flex items-center justify-center mx-auto mb-4`}
+                  className={`w-20 h-20 bg-[var(--secondary-color)] rounded-full flex items-center justify-center mx-auto mb-4`}
                 >
                   <Building2 className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-white`} />
                 </div>
@@ -266,7 +266,7 @@ export default function BusinessLocation() {
             >
               <div className="text-center mb-4">
                 <div
-                  className={`w-20 h-20 bg-[var(--primary-color)] rounded-full flex items-center justify-center mx-auto mb-4`}
+                  className={`w-20 h-20 bg-[var(--secondary-color)] rounded-full flex items-center justify-center mx-auto mb-4`}
                 >
                   <MapPin className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-white`} />
                 </div>
@@ -286,7 +286,7 @@ export default function BusinessLocation() {
             >
               <div className="text-center mb-4">
                 <div
-                  className={`w-20 h-20 bg-[var(--primary-color)] rounded-full flex items-center justify-center mx-auto mb-4`}
+                  className={`w-20 h-20 bg-[var(--secondary-color)] rounded-full flex items-center justify-center mx-auto mb-4`}
                 >
                   <Globe className={`${is4K ? "w-10 h-10" : "w-8 h-8"} text-white`} />
                 </div>

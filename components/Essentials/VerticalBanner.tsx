@@ -93,7 +93,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides, isBanner = 
 
             <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4 sm:px-6 lg:px-8 max-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[1800px] mx-auto">
               <motion.h1
-                className="text-xl md:text-6xl font-bold leading-tight -mt-25 text-[#0d1308]"
+                className="text-xl md:text-6xl font-bold leading-tight mt-4 lg:-mt-25 text-[#0d1308]"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -104,7 +104,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides, isBanner = 
                 {slide.title}
               </motion.h1>
               <motion.h1
-                className="hidden lg:flex text-xl md:text-4xl font-bold leading-tight text-[var(--secondary-color)]"
+                className="flex text-xl md:text-4xl font-bold leading-tight text-[var(--secondary-color)]"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -130,7 +130,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides, isBanner = 
               </motion.p>
 
               <motion.div
-                className={`flex flex-col sm:flex-row gap-4 mt-6 ${isBanner ? "lg:mb-65" : "mb-4"}`}
+                className={`flex flex-col sm:flex-row gap-4 mt-1 lg:mt-6 ${isBanner ? "lg:mb-65" : "mb-4"}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: currentSlide === index ? 1 : 0,
@@ -140,7 +140,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides, isBanner = 
               >
                 <a
                   href={slide.primaryButton.link}
-                  className="bg-[var(--secondary-color)] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors duration-300"
+                  className="bg-[var(--secondary-color)] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:bg-[var(--secondary-hover-color)] transition-colors duration-300"
                 >
                   {slide.primaryButton.text}
                 </a>

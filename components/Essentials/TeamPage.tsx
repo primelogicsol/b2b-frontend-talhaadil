@@ -311,7 +311,7 @@ export default function TeamPage() {
         .section-badge {
           display: inline-block;
           padding: ${is4K ? "0.75rem 2rem" : "0.5rem 1.5rem"};
-          background: rgba(216, 88, 52, 0.1);
+          background: white;
           border: 1px solid var(--secondary-color);
           border-radius: 30px;
           color: var(--secondary-color);
@@ -363,7 +363,7 @@ export default function TeamPage() {
         .hero-stat {
           text-align: center;
           padding: ${is4K ? "2rem" : "1.5rem"};
-          background: var(--primary-light-text-color);
+          background: var(--primary-color);
           backdrop-filter: blur(15px);
           border: 1px solid var(--primary-hover-color);
           border-radius: 20px;
@@ -466,8 +466,9 @@ export default function TeamPage() {
         .card-icon {
           width: ${is4K ? "100px" : "80px"};
           height: ${is4K ? "100px" : "80px"};
-          background: var(--secondary-hover-color);
+          background: var(--secondary-color);
           border-radius: 20px;
+          color: white;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -623,6 +624,7 @@ export default function TeamPage() {
           width: ${is4K ? "90px" : "70px"};
           height: ${is4K ? "90px" : "70px"};
           background: var(--secondary-color);
+          color:white;
           border-radius: 18px;
           display: flex;
           align-items: center;

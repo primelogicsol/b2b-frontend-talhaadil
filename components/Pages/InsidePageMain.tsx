@@ -21,11 +21,11 @@ type LandingPageData = {
     ctaButtons: string[];
   };
   whyDropshipping: {
-    text : string;
+    text: string;
     heading: string;
     problems: string[];
     solutions: string[];
-    link : string;
+    link: string;
   };
   platformDifference: {
     heading: string;
@@ -140,6 +140,11 @@ export default function InsidePage({
       transition: { duration: 0.3, ease: "easeOut" },
     },
   };
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   // Refs for scroll animations
   const heroRef = useRef(null);
   const slideUpRef = useRef(null);
@@ -232,9 +237,8 @@ export default function InsidePage({
               {landingPageData.hero.headline}
             </motion.h1>
             <motion.p
-              className={`${
-                is4K ? "text-2xl" : "text-xl"
-              } leading-relaxed max-w-4xl mx-auto text-blue-100`}
+              className={`${is4K ? "text-2xl" : "text-xl"
+                } leading-relaxed max-w-4xl mx-auto text-blue-100`}
               variants={fadeInUp}
             >
               {landingPageData.hero.subtext}
@@ -246,9 +250,8 @@ export default function InsidePage({
               {landingPageData.hero.ctaButtons.map((button, index) => (
                 <motion.button
                   key={index}
-                  className={`${
-                    is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"
-                  } bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
+                  className={`${is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"
+                    } bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -297,28 +300,25 @@ export default function InsidePage({
             viewport={{ once: true }}
           >
             <motion.h2
-              className={`font-bold text-[var(--primary-color)] text-left ${
-                is4K ? "text-5xl" : "text-3xl sm:text-4xl"
-              }`}
+              className={`font-bold text-[var(--primary-color)] text-left ${is4K ? "text-5xl" : "text-3xl sm:text-4xl"
+                }`}
               variants={fadeInUp}
             >
               {landingPageData.whyDropshipping.heading}
             </motion.h2>
             <motion.h2
-              className={`text-black text-left ${
-                is4K ? "text-3xl" : "text-md lg:text-xl"
-              }`}
+              className={`text-black text-left ${is4K ? "text-3xl" : "text-md lg:text-xl"
+                }`}
               variants={fadeInUp}
             >
-              {landingPageData.whyDropshipping.text} 
+              {landingPageData.whyDropshipping.text}
             </motion.h2>
 
             {/* Problems */}
             <div>
               <h3
-                className={`font-semibold text-[var(--secondary-color)] mb-4 flex items-center gap-2 ${
-                  is4K ? "text-2xl" : "text-xl"
-                }`}
+                className={`font-semibold text-[var(--secondary-color)] mb-4 flex items-center gap-2 ${is4K ? "text-2xl" : "text-xl"
+                  }`}
               >
                 <XCircle className="w-6 h-6" />
                 Current Problems:
@@ -333,9 +333,8 @@ export default function InsidePage({
                     >
                       <XCircle className="w-5 h-5 text-[var(--secondary-color)] mt-1 flex-shrink-0" />
                       <p
-                        className={`text-gray-700 ${
-                          is4K ? "text-xl" : "text-base"
-                        }`}
+                        className={`text-gray-700 ${is4K ? "text-xl" : "text-base"
+                          }`}
                       >
                         {problem}
                       </p>
@@ -348,9 +347,8 @@ export default function InsidePage({
             {/* Solutions */}
             <div>
               <h3
-                className={`font-semibold text-[var(--primary-color)] mb-4 flex items-center gap-2 ${
-                  is4K ? "text-2xl" : "text-xl"
-                }`}
+                className={`font-semibold text-[var(--primary-color)] mb-4 flex items-center gap-2 ${is4K ? "text-2xl" : "text-xl"
+                  }`}
               >
                 <CheckCircle className="w-6 h-6" />
                 {landingPageData.pricingName
@@ -371,9 +369,8 @@ export default function InsidePage({
                     >
                       <CheckCircle className="w-5 h-5 text-[var(--primary-color)] mt-1 flex-shrink-0" />
                       <p
-                        className={`text-gray-700 ${
-                          is4K ? "text-xl" : "text-base"
-                        }`}
+                        className={`text-gray-700 ${is4K ? "text-xl" : "text-base"
+                          }`}
                       >
                         {solution}
                       </p>
@@ -394,7 +391,7 @@ export default function InsidePage({
       >
         <div className={`${containerClass} mx-auto px-6`}>
           <motion.h2
-            className={`${subHeadingClass} font-bold text-center mb-16 text-[var(--primary-color)]`}
+            className={`${subHeadingClass} font-bold text-center mb-16 text-[var(--secondary-color)]`}
             variants={fadeInUp}
           >
             {landingPageData.platformDifference.heading}
@@ -404,57 +401,51 @@ export default function InsidePage({
             className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
             variants={staggerContainer}
           >
-            {landingPageData.platformDifference.features.map(
-              (feature, index) => {
-                const Icon = (Icons as any)[feature.icon] || Icons.HelpCircle;
+            {landingPageData.platformDifference.features.map((feature, index) => {
+              const Icon = (Icons as any)[feature.icon] || Icons.HelpCircle;
 
-                return (
-                  <motion.div
-                    key={index}
-                    className="group relative bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200 overflow-hidden"
-                    variants={cardHover}
-                    initial="rest"
-                    whileHover="hover"
-                  >
-                    <div className="relative mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                        <Icon
-                          className={`${
-                            is4K ? "w-7 h-7" : "w-6 h-6"
+              return (
+                <motion.div
+                  key={index}
+                  className="group relative bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200 overflow-hidden"
+                  variants={cardHover}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  <div className="relative mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--secondary-color)] to-[var(--secondary-color)] rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                      <Icon
+                        className={`${is4K ? "w-7 h-7" : "w-6 h-6"
                           } text-white`}
-                        />
-                      </div>
+                      />
                     </div>
+                  </div>
 
-                    <div className="relative">
-                      <h3
-                        className={`${
-                          is4K ? "text-xl" : "text-lg"
-                        } font-bold mb-3 text-gray-900 group-hover:text-[var(--primary-color)] transition-colors duration-300`}
-                      >
-                        {feature.title}
-                      </h3>
-                      <p
-                        className={`${
-                          is4K ? "text-base" : "text-sm"
+                  <div className="relative">
+                    <h3
+                      className={`${is4K ? "text-xl" : "text-lg"
+                        } font-bold mb-3 text-gray-900 group-hover:text-[var(--secondary-color)] transition-colors duration-300`}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p
+                      className={`${is4K ? "text-base" : "text-sm"
                         } text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300`}
-                      >
-                        {feature.description}
-                      </p>
-                    </div>
+                    >
+                      {feature.description}
+                    </p>
+                  </div>
 
-                    <div className="absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  </motion.div>
-                );
-              }
-            )}
+                  <div className="absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r from-[var(--primary-dark-slate)] via-[var(--secondary-color)] to-[var(--secondary-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <motion.div className="text-center" variants={fadeInUp}>
             <p
-              className={`${
-                is4K ? "text-xl" : "text-lg"
-              } font-semibold text-[var(--secondary-color)]`}
+              className={`${is4K ? "text-xl" : "text-lg"
+                } font-semibold text-[var(--secondary-color)]`}
             >
               {landingPageData.platformDifference.exclusivity}
             </p>
@@ -466,38 +457,33 @@ export default function InsidePage({
       )}
       {landingPageData.capabilities && (
         <section
-          className={`px-4 md:px-8 lg:px-12 py-12 ${
-            is4K ? "mx-auto max-w-[2400px] 2xl:py-20" : ""
-          }`}
+          className={`px-4 md:px-8 lg:px-12 py-12 ${is4K ? "mx-auto max-w-[2400px] 2xl:py-20" : ""
+            }`}
         >
           <div
-            className={`w-full ${
-              is4K ? " md:px-24" : "px-2 md:px-8"
-            } flex items-center justify-center`}
+            className={`w-full ${is4K ? " md:px-24" : "px-2 md:px-8"
+              } flex items-center justify-center`}
           >
             <div className="w-full">
               {/* Heading */}
               <h2
-                className={`text-center text-[var(--primary-color)] font-bold mb-12 ${
-                  is4K ? "text-5xl" : "text-2xl md:text-3xl lg:text-4xl"
-                }`}
+                className={`text-center text-[var(--primary-color)] font-bold mb-12 ${is4K ? "text-5xl" : "text-2xl md:text-3xl lg:text-4xl"
+                  }`}
               >
                 {landingPageData.capabilities.heading}
               </h2>
               {/*sub Heading */}
               <h2
-                className={`text-center text-[var(--primary-color)] mb-7 ${
-                  is4K ? "text-5xl" : "text-1xl md:text-2xl lg:text-4xl"
-                }`}
+                className={`text-center text-[var(--primary-color)] mb-7 ${is4K ? "text-5xl" : "text-1xl md:text-2xl lg:text-4xl"
+                  }`}
               >
                 {landingPageData.capabilities.subheading}
               </h2>
 
               {/* Desktop Horizontal Accordion */}
               <div
-                className={`hidden lg:flex gap-4 ${
-                  is4K ? "h-[500px]" : "h-96"
-                } w-full`}
+                className={`hidden lg:flex gap-4 ${is4K ? "h-[500px]" : "h-96"
+                  } w-full`}
               >
                 {landingPageData.capabilities.sections.map((item, index) => {
                   const isActive = activeItem === index;
@@ -506,9 +492,8 @@ export default function InsidePage({
                   return (
                     <motion.div
                       key={index}
-                      className={`relative cursor-pointer rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm overflow-hidden ${
-                        isActive ? "flex-[4]" : "flex-1"
-                      }`}
+                      className={`relative cursor-pointer rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm overflow-hidden ${isActive ? "flex-[4]" : "flex-1"
+                        }`}
                       onClick={() => setActiveItem(index)}
                       layout
                       transition={{
@@ -527,9 +512,8 @@ export default function InsidePage({
                       }}
                     >
                       <div
-                        className={`relative h-full w-full ${
-                          is4K ? "p-10" : "p-6"
-                        } flex flex-col justify-center`}
+                        className={`relative h-full w-full ${is4K ? "p-10" : "p-6"
+                          } flex flex-col justify-center`}
                       >
                         <AnimatePresence mode="wait">
                           {isActive ? (
@@ -545,29 +529,25 @@ export default function InsidePage({
                               className="text-white"
                             >
                               <div
-                                className={`flex items-center gap-4 ${
-                                  is4K ? "mb-8" : "mb-6"
-                                }`}
+                                className={`flex items-center gap-4 ${is4K ? "mb-8" : "mb-6"
+                                  }`}
                               >
                                 {Icon && (
                                   <Icon
-                                    className={`${
-                                      is4K ? "w-16 h-16" : "w-12 h-12"
-                                    } text-[var(--secondary-hover-color)]`}
+                                    className={`${is4K ? "w-16 h-16" : "w-12 h-12"
+                                      } text-[var(--secondary-hover-color)]`}
                                   />
                                 )}
                                 <h2
-                                  className={`${
-                                    is4K ? "text-5xl" : "text-4xl"
-                                  } font-bold`}
+                                  className={`${is4K ? "text-5xl" : "text-4xl"
+                                    } font-bold`}
                                 >
                                   {item.title}
                                 </h2>
                               </div>
                               <ul
-                                className={`list-disc pl-6 space-y-2 ${
-                                  is4K ? "text-xl" : "text-lg"
-                                } leading-relaxed opacity-90`}
+                                className={`list-disc pl-6 space-y-2 ${is4K ? "text-xl" : "text-lg"
+                                  } leading-relaxed opacity-90`}
                               >
                                 {item.items.map((point, i) => (
                                   <li key={i}>{point}</li>
@@ -588,15 +568,13 @@ export default function InsidePage({
                             >
                               {Icon && (
                                 <Icon
-                                  className={`${
-                                    is4K ? "w-12 h-12" : "w-8 h-8"
-                                  } text-[var(--secondary-hover-color)]`}
+                                  className={`${is4K ? "w-12 h-12" : "w-8 h-8"
+                                    } text-[var(--secondary-hover-color)]`}
                                 />
                               )}
                               <h3
-                                className={`${
-                                  is4K ? "text-2xl" : "text-xl"
-                                } text-white font-semibold whitespace-nowrap`}
+                                className={`${is4K ? "text-2xl" : "text-xl"
+                                  } text-white font-semibold whitespace-nowrap`}
                               >
                                 {item.title}
                               </h3>
@@ -623,9 +601,8 @@ export default function InsidePage({
                   return (
                     <motion.div
                       key={index}
-                      className={`rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm ${
-                        is4K ? "p-10" : "p-6"
-                      }`}
+                      className={`rounded-3xl border-2 border-[var(--secondary-hover-color)] bg-[var(--primary-color)] backdrop-blur-sm ${is4K ? "p-10" : "p-6"
+                        }`}
                       initial={{ opacity: 0, y: 60, scale: 0.8 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{
@@ -646,29 +623,25 @@ export default function InsidePage({
                     >
                       <div className="text-white">
                         <div
-                          className={`flex items-center gap-4 ${
-                            is4K ? "mb-6" : "mb-4"
-                          }`}
+                          className={`flex items-center gap-4 ${is4K ? "mb-6" : "mb-4"
+                            }`}
                         >
                           {Icon && (
                             <Icon
-                              className={`${
-                                is4K ? "w-12 h-12" : "w-8 h-8"
-                              } text-[var(--secondary-hover-color)]`}
+                              className={`${is4K ? "w-12 h-12" : "w-8 h-8"
+                                } text-[var(--secondary-hover-color)]`}
                             />
                           )}
                           <h2
-                            className={`${
-                              is4K ? "text-3xl" : "text-2xl"
-                            } font-bold`}
+                            className={`${is4K ? "text-3xl" : "text-2xl"
+                              } font-bold`}
                           >
                             {item.title}
                           </h2>
                         </div>
                         <ul
-                          className={`list-disc pl-6 space-y-2 ${
-                            is4K ? "text-lg" : "text-base"
-                          } leading-relaxed opacity-90`}
+                          className={`list-disc pl-6 space-y-2 ${is4K ? "text-lg" : "text-base"
+                            } leading-relaxed opacity-90`}
                         >
                           {item.items.map((point, i) => (
                             <li key={i}>{point}</li>
@@ -736,23 +709,20 @@ export default function InsidePage({
         >
           <div className="relative z-10">
             <h3
-              className={`${
-                is4K ? "text-3xl" : "text-2xl"
-              } font-bold text-[var(--secondary-color)] mb-4`}
+              className={`${is4K ? "text-3xl" : "text-2xl"
+                } font-bold text-[var(--secondary-color)] mb-4`}
             >
               {landingPageData.pricing.freeOffer.title}
             </h3>
             <p
-              className={`${
-                is4K ? "text-lg" : "text-base"
-              } text-white mb-2 max-w-2xl mx-auto leading-relaxed`}
+              className={`${is4K ? "text-lg" : "text-base"
+                } text-white mb-2 max-w-2xl mx-auto leading-relaxed`}
             >
               {landingPageData.pricing.freeOffer.description}
             </p>
             <p
-              className={`${
-                is4K ? "text-base" : "text-sm"
-              } text-white font-medium`}
+              className={`${is4K ? "text-base" : "text-sm"
+                } text-white font-medium`}
             >
               {landingPageData.pricing.freeOffer.note}
             </p>
@@ -777,18 +747,16 @@ export default function InsidePage({
 
               <div className="relative z-10">
                 <h3
-                  className={`${
-                    is4K ? "text-2xl" : "text-xl"
-                  } font-bold text-[var(--primary-color)] mb-6`}
+                  className={`${is4K ? "text-2xl" : "text-xl"
+                    } font-bold text-[var(--primary-color)] mb-6`}
                 >
                   {pkg.name}
                 </h3>
 
                 <div className="mb-8">
                   <div
-                    className={`${
-                      is4K ? "text-5xl" : "text-4xl"
-                    } font-bold text-[var(--secondary-color)] mb-2 group-hover:scale-105 transition-transform duration-300`}
+                    className={`${is4K ? "text-5xl" : "text-4xl"
+                      } font-bold text-[var(--secondary-color)] mb-2 group-hover:scale-105 transition-transform duration-300`}
                   >
                     ${pricingPlan[index as 0 | 1 | 2]}/month
                   </div>
@@ -798,9 +766,8 @@ export default function InsidePage({
                   {pkg.features.map((feature, featureIndex) => (
                     <motion.li
                       key={featureIndex}
-                      className={`${
-                        is4K ? "text-base" : "text-sm"
-                      } text-[var(--primary-hover-color)] flex items-start gap-3`}
+                      className={`${is4K ? "text-base" : "text-sm"
+                        } text-[var(--primary-hover-color)] flex items-start gap-3`}
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
@@ -837,9 +804,8 @@ export default function InsidePage({
 
         <motion.div className="text-center" variants={fadeInUp}>
           <p
-            className={`${
-              is4K ? "text-2xl" : "text-xl"
-            } font-bold text-[var(--secondary-color)] bg-[var(--secondary-light-color)]/30 px-8 py-4 rounded-2xl inline-block`}
+            className={`${is4K ? "text-2xl" : "text-xl"
+              } font-bold text-[var(--secondary-color)] bg-[var(--secondary-light-color)]/30 px-8 py-4 rounded-2xl inline-block`}
           >
             Range : {pricingPlan[0]}$ - {pricingPlan[2]}$
           </p>
@@ -863,9 +829,8 @@ export default function InsidePage({
             </motion.h2>
 
             <motion.p
-              className={`${
-                is4K ? "text-lg" : "text-base"
-              } text-center mb-16 text-gray-300 leading-relaxed max-w-4xl mx-auto`}
+              className={`${is4K ? "text-lg" : "text-base"
+                } text-center mb-16 text-gray-300 leading-relaxed max-w-4xl mx-auto`}
               variants={fadeInUp}
             >
               {landingPageData.technology.description}
@@ -890,16 +855,14 @@ export default function InsidePage({
                       <Icon />
                     </div>
                     <h3
-                      className={`${
-                        is4K ? "text-xl" : "text-lg"
-                      } font-semibold mb-3`}
+                      className={`${is4K ? "text-xl" : "text-lg"
+                        } font-semibold mb-3`}
                     >
                       {feature.title}
                     </h3>
                     <p
-                      className={`${
-                        is4K ? "text-base" : "text-sm"
-                      } text-gray-300 leading-relaxed`}
+                      className={`${is4K ? "text-base" : "text-sm"
+                        } text-gray-300 leading-relaxed`}
                     >
                       {feature.description}
                     </p>
@@ -933,9 +896,8 @@ export default function InsidePage({
             </motion.h2>
 
             <motion.p
-              className={`${
-                is4K ? "text-xl" : "text-lg"
-              } text-center mb-20 text-[var(--primary-color)]/80 leading-relaxed max-w-5xl mx-auto font-medium`}
+              className={`${is4K ? "text-xl" : "text-lg"
+                } text-center mb-20 text-[var(--primary-color)]/80 leading-relaxed max-w-5xl mx-auto font-medium`}
               variants={fadeInUp}
             >
               {landingPageData.platformAdvantage.description}
@@ -952,9 +914,8 @@ export default function InsidePage({
                     <div className="w-20 h-1.5 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] rounded-full mb-8 group-hover:w-32 transition-all duration-500"></div>
 
                     <h3
-                      className={`${
-                        is4K ? "text-3xl" : "text-2xl"
-                      } font-bold mb-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent`}
+                      className={`${is4K ? "text-3xl" : "text-2xl"
+                        } font-bold mb-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover-color)] bg-clip-text text-transparent`}
                     >
                       {section.title}
                     </h3>
@@ -962,9 +923,8 @@ export default function InsidePage({
                       {section.items.map((item, itemIndex) => (
                         <div
                           key={itemIndex}
-                          className={`${
-                            is4K ? "text-lg" : "text-base"
-                          } text-[var(--primary-color)]/90 leading-relaxed flex items-start gap-3 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300`}
+                          className={`${is4K ? "text-lg" : "text-base"
+                            } text-[var(--primary-color)]/90 leading-relaxed flex items-start gap-3 group-hover:text-[var(--primary-hover-color)] transition-colors duration-300`}
                         >
                           <div className="w-2 h-2 bg-[var(--secondary-color)] rounded-full mt-2.5 flex-shrink-0"></div>
                           <span className="font-medium">{item}</span>
@@ -1045,7 +1005,7 @@ export default function InsidePage({
         </div>
       </section>
       <motion.section
-        className="relative py-32 overflow-hidden bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--primary-color)] to-[var(--primary-color)]"
+        className="relative py-32 pb-32 overflow-hidden bg-gradient-to-br from-[var(--primary-dark-slate)] via-[var(--secondary-color)] to-[var(--secondary-color)]"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -1065,33 +1025,58 @@ export default function InsidePage({
             {landingPageData.faq.map((faq, index) => (
               <motion.div
                 key={index}
-                className="group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 hover:bg-white/15 hover:scale-[1.02]"
+                className="group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500"
                 variants={fadeInUp}
               >
-                <div className={`${is4K ? "p-10" : "p-8"} relative`}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className={`w-full text-left ${is4K ? "p-10" : "p-8"} flex justify-between items-center relative z-10`}
+                >
                   <h3
-                    className={`${
-                      is4K ? "text-2xl" : "text-xl"
-                    } font-bold text-white mb-6 relative z-10 group-hover:text-blue-100 transition-colors duration-300`}
+                    className={`${is4K ? "text-2xl" : "text-xl"
+                      } font-bold text-white group-hover:text-blue-100 transition-colors duration-300`}
                   >
                     {faq.question}
                   </h3>
-                  <p
-                    className={`${
-                      is4K ? "text-lg" : "text-base"
-                    } text-slate-300 leading-relaxed relative z-10 group-hover:text-slate-200 transition-colors duration-300 font-medium`}
+                  <motion.span
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="text-white text-2xl"
                   >
-                    {faq.answer}
-                  </p>
-                </div>
+                    ▼
+                  </motion.span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {openIndex === index && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{
+                        duration: 0.5,
+                        ease: [0.25, 0.1, 0.25, 1],
+                      }}
+                    >
+                      <motion.div
+                        className={`${is4K ? "px-10 pb-10" : "px-8 pb-8"
+                          } text-slate-300 leading-relaxed font-medium`}
+                        initial={{ y: -10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -10, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                      >
+                        {faq.answer}
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
         </div>
       </motion.section>
-      {/* API Integration Section */}
       {landingPageData.apiIntegration && (
         <motion.section
           className={`${containerClass} mx-auto px-6 py-20 relative`}
@@ -1113,9 +1098,8 @@ export default function InsidePage({
           {/* Description */}
           {landingPageData.apiIntegration.description && (
             <motion.p
-              className={`${
-                is4K ? "text-lg" : "text-base"
-              } text-center mb-16 text-gray-700 leading-relaxed max-w-3xl mx-auto`}
+              className={`${is4K ? "text-lg" : "text-base"
+                } text-center mb-16 text-gray-700 leading-relaxed max-w-3xl mx-auto`}
               variants={fadeInUp}
             >
               {landingPageData.apiIntegration.description}
@@ -1141,17 +1125,15 @@ export default function InsidePage({
                     <div className="flex items-center gap-3 mb-4">
                       <Icon className="w-10 h-10 text-[var(--primary-color)]" />
                       <h3
-                        className={`${
-                          is4K ? "text-xl" : "text-lg"
-                        } font-semibold text-[var(--primary-color)]`}
+                        className={`${is4K ? "text-xl" : "text-lg"
+                          } font-semibold text-[var(--primary-color)]`}
                       >
                         {feature.title}
                       </h3>
                     </div>
                     <p
-                      className={`${
-                        is4K ? "text-base" : "text-sm"
-                      } text-gray-600 leading-relaxed`}
+                      className={`${is4K ? "text-base" : "text-sm"
+                        } text-gray-600 leading-relaxed`}
                     >
                       {feature.description}
                     </p>
@@ -1168,23 +1150,20 @@ export default function InsidePage({
             variants={fadeInUp}
           >
             <h3
-              className={`${
-                is4K ? "text-2xl" : "text-xl"
-              } font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
+              className={`${is4K ? "text-2xl" : "text-xl"
+                } font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]`}
             >
               {landingPageData.apiIntegration.support.title}
             </h3>
             <p
-              className={`${
-                is4K ? "text-lg" : "text-base"
-              } text-gray-700 mb-4 leading-relaxed`}
+              className={`${is4K ? "text-lg" : "text-base"
+                } text-gray-700 mb-4 leading-relaxed`}
             >
               {landingPageData.apiIntegration.support.description}
             </p>
             <p
-              className={`${
-                is4K ? "text-base" : "text-sm"
-              } font-semibold text-[var(--secondary-color)]`}
+              className={`${is4K ? "text-base" : "text-sm"
+                } font-semibold text-[var(--secondary-color)]`}
             >
               {landingPageData.apiIntegration.support.note}
             </p>
@@ -1199,9 +1178,8 @@ export default function InsidePage({
           </h2>
 
           <p
-            className={`${
-              is4K ? "text-2xl" : "text-xl"
-            } leading-relaxed max-w-4xl mx-auto mb-12 text-blue-100`}
+            className={`${is4K ? "text-2xl" : "text-xl"
+              } leading-relaxed max-w-4xl mx-auto mb-12 text-blue-100`}
           >
             {landingPageData.finalCta.subtext}
           </p>
@@ -1211,9 +1189,8 @@ export default function InsidePage({
               <Link
                 key={index}
                 href="/registration"
-                className={`${
-                  is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"
-                } bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block`}
+                className={`${is4K ? "px-10 py-5 text-xl" : "px-8 py-4 text-lg"
+                  } bg-white text-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--secondary-light-color)] hover:text-[var(--primary-hover-color)] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block`}
               >
                 {button}
               </Link>

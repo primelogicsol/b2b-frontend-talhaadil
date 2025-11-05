@@ -7,7 +7,7 @@ const TermsAndConditions: NextPage = () => {
     <div className="min-h-screen bg-gray-100 font-sans">
     
       {/* Header */}
-      <header className="bg-[var(--secondary-color)] text-white py-10">
+      <header className="bg-[var(--secondary-color)] text-white pb-10 pt-18">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-17">
           <h1 className="text-3xl font-bold">Privacy Policy</h1>
           <p className="mt-2 text-lg">B2B Connect - De Koshur Crafts Bazaar</p>

@@ -861,10 +861,10 @@ This agreement is governed under U.S. law and is legally binding under federal a
             <style jsx>{`
         :root {
           --secondary-hover-color: #f48261;
-          --secondary-color: #d85834;
+          --secondary-color: var(--secondary-color);
           --secondary-light-color: #f9c6b2;
           --primary-hover-color: #2a5f7a;
-          --primary-color: #1b4f68;
+          --primary-color: var(--secondary-color);
           --primary-light-text-color: #346880;
           --primary-header-color: #e4e6eb;
         }

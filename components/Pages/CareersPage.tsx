@@ -434,8 +434,8 @@ export default function CareersPage() {
         .value-icon {
           background: linear-gradient(
             135deg,
-            var(--primary-cyan-color),
-            var(--primary-color)
+            var(--secondary-color),
+            var(--secondary-hover-color)
           );
           color: white;
           width: 80px;

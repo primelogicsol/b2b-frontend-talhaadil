@@ -19,7 +19,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ Title, SubTitle }) => {
     <div className="text-center">
       {/* SubTitle */}
       <div className="relative inline-block mb-6">
-        <span className="text-sm font-semibold text-[var(--secondary-color)] bg-[#fff4f0] border border-gray-200 px-5 py-1.5 rounded-full relative inline-block">
+        <span className="text-sm font-semibold text-[var(--secondary-color)] bg-[#ffffff] border border-gray-200 px-5 py-1.5 rounded-full relative inline-block">
           {parse(SubTitle)}
         </span>
         <span className="absolute top-1/2 left-[-40px] w-[30px] h-[3px] bg-gradient-to-r from-white to-[var(--secondary-color)] transform -translate-y-1/2 rounded-full"></span>
