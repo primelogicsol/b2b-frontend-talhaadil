@@ -81,7 +81,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className={`relative w-full overflow-hidden flex items-center justify-center mt-10 mb-10${
+      className={`relative w-full overflow-hidden flex items-center justify-center my-5 ${
         is4K ? "" : ""
       }`}
     >

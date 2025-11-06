@@ -23,7 +23,7 @@ export default function StatisticsSection() {
   ]
 
   return (
-    <div className="max-w-[1580px] bg-white px-4 mx-auto py-0 lg:py-10">
+    <div className="max-w-[1580px] bg-white px-4 mx-auto">
       <div
         className="relative overflow-hidden"
         style={{

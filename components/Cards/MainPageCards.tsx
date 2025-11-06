@@ -98,7 +98,7 @@ export default function MainPageCards() {
 
   return (
     <div
-      className="px-3 sm:px-4 md:px-6 lg:px-8 mt-4 bg-gradient-to-br from-slate-200 to-slate-100  py-4 lg:py-10"
+      className="px-3 sm:px-4 md:px-6 lg:px-8 mt-4 bg-gradient-to-br from-slate-200 to-slate-100  py-8 lg:py-16"
      
     >
       <div className="max-w-7xl mx-auto">

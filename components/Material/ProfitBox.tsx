@@ -1143,7 +1143,7 @@ export default function KashmirCraftsCarousel() {
     <div
       ref={containerRef}
       className={`${is4K ? "py-30" : ""
-        } bg-[#e5e5e5] relative overflow-hidden`}
+        } bg-[#e5e5e5] relative overflow-hidden py-10`}
      
     >
       {/* Animated Dotted Earth Background */}

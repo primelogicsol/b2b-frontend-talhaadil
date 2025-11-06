@@ -49,7 +49,7 @@ import Location from "@/components/Essentials/Location";
 const howItWorksData = {
   title: "How It Works",
   description:
-    "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC’s transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
+    "Swift Partnership Activation: Experience a seamless journey from registration to marketplace leadership through DKC's transformative onboarding process, empowering buyers with tools, training, and support to thrive in a global marketplace.",
   imageUrl: "/images/onboarding.jpg",
   imageAlt: "Onboarding Illustration",
   mini_desc: " Our Onboarding Process",
@@ -184,7 +184,7 @@ const whatSetsUsApartCards = [
     icon: <BookOpen className="w-8 h-8" />,
     title: "Our Story",
     description:
-      "From Kashmir’s valleys to the world, driven by passion and artisanship.",
+      "From Kashmir's valleys to the world, driven by passion and artisanship.",
     buttonText: "READ MORE",
     link: "/our-story",
   },
@@ -278,22 +278,27 @@ export default function LandingPage() {
 
 
       {/* Hero Section */}
-      <BannerWithFeatures data={data} />
-      <div className="-mt-50">
+        <BannerWithFeatures data={data} />
+
+      <div className="-mt-50 pb-10 lg:pb-20">
         <Homepage />
       </div>
 
       {/* About Us Sections */}
       <section
-        className="px-2 py-10 lg:py-26 md:px-6 lg:px-8 bg-white text-center"
+        className="px-2 md:px-6 lg:px-8 bg-white text-center pb-4 lg:pb-30 lg:pt-10"
       >
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
-      <ScrollSection features={scrollFeatures} />
+
+      <div className="lg:pb-20">
+        <ScrollSection features={scrollFeatures} />
+      </div>
+
       {/* Partnerships Section */}
       <section
-        className={`bg-white text-left ${is4K ? "py-28 px-20" : "py-16 px-4"
-          }`}
+        className={`bg-white text-left ${is4K ? "py-28 px-20" : "px-4"
+          } lg:pb-20 lg:pt-10`}
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
           <motion.div
@@ -386,9 +391,16 @@ export default function LandingPage() {
 
         </div>
       </section>
-      <RecSquareSection />
-      <MainPageCards />
-      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4">
+
+      <div className="pt-16 md:pt-0 lg:pb-20">
+        <RecSquareSection />
+      </div>
+
+      <div>
+        <MainPageCards />
+      </div>
+
+      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4 lg:pb-20">
         <div className="text-center mt-16 mb-6">
           <h2
             className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
@@ -434,13 +446,21 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-      <div>
+
+      <div className="lg:pb-20">
         <KashmirCraftsCarousel />
       </div>
-      <FlagSection />
-      <Location />
+
+      <div>
+        <FlagSection />
+      </div>
+
+      <div className="pb-8 lg:pb-20">
+        <Location />
+      </div>
+
       <section
-        className="w-full py-16 md:py-24 lg:py-18 text-white"
+        className="w-full py-16 md:py-24 lg:py-18 text-white lg:pb-20"
         style={{
           background: "var(--primary-hover-color)",
         }}
