@@ -32,7 +32,7 @@ export default function UserProfilePage() {
             className={`object-cover rounded-full border-4 border-white shadow-md w-32 h-32 sm:w-40 sm:h-40 ${is4K ? "w-48 h-48 sm:w-56 sm:h-56" : ""}`}
           />
           <h2
-            className={`text-2xl sm:text-4xl font-extrabold mt-4 sm:mt-6 break-words ${is4K ? "text-4xl sm:text-6xl" : ""}`}
+            className={`text-2xl sm:text-4xl font-bold mt-4 sm:mt-6 break-words ${is4K ? "text-4xl sm:text-6xl" : ""}`}
           >
             John Doe
           </h2>

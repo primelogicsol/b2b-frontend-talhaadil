@@ -73,7 +73,7 @@ export default function RecSquareSection({
           HOW IT WORKS
         </div>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6 text-left px-3">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6 text-left px-3">
           {title}
         </h2>
 

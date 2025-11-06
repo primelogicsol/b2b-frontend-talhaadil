@@ -310,7 +310,7 @@ export default function InsidePartnership({
           paddingRight: is4K ? "8rem" : "1rem",
         }}
       >
-        <h2 className="text-2xl md:text-4xl xl:text-5xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
+        <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold text-center mb-10 text-[var(--primary-color)]">
           Platform Features
         </h2>
         <CostComparisonResponsive costComparison={comparisonData} />
@@ -447,7 +447,7 @@ export default function InsidePartnership({
           paddingRight: is4K ? "8rem" : "1rem",
         }}
       >
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-10 text-[var(--primary-color)]">
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-10 text-[var(--primary-color)]">
           Cost Comparison with Other Platforms
         </h2>
         <CostComparisonResponsive costComparison={comparisonData} />

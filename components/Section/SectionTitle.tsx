@@ -27,7 +27,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ Title, SubTitle }) => {
       </div>
 
       {/* Main Title */}
-      <h1 className="text-[32px] sm:text-[38px] lg:text-[42px] leading-tight font-extrabold text-[#050a1e]">
+      <h1 className="text-[32px] sm:text-[38px] lg:text-[42px] leading-tight font-bold text-[#050a1e]">
         {before && <>{before} </>}
         <span className="text-[var(--secondary-color)]">{lastTwo}</span>
       </h1>

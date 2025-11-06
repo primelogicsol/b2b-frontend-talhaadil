@@ -175,7 +175,7 @@ export default function RegisterPage() {
         {!showOtpVerification ? (
           <>
             <div className="text-center">
-              <h1 className="mb-2 font-extrabold tracking-tight text-white text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
+              <h1 className="mb-2 font-bold tracking-tight text-white text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
                 Join Us
               </h1>
               <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg lg:text-xl 2xl:text-2xl">
@@ -325,7 +325,7 @@ export default function RegisterPage() {
         ) : (
           <>
             <div className="text-center">
-              <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl">
+              <h1 className="mb-2 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl">
                 Verify OTP
               </h1>
               <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg lg:text-xl 2xl:text-2xl">

@@ -379,8 +379,8 @@ export default function Process() {
           <h1
             className={
               is4K
-                ? "text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight mb-6 text-[var(--primary-dark-slate)] animate-fade-in"
-                : "text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-[var(--primary-dark-slate)] animate-fade-in"
+                ? "text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6 text-[var(--primary-dark-slate)] animate-fade-in"
+                : "text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 text-[var(--primary-dark-slate)] animate-fade-in"
             }
           >
             B2B Connect - USA

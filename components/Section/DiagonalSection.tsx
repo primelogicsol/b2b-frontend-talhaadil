@@ -128,7 +128,7 @@ export default function DiagonalSection({
           <h1
             className={`${
               is4K ? "text-6xl leading-[1.2]" : "text-3xl md:text-4xl lg:text-5xl"
-            } font-extrabold mb-6`}
+            } font-bold mb-6`}
           >
             {title} <br className="hidden md:block" />{" "}
             <span className="text-[var(--secondary-color)]">{highlight}</span>

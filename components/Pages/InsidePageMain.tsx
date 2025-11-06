@@ -695,7 +695,7 @@ export default function InsidePage({
         variants={staggerContainer}
       >
         <motion.h2
-          className={`${subHeadingClass} text-2xl md:text-3xl lg:text-4xl font-extrabold text-center mb-16 text-[var(--primary-color)]`}
+          className={`${subHeadingClass} text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-16 text-[var(--primary-color)]`}
           variants={fadeInUp}
         >
           {landingPageData.pricing.heading}
@@ -1088,7 +1088,7 @@ export default function InsidePage({
           {/* Heading */}
           {landingPageData.apiIntegration.heading && (
             <motion.h2
-              className={`${subHeadingClass} font-extrabold text-center mb-8  text-2xl md:text-3xl lg:text-4xl text-[var(--primary-color)]`}
+              className={`${subHeadingClass} font-bold text-center mb-8  text-2xl md:text-3xl lg:text-4xl text-[var(--primary-color)]`}
               variants={fadeInUp}
             >
               {landingPageData.apiIntegration.heading}

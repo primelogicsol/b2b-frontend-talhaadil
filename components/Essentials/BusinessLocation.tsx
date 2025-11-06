@@ -16,7 +16,7 @@ export default function BusinessLocation() {
         <div className={`${is4K ? "max-w-7xl" : "max-w-6xl"} mx-auto px-4 sm:px-6 lg:px-8`}>
           <div className="text-center mb-12">
             <h2
-              className={`text-3xl sm:text-3xl md:text-4xl ${is4K ? "lg:text-6xl" : "lg:text-5xl"} text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight`}
+              className={`text-3xl sm:text-3xl md:text-4xl ${is4K ? "lg:text-6xl" : "lg:text-5xl"} text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 drop-shadow-md text-[var(--primary-color)] font-bold uppercase leading-tight`}
             >
               Our Location
             </h2>

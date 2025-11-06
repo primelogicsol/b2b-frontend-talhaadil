@@ -32,7 +32,7 @@ export default function MissionSection() {
           <h5 className="text-sm text-[var(--primary-color)] uppercase font-bold mb-2">
             OUR WAYS
           </h5>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-snug">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-snug">
             Brand <span className="text-[var(--secondary-color)]">Credentials</span>
           </h2>
           <p className="text-gray-600 text-base">

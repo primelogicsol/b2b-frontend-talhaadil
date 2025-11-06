@@ -695,7 +695,7 @@ export default function ProfilePage() {
             <div className="p-4 sm:p-6">
               {category.subcategories.map((subcat: any) => (
                 <div key={subcat.subcategoryId} className="mb-6">
-                  <h3 className="text-md sm:text-base font-extrabold text-[var(--primary-hover-color)] mb-2">
+                  <h3 className="text-md sm:text-base font-bold text-[var(--primary-hover-color)] mb-2">
                     {subcat.subcategoryName}
                   </h3>
 

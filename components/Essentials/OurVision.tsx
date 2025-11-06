@@ -48,7 +48,7 @@ export default function OurVision() {
         {/* Header */}
         <div className={`text-center ${is4K ? "mb-24" : "mb-16"}`}>
           <h2
-            className={`font-extrabold mb-6 ${
+            className={`font-bold mb-6 ${
               is4K
                 ? "text-6xl"
                 : "text-3xl sm:text-4xl lg:text-5xl"

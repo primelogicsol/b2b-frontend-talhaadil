@@ -131,7 +131,7 @@ export default function VideoGallery({
   return (
     <div className="min-h-screen bg-[var(--primary-color)] text-white p-6 md:p-10 border-t-4 border-t-[#4a4a6a]">
       <header className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)]">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[var(--secondary-color)] to-[var(--secondary-hover-color)]">
           {heading}
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">

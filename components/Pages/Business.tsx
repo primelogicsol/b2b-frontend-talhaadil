@@ -189,7 +189,7 @@ export default function BusinessNiche() {
       <section className={`px-4 md:px-8 lg:px-12 py-20 bg-white ${is4K ? "2xl:py-32" : ""}`}>
         <div className={`max-w-7xl mx-auto ${is4K ? "2xl:max-w-[2000px]" : ""}`}>
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-center mb-4 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl" : ""}`}
+            className={`text-4xl lg:text-5xl font-bold text-center mb-4 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl" : ""}`}
           >
             Our Niche Products
           </h2>
@@ -229,7 +229,7 @@ export default function BusinessNiche() {
       >
         <div className={`max-w-6xl mx-auto ${is4K ? "2xl:max-w-[2000px]" : ""}`}>
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-center mb-4 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl" : ""}`}
+            className={`text-4xl lg:text-5xl font-bold text-center mb-4 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl" : ""}`}
           >
             What Makes Us Unique
           </h2>
@@ -293,7 +293,7 @@ export default function BusinessNiche() {
       >
         <div className={`max-w-6xl mx-auto ${is4K ? "2xl:max-w-[2000px]" : ""}`}>
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-center mb-4 text-[var(--secondary-light-color)] ${is4K ? "2xl:text-6xl" : ""}`}
+            className={`text-4xl lg:text-5xl font-bold text-center mb-4 text-[var(--secondary-light-color)] ${is4K ? "2xl:text-6xl" : ""}`}
           >
             Our Global Audience
           </h2>
@@ -325,7 +325,7 @@ export default function BusinessNiche() {
       {/* Global Impact Metrics Section */}
       <section className={`px-4 md:px-8 lg:px-12 py-30 ${is4K ? "mx-auto max-w-[2400px] 2xl:py-40" : ""}`}>
         <h1
-          className={`text-center font-extrabold mb-6 text-3xl sm:text-4xl md:text-5xl text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl 2xl:mb-8" : ""}`}
+          className={`text-center font-bold mb-6 text-3xl sm:text-4xl md:text-5xl text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl 2xl:mb-8" : ""}`}
         >
           Global Impact Metrics
         </h1>
@@ -342,7 +342,7 @@ export default function BusinessNiche() {
       <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
         <div className="text-center mt-16 mb-6">
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""}`}
+            className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""}`}
           >
             Our Reach
           </h2>
@@ -350,7 +350,7 @@ export default function BusinessNiche() {
         <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
           <div className="container mx-auto px-4 text-center">
             <h3
-              className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""}`}
+              className={`text-3xl font-bold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""}`}
             >
               Buyer
             </h3>
@@ -360,7 +360,7 @@ export default function BusinessNiche() {
         <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
           <div className="container mx-auto px-4 text-center">
             <h3
-              className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""}`}
+              className={`text-3xl font-bold text-[var(--secondary-color)] mb-3 ${is4K ? "2xl:text-4xl 2xl:mb-4" : ""}`}
             >
               Vendor
             </h3>
@@ -373,7 +373,7 @@ export default function BusinessNiche() {
       <section className={`px-4 md:px-8 lg:px-12 py-20 ${is4K ? "2xl:py-32" : ""}`}>
         <div className={`max-w-4xl mx-auto text-center ${is4K ? "2xl:max-w-[2000px]" : ""}`}>
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold mb-6 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl 2xl:mb-8" : ""}`}
+            className={`text-4xl lg:text-5xl font-bold mb-6 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl 2xl:mb-8" : ""}`}
           >
             Our Future Vision
           </h2>

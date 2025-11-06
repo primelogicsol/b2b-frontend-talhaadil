@@ -21,7 +21,7 @@ export default function OurStoryPage() {
       <section className={`pt-16 pb-6 ${is4K ? "pt-32 pb-16" : ""}`}>
         <h2
           className={`text-3xl md:text-4xl lg:text-5xl ${is4K ? "text-8xl" : ""
-            } font-extrabold text-[var(--primary-color)] mb-12 ${is4K ? "mb-20" : ""
+            } font-bold text-[var(--primary-color)] mb-12 ${is4K ? "mb-20" : ""
             } text-center`}
         >
           What Sets Us Apart
@@ -178,7 +178,7 @@ export default function OurStoryPage() {
         >
           <h2
             className={`text-2xl md:text-3xl lg:text-4xl ${is4K ? "text-7xl" : ""
-              } font-extrabold mb-12 md:mb-16 ${is4K ? "mb-24" : ""}`}
+              } font-bold mb-12 md:mb-16 ${is4K ? "mb-24" : ""}`}
             style={{ color: "var(--secondary-color)" }}
           >
             Our Growth: Bridging Tradition with Innovation

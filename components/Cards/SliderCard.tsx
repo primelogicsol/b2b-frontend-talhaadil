@@ -90,7 +90,7 @@ export function SliderCard({ cards = defaultCards }: CardSliderProps) {
   return (
     <div className="relative w-full max-w-6xl mx-auto py-10 px-6 not-even:rounded-xl shadow-lg overflow-hidden bg-[var(--primary-color)] rounded-2xl">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-4xl font-extrabold text-[var(--secondary-color)]">Our Features</h2>
+        <h2 className="text-4xl font-bold text-[var(--secondary-color)]">Our Features</h2>
         <div className="flex space-x-2">
           <button
             onClick={handlePrev}

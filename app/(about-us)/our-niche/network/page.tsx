@@ -61,7 +61,7 @@ function page() {
           className={`max-w-7xl mx-auto ${is4K ? "2xl:max-w-[2000px]" : ""}`}
         >
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-center mb-4 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl" : ""}`}
+            className={`text-4xl lg:text-5xl font-bold text-center mb-4 text-[color:var(--primary-color)] ${is4K ? "2xl:text-6xl" : ""}`}
           >
             Our Network
           </h2>

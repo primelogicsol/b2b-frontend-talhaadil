@@ -183,7 +183,7 @@ export default function ScrollSection({
             <span className="w-8 h-0.5 bg-[var(--primary-color)]"></span>
             <span>Built for vision and connection</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mt-4">
             {mainTitle.split(" ").slice(0, 2).join(" ")}{" "}
             <span className="text-[var(--secondary-color)]">
               {mainTitle.split(" ").slice(2).join(" ")}

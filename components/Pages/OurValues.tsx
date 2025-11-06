@@ -267,7 +267,7 @@ export default function OurValue() {
             is4K
               ? "text-7xl mb-20"
               : "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl sm:mb-2 md:mb-4 lg:mb-6"
-          } drop-shadow-md text-[var(--primary-color)] font-extrabold uppercase leading-tight`}
+          } drop-shadow-md text-[var(--primary-color)] font-bold uppercase leading-tight`}
         >
           Our Values
         </h2>
@@ -299,7 +299,7 @@ export default function OurValue() {
         <h2
           className={`${
             is4K ? "text-7xl mb-20" : "text-3xl md:text-4xl lg:text-5xl mb-12"
-          } font-extrabold text-[var(--primary-color)]`}
+          } font-bold text-[var(--primary-color)]`}
         >
           What Sets Us Apart
         </h2>

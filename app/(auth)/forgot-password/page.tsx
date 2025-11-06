@@ -119,7 +119,7 @@ export default function ForgotPasswordPage() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--primary-color)]/20">
           <Mail className="h-8 w-8 text-[var(--primary-color)]" />
         </div>
-        <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl">
+        <h1 className="mb-2 text-3xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
           Forgot Password?
         </h1>
         <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg">
@@ -164,7 +164,7 @@ export default function ForgotPasswordPage() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--primary-color)]/20">
           <Shield className="h-8 w-8 text-[var(--primary-color)]" />
         </div>
-        <h1 className="mb-2 font-extrabold tracking-tight text-white text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
+        <h1 className="mb-2 font-bold tracking-tight text-white text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
           Verify OTP
         </h1>
         <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg">
@@ -285,7 +285,7 @@ export default function ForgotPasswordPage() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20">
           <Lock className="h-8 w-8 text-green-400" />
         </div>
-        <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl">
+        <h1 className="mb-2 text-3xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
           Password Reset!
         </h1>
         <p className="mb-6 text-base text-gray-300 sm:mb-8 sm:text-lg">

@@ -61,7 +61,7 @@ export default function PartnershipModel({
         <div className={`text-center mb-12 ${is4K ? "mb-16" : ""}`}>
           <h2
             className={`font-bold text-[var(--primary-color)] ${
-              is4K ? "text-7xl font-extrabold mb-10" : "text-3xl md:text-4xl"
+              is4K ? "text-7xl font-bold mb-10" : "text-3xl md:text-4xl"
             }`}
           >
             {title}

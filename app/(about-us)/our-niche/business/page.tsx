@@ -143,7 +143,7 @@ function page() {
           className={`max-w-6xl mx-auto ${is4K ? "2xl:max-w-[2000px]" : ""}`}
         >
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-center mb-4 text-[color:var(--primary-color)] ${
+            className={`text-4xl lg:text-5xl font-bold text-center mb-4 text-[color:var(--primary-color)] ${
               is4K ? "2xl:text-6xl" : ""
             }`}
           >
@@ -244,7 +244,7 @@ function page() {
           className={`max-w-6xl mx-auto ${is4K ? "2xl:max-w-[2000px]" : ""}`}
         >
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-center mb-4 text-[var(--secondary-light-color)] ${
+            className={`text-4xl lg:text-5xl font-bold text-center mb-4 text-[var(--secondary-light-color)] ${
               is4K ? "2xl:text-6xl" : ""
             }`}
           >
@@ -298,7 +298,7 @@ function page() {
         }`}
       >
         <h1
-          className={`text-center font-extrabold mb-6 text-3xl sm:text-4xl md:text-5xl text-[color:var(--primary-color)] ${
+          className={`text-center font-bold mb-6 text-3xl sm:text-4xl md:text-5xl text-[color:var(--primary-color)] ${
             is4K ? "2xl:text-6xl 2xl:mb-8" : ""
           }`}
         >
@@ -319,7 +319,7 @@ function page() {
       <div className="bg-gradient-to-b from-blue-50 to-blue-100 pt-4">
         <div className="text-center mt-16 mb-6">
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold text-[var(--primary-color)] mb-4 ${
+            className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${
               is4K ? "2xl:text-6xl 2xl:mb-6" : ""
             }`}
           >
@@ -329,7 +329,7 @@ function page() {
         <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
           <div className="container mx-auto px-4 text-center">
             <h3
-              className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
+              className={`text-3xl font-bold text-[var(--secondary-color)] mb-3 ${
                 is4K ? "2xl:text-4xl 2xl:mb-4" : ""
               }`}
             >
@@ -341,7 +341,7 @@ function page() {
         <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
           <div className="container mx-auto px-4 text-center">
             <h3
-              className={`text-3xl font-extrabold text-[var(--secondary-color)] mb-3 ${
+              className={`text-3xl font-bold text-[var(--secondary-color)] mb-3 ${
                 is4K ? "2xl:text-4xl 2xl:mb-4" : ""
               }`}
             >
@@ -362,7 +362,7 @@ function page() {
           }`}
         >
           <h2
-            className={`text-4xl lg:text-5xl font-extrabold mb-6 text-[color:var(--primary-color)] ${
+            className={`text-4xl lg:text-5xl font-bold mb-6 text-[color:var(--primary-color)] ${
               is4K ? "2xl:text-6xl 2xl:mb-8" : ""
             }`}
           >

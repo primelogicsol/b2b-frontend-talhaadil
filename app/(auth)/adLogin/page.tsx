@@ -71,7 +71,7 @@ export default function AdminLoginPage() {
       {/* Login Card */}
       <div className="relative z-10 w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl sm:max-w-md sm:p-8 md:p-10">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-blue-600 sm:text-3xl md:text-4xl lg:text-6xl">
+          <h1 className="mb-2 text-3xl font-bold tracking-tight text-blue-600 sm:text-3xl md:text-4xl lg:text-6xl">
             Admin Login
           </h1>
           <p className="mb-6 text-base text-gray-600 sm:mb-8 sm:text-lg">

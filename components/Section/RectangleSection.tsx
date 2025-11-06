@@ -69,7 +69,7 @@ Meet the people who are bringing this vision to life.`,
               {tagline}
             </p>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-[var(--primary-dark-slate)]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-[var(--primary-dark-slate)]">
             {title}{" "}
             <span className="text-[var(--secondary-color)]">
               {highlightedWords.one}
