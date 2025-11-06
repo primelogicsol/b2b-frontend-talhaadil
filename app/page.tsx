@@ -297,13 +297,14 @@ export default function LandingPage() {
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
           <motion.div
-            className="text-center mb-16 flex flex-col items-center gap-6"
+            className="text-center mb-16 flex flex-col gap-6"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="text-left -ml-165">
+            
+            <div className="text-left ">
               <h2
                 className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
                   } font-bold text-[var(--primary-color)] text-left`}

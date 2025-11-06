@@ -925,7 +925,6 @@ const MetricCard: React.FC<MetricCardProps> = ({
       </motion.h3>
       <motion.p
         className={`${is4K ? "text-3xl" : "text-xl"} text-[var(--primary-color)]`}
-        whileHover={{ color: "#ffffff" }}
         transition={{ duration: 0.2 }}
       >
         {value}
@@ -1239,7 +1238,7 @@ export default function KashmirCraftsCarousel() {
                 onClick={(e) => scrollToCategory(index, e)}
                 className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg backdrop-blur-sm ${currentCategoryIndex === index
                     ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
-                    : "bg-white/10 text-gray-200 hover:bg-white/20"
+                    : "bg-[var(--primary-color)] text-gray-200 hover:bg-white/20"
                   }`}
                 style={{ scrollSnapAlign: "center" }}
                 whileHover={{ scale: 1.05 }}
@@ -1375,7 +1374,7 @@ export default function KashmirCraftsCarousel() {
               <motion.p
                 className={`${is4K ? "text-2xl" : "text-lg"
                   } text-[var(--primary-color)] font-medium`}
-                whileHover={{ color: "#ffffff" }}
+
                 transition={{ duration: 0.2 }}
               >
                 Product Range
@@ -1428,7 +1427,7 @@ export default function KashmirCraftsCarousel() {
         {/* Mobile/Tablet Layout */}
         <div className="lg:hidden max-w-4xl mx-auto">
           <motion.div
-            className="bg-slate-800/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-700/50 mb-8"
+            className="bg-[#e5e5e5] backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-700/50 mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -1439,10 +1438,10 @@ export default function KashmirCraftsCarousel() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color)] mb-2">
                 {currentCategory.name}
               </h3>
-              <p className="text-base md:text-lg text-gray-200">
+              <p className="text-base md:text-lg text-[var(--primary-color)] font-medium">
                 Product Range
               </p>
             </motion.div>
@@ -1450,7 +1449,7 @@ export default function KashmirCraftsCarousel() {
             <div className="flex items-center gap-2">
               <motion.button
                 onClick={scrollSubcategoryLeft}
-                className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-lg flex items-center justify-center"
+                className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--primary-color)] backdrop-blur-sm shadow-lg flex items-center justify-center"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -1468,16 +1467,10 @@ export default function KashmirCraftsCarousel() {
                     onClick={(e) => selectSubcategory(index, e)}
                     className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 shadow-lg backdrop-blur-sm ${selectedSubcategoryIndex === index
                         ? "bg-[var(--secondary-color)] text-white scale-105 shadow-[var(--secondary-color)]/30"
-                        : "bg-slate-700/50 text-gray-200 hover:bg-slate-600/50 border border-slate-600/30"
+                        : "bg-[var(--primary-color)] text-gray-200 border border-slate-600/30"
                       }`}
                     style={{ scrollSnapAlign: "start" }}
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "rgba(249, 115, 22, 0.2)",
-                      borderColor: "rgba(249, 115, 22, 0.5)",
-                      color: "#fb923c",
-                      y: -2,
-                    }}
+                   
                     whileTap={{ scale: 0.95 }}
                   >
                     <motion.span
@@ -1492,7 +1485,7 @@ export default function KashmirCraftsCarousel() {
 
               <motion.button
                 onClick={scrollSubcategoryRight}
-                className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-lg flex items-center justify-center"
+                className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--primary-color)] backdrop-blur-sm shadow-lg flex items-center justify-center"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
