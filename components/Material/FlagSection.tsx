@@ -112,7 +112,7 @@ export default function HeroSection() {
               alt="Main Display Logo"
               fill
               priority
-              className="object-contain rounded-full shadow-lg bg-gray-300"
+              className="object-contain rounded-full shadow-lg bg-[var(--secondary-light-color)]/10"
             />
           </div>
 

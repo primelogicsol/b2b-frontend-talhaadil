@@ -206,6 +206,40 @@ export default function LandingPage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("pashmina");
+  const categories = {
+    pashmina: {
+      title: "DKC Himalayan Pashmina Luxe",
+      subtitle: "Feel the Luxury, Wear the Heritage.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    couture: {
+      title: "DKC Couture Boutique",
+      subtitle: "Crafting Style with a Kashmiri Touch.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    heritage: {
+      title: "DKC Heritage Interiors",
+      subtitle: "Infusing Your Home with Kashmir's Rich Legacy.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    gemstone: {
+      title: "DKC Kashmir Gemstone",
+      subtitle: "Jewels as Pure and Radiant as Kashmir's Heart.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    bazaar: {
+      title: "De Koshur Crafts Bazaar",
+      subtitle: "Parent Company",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    wooden: {
+      title: "DKC Wooden Wonders",
+      subtitle: "Turning Wood into Wonders with Kashmir's Touch.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    }
+  };
+
 
   const scrollFeatures = [
     {
@@ -278,7 +312,7 @@ export default function LandingPage() {
 
 
       {/* Hero Section */}
-        <BannerWithFeatures data={data} />
+      <BannerWithFeatures data={data} />
 
       <div className="-mt-50 pb-10 lg:pb-20">
         <Homepage />
@@ -308,7 +342,7 @@ export default function LandingPage() {
             transition={{ duration: 0.2 }}
             viewport={{ once: true }}
           >
-            
+
             <div className="text-left ">
               <h2
                 className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
@@ -433,13 +467,13 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 text-center">
             {activeTab === "buyer" && (
               <>
-             
+
                 <Counter slides={buyerslides} />
               </>
             )}
             {activeTab === "vendor" && (
               <>
-              
+
                 <Counter slides={vendorslides} />
               </>
             )}
@@ -447,12 +481,107 @@ export default function LandingPage() {
         </section>
       </div>
 
-      <div className="lg:pb-20">
+      <div>
         <KashmirCraftsCarousel />
       </div>
 
-      <div>
+      {/* <div>
         <FlagSection />
+      </div> */}
+      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4 lg:pb-20">
+        <div className="text-center mt-16 mb-6">
+          <h2
+            className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
+              }`}
+          >
+            Our Business Network
+          </h2>
+        </div>
+
+        <div className="flex justify-center flex-wrap gap-3 px-4 mb-8">
+          <button
+            onClick={() => setSelectedCategory("pashmina")}
+            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "pashmina"
+              ? "bg-[var(--primary-color)] text-white"
+              : "bg-gray-400 text-white hover:bg-gray-500"
+              }`}
+          >
+            Pashmina Luxe
+          </button>
+          <button
+            onClick={() => setSelectedCategory("couture")}
+            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "couture"
+              ? "bg-[var(--primary-color)] text-white"
+              : "bg-gray-400 text-white hover:bg-gray-500"
+              }`}
+          >
+            Couture
+          </button>
+          <button
+            onClick={() => setSelectedCategory("heritage")}
+            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "heritage"
+              ? "bg-[var(--primary-color)] text-white"
+              : "bg-gray-400 text-white hover:bg-gray-500"
+              }`}
+          >
+            Heritage
+          </button>
+          <button
+            onClick={() => setSelectedCategory("gemstone")}
+            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "gemstone"
+              ? "bg-[var(--primary-color)] text-white"
+              : "bg-gray-400 text-white hover:bg-gray-500"
+              }`}
+          >
+            Gemstone
+          </button>
+          <button
+            onClick={() => setSelectedCategory("bazaar")}
+            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "bazaar"
+              ? "bg-[var(--primary-color)] text-white"
+              : "bg-gray-400 text-white hover:bg-gray-500"
+              }`}
+          >
+            Bazaar
+          </button>
+          <button
+            onClick={() => setSelectedCategory("wooden")}
+            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "wooden"
+              ? "bg-[var(--primary-color)] text-white"
+              : "bg-gray-400 text-white hover:bg-gray-500"
+              }`}
+          >
+            Wooden Wonders
+          </button>
+        </div>
+
+        <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
+          <div className="container mx-auto px-4">  
+            <div className="max-w-[940px] mx-auto rounded-lg shadow-lg p-8">
+              <div className="flex flex-row items-center h-[160px]">
+                <div className="-ml-10">
+                  <Image
+                    alt='hello'
+                    width={200}
+                    height={200}
+                    src="/images/flags/15.webp"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-[var(--primary-color)] mb-3">
+                    {categories[selectedCategory].title}
+                  </h3>
+                  <p className="text-xl text-gray-600 italic mb-6">
+                    {categories[selectedCategory].subtitle}
+                  </p>
+                </div>
+              </div>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                {categories[selectedCategory].description}
+              </p>
+            </div>
+          </div>
+        </section>F
       </div>
 
       <div className="pb-8 lg:pb-20">

@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { useGlobalContext } from "@/context/ScreenProvider"
 
 const defaultSlides = [
   {
@@ -54,7 +55,7 @@ const defaultSlides = [
 
 export default function VerticalHeroSlider({ slides = defaultSlides, isBanner = false }) {
   const [currentSlide, setCurrentSlide] = useState(0)
-
+  const { is4K: is4k } = useGlobalContext()
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -72,7 +73,7 @@ export default function VerticalHeroSlider({ slides = defaultSlides, isBanner = 
   }
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[84vh] overflow-hidden mt-20 bg-[#e5e5e5]">
+    <div className={`relative w-full overflow-hidden mt-20 bg-[#e5e5e5] ${!is4k ? "h-[60vh] sm:h-[75vh] lg:h-[80vh]" : "h-[65vh]"}`}>
       <motion.div
         className="flex flex-col w-full"
         animate={{ y: `-${getSlideOffset()}vh` }}

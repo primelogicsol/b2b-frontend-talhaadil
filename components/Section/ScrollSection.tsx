@@ -168,13 +168,7 @@ export default function ScrollSection({
 
   return (
     <div className= "bg-gray-50 py-25 px-6 lg:px-8 relative overflow-hidden">
-      <div
-        className="absolute inset-0 z-0 opacity-20"
-        style={{
-          backgroundImage: `radial-gradient(circle, #d1d5db 1px, transparent 1px)`,
-          backgroundSize: "10px 10px",
-        }}
-      ></div>
+      
 
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         {/* Left */}

@@ -20,9 +20,9 @@ const Features = ({ data }: FeaturesProps) => {
   const featuresData = data 
   
   return (
-    <section className="py-8 lg:py-20">
+    <section className="py-8 lg:py-20 ">
       <div className="flex justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6 ">
           {featuresData?.map((item, i) => (
             <FeatureCard
               key={i}
