@@ -561,7 +561,7 @@ export default function LandingPage() {
           <div className="container mx-auto px-4">  
             <div className="max-w-[940px] mx-auto rounded-lg shadow-lg p-8">
               <div className="flex flex-row items-center h-[160px]">
-                <div className="-ml-10">
+                <div className="-ml-6 lg:-ml-10">
                   <Image
                     alt='hello'
                     width={200}
@@ -570,20 +570,20 @@ export default function LandingPage() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-[var(--primary-color)] mb-3">
+                  <h3 className="text-xl lg:text-3xl font-bold text-[var(--primary-color)] mb-3">
                     {categories[selectedCategory].title}
                   </h3>
-                  <p className="text-xl text-gray-600 italic mb-6">
+                  <p className="text-md  lg:text-xl text-gray-600 italic mb-6">
                     {categories[selectedCategory].subtitle}
                   </p>
                 </div>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-md lg:text-lg text-gray-700 leading-relaxed">
                 {categories[selectedCategory].description}
               </p>
             </div>
           </div>
-        </section>F
+        </section>
       </div>
 
       <div className="pb-8 lg:pb-20">

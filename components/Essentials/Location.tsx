@@ -33,7 +33,7 @@ export default function Location() {
     <section className={`${is4K ? "py-24" : "pb-6 lg:py-16"} bg-white`}>
       <div className={`container ${is4K ? "max-w-8xl" : "max-w-6xl"} mx-auto px-4 md:px-6`}>
         <h1
-          className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-bold text-[var(--primary-color)] text-center lg:text-left mb-12 leading-tight`}
+          className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-bold text-[var(--primary-color)] text-left ml-3 lg:ml-0 mb-12 leading-tight mt-10 `}
         >
           Our Global Presence & Impact
         </h1>
