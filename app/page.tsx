@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useEffect, useState, useCallback } from "react";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import Image from "next/image";
+import DKCHero from "@/components/Essentials/DKCHero";
 import Link from "next/link";
 import { UserPlus, CalendarCheck } from "lucide-react";
 import {
@@ -312,9 +313,10 @@ export default function LandingPage() {
 
 
       {/* Hero Section */}
-      <BannerWithFeatures data={data} />
+      <DKCHero />
+      
 
-      <div className="-mt-50 pb-10 lg:pb-20">
+      <div className="pb-10 lg:pb-20">
         <Homepage />
       </div>
 
