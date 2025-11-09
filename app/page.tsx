@@ -6,7 +6,7 @@ import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import Image from "next/image";
 import DKCHero from "@/components/Essentials/DKCHero";
 import Link from "next/link";
-import { UserPlus, CalendarCheck } from "lucide-react";
+import { UserPlus, CalendarCheck, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   DollarSign,
   Globe,
@@ -314,7 +314,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <DKCHero />
-      
+
 
       <div className="pb-10 lg:pb-20">
         <Homepage />
@@ -490,7 +490,9 @@ export default function LandingPage() {
       {/* <div>
         <FlagSection />
       </div> */}
-      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4 lg:pb-20">
+     
+
+      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4 lg:pb-20 min-w-[280px]">
         <div className="text-center mt-16 mb-6">
           <h2
             className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
@@ -500,92 +502,109 @@ export default function LandingPage() {
           </h2>
         </div>
 
-        <div className="flex justify-center flex-wrap gap-3 px-4 mb-8">
-          <button
-            onClick={() => setSelectedCategory("pashmina")}
-            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "pashmina"
-              ? "bg-[var(--primary-color)] text-white"
-              : "bg-gray-400 text-white hover:bg-gray-500"
-              }`}
-          >
-            Pashmina Luxe
-          </button>
-          <button
-            onClick={() => setSelectedCategory("couture")}
-            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "couture"
-              ? "bg-[var(--primary-color)] text-white"
-              : "bg-gray-400 text-white hover:bg-gray-500"
-              }`}
-          >
-            Couture
-          </button>
-          <button
-            onClick={() => setSelectedCategory("heritage")}
-            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "heritage"
-              ? "bg-[var(--primary-color)] text-white"
-              : "bg-gray-400 text-white hover:bg-gray-500"
-              }`}
-          >
-            Heritage
-          </button>
-          <button
-            onClick={() => setSelectedCategory("gemstone")}
-            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "gemstone"
-              ? "bg-[var(--primary-color)] text-white"
-              : "bg-gray-400 text-white hover:bg-gray-500"
-              }`}
-          >
-            Gemstone
-          </button>
-          <button
-            onClick={() => setSelectedCategory("bazaar")}
-            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "bazaar"
-              ? "bg-[var(--primary-color)] text-white"
-              : "bg-gray-400 text-white hover:bg-gray-500"
-              }`}
-          >
-            Bazaar
-          </button>
-          <button
-            onClick={() => setSelectedCategory("wooden")}
-            className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === "wooden"
-              ? "bg-[var(--primary-color)] text-white"
-              : "bg-gray-400 text-white hover:bg-gray-500"
-              }`}
-          >
-            Wooden Wonders
-          </button>
+        {/* TABS - Desktop: All | Mobile: One + Arrows */}
+        <div className="px-4 mb-8">
+          {/* Desktop Tabs */}
+          <div className="hidden md:flex justify-center flex-wrap gap-3">
+            {[
+              { key: "pashmina", label: "Pashmina Luxe" },
+              { key: "couture", label: "Couture" },
+              { key: "heritage", label: "Heritage" },
+              { key: "gemstone", label: "Gemstone" },
+              { key: "bazaar", label: "Bazaar" },
+              { key: "wooden", label: "Wooden Wonders" },
+            ].map((item) => (
+              <button
+                key={item.key}
+                onClick={() => setSelectedCategory(item.key)}
+                className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === item.key
+                    ? "bg-[var(--primary-color)] text-white"
+                    : "bg-gray-400 text-white hover:bg-gray-500"
+                  }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile: Single Fixed-Size Tab + Arrows */}
+          <div className="flex md:hidden items-center justify-center gap-4">
+            {/* Left Arrow */}
+            <button
+              onClick={() => {
+                const order = ["pashmina", "couture", "heritage", "gemstone", "bazaar", "wooden"];
+                const i = order.indexOf(selectedCategory);
+                setSelectedCategory(order[i === 0 ? order.length - 1 : i - 1]);
+              }}
+              className="p-2 rounded-full bg-white shadow-lg hover:shadow-xl active:scale-95 transition-all"
+              aria-label="Previous category"
+            >
+              <ChevronLeft className="w-6 h-6 text-[var(--primary-color)]" />
+            </button>
+
+            {/* Active Tab - Fixed Width */}
+            <button
+              className="w-[200px] py-3 font-bold rounded-md bg-[var(--primary-color)] text-white shadow-xl whitespace-nowrap text-center"
+            >
+              <span
+                className={`${selectedCategory === "pashmina" || selectedCategory === "wooden"
+                    ? "text-base"
+                    : "text-lg"
+                  }`}
+              >
+                {selectedCategory === "pashmina"
+                  ? "Pashmina Luxe"
+                  : selectedCategory === "wooden"
+                    ? "Wooden Wonders"
+                    : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
+              </span>
+            </button>
+
+            {/* Right Arrow */}
+            <button
+              onClick={() => {
+                const order = ["pashmina", "couture", "heritage", "gemstone", "bazaar", "wooden"];
+                const i = order.indexOf(selectedCategory);
+                setSelectedCategory(order[(i + 1) % order.length]);
+              }}
+              className="p-2 rounded-full bg-white shadow-lg hover:shadow-xl active:scale-95 transition-all"
+              aria-label="Next category"
+            >
+              <ChevronRight className="w-6 h-6 text-[var(--primary-color)]" />
+            </button>
+          </div>
         </div>
 
+        {/* Content Section - Mobile: Logo > Title > Subtitle */}
         <section className={`py-6 ${is4K ? "2xl:py-10" : ""}`}>
-          <div className="container mx-auto px-4">  
-            <div className="max-w-[940px] mx-auto rounded-lg shadow-lg p-8">
-              <div className="flex flex-row items-center h-[160px]">
-                <div className="-ml-6 lg:-ml-10">
+          <div className="container mx-auto px-4">
+            <div className="max-w-[940px] mx-auto rounded-lg shadow-lg p-6 bg-white">
+              {/* Mobile: Centered Logo, Title, Subtitle */}
+              <div className="flex flex-row md:items-center md:h-[160px]">
+                <div className="-mt-6 md:-mt-4 md:mb-0 md:-ml-6 lg:-ml-6">
                   <Image
-                    alt='hello'
-                    width={200}
-                    height={200}
+                    alt={categories[selectedCategory].title}
+                    width={120}
+                    height={120}
                     src="/images/flags/15.webp"
                   />
                 </div>
-                <div>
-                  <h3 className="text-xl lg:text-3xl font-bold text-[var(--primary-color)] mb-3">
+                <div className="text-left">
+                  <h3 className="text-xl lg:text-3xl font-bold text-[var(--primary-color)] mb-2">
                     {categories[selectedCategory].title}
                   </h3>
-                  <p className="text-md  lg:text-xl text-gray-600 italic mb-6">
+                  <p className="text-sm lg:text-xl text-gray-600 italic mb-4">
                     {categories[selectedCategory].subtitle}
                   </p>
                 </div>
               </div>
-              <p className="text-md lg:text-lg text-gray-700 leading-relaxed">
+              <p className="text-sm lg:text-lg text-gray-700 leading-relaxed text-left">
                 {categories[selectedCategory].description}
               </p>
             </div>
           </div>
         </section>
       </div>
-
       <div className="pb-8 lg:pb-20">
         <Location />
       </div>
