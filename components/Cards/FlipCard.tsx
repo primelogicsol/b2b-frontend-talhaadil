@@ -31,10 +31,10 @@ export function FlipCard({
         } group-hover:[transform:rotateY(180deg)]`}
       >
         {/* Front Side */}
-        <div className={`absolute inset-0 w-full h-full [backface-visibility:hidden] bg-[var(--primary-color)] text-white rounded-lg shadow-lg flex flex-col items-center justify-center text-center ${
+        <div className={`absolute inset-0 w-full h-full [backface-visibility:hidden] bg-[var(--secondary-color)] text-white rounded-lg shadow-lg flex flex-col items-center justify-center text-center ${
           is4K ? "p-10" : "p-6"
         }`}>
-          <div className={`mb-4 text-[var(--secondary-color)]`}>
+          <div className={`mb-4 text-white`}>
             <Icon size={is4K ? 64 : 48} />
           </div>
           <h3 className={`${is4K ? "text-2xl" : "text-xl"} font-semibold text-white mb-2`}>
@@ -46,7 +46,7 @@ export function FlipCard({
         </div>
 
         {/* Back Side */}
-        <div className={`absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[var(--primary-color)] text-white rounded-lg shadow-lg flex flex-col items-center justify-center text-center ${
+        <div className={`absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[var(--secondary-color)] text-white rounded-lg shadow-lg flex flex-col items-center justify-center text-center ${
           is4K ? "p-10" : "p-6"
         }`}>
           <h3 className={`${is4K ? "text-2xl" : "text-xl"} font-semibold text-white mb-3`}>

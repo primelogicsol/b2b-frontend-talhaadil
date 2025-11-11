@@ -541,7 +541,7 @@ export function Navbar() {
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out bg-[var(--primary-color)] ${isScrolled ? "py-2 shadow-lg border-b-[var(--secondary-color)] border-b-2" : "py-4"}`}
       >
-        <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4">
+        <div className="container mx-auto flex items-center justify-between transition-all duration-500 px-4 max-w-[1520px]">
           <Link href="/" className="flex items-center space-x-2 transition-all duration-500 z-60">
 
             <Image src="/images/logo3.png" alt="Dekoshur Crafts" width={isScrolled ? 80 : 160} height={isScrolled ? 70 : 100} />

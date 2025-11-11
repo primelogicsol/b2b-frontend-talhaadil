@@ -5,6 +5,7 @@ import { Play, BookOpen, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
+import * as LucideIcons from "lucide-react";
 
 export default function DKCHero() {
     const { is4K: is4k } = useGlobalContext();
@@ -60,27 +61,31 @@ export default function DKCHero() {
         <>
             <section
                 className={`
-        relative overflow-hidden
-        bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)]
-        text-white mt-20
-        ${!is4k ? "py-20 lg:py-32" : "py-24 lg:py-40"}
-      `}
+    relative overflow-hidden
+    bg-gradient-to-br from-[var(--primary-color)] via-[var(--primary-hover-color)] to-[var(--secondary-color)] 
+    text-white mt-25
+    ${!is4k ? "py-10 lg:py-20" : "py-24 lg:py-40"}
+  `}
             >
                 <div className="absolute inset-0 bg-black/30" />
+
+                {/* CONTAINER */}
                 <div className="relative max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-                        {/* LEFT SIDE - Content */}
+                    {/* GRID: equal height, centered alignment */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[540px]">
+
+                        {/* LEFT SIDE */}
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="space-y-8 lg:space-y-12"
+                            className="flex flex-col justify-center h-full space-y-8 lg:space-y-14"
                         >
                             <div className="space-y-6">
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-18">
                                     DKC B2B
-                                    <span className="block text-[var(--secondary-color)] mt-2">
+                                    <span className="block text-[var(--secondary-color)]">
                                         Connect Portal
                                     </span>
                                 </h1>
@@ -95,9 +100,11 @@ export default function DKCHero() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.3 }}
-                                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl"
+                                className="bg-white/10 backdrop-blur-md rounded-2xl py-6 px-8 border border-white/20 shadow-xl"
                             >
-                                <p className="text-white/80 text-sm uppercase tracking-wider mb-3">Artisan Promise</p>
+                                <p className="text-white/80 text-sm uppercase tracking-wider mb-6">
+                                    Artisan Promise
+                                </p>
                                 <blockquote className="text-xl sm:text-2xl italic font-medium">
                                     “Every craft tells a story, every order builds a legacy.”
                                 </blockquote>
@@ -108,7 +115,7 @@ export default function DKCHero() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.5 }}
-                                className="flex flex-col sm:flex-row gap-4"
+                                className="flex flex-col sm:flex-row gap-4 -mt-6"
                             >
                                 <Link
                                     href="#start"
@@ -128,17 +135,17 @@ export default function DKCHero() {
                             </motion.div>
                         </motion.div>
 
-                        {/* RIGHT SIDE – Minimal Slider (Hover-only arrows) */}
+                        {/* RIGHT SIDE */}
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="relative group" // <-- group enables hover on parent
+                            className="relative flex justify-center items-center h-full group"
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
                         >
-                            <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-black/20">
+                            <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-black/20 w-full max-w-[1100px]">
                                 <div
                                     className="flex transition-transform duration-700 ease-out"
                                     style={{ transform: `translateX(-${current * 100}%)` }}
@@ -146,7 +153,7 @@ export default function DKCHero() {
                                     {slides.map((slide) => (
                                         <div
                                             key={slide.id}
-                                            className="min-w-full relative flex-shrink-0 h-[500px] sm:h-[550px] lg:h-[650px]"
+                                            className="min-w-full relative flex-shrink-0 h-[480px] lg:h-[540px]"
                                         >
                                             <img
                                                 src={slide.image}
@@ -155,10 +162,9 @@ export default function DKCHero() {
                                                 loading="lazy"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
-
                                             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 text-left">
                                                 <motion.div
-                                                    key={current} // re-animate on slide change
+                                                    key={current}
                                                     initial={{ opacity: 0, y: 20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ duration: 0.6, ease: "easeOut" }}
@@ -182,94 +188,85 @@ export default function DKCHero() {
                                     ))}
                                 </div>
 
-                                {/* Arrows - ONLY visible on hover (desktop) */}
+                                {/* Arrows */}
                                 <button
                                     onClick={prevSlide}
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 
-                  bg-white/20 hover:bg-white/40 backdrop-blur-sm 
-                  p-3 rounded-full transition-all duration-300 
-                  opacity-0 group-hover:opacity-100 
-                  -translate-x-4 group-hover:translate-x-0"
-                                    aria-label="Previous slide"
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0"
                                 >
                                     <ChevronLeft className="w-7 h-7 text-white" />
                                 </button>
-
                                 <button
                                     onClick={nextSlide}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 
-                  bg-white/20 hover:bg-white/40 backdrop-blur-sm 
-                  p-3 rounded-full transition-all duration-300 
-                  opacity-0 group-hover:opacity-100 
-                  translate-x-4 group-hover:translate-x-0"
-                                    aria-label="Next slide"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
                                 >
                                     <ChevronRight className="w-7 h-7 text-white" />
                                 </button>
                             </div>
                         </motion.div>
+
                     </div>
                 </div>
             </section>
             <section
                 className="
     bg-[var(--primary-color)]
-    text-white py-24 lg:py-36
+    text-white py-10 lg:py-20
   "
             >
                 <div className="max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                         {[
                             {
-                                name: "Artisan Verified",
-                                desc: "Every artisan and product is certified and traceable for quality and authenticity.",
-                                img: "https://cdn-icons-png.flaticon.com/512/1048/1048953.png",
-                                link: "#artisan",
+                                name: "Core Trade",
+                                desc: "We focus on trade quality, efficiency, and lasting global reliability.",
+                                img: "ShoppingCart",
+                                link: "/core-trade",
                             },
                             {
-                                name: "Eco Initiatives",
-                                desc: "Sourcing that prioritizes sustainability and minimizes environmental impact.",
-                                img: "https://cdn-icons-png.flaticon.com/512/4298/4298975.png",
-                                link: "#eco",
+                                name: "Brand Growth",
+                                desc: "We help brands expand reach, boost presence, and achieve success.",
+                                img: "Rocket",
+                                link: "/brand-growth",
                             },
                             {
-                                name: "Buyer Tools",
-                                desc: "Powerful B2B tools to simplify bulk sourcing, logistics, and order tracking.",
-                                img: "https://cdn-icons-png.flaticon.com/512/2085/2085045.png",
-                                link: "#buyers",
+                                name: "Collaborative",
+                                desc: "We build networks, share resources, and drive growth.",
+                                img: "Users",
+                                link: "/collaborative",
                             },
                             {
-                                name: "Global Markets",
-                                desc: "Access regional trade channels and connect with buyers in over 25 languages.",
-                                img: "https://cdn-icons-png.flaticon.com/512/2991/2991148.png",
-                                link: "#markets",
+                                name: "Institutional",
+                                desc: "We partner with firms, strengthen ties, and foster lasting trust.",
+                                img: "Building",
+                                link: "/institutional",
                             },
-                        ].map((card, index) => (
-                            <motion.a
-                                key={index}
-                                href={card.link}
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.3 }}
-                                className="
-            bg-white/10 hover:bg-white/20
-            backdrop-blur-xl rounded-3xl
-            p-10 sm:p-12
-            flex flex-col items-center text-center
-            shadow-xl hover:shadow-2xl
-            transition-all duration-300
-          "
-                            >
-                                <img
-                                    src={card.img}
-                                    alt={card.name}
-                                    className="w-24 h-24 mb-8 object-contain"
-                                />
-                                <h3 className="text-2xl sm:text-3xl font-semibold mb-4">{card.name}</h3>
-                                <p className="text-white/80 text-lg sm:text-base leading-relaxed">
-                                    {card.desc}
-                                </p>
-                            </motion.a>
-                        ))}
+                        ].map((card, index) => {
+                           const IconComponent = LucideIcons[card.img] as React.ComponentType<{ size?: number; className?: string }>; // dynamically get Lucide icon
+
+                            return (
+                                <motion.a
+                                    key={index}
+                                    href={card.link}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="
+        bg-white/10 hover:bg-white/20
+        backdrop-blur-xl rounded-3xl
+        p-10 sm:p-12
+        flex flex-col items-center text-center
+        shadow-xl hover:shadow-2xl
+        transition-all duration-300
+      "
+                                >
+                                    <IconComponent className="w-10 h-10 mb-8 text-white" />
+                                    <h3 className="text-2xl sm:text-3xl font-semibold mb-4">{card.name}</h3>
+                                    <p className="text-white/80 text-lg sm:text-base leading-relaxed">
+                                        {card.desc}
+                                    </p>
+                                </motion.a>
+                            );
+                        })}
+
                     </div>
                 </div>
             </section>

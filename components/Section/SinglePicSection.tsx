@@ -2,7 +2,8 @@
 
 import type React from "react";
 import { useGlobalContext } from "@/context/ScreenProvider";
-
+import { Sparkles, Users, Leaf } from "lucide-react";
+import { FlipCard } from "../Cards/FlipCard";
 interface FeatureItem {
   title: string;
   desc: string;
@@ -25,6 +26,29 @@ interface SinglePicSectionProps {
 
 export default function SinglePicSection({ content }: SinglePicSectionProps) {
   const { is4K } = useGlobalContext();
+  const cards = [
+    {
+      title: "Dream It",
+      description: "Visualize your perfect store",
+      detailedDescription:
+        "Envision your store or product lineup. We'll provide the roadmap to turn your ideas into reality—helping you design, plan, and launch with confidence and creativity.",
+      icon: Sparkles,
+    },
+    {
+      title: "Define It",
+      description: "Curate your ideal collection",
+      detailedDescription:
+        "Browse our curated collections and select from a wide range of authentic Kashmiri crafts. Each product tells a story of tradition, skill, and dedication, helping you define your unique brand identity.",
+      icon: Users,
+    },
+    {
+      title: "Dominate It",
+      description: "Lead with authentic products",
+      detailedDescription:
+        "Stand out in the marketplace by offering authentic Kashmiri products crafted with precision and soul. Build trust, attract loyal customers, and dominate your niche with timeless artistry and value.",
+      icon: Leaf,
+    },
+  ];
 
   const defaults: SectionContent = {
     imageSrc: "/images/hero2.webp",
@@ -38,7 +62,7 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
       </>
     ),
     description:
-      "A Transformative Platform Connecting USA Buyers with Kashmiri Artisans and Authentic Products...",
+      "A Transformative Platform Connecting USA Buyers with Artisans and Authentic Products...",
     features: [
       {
         title: "Dream It:",
@@ -63,37 +87,29 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
   return (
     <section
       className="w-full bg-white"
-     
+
     >
       <div
-        className={`max-w-[1600px] mx-auto ${
-          is4K ? "px-20 py-32" : "px-4 md:px-8 py-10 lg:py-30"
-        }`}
+        className={`max-w-[1600px] mx-auto ${is4K ? "px-20 py-32" : "px-4 md:px-8 py-10 lg:py-30"
+          }`}
       >
         <div
-          className={`grid grid-cols-1 lg:grid-cols-2 items-stretch ${
-            is4K ? "gap-16" : "gap-12"
-          }`}
+          className={`grid grid-cols-1 lg:grid-cols-2 items-stretch ${is4K ? "gap-16" : "gap-12"
+            }`}
         >
           {/* Image side */}
           <div className="relative h-full flex">
             <div className="relative w-full h-full overflow-hidden rounded-lg">
-              <video
-                src="/videos/gatewayfinal.mp4" // replace with your actual video path
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
+              <div
+                className="w-full h-full bg-[var(--secondary-color)]"
+              ></div>
             </div>
           </div>
 
           {/* Text side */}
           <div
-            className={`${
-              is4K ? "pl-16" : "pl-0 lg:pl-8"
-            } flex flex-col justify-center`}
+            className={`${is4K ? "pl-16" : "pl-0 lg:pl-8"
+              } flex flex-col justify-center`}
           >
             <div className="flex items-center mb-2">
               <div
@@ -101,68 +117,44 @@ export default function SinglePicSection({ content }: SinglePicSectionProps) {
                 style={{ backgroundColor: "var(--secondary-color)" }}
               />
               <span
-                className={`${
-                  is4K ? "text-xl" : "text-sm md:text-base"
-                } font-medium tracking-wide uppercase`}
+                className={`${is4K ? "text-xl" : "text-sm md:text-base"
+                  } font-medium tracking-wide uppercase`}
                 style={{ color: "var(--primary-light-text-color)" }}
               >
                 {data.header}
               </span>
             </div>
             <h1
-              className={`${
-                is4K
+              className={`${is4K
                   ? "text-6xl mb-12"
-                  : "text-2xl md:text-3xl lg:text-4xl mb-8"
-              } font-bold leading-tight`}
+                  : "text-2xl md:text-3xl lg:text-4xl"
+                } font-bold leading-tight`}
               style={{ color: "var(--primary-color)" }}
             >
               {data.mainHeading}
             </h1>
             <p
-              className={`${
-                is4K
+              className={`${is4K
                   ? "text-2xl mb-16 leading-relaxed"
                   : "text-base md:text-lg lg:text-[16px] mb-10 leading-relaxed"
-              }`}
+                }`}
               style={{ color: "var(--primary-light-text-color)" }}
             >
               {data.description}
             </p>
-            <div className={`${is4K ? "space-y-8" : "space-y-3"}`}>
-              {data.features?.map((item, idx) => (
-                <div key={idx} className="flex items-start">
-                  <div
-                    className={`${
-                      is4K ? "w-16 h-1 mt-2" : "w-4 h-0.5 mt-3"
-                    } mr-4 flex-shrink-0`}
-                    style={{ backgroundColor: "var(--secondary-color)" }}
-                  />
-                  <div>
-                    <h3
-                      className={`${
-                        is4K ? "text-2xl mb-3" : "text-lg md:text-xl mb-2"
-                      } font-semibold`}
-                      style={{ color: "var(--primary-color)" }}
-                    >
-                      {item.title}{" "}
-                      <span
-                        className={`${
-                          is4K ? "text-xl" : "text-base md:text-[16px]"
-                        } font-normal`}
-                      >
-                        {item.desc}
-                      </span>
-                    </h3>
-                  </div>
-                </div>
+            <div
+              className={`${is4K ? "gap-12" : "gap-8"
+                } grid grid-cols-1 lg:grid-cols-3`}
+            >
+              {cards.map((card, index) => (
+                <FlipCard key={index} {...card} />
               ))}
             </div>
+
             <div className={`${is4K ? "mt-20" : "mt-4"}`}>
               <h2
-                className={`${
-                  is4K ? "text-3xl mb-4" : "text-xl md:text-[20px] mb-3"
-                } font-bold`}
+                className={`${is4K ? "text-3xl mb-4" : "text-xl md:text-[20px] mb-1"
+                  } font-bold`}
                 style={{ color: "var(--primary-color)" }}
               >
                 {data.bottomHeading}
