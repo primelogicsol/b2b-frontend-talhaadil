@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useEffect, useState, useCallback } from "react";
 import { AnimationCardGrid } from "@/components/Cards/AnimationCard";
 import Image from "next/image";
+import { Playfair_Display } from "next/font/google";
 import DKCHero from "@/components/Essentials/DKCHero";
 import Link from "next/link";
 import { UserPlus, CalendarCheck, ChevronLeft, ChevronRight } from "lucide-react";
@@ -46,6 +47,10 @@ import FlagSection from "@/components/Material/FlagSection";
 import Location from "@/components/Essentials/Location";
 
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const howItWorksData = {
   title: "How It Works",
@@ -332,7 +337,7 @@ export default function LandingPage() {
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
 
-      
+
       {/* Partnerships Section */}
       <section
         className={`bg-gray-100 text-left ${is4K ? "py-28 px-20" : "px-4"
@@ -346,34 +351,22 @@ export default function LandingPage() {
             transition={{ duration: 0.2 }}
             viewport={{ once: true }}
           >
+            <div className={`max-w-5xl mx-auto ${playfair.className}`}>
+              <h1 className="text-3xl md:text-5xl font-bold text-gray-900 text-left md:text-center mb-4">
+                De Koshur Crafts Partnerships
+              </h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-gray-900 text-left md:text-center mb-4">
+                Four Pathways Grid
+              </h1>
 
-            <div className="text-center">
-              <h2
-                className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
-                  } font-bold text-[var(--primary-color)] text-center`}
-              >
-                De Koshur Crafts
-              </h2>
-              <h2
-                className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
-                  } font-bold text-[var(--primary-color)] text-center`}
-              >
-                Partnerships  <span className="text-[#544a48]">YOUR WAY</span>
+              <h2 className="text-xl md:text-2xl text-gray-700 font-semibold text-left md:text-center mb-2">
+                Tailored Pathways for Artisans, Buyers & Institutions
               </h2>
 
-              <h2
-                className={`${is4K ? "text-6xl" : "text-3xl md:text-4xl"
-                  } font-bold text-[var(--primary-color)] text-center mt-4`}
-              >
-                Tailored for Your Success
-              </h2>
-              <h3
-                className={`${is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
-                  } text-[var(--primary-color)] font-semibold text-center`}
-              >
-                Buyer / Vendor Progressive Partnership Framework and Pathway
-              </h3>
+
             </div>
+
+
           </motion.div>
           <div className={`grid md:grid-cols-4 ${is4K ? "gap-14" : "gap-6"}`}>
             {partnershipCategories.map((category, index) => (
@@ -426,11 +419,13 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </div>
-
+          <p className={`text-md md:text-xl text-gray-600 text-center mt-10 ${playfair.className} font-bold`}>
+            A dynamic framework for trade, growth, and collaboration in the global craft ecosystem
+          </p>
         </div>
       </section>
 
-      <div className="pt-6 md:pt-0 bg-white">
+      <div className="pt-6 md:pt-0 md:pb-10 bg-white">
         <RecSquareSection />
       </div>
 
@@ -438,16 +433,33 @@ export default function LandingPage() {
         <MainPageCards />
       </div>
 
-      <div className="bg-gray-100 pt-10 lg:pb-6 lg:pt-16">
+      <div className="bg-white pt-10 lg:pb-6 lg:pt-16">
         <div className="text-center">
+
           <h2
             className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
               }`}
           >
             Our Business Network
           </h2>
+           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 text-left md:text-center mb-4">
+                Four Pathways Grid
+              </h1>
+
+              <h2 className="text-xl md:text-2xl text-gray-700 font-semibold text-left md:text-center mb-2">
+                Tailored Pathways for Artisans, Buyers & Institutions
+              </h2>
+              <h2 className="text-xl md:text-2xl text-gray-700 font-semibold text-left md:text-center mb-2">
+                Tailored Pathways for Artisans, Buyers & Institutions
+              </h2>
+              <h2 className="text-xl md:text-2xl text-gray-700 font-semibold text-left md:text-center mb-2">
+                Tailored Pathways for Artisans, Buyers & Institutions
+              </h2>
+              <h2 className="text-xl md:text-2xl text-gray-700 font-semibold text-left md:text-center mb-2">
+                Tailored Pathways for Artisans, Buyers & Institutions
+              </h2>
         </div>
-        <div className="flex justify-center space-x-6 border-[var(--primary-color)]">
+        <div className="flex justify-center space-x-6 border-[var(--primary-color)] mt-8">
           <button
             onClick={() => setActiveTab("buyer")}
             className={`py-3 px-6 font-bold text-2xl focus:outline-none rounded-md ${activeTab === "vendor"
@@ -492,9 +504,9 @@ export default function LandingPage() {
       {/* <div>
         <FlagSection />
       </div> */}
-     
 
-      <div className="bg-gray-100 pt-10 pb-8 lg:pb-14 lg:pt-16 min-w-[280px]">
+
+      <div className="bg-white pt-10 pb-8 lg:pb-14 lg:pt-16 min-w-[280px]">
         <div className="text-center">
           <h2
             className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
@@ -520,8 +532,8 @@ export default function LandingPage() {
                 key={item.key}
                 onClick={() => setSelectedCategory(item.key)}
                 className={`py-3 px-6 font-bold text-lg focus:outline-none rounded-md transition-all ${selectedCategory === item.key
-                    ? "bg-[var(--primary-color)] text-white"
-                    : "bg-gray-400 text-white hover:bg-gray-500"
+                  ? "bg-[var(--primary-color)] text-white"
+                  : "bg-gray-400 text-white hover:bg-gray-500"
                   }`}
               >
                 {item.label}
@@ -550,8 +562,8 @@ export default function LandingPage() {
             >
               <span
                 className={`${selectedCategory === "pashmina" || selectedCategory === "wooden"
-                    ? "text-base"
-                    : "text-lg"
+                  ? "text-base"
+                  : "text-lg"
                   }`}
               >
                 {selectedCategory === "pashmina"

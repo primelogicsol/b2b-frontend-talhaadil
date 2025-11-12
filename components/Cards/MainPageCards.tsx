@@ -98,7 +98,7 @@ export default function MainPageCards() {
 
   return (
     <div
-      className="px-3 sm:px-4 md:px-6 lg:px-8 bg-white py-8 lg:py-20"
+      className="px-3 sm:px-4 md:px-6 lg:px-8 bg-gray-100 py-8 lg:py-20"
      
     >
       <div className="max-w-7xl mx-auto">

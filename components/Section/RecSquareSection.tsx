@@ -54,12 +54,7 @@ export default function RecSquareSection({
           <div className="absolute inset-0 -m-4 border-4 border-[var(--secondary-color)] rounded-2xl z-20 pointer-events-none"></div>
 
           <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-            <Image
-              src="/images/main2.webp"
-              alt="Main Partnership Image"
-              fill
-              className="object-cover object-top rounded-2xl transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
-            />
+          <div className="w-full h-full bg-[var(--primary-color)]"></div>
             <div className="absolute inset-0 opacity-60 mix-blend-multiply"></div>
           </div>
         </div>
