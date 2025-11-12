@@ -41,7 +41,7 @@ export default function RecSquareSection({
 
   return (
     <div
-      className="flex flex-col lg:flex-row items-center justify-center p-4 md:p-8 mx-auto mt-8 lg:gap-20 bg-gray-100"
+      className="flex flex-col lg:flex-row items-center justify-center p-4 md:p-8 mx-auto mt-8 lg:gap-20 bg-white"
       style={{
         maxWidth: is4K ? "2000px" : "1280px",
         paddingLeft: is4K ? "8rem" : "1rem",

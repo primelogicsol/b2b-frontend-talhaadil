@@ -167,7 +167,7 @@ export default function ScrollSection({
   const thumbPosition = scrollProgress * (100 - thumbSize);
 
   return (
-    <div className= "bg-gray-100 py-20 px-6 lg:px-8 relative overflow-hidden">
+    <div className= "bg-white px-6 lg:px-8 relative overflow-hidden">
       
 
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -183,7 +183,7 @@ export default function ScrollSection({
               {mainTitle.split(" ").slice(2).join(" ")}
             </span>
           </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-md">
+          <p className="mt-4 text-lg text-gray-600 max-w-3xl">
             {mainDescription}
           </p>
 
@@ -194,7 +194,7 @@ export default function ScrollSection({
         <div className="relative flex flex-col">
           <div
             ref={scrollContainerRef}
-            className="flex flex-col gap-8 max-h-[400px] lg:max-h-[420px] overflow-y-auto no-scrollbar"
+            className="flex flex-col gap-8 max-h-[400px]  lg:max-h-[420px] overflow-y-auto no-scrollbar"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >

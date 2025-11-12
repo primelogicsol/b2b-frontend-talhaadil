@@ -37,10 +37,10 @@ export function FlipCard({
           <div className={`mb-4 text-white`}>
             <Icon size={is4K ? 64 : 48} />
           </div>
-          <h3 className={`${is4K ? "text-2xl" : "text-xl"} font-semibold text-white mb-2`}>
+          <h3 className={`text-[1.2rem] md:text-[2.4rem] font-bold text-white mb-2`}>
             {title}
           </h3>
-          <p className={`${is4K ? "text-base" : "text-sm"} text-gray-200`}>
+          <p className={`text-[1rem] md:text-[1rem] font-semibold text-gray-200`}>
             {description}
           </p>
         </div>
@@ -49,10 +49,8 @@ export function FlipCard({
         <div className={`absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[var(--secondary-color)] text-white rounded-lg shadow-lg flex flex-col items-center justify-center text-center ${
           is4K ? "p-10" : "p-6"
         }`}>
-          <h3 className={`${is4K ? "text-2xl" : "text-xl"} font-semibold text-white mb-3`}>
-            {title}
-          </h3>
-          <p className={`${is4K ? "text-base" : "text-sm"} text-gray-200 leading-relaxed text-left md:text-center`}>
+         
+          <p className={`text-[1rem] md:text-[1rem] font-semibold text-gray-200 leading-relaxed text-left md:text-center`}>
             {detailedDescription}
           </p>
         </div>

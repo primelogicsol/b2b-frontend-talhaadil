@@ -35,9 +35,8 @@ export default function VideoCardSection() {
   return (
     <section className="relative overflow-hidden bg-gray-100 text-[var(--primary-color)]">
       <div
-        className={`relative z-10 max-w-[1600px] mx-auto ${
-          is4K ? "px-20 py-32" : "px-4 md:px-8 py-16"
-        }`}
+        className={`relative z-10 max-w-[1600px] mx-auto ${is4K ? "px-20 py-32" : "px-4 md:px-8 py-16"
+          }`}
       >
         {/* Heading */}
         <div className="text-center mb-12">
@@ -55,9 +54,8 @@ export default function VideoCardSection() {
           </div>
 
           <h1
-            className={`font-bold leading-tight ${
-              is4K ? "text-6xl mb-12" : "text-3xl md:text-4xl lg:text-5xl mb-6"
-            }`}
+            className={`font-bold leading-tight ${is4K ? "text-6xl mb-12" : "text-3xl md:text-4xl lg:text-5xl mb-6"
+              }`}
           >
             Empowering USA-Based Buyers in{" "}
             <br className="hidden md:block" />
@@ -67,32 +65,32 @@ export default function VideoCardSection() {
         </div>
 
         {/* Cards Section */}
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ${
-            is4K ? "mt-20" : "mt-10"
-          }`}
-        >
-          {/* 1st Card (Video) */}
-          <div className="flex justify-center items-stretch">
-            <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg bg-black/40 flex">
-              <video
-                src="/videos/gatewayfinal.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </div>
+        <div className="flex flex-col lg:flex-row justify-center items-stretch gap-10 w-full">
+          {/* Video section (40% on large screens) */}
+          <div className="w-full lg:w-[40%] rounded-2xl overflow-hidden shadow-lg bg-black/40 flex">
+            <video
+              src="/videos/gatewayfinal.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
           </div>
 
-          {/* Next 3 FlipCards */}
-          {cards.map((card, index) => (
-            <div key={index} className="flex justify-center items-stretch">
-              <FlipCard {...card} />
-            </div>
-          ))}
+          {/* FlipCards (each 20% on large screens) */}
+          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-10 w-full lg:w-[60%]">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="w-full lg:w-[33.33%] flex justify-center items-stretch"
+              >
+                <FlipCard {...card} />
+              </div>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );

@@ -17,7 +17,12 @@ function Homepage() {
 
       <SinglePicSection />
       <StatisticsSection />
-      
+      <div className="text-center mt-14">
+        <h2 className="text-lg md:text-3xl font-bold">Handicraft Progressive Business Model for Every Vision
+        </h2>
+        <h4 className="text-md md:text-xl">Crafting US Next Generations with 700+ Old Legacy of Kashmir Handicraft Together</h4>
+      </div>
+
     </div>
   );
 }

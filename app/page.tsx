@@ -116,7 +116,7 @@ const partnershipCategories = [
     label: "Brand Expansion",
     href: "/brand-growth",
     summary:
-      "Expand reach via exhibitions, auction & bidding , white-label, and US based physical brick & mortar.",
+      "Expand reach via exhibitions, auction , white-label, and US based physical brick & mortar.",
     subItems: [
       { label: "Exhibition", href: "/brand-growth/exhibition" },
       { label: "Auction & Bidding", href: "/brand-growth/auction&bidding" },
@@ -320,6 +320,11 @@ export default function LandingPage() {
         <Homepage />
       </div>
 
+      <div className="lg:pb-20">
+        <ScrollSection features={scrollFeatures} />
+      </div>
+
+
       {/* About Us Sections */}
       <section
         className="px-2 md:px-6 lg:px-8 bg-white text-center pb-10 lg:pb-20"
@@ -327,14 +332,11 @@ export default function LandingPage() {
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
 
-      <div className="lg:pb-20">
-        <ScrollSection features={scrollFeatures} />
-      </div>
-
+      
       {/* Partnerships Section */}
       <section
-        className={`bg-white text-left ${is4K ? "py-28 px-20" : "px-4"
-          } py-15 lg:pb-10 `}
+        className={`bg-gray-100 text-left ${is4K ? "py-28 px-20" : "px-4"
+          } py-20 lg:pb-20 `}
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
           <motion.div
@@ -345,29 +347,29 @@ export default function LandingPage() {
             viewport={{ once: true }}
           >
 
-            <div className="text-left ">
+            <div className="text-center">
               <h2
                 className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
-                  } font-bold text-[var(--primary-color)] text-left`}
+                  } font-bold text-[var(--primary-color)] text-center`}
               >
                 De Koshur Crafts
               </h2>
               <h2
                 className={`${is4K ? "text-6xl" : "text-4xl md:text-5xl"
-                  } font-bold text-[var(--primary-color)] text-left`}
+                  } font-bold text-[var(--primary-color)] text-center`}
               >
                 Partnerships  <span className="text-[#544a48]">YOUR WAY</span>
               </h2>
 
               <h2
                 className={`${is4K ? "text-6xl" : "text-3xl md:text-4xl"
-                  } font-bold text-[var(--primary-color)] text-left mt-4`}
+                  } font-bold text-[var(--primary-color)] text-center mt-4`}
               >
                 Tailored for Your Success
               </h2>
               <h3
                 className={`${is4K ? "text-3xl max-w-5xl" : "text-xl max-w-3xl"
-                  } text-[var(--primary-color)] font-semibold text-left`}
+                  } text-[var(--primary-color)] font-semibold text-center`}
               >
                 Buyer / Vendor Progressive Partnership Framework and Pathway
               </h3>
@@ -428,7 +430,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <div className="pt-6 md:pt-0 bg-gray-100">
+      <div className="pt-6 md:pt-0 bg-white">
         <RecSquareSection />
       </div>
 

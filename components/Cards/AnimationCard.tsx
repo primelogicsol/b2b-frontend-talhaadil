@@ -26,7 +26,7 @@ export function AnimationCard({
     <div
       className={`group relative w-full ${
         is4K ? "max-w-md h-[460px] p-10" : "max-w-xs sm:max-w-sm h-96 p-8"
-      } rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl bg-white`}
+      } rounded-3xl shadow-lg overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-2xl bg-gray-100`}
     >
       <div className="absolute top-0 left-0 w-12 h-24 bg-[var(--secondary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform -translate-x-full -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-br-3xl"></div>
       <div className="absolute bottom-0 right-0 w-12 h-24 bg-[var(--secondary-color)] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out transform translate-x-full translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 rounded-tl-3xl"></div>
@@ -97,7 +97,7 @@ export function AnimationCardGrid({ data }: AnimationCardGridProps) {
   return (
     <div
       className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center ${
-        is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4 max-w-7xl mx-auto"
+        is4K ? "max-w-[1600px] mx-auto px-12 gap-6" : "px-4 max-w-7xl mx-auto gap-10"
       }`}
     >
       {data.map((card, index) => (
