@@ -33,7 +33,7 @@ export default function VideoCardSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gray-50 text-[var(--primary-color)]">
+    <section className="relative overflow-hidden bg-gray-100 text-[var(--primary-color)]">
       <div
         className={`relative z-10 max-w-[1600px] mx-auto ${
           is4K ? "px-20 py-32" : "px-4 md:px-8 py-16"

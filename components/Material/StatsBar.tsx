@@ -23,7 +23,7 @@ export default function StatisticsSection() {
   ]
 
   return (
-    <div className="max-w-[1580px] bg-gray-50 px-4 mx-auto">
+    <div className="max-w-[1580px] bg-gray-100 px-4 mx-auto">
       <div
         className="relative overflow-hidden"
         style={{
