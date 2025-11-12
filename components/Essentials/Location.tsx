@@ -30,7 +30,7 @@ const achievements = [
 export default function Location() {
   const { is4K } = useGlobalContext()
   return (
-    <section className={`${is4K ? "py-24" : "pb-6 lg:py-16"} bg-white`}>
+    <section className={`${is4K ? "py-24" : "pb-6 lg:py-10"} bg-white`}>
       <div className={`container ${is4K ? "max-w-8xl" : "max-w-6xl"} mx-auto px-4 md:px-6`}>
         <h1
           className={`${is4K ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"} font-bold text-[var(--primary-color)] text-left ml-3 lg:ml-0 mb-12 leading-tight mt-10 `}

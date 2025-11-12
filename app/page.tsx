@@ -322,7 +322,7 @@ export default function LandingPage() {
 
       {/* About Us Sections */}
       <section
-        className="px-2 md:px-6 lg:px-8 bg-white text-center pb-4 lg:pb-30 lg:pt-10"
+        className="px-2 md:px-6 lg:px-8 bg-white text-center pb-10 lg:pb-20"
       >
         <AnimationCardGrid data={whatSetsUsApartCards} />
       </section>
@@ -334,7 +334,7 @@ export default function LandingPage() {
       {/* Partnerships Section */}
       <section
         className={`bg-white text-left ${is4K ? "py-28 px-20" : "px-4"
-          } lg:pb-20 lg:pt-10`}
+          } py-15 lg:pb-10 `}
       >
         <div className={`${is4K ? "max-w-[1600px]" : "max-w-7xl"} mx-auto`}>
           <motion.div
@@ -428,7 +428,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <div className="pt-16 md:pt-0 lg:pb-20">
+      <div className="pt-6 md:pt-0 bg-gray-100">
         <RecSquareSection />
       </div>
 
@@ -436,8 +436,8 @@ export default function LandingPage() {
         <MainPageCards />
       </div>
 
-      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4 lg:pb-20">
-        <div className="text-center mt-16 mb-6">
+      <div className="bg-gray-100 pt-10 lg:pb-6 lg:pt-16">
+        <div className="text-center">
           <h2
             className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
               }`}
@@ -492,8 +492,8 @@ export default function LandingPage() {
       </div> */}
      
 
-      <div className="bg-gradient-to-br from-slate-200 to-slate-100 pt-4 lg:pb-20 min-w-[280px]">
-        <div className="text-center mt-16 mb-6">
+      <div className="bg-gray-100 pt-10 pb-8 lg:pb-14 lg:pt-16 min-w-[280px]">
+        <div className="text-center">
           <h2
             className={`text-4xl lg:text-5xl font-bold text-[var(--primary-color)] mb-4 ${is4K ? "2xl:text-6xl 2xl:mb-6" : ""
               }`}
@@ -605,7 +605,7 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-      <div className="pb-8 lg:pb-20">
+      <div className="pb-8 lg:pb-10">
         <Location />
       </div>
 

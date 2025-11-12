@@ -5,7 +5,7 @@ import StatisticsSection from "../Material/StatsBar";
 
 function Homepage() {
   return (
-    <div>
+    <div className="bg-gray-100 pb-20">
       <video
         src="/videos/hero1.webm"
         autoPlay

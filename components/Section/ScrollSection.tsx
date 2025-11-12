@@ -167,7 +167,7 @@ export default function ScrollSection({
   const thumbPosition = scrollProgress * (100 - thumbSize);
 
   return (
-    <div className= "bg-gray-50 py-25 px-6 lg:px-8 relative overflow-hidden">
+    <div className= "bg-gray-100 py-20 px-6 lg:px-8 relative overflow-hidden">
       
 
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
