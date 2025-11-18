@@ -188,7 +188,6 @@ const formatFieldName = (field: string): string => {
 
 export default function RegistrationInfoPage() {
   const params = useParams();
-  const [registrationInfo, setRegistrationInfo] = useState<RegistrationInfo | null>(null);
   const [productData, setProductData] = useState<ProductData | null>(null);
   const [documents, setDocuments] = useState<DocumentInfo[]>([]); // Added state for documents
   const [loading, setLoading] = useState(true);
@@ -199,7 +198,6 @@ export default function RegistrationInfoPage() {
   const [rejectLoading, setRejectLoading] = useState(false);
   const [kpiUpdating, setKpiUpdating] = useState(false); // Added KPI loading state
   const [showKpiInput, setShowKpiInput] = useState(false); // Added state for KPI input visibility
-  const [tempKpiScore, setTempKpiScore] = useState<number>(registrationInfo?.kpi_score || 0); // Added temp KPI score state
 
   // condition to check if Approve/Reject buttons should be shown
 
@@ -218,14 +216,11 @@ export default function RegistrationInfoPage() {
           setUserRole(role);
         }
 
-        const [userResponse, documentResponse, productResponse] = await Promise.all([
-          getUserInfo(id),
+        const [documentResponse, productResponse] = await Promise.all([
           getDocumentInfo(Number(id)), // Fetch document info
           get_product_by_user_id(parseInt(id)),
         ]);
-        setRegistrationInfo(userResponse.data);
         // Set initial KPI score
-        setTempKpiScore(userResponse.data.kpi_score || 0);
         // Filter documents by user_id
         setDocuments(documentResponse.data);
         setProductData(productResponse.data.selectedData);
@@ -259,7 +254,6 @@ export default function RegistrationInfoPage() {
       console.log("KPI updated successfully:", response.data);
 
       // Update local state
-      setRegistrationInfo(prev => prev ? { ...prev, kpi_score: tempKpiScore } : null);
       setShowKpiInput(false);
 
       // Show success message (you can replace this with a toast notification)
@@ -353,25 +347,6 @@ export default function RegistrationInfoPage() {
     return "bg-red-600";
   };
 
-  const credibilityScores = {
-    "Material Standard": registrationInfo?.material_standard ?? 0,
-    "Quality Level": registrationInfo?.quality_level ?? 0,
-    Sustainability: registrationInfo?.sustainability_level ?? 0,
-    "Service Level": registrationInfo?.service_level ?? 0,
-    "Standards Level": registrationInfo?.standards_level ?? 0,
-    "Ethics Level": registrationInfo?.ethics_level ?? 0,
-  };
-
-  const complianceIssues = {
-    kyc_challenges: registrationInfo?.kyc_challenges ?? false,
-    gst_compliance_issues: registrationInfo?.gst_compliance_issues ?? false,
-    fema_payment_issues: registrationInfo?.fema_payment_issues ?? false,
-    digital_banking_issues: registrationInfo?.digital_banking_issues ?? false,
-    fraud_cybersecurity_issues: registrationInfo?.fraud_cybersecurity_issues ?? false,
-    payment_gateway_compliance_issues: registrationInfo?.payment_gateway_compliance_issues ?? false,
-    account_activity_issues: registrationInfo?.account_activity_issues ?? false,
-    regulatory_actions: registrationInfo?.regulatory_actions ?? false,
-  };
 
   // Function to get label based on role
   const getLabel = (field: string): string => {
@@ -391,7 +366,7 @@ export default function RegistrationInfoPage() {
     );
   }
 
-  if (error || !registrationInfo) {
+  if (error) {
     return (
       <div className="text-center py-12">
         <div className="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -425,29 +400,6 @@ export default function RegistrationInfoPage() {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Users
             </Link>
-            <div>
-              <div className="flex items-center space-x-3 mb-2">
-                <h1 className="text-4xl font-bold text-slate-900">{registrationInfo.business_name}</h1>
-                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-purple-100 text-purple-700">
-                  <Store className="w-4 h-4 mr-1" />
-                  {registrationInfo.business_type.charAt(0).toUpperCase() + registrationInfo.business_type.slice(1)}
-                </span>
-              </div>
-              <div className="flex items-center space-x-6 text-slate-600">
-                <div className="flex items-center">
-                  <Mail className="w-4 h-4 mr-2" />
-                  {registrationInfo.contact_email}
-                </div>
-                <div className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2" />
-                  {registrationInfo.contact_phone}
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Established {registrationInfo.year_established}
-                </div>
-              </div>
-            </div>
           </div>
           {
             register?.toLowerCase() === "pending" ? (
@@ -502,255 +454,6 @@ export default function RegistrationInfoPage() {
         </div>
 
         {/* Business Information */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">Business Information</h2>
-            </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("business_name")}</label>
-                  <p className="text-sm text-slate-900 font-medium">{registrationInfo.business_name}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("business_type")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.business_type}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("business_legal_structure")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.business_legal_structure}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("business_registration_number")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.business_registration_number}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("year_established")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.year_established}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("annual_turnover")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.annual_turnover}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("gst_number")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.gst_number}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">{getLabel("tax_identification_number")}</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.tax_identification_number}</p>
-                </div>
-              </div>
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("import_export_code")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.import_export_code}</p>
-              </div>
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("brand_affiliations")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.brand_affiliations}</p>
-              </div>
-              <div className="pt-4 border-t border-slate-200">
-                <div className="flex items-center space-x-2 mb-2">
-                  <MapPin className="w-4 h-4 text-slate-500" />
-                  <span className="text-sm font-medium text-slate-600">Location</span>
-                </div>
-                <p className="text-sm text-slate-900">
-                  {registrationInfo.street_address_1}
-                  {registrationInfo.street_address_2 && `, ${registrationInfo.street_address_2}`}
-                  <br />
-                  {registrationInfo.city}, {registrationInfo.state_region}, {registrationInfo.postal_code}
-                  <br />
-                  {registrationInfo.country}
-                </p>
-              </div>
-              {registrationInfo.website && (
-                <div className="flex items-center space-x-2">
-                  <Globe className="w-4 h-4 text-slate-500" />
-                  <a
-                    href={registrationInfo.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:text-blue-800"
-                  >
-                    {registrationInfo.website}
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Contact Information (unchanged) */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-                <Mail className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">Contact Information</h2>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <label className="text-sm font-medium text-slate-600">Contact Person</label>
-                <p className="text-sm text-slate-900 font-medium">{registrationInfo.contact_person_name}</p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">Email</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.contact_email}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">Phone</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.contact_phone}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-600">WhatsApp</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.contact_whatsapp}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-600">District</label>
-                  <p className="text-sm text-slate-900">{registrationInfo.contact_district}</p>
-                </div>
-              </div>
-              <div className="pt-4 border-t border-slate-200">
-                <div className="flex items-center space-x-2 mb-2">
-                  <MapPin className="w-4 h-4 text-slate-500" />
-                  <span className="text-sm font-medium text-slate-600">Contact Address</span>
-                </div>
-                <p className="text-sm text-slate-900">
-                  {registrationInfo.contact_pin_code}, {registrationInfo.contact_district}
-                  <br />
-                  {registrationInfo.contact_state}, {registrationInfo.contact_country}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Banking Information */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <CreditCard className="w-5 h-5 text-white" />
-            </div>
-            <h2 className="text-xl font-bold text-slate-900">Banking Information</h2>
-          </div>
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("bank_name")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.bank_name}</p>
-              </div>
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("account_name")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.account_name}</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("account_type")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.account_type}</p>
-              </div>
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("account_number")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.account_number}</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("ifsc_code")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.ifsc_code}</p>
-              </div>
-              <div>
-                <label className="text-sm font-medium text-slate-600">{getLabel("swift_bis_code")}</label>
-                <p className="text-sm text-slate-900">{registrationInfo.swift_bis_code}</p>
-              </div>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-slate-600">{getLabel("iban_code")}</label>
-              <p className="text-sm text-slate-900">{registrationInfo.iban_code}</p>
-            </div>
-          </div>
-        </div>
-
-
-
-
-        {/* Credibility Assessment */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-              <Shield className="w-5 h-5 text-white" />
-            </div>
-            <h2 className="text-xl font-bold text-slate-900">Credibility Assessment</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-            {Object.entries(credibilityScores).map(([key, value]) => (
-              <div key={key} className="text-center">
-                <div className="text-sm font-medium text-slate-600 mb-2">{key}</div>
-                <div className={`text-2xl font-bold ${getScoreColor(value)}`}>{value}/5</div>
-                <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
-                  <div
-                    className={`h-2 rounded-full ${getScoreBarColor(value)}`}
-                    style={{ width: `${(value / 5) * 100}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications & Compliance */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center">
-                <Award className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">Certifications</h2>
-            </div>
-            <div className="space-y-3">
-              {registrationInfo.certifications.map((certification, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <span className="text-sm text-slate-700">{certification}</span>
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                <AlertTriangle className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">Compliance Status</h2>
-            </div>
-            <div className="space-y-3">
-              {Object.entries(complianceIssues).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between">
-                  <span className="text-sm text-slate-700">{getLabel(key)}</span>
-                  {value ? (
-                    <AlertTriangle className="w-5 h-5 text-red-600" />
-                  ) : (
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Document Information */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
           <div className="flex items-center space-x-3 mb-6">
