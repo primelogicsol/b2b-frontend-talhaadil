@@ -55,7 +55,6 @@ const partnerships: Partnership[] = [
     retention: "12 months",
     kpiScore: "6+",
     available: false,
-    isAltPath: true,
   },
   {
     id: "import_export",
@@ -68,7 +67,6 @@ const partnerships: Partnership[] = [
     retention: "4 months",
     kpiScore: "6.5+",
     available: false,
-    isAltPath: true,
   },
   {
     id: "wholesale",
@@ -245,43 +243,45 @@ export default function ChoosePartnership({
   const [isViewOnly, setIsViewOnly] = useState(false);
   const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
+  // Reset all isAltPath
+  partnerships.forEach(p => p.isAltPath = false);
+
+  // Find last available partnership
+  const lastAvailable = partnerships
+    .filter(p => p.available)
+    .sort((a, b) => b.level - a.level)[0];
+
+  if (lastAvailable) {
+    const targetLevel = lastAvailable.level;
+
+    // Mark next 3 after last available
+    partnerships
+      .filter(p => p.level > targetLevel)
+      .sort((a, b) => a.level - b.level)
+      .slice(0, 3)
+      .forEach(p => p.isAltPath = true);
+  }
 
   useEffect(() => {
-    const roleFromCookie = Cookies.get("user_role") as
-      | "vendor"
-      | "buyer"
-      | undefined;
+    const roleFromCookie = Cookies.get("user_role") as "vendor" | "buyer" | undefined;
     if (roleFromCookie) {
       setUserRole(roleFromCookie);
     }
 
-    const registrationStep = parseInt(
-      Cookies.get("registration_step") || "0",
-      10
-    );
+    const registrationStep = parseInt(Cookies.get("registration_step") || "0", 10);
 
-    console.log("FETCHED STEP", registrationStep, fixStep);
     if (registrationStep > fixStep) {
       setIsViewOnly(true);
       setLoading(true);
       getUserRegistrationSelected()
         .then((response: any) => {
-          const registrationSelected =
-            response.data.registration_selected || [];
-          const lastSelected =
-            registrationSelected[
-              registrationSelected.length - 1
-            ]?.toLowerCase();
+          const registrationSelected = response.data.registration_selected || [];
+          const lastSelected = registrationSelected[registrationSelected.length - 1]?.toLowerCase();
           if (lastSelected) {
             setSelectedPartnership(lastSelected);
-            const selectedPartnershipData = partnerships.find(
-              (p) => p.id === lastSelected
-            );
+            const selectedPartnershipData = partnerships.find(p => p.id === lastSelected);
             if (selectedPartnershipData) {
-              const roleBasedTitle =
-                user_role === "buyer"
-                  ? selectedPartnershipData.buyer
-                  : selectedPartnershipData.vendor;
+              const roleBasedTitle = user_role === "buyer" ? selectedPartnershipData.buyer : selectedPartnershipData.vendor;
               onUpdate({
                 selected: lastSelected,
                 title: `${selectedPartnershipData.partnership_name} - ${roleBasedTitle}`,
@@ -292,10 +292,10 @@ export default function ChoosePartnership({
         .catch((error: any) => {
           console.error("Error fetching registration selected:", error);
           showToast("Error fetching selected partnership. Please try again.");
-        });
-      setLoading(false);
+        })
+        .finally(() => setLoading(false));
     }
-  }, [user_role, onUpdate]);
+  }, [user_role, onUpdate, showToast]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -314,19 +314,15 @@ export default function ChoosePartnership({
   const submitPartnershipSelection = async (partnershipData: any) => {
     try {
       setIsSubmitting(true);
-      const selectedPartnershipData = partnerships.find(
-        (p) => p.id === partnershipData.selected
-      );
+      const selectedPartnershipData = partnerships.find(p => p.id === partnershipData.selected);
       const selectedLevel = selectedPartnershipData?.level || 1;
 
       const allLevelsUpToSelected = partnerships
-        .filter((p) => p.level <= selectedLevel)
+        .filter(p => p.level <= selectedLevel)
         .sort((a, b) => a.level - b.level)
-        .map((p) => p.id.toUpperCase());
+        .map(p => p.id.toUpperCase());
 
-      const lastElement =
-        allLevelsUpToSelected[allLevelsUpToSelected.length - 1];
-
+      const lastElement = allLevelsUpToSelected[allLevelsUpToSelected.length - 1];
       if (lastElement) {
         localStorage.setItem("partnershipType", lastElement);
       }
@@ -336,27 +332,18 @@ export default function ChoosePartnership({
         is_lateral: partnershipData.isLateral || false,
       });
 
-      console.log(
-        "Partnership selection submitted successfully:",
-        response.data
-      );
       let step = parseInt(Cookies.get("registration_step") || "0", 10);
       step += 1;
       Cookies.set("registration_step", step.toString());
       onNext();
     } catch (error: any) {
       const errorMsg = error?.response?.data?.detail;
-
       if (errorMsg === "User already has registration levels") {
         showToast("You have already submitted the information.");
-        setTimeout(() => {
-          onNext();
-        }, 4000);
+        setTimeout(() => onNext(), 4000);
       } else {
         showToast(errorMsg || "Error submitting partnership selection. Please try again.");
       }
-      console.error("Error submitting partnership selection:", error);
-      throw error;
     } finally {
       setIsSubmitting(false);
     }
@@ -368,67 +355,49 @@ export default function ChoosePartnership({
       return;
     }
     if (selectedPartnership) {
-      try {
-        const selectedData = {
-          selected: selectedPartnership,
-          title:
-            partnerships.find((p) => p.id === selectedPartnership)
-              ?.partnership_name || "",
-          isLateral:
-            partnerships.find((p) => p.id === selectedPartnership)?.isAltPath ||
-            false,
-        };
-        await submitPartnershipSelection(selectedData);
-      } catch (error) {
-        // Error already handled in submitPartnershipSelection
-      }
+      const selectedData = {
+        selected: selectedPartnership,
+        title: partnerships.find(p => p.id === selectedPartnership)?.partnership_name || "",
+        isLateral: partnerships.find(p => p.id === selectedPartnership)?.isAltPath || false,
+      };
+      await submitPartnershipSelection(selectedData);
     }
   };
 
   const handleGoToPay = (p: Partnership) => {
-    if (isViewOnly) return;
-    alert(
-      `Redirecting to payment for ${p.partnership_name} - ${user_role === "buyer" ? p.buyer : p.vendor
-      }…`
-    );
+    alert(`Redirecting to payment for ${p.partnership_name} - ${user_role === "buyer" ? p.buyer : p.vendor}…`);
+    // Replace with real payment redirect when ready
+    // window.location.href = `/payment/${p.id}`;
   };
 
-  const getRoleBasedTitle = (p: Partnership) => {
-    return user_role === "buyer" ? p.buyer : p.vendor;
-  };
+  const getRoleBasedTitle = (p: Partnership) => user_role === "buyer" ? p.buyer : p.vendor;
 
   const getRoleBasedDescription = (p: Partnership) => {
     const baseDescription = p.description;
-    const roleContext =
-      user_role === "buyer"
-        ? `As a ${p.buyer}, you will benefit from this partnership structure.`
-        : `As a ${p.vendor}, you will provide services in this partnership model.`;
+    const roleContext = user_role === "buyer"
+      ? `As a ${p.buyer}, you will benefit from this partnership structure.`
+      : `As a ${p.vendor}, you will provide services in this partnership model.`;
     return `${baseDescription} ${roleContext}`;
   };
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-4 border-[var(--primary-color)]"></div>
       </div>
     );
   }
 
   return (
-    <div className={`mx-auto px-6 ${is4K ? "max-w-[2200px]" : "max-w-7xl"}`}>
+    <div className={`mx-auto px-6 ${is4K ? "max-w-[2200px]" : "max-w-7xl"} py-12`}>
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <FaHandshake className="text-white text-2xl" />
         </div>
-        <h1
-          className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"
-            }`}
-        >
+        <h1 className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}>
           {isViewOnly ? "Your Selected Partnership" : "Choose Your Partnership"}
         </h1>
-        <p
-          className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"
-            }`}
-        >
+        <p className={`text-[var(--primary-color)]/70 mx-auto ${is4K ? "text-2xl max-w-4xl" : "text-xl max-w-2xl"}`}>
           {isViewOnly
             ? `Review the partnership you previously selected as a ${user_role}.`
             : `Select the partnership that best aligns with your business goals as a ${user_role}.`}
@@ -440,124 +409,103 @@ export default function ChoosePartnership({
         </div>
       </div>
 
-      <div
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""
-          }`}
-      >
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 ${is4K ? "gap-12" : ""}`}>
         {partnerships.map((p) => (
           <div
             key={p.id}
             onClick={() => handleSelect(p)}
-            className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8 
-             ${isViewOnly && selectedPartnership !== p.id
-                ? "opacity-50 pointer-events-none"
-                : isViewOnly && selectedPartnership === p.id
-                  ? "bg-green-100 opacity-100 pointer-events-none"
-                  : p.available && !isViewOnly
-                    ? "cursor-pointer hover:-translate-y-2 bg-green-100"
-                    : "opacity-60 pointer-events-none"
+            className={`group relative rounded-3xl shadow-xl transition-all duration-300 p-8
+    ${p.isAltPath
+                ? "bg-yellow-50"
+                : isViewOnly && selectedPartnership !== p.id
+                  ? "opacity-60"
+                  : isViewOnly && selectedPartnership === p.id
+                    ? "bg-green-50 ring-4 ring-green-500"
+                    : p.available && !isViewOnly
+                      ? "cursor-pointer hover:-translate-y-3 hover:shadow-2xl bg-gradient-to-br from-green-50 to-white"
+                      : "opacity-70"
               }
-
-              ${selectedPartnership === p.id
-                ? "ring-4 ring-[var(--secondary-color)] scale-105"
-                : ""
-              }
-              ${is4K ? "text-lg" : "text-base"}`}
+    ${selectedPartnership === p.id && !isViewOnly ? "ring-4 ring-[var(--secondary-color)] scale-105" : ""}
+    ${is4K ? "text-lg" : "text-base"}
+  `}
           >
+
             {p.isAltPath && (
-              <div
-                className={`absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl
-                  ${selectedPartnership === p.id ? "mt-1 ml-1" : ""}`}
-              >
-                Lateral
+              <div className="absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-bold px-3 py-1 rounded-br-2xl rounded-tl-2xl">
+                Lateral Path
               </div>
             )}
-            <div
-              className={`absolute top-0 right-0 text-white text-xs font-bold px-2 py-1 rounded-tr-2xl rounded-bl-2xl bg-[var(--primary-color)]
-                ${selectedPartnership === p.id ? "mt-1 mr-1" : ""}`}
-            >
+            <div className="absolute top-0 right-0 bg-[var(--primary-color)] text-white text-xs font-bold px-3 py-1 rounded-tr-2xl rounded-bl-2xl">
               Level {p.level}
             </div>
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               {selectedPartnership === p.id ? (
-                <div className="w-10 h-10 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
-                  <FaCheck className="text-white text-lg" />
+                <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center shadow-lg">
+                  <FaCheck className="text-white text-2xl" />
                 </div>
               ) : p.available ? (
-                <div className="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center">
-                  <FaCheck className="text-white text-sm" />
+                <div className="w-10 h-10 bg-[var(--primary-color)] rounded-full flex items-center justify-center shadow-md">
+                  <FaCheck className="text-white text-lg" />
                 </div>
               ) : (
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                  <FaLock className="text-white text-sm" />
+                <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center shadow-md">
+                  <FaLock className="text-white text-lg" />
                 </div>
               )}
             </div>
-            <div className="flex justify-start mb-6 mt-6">
-              <span
-                className={`px-4 py-2 text-sm font-semibold rounded-full ${p.available
-                    ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
-                    : "bg-[var(--primary-hover-color)]/20 text-[var(--primary-color)] border border-[var(--primary-hover-color)]/40"
-                  }`}
-              >
-                {p.available ? "Available Now" : "Requirements Not Met"}
+
+            <div className="flex justify-start mb-6 mt-8">
+              <span className={`px-4 py-2 text-sm font-semibold rounded-full ${p.available ? "bg-green-100 text-green-800 border border-green-300" : "bg-gray-100 text-gray-600 border border-gray-300"}`}>
+                {p.available ? "Available Now" : "Locked"}
               </span>
             </div>
-            <h3
-              className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"
-                }`}
-            >
+
+            <h3 className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"}`}>
               {p.partnership_name}
             </h3>
             <p className="text-sm font-semibold text-[var(--secondary-color)] mb-4">
               Role: {getRoleBasedTitle(p)}
             </p>
+
             <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
               <div className="text-center">
-                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
-                  Retention
-                </p>
-                <p className="text-sm font-semibold text-[var(--primary-color)]">
-                  {p.retention}
-                </p>
+                <p className="text-xs text-[var(--primary-color)]/70 mb-1">Retention</p>
+                <p className="text-sm font-semibold text-[var(--primary-color)]">{p.retention}</p>
               </div>
               <div className="w-px bg-[var(--primary-color)]/20"></div>
               <div className="text-center">
-                <p className="text-xs text-[var(--primary-color)]/70 mb-1">
-                  KPI Score
-                </p>
-                <p className="text-sm font-semibold text-[var(--primary-color)]">
-                  {p.kpiScore}
-                </p>
+                <p className="text-xs text-[var(--primary-color)]/70 mb-1">KPI Score</p>
+                <p className="text-sm font-semibold text-[var(--primary-color)]">{p.kpiScore}</p>
               </div>
             </div>
-            <p
-              className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"
-                } text-[var(--primary-color)]/80`}
-            >
+
+            <p className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}>
               {getRoleBasedDescription(p)}
             </p>
-            {!p.available && !isViewOnly && (
-              <div className="mt-auto space-y-2">
+
+            {/* BOTH BUTTONS ALWAYS VISIBLE & CLICKABLE */}
+            {!p.available && (
+              <div className="mt-auto space-y-3 pt-4 border-t border-gray-200">
                 <button
-                  onClick={() => {
-                    window.location.href = "/process";
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open("/process", "_blank");
                   }}
-                  className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
-                    text-[var(--secondary-color)] border-[var(--secondary-color)] hover:bg-[var(--secondary-light-color)]`}
+                  className="w-full text-sm font-bold py-3 px-4 border-2 border-[var(--secondary-color)] rounded-xl text-[var(--secondary-color)] bg-white hover:bg-[var(--secondary-light-color)] transition-all active:scale-95"
                 >
                   Learn About Fast-Track Options →
                 </button>
+
                 {p.isAltPath && (
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handleGoToPay(p);
                     }}
-                    className={`w-full text-sm font-semibold py-2 px-4 border rounded-xl transition-colors 
-                      text-[var(--primary-color)] border-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] hover:text-white`}
+                    className="w-full text-sm font-bold py-3 px-4 bg-[var(--primary-color)] text-white border-2 border-[var(--primary-color)] rounded-xl hover:bg-[var(--primary-hover-color)] transition-all active:scale-95 shadow-lg"
                   >
-                    Go to Pay
+                    Go to Pay Now
                   </button>
                 )}
               </div>
@@ -567,56 +515,30 @@ export default function ChoosePartnership({
       </div>
 
       {selectedPartnership && (
-        <div
-          className={`bg-white rounded-3xl shadow-xl p-8 mb-8 border-l-4 border-[var(--secondary-color)] ${is4K ? "text-lg" : ""
-            }`}
-        >
+        <div className={`bg-green-50 rounded-3xl shadow-xl p-8 mb-8 border-l-8 border-green-500 ${is4K ? "text-lg" : ""}`}>
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-[var(--secondary-color)] rounded-full flex items-center justify-center">
-              <FaCheck className="text-white text-xl" />
+            <div className="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center">
+              <FaCheck className="text-white text-2xl" />
             </div>
             <div>
-              <h3
-                className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"
-                  }`}
-              >
-                Partnership Selected
-              </h3>
-              <p className="text-[var(--primary-color)]/80">
-                {
-                  partnerships.find((p) => p.id === selectedPartnership)
-                    ?.partnership_name
-                }{" "}
-                -{" "}
-                {getRoleBasedTitle(
-                  partnerships.find((p) => p.id === selectedPartnership)!
-                )}
+              <h3 className={`font-bold text-green-800 ${is4K ? "text-2xl" : "text-xl"}`}>Partnership Selected</h3>
+              <p className="text-green-700 font-medium">
+                {partnerships.find(p => p.id === selectedPartnership)?.partnership_name} - {getRoleBasedTitle(partnerships.find(p => p.id === selectedPartnership)!)}
               </p>
             </div>
           </div>
         </div>
       )}
 
-      <div className="flex justify-end items-center mt-8">
+      <div className="flex justify-end items-center mt-12">
         <button
           onClick={handleNext}
           disabled={!selectedPartnership || isSubmitting}
-          className={`px-4 py-2 sm:px-8 sm:py-4 sm:font-bold rounded-xl text-white shadow-lg transition-all font-medium
+          className={`px-8 py-4 font-bold rounded-xl text-white shadow-xl transition-all text-lg
             bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)]
-            ${is4K ? "text-lg" : ""} 
-            ${!selectedPartnership || isSubmitting
-              ? "opacity-50 cursor-not-allowed"
-              : ""
-            }`}
+            ${(!selectedPartnership || isSubmitting) ? "opacity-60 cursor-not-allowed" : "hover:shadow-2xl active:scale-95"}`}
         >
-           {isSubmitting ? (
-            <span>Submitting...</span>
-          ) : (
-            <>
-              <span className="hidden md:inline mr-2">Next</span>
-              <span className="inline">→</span>
-            </>
-          )}
+          {isSubmitting ? "Submitting..." : "Next →"}
         </button>
       </div>
     </div>

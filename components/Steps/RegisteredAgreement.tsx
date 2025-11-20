@@ -51,6 +51,7 @@ const partnershipTypeMapping: { [key: string]: string } = {
 export default function RegisterAgreement({ partnershipId }: BuyerAgreementProps) {
     const { is4K } = useGlobalContext()
     const [currentStep, setCurrentStep] = useState(1)
+    const [loading,setLoading] = useState(false)
     const [partnershipData, setPartnershipData] = useState<any>(null)
     const [partnershipTitle, setPartnershipTitle] = useState<string>(partnershipTypeMapping[partnershipId] || "Drop Shipping Buyer Partnership Agreement")
     const [formData, setFormData] = useState<FormData>({
@@ -390,7 +391,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
         doc.text("De Koshur Crafts Bazaar LLC - Confidential Document", margin, pageHeight - 15)
 
         const pdfBlob = doc.output("blob")
-
+     
         return pdfBlob
     }
 
@@ -402,7 +403,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
         formData.append("file", pdfBlob, uniqueName)
         formData.append("name", uniqueName)
 
-        const res = await fetch("/api/upload-pdf", {
+        const res = await fetch("/api/upload-agreement", {
             method: "POST",
             body: formData,
         })
@@ -422,7 +423,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
                 window.location.href = "/registration"
             } catch (error) {
                 console.log("API call failed:", error)
-                
+
             }
         } else {
             console.error("Upload failed:", data.error)
@@ -844,7 +845,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
 
                     <button
                         onClick={handleNext}
-                        disabled={!canProceedToNext()}
+                        disabled={loading || !canProceedToNext()}
                         className={`px-6 py-3 md:px-8 md:py-4 ${is4K ? "lg:px-10 lg:py-5 xl:px-12 xl:py-6" : ""} rounded-xl transition-all duration-200 font-medium text-sm md:text-base ${is4K ? "lg:text-lg xl:text-xl" : ""} transform hover:scale-105 active:scale-95 ${canProceedToNext()
                             ? currentStep === 4
                                 ? "bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white shadow-lg"
@@ -852,7 +853,7 @@ This agreement is governed under U.S. law and is legally binding under federal a
                             : "bg-gray-300 text-gray-500 cursor-not-allowed"
                             }`}
                     >
-                        <span className="hidden md:inline mr-2">{currentStep === 4 ? "SUBMIT" : "NEXT"}</span>
+                        <span className="hidden md:inline mr-2">{loading ? "LOADING..." : currentStep === 4 ? "SUBMIT" : "NEXT"}</span>
                         <span className="inline">→</span>
                     </button>
                 </div>

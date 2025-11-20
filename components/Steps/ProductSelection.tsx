@@ -282,18 +282,7 @@ export default function ComprehensiveProductSelection({
   }
 
   const isMultipleSelectionAllowed = (detailKey: string): boolean => {
-    const multipleSelectionKeys = [
-      "colors_available", "sizes_available", "patterns_available", "designs_available", "features", "accessories_included",
-      "occasions", "care_instructions", "certifications", "styles", "finishes", "textures", "compatible_with",
-      "suitable_for", "benefits", "applications", "variations", "options",
-    ]
-    const singleSelectionKeys = [
-      "material_type", "brand", "gender", "fit_type", "season", "age_group", "weight_category",
-      "size_category", "origin_country", "manufacturer", "collection", "model",
-    ]
-    const lowerKey = detailKey.toLowerCase()
-    if (singleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))) return false
-    return multipleSelectionKeys.some((key) => lowerKey.includes(key.toLowerCase()))
+    return true
   }
 
   const handleNext = async () => {

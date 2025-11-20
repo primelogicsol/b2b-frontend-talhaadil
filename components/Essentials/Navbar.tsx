@@ -533,7 +533,7 @@ export function Navbar() {
 
   useEffect(() => {
     const registeredStatus = Cookies.get("is_registered")
-    setIsRegistered(registeredStatus === "true")
+    setIsRegistered(registeredStatus === "APPROVED")
   }, [])
 
   return (
@@ -598,7 +598,7 @@ export function Navbar() {
                     }
                   }}
                 >
-                  {level === "6" ? "Status" : "Registration"}
+                  {level === "6" && !isRegistered ? "Status" : "Registration"}
                   {!isSignedIn && <FiLock size={14} className="ml-2" />}
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-[var(--secondary-hover-color)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left" />
                 </Link>

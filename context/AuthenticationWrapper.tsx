@@ -9,7 +9,7 @@ interface AuthenticationContextType {
 }
 
 const AuthenticationContext = createContext<AuthenticationContextType>({
-    handleLogout: () => {}
+    handleLogout: () => { }
 });
 
 interface AuthenticationProviderProps {
@@ -26,6 +26,11 @@ export const AuthenticationProvider = ({ children }: AuthenticationProviderProps
         Cookies.remove("user_id");
         Cookies.remove("visibility_level");
         Cookies.remove("ownership");
+
+        Cookies.remove("is_registered");
+        Cookies.remove("registration_step");
+
+        Cookies.remove("first_register");
 
         router.push("/login");
     }

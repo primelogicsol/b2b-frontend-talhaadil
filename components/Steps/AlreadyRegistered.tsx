@@ -1,38 +1,38 @@
-"use client";
-import { useEffect, useState } from "react";
-import { FaHandshake, FaCheck, FaLock } from "react-icons/fa";
-import Cookies from "js-cookie";
-import { useGlobalContext } from "@/context/ScreenProvider";
-import { getCurrentLevel, getAvaliableLevels } from "@/services/user";
-import RegisterAgreement from "./RegisteredAgreement"; // Import the BuyerAgreement component
+"use client"
+import { useEffect, useState } from "react"
+import { FaHandshake, FaCheck, FaLock } from "react-icons/fa"
+import Cookies from "js-cookie"
+import { useGlobalContext } from "@/context/ScreenProvider"
+import { getCurrentLevel, getAvaliableLevels } from "@/services/user"
+import RegisterAgreement from "./RegisteredAgreement" // Import the BuyerAgreement component
 
 interface Partnership {
-    id: string;
-    level: number;
-    partnership_name: string;
-    vendor: string;
-    buyer: string;
-    description: string;
-    retention: string;
-    kpiScore: string;
-    available: boolean;
-    isAltPath?: boolean;
+    id: string
+    level: number
+    partnership_name: string
+    vendor: string
+    buyer: string
+    description: string
+    retention: string
+    kpiScore: string
+    available: boolean
+    isAltPath?: boolean
 }
 
 interface PartnershipData {
-    available_partnerships: string[];
-    kpi_score: number;
-    current_partnership_level: string;
-    retention_period: string;
-    retention_expiration: string;
+    available_partnerships: string[]
+    kpi_score: number
+    current_partnership_level: string
+    retention_period: string
+    retention_expiration: string
 }
 
 interface CurrentPartnership {
-    partnership_level: string;
-    kpi_score: number;
-    retention_period: string;
-    retention_expiration: string;
-    is_retention_expired: boolean;
+    partnership_level: string
+    kpi_score: number
+    retention_period: string
+    retention_expiration: string
+    is_retention_expired: boolean
 }
 
 const partnerships: Partnership[] = [
@@ -58,8 +58,7 @@ const partnerships: Partnership[] = [
             "Risk-free inventory management model. Products are sold on behalf of the consignor with shared revenue structure.",
         retention: "12 months",
         kpiScore: "6+",
-        available: true,
-        isAltPath: true,
+        available: false,
     },
     {
         id: "import_export",
@@ -72,7 +71,6 @@ const partnerships: Partnership[] = [
         retention: "4 months",
         kpiScore: "6.5+",
         available: false,
-        isAltPath: true,
     },
     {
         id: "wholesale",
@@ -85,7 +83,6 @@ const partnerships: Partnership[] = [
         retention: "4 months",
         kpiScore: "7+",
         available: false,
-        isAltPath: true,
     },
     {
         id: "exhibition",
@@ -153,8 +150,7 @@ const partnerships: Partnership[] = [
         partnership_name: "Design Collaboration",
         vendor: "Collaboration Supplier",
         buyer: "Collaboration Partner",
-        description:
-            "Creative partnership for custom design. Combine traditional craftsmanship with modern aesthetics.",
+        description: "Creative partnership for custom design. Combine traditional craftsmanship with modern aesthetics.",
         retention: "4 months",
         kpiScore: "8+",
         available: false,
@@ -231,69 +227,70 @@ const partnerships: Partnership[] = [
         kpiScore: "None",
         available: false,
     },
-];
+]
 
 export default function PartnershipDisplay() {
-    const { is4K } = useGlobalContext();
-    const [userRole, setUserRole] = useState<"buyer" | "vendor">("buyer");
-    const [partnershipData, setPartnershipData] = useState<PartnershipData | null>(null);
-    const [currentPartnership, setCurrentPartnership] = useState<CurrentPartnership | null>(null);
-    const [displayPartnerships, setDisplayPartnerships] = useState<Partnership[]>(partnerships);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [selectedPartnershipId, setSelectedPartnershipId] = useState<string | null>(null); // State to track selected partnership
+    const { is4K } = useGlobalContext()
+    const [userRole, setUserRole] = useState<"buyer" | "vendor">("buyer")
+    const [partnershipData, setPartnershipData] = useState<PartnershipData | null>(null)
+    const [currentPartnership, setCurrentPartnership] = useState<CurrentPartnership | null>(null)
+    const [displayPartnerships, setDisplayPartnerships] = useState<Partnership[]>(partnerships)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+    const [selectedPartnershipId, setSelectedPartnershipId] = useState<string | null>(null) // State to track selected partnership
 
     useEffect(() => {
-        const roleFromCookie = Cookies.get("user_role") as "vendor" | "buyer" | undefined;
+        const roleFromCookie = Cookies.get("user_role") as "vendor" | "buyer" | undefined
         if (roleFromCookie) {
-            setUserRole(roleFromCookie);
+            setUserRole(roleFromCookie)
         }
-    }, []);
+    }, [])
 
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }, [])
 
     useEffect(() => {
         const fetchPartnershipData = async () => {
             try {
-                setLoading(true);
+                setLoading(true)
                 const [currentLevelResponse, availableLevelsResponse] = await Promise.all([
                     getCurrentLevel(),
                     getAvaliableLevels(),
-                ]);
+                ])
 
-                const currentData = currentLevelResponse.data;
-                const availableData = availableLevelsResponse.data;
+                const currentData = currentLevelResponse.data
+                const availableData = availableLevelsResponse.data
 
                 if (currentData.partnership_level === "BRICK_MORTRAR") {
-                    currentData.partnership_level = "BRICK_MORTAR";
+                    currentData.partnership_level = "BRICK_MORTAR"
                 }
 
                 if (availableData.current_partnership_level === "BRICK_MORTRAR") {
-                    availableData.current_partnership_level = "BRICK_MORTAR";
+                    availableData.current_partnership_level = "BRICK_MORTAR"
                 }
 
-                setCurrentPartnership(currentData);
-                setPartnershipData(availableData);
+                setCurrentPartnership(currentData)
+                setPartnershipData(availableData)
             } catch (err) {
-                setError("Failed to fetch partnership data. Please try again later.");
-                console.error("API Error:", err);
+                setError("Failed to fetch partnership data. Please try again later.")
+                console.error("API Error:", err)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
+        }
 
-        fetchPartnershipData();
-    }, []);
+        fetchPartnershipData()
+    }, [])
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }, [])
 
     useEffect(() => {
         if (partnershipData && currentPartnership) {
-            const normalizedAvailable = partnershipData.available_partnerships.map((p) =>
-                p.toLowerCase()
+
+            const normalizedAvailable = partnershipData.available_partnerships.map(
+                (p) => p.toLowerCase()
             );
 
             const availableLevels = partnerships
@@ -307,38 +304,56 @@ export default function PartnershipDisplay() {
 
             const maxLevel = Math.max(currentLevel, ...availableLevels, 0);
 
-            const updatedPartnerships = partnerships.map((p) => ({
-                ...p,
-                available: p.level <= maxLevel || normalizedAvailable.includes(p.id),
-            }));
+            // ---- NEW: calculate alt-path range (next 3 levels) ----
+            const altStart = maxLevel + 1;
+            const altEnd = maxLevel + 3;
+
+            const updatedPartnerships = partnerships.map((p) => {
+                const isAvailable =
+                    p.level <= maxLevel || normalizedAvailable.includes(p.id);
+
+                const isAltPath =
+                    !isAvailable && p.level >= altStart && p.level <= altEnd;
+
+                return {
+                    ...p,
+                    available: isAvailable,
+                    isAltPath,
+                };
+            });
 
             setDisplayPartnerships(updatedPartnerships);
         }
     }, [partnershipData, currentPartnership]);
 
     const getRoleBasedTitle = (p: Partnership) => {
-        return userRole === "buyer" ? p.buyer : p.vendor;
-    };
+        return userRole === "buyer" ? p.buyer : p.vendor
+    }
 
     const getRoleBasedDescription = (p: Partnership) => {
-        const baseDescription = p.description;
+        const baseDescription = p.description
         const roleContext =
             userRole === "buyer"
                 ? `As a ${p.buyer}, you will benefit from this partnership structure.`
-                : `As a ${p.vendor}, you will provide services in this partnership model.`;
-        return `${baseDescription} ${roleContext}`;
-    };
+                : `As a ${p.vendor}, you will provide services in this partnership model.`
+        return `${baseDescription} ${roleContext}`
+    }
 
     const handleSubmitPartnership = (partnershipId: string) => {
-        setSelectedPartnershipId(partnershipId); // Set the selected partnership ID to show BuyerAgreement
-    };
+        setSelectedPartnershipId(partnershipId) // Set the selected partnership ID to show BuyerAgreement
+    }
+
+    const handleGoToPay = (p: Partnership) => {
+        // Implement the logic for handleGoToPay here
+        console.log(`Go to pay for partnership: ${p.partnership_name}`)
+    }
 
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <div className="w-12 h-12 border-4 border-[var(--primary-color)] border-t-transparent rounded-full animate-spin"></div>
             </div>
-        );
+        )
     }
 
     if (error) {
@@ -346,7 +361,7 @@ export default function PartnershipDisplay() {
             <div className="flex justify-center items-center h-screen">
                 <p className="text-red-600 text-xl">{error}</p>
             </div>
-        );
+        )
     }
 
     if (!partnershipData || !currentPartnership) {
@@ -354,7 +369,7 @@ export default function PartnershipDisplay() {
             <div className="flex justify-center items-center h-screen">
                 <p className="text-[var(--primary-color)] text-xl">No partnership data available.</p>
             </div>
-        );
+        )
     }
 
     return (
@@ -367,9 +382,7 @@ export default function PartnershipDisplay() {
                         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
                             <FaHandshake className="text-white text-2xl" />
                         </div>
-                        <h1
-                            className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}
-                        >
+                        <h1 className={`font-bold text-[var(--primary-color)] mb-4 ${is4K ? "text-6xl" : "text-4xl"}`}>
                             Partnership Levels
                         </h1>
                         <p
@@ -391,14 +404,17 @@ export default function PartnershipDisplay() {
                             <div
                                 key={p.id}
                                 className={`group relative rounded-3xl shadow-xl transition-all duration-300 transform p-8
-                    ${p.id.toUpperCase() === currentPartnership.partnership_level
-                                        ? "ring-4 ring-green-500 bg-green-50"
-                                        : p.available
-                                            ? "cursor-pointer hover:-translate-y-2"
-                                            : "opacity-60"
+  ${p.isAltPath
+                                        ? "bg-yellow-50"
+                                        : p.id.toUpperCase() === currentPartnership.partnership_level
+                                            ? "ring-4 ring-green-500 bg-green-50"
+                                            : p.available
+                                                ? "cursor-pointer hover:-translate-y-2"
+                                                : "opacity-60"
                                     }
-                    ${is4K ? "text-lg" : "text-base"}
-                `}
+  ${is4K ? "text-lg" : "text-base"}
+`}
+
                             >
                                 {p.isAltPath && (
                                     <div className="absolute top-0 left-0 bg-[var(--secondary-color)] text-white text-xs font-semibold px-3 py-1 rounded-br-2xl rounded-tl-2xl">
@@ -430,7 +446,7 @@ export default function PartnershipDisplay() {
 
                                 <div className="flex justify-start mb-6 mt-6">
                                     <span
-                                        className={`px-4 py-2 text-sm font-semibold rounded-full ${p.id.toUpperCase() === currentPartnership.partnership_level
+                                        className={`px-4 py-2 text-sm font-semibold rounded-full ${p.id.toUpperCase() === currentPartnership?.partnership_level
                                             ? "bg-green-100 text-green-700 border border-green-500"
                                             : p.available
                                                 ? "bg-[var(--secondary-light-color)] text-[var(--primary-color)] border border-[var(--secondary-color)]"
@@ -441,50 +457,36 @@ export default function PartnershipDisplay() {
                                             ? "Current Partnership"
                                             : (() => {
                                                 const current = partnerships.find(
-                                                    part => part.id.toUpperCase() === currentPartnership?.partnership_level
-                                                );
+                                                    (part) => part.id.toUpperCase() === currentPartnership?.partnership_level,
+                                                )
                                                 return current && p.level < current.level
                                                     ? "Past Partnership"
                                                     : p.available
                                                         ? "Available Now"
-                                                        : "Requirements Not Met";
+                                                        : "Requirements Not Met"
                                             })()}
                                     </span>
                                 </div>
 
-                                <h3
-                                    className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"}`}
-                                >
+                                <h3 className={`font-bold text-[var(--primary-color)] mb-2 ${is4K ? "text-2xl" : "text-xl"}`}>
                                     {p.partnership_name}
                                 </h3>
 
-                                <p className="text-sm font-semibold text-[var(--secondary-color)] mb-4">
-                                    Role: {getRoleBasedTitle(p)}
-                                </p>
+                                <p className="text-sm font-semibold text-[var(--secondary-color)] mb-4">Role: {getRoleBasedTitle(p)}</p>
 
                                 <div className="flex justify-between mb-6 p-4 bg-[var(--primary-hover-color)]/5 rounded-xl">
                                     <div className="text-center">
-                                        <p className="text-xs text-[var(--primary-color)]/70 mb-1">
-                                            Retention
-                                        </p>
-                                        <p className="text-sm font-semibold text-[var(--primary-color)]">
-                                            {p.retention}
-                                        </p>
+                                        <p className="text-xs text-[var(--primary-color)]/70 mb-1">Retention</p>
+                                        <p className="text-sm font-semibold text-[var(--primary-color)]">{p.retention}</p>
                                     </div>
                                     <div className="w-px bg-[var(--primary-color)]/20"></div>
                                     <div className="text-center">
-                                        <p className="text-xs text-[var(--primary-color)]/70 mb-1">
-                                            KPI Score
-                                        </p>
-                                        <p className="text-sm font-semibold text-[var(--primary-color)]">
-                                            {p.kpiScore}
-                                        </p>
+                                        <p className="text-xs text-[var(--primary-color)]/70 mb-1">KPI Score</p>
+                                        <p className="text-sm font-semibold text-[var(--primary-color)]">{p.kpiScore}</p>
                                     </div>
                                 </div>
 
-                                <p
-                                    className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}
-                                >
+                                <p className={`leading-relaxed mb-6 ${is4K ? "text-base" : "text-sm"} text-[var(--primary-color)]/80`}>
                                     {getRoleBasedDescription(p)}
                                 </p>
 
@@ -492,9 +494,9 @@ export default function PartnershipDisplay() {
                                     p.id.toUpperCase() !== currentPartnership.partnership_level &&
                                     (() => {
                                         const current = partnerships.find(
-                                            part => part.id.toUpperCase() === currentPartnership?.partnership_level
-                                        );
-                                        return !current || p.level >= current.level;
+                                            (part) => part.id.toUpperCase() === currentPartnership?.partnership_level,
+                                        )
+                                        return !current || p.level >= current.level
                                     })() && (
                                         <button
                                             onClick={() => handleSubmitPartnership(p.id)}
@@ -503,6 +505,32 @@ export default function PartnershipDisplay() {
                                             Submit Partnership
                                         </button>
                                     )}
+
+                                {!p.available && (
+                                    <div className="mt-auto space-y-3 pt-4 border-t border-gray-200">
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                window.open("/process", "_blank")
+                                            }}
+                                            className="w-full text-sm font-bold py-3 px-4 border-2 border-[var(--secondary-color)] rounded-xl text-[var(--secondary-color)] bg-white hover:bg-[var(--secondary-light-color)] transition-all active:scale-95"
+                                        >
+                                            Learn About Fast-Track Options →
+                                        </button>
+
+                                        {p.isAltPath && (
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    handleGoToPay(p)
+                                                }}
+                                                className="w-full text-sm font-bold py-3 px-4 bg-[var(--primary-color)] text-white border-2 border-[var(--primary-color)] rounded-xl hover:bg-[var(--primary-hover-color)] transition-all active:scale-95 shadow-lg"
+                                            >
+                                                Go to Pay Now
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>
@@ -515,22 +543,17 @@ export default function PartnershipDisplay() {
                                 <FaCheck className="text-white text-xl" />
                             </div>
                             <div>
-                                <h3
-                                    className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"}`}
-                                >
+                                <h3 className={`font-bold text-[var(--primary-color)] ${is4K ? "text-2xl" : "text-xl"}`}>
                                     Current Partnership
                                 </h3>
                                 <p className="text-[var(--primary-color)]/80">
                                     {
-                                        partnerships.find(
-                                            (p) => p.id.toUpperCase() === currentPartnership.partnership_level
-                                        )?.partnership_name
+                                        partnerships.find((p) => p.id.toUpperCase() === currentPartnership.partnership_level)
+                                            ?.partnership_name
                                     }{" "}
                                     -{" "}
                                     {getRoleBasedTitle(
-                                        partnerships.find(
-                                            (p) => p.id.toUpperCase() === currentPartnership.partnership_level
-                                        )!
+                                        partnerships.find((p) => p.id.toUpperCase() === currentPartnership.partnership_level)!,
                                     )}
                                 </p>
                                 <p className="text-sm text-[var(--primary-color)]/70 mt-2">
@@ -544,5 +567,5 @@ export default function PartnershipDisplay() {
                 </>
             )}
         </div>
-    );
+    )
 }

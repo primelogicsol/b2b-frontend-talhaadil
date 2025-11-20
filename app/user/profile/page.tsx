@@ -682,7 +682,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* <div className="space-y-6">
+      <div className="space-y-6">
         {Array.isArray(productData) && productData.map((category: any) => (
           <div key={category.categoryId} className="bg-white border border-[var(--primary-hover-color)] rounded-lg shadow-sm">
             <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-[var(--secondary-light-color)]">
@@ -728,7 +728,7 @@ export default function ProfilePage() {
 
 
 
-      </div> */}
+      </div>
 
     </div>
   );

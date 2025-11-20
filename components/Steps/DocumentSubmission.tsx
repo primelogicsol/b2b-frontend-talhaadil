@@ -415,10 +415,10 @@ export default function DocumentSubmission({
         <div className="p-6">
           <div
             className={`border-2 border-dashed rounded-2xl p-8 text-center transition-colors ${isDrag
-                ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
-                : uploaded
-                  ? "border-green-800 bg-green-50"
-                  : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
+              ? "border-[var(--secondary-color)] bg-[var(--secondary-light-color)]"
+              : uploaded
+                ? "border-green-800 bg-green-50"
+                : "border-gray-300 hover:border-[var(--primary-color)] hover:bg-gray-50"
               }`}
             onDragOver={(e) => handleDragOver(e, documentType.key)}
             onDragLeave={handleDragLeave}
@@ -645,22 +645,22 @@ export default function DocumentSubmission({
         ))}
       </div>
 
-      <div className="bg-[var(--secondary-light-color)] rounded-3xl p-8 mb-12 border border-blue-100">
+      <div className="bg-[var(--secondary-light-color)] rounded-3xl p-8 mb-12 border border-blue-100 text-white">
         <div className="flex items-start space-x-4 flex-col sm:flex-row">
           <div className="w-12 h-12 bg-[var(--primary-light-text-color)] rounded-full flex items-center justify-center flex-shrink-0">
             <FaFileInvoice className="text-[var(--primary-header-color)] w-6 h-6 mb-2" />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">
+            <h3 className="text-xl font-bold mb-4 text-white">
               Document Upload Request & Catalog Interface Guideline Checklist
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Document Accepted Formats</h4>
+                  <FileText className="w-4 h-4 text-white" />
+                  <h4 className="font-semibold text-white">Document Accepted Formats</h4>
                 </div>
-                <ul className="space-y-1 text-gray-600">
+                <ul className="space-y-1 text-white">
                   <li>• PDF (Preferred)</li>
                   <li>• PNG, JPEG</li>
                   <li>• DOC, DOCX</li>
@@ -668,10 +668,10 @@ export default function DocumentSubmission({
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <Ruler className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">File Specifications</h4>
+                  <Ruler className="w-4 h-4 text-white" />
+                  <h4 className="font-semibold text-white">File Specifications</h4>
                 </div>
-                <ul className="space-y-1 text-gray-600">
+                <ul className="space-y-1 text-white">
                   <li>• Size: 1MB to 50MB</li>
                   <li>• Image Resolution: 300 DPI+</li>
                   <li>• Clear, Uncorrupted Files</li>
@@ -679,10 +679,10 @@ export default function DocumentSubmission({
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">File Naming Convention</h4>
+                  <ShieldCheck className="w-4 h-4 text-white" />
+                  <h4 className="font-semibold text-white">File Naming Convention</h4>
                 </div>
-                <ul className="space-y-1 text-gray-600">
+                <ul className="space-y-1 text-white">
                   <li>• CompanyRegistration.pdf</li>
                   <li>• ProductCatalog.docx</li>
                   <li>• Adhaar.png</li>
@@ -690,10 +690,10 @@ export default function DocumentSubmission({
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <FaBook className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Catalog Content</h4>
+                  <FaBook className="w-4 h-4 text-white" />
+                  <h4 className="font-semibold text-white">Catalog Content</h4>
                 </div>
-                <ul className="space-y-1 text-gray-600">
+                <ul className="space-y-1 text-white">
                   <li>• Introduction</li>
                   <li>• Product Description & Price</li>
                   <li>• Certifications (if any)</li>
@@ -702,10 +702,10 @@ export default function DocumentSubmission({
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Catalog Layout & Design</h4>
+                  <FileText className="w-4 h-4 text-white" />
+                  <h4 className="font-semibold text-white">Catalog Layout & Design</h4>
                 </div>
-                <ul className="space-y-1 text-gray-600">
+                <ul className="space-y-1 text-white">
                   <li>• Page Size: A4</li>
                   <li>• Orientation: Portrait</li>
                   <li>• Font Size: 12 pt</li>
@@ -713,10 +713,10 @@ export default function DocumentSubmission({
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <Ruler className="w-4 h-4 text-[var(--primary-color)]" />
-                  <h4 className="font-semibold text-gray-800">Catalog Standard Margins</h4>
+                  <Ruler className="w-4 h-4 text-white" />
+                  <h4 className="font-semibold text-white">Catalog Standard Margins</h4>
                 </div>
-                <ul className="space-y-1 text-gray-600">
+                <ul className="space-y-1 text-white">
                   <li>• Top: 1 inch (25.4 mm)</li>
                   <li>• Bottom: 1 inch (25.4 mm)</li>
                   <li>• Left/Right: 1 inch (25.4 mm)</li>

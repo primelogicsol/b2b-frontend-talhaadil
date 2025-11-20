@@ -1,55 +1,248 @@
-"use client";
-import { useEffect, useState } from "react";
-import {
-  Building2,
-  Award,
-  CreditCard,
-  AlertTriangle,
-  Star,
-} from "lucide-react";
-import { useGlobalContext } from "@/context/ScreenProvider";
-import { useToast } from "@/context/ToastProvider";
-import { sendInfo, getUserInfo } from "@/services/regitsration";
+"use client"
+import { useEffect, useState } from "react"
+import { Building2, Award, CreditCard, AlertTriangle, Star } from "lucide-react"
+import { useGlobalContext } from "@/context/ScreenProvider"
+import { useToast } from "@/context/ToastProvider"
+import { sendInfo, getUserInfo } from "@/services/regitsration"
 
-import Cookies from "js-cookie";
+import Cookies from "js-cookie"
 
 interface BusinessInformationProps {
-  data?: any;
-  onUpdate: (data: any) => void;
-  onNext: () => void;
-  onPrev: () => void;
+  data?: any
+  onUpdate: (data: any) => void
+  onNext: () => void
+  onPrev: () => void
 }
 
-export default function BusinessInformation({
-  data,
-  onUpdate,
-  onNext,
-  onPrev,
-}: BusinessInformationProps) {
-  // ✅ Scroll to top on component mount
+const COUNTRIES = [
+  { code: "IN", name: "India" },
+  { code: "US", name: "United States" },
+  { code: "CA", name: "Canada" },
+  { code: "UK", name: "United Kingdom" },
+  { code: "AU", name: "Australia" },
+  { code: "DE", name: "Germany" },
+  { code: "FR", name: "France" },
+  { code: "JP", name: "Japan" },
+  { code: "CN", name: "China" },
+  { code: "BR", name: "Brazil" },
+  { code: "MX", name: "Mexico" },
+  { code: "NZ", name: "New Zealand" },
+  { code: "SG", name: "Singapore" },
+  { code: "HK", name: "Hong Kong" },
+  { code: "AE", name: "United Arab Emirates" },
+  { code: "SA", name: "Saudi Arabia" },
+  { code: "KR", name: "South Korea" },
+  { code: "IT", name: "Italy" },
+  { code: "ES", name: "Spain" },
+  { code: "NL", name: "Netherlands" },
+  { code: "SE", name: "Sweden" },
+  { code: "CH", name: "Switzerland" },
+  { code: "AT", name: "Austria" },
+  { code: "BE", name: "Belgium" },
+  { code: "DK", name: "Denmark" },
+  { code: "NO", name: "Norway" },
+  { code: "FI", name: "Finland" },
+  { code: "IE", name: "Ireland" },
+  { code: "GR", name: "Greece" },
+  { code: "PT", name: "Portugal" },
+]
+
+const SearchableCountrySelect = ({
+  value,
+  onChange,
+  disabled,
+  isInvalid,
+}: {
+  value: string
+  onChange: (value: string) => void
+  disabled: boolean
+  isInvalid: boolean
+}) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const filteredCountries = COUNTRIES.filter(
+    (country) =>
+      country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      country.code.toLowerCase().includes(searchTerm.toLowerCase()),
+  )
+
+  const selectedCountry = COUNTRIES.find((c) => c.code === value)
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => !disabled && setIsOpen(!isOpen)}
+        className={`w-full px-4 py-4 border-2 rounded-xl text-left font-medium focus:outline-none transition-all ${
+          isInvalid
+            ? "border-red-500 focus:ring-2 focus:ring-red-500"
+            : "border-gray-200 focus:ring-2 focus:ring-[var(--primary-color)]"
+        } ${disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white cursor-pointer"}`}
+        disabled={disabled}
+      >
+        {selectedCountry ? selectedCountry.name : "Select country"}
+      </button>
+      {isOpen && !disabled && (
+        <div className="absolute z-50 w-full mt-1 bg-white border-2 border-gray-200 rounded-xl shadow-lg">
+          <input
+            type="text"
+            placeholder="Search country..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-2 border-b-2 border-gray-200 focus:outline-none"
+            autoFocus
+          />
+          <div className="max-h-48 overflow-y-auto">
+            {filteredCountries.length > 0 ? (
+              filteredCountries.map((country) => (
+                <button
+                  key={country.code}
+                  type="button"
+                  onClick={() => {
+                    onChange(country.code)
+                    setIsOpen(false)
+                    setSearchTerm("")
+                  }}
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${
+                    value === country.code ? "bg-blue-50 font-semibold" : ""
+                  }`}
+                >
+                  {country.name}
+                </button>
+              ))
+            ) : (
+              <div className="px-4 py-2 text-gray-500">No countries found</div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+const VALIDATION_RULES = {
+  businessName: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Business name is required",
+  },
+  businessLegalStructure: {
+    validate: (value: string) => value !== "",
+    error: "Business legal structure is required",
+  },
+  businessType: {
+    validate: (value: string) => value !== "",
+    error: "Business type is required",
+  },
+  businessRegistrationNumber: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Business registration number is required",
+  },
+  streetAddress1: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Street address is required",
+  },
+  city: {
+    validate: (value: string) => value.trim() !== "",
+    error: "City is required",
+  },
+  stateRegion: {
+    validate: (value: string) => value.trim() !== "",
+    error: "State/Region is required",
+  },
+  country: {
+    validate: (value: string) => value !== "",
+    error: "Country is required",
+  },
+  postalCode: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Postal code is required",
+  },
+  gstNumber: {
+    validate: (value: string) => value.trim() !== "",
+    error: "GST Number/Sales Tax Permit is required",
+  },
+  taxIdentificationNumber: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Tax Identification Number/EIN is required",
+  },
+  contactName: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Contact person name is required",
+  },
+  contactEmail: {
+    validate: (value: string) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      return emailRegex.test(value)
+    },
+    error: "Valid email address is required",
+  },
+  contactPhone: {
+    validate: (value: string) => {
+      const phoneRegex = /^[\d\s\-+$$$$]{7,}$/
+      return phoneRegex.test(value)
+    },
+    error: "Valid phone number is required",
+  },
+  contactDistrict: {
+    validate: (value: string) => value.trim() !== "",
+    error: "District/County is required",
+  },
+  contactPinCode: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Pin code is required",
+  },
+  contactState: {
+    validate: (value: string) => value.trim() !== "",
+    error: "State/County is required",
+  },
+  contactCountry: {
+    validate: (value: string) => value !== "",
+    error: "Country is required",
+  },
+  bankName: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Bank name is required",
+  },
+  accountName: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Account name is required",
+  },
+  accountType: {
+    validate: (value: string) => value !== "",
+    error: "Account type is required",
+  },
+  accountNumber: {
+    validate: (value: string) => value.trim() !== "",
+    error: "Account number is required",
+  },
+  ifscCode: {
+    validate: (value: string) => value.trim() !== "",
+    error: "IFSC Code/ABA Routing Number is required",
+  },
+} 
+
+export default function BusinessInformation({ data, onUpdate, onNext, onPrev }: BusinessInformationProps) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  const fixStep = 2;
-  const currentStep = parseInt(Cookies.get("registration_step") || "0", 10);
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
+  const fixStep = 2
+  const currentStep = Number.parseInt(Cookies.get("registration_step") || "0", 10)
 
-  const { showToast } = useToast();
-  const { is4K } = useGlobalContext();
-  const [loading, setLoading] = useState(false);
-  const [isEditable, setIsEditable] = useState(currentStep <= fixStep);
-  const [getLoading, setGetLoading] = useState(false);
+  const { showToast } = useToast()
+  const { is4K } = useGlobalContext()
+  const [loading, setLoading] = useState(false)
+  const [isEditable, setIsEditable] = useState(currentStep <= fixStep)
+  const [getLoading, setGetLoading] = useState(false)
 
-  const [userRole, setUserRole] = useState<"vendor" | "buyer">("buyer");
+  const [userRole, setUserRole] = useState<"vendor" | "buyer">("buyer")
 
   useEffect(() => {
-    const roleFromCookie = Cookies.get("user_role") as
-      | "vendor"
-      | "buyer"
-      | undefined;
+    const roleFromCookie = Cookies.get("user_role") as "vendor" | "buyer" | undefined
     if (roleFromCookie) {
-      setUserRole(roleFromCookie);
+      setUserRole(roleFromCookie)
     }
-  }, []);
+  }, [])
 
   const [formData, setFormData] = useState(
     data || {
@@ -122,27 +315,24 @@ export default function BusinessInformation({
         "Difficulties with FEMA for international payments recently?": false,
         "Have digital banking regulations impacted your operations?": false,
         "Encountered any fraud or cybersecurity issues recently?": false,
-        "Challenges with payment gateway compliance or security regulations?":
-          false,
+        "Challenges with payment gateway compliance or security regulations?": false,
         "Any account activity issues or fraudulent claims made?": false,
         "Have regulatory actions been taken against your account?": false,
       },
-    }
-  );
+    },
+  )
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
-  // ✅ Fetch user info if step > fixStep
   useEffect(() => {
     if (currentStep > fixStep) {
       const fetchUserInfo = async () => {
         try {
-          setLoading(true);
-          setGetLoading(true);
-          const response = await getUserInfo();
-          const apiData = response.data;
+          setLoading(true)
+          setGetLoading(true)
+          const response = await getUserInfo()
+          const apiData = response.data
 
-          // Map API response to formData structure
           const updatedFormData = {
             ...formData,
             businessInfo: {
@@ -150,8 +340,7 @@ export default function BusinessInformation({
               businessLegalStructure: apiData.business_legal_structure || "",
               businessType: apiData.business_type || "",
               businessEstablishedYear: apiData.year_established || 0,
-              businessRegistrationNumber:
-                apiData.business_registration_number || "",
+              businessRegistrationNumber: apiData.business_registration_number || "",
               brandAffiliations: apiData.brand_affiliations || "",
               streetAddress1: apiData.street_address_1 || "",
               streetAddress2: apiData.street_address_2 || "",
@@ -184,18 +373,14 @@ export default function BusinessInformation({
               standardsLevel: apiData.standards_level || 3,
             },
             certifications: {
-              GICertification:
-                apiData.certifications.includes("GI Certification"),
+              GICertification: apiData.certifications.includes("GI Certification"),
               handloomMark: apiData.certifications.includes("Handloom Mark"),
               craftMark: apiData.certifications.includes("Craft Mark"),
               indiaHandmade: apiData.certifications.includes("India Handmade"),
-              qualityCouncil:
-                apiData.certifications.includes("Quality Council"),
+              qualityCouncil: apiData.certifications.includes("Quality Council"),
               exportCouncil: apiData.certifications.includes("Export Council"),
               blockChain: apiData.certifications.includes("Blockchain"),
-              ...(userRole === "vendor"
-                ? { none: false }
-                : { notRequired: false }),
+              ...(userRole === "vendor" ? { none: false } : { notRequired: false }),
             },
             bankingInfo: {
               bankName: apiData.bank_name || "",
@@ -207,78 +392,137 @@ export default function BusinessInformation({
               ibanCode: apiData.iban_code || "",
             },
             complianceIssues: {
-              "Have you faced challenges with KYC regulations recently?":
-                apiData.kyc_challenges || false,
-              "Any issues with GST compliance in transactions?":
-                apiData.gst_compliance_issues || false,
-              "Difficulties with FEMA for international payments recently?":
-                apiData.fema_payment_issues || false,
-              "Have digital banking regulations impacted your operations?":
-                apiData.digital_banking_issues || false,
-              "Encountered any fraud or cybersecurity issues recently?":
-                apiData.fraud_cybersecurity_issues || false,
+              "Have you faced challenges with KYC regulations recently?": apiData.kyc_challenges || false,
+              "Any issues with GST compliance in transactions?": apiData.gst_compliance_issues || false,
+              "Difficulties with FEMA for international payments recently?": apiData.fema_payment_issues || false,
+              "Have digital banking regulations impacted your operations?": apiData.digital_banking_issues || false,
+              "Encountered any fraud or cybersecurity issues recently?": apiData.fraud_cybersecurity_issues || false,
               "Challenges with payment gateway compliance or security regulations?":
                 apiData.payment_gateway_compliance_issues || false,
-              "Any account activity issues or fraudulent claims made?":
-                apiData.account_activity_issues || false,
-              "Have regulatory actions been taken against your account?":
-                apiData.regulatory_actions || false,
+              "Any account activity issues or fraudulent claims made?": apiData.account_activity_issues || false,
+              "Have regulatory actions been taken against your account?": apiData.regulatory_actions || false,
             },
-          };
+          }
 
-          setFormData(updatedFormData);
-          onUpdate(updatedFormData);
+          setFormData(updatedFormData)
+          onUpdate(updatedFormData)
         } catch (error: any) {
-          showToast("Failed to fetch user information. Please try again.");
-          console.error("Fetch Error:", error);
+          showToast("Failed to fetch user information. Please try again.")
+          console.error("Fetch Error:", error)
         } finally {
-          setLoading(false);
-          setGetLoading(false);
+          setLoading(false)
+          setGetLoading(false)
         }
-      };
+      }
 
-      fetchUserInfo();
+      fetchUserInfo()
     }
-  }, [currentStep, fixStep]);
+  }, [currentStep, fixStep])
 
   const handleBusinessInfoChange = (field: string, value: string) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessInfo: { ...prev.businessInfo, [field]: value },
-    }));
-  };
+    }))
+    validateField(field, value)
+  }
 
   const handleBusinessContactChange = (field: string, value: string) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessContact: { ...prev.businessContact, [field]: value },
-    }));
-  };
+    }))
+    validateField(`contact${field.charAt(0).toUpperCase() + field.slice(1)}`, value)
+  }
 
   const handleBankingInfoChange = (field: string, value: string) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     setFormData((prev: typeof formData) => ({
       ...prev,
       bankingInfo: { ...prev.bankingInfo, [field]: value },
-    }));
-  };
+    }))
+    validateField(field, value)
+  }
 
   const handleYearChange = (value: string) => {
-    if (!isEditable) return;
-    const year = Number.parseInt(value) || 0;
+    if (!isEditable) return
+    const year = Number.parseInt(value) || 0
     setFormData((prev: typeof formData) => ({
       ...prev,
       businessInfo: { ...prev.businessInfo, businessEstablishedYear: year },
-    }));
-  };
+    }))
+  }
+
+  const validateField = (fieldName: string, value: string) => {
+    const rule = VALIDATION_RULES[fieldName as keyof typeof VALIDATION_RULES]
+    if (rule) {
+      if (rule.validate(value)) {
+        setErrors((prev) => {
+          const newErrors = { ...prev }
+          delete newErrors[fieldName]
+          return newErrors
+        })
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          [fieldName]: rule.error,
+        }))
+      }
+    }
+  }
+
+  const validateAllFields = (): boolean => {
+    const newErrors: Record<string, string> = {}
+
+    const fieldsToValidate = {
+      businessName: formData.businessInfo.businessName,
+      businessLegalStructure: formData.businessInfo.businessLegalStructure,
+      businessType: formData.businessInfo.businessType,
+      businessRegistrationNumber: formData.businessInfo.businessRegistrationNumber,
+      streetAddress1: formData.businessInfo.streetAddress1,
+      city: formData.businessInfo.city,
+      stateRegion: formData.businessInfo.stateRegion,
+      country: formData.businessInfo.country,
+      postalCode: formData.businessInfo.postalCode,
+      gstNumber: formData.businessInfo.gstNumber,
+      taxIdentificationNumber: formData.businessInfo.taxIdentificationNumber,
+      contactName: formData.businessContact.name,
+      contactEmail: formData.businessContact.email,
+      contactPhone: formData.businessContact.phone,
+      contactDistrict: formData.businessContact.district,
+      contactPinCode: formData.businessContact.pinCode,
+      contactState: formData.businessContact.state,
+      contactCountry: formData.businessContact.country,
+      bankName: formData.bankingInfo.bankName,
+      accountName: formData.bankingInfo.accountName,
+      accountType: formData.bankingInfo.accountType,
+      accountNumber: formData.bankingInfo.accountNumber,
+      ifscCode: formData.bankingInfo.ifscCode,
+    }
+
+    Object.entries(fieldsToValidate).forEach(([fieldName, value]) => {
+      const rule = VALIDATION_RULES[fieldName as keyof typeof VALIDATION_RULES]
+      if (rule && !rule.validate(value)) {
+        newErrors[fieldName] = rule.error
+      }
+    })
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = async () => {
     if (!isEditable) {
-      
-      onNext();
-      return;
+      onNext()
+      return
+    }
+
+    if (!validateAllFields()) {
+      console.log(errors)
+      showToast("Please fix all validation errors before submitting.")
+      return
     }
 
     try {
@@ -287,14 +531,12 @@ export default function BusinessInformation({
         business_legal_structure: formData.businessInfo.businessLegalStructure,
         business_type: formData.businessInfo.businessType,
         year_established: formData.businessInfo.businessEstablishedYear || 1800,
-        business_registration_number:
-          formData.businessInfo.businessRegistrationNumber,
+        business_registration_number: formData.businessInfo.businessRegistrationNumber,
         brand_affiliations: formData.businessInfo.brandAffiliations || "",
         website: formData.businessInfo.website || "",
         annual_turnover: formData.businessInfo.annualTurnover || "",
         gst_number: formData.businessInfo.gstNumber,
-        tax_identification_number:
-          formData.businessInfo.taxIdentificationNumber,
+        tax_identification_number: formData.businessInfo.taxIdentificationNumber,
         import_export_code: formData.businessInfo.importExportCode || "",
         street_address_1: formData.businessInfo.streetAddress1,
         street_address_2: formData.businessInfo.streetAddress2 || "",
@@ -312,19 +554,13 @@ export default function BusinessInformation({
         contact_country: formData.businessContact.country,
         material_standard: formData.credibilityAssessment.materialStandard,
         quality_level: formData.credibilityAssessment.qualityLevel,
-        sustainability_level:
-          formData.credibilityAssessment.sustainabilityLevel,
+        sustainability_level: formData.credibilityAssessment.sustainabilityLevel,
         service_level: formData.credibilityAssessment.serviceLevel,
         standards_level: formData.credibilityAssessment.standardsLevel,
         ethics_level: formData.credibilityAssessment.ethicsLevel,
         certifications: Object.entries(formData.certifications)
-          .filter(
-            ([key, value]) =>
-              value && key !== (userRole === "vendor" ? "none" : "notRequired")
-          )
-          .map(
-            ([key]) => certificationMap[key as keyof typeof certificationMap]
-          ),
+          .filter(([key, value]) => value && key !== (userRole === "vendor" ? "none" : "notRequired"))
+          .map(([key]) => certificationMap[key as keyof typeof certificationMap]),
         bank_name: formData.bankingInfo.bankName,
         account_name: formData.bankingInfo.accountName,
         account_type: formData.bankingInfo.accountType,
@@ -332,74 +568,53 @@ export default function BusinessInformation({
         ifsc_code: formData.bankingInfo.ifscCode,
         swift_bis_code: formData.bankingInfo.swiftBisCode || "",
         iban_code: formData.bankingInfo.ibanCode || "",
-        kyc_challenges:
-          formData.complianceIssues[
-            "Have you faced challenges with KYC regulations recently?"
-          ] || false,
-        gst_compliance_issues:
-          formData.complianceIssues[
-            "Any issues with GST compliance in transactions?"
-          ] || false,
+        kyc_challenges: formData.complianceIssues["Have you faced challenges with KYC regulations recently?"] || false,
+        gst_compliance_issues: formData.complianceIssues["Any issues with GST compliance in transactions?"] || false,
         fema_payment_issues:
-          formData.complianceIssues[
-            "Difficulties with FEMA for international payments recently?"
-          ] || false,
+          formData.complianceIssues["Difficulties with FEMA for international payments recently?"] || false,
         digital_banking_issues:
-          formData.complianceIssues[
-            "Have digital banking regulations impacted your operations?"
-          ] || false,
+          formData.complianceIssues["Have digital banking regulations impacted your operations?"] || false,
         fraud_cybersecurity_issues:
-          formData.complianceIssues[
-            "Encountered any fraud or cybersecurity issues recently?"
-          ] || false,
+          formData.complianceIssues["Encountered any fraud or cybersecurity issues recently?"] || false,
         payment_gateway_compliance_issues:
-          formData.complianceIssues[
-            "Challenges with payment gateway compliance or security regulations?"
-          ] || false,
+          formData.complianceIssues["Challenges with payment gateway compliance or security regulations?"] || false,
         account_activity_issues:
-          formData.complianceIssues[
-            "Any account activity issues or fraudulent claims made?"
-          ] || false,
+          formData.complianceIssues["Any account activity issues or fraudulent claims made?"] || false,
         regulatory_actions:
-          formData.complianceIssues[
-            "Have regulatory actions been taken against your account?"
-          ] || false,
-      };
-      setLoading(true);
-      localStorage.setItem(
-        "businessRegistrationData",
-        JSON.stringify(apiPayload)
-      );
-      console.log("API Payload:", apiPayload);
+          formData.complianceIssues["Have regulatory actions been taken against your account?"] || false,
+      }
+      setLoading(true)
+      localStorage.setItem("businessRegistrationData", JSON.stringify(apiPayload))
+      console.log("API Payload:", apiPayload)
 
-      const response = await sendInfo(apiPayload);
-      const data = response.data;
-      onNext();
+      const response = await sendInfo(apiPayload)
+      const data = response.data
+      onNext()
 
-      let step = parseInt(Cookies.get("registration_step") || "0", 10);
-      step += 1;
-      Cookies.set("registration_step", step.toString());
+      let step = Number.parseInt(Cookies.get("registration_step") || "0", 10)
+      step += 1
+      Cookies.set("registration_step", step.toString())
     } catch (error: any) {
-      const errorMsg = error?.response?.data?.detail;
+      const errorMsg = error?.response?.data?.detail
 
       if (errorMsg === "User already has registration levels") {
-        showToast("You have already submitted the information.");
+        showToast("You have already submitted the information.")
         setTimeout(() => {
-          onNext();
-        }, 4000);
+          onNext()
+        }, 4000)
       } else {
-        showToast(errorMsg || "Error submitting information. Please try again.");
+        showToast(errorMsg || "Error submitting information. Please try again.")
       }
 
-      console.error("Network Error:", error);
+      console.error("Network Error:", error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleNext = () => {
-    handleSubmit();
-  };
+    handleSubmit()
+  }
 
   const getFieldLabels = () => {
     if (userRole === "buyer") {
@@ -415,8 +630,7 @@ export default function BusinessInformation({
         compliance: {
           "Have you faced challenges with KYC regulations recently?":
             "Have you faced challenges with Customer Identification Program (CIP) recently?",
-          "Any issues with GST compliance in transactions?":
-            "Any issues with Sales Tax Compliance in transactions?",
+          "Any issues with GST compliance in transactions?": "Any issues with Sales Tax Compliance in transactions?",
           "Difficulties with FEMA for international payments recently?":
             "Difficulties with OFAC & FinCEN Cross-Border Payment Rules recently?",
           "Have digital banking regulations impacted your operations?":
@@ -424,7 +638,7 @@ export default function BusinessInformation({
           "Challenges with payment gateway compliance or security regulations?":
             "Challenges with PCI-DSS Compliance or security regulations?",
         },
-      };
+      }
     } else {
       return {
         taxRegistration: {
@@ -438,8 +652,7 @@ export default function BusinessInformation({
         compliance: {
           "Have you faced challenges with KYC regulations recently?":
             "Have you faced challenges with KYC regulations recently?",
-          "Any issues with GST compliance in transactions?":
-            "Any issues with GST compliance in transactions?",
+          "Any issues with GST compliance in transactions?": "Any issues with GST compliance in transactions?",
           "Difficulties with FEMA for international payments recently?":
             "Difficulties with FEMA Rules (Foreign Exchange) recently?",
           "Have digital banking regulations impacted your operations?":
@@ -447,21 +660,17 @@ export default function BusinessInformation({
           "Challenges with payment gateway compliance or security regulations?":
             "Challenges with payment gateway compliance or security regulations?",
         },
-      };
+      }
     }
-  };
+  }
 
-  const fieldLabels = getFieldLabels();
+  const fieldLabels = getFieldLabels()
 
-  // ✅ Save to localStorage whenever formData changes (only if editable)
   useEffect(() => {
     if (isEditable) {
-      localStorage.setItem(
-        "businessRegistrationData",
-        JSON.stringify(formData)
-      );
+      localStorage.setItem("businessRegistrationData", JSON.stringify(formData))
     }
-  }, [formData, isEditable]);
+  }, [formData, isEditable])
 
   const certificationMap = {
     GICertification: "GI Certification",
@@ -471,96 +680,62 @@ export default function BusinessInformation({
     qualityCouncil: "Quality Council",
     exportCouncil: "Export Council",
     blockChain: "Blockchain",
-  };
+  }
 
-  // Handler for basic user info
   const handleUserInfoChange = (field: string, value: string) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     const updatedData = {
       ...formData,
       [field]: value,
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
-  // Handler for Self Credibility Assessment
   const handleCredibilityChange = (field: string, value: number) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     const updatedData = {
       ...formData,
       credibilityAssessment: {
         ...formData.credibilityAssessment,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
-  // Handler for certifications
   const handleCertificationChange = (field: string, value: boolean) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     const updatedData = {
       ...formData,
       certifications: {
         ...formData.certifications,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
-  // Handler for compliance issues
   const handleComplianceChange = (field: string, value: boolean) => {
-    if (!isEditable) return;
+    if (!isEditable) return
     const updatedData = {
       ...formData,
       complianceIssues: {
         ...formData.complianceIssues,
         [field]: value,
       },
-    };
-    setFormData(updatedData);
-    onUpdate(updatedData);
-  };
+    }
+    setFormData(updatedData)
+    onUpdate(updatedData)
+  }
 
-  // ✅ Check if all required fields are filled
   const areRequiredFieldsFilled = () => {
-    if (!isEditable) return true; // Always allow next if not editable
-    const requiredFields = [
-      formData.businessInfo.businessName,
-      formData.businessInfo.businessLegalStructure,
-      formData.businessInfo.businessType,
-      formData.businessInfo.businessRegistrationNumber,
-      formData.businessInfo.streetAddress1,
-      formData.businessInfo.city,
-      formData.businessInfo.stateRegion,
-      formData.businessInfo.country,
-      formData.businessInfo.postalCode,
-      formData.businessInfo.gstNumber,
-      formData.businessInfo.taxIdentificationNumber,
-      formData.businessContact.name,
-      formData.businessContact.email,
-      formData.businessContact.phone,
-      formData.businessContact.district,
-      formData.businessContact.pinCode,
-      formData.businessContact.state,
-      formData.businessContact.country,
-      formData.bankingInfo.bankName,
-      formData.bankingInfo.accountName,
-      formData.bankingInfo.accountType,
-      formData.bankingInfo.accountNumber,
-      formData.bankingInfo.ifscCode,
-    ];
+    if (!isEditable) return true
+    return Object.keys(errors).length === 0
+  }
 
-    return requiredFields.every(
-      (field) => typeof field === "string" && field.trim() !== ""
-    );
-  };
-
-  // ✅ Fixed completion percentage - only count required fields
   const getCompletionPercentage = () => {
     const requiredFields = [
       formData.businessInfo.businessName,
@@ -586,28 +761,29 @@ export default function BusinessInformation({
       formData.bankingInfo.accountType,
       formData.bankingInfo.accountNumber,
       formData.bankingInfo.ifscCode,
-    ];
+    ]
 
     const filledFields = requiredFields.filter((field) => {
       if (typeof field === "string") {
-        return field.trim() !== "";
+        return field.trim() !== ""
       }
-      return field !== null && field !== undefined && field !== 0;
-    }).length;
+      return field !== null && field !== undefined && field !== 0
+    }).length
 
-    return Math.round((filledFields / requiredFields.length) * 100);
-  };
+    return Math.round((filledFields / requiredFields.length) * 100)
+  }
 
   const ErrorMessage = ({ error }: { error?: string }) => {
-    if (!error) return null;
-    return <p className="text-red-500 text-sm mt-1">{error}</p>;
-  };
+    if (!error) return null
+    return <p className="text-red-600 text-sm mt-1 font-medium">{error}</p>
+  }
+
   if (getLoading) {
     return (
       <div className="flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--primary-color)]"></div>
       </div>
-    );
+    )
   }
   return (
     <div className={`mx-auto px-2 ${is4K ? "max-w-[2000px]" : "max-w-5xl"}`}>
@@ -615,25 +791,18 @@ export default function BusinessInformation({
         <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--primary-color)] rounded-full mb-6">
           <Building2 className="w-8 h-8 text-white" />
         </div>
-        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">
-          Complete Business Registration
-        </h1>
+        <h1 className="text-4xl font-bold text-[var(--primary-color)] mb-4">Complete Business Registration</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Please provide comprehensive business details for partnership
-          registration. This information helps us understand your business
-          better and assess partnership opportunities.
+          Please provide comprehensive business details for partnership registration. This information helps us
+          understand your business better and assess partnership opportunities.
         </p>
       </div>
 
       {/* Progress Bar */}
       <div className="bg-white rounded-3xl shadow-xl p-6 mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-[var(--primary-color)]">
-            Form Completion
-          </h3>
-          <span className="text-2xl font-bold text-[var(--secondary-color)]">
-            {getCompletionPercentage()}%
-          </span>
+          <h3 className="text-lg font-semibold text-[var(--primary-color)]">Form Completion</h3>
+          <span className="text-2xl font-bold text-[var(--secondary-color)]">{getCompletionPercentage()}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3">
           <div
@@ -650,39 +819,39 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Business Details
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Details</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Business Name *
+                Business Name <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.businessInfo.businessName}
-                onChange={(e) =>
-                  handleBusinessInfoChange("businessName", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessInfoChange("businessName", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.businessName
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter your business name"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.businessName} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Business Legal Structure *
+                Business Legal Structure <span className="text-red-600">*</span>
               </label>
               <select
                 value={formData.businessInfo.businessLegalStructure}
-                onChange={(e) =>
-                  handleBusinessInfoChange(
-                    "businessLegalStructure",
-                    e.target.value
-                  )
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessInfoChange("businessLegalStructure", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.businessLegalStructure
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 disabled={!isEditable}
               >
                 <option value="">Select legal structure</option>
@@ -693,17 +862,20 @@ export default function BusinessInformation({
                 <option value="llp">Limited Liability Partnership</option>
                 <option value="one-person-company">One Person Company</option>
               </select>
+              <ErrorMessage error={errors.businessLegalStructure} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Business Type *
+                Business Type <span className="text-red-600">*</span>
               </label>
               <select
                 value={formData.businessInfo.businessType}
-                onChange={(e) =>
-                  handleBusinessInfoChange("businessType", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessInfoChange("businessType", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.businessType
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 disabled={!isEditable}
               >
                 <option value="">Select business type</option>
@@ -715,11 +887,10 @@ export default function BusinessInformation({
                 <option value="importer">Importer</option>
                 <option value="service-provider">Service Provider</option>
               </select>
+              <ErrorMessage error={errors.businessType} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Year Established
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Year Established</label>
               <input
                 type="number"
                 value={formData.businessInfo.businessEstablishedYear || ""}
@@ -733,61 +904,49 @@ export default function BusinessInformation({
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Business Registration Number *
+                Business Registration Number <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.businessInfo.businessRegistrationNumber}
-                onChange={(e) =>
-                  handleBusinessInfoChange(
-                    "businessRegistrationNumber",
-                    e.target.value.toUpperCase()
-                  )
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessInfoChange("businessRegistrationNumber", e.target.value.toUpperCase())}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.businessRegistrationNumber
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter registration number"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.businessRegistrationNumber} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Brand Affiliations
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Brand Affiliations</label>
               <input
                 type="text"
                 value={formData.businessInfo.brandAffiliations || ""}
-                onChange={(e) =>
-                  handleBusinessInfoChange("brandAffiliations", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("brandAffiliations", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 placeholder="Enter brand affiliations"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Website
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Website</label>
               <input
-                type="url"
+                type="text"
                 value={formData.businessInfo.website || ""}
-                onChange={(e) =>
-                  handleBusinessInfoChange("website", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("website", e.target.value)}
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="https://www.example.com"
                 disabled={!isEditable}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Annual Turnover
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">Annual Turnover</label>
               <select
                 value={formData.businessInfo.annualTurnover}
-                onChange={(e) =>
-                  handleBusinessInfoChange("annualTurnover", e.target.value)
-                }
+                onChange={(e) => handleBusinessInfoChange("annualTurnover", e.target.value)}
                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                 disabled={!isEditable}
               >
@@ -820,47 +979,45 @@ export default function BusinessInformation({
 
           {/* Tax & Registration Information */}
           <div className="mt-8 pt-8 border-t">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
-              Tax & Registration Information
-            </h3>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Tax & Registration Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  {fieldLabels.taxRegistration.field1} *
+                  {fieldLabels.taxRegistration.field1} <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessInfo.gstNumber}
-                  onChange={(e) =>
-                    handleBusinessInfoChange(
-                      "gstNumber",
-                      e.target.value.toUpperCase()
-                    )
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessInfoChange("gstNumber", e.target.value.toUpperCase())}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.gstNumber
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder={`Enter ${fieldLabels.taxRegistration.field1.toLowerCase()}`}
                   maxLength={15}
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.gstNumber} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  {fieldLabels.taxRegistration.field2} *
+                  {fieldLabels.taxRegistration.field2} <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessInfo.taxIdentificationNumber}
-                  onChange={(e) =>
-                    handleBusinessInfoChange(
-                      "taxIdentificationNumber",
-                      e.target.value.toUpperCase()
-                    )
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessInfoChange("taxIdentificationNumber", e.target.value.toUpperCase())}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.taxIdentificationNumber
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder={`Enter ${fieldLabels.taxRegistration.field2.toLowerCase()}`}
                   maxLength={15}
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.taxIdentificationNumber} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
@@ -869,9 +1026,7 @@ export default function BusinessInformation({
                 <input
                   type="text"
                   value={formData.businessInfo.importExportCode || ""}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("importExportCode", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("importExportCode", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder={`Enter ${fieldLabels.taxRegistration.field3.toLowerCase()} (if applicable)`}
                   disabled={!isEditable}
@@ -887,61 +1042,46 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Business Address
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Address</h2>
           </div>
           <div className="space-y-6">
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Country *
+                Country <span className="text-red-600">*</span>
               </label>
-              <select
+              <SearchableCountrySelect
                 value={formData.businessInfo.country}
-                onChange={(e) =>
-                  handleBusinessInfoChange("country", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(value) => handleBusinessInfoChange("country", value)}
                 disabled={!isEditable}
-              >
-                <option value="">Select country</option>
-                <option value="IN">India</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="UK">United Kingdom</option>
-                <option value="AU">Australia</option>
-                <option value="DE">Germany</option>
-                <option value="FR">France</option>
-                <option value="JP">Japan</option>
-                <option value="CN">China</option>
-              </select>
+                isInvalid={!!errors.country}
+              />
+              <ErrorMessage error={errors.country} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  Street Address 1 *
+                  Street Address 1 <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessInfo.streetAddress1}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("streetAddress1", e.target.value)
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessInfoChange("streetAddress1", e.target.value)}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.streetAddress1
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter street address"
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.streetAddress1} />
               </div>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Street Address 2
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">Street Address 2</label>
                 <input
                   type="text"
                   value={formData.businessInfo.streetAddress2 || ""}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("streetAddress2", e.target.value)
-                  }
+                  onChange={(e) => handleBusinessInfoChange("streetAddress2", e.target.value)}
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium"
                   placeholder="Enter additional address info"
                   disabled={!isEditable}
@@ -951,52 +1091,58 @@ export default function BusinessInformation({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  City *
+                  City <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessInfo.city}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("city", e.target.value)
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessInfoChange("city", e.target.value)}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.city
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter city"
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.city} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  State/Region *
+                  State/Region <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessInfo.stateRegion}
-                  onChange={(e) =>
-                    handleBusinessInfoChange("stateRegion", e.target.value)
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessInfoChange("stateRegion", e.target.value)}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.stateRegion
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter state/region"
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.stateRegion} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  Postal Code *
+                  Postal Code <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessInfo.postalCode}
-                  onChange={(e) =>
-                    handleBusinessInfoChange(
-                      "postalCode",
-                      e.target.value.toUpperCase()
-                    )
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessInfoChange("postalCode", e.target.value.toUpperCase())}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.postalCode
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter postal code"
                   maxLength={10}
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.postalCode} />
               </div>
             </div>
           </div>
@@ -1008,66 +1154,69 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Building2 className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Business Contact Person
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Business Contact Person</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Contact Person Name *
+                Contact Person Name <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.businessContact.name}
-                onChange={(e) =>
-                  handleBusinessContactChange("name", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessContactChange("name", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.contactName
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter contact person name"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.contactName} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Email Address *
+                Email Address <span className="text-red-600">*</span>
               </label>
               <input
                 type="email"
                 value={formData.businessContact.email}
-                onChange={(e) =>
-                  handleBusinessContactChange("email", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessContactChange("email", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.contactEmail
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter email address"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.contactEmail} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Phone Number *
+                Phone Number <span className="text-red-600">*</span>
               </label>
               <input
                 type="tel"
                 value={formData.businessContact.phone}
-                onChange={(e) =>
-                  handleBusinessContactChange("phone", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBusinessContactChange("phone", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.contactPhone
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter phone number"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.contactPhone} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                WhatsApp Number
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">WhatsApp Number</label>
               <input
                 type="tel"
                 value={formData.businessContact.whatsapp || ""}
-                onChange={(e) =>
-                  handleBusinessContactChange("whatsapp", e.target.value)
-                }
+                onChange={(e) => handleBusinessContactChange("whatsapp", e.target.value)}
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter WhatsApp number"
                 disabled={!isEditable}
@@ -1077,79 +1226,74 @@ export default function BusinessInformation({
 
           {/* Contact Person Address */}
           <div className="mt-8 pt-8 border-t">
-            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">
-              Contact Person Address
-            </h3>
+            <h3 className="text-lg font-semibold text-[var(--primary-color)] mb-4">Contact Person Address</h3>
             <div className="space-y-2 mb-6">
               <label className="block text-sm font-semibold text-gray-700">
-                Country *
+                Country <span className="text-red-600">*</span>
               </label>
-              <select
+              <SearchableCountrySelect
                 value={formData.businessContact.country}
-                onChange={(e) =>
-                  handleBusinessContactChange("country", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(value) => handleBusinessContactChange("country", value)}
                 disabled={!isEditable}
-              >
-                <option value="">Select country</option>
-                <option value="IN">India</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="UK">United Kingdom</option>
-                <option value="AU">Australia</option>
-                <option value="DE">Germany</option>
-                <option value="FR">France</option>
-                <option value="JP">Japan</option>
-                <option value="CN">China</option>
-              </select>
+                isInvalid={!!errors.contactCountry}
+              />
+              <ErrorMessage error={errors.contactCountry} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  District/County *
+                  District/County <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessContact.district}
-                  onChange={(e) =>
-                    handleBusinessContactChange("district", e.target.value)
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessContactChange("district", e.target.value)}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.contactDistrict
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter district"
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.contactDistrict} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  Pin Code *
+                  Pin Code <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessContact.pinCode}
-                  onChange={(e) =>
-                    handleBusinessContactChange("pinCode", e.target.value)
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessContactChange("pinCode", e.target.value)}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.contactPinCode
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter pin code"
                   maxLength={6}
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.contactPinCode} />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700">
-                  State/County *
+                  State/County <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.businessContact.state}
-                  onChange={(e) =>
-                    handleBusinessContactChange("state", e.target.value)
-                  }
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                  onChange={(e) => handleBusinessContactChange("state", e.target.value)}
+                  className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                    errors.contactState
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                  }`}
                   placeholder="Enter state"
                   disabled={!isEditable}
                 />
+                <ErrorMessage error={errors.contactState} />
               </div>
             </div>
           </div>
@@ -1161,9 +1305,7 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Star className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Self Credibility Assessment
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Self Credibility Assessment</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -1178,21 +1320,14 @@ export default function BusinessInformation({
               { key: "ethicsLevel", label: "Ethics Level (1-5)" },
             ].map(({ key, label }) => (
               <div key={key} className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  {label}
-                </label>
+                <label className="block text-sm font-semibold text-gray-700">{label}</label>
                 <div className="flex items-center space-x-3">
                   <input
                     type="range"
                     min="1"
                     max="5"
                     value={formData.credibilityAssessment[key]}
-                    onChange={(e) =>
-                      handleCredibilityChange(
-                        key,
-                        Number.parseInt(e.target.value)
-                      )
-                    }
+                    onChange={(e) => handleCredibilityChange(key, Number.parseInt(e.target.value))}
                     className="flex-1 h-2 bg-gray-200 rounded-lg"
                     disabled={!isEditable}
                   />
@@ -1211,28 +1346,19 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <Award className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Certifications
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Certifications</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(formData.certifications).map(([key, value]) => (
-              <label
-                key={key}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
+              <label key={key} className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={Boolean(value)}
-                  onChange={(e) =>
-                    handleCertificationChange(key, e.target.checked)
-                  }
+                  onChange={(e) => handleCertificationChange(key, e.target.checked)}
                   className="w-4 h-4 text-[var(--primary-color)] rounded"
                   disabled={!isEditable}
                 />
-                <span className="text-sm text-gray-700 capitalize">
-                  {key.replace(/([A-Z])/g, " $1").trim()}
-                </span>
+                <span className="text-sm text-gray-700 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</span>
               </label>
             ))}
           </div>
@@ -1244,51 +1370,57 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <CreditCard className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Banking Information
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Banking Information</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Bank Name *
+                Bank Name <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.bankingInfo.bankName}
-                onChange={(e) =>
-                  handleBankingInfoChange("bankName", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBankingInfoChange("bankName", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.bankName
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter bank name"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.bankName} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Account Name *
+                Account Name <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.bankingInfo.accountName}
-                onChange={(e) =>
-                  handleBankingInfoChange("accountName", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBankingInfoChange("accountName", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.accountName
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter account holder name"
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.accountName} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Account Type *
+                Account Type <span className="text-red-600">*</span>
               </label>
               <select
                 value={formData.bankingInfo.accountType}
-                onChange={(e) =>
-                  handleBankingInfoChange("accountType", e.target.value)
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBankingInfoChange("accountType", e.target.value)}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.accountType
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 disabled={!isEditable}
               >
                 <option value="">Select account type</option>
@@ -1297,58 +1429,52 @@ export default function BusinessInformation({
                 <option value="business">Business Account</option>
                 <option value="corporate">Corporate Account</option>
               </select>
+              <ErrorMessage error={errors.accountType} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                Account Number *
+                Account Number <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.bankingInfo.accountNumber}
-                onChange={(e) =>
-                  handleBankingInfoChange(
-                    "accountNumber",
-                    e.target.value.replace(/\D/g, "")
-                  )
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBankingInfoChange("accountNumber", e.target.value.replace(/\D/g, ""))}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.accountNumber
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder="Enter account number"
                 maxLength={18}
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.accountNumber} />
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-700">
-                {fieldLabels.banking.routingCode} *
+                {fieldLabels.banking.routingCode} <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 value={formData.bankingInfo.ifscCode}
-                onChange={(e) =>
-                  handleBankingInfoChange(
-                    "ifscCode",
-                    e.target.value.toUpperCase()
-                  )
-                }
-                className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
+                onChange={(e) => handleBankingInfoChange("ifscCode", e.target.value.toUpperCase())}
+                className={`w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none transition-all text-gray-800 font-medium ${
+                  errors.ifscCode
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 focus:ring-[var(--primary-color)] focus:border-transparent"
+                }`}
                 placeholder={`Enter ${fieldLabels.banking.routingCode.toLowerCase()}`}
                 maxLength={11}
                 disabled={!isEditable}
               />
+              <ErrorMessage error={errors.ifscCode} />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                SWIFT Code
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">SWIFT Code</label>
               <input
                 type="text"
                 value={formData.bankingInfo.swiftBisCode || ""}
-                onChange={(e) =>
-                  handleBankingInfoChange(
-                    "swiftBisCode",
-                    e.target.value.toUpperCase()
-                  )
-                }
+                onChange={(e) => handleBankingInfoChange("swiftBisCode", e.target.value.toUpperCase())}
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter SWIFT code (for international)"
                 maxLength={11}
@@ -1356,18 +1482,11 @@ export default function BusinessInformation({
               />
             </div>
             <div className="md:col-span-2 space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                IBAN Code
-              </label>
+              <label className="block text-sm font-semibold text-gray-700">IBAN Code</label>
               <input
                 type="text"
                 value={formData.bankingInfo.ibanCode || ""}
-                onChange={(e) =>
-                  handleBankingInfoChange(
-                    "ibanCode",
-                    e.target.value.toUpperCase()
-                  )
-                }
+                onChange={(e) => handleBankingInfoChange("ibanCode", e.target.value.toUpperCase())}
                 className="w-full px-4 py-4 border-2 rounded-xl focus:ring-2 focus:outline-none focus:ring-[var(--primary-color)] focus:border-transparent transition-all text-gray-800 font-medium border-gray-200"
                 placeholder="Enter IBAN code (for international)"
                 maxLength={34}
@@ -1383,29 +1502,20 @@ export default function BusinessInformation({
             <div className="w-10 h-10 bg-[var(--primary-hover-color)] rounded-full flex items-center justify-center mr-3">
               <AlertTriangle className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--primary-color)]">
-              Compliance Issues
-            </h2>
+            <h2 className="text-2xl font-bold text-[var(--primary-color)]">Compliance Issues</h2>
           </div>
           <div className="grid grid-cols-1 gap-4">
             {Object.entries(formData.complianceIssues).map(([key, value]) => (
-              <label
-                key={key}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
+              <label key={key} className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={Boolean(value)}
-                  onChange={(e) =>
-                    handleComplianceChange(key, e.target.checked)
-                  }
+                  onChange={(e) => handleComplianceChange(key, e.target.checked)}
                   className="w-4 h-4 text-red-600 rounded"
                   disabled={!isEditable}
                 />
                 <span className="text-sm text-gray-700">
-                  {fieldLabels.compliance[
-                    key as keyof typeof fieldLabels.compliance
-                  ] || key}
+                  {fieldLabels.compliance[key as keyof typeof fieldLabels.compliance] || key}
                 </span>
               </label>
             ))}
@@ -1441,5 +1551,5 @@ export default function BusinessInformation({
         </button>
       </div>
     </div>
-  );
+  )
 }

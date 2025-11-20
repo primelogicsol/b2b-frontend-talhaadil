@@ -23,7 +23,7 @@ const plans: PricingPlan[] = [
     name: "Starter Package",
     price: 1250,
     period: "one-time",
-    description: "Designed for small vendors establishing presence in the ecosystem.",
+    description: "Designed for small vendors entering the ecosystem.",
     features: {
       directAccess: "Mid-tier partnerships (Consignment & Exhibition)",
       compulsory: "E-Commerce Partnership Registration & Approval",
